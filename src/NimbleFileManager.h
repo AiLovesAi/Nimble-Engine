@@ -1,5 +1,5 @@
 /*
- *  FileManager.h
+ *  NimbleFileManager.h
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef FileManager_h
-#define FileManager_h
+#ifndef NimbleFileManager_h
+#define NimbleFileManager_h
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -24,21 +24,20 @@
 #include <limits.h>
 #endif
 
+#include "NimbleMemory.h"
+
 #ifndef ALWAYS_INLINE
 #define ALWAYS_INLINE static inline __attribute((always_inline))
 #endif
 #ifndef NULL
 #define NULL (void *) 0
 #endif
-#ifndef ptrSize
-#define ptrSize sizeof(NULL)
-#endif
 
 
 // Sets buffer to the directory of the executable, and sets bufferSize to its length.
 ALWAYS_INLINE char * nimbleFileGetExecutableDirectory(size_t * length)
 {
-    char * buffer = malloc(ptrSize + PATH_MAX + 1);
+    char * buffer = nimbleMemoryAllocate(PATH_MAX + 1);
 #   ifdef _WIN32
     GetModuleFileName(NULL, buffer, PATH_MAX);
 #   elif defined(__APPLE__)
@@ -50,16 +49,17 @@ ALWAYS_INLINE char * nimbleFileGetExecutableDirectory(size_t * length)
     
     if (!buffer)
     {
-        return 0;
+        return NULL;
     }
     
-    const char * temp = strrchr(buffer, '/');
+    char * temp = strrchr(buffer, '/');
     const uint16_t index = temp - buffer;
     buffer[index + 1] = '\0';
     *length = strlen(buffer);
+    buffer = nimbleMemoryReallocate(buffer, PATH_MAX + 1, *length + 1);
     return buffer;
 }
 
-#endif /* FileManager_h */
+#endif /* NimbleFileManager_h */
 
-// FileManager.h
+// NimbleFileManager.h
