@@ -1,5 +1,5 @@
 /*
- *  GameMath.c
+ *  NimbleMath.c
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,7 +7,8 @@
  *
  */
 
-#include "GameMath.h"
+#include "NimbleMath.h"
+
 
 // Returns the number of digits in unsigned 64-bit integer x.
 uint8_t nimbleMathDigits64u(const uint64_t x)
@@ -99,4 +100,4 @@ uint8_t nimbleMathDigitsD(const double x)
 }
 
 
-// GameMath.c
+// NimbleMath.c
