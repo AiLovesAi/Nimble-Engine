@@ -1,5 +1,5 @@
 /*
- *  FileManager.c
+ *  NimbleFileManager.c
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,11 +7,11 @@
  *
  */
 
-#include "FileManager.h"
+#include "NimbleFileManager.h"
 
 
 // TODO
 
 
-// FileManger.c
+// NimbleFileManger.c
 
