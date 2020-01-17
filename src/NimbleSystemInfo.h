@@ -1,5 +1,5 @@
 /*
- *  SystemInfo.h
+ *  NimbleSystemInfo.h
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,12 +7,10 @@
  *
  */
 
-#ifndef SystemInfo_h
-#define SystemInfo_h
+#ifndef NimbleSystemInfo_h
+#define NimbleSystemInfo_h
 
 #include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
 #include <GL/glew.h>
 
 #if defined(__APPLE__) || defined(__linux__)
@@ -24,9 +22,6 @@
 #endif
 #ifndef NULL
 #define NULL (void *) 0
-#endif
-#ifndef ptrSize
-#define ptrSize sizeof(NULL)
 #endif
 
 
@@ -49,8 +44,14 @@ ALWAYS_INLINE uint8_t nimbleSystemGetLogicalProcessorCount(void)
 #endif
 
 // Returns the graphics card name.
-#define nimbleSystemGetGraphicsBrandString() (char *) glGetString(GL_RENDERER)
+ALWAYS_INLINE char * nimbleSystemGetGraphicsCardBrandString(uint8_t * length)
+{
+    char * graphicsCardString = (char *) glGetString(GL_RENDERER);
+    // TODO Remove "OpenGL Engine"
+    *length = (uint8_t) strlen(graphicsCardString);
+    return graphicsCardString;
+}
 
-#endif /* SystemInfo_h */
+#endif /* NimbleSystemInfo_h */
 
-//SystemInfo.h
+// NimbleSystemInfo.h
