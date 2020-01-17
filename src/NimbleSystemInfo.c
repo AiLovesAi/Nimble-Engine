@@ -1,5 +1,5 @@
 /*
- *  SystemInfo.c
+ *  NimbleSystemInfo.c
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,7 +7,19 @@
  *
  */
 
-#include "SystemInfo.h"
+#include <stdlib.h>
+#include <string.h>
+
+#ifdef __linux__
+#include <sys/utsname.h>
+#endif
+
+#include "NimbleMemory.h"
+#include "NimbleSystemInfo.h"
+
+#ifndef FORMAT_LENGTH_2
+#define FORMAT_LENGTH_2 2
+#endif
 
 
 // Returns the OS name.
@@ -30,13 +42,13 @@ char * nimbleSystemGetOSString(uint8_t * length)
             {
                 const char windows10String[] = "Windows 10";
                 *length = sizeof(windows10String) - 1;
-                osString = malloc(ptrSize + *length + 1);
+                osString = nimbleMemoryAllocate(*length + 1);
                 strcpy(osString, windows10String);
             } else
             {
                 const char windowsServerTechnicalString[] = "Windows Server Technical Preview";
                 *length = sizeof(windowsServerTechnicalString) - 1;
-                osString = malloc(ptrSize + *length + 1);
+                osString = nimbleMemoryAllocate(*length + 1);
                 strcpy(osString, windowsServerTechnicalString);
             }
             
@@ -56,7 +68,7 @@ char * nimbleSystemGetOSString(uint8_t * length)
                     {
                         const char windows81String[] = "Windows 8.1";
                         *length = sizeof(windows81String) - 1;
-                        osString = malloc(ptrSize + *length + 1);
+                        osString = nimbleMemoryAllocate(*length + 1);
                         strcpy(osString, windows81String);
                     }
                     break;
@@ -65,7 +77,7 @@ char * nimbleSystemGetOSString(uint8_t * length)
                     {
                         const char windows8String[] = "Windows 8";
                         *length = sizeof(windows8String) - 1;
-                        osString = malloc(ptrSize + *length + 1);
+                        osString = nimbleMemoryAllocate(*length + 1);
                         strcpy(osString, windows8String);
                     }
                     break;
@@ -74,7 +86,7 @@ char * nimbleSystemGetOSString(uint8_t * length)
                     {
                         const char windows7String[] = "Windows 7";
                         *length = sizeof(windows7String) - 1;
-                        osString = malloc(ptrSize + *length + 1);
+                        osString = nimbleMemoryAllocate(*length + 1);
                         strcpy(osString, windows7String);
                     }
                     break;
@@ -83,7 +95,7 @@ char * nimbleSystemGetOSString(uint8_t * length)
                     {
                         const char windowsVistaString[] = "Windows Vista";
                         *length = sizeof(windowsVistaString) - 1;
-                        osString = malloc(ptrSize + *length + 1);
+                        osString = nimbleMemoryAllocate(*length + 1);
                         strcpy(osString, windowsVistaString);
                     }
                     break;
@@ -99,7 +111,7 @@ char * nimbleSystemGetOSString(uint8_t * length)
                     {
                         const char windowsServer2012R2String[] = "Windows Server 2012 R2";
                         *length = sizeof(windowsServer2012R2String) - 1;
-                        osString = malloc(ptrSize + *length + 1);
+                        osString = nimbleMemoryAllocate(*length + 1);
                         strcpy(osString, windowsServer2012R2String);
                     }
                     break;
@@ -108,7 +120,7 @@ char * nimbleSystemGetOSString(uint8_t * length)
                     {
                         const char windowsServer2012String[] = "Windows Server 2012";
                         *length = sizeof(windowsServer2012String) - 1;
-                        osString = malloc(ptrSize + *length + 1);
+                        osString = nimbleMemoryAllocate(*length + 1);
                         strcpy(osString, windowsServer2012String);
                     }
                     break;
@@ -117,7 +129,7 @@ char * nimbleSystemGetOSString(uint8_t * length)
                     {
                         const char windowsServer2008R2String[] = "Windows Server 2008 R2";
                         *length = sizeof(windowsServer2008R2String) - 1;
-                        osString = malloc(ptrSize + *length + 1);
+                        osString = nimbleMemoryAllocate(*length + 1);
                         strcpy(osString, windowsServer2008R2String);
                     }
                     break;
@@ -126,7 +138,7 @@ char * nimbleSystemGetOSString(uint8_t * length)
                     {
                         const char windowsServer2008String[] = "Windows Server 2008";
                         *length = sizeof(windowsServer2008String) - 1;
-                        osString = malloc(ptrSize + *length + 1);
+                        osString = nimbleMemoryAllocate(*length + 1);
                         strcpy(osString, windowsServer2008String);
                     }
                     break;
@@ -139,11 +151,56 @@ char * nimbleSystemGetOSString(uint8_t * length)
         break;
         
     }
+    
 #   elif defined(__APPLE__)
-    // TODO
+    char osBuffer[32];
+    char osVersionBuffer[10];
+    int mib[] = {CTL_KERN, KERN_OSTYPE};
+    size_t osBufferLength = sizeof(osBuffer);
+    size_t osVersionBufferLength = sizeof(osVersionBuffer);
+    
+    if (sysctl(mib, 2, osBuffer, &osBufferLength, NULL, 0))
+    {
+        return NULL;
+    }
+    
+    *length = osBufferLength - 1;
+    mib[1] = KERN_OSRELEASE;
+    
+    if (sysctl(mib, 2, osVersionBuffer, &osVersionBufferLength, NULL, 0))
+    {
+        return NULL;
+    }
+    
+    *length += osVersionBufferLength - 1;
+    
+    osString = nimbleMemoryAllocate(*length + 1);
+    strcpy(osString, osBuffer);
+    osString[osBufferLength - 1] = ' ';
+    strcpy(osString + osBufferLength, osVersionBuffer);
+    
 #   elif defined(__linux__)
-    // TODO
+    struct utsname
+    {
+        char sysname[];    // Operating system name (e.g., "Linux")
+        char nodename[];   // Name within "some implementation-defined network"
+        char release[];    // Operating system release (e.g., "2.6.28")
+        char version[];    // Operating system version
+        char machine[];    // Hardware identifier
+#       if defined(_GNU_SOURCE)
+        char domainname[]; // NIS or YP domain name
+#       endif
+    };
+    
+    uname(&utsname);
+    const uint32_t sysnameLength = strlen(utsname.sysname);
+    *length = (sysnameLength + strlen(utsname.release) + 1);
+    osString = nimbleMemoryAllocate(*length + 1);
+    strcpy(osString, utsname.sysname);
+    osString[sysnameLength] = ' ';
+    strcpy(osString + sysnameLength + 1, utsname.release);
 #   endif
+    
     return osString;
 }
 
@@ -151,7 +208,8 @@ char * nimbleSystemGetOSString(uint8_t * length)
 char * nimbleSystemGetCPUBrandString(uint8_t * length)
 {
     uint32_t regs[4] = {};
-    char * cpuBrandString = malloc(ptrSize + ((sizeof(uint32_t) * sizeof(regs)) * 4) + 1);
+    const uint32_t bufferSize = ((sizeof(uint32_t) * sizeof(regs)) * 4) + 1;
+    char * cpuBrandString = nimbleMemoryAllocate(bufferSize);
     uint32_t * buffer = (uint32_t *) cpuBrandString;
     
     for (uint32_t i = 0x80000002; i <= 0x80000004; i++)
@@ -169,9 +227,9 @@ char * nimbleSystemGetCPUBrandString(uint8_t * length)
     }
     
     *length = strlen(cpuBrandString);
-    cpuBrandString = realloc(cpuBrandString, ptrSize + *length + 1);
+    cpuBrandString = nimbleMemoryReallocate(cpuBrandString, bufferSize, *length + 1);
     return cpuBrandString;
 }
 
 
-// SystemInfo.c
+// NimbleSystemInfo.c
