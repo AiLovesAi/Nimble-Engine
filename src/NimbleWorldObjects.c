@@ -1,5 +1,5 @@
 /*
- *  WorldObjects.c
+ *  NimbleWorldObjects.c
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,7 +7,9 @@
  *
  */
 
-#include "WorldObjects.h"
+#include "NimbleMath.h"
+#include "NimbleMemory.h"
+#include "NimbleWorldObjects.h"
 
 #ifndef STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
@@ -15,15 +17,15 @@
 #include "stb_image.h"
 
 
-struct worldObject * worldObjects = NULL;
-volatile uint32_t    objectCount  = 0;
-volatile uint32_t    nextID       = 0;
-struct texture *     textures     = NULL;
-volatile uint32_t    textureCount = 0;
+struct nimbleWorldObject * worldObjects = NULL;
+volatile uint32_t          objectCount  = 0;
+volatile uint32_t          nextID       = 0;
+struct nimbleTexture *     textures     = NULL;
+volatile uint32_t          textureCount = 0;
 
 
 // Creates a texture and returns its ID.
-const uint32_t nimbleTextureLoad(const char * png, size_t * imageSize)
+const uint32_t nimbleTextureLoad(const char * png)
 {
     int32_t width    = 0;
     int32_t height   = 0;
@@ -35,9 +37,8 @@ const uint32_t nimbleTextureLoad(const char * png, size_t * imageSize)
         return 0;
     }
     
+    textures = nimbleMemoryReallocate(textures, (sizeof(struct nimbleTexture) * textureCount), (sizeof(struct nimbleTexture) * (textureCount + 1)));
     textureCount++;
-    *imageSize = ((width) * (height) * (colorChannels)) + sizeof(struct texture);
-    textures = realloc(textures, (ptrSize + sizeof(struct texture) * textureCount));
     
     uint32_t textureID = 0;
     glGenTextures(1, &textureID);
@@ -65,14 +66,12 @@ const uint32_t nimbleTextureLoad(const char * png, size_t * imageSize)
     return textureID;
 }
 
-// Unloads a texture and returns the size of the image unloaded.
-uint32_t nimbleTextureUnload(const uint32_t textureIndex)
+// Unloads a texture.
+void nimbleTextureUnload(const uint32_t textureIndex)
 {
     // Destroy texture
     glDeleteTextures(1, &textures[textureIndex].textureID);
     textures[textureIndex].textureID = 0;
-    
-    const uint32_t textureSize = (textures[textureIndex].width * textures[textureIndex].height * textures[textureIndex].colorChannels) + sizeof(struct texture);
     
     // Reallocate textures
     if (textureIndex < (textureCount - 1))
@@ -83,20 +82,19 @@ uint32_t nimbleTextureUnload(const uint32_t textureIndex)
             textures[i].textureIndex--;
         }
         
-        memcpy(textures + (textureIndex * sizeof(struct texture)), textures + (textureIndex * sizeof(struct texture)) + 1,
-               (sizeof(struct texture) * (textureCount - textureIndex - 1)));
+        memcpy(textures + (textureIndex * sizeof(struct nimbleTexture)), textures + (textureIndex * sizeof(struct nimbleTexture)) + 1,
+               (sizeof(struct nimbleTexture) * (textureCount - textureIndex - 1)));
     }
     
+    textures = nimbleMemoryReallocate(textures, (sizeof(struct nimbleTexture) * textureCount), (sizeof(struct nimbleTexture) * (textureCount - 1)));
     textureCount--;
-    textures = realloc(textures, ptrSize + (sizeof(struct texture) * textureCount));
-    return textureSize;
 }
 
 // Creates a world object and returns its ID.
 const uint32_t nimbleObjectCreate(const vec3 position, const vec4 orientation, const uint32_t parentObjectID, const float * meshVertices, const uint32_t vertexCount, const uint32_t * meshIndices, const uint32_t indexCount, const uint32_t faces, const uint32_t * textureIDs)
 {
+    worldObjects = nimbleMemoryReallocate(worldObjects, (sizeof(struct nimbleWorldObject) * objectCount), (sizeof(struct nimbleWorldObject) * (objectCount + 1)));
     objectCount++;
-    worldObjects = realloc(worldObjects, ptrSize + (sizeof(struct worldObject) * objectCount));
     const uint32_t objectID = nextID;
     nextID++;
     const uint32_t objectIndex = objectCount - 1;
@@ -145,7 +143,7 @@ const uint32_t nimbleObjectCreate(const vec3 position, const vec4 orientation, c
     return objectID;
 }
 
-// Destroys a world object and returns the amount of memory freed by doing so.
+// Destroys a world object.
 void nimbleObjectDestroy(const uint32_t objectIndex)
 {
     worldObjects[objectIndex].objectID = 0;
@@ -180,12 +178,12 @@ void nimbleObjectDestroy(const uint32_t objectIndex)
             worldObjects[i].objectIndex--;
         }
         
-        memcpy((worldObjects + (sizeof(struct worldObject) * objectIndex)), (worldObjects + (sizeof(struct worldObject) * objectIndex) + 1), (sizeof(struct worldObject) * (objectCount - objectIndex - 1)));
+        memcpy((worldObjects + (sizeof(struct nimbleWorldObject) * objectIndex)), (worldObjects + (sizeof(struct nimbleWorldObject) * objectIndex) + 1), (sizeof(struct nimbleWorldObject) * (objectCount - objectIndex - 1)));
     }
     
+    worldObjects = nimbleMemoryReallocate(worldObjects, (sizeof(struct nimbleWorldObject) * objectCount), (sizeof(struct nimbleWorldObject) * (objectCount - 1)));
     objectCount--;
-    worldObjects = realloc(worldObjects, ptrSize + (sizeof(struct worldObject) * objectCount));
 }
 
 
-// WorldObjects.c
+// NimbleWorldObjects.c
