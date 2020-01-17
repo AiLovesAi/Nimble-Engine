@@ -1,5 +1,5 @@
 /*
- *  Logger.c
+ *  NimbleLogger.c
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,7 +7,18 @@
  *
  */
 
-#include "Logger.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "NimbleMemory.h"
+#include "NimbleTime.h"
+#include "NimbleLogger.h"
+
+#ifndef FORMAT_LENGTH_4
+#define FORMAT_LENGTH_4 4
+#endif
 
 
 uint8_t nimbleLoggerLog(FILE * logFile, const char * entry, const size_t entryLength, const uint8_t entryType, const uint8_t logToConsole)
@@ -23,9 +34,7 @@ uint8_t nimbleLoggerLog(FILE * logFile, const char * entry, const size_t entryLe
     }
     
     struct timeval tv = {};
-    
     gettimeofday(&tv, NULL);
-    
     time_t t = time(0);
     const struct tm * localNow = localtime(&t);
     
@@ -48,7 +57,7 @@ uint8_t nimbleLoggerLog(FILE * logFile, const char * entry, const size_t entryLe
             const char infoSuffix[] = "INFO: ";
             outputLength = (entryTimeFormattedLength + (sizeof(infoSuffix) - 1) +
                             entryLength + (sizeof(entrySuffix) - 1) + 1);
-            output = malloc(ptrSize + outputLength);
+            output = nimbleMemoryAllocate(outputLength);
             
             snprintf(output, outputLength, entryTime,
                      (localNow->tm_mon + TM_DIF_MONTH), localNow->tm_mday, (localNow->tm_year + TM_DIF_EPOCH),
@@ -67,7 +76,7 @@ uint8_t nimbleLoggerLog(FILE * logFile, const char * entry, const size_t entryLe
             const char warningSuffix[] = "WARNING: ";
             outputLength = (entryTimeFormattedLength + (sizeof(warningSuffix) - 1) +
                             entryLength + (sizeof(entrySuffix) - 1) + 1);
-            output = malloc(ptrSize + outputLength);
+            output = nimbleMemoryAllocate(outputLength);
             
             snprintf(output, outputLength, entryTime,
                      (localNow->tm_mon + TM_DIF_MONTH), localNow->tm_mday, (localNow->tm_year + TM_DIF_EPOCH),
@@ -85,7 +94,7 @@ uint8_t nimbleLoggerLog(FILE * logFile, const char * entry, const size_t entryLe
         {
             outputLength = (entryTimeFormattedLength + entryLength +
                             (sizeof(entrySuffix) - 1) + 1);
-            output = malloc(ptrSize + outputLength);
+            output = nimbleMemoryAllocate(outputLength);
             
             snprintf(output, outputLength, entryTime,
                      (localNow->tm_mon + TM_DIF_MONTH), localNow->tm_mday, (localNow->tm_year + TM_DIF_EPOCH),
@@ -107,6 +116,7 @@ uint8_t nimbleLoggerLog(FILE * logFile, const char * entry, const size_t entryLe
     }
     
     fwrite(output, 1, outputLength, logFile);
+    nimbleMemoryFree(output, outputLength);
     
     if(ferror(logFile))
     {
@@ -117,4 +127,4 @@ uint8_t nimbleLoggerLog(FILE * logFile, const char * entry, const size_t entryLe
 }
 
 
-// Logger.c
+// NimbleLogger.c
