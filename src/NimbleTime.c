@@ -1,5 +1,5 @@
 /*
- *  GameTime.c
+ *  NimbleTime.c
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,7 +7,7 @@
  *
  */
 
-#include "GameTime.h"
+#include "NimbleTime.h"
 
 // Returns 1 if the current time is > time.
 const uint8_t nimbleTimeHasPast(const struct timeval time)
@@ -28,4 +28,4 @@ struct timeval nimbleTimeSetTimerMillis(const clock_t milliseconds)
 }
 
 
-// GameTime.c
+// NimbleTime.c
