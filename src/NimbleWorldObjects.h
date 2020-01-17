@@ -1,5 +1,5 @@
 /*
- *  WorldObjects.h
+ *  NimbleWorldObjects.h
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef WorldObjects_h
-#define WorldObjects_h
+#ifndef NimbleWorldObjects_h
+#define NimbleWorldObjects_h
 
 #include <cglm/cglm.h>
 #include <GL/glew.h>
@@ -16,25 +16,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "GameMath.h"
-
 #ifndef ALWAYS_INLINE
 #define ALWAYS_INLINE static inline __attribute((always_inline))
 #endif
 #ifndef NULL
 #define NULL (void *) 0
 #endif
-#ifndef ptrSize
-#define ptrSize sizeof(NULL)
-#endif
 
-extern struct worldObject * worldObjects;
+extern struct nimbleWorldObject * worldObjects;
 extern volatile uint32_t objectCount;
 extern volatile uint32_t objectMemory;
-extern struct texture * textures;
+extern struct nimbleTexture * textures;
 extern volatile uint32_t textureCount;
 
-struct texture {
+struct nimbleTexture {
     uint32_t textureID;
     uint32_t textureIndex;
     uint16_t width;
@@ -42,7 +37,7 @@ struct texture {
     uint8_t colorChannels;
 };
 
-struct objectMesh {
+struct nimbleMesh {
     GLuint VAO;
     GLuint VBO;
     GLuint IBO;
@@ -50,10 +45,10 @@ struct objectMesh {
     uint32_t vertexCount;
 };
 
-struct worldObject {
+struct nimbleWorldObject {
     uint32_t objectID;
     uint32_t objectIndex;
-    struct objectMesh mesh;
+    struct nimbleMesh mesh;
     uint32_t faces;
     uint32_t textureIDs[256];
     vec3 position; // World position
@@ -63,15 +58,15 @@ struct worldObject {
 
 
 // Loads a texture and returns its ID.
-extern const uint32_t nimbleTextureLoad(const char * png, size_t * imageSize);
+extern const uint32_t nimbleTextureLoad(const char * png);
 
-// Unloads a texture and returns the size of the image unloaded.
-extern uint32_t nimbleTextureUnload(const uint32_t textureIndex);
+// Unloads a texture.
+extern void nimbleTextureUnload(const uint32_t textureIndex);
 
 // Creates a world object and returns its ID.
 extern const uint32_t nimbleObjectCreate(const vec3 position, const vec4 orientation, const uint32_t parentObjectID, const float * meshVertices, const uint32_t vertexCount, const uint32_t * meshIndices, const uint32_t indexCount, const uint32_t faces, const uint32_t * textureIDs);
 
-// Destroys a world object and returns the amount of memory freed by doing so.
+// Destroys a world object.
 extern void nimbleObjectDestroy(const uint32_t objectIndex);
 
 ALWAYS_INLINE void nimbleObjectsNormalize(void)
@@ -89,6 +84,6 @@ ALWAYS_INLINE void nimbleObjectsNormalize(void)
     
 }
 
-#endif /* WorldObjects_h */
+#endif /* NimbleWorldObjects_h */
 
-// WorldObjects.h
+// NimbleWorldObjects.h
