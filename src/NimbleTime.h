@@ -1,5 +1,5 @@
 /*
- *  GameTime.h
+ *  NimbleTime.h
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef GameTime_h
-#define GameTime_h
+#ifndef NimbleTime_h
+#define NimbleTime_h
 
 #include <stdint.h>
 #include <sys/time.h>
@@ -64,6 +64,6 @@ extern struct timeval nimbleTimeSetTimerMillis(const clock_t milliseconds);
 #endif
 
 
-#endif /* GameTime_h */
+#endif /* NimbleTime_h */
 
-// GameTime.h
+// NimbleTime.h
