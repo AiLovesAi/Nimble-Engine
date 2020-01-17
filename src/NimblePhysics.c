@@ -1,5 +1,5 @@
 /*
- *  Physics.c
+ *  NimblePhysics.c
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,10 +7,10 @@
  *
  */
 
-#include "Physics.h"
+#include "NimblePhysics.h"
 
 
 // TODO
 
 
-// Physics.c
+// NimblePhysics.c
