@@ -87,8 +87,6 @@ const char VOLUME_MASTER_DEFAULT_STRING[] = "1.0";
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/errno.h>
-#include <sys/utsname.h>
-#include <sys/sysctl.h>
 #include <sys/time.h>
 #include <unistd.h>
 #elif defined(__APPLE__)
@@ -112,12 +110,13 @@ const char VOLUME_MASTER_DEFAULT_STRING[] = "1.0";
 #include <unistd.h>
 #endif
 
-#include "FileManager.h"
-#include "GameMath.h"
-#include "GameTime.h"
-#include "Logger.h"
-#include "SystemInfo.h"
-#include "WorldObjects.h"
+#include "NimbleBigNumber.h"
+#include "NimbleFileManager.h"
+#include "NimbleMath.h"
+#include "NimbleTime.h"
+#include "NimbleLogger.h"
+#include "NimbleSystemInfo.h"
+#include "NimbleWorldObjects.h"
 
 
 /* GLOBAL DEFINITIONS */
@@ -200,11 +199,10 @@ char *     optionsFilePath           = NULL;
 // Info
 char *  cpuID                 = NULL;
 uint8_t logicalProcessorCount = 0;
-char *  gpuInfo               = NULL;
+char *  graphicsCardInfo               = NULL;
 
 // Memory
-uint64_t          memoryAllocated = 0;
-volatile uint64_t memoryUsed      = 0; // TODO Stores memory usage of assets and rendering
+uint64_t memoryAllocated = 0;
 
 
 // OpenGL
@@ -280,7 +278,6 @@ volatile uint32_t windowX          = 0;
 volatile uint32_t windowY          = 0;
 volatile uint32_t windowWidth      = 0;
 volatile uint32_t windowHeight     = 0;
-volatile uint64_t windowSize       = 0;
 volatile int32_t  prevWindowX      = 0;
 volatile int32_t  prevWindowY      = 0;
 volatile int32_t  prevWindowWidth  = 0;
@@ -410,17 +407,6 @@ static void crash(const char * error)
         
     }
     
-    while (objectCount)
-    {
-        nimbleObjectDestroy(0);
-        memoryUsed -= sizeof(struct worldObject);
-    }
-    
-    while (textureCount)
-    {
-        memoryUsed -= nimbleTextureUnload(0);
-    }
-    
     if (audioContext)
     {
         audioContext = alcGetCurrentContext();
@@ -438,6 +424,28 @@ static void crash(const char * error)
         glfwDestroyWindow(window);
         window = NULL;
         glfwTerminate();
+    }
+    
+    if (executableDirectory)
+    {
+        nimbleMemoryFree(executableDirectory, executableDirectoryLength + sizeof(NULL_CHAR));
+        executableDirectory = NULL;
+    }
+    
+    if (cpuID)
+    {
+        nimbleMemoryFree(cpuID, strlen(cpuID) + sizeof(NULL_CHAR));
+        cpuID = NULL;
+    }
+    
+    while (objectCount)
+    {
+        nimbleObjectDestroy(0);
+    }
+    
+    while (textureCount)
+    {
+        nimbleTextureUnload(0);
     }
     
     exit(EXIT_FAILURE);
@@ -712,126 +720,6 @@ static void signalHandler(int signum)
     
 }
 
-#define ENTRY_TYPE_DEFAULT_PRINT 0
-#define ENTRY_TYPE_INFO 1
-#define ENTRY_TYPE_WARNING 2
-// Logs entry to the console and the log file.
-static void logEntry(const char * entry, const size_t entryLength, const uint8_t entryType)
-{
-    
-    if (!entry)
-    {
-        crash("No entry to log.");
-    }
-    
-    struct timeval tv = {};
-    
-    gettimeofday(&tv, NULL);
-    
-    time_t t = time(0);
-    const struct tm * localNow = localtime(&t);
-    
-    char * output;
-    const char entryTime[]         = "[%02d-%02d-%04d %02d:%02d:%02d +%06d] "; // Time format: [MM-DD-YYYY HH:MM:SS +mmmmmm]
-    const char entrySuffix[]       = "\n";
-    size_t     currentOutputLength = sizeof(NULL_CHAR);
-    size_t     outputLength        = sizeof(NULL_CHAR);
-    
-    if (!entryLength)
-    {
-        crash("Entry to log has no length.");
-    }
-    
-    const size_t entryTimeFormattedLength = ((sizeof(entryTime) - sizeof(NULL_CHAR)) - (FORMAT_LENGTH_4 * 7) +
-                                             TM_DIGITS_MONTH + TM_DIGITS_DAY + TM_DIGITS_YEAR + TM_DIGITS_HOUR +
-                                             TM_DIGITS_MINUTE + TM_DIGITS_SECOND + TM_DIGITS_MICROSECOND);
-    // NOTE: FORMAT_LENGTH_4 * 7 for the 7 inputs to properly allocate memory.
-    
-    switch (entryType)
-    {
-            
-        case ENTRY_TYPE_INFO: // Prints with "info" suffix.
-        {
-            const char infoSuffix[] = "INFO: ";
-            outputLength = (entryTimeFormattedLength + (sizeof(infoSuffix) - sizeof(NULL_CHAR)) +
-                            entryLength + (sizeof(entrySuffix) - sizeof(NULL_CHAR)) + sizeof(NULL_CHAR));
-            output = malloc(ptrSize + outputLength);
-            
-            if (!output)
-            {
-                crash("Ran out of memory.");
-            }
-            
-            snprintf(output, outputLength, entryTime,
-                     (localNow->tm_mon + TM_DIF_MONTH), localNow->tm_mday, (localNow->tm_year + TM_DIF_EPOCH),
-                     localNow->tm_hour, localNow->tm_min, localNow->tm_sec, tv.tv_usec);
-            currentOutputLength += entryTimeFormattedLength;
-            strncat(output, infoSuffix, (outputLength - currentOutputLength));
-            currentOutputLength += (sizeof(infoSuffix) - sizeof(NULL_CHAR));
-            strncat(output, entry, (outputLength - currentOutputLength));
-            currentOutputLength += entryLength;
-            strncat(output, entrySuffix, (outputLength - currentOutputLength));
-        }
-        break;
-            
-        case ENTRY_TYPE_WARNING: // Prints with "warning" suffix.
-        {
-            const char warningSuffix[] = "WARNING: ";
-            outputLength = (entryTimeFormattedLength + (sizeof(warningSuffix) - sizeof(NULL_CHAR)) +
-                            entryLength + (sizeof(entrySuffix) - sizeof(NULL_CHAR)) + sizeof(NULL_CHAR));
-            output = malloc(ptrSize + outputLength);
-            
-            if (!output)
-            {
-                crash("Ran out of memory.");
-            }
-            
-            snprintf(output, outputLength, entryTime,
-                     (localNow->tm_mon + TM_DIF_MONTH), localNow->tm_mday, (localNow->tm_year + TM_DIF_EPOCH),
-                     localNow->tm_hour, localNow->tm_min, localNow->tm_sec, tv.tv_usec);
-            currentOutputLength += entryTimeFormattedLength;
-            strncat(output, warningSuffix, (outputLength - currentOutputLength));
-            currentOutputLength += (sizeof(warningSuffix) - sizeof(NULL_CHAR));
-            strncat(output, entry, (outputLength - currentOutputLength));
-            currentOutputLength += entryLength;
-            strncat(output, entrySuffix, (outputLength - currentOutputLength));
-        }
-        break;
-            
-        default: // Prints normally.
-        {
-            outputLength = (entryTimeFormattedLength + entryLength +
-                            (sizeof(entrySuffix) - sizeof(NULL_CHAR)) + sizeof(NULL_CHAR));
-            output = malloc(ptrSize + outputLength);
-            
-            if (!output)
-            {
-                crash("Ran out of memory.");
-            }
-            
-            snprintf(output, outputLength, entryTime,
-                     (localNow->tm_mon + TM_DIF_MONTH), localNow->tm_mday, (localNow->tm_year + TM_DIF_EPOCH),
-                     localNow->tm_hour, localNow->tm_min, localNow->tm_sec, tv.tv_usec);
-            currentOutputLength += entryTimeFormattedLength;
-            strncat(output, entry, (outputLength - currentOutputLength));
-            currentOutputLength += entryLength;
-            strncat(output, entrySuffix, (outputLength - currentOutputLength));
-        }
-        break;
-            
-    }
-    
-    outputLength = strlen(output);
-    fwrite(output, 1, outputLength, ((entryType == ENTRY_TYPE_WARNING) ? stderr : stdout));
-    fwrite(output, 1, outputLength, logFile);
-    
-    if(ferror(logFile))
-    {
-        catchFunctionError(FUNCTION_FWRITE);
-    }
-    
-}
-
 // Gets data from a variable in a file.
 static char * getVariable(const char * filePath, const char * location)
 {
@@ -904,7 +792,7 @@ static void glfwErrorHandler(const int errorCode, const char * errorDescription)
     }
     
     snprintf(entry, (entryLength + sizeof(NULL_CHAR)), errorPrefix, errorCode, errorDescription);
-    logEntry(entry, entryLength, ENTRY_TYPE_WARNING);
+    nimbleLoggerLog(logFile, entry, entryLength, ENTRY_TYPE_WARNING, 1);
 }
 
 // Attempts to close the game or crashes if unsuccessful.
@@ -930,12 +818,11 @@ static inline void closeGame(void)
     while (objectCount)
     {
         nimbleObjectDestroy(0);
-        memoryUsed -= sizeof(struct worldObject);
     }
     
     while (textureCount)
     {
-        memoryUsed -= nimbleTextureUnload(0);
+        nimbleTextureUnload(0);
     }
     
     if (audioContext)
@@ -951,19 +838,29 @@ static inline void closeGame(void)
     window = NULL;
     glfwTerminate();
     
-    memoryUsed -= windowSize;
+    if (executableDirectory)
+    {
+        nimbleMemoryFree(executableDirectory, executableDirectoryLength + sizeof(NULL_CHAR));
+        executableDirectory = NULL;
+    }
     
-    if (memoryUsed)
+    if (cpuID)
+    {
+        nimbleMemoryFree(cpuID, strlen(cpuID) + sizeof(NULL_CHAR));
+        cpuID = NULL;
+    }
+    
+    if (nimbleMemoryUsed)
     {
         const char memoryLostString[] = "Memory lost during program execution: %lluB";
-        const uint8_t memoryLostStringLength = (sizeof(memoryLostString) - FORMAT_LENGTH_4 - sizeof(NULL_CHAR)) + nimbleMathDigits64u(memoryUsed);
+        const uint8_t memoryLostStringLength = (sizeof(memoryLostString) - FORMAT_LENGTH_4 - sizeof(NULL_CHAR)) + nimbleMathDigits64u(nimbleMemoryUsed);
         char * entry = malloc(ptrSize + memoryLostStringLength + sizeof(NULL_CHAR));
-        snprintf(entry, (memoryLostStringLength + sizeof(NULL_CHAR)), memoryLostString, memoryUsed);
-        logEntry(entry, memoryLostStringLength, ENTRY_TYPE_WARNING);
+        snprintf(entry, (memoryLostStringLength + sizeof(NULL_CHAR)), memoryLostString, nimbleMemoryUsed);
+        nimbleLoggerLog(logFile, entry, memoryLostStringLength, ENTRY_TYPE_WARNING, 1);
     }
     
     const char closeSuccessString[] = "Successfully closed " GAME_TITLE ".";
-    logEntry(closeSuccessString, (sizeof(closeSuccessString) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+    nimbleLoggerLog(logFile, closeSuccessString, (sizeof(closeSuccessString) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
     fclose(logFile);
     
     exit(EXIT_SUCCESS);
@@ -1006,12 +903,11 @@ static inline void initializeLogger(void)
         size_t entryLength = (sizeof(gameLaunchedString) - (FORMAT_LENGTH_2 * 2) - sizeof(NULL_CHAR)) + executableDirectoryLength + osStringLength;
         char * entry = malloc(ptrSize + entryLength + sizeof(NULL_CHAR));
         snprintf(entry, entryLength + 1, gameLaunchedString, osString, executableDirectory);
-        
-        logEntry(entry, entryLength, ENTRY_TYPE_DEFAULT_PRINT);
+        nimbleLoggerLog(logFile, entry, entryLength, ENTRY_TYPE_PRINT, 1);
     } else
     {
         const char versionNotFoundString[] = "Could not find OS version";
-        logEntry(versionNotFoundString, (sizeof(versionNotFoundString) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING);
+        nimbleLoggerLog(logFile, versionNotFoundString, (sizeof(versionNotFoundString) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING, 1);
     }
     
 }
@@ -1025,7 +921,7 @@ static inline void logSystemInfo(void)
     if (!cpuID)
     {
         const char cpuIDErrorString[] = "Could not get CPU ID.";
-        logEntry(cpuIDErrorString, (sizeof(cpuIDErrorString) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING);
+        nimbleLoggerLog(logFile, cpuIDErrorString, (sizeof(cpuIDErrorString) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING, 1);
     }
     
     logicalProcessorCount = nimbleSystemGetLogicalProcessorCount();
@@ -1033,20 +929,21 @@ static inline void logSystemInfo(void)
     if (!logicalProcessorCount)
     {
         const char lpCountErrorString[] = "Could not get logical processor count.";
-        logEntry(lpCountErrorString, (sizeof(lpCountErrorString) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING);
+        nimbleLoggerLog(logFile, lpCountErrorString, (sizeof(lpCountErrorString) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING, 1);
     }
     
-    gpuInfo = nimbleSystemGetGraphicsBrandString();
+    uint8_t graphicsCardInfoLength = 0;
+    graphicsCardInfo = nimbleSystemGetGraphicsCardBrandString(&graphicsCardInfoLength);
     
-    if (!gpuInfo)
+    if (!graphicsCardInfo)
     {
-        const char gpuInfoErrorString[] = "Could not get GPU Info.";
-        logEntry(gpuInfoErrorString, (sizeof(gpuInfoErrorString) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING);
+        const char graphicsCardInfoErrorString[] = "Could not get GPU Info.";
+        nimbleLoggerLog(logFile, graphicsCardInfoErrorString, (sizeof(graphicsCardInfoErrorString) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING, 1);
     }
     
     char         systemInfo[] = "System info:\nCPU: %s\nLogical processors: %d\nGPU: %s\nAllocated memory: %dB";
     const size_t outputLength = ((sizeof(systemInfo) - sizeof(NULL_CHAR) - (FORMAT_LENGTH_2 * 4)) +
-                                 cpuIDLength + nimbleMathDigits8u(logicalProcessorCount) + strlen(gpuInfo) +
+                                 cpuIDLength + nimbleMathDigits8u(logicalProcessorCount) + graphicsCardInfoLength +
                                  nimbleMathDigits64u(memoryAllocated) + sizeof(NULL_CHAR));
     char *       output       = malloc(ptrSize + outputLength);
     
@@ -1055,9 +952,9 @@ static inline void logSystemInfo(void)
         crash("Ran out of memory.");
     }
     
-    snprintf(output, outputLength, systemInfo, cpuID, logicalProcessorCount, gpuInfo, memoryAllocated);
+    snprintf(output, outputLength, systemInfo, cpuID, logicalProcessorCount, graphicsCardInfo, memoryAllocated);
     
-    logEntry(output, outputLength, ENTRY_TYPE_INFO);
+    nimbleLoggerLog(logFile, output, outputLength, ENTRY_TYPE_INFO, 1);
 }
 
 // Initializes OpenAL or logs an error and disables sound.
@@ -1068,7 +965,7 @@ static inline void initializeOpenAL(void)
     if (!audioDevice)
     {
         const char errorMessage[] = "Could not open OpenAL device. Sound will not be used.";
-        logEntry(errorMessage, (sizeof(errorMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING);
+        nimbleLoggerLog(logFile, errorMessage, (sizeof(errorMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING, 1);
         return;
     }
     
@@ -1078,7 +975,7 @@ static inline void initializeOpenAL(void)
     {
         // Invalid device or too many contexts on device.
         const char errorMessage[] = "Could not create OpenAL context. Sound will not be used.";
-        logEntry(errorMessage, (sizeof(errorMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING);
+        nimbleLoggerLog(logFile, errorMessage, (sizeof(errorMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING, 1);
         alcCloseDevice(audioDevice);
         return;
     }
@@ -1087,14 +984,14 @@ static inline void initializeOpenAL(void)
     {
         // Context is invalid.
         const char errorMessage[] = "Could not set current OpenAL context. Sound will not be used.";
-        logEntry(errorMessage, (sizeof(errorMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING);
+        nimbleLoggerLog(logFile, errorMessage, (sizeof(errorMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING, 1);
         alcDestroyContext(audioContext);
         alcCloseDevice(audioDevice);
         return;
     }
     
     const char successMessage[] = "Sucessfully initialized OpenAL.";
-    logEntry(successMessage, (sizeof(successMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+    nimbleLoggerLog(logFile, successMessage, (sizeof(successMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
 }
 
 // Clears frame buffer data to prevent unwanted behavior when swapping buffers.
@@ -1138,10 +1035,6 @@ static void onWindowResize(GLFWwindow * w, const int width, const int height)
         }
         
     }
-    
-    memoryUsed -= windowSize;
-    windowSize = windowWidth * windowHeight * 3;
-    memoryUsed += windowSize; // NOTE: Pixel data stored on window
     
     int32_t frameBufferWidth  = 0;
     int32_t frameBufferHeight = 0;
@@ -1289,8 +1182,6 @@ static inline void createWindow(void)
     windowY      = (screenHeight / 2 - windowHeight / 2);
     
     window = glfwCreateWindow(windowWidth, windowHeight, GAME_TITLE, NULL, NULL);
-    windowSize = windowWidth * windowHeight * 3;
-    memoryUsed += windowSize; // NOTE: Pixel data stored on window
     
     if (!window)
     {
@@ -1426,11 +1317,11 @@ static inline void initializeOpenGL(void)
     
     glfwSetErrorCallback(glfwErrorHandler);
     const char glfwSuccessMessage[] = "Successfully initialized GLFW.";
-    logEntry(glfwSuccessMessage, (sizeof(glfwSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+    nimbleLoggerLog(logFile, glfwSuccessMessage, (sizeof(glfwSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
     
     createWindow();
     const char windowSuccessMessage[] = "Successfully created window.";
-    logEntry(windowSuccessMessage, (sizeof(windowSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+    nimbleLoggerLog(logFile, windowSuccessMessage, (sizeof(windowSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
     
     setGLFWEventCallbacks();
     
@@ -1451,11 +1342,11 @@ static inline void initializeOpenGL(void)
     }
     
     const char glewSuccessMessage[] = "Successfully initialized GLEW.";
-    logEntry(glewSuccessMessage, (sizeof(glewSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+    nimbleLoggerLog(logFile, glewSuccessMessage, (sizeof(glewSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
     
     initializeShaders();
     const char shaderProgramSuccessMessage[] = "Successfully created shader program.";
-    logEntry(shaderProgramSuccessMessage, (sizeof(shaderProgramSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+    nimbleLoggerLog(logFile, shaderProgramSuccessMessage, (sizeof(shaderProgramSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
     
     
     glEnable(GL_DEPTH_TEST);
@@ -1497,7 +1388,7 @@ static inline void initializeOpenGL(void)
     glm_perspective((fov / 2), ((float) windowWidth / (float) windowHeight), VIEW_DISTANCE_MIN, VIEW_DISTANCE_MAX, projection);
     
     const char openGLSuccessMessage[] = "Successfully initialized OpenGL.";
-    logEntry(openGLSuccessMessage, (sizeof(openGLSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+    nimbleLoggerLog(logFile, openGLSuccessMessage, (sizeof(openGLSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
 }
 
 /* GAME THREADS */
@@ -1563,11 +1454,11 @@ static void * pollEvents(void * args)
             if (debug)
             {
                 const char debugOnString[] = "Debug toggled off.";
-                logEntry(debugOnString, (sizeof(debugOnString) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+                nimbleLoggerLog(logFile, debugOnString, (sizeof(debugOnString) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
             } else
             {
                 const char debugOffString[] = "Debug toggled on.";
-                logEntry(debugOffString, (sizeof(debugOffString) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+                nimbleLoggerLog(logFile, debugOffString, (sizeof(debugOffString) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
             }
             
             debug = !debug;
@@ -1584,11 +1475,11 @@ static void * pollEvents(void * args)
                 if (fullscreen)
                 {
                     const char fullscreenOnString[] = "Fullscreen toggled on.";
-                    logEntry(fullscreenOnString, (sizeof(fullscreenOnString) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+                    nimbleLoggerLog(logFile, fullscreenOnString, (sizeof(fullscreenOnString) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
                 } else
                 {
                     const char fullscreenOffString[] = "Fullscreen toggled off.";
-                    logEntry(fullscreenOffString, (sizeof(fullscreenOffString) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+                    nimbleLoggerLog(logFile, fullscreenOffString, (sizeof(fullscreenOffString) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
                 }
                 
             }
@@ -1600,7 +1491,7 @@ static void * pollEvents(void * args)
         {
             keyDown[KEY_LOG_TEST] = GLFW_RELEASE;
             const char entryTest[] = "Testing log entry.";
-            logEntry(entryTest, (sizeof(entryTest) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+            nimbleLoggerLog(logFile, entryTest, (sizeof(entryTest) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
         }
         
         if (nimbleTimeHasPast(eventTimer))
@@ -1663,7 +1554,7 @@ static void useTexture(const uint32_t textureID)
 }
 
 // Draws an object to the frame.
-static void renderObject(struct worldObject object)
+static void renderObject(struct nimbleWorldObject object)
 {
     glm_translate_make(model, object.position);
     glm_quat_rotate(model, object.orientation, model);
@@ -1827,17 +1718,21 @@ int main(int argc, char * argv[])
     
     
     // Create objects // TODO Move to where world loading or finding what to render happens.
-    size_t imageSize = 0;
-    uint32_t missingTexture = nimbleTextureLoad("/Users/avery/Downloads/missing.png", &imageSize);
-    memoryUsed += imageSize;
-    uint32_t obama = nimbleTextureLoad("/Users/avery/Downloads/obama.png", &imageSize);
-    memoryUsed += imageSize;
-    uint32_t obamiumFace = nimbleTextureLoad("/Users/avery/Downloads/obamium_face.png", &imageSize);
-    memoryUsed += imageSize;
-    uint32_t obamiumEar = nimbleTextureLoad("/Users/avery/Downloads/obamium_ear.png", &imageSize);
-    memoryUsed += imageSize;
-    uint32_t obamiumHair = nimbleTextureLoad("/Users/avery/Downloads/obamium_hair.png", &imageSize);
-    memoryUsed += imageSize;
+    uint32_t missingTexture = nimbleTextureLoad("/Users/avery/Downloads/missing.png");
+    uint32_t obama = nimbleTextureLoad("/Users/avery/Downloads/obama.png");
+    uint32_t obamiumFace = nimbleTextureLoad("/Users/avery/Downloads/obamium_face.png");
+    uint32_t obamiumEar = nimbleTextureLoad("/Users/avery/Downloads/obamium_ear.png");
+    uint32_t obamiumHair = nimbleTextureLoad("/Users/avery/Downloads/obamium_hair.png");
+    
+#   if 0
+    uint32_t resultSize = 0;
+    uint32_t * bigInt = nimbleBigIntFromString("-69", &resultSize);
+    for (uint32_t i = 0; i < resultSize; i++)
+    {
+        printf("%08x", bigInt[i]);
+    }
+    printf("\n");
+#   endif
     
     vec3 object1pos = {};
     vec3 object2pos = {0.0f, 2.0f, 0.0f};
@@ -1846,7 +1741,6 @@ int main(int argc, char * argv[])
     uint32_t object2Textures[] = {missingTexture, missingTexture, missingTexture, missingTexture, missingTexture};
     nimbleObjectCreate(object1pos, emptyVersor, 0, vertices, sizeof(vertices), indices, sizeof(indices), 5, object1Textures);
     nimbleObjectCreate(object2pos, emptyVersor, 0, vertices, sizeof(vertices), indices, sizeof(indices), 5, object2Textures);
-    memoryUsed += sizeof(struct worldObject) * 2;
     
     
     // Create threads.
@@ -1902,7 +1796,7 @@ int main(int argc, char * argv[])
     // TODO Networking thread, resource allocation thread, thread pool (for complex and/or background tasks)
     // TODO Use optional compute shader
     const char threadSuccessMessage[] = "Successfully created threads.";
-    logEntry(threadSuccessMessage, (sizeof(threadSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO);
+    nimbleLoggerLog(logFile, threadSuccessMessage, (sizeof(threadSuccessMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
     
     clock_t        deltaTime         = 0;
     uint16_t       frameCount        = 0;
@@ -1940,7 +1834,7 @@ int main(int argc, char * argv[])
             deltaTime -= MICROS_PER_SEC;
             
             // Check to see if the program ran out of memory
-            if (memoryUsed > memoryAllocated)
+            if (nimbleMemoryUsed > memoryAllocated)
             {
                 crash("Ran out of allocated memory.");
             }
@@ -1954,7 +1848,7 @@ int main(int argc, char * argv[])
             {
                 frameRate = (((float) frameCount * 0.45) + (frameRate * 0.55)); // NOTE: Stabilizes framerate to look more consistent.
                 printf("x=%f, y=%f, z=%f, pitch=%f, yaw=%f, roll=%f\n", cameraPosition[0], cameraPosition[1], cameraPosition[2], cameraAngles[0] * M_RAD_TO_DEG, cameraAngles[1] * M_RAD_TO_DEG, cameraAngles[2] * M_RAD_TO_DEG);
-                printf("%d frames, %.2f fps, %lluB\n", frameCount, frameRate, memoryUsed);
+                printf("%d frames, %.2f fps, %lluB\n", frameCount, frameRate, nimbleMemoryUsed);
             }
             
             frameCount = 0;
