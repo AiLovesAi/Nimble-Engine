@@ -1,5 +1,5 @@
 /*
- *  GameMath.h
+ *  NimbleMath.h
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef GameMath_h
-#define GameMath_h
+#ifndef NimbleMath_h
+#define NimbleMath_h
 
 #include <stdint.h>
 #include <math.h>
@@ -24,35 +24,55 @@
 // Sets vec3 destination to values.
 ALWAYS_INLINE void nimbleMathVec3Init(float * destination, const float val0, const float val1, const float val2)
 {
-    destination[0] = val0;
-    destination[1] = val1;
-    destination[2] = val2;
+    
+    if (destination)
+    {
+        destination[0] = val0;
+        destination[1] = val1;
+        destination[2] = val2;
+    }
+    
 }
 
 // Sets vec3 destination to vec3 from.
 ALWAYS_INLINE void nimbleMathVec3InitFrom(float * destination, const float * from)
 {
-    destination[0] = from[0];
-    destination[1] = from[1];
-    destination[2] = from[2];
+    
+    if (destination && from)
+    {
+        destination[0] = from[0];
+        destination[1] = from[1];
+        destination[2] = from[2];
+    }
+    
 }
 
 // Sets vec4 destination to values.
 ALWAYS_INLINE void nimbleMathVec4Init(float * destination, const float val0, const float val1, const float val2, const float val3)
 {
-    destination[0] = val0;
-    destination[1] = val1;
-    destination[2] = val2;
-    destination[3] = val3;
+    
+    if (destination)
+    {
+        destination[0] = val0;
+        destination[1] = val1;
+        destination[2] = val2;
+        destination[3] = val3;
+    }
+    
 }
 
 // Sets vec4 destination to vec4 from.
 ALWAYS_INLINE void nimbleMathVec4InitFrom(float * destination, const float * from)
 {
-    destination[0] = from[0];
-    destination[1] = from[2];
-    destination[2] = from[2];
-    destination[3] = from[3];
+    
+    if (destination && from)
+    {
+        destination[0] = from[0];
+        destination[1] = from[2];
+        destination[2] = from[2];
+        destination[3] = from[3];
+    }
+    
 }
 
 // Returns float x rounded down without checking for overflow.
@@ -120,6 +140,6 @@ extern uint8_t nimbleMathDigitsF(const float x);
 // Returns the number of digits in double x.
 extern uint8_t nimbleMathDigitsD(const double x);
 
-#endif /* GameMath_h */
+#endif /* NimbleMath_h */
 
-// GameMath.h
+// NimbleMath.h
