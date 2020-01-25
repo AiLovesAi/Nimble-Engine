@@ -1,5 +1,5 @@
 /*
- *  NimbleSystemInfo.h
+ *  NimbleEndianness.c
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/11/20.
@@ -7,50 +7,46 @@
  *
  */
 
-#ifndef NimbleSystemInfo_h
-#define NimbleSystemInfo_h
+#include "NimbleEndianness.h"
 
-#include <stdint.h>
-#include <GL/glew.h>
+#define ORDER_LITTLE_ENDIAN 0x03020100UL
+#define ORDER_BIG_ENDIAN    0x00010203UL
 
-#if defined(__APPLE__) || defined(__linux__)
-#include <sys/sysctl.h>
-#endif
-
-#ifndef ALWAYS_INLINE
-#define ALWAYS_INLINE static inline __attribute((always_inline))
-#endif
-#ifndef NULL
-#define NULL (void *) 0
-#endif
+uint32_t HOST_ENDIANNESS = 0;
 
 
-// Returns the OS name.
-extern char * nimbleSystemGetOSString(uint8_t * length);
-
-// Retruns the CPU name.
-extern char * nimbleSystemGetCPUBrandString(uint8_t * length);
-
-// Returns the logical processor count.
-#ifdef _WIN32
-ALWAYS_INLINE uint8_t nimbleSystemGetLogicalProcessorCount(void)
+// Checks the endianness of the host machine at runtime.
+static void nimbleCheckHostEndianness(void)
 {
-    SYSTEM_INFO sysInfo;
-    GetSystemInfo(&sysInfo);
-    return sysInfo.dwNumberOfProcessors;
-}
-#elif defined(__APPLE__) || defined(__linux__)
-#define nimbleSystemGetLogicalProcessorCount() sysconf(_SC_NPROCESSORS_ONLN)
-#endif
-
-// Returns the graphics card name.
-ALWAYS_INLINE char * nimbleSystemGetGraphicsCardBrandString(uint8_t * length)
-{
-    char * graphicsCardString = (char *) glGetString(GL_RENDERER);
-    *length = (uint8_t) strlen(graphicsCardString);
-    return graphicsCardString;
+    const union {
+        uint8_t input[4];
+        uint32_t value;
+    } hostOrder = {{0x00, 0x01, 0x02, 0x03}};
+    
+    HOST_ENDIANNESS = hostOrder.value;
 }
 
-#endif /* NimbleSystemInfo_h */
+// Forces input to be in little endian order.
+uint32_t * nimbleForceLittleEndian(uint32_t * input, const uint32_t length)
+{
+    
+    if (!HOST_ENDIANNESS)
+    {
+        nimbleCheckHostEndianness();
+    }
+    
+    if (HOST_ENDIANNESS == ORDER_BIG_ENDIAN)
+    {
+        
+        for (int32_t i = (length - 1); i >= 0; i--)
+        {
+            input[i] = ((input[i] >> 24) & 0xff) | ((input[i] << 8) & 0xff0000) | ((input[i] >> 8) & 0xff00) | ((input[i] << 24) & 0xff000000);
+        }
+        
+    }
+    
+    return input;
+}
 
-// NimbleSystemInfo.h
+
+// NimbleEndianness.c
