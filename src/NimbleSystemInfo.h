@@ -47,7 +47,6 @@ ALWAYS_INLINE uint8_t nimbleSystemGetLogicalProcessorCount(void)
 ALWAYS_INLINE char * nimbleSystemGetGraphicsCardBrandString(uint8_t * length)
 {
     char * graphicsCardString = (char *) glGetString(GL_RENDERER);
-    // TODO Remove "OpenGL Engine"
     *length = (uint8_t) strlen(graphicsCardString);
     return graphicsCardString;
 }
