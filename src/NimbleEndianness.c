@@ -9,11 +9,8 @@
 
 #include "NimbleEndianness.h"
 
-#ifndef HOST_ENDIAN
 #define ORDER_LITTLE_ENDIAN 0x03020100UL
 #define ORDER_BIG_ENDIAN    0x00010203UL
-
-#endif
 
 uint32_t HOST_ENDIANNESS = 0;
 
@@ -38,10 +35,10 @@ uint32_t * nimbleForceLittleEndian(uint32_t * input, const uint32_t length)
         nimbleCheckHostEndianness();
     }
     
-    if (HOST_ENDIANNESS == ORDER_LITTLE_ENDIAN)
+    if (HOST_ENDIANNESS == ORDER_BIG_ENDIAN)
     {
         
-        for (uint32_t i = (length - 1); i >= 0; i++)
+        for (int32_t i = (length - 1); i >= 0; i--)
         {
             input[i] = ((input[i] >> 24) & 0xff) | ((input[i] << 8) & 0xff0000) | ((input[i] >> 8) & 0xff00) | ((input[i] << 24) & 0xff000000);
         }
