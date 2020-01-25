@@ -18,17 +18,6 @@
 
 #define DIGITS_PER_BYTE 2.40823996531 // ceil(log2(4294967296) / log2(10))
 
-typedef enum {
-   REMAINDER = 1,           // There is a non-zero remainder
-   ZERO = 2,                // The quotient is zero or null
-   NULL_DECIMAL = 4,        // The dividend is null or empty
-   NON_DECIMALS = 8,        // Division was terminated on non-decimal characters
-   LEADING_ZERO_COUNT = 16, // Count of leading zeroes in the quotient
-   LEADING_ZERO_COUNT_MASK = ~(LEADING_ZERO_COUNT - 1),
-   CLR_CARRY_MASK = ~REMAINDER,
-   CLR_ZERO_MASK = ~ZERO,
-} DivFlags;
-
 
 // NOTE: Big integers have the same format as a signed integer in little endian, with the sign bit as the MSB.
 // Returns a big integer defined as string or null if an error occurs.
@@ -40,39 +29,84 @@ uint32_t * nimbleBigIntFromString(const char * string, uint32_t * resultSize)
         return NULL;
     }
     
-    const uint8_t sign = (string[0] == '-') ? -1 : 0;
+    const uint8_t sign = (string[0] == '-') ? 1 : 0;
     const char * signlessString = string + sign;
     const uint32_t digits = ((uint32_t) strlen(signlessString));
     
-    if (!digits)
+    if (!digits || (signlessString[0] == '0'))
     {
-        *resultSize = sizeof(uint32_t);
+        *resultSize = 1;
         uint32_t * result = nimbleMemoryAllocate(sizeof(uint32_t));
-        result[0] = sign << 31UL;
+        result[0] = 0; // TODO When working on other functions, make sure to maintain signless zeros as to not mess up compare test functions.
         return result;
     }
     
     *resultSize = nimbleMathCeilF(digits / DIGITS_PER_BYTE) + sign;
     uint32_t * result = nimbleMemoryAllocate((sizeof(uint32_t) * (*resultSize)));
     
-    for (uint64_t i = *resultSize, j = digits + sign; i >= 0; i--, j--)
+    char * convertedString = nimbleMemoryAllocate(digits);
+    
+    for (uint32_t i = 0; i < digits; i++)
     {
-        //
+        convertedString[i] = signlessString[i] - '0'; // Convert to base 10 digits
     }
     
-    result[0] = 0;
+    char *buffer = convertedString;
+    uint8_t remainingDigits = digits;
+    uint8_t remainder = 0;
+    uint8_t nextRemainder = 0;
+    uint8_t i = 0;
+    uint8_t firstNonZero = 0;
+    uint32_t byte = *resultSize;
+    for (uint64_t bit = 0; (remainingDigits || (*convertedString)); bit++) // While convertedString != "0"
+    {
+        
+        for (i = firstNonZero; i < digits; i++)
+        {
+            nextRemainder = (convertedString[i] % 2) ? 5 : 0;
+            convertedString[i] = nimbleMathFloorF((convertedString[i] / 2)) + remainder;
+            remainder = nextRemainder;
+        }
+        
+        if (!(*buffer))
+        {
+            // Skip leading zeros.
+            
+            while (!(*buffer) && (firstNonZero < digits))
+            {
+                firstNonZero++;
+                buffer++;
+            }
+            
+            remainingDigits = digits - firstNonZero;
+        }
+        
+        if (!(bit % 32))
+        {
+            byte--;
+            result[byte] = 0;
+        }
+        
+        result[byte] = remainder ? (result[byte] | (1 << (bit % 32))) : (result[byte] & ~(1 << (bit % 32))); // Set bit if remainder, clear bit otherwise.
+        remainder = 0;
+    }
+    
+    nimbleMemoryFree(convertedString, digits);
+    
+    if(byte)
+    {
+        result[byte - 1] = 0;
+    }
+
     nimbleForceLittleEndian(result, *resultSize);
+    byte -= (result[byte] >> 31) & 1UL; // NOTE: Put sign bit in result[byte] if the MSB is set in result[byte], otherwise use result[byte - 1].
+    result[byte] |= sign << 31;
     
-    if (sign)
+    if (byte)
     {
-        result[(result[1] >> 31) & 1UL] |= 1UL << 31;
-    }
-    
-    if (!result[0])
-    {
-        (*resultSize)--;
-        memcpy(result, result + 1, (sizeof(uint32_t) * (*resultSize)));
-        result = nimbleMemoryReallocate(result, (sizeof(uint32_t) * (*resultSize + 1)), (sizeof(uint32_t) * (*resultSize)));
+        (*resultSize) -= byte;
+        memcpy(result, result + byte, (sizeof(uint32_t) * (*resultSize)));
+        result = nimbleMemoryReallocate(result, (sizeof(uint32_t) * (*resultSize + byte)), (sizeof(uint32_t) * (*resultSize)));
     }
     
     return result;
@@ -93,7 +127,7 @@ char * nimbleBigIntToString(const uint32_t * x, const uint32_t xSize)
 }
 
 // Returns x + y or null if an error occurs.
-uint32_t * nimbleBigIntrAdd(const uint32_t * x, const uint32_t xSize, const uint32_t * y, const uint32_t ySize, uint32_t * resultSize)
+uint32_t * nimbleBigIntAdd(const uint32_t * x, const uint32_t xSize, const uint32_t * y, const uint32_t ySize, uint32_t * resultSize)
 {
     
     if (!x || !y)
@@ -242,7 +276,7 @@ int8_t nimbleBigIntTET(const uint32_t * x, const uint32_t xSize, const uint32_t 
         
     }
     
-    return 1;
+    return xSize == ySize;
 }
 
 // Returns x > y or -1 if an error occurs.
@@ -254,13 +288,37 @@ int8_t nimbleBigIntTGT(const uint32_t * x, const uint32_t xSize, const uint32_t 
         return -1;
     }
     
-    // TODO Negative
-    if (xSize == ySize)
+    const uint8_t xNeg = (x[0] >> 31) & 1UL;
+    const uint8_t yNeg = (y[0] >> 31) & 1UL;
+    
+    if (xNeg && !yNeg)
     {
-        return x[0] > y[0];
+        return 0;
     }
     
-    return xSize > ySize;
+    if (!xNeg && yNeg)
+    {
+        return 1;
+    }
+    
+    if (xSize == ySize)
+    {
+        
+        for (uint32_t i = 0; i < xSize; i++)
+        {
+            
+            if (x[i] != y[i])
+            {
+                return (x[i] > y[i]) ^ xNeg;
+            }
+            
+        }
+        
+        return 0;
+        
+    }
+    
+    return (xSize > ySize) ^ xNeg;
 }
 
 // Returns x < y or -1 if an error occurs.
@@ -272,13 +330,37 @@ int8_t nimbleBigIntTLT(const uint32_t * x, const uint32_t xSize, const uint32_t 
         return -1;
     }
     
-    // TODO Negative
-    if (xSize == ySize)
+    const uint8_t xNeg = (x[0] >> 31) & 1UL;
+    const uint8_t yNeg = (y[0] >> 31) & 1UL;
+    
+    if (xNeg && !yNeg)
     {
-        return x[0] < y[0];
+        return 1;
     }
     
-    return xSize < ySize;
+    if (!xNeg && yNeg)
+    {
+        return 0;
+    }
+    
+    if (xSize == ySize)
+    {
+        
+        for (uint32_t i = 0; i < xSize; i++)
+        {
+            
+            if (x[i] != y[i])
+            {
+                return (x[i] < y[i]) ^ xNeg;
+            }
+            
+        }
+        
+        return 0;
+        
+    }
+    
+    return (xSize < ySize) ^ xNeg;
 }
 
 // Returns x >= y or -1 if an error occurs.
@@ -290,13 +372,37 @@ int8_t nimbleBigIntTGE(const uint32_t * x, const uint32_t xSize, const uint32_t 
         return -1;
     }
     
-    // TODO Negative
-    if (xSize == ySize)
+    const uint8_t xNeg = (x[0] >> 31) & 1UL;
+    const uint8_t yNeg = (y[0] >> 31) & 1UL;
+    
+    if (xNeg && !yNeg)
     {
-        return x[0] >= y[0];
+        return 0;
     }
     
-    return xSize >= ySize;
+    if (!xNeg && yNeg)
+    {
+        return 1;
+    }
+    
+    if (xSize == ySize)
+    {
+        
+        for (uint32_t i = 0; i < xSize; i++)
+        {
+            
+            if (x[i] != y[i])
+            {
+                return (x[i] > y[i]) ^ xNeg;
+            }
+            
+        }
+        
+        return 1;
+        
+    }
+    
+    return (xSize > ySize) ^ xNeg;
 }
 
 // Returns x <= y or -1 if an error occurs.
@@ -308,13 +414,37 @@ int8_t nimbleBigIntTLE(const uint32_t * x, const uint32_t xSize, const uint32_t 
         return -1;
     }
     
-    // TODO Negative
-    if (xSize == ySize)
+    const uint8_t xNeg = (x[0] >> 31) & 1UL;
+    const uint8_t yNeg = (y[0] >> 31) & 1UL;
+    
+    if (xNeg && !yNeg)
     {
-        return x[0] <= y[0];
+        return 1;
     }
     
-    return xSize <= ySize;
+    if (!xNeg && yNeg)
+    {
+        return 0;
+    }
+    
+    if (xSize == ySize)
+    {
+        
+        for (uint32_t i = 0; i < xSize; i++)
+        {
+            
+            if (x[i] != y[i])
+            {
+                return (x[i] < y[i]) ^ xNeg;
+            }
+            
+        }
+        
+        return 1;
+        
+    }
+    
+    return (xSize < ySize) ^ xNeg;
 }
 
 /* BIG DECIMAL */
