@@ -108,14 +108,12 @@ uint8_t nimbleLoggerLog(FILE * logFile, const char * entry, const size_t entryLe
             
     }
     
-    outputLength = strlen(output);
-    
     if (logToConsole)
     {
-        fwrite(output, 1, outputLength, ((entryType == ENTRY_TYPE_WARNING) ? stderr : stdout));
+        fwrite(output, 1, outputLength - 1, ((entryType == ENTRY_TYPE_WARNING) ? stderr : stdout));
     }
     
-    fwrite(output, 1, outputLength, logFile);
+    fwrite(output, 1, outputLength - 1, logFile);
     nimbleMemoryFree(output, outputLength);
     
     if(ferror(logFile))
