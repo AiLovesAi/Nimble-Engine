@@ -61,7 +61,7 @@ uint32_t uintStringToBinary(const char * string, const uint64_t digits, BigInt r
         for (i = firstNonZero; i < digits; i++)
         {
             nextRemainder = (convertedString[i] % 2) ? 5 : 0;
-            convertedString[i] = nimbleMathFloorF((convertedString[i] / 2)) + remainder;
+            convertedString[i] = nimbleMathFloorF((convertedString[i] / 2), error) + remainder;
             remainder = nextRemainder;
         }
         
@@ -103,7 +103,7 @@ BigInt nimbleBigIntFromString(const char * string, uint32_t * error)
     const char * signlessString = string + sign;
     const uint64_t digits = strlen(signlessString);
     
-    if (digits > 0xffffffff)
+    if (digits > UINT32_MAX)
     {
         *error = NIMBLE_ERROR_BIGNUM_OVERFLOW;
         return result;
@@ -117,7 +117,7 @@ BigInt nimbleBigIntFromString(const char * string, uint32_t * error)
         return result;
     }
     
-    result.size = nimbleMathCeilF(digits / DIGITS_PER_BYTE) + sign;
+    result.size = nimbleMathCeilF(digits / DIGITS_PER_BYTE, error) + sign;
     result.number = nimbleMemoryAllocate((sizeof(BigInt) * result.size));
     
     uint32_t byte = uintStringToBinary(signlessString, digits, result, NULL);
@@ -583,7 +583,7 @@ BigDec nimbleBigDecFromString(const char * string, uint32_t * error)
     
     const uint64_t decimalLength = signlessStringLength - decimalPosition - trailingZeros - 1;
     
-    if ((decimalPosition > 0xffffffff) || (decimalLength > 0xffffffff))
+    if ((decimalPosition > UINT32_MAX) || (decimalLength > UINT32_MAX))
     {
         *error = NIMBLE_ERROR_BIGNUM_OVERFLOW;
         return result;
@@ -591,7 +591,7 @@ BigDec nimbleBigDecFromString(const char * string, uint32_t * error)
     
     if (decimalPosition)
     {
-        result.integer.size = nimbleMathCeilF(decimalPosition / DIGITS_PER_BYTE) + sign;
+        result.integer.size = nimbleMathCeilF(decimalPosition / DIGITS_PER_BYTE, error) + sign;
         result.integer.number = nimbleMemoryAllocate((sizeof(BigInt) * result.integer.size));
         uint32_t byte = uintStringToBinary(signlessString, decimalPosition, result.integer, NULL);
         
@@ -617,7 +617,7 @@ BigDec nimbleBigDecFromString(const char * string, uint32_t * error)
         result.integer.number[0] = 0;
     }
     
-    result.decimal.size = nimbleMathCeilF(decimalLength / DIGITS_PER_BYTE);
+    result.decimal.size = nimbleMathCeilF(decimalLength / DIGITS_PER_BYTE, error);
     result.decimal.number = nimbleMemoryAllocate((sizeof(BigInt) * result.decimal.size));
     uint32_t byte = uintStringToBinary(signlessString + decimalPosition + 1, decimalLength, result.decimal, &result.leadingZeros);
     
