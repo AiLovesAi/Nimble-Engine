@@ -112,13 +112,13 @@ BigInt nimbleBigIntFromString(const char * string, uint32_t * error)
     if (!digits || (signlessString[0] == '0'))
     {
         result.size = 1;
-        result.number = nimbleMemoryAllocate(sizeof(BigInt));
+        result.number = nimbleMemoryAllocate(sizeof(uint32_t));
         result.number[0] = 0; // TODO When working on other functions, make sure to maintain signless zeros as to not mess up compare test functions.
         return result;
     }
     
     result.size = nimbleMathCeilF(digits / DIGITS_PER_BYTE, error) + sign;
-    result.number = nimbleMemoryAllocate((sizeof(BigInt) * result.size));
+    result.number = nimbleMemoryAllocate((sizeof(uint32_t) * result.size));
     
     uint32_t byte = uintStringToBinary(signlessString, digits, result, NULL);
     
@@ -133,8 +133,8 @@ BigInt nimbleBigIntFromString(const char * string, uint32_t * error)
     if (byte)
     {
         result.size -= byte;
-        memcpy(result.number, result.number + byte, (sizeof(BigInt) * result.size));
-        result.number = nimbleMemoryReallocate(result.number, (sizeof(BigInt) * (result.size + byte)), (sizeof(BigInt) * result.size));
+        memcpy(result.number, result.number + byte, (sizeof(uint32_t) * result.size));
+        result.number = nimbleMemoryReallocate(result.number, (sizeof(uint32_t) * (result.size + byte)), (sizeof(uint32_t) * result.size));
     }
     
     return result;
@@ -151,7 +151,7 @@ char * nimbleBigIntToString(const BigInt x, uint32_t * error)
     }
     
     const uint8_t sign = (x.number[0] >> 31) & 1UL;
-    const uint32_t expectedSize = (x.size * sizeof(BigInt)) * DIGITS_PER_BYTE;
+    const uint32_t expectedSize = (x.size * sizeof(uint32_t)) * DIGITS_PER_BYTE;
     char * string = nimbleMemoryAllocate(expectedSize + 1);
     string[expectedSize] = '\0';
     
@@ -175,7 +175,7 @@ int32_t nimbleBigIntAdd(const BigInt x, const BigInt y, BigInt result)
     // TODO Negative, use result
     const uint8_t greatestSize = (xSize > ySize) ? xSize : ySize;
     *resultSize = greatestSize;
-    BigInt result = nimbleMemoryAllocate(sizeof(BigInt) * (greatestSize + 1));
+    BigInt result = nimbleMemoryAllocate(sizeof(uint32_t) * (greatestSize + 1));
     uint8_t carry = 0;
     
     for (uint8_t index = 0; index < greatestSize; index++)
@@ -198,7 +198,7 @@ int32_t nimbleBigIntAdd(const BigInt x, const BigInt y, BigInt result)
     } else
     {
         memcpy(result, result + 1, *resultSize);
-        result = nimbleMemoryReallocate(result, (sizeof(BigInt) * greatestSize + 1), (sizeof(BigInt) * greatestSize));
+        result = nimbleMemoryReallocate(result, (sizeof(uint32_t) * greatestSize + 1), (sizeof(uint32_t) * greatestSize));
     }
     
     return result;
@@ -218,7 +218,7 @@ int32_t nimbleBigIntSub(const BigInt x, const BigInt y, BigInt result)
     // TODO Negative
     const uint8_t greatestSize = (xSize > ySize) ? xSize : ySize;
     *resultSize = greatestSize;
-    BigInt result = nimbleMemoryAllocate(sizeof(BigInt) * (greatestSize + 1));
+    BigInt result = nimbleMemoryAllocate(sizeof(uint32_t) * (greatestSize + 1));
     uint8_t borrow = 0;
     uint8_t mostSignificantByte = 0;
     uint8_t dataFound = 0;
@@ -242,7 +242,7 @@ int32_t nimbleBigIntSub(const BigInt x, const BigInt y, BigInt result)
     {
         result[0] = 0;
         *resultSize = 1;
-        result = nimbleMemoryReallocate(result, (sizeof(BigInt) * (greatestSize + 1)), (sizeof(BigInt)));
+        result = nimbleMemoryReallocate(result, (sizeof(uint32_t) * (greatestSize + 1)), (sizeof(uint32_t)));
         return result;
     }
     
@@ -251,7 +251,7 @@ int32_t nimbleBigIntSub(const BigInt x, const BigInt y, BigInt result)
         *resultSize -= mostSignificantByte;
         *resultSize = *resultSize ? *resultSize : 1;
         memcpy(result, result + mostSignificantByte, *resultSize);
-        result = nimbleMemoryReallocate(result, (sizeof(BigInt) * (greatestSize + 1)), (sizeof(BigInt) * (*resultSize)));
+        result = nimbleMemoryReallocate(result, (sizeof(uint32_t) * (greatestSize + 1)), (sizeof(uint32_t) * (*resultSize)));
     }
     
     return result;
@@ -592,7 +592,7 @@ BigDec nimbleBigDecFromString(const char * string, uint32_t * error)
     if (decimalPosition)
     {
         result.integer.size = nimbleMathCeilF(decimalPosition / DIGITS_PER_BYTE, error) + sign;
-        result.integer.number = nimbleMemoryAllocate((sizeof(BigInt) * result.integer.size));
+        result.integer.number = nimbleMemoryAllocate((sizeof(uint32_t) * result.integer.size));
         uint32_t byte = uintStringToBinary(signlessString, decimalPosition, result.integer, NULL);
         
         if(byte)
@@ -606,8 +606,8 @@ BigDec nimbleBigDecFromString(const char * string, uint32_t * error)
         if (byte)
         {
             result.integer.size -= byte;
-            memcpy(result.integer.number, result.integer.number + byte, (sizeof(BigInt) * result.integer.size));
-            result.integer.number = nimbleMemoryReallocate(result.integer.number, (sizeof(BigInt) * (result.integer.size + byte)), (sizeof(BigInt) * result.integer.size));
+            memcpy(result.integer.number, result.integer.number + byte, (sizeof(uint32_t) * result.integer.size));
+            result.integer.number = nimbleMemoryReallocate(result.integer.number, (sizeof(uint32_t) * (result.integer.size + byte)), (sizeof(uint32_t) * result.integer.size));
         }
         
     } else
@@ -618,14 +618,14 @@ BigDec nimbleBigDecFromString(const char * string, uint32_t * error)
     }
     
     result.decimal.size = nimbleMathCeilF(decimalLength / DIGITS_PER_BYTE, error);
-    result.decimal.number = nimbleMemoryAllocate((sizeof(BigInt) * result.decimal.size));
+    result.decimal.number = nimbleMemoryAllocate((sizeof(uint32_t) * result.decimal.size));
     uint32_t byte = uintStringToBinary(signlessString + decimalPosition + 1, decimalLength, result.decimal, &result.leadingZeros);
     
     if (byte)
     {
         result.decimal.size -= byte;
-        memcpy(result.decimal.number, result.decimal.number + byte, (sizeof(BigInt) * result.decimal.size));
-        result.decimal.number = nimbleMemoryReallocate(result.decimal.number, (sizeof(BigInt) * (result.decimal.size + byte)), (sizeof(BigInt) * result.decimal.size));
+        memcpy(result.decimal.number, result.decimal.number + byte, (sizeof(uint32_t) * result.decimal.size));
+        result.decimal.number = nimbleMemoryReallocate(result.decimal.number, (sizeof(uint32_t) * (result.decimal.size + byte)), (sizeof(uint32_t) * result.decimal.size));
     }
     
     return result;
