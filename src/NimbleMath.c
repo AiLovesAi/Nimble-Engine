@@ -68,32 +68,32 @@ uint8_t nimbleMathDigits16(const int16_t x)
 }
 
 // Returns the number of digits in float x.
-uint8_t nimbleMathDigitsF(const float x)
+uint8_t nimbleMathDigitsF(const float x, uint32_t * error)
 {
-    uint8_t count = nimbleMathDigits64(nimbleMathFloorF(x));
+    uint8_t count = nimbleMathDigits64(nimbleMathFloorF(x, error));
     float num = fabs(x);
-    num -= nimbleMathFloorF(num);
+    num -= nimbleMathFloorF(num, error);
     while (num >= 0.00000001f)
     {
         num *= 10;
         count++;
-        num -= nimbleMathFloorF(num);
+        num -= nimbleMathFloorF(num, error);
     }
     
     return count;
 }
 
 // Returns the number of digits in double x.
-uint8_t nimbleMathDigitsD(const double x)
+uint8_t nimbleMathDigitsD(const double x, uint32_t * error)
 {
-    uint8_t count = nimbleMathDigits64(nimbleMathFloorD(x));
+    uint8_t count = nimbleMathDigits64(nimbleMathFloorD(x, error));
     double num = fabs(x);
-    num -= nimbleMathFloorD(num);
+    num -= nimbleMathFloorD(num, error);
     while (num >= 0.0000000000000001)
     {
         num *= 10;
         count++;
-        num -= nimbleMathFloorD(num);
+        num -= nimbleMathFloorD(num, error);
     }
     
     return count;
