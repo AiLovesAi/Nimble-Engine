@@ -61,7 +61,7 @@ uint32_t uintStringToBinary(const char * string, const uint64_t digits, BigInt r
         for (i = firstNonZero; i < digits; i++)
         {
             nextRemainder = (convertedString[i] % 2) ? 5 : 0;
-            convertedString[i] = nimbleMathFloorF((convertedString[i] / 2), error) + remainder;
+            convertedString[i] = nimbleMathFloorF((convertedString[i] / 2), NULL) + remainder;
             remainder = nextRemainder;
         }
         
