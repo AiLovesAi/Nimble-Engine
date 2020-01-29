@@ -11,29 +11,15 @@
 
 #define ORDER_LITTLE_ENDIAN 0x03020100UL
 #define ORDER_BIG_ENDIAN    0x00010203UL
-
-uint32_t HOST_ENDIANNESS = 0;
-
-
-// Checks the endianness of the host machine at runtime.
-static void nimbleCheckHostEndianness(void)
-{
-    const union {
-        uint8_t input[4];
-        uint32_t value;
-    } hostOrder = {{0x00, 0x01, 0x02, 0x03}};
-    
-    HOST_ENDIANNESS = hostOrder.value;
-}
+const union {
+    uint8_t input[4];
+    uint32_t value;
+} hostOrder = {{0x00, 0x01, 0x02, 0x03}};
+#define HOST_ENDIANNESS hostOrder.value
 
 // Forces input to be in little endian order.
 uint32_t * nimbleForceLittleEndian(uint32_t * input, const uint32_t length)
 {
-    
-    if (!HOST_ENDIANNESS)
-    {
-        nimbleCheckHostEndianness();
-    }
     
     if (HOST_ENDIANNESS == ORDER_BIG_ENDIAN)
     {
