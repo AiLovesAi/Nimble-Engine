@@ -1554,7 +1554,7 @@ static void useTexture(const uint32_t textureID)
 }
 
 // Draws an object to the frame.
-static void renderObject(struct nimbleWorldObject object)
+static void renderObject(nimbleWorldObject object)
 {
     glm_translate_make(model, object.position);
     glm_quat_rotate(model, object.orientation, model);
@@ -1724,15 +1724,37 @@ int main(int argc, char * argv[])
     uint32_t obamiumEar = nimbleTextureLoad("/Users/avery/Downloads/obamium_ear.png");
     uint32_t obamiumHair = nimbleTextureLoad("/Users/avery/Downloads/obamium_hair.png");
     
-#   if 0
-    uint32_t resultSize = 0;
-    uint32_t * bigInt = nimbleBigIntFromString("-69", &resultSize);
-    for (uint32_t i = 0; i < resultSize; i++)
+    
+    #define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
+    #define BYTE_TO_BINARY(byte)  \
+      (byte & 0x80 ? '1' : '0'), \
+      (byte & 0x40 ? '1' : '0'), \
+      (byte & 0x20 ? '1' : '0'), \
+      (byte & 0x10 ? '1' : '0'), \
+      (byte & 0x08 ? '1' : '0'), \
+      (byte & 0x04 ? '1' : '0'), \
+      (byte & 0x02 ? '1' : '0'), \
+      (byte & 0x01 ? '1' : '0')
+    
+    uint32_t error = 0;
+    BigInt bigInt1 = nimbleBigIntFromString("1234567890123456789012345", &error);
+    BigInt bigInt2 = nimbleBigIntFromString("-9876543210987654321098765", &error);
+    BigDec bigDec1 = nimbleBigDecFromString("-01234567890123456789012345.00098765432109876543210987654321098765432100", &error);
+    BigDec bigDec2 = nimbleBigDecFromString("00123456789012345678901234567890.0987654321098765432109876543210987654321000", &error);
+    for (uint32_t i = 0; i < bigDec1.integer.size; i++)
     {
-        printf("%08x", bigInt[i]);
+        printf(BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY((bigDec1.integer.number[i] >> 24) & 0xff), BYTE_TO_BINARY((bigDec1.integer.number[i] >> 16) & 0xff), BYTE_TO_BINARY((bigDec1.integer.number[i] >> 8) & 0xff), BYTE_TO_BINARY(bigDec1.integer.number[i] & 0xff));
     }
-    printf("\n");
-#   endif
+    printf(".");
+    for (uint32_t i = 0; i < bigDec1.decimal.size; i++)
+    {
+        printf(BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY((bigDec1.decimal.number[i] >> 24) & 0xff), BYTE_TO_BINARY((bigDec1.decimal.number[i] >> 16) & 0xff), BYTE_TO_BINARY((bigDec1.decimal.number[i] >> 8) & 0xff), BYTE_TO_BINARY(bigDec1.decimal.number[i] & 0xff));
+    }
+    printf("\n%d\n%d\n", bigDec1.leadingZeros, nimbleBigDecTGT(bigDec1, bigDec2));
+    nimbleBigIntFree(bigInt1);
+    nimbleBigIntFree(bigInt2);
+    nimbleBigDecFree(bigDec1);
+    
     
     vec3 object1pos = {};
     vec3 object2pos = {0.0f, 2.0f, 0.0f};
