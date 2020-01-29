@@ -1352,8 +1352,8 @@ static inline void initializeOpenGL(void)
     glEnable(GL_DEPTH_TEST);
     glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
     
-    frameWidth = nimbleMathCeilF(windowWidth * resolution);
-    frameHeight = nimbleMathCeilF(windowHeight * resolution);
+    frameWidth = nimbleMathCeilF(windowWidth * resolution, NULL);
+    frameHeight = nimbleMathCeilF(windowHeight * resolution, NULL);
     
 #   if 0
     glGenFramebuffers(1, &frameBuffer);
@@ -1584,7 +1584,7 @@ static inline void render(void)
     {
         const float cameraPitchSin = sinf(cameraAngleDifference[0] / 2.0f);
         nimbleMathVec4Init(rotatePitchQuat, (cameraPitchAxis[0] * cameraPitchSin), (cameraPitchAxis[1] * cameraPitchSin),
-                 (cameraPitchAxis[2] * cameraPitchSin), cosf(cameraAngleDifference[0] / 2.0f));
+                 (cameraPitchAxis[2] * cameraPitchSin), cosf(cameraAngleDifference[0] / 2.0f), NULL);
         cameraAngleDifference[0] = 0;
     }
     
@@ -1592,7 +1592,7 @@ static inline void render(void)
     {
         const float cameraYawSin = sinf(cameraAngleDifference[1] / 2.0f);
         nimbleMathVec4Init(rotateYawQuat, (cameraYawAxis[0] * cameraYawSin), (cameraYawAxis[1] * cameraYawSin),
-                 (cameraYawAxis[2] * cameraYawSin), cosf(cameraAngleDifference[1] / 2.0f));
+                 (cameraYawAxis[2] * cameraYawSin), cosf(cameraAngleDifference[1] / 2.0f), NULL);
         cameraAngleDifference[1] = 0;
     }
     
@@ -1600,7 +1600,7 @@ static inline void render(void)
     {
         const float cameraRollSin = sinf(cameraAngleDifference[2] / 2.0f);
         nimbleMathVec4Init(rotateRollQuat, (cameraRollAxis[0] * cameraRollSin), (cameraRollAxis[1] * cameraRollSin),
-                 (cameraRollAxis[2] * cameraRollSin), cosf(cameraAngleDifference[2] / 2.0f));
+                 (cameraRollAxis[2] * cameraRollSin), cosf(cameraAngleDifference[2] / 2.0f), NULL);
         cameraAngleDifference[2] = 0;
     }
     
@@ -1612,9 +1612,9 @@ static inline void render(void)
     glm_quat_look(cameraPosition, cameraOrientation, view);
     
     // Update relative axes
-    nimbleMathVec3Init(cameraPitchAxis, view[0][0], view[1][0], view[2][0]);
-    nimbleMathVec3Init(cameraYawAxis, view[0][1], view[1][1], view[2][1]);
-    nimbleMathVec3Init(cameraRollAxis, view[0][2], view[1][2], view[2][2]);
+    nimbleMathVec3Init(cameraPitchAxis, view[0][0], view[1][0], view[2][0], NULL);
+    nimbleMathVec3Init(cameraYawAxis, view[0][1], view[1][1], view[2][1], NULL);
+    nimbleMathVec3Init(cameraRollAxis, view[0][2], view[1][2], view[2][2], NULL);
     
     
     glUniformMatrix4fv(uniformView, 1, GL_FALSE, (float *) view);
