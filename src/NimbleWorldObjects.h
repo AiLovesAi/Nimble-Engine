@@ -30,7 +30,7 @@ typedef struct nimbleTexture {
     uint16_t width;
     uint16_t height;
     uint8_t colorChannels;
-} nimbleTexture;
+} nimbleTexture_t;
 
 typedef struct nimbleMesh {
     GLuint VAO;
@@ -38,23 +38,23 @@ typedef struct nimbleMesh {
     GLuint IBO;
     uint32_t indexCount;
     uint32_t vertexCount;
-} nimbleMesh;
+} nimbleMesh_t;
 
 typedef struct nimbleWorldObject {
     uint32_t objectID;
     uint32_t objectIndex;
-    nimbleMesh mesh;
+    nimbleMesh_t mesh;
     uint32_t faces;
     uint32_t textureIDs[256];
     vec3 position; // World position
     versor orientation; // Rotational orientation quaternion
     uint32_t parentObject; // ID of the parent object (0 if none)
-} nimbleWorldObject;
+} nimbleWorldObject_t;
 
-extern nimbleWorldObject * worldObjects;
+extern nimbleWorldObject_t * worldObjects;
 extern volatile uint32_t objectCount;
 extern volatile uint32_t objectMemory;
-extern nimbleTexture * textures;
+extern nimbleTexture_t * textures;
 extern volatile uint32_t textureCount;
 
 
