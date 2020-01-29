@@ -195,6 +195,7 @@ FILE *     logFile                   = NULL;
 const char tempFileSuffix[]          = ".tmp";
 const char optionsFileName[]         = "options.txt";
 char *     optionsFilePath           = NULL;
+size_t     optionsFilePathLength     = 0;
 
 // Info
 char *  cpuID                 = NULL;
@@ -430,6 +431,12 @@ static void crash(const char * error)
     {
         nimbleMemoryFree(executableDirectory, executableDirectoryLength + sizeof(NULL_CHAR));
         executableDirectory = NULL;
+    }
+    
+    if (optionsFilePath)
+    {
+        nimbleMemoryFree(optionsFilePath, optionsFilePathLength + sizeof(NULL_CHAR));
+        optionsFilePath = NULL;
     }
     
     if (cpuID)
@@ -784,15 +791,11 @@ static void glfwErrorHandler(const int errorCode, const char * errorDescription)
     const size_t errorDescriptionLength = strlen(errorDescription);
     const size_t entryLength            = (uint32_t) ((sizeof(errorPrefix) - (FORMAT_LENGTH_2 * 2) - sizeof(NULL_CHAR)) +
                                                       nimbleMathDigits32(errorCode) + errorDescriptionLength);
-    char *       entry                  = malloc(ptrSize + entryLength + sizeof(NULL_CHAR));
-    
-    if (!entry)
-    {
-        crash("Ran out of memory.");
-    }
+    char *       entry                  = nimbleMemoryAllocate(entryLength + sizeof(NULL_CHAR));
     
     snprintf(entry, (entryLength + sizeof(NULL_CHAR)), errorPrefix, errorCode, errorDescription);
     nimbleLoggerLog(logFile, entry, entryLength, ENTRY_TYPE_WARNING, 1);
+    nimbleMemoryFree(entry, entryLength + sizeof(NULL_CHAR));
 }
 
 // Attempts to close the game or crashes if unsuccessful.
@@ -844,6 +847,12 @@ static inline void closeGame(void)
         executableDirectory = NULL;
     }
     
+    if (optionsFilePath)
+    {
+        nimbleMemoryFree(optionsFilePath, optionsFilePathLength + sizeof(NULL_CHAR));
+        optionsFilePath = NULL;
+    }
+    
     if (cpuID)
     {
         nimbleMemoryFree(cpuID, strlen(cpuID) + sizeof(NULL_CHAR));
@@ -883,10 +892,11 @@ static inline void initializeLogger(void)
     // Create log file
     const char   logFileName[]        = "log.txt";
     const size_t logPathLength        = executableDirectoryLength + (sizeof(logFileName) - sizeof(NULL_CHAR)) + sizeof(NULL_CHAR);
-    char *       logPath              = malloc(ptrSize + logPathLength);
+    char *       logPath              = nimbleMemoryAllocate(logPathLength);
     
     snprintf(logPath, logPathLength, "%s%s", executableDirectory, logFileName);
     logFile = fopen(logPath, "wb");
+    nimbleMemoryFree(logPath, logPathLength);
     
     if (!logFile)
     {
@@ -901,9 +911,11 @@ static inline void initializeLogger(void)
     if (osString)
     {
         size_t entryLength = (sizeof(gameLaunchedString) - (FORMAT_LENGTH_2 * 2) - sizeof(NULL_CHAR)) + executableDirectoryLength + osStringLength;
-        char * entry = malloc(ptrSize + entryLength + sizeof(NULL_CHAR));
-        snprintf(entry, entryLength + 1, gameLaunchedString, osString, executableDirectory);
+        char * entry = nimbleMemoryAllocate(entryLength + sizeof(NULL_CHAR));
+        snprintf(entry, entryLength + sizeof(NULL_CHAR), gameLaunchedString, osString, executableDirectory);
+        nimbleMemoryFree(osString, osStringLength + sizeof(NULL_CHAR));
         nimbleLoggerLog(logFile, entry, entryLength, ENTRY_TYPE_PRINT, 1);
+        nimbleMemoryFree(entry, entryLength + sizeof(NULL_CHAR));
     } else
     {
         const char versionNotFoundString[] = "Could not find OS version";
@@ -944,8 +956,8 @@ static inline void logSystemInfo(void)
     char         systemInfo[] = "System info:\nCPU: %s\nLogical processors: %d\nGPU: %s\nAllocated memory: %dB";
     const size_t outputLength = ((sizeof(systemInfo) - sizeof(NULL_CHAR) - (FORMAT_LENGTH_2 * 4)) +
                                  cpuIDLength + nimbleMathDigits8u(logicalProcessorCount) + graphicsCardInfoLength +
-                                 nimbleMathDigits64u(memoryAllocated) + sizeof(NULL_CHAR));
-    char *       output       = malloc(ptrSize + outputLength);
+                                 nimbleMathDigits64u(memoryAllocated));
+    char *       output       = nimbleMemoryAllocate(outputLength + sizeof(NULL_CHAR));
     
     if (!output)
     {
@@ -955,6 +967,7 @@ static inline void logSystemInfo(void)
     snprintf(output, outputLength, systemInfo, cpuID, logicalProcessorCount, graphicsCardInfo, memoryAllocated);
     
     nimbleLoggerLog(logFile, output, outputLength, ENTRY_TYPE_INFO, 1);
+    nimbleMemoryFree(output, outputLength + 1);
 }
 
 // Initializes OpenAL or logs an error and disables sound.
@@ -1226,7 +1239,7 @@ static inline void initializeShaders(void)
         const char   crashMessage[]    = "Could not create vertex shader. Shader compile log:\n";
         size_t       infoLogLength     = strlen(infoLog);
         const size_t crashOutputLength = (infoLogLength + (sizeof(crashMessage) - sizeof(NULL_CHAR)) + sizeof(NULL_CHAR));
-        char *       crashOutput       = malloc(ptrSize + crashOutputLength);
+        char *       crashOutput       = malloc(crashOutputLength);
         
         if (!crashOutput)
         {
@@ -1554,7 +1567,7 @@ static void useTexture(const uint32_t textureID)
 }
 
 // Draws an object to the frame.
-static void renderObject(nimbleWorldObject object)
+static void renderObject(nimbleWorldObject_t object)
 {
     glm_translate_make(model, object.position);
     glm_quat_rotate(model, object.orientation, model);
@@ -1653,9 +1666,9 @@ int main(int argc, char * argv[])
     logSystemInfo();
     
     // Get options.
-    const size_t optionsFilePathLength = (executableDirectoryLength + (sizeof(optionsFileName) - sizeof(NULL_CHAR)) + sizeof(NULL_CHAR));
-    optionsFilePath = malloc(ptrSize + optionsFilePathLength);
-    snprintf(optionsFilePath, optionsFilePathLength, "%s%s", executableDirectory, optionsFileName);
+    optionsFilePathLength = (executableDirectoryLength + (sizeof(optionsFileName) - sizeof(NULL_CHAR)));
+    optionsFilePath = nimbleMemoryAllocate(optionsFilePathLength + sizeof(NULL_CHAR));
+    snprintf(optionsFilePath, optionsFilePathLength + sizeof(NULL_CHAR), "%s%s", executableDirectory, optionsFileName);
     char * memoryAllocatedString = getVariable(optionsFilePath, "memoryAllocated");
     
     if (memoryAllocatedString)
@@ -1737,10 +1750,10 @@ int main(int argc, char * argv[])
       (byte & 0x01 ? '1' : '0')
     
     uint32_t error = 0;
-    BigInt bigInt1 = nimbleBigIntFromString("1234567890123456789012345", &error);
-    BigInt bigInt2 = nimbleBigIntFromString("-9876543210987654321098765", &error);
-    BigDec bigDec1 = nimbleBigDecFromString("-01234567890123456789012345.00098765432109876543210987654321098765432100", &error);
-    BigDec bigDec2 = nimbleBigDecFromString("00123456789012345678901234567890.0987654321098765432109876543210987654321000", &error);
+    BigInt_t bigInt1 = nimbleBigIntFromString("1234567890123456789012345", &error);
+    BigInt_t bigInt2 = nimbleBigIntFromString("-9876543210987654321098765", &error);
+    BigDec_t bigDec1 = nimbleBigDecFromString("-01234567890123456789012345.00098765432109876543210987654321098765432100", &error);
+    BigDec_t bigDec2 = nimbleBigDecFromString("00123456789012345678901234567890.0987654321098765432109876543210987654321000", &error);
     for (uint32_t i = 0; i < bigDec1.integer.size; i++)
     {
         printf(BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY((bigDec1.integer.number[i] >> 24) & 0xff), BYTE_TO_BINARY((bigDec1.integer.number[i] >> 16) & 0xff), BYTE_TO_BINARY((bigDec1.integer.number[i] >> 8) & 0xff), BYTE_TO_BINARY(bigDec1.integer.number[i] & 0xff));
@@ -1754,6 +1767,7 @@ int main(int argc, char * argv[])
     nimbleBigIntFree(bigInt1);
     nimbleBigIntFree(bigInt2);
     nimbleBigDecFree(bigDec1);
+    nimbleBigDecFree(bigDec2);
     
     
     vec3 object1pos = {};
