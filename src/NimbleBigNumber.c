@@ -21,7 +21,7 @@
 
 #define DIGITS_PER_BYTE 2.40823996531 // log2(256) / log2(10)
 
-uint32_t uintStringToBinary(const char * string, const uint64_t digits, BigInt result, uint32_t * leadingZeros)
+uint32_t uintStringToBinary(const char * string, const uint64_t digits, BigInt_t result, uint32_t * leadingZeros)
 {
     char * convertedString = nimbleMemoryAllocate(digits);
     
@@ -88,10 +88,10 @@ uint32_t uintStringToBinary(const char * string, const uint64_t digits, BigInt r
 
 // NOTE: Big integers have the same format as a signed integer in little endian, with the sign bit as the MSB.
 // Returns a big integer defined as string.
-BigInt nimbleBigIntFromString(const char * string, uint32_t * error)
+BigInt_t nimbleBigIntFromString(const char * string, uint32_t * error)
 {
     
-    BigInt result = {};
+    BigInt_t result = {};
     
     if (!string)
     {
@@ -141,7 +141,7 @@ BigInt nimbleBigIntFromString(const char * string, uint32_t * error)
 }
 
 // Returns big integer x as a string.
-char * nimbleBigIntToString(const BigInt x, uint32_t * error)
+char * nimbleBigIntToString(const BigInt_t x, uint32_t * error)
 {
     
     if (BIG_INT_NULL(x))
@@ -164,7 +164,7 @@ char * nimbleBigIntToString(const BigInt x, uint32_t * error)
 }
 
 // Returns x + y.
-int32_t nimbleBigIntAdd(const BigInt x, const BigInt y, BigInt result)
+int32_t nimbleBigIntAdd(const BigInt_t x, const BigInt_t y, BigInt_t result)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -175,7 +175,7 @@ int32_t nimbleBigIntAdd(const BigInt x, const BigInt y, BigInt result)
     // TODO Negative, use result
     const uint8_t greatestSize = (xSize > ySize) ? xSize : ySize;
     *resultSize = greatestSize;
-    BigInt result = nimbleMemoryAllocate(sizeof(uint32_t) * (greatestSize + 1));
+    BigInt_t result = nimbleMemoryAllocate(sizeof(uint32_t) * (greatestSize + 1));
     uint8_t carry = 0;
     
     for (uint8_t index = 0; index < greatestSize; index++)
@@ -207,7 +207,7 @@ int32_t nimbleBigIntAdd(const BigInt x, const BigInt y, BigInt result)
 }
 
 // Returns x - y.
-int32_t nimbleBigIntSub(const BigInt x, const BigInt y, BigInt result)
+int32_t nimbleBigIntSub(const BigInt_t x, const BigInt_t y, BigInt_t result)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -218,7 +218,7 @@ int32_t nimbleBigIntSub(const BigInt x, const BigInt y, BigInt result)
     // TODO Negative
     const uint8_t greatestSize = (xSize > ySize) ? xSize : ySize;
     *resultSize = greatestSize;
-    BigInt result = nimbleMemoryAllocate(sizeof(uint32_t) * (greatestSize + 1));
+    BigInt_t result = nimbleMemoryAllocate(sizeof(uint32_t) * (greatestSize + 1));
     uint8_t borrow = 0;
     uint8_t mostSignificantByte = 0;
     uint8_t dataFound = 0;
@@ -260,7 +260,7 @@ int32_t nimbleBigIntSub(const BigInt x, const BigInt y, BigInt result)
 }
 
 // Returns x * y.
-int32_t nimbleBigIntMul(const BigInt x, const BigInt y, BigInt result)
+int32_t nimbleBigIntMul(const BigInt_t x, const BigInt_t y, BigInt_t result)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -273,7 +273,7 @@ int32_t nimbleBigIntMul(const BigInt x, const BigInt y, BigInt result)
 }
 
 // Returns x / y.
-int32_t nimbleBigIntDiv(const BigInt x, const BigInt y, BigInt result)
+int32_t nimbleBigIntDiv(const BigInt_t x, const BigInt_t y, BigInt_t result)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -291,7 +291,7 @@ int32_t nimbleBigIntDiv(const BigInt x, const BigInt y, BigInt result)
 }
 
 // Returns x % y.
-int32_t nimbleBigIntMod(const BigInt x, const BigInt y, BigInt result)
+int32_t nimbleBigIntMod(const BigInt_t x, const BigInt_t y, BigInt_t result)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -304,7 +304,7 @@ int32_t nimbleBigIntMod(const BigInt x, const BigInt y, BigInt result)
 }
 
 // Returns x ^ y.
-int32_t nimbleBigIntPow(const BigInt x, const BigInt y, BigInt result)
+int32_t nimbleBigIntPow(const BigInt_t x, const BigInt_t y, BigInt_t result)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -317,7 +317,7 @@ int32_t nimbleBigIntPow(const BigInt x, const BigInt y, BigInt result)
 }
 
 // Returns x == y.
-int32_t nimbleBigIntTET(const BigInt x, const BigInt y)
+int32_t nimbleBigIntTET(const BigInt_t x, const BigInt_t y)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -344,7 +344,7 @@ int32_t nimbleBigIntTET(const BigInt x, const BigInt y)
 }
 
 // Returns x > y.
-int32_t nimbleBigIntTGT(const BigInt x, const BigInt y)
+int32_t nimbleBigIntTGT(const BigInt_t x, const BigInt_t y)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -385,7 +385,7 @@ int32_t nimbleBigIntTGT(const BigInt x, const BigInt y)
 }
 
 // Returns x < y.
-int32_t nimbleBigIntTLT(const BigInt x, const BigInt y)
+int32_t nimbleBigIntTLT(const BigInt_t x, const BigInt_t y)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -426,7 +426,7 @@ int32_t nimbleBigIntTLT(const BigInt x, const BigInt y)
 }
 
 // Returns x >= y.
-int32_t nimbleBigIntTGE(const BigInt x, const BigInt y)
+int32_t nimbleBigIntTGE(const BigInt_t x, const BigInt_t y)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -467,7 +467,7 @@ int32_t nimbleBigIntTGE(const BigInt x, const BigInt y)
 }
 
 // Returns x <= y.
-int32_t nimbleBigIntTLE(const BigInt x, const BigInt y)
+int32_t nimbleBigIntTLE(const BigInt_t x, const BigInt_t y)
 {
     
     if (BIG_INT_NULL(x) || BIG_INT_NULL(y))
@@ -508,9 +508,9 @@ int32_t nimbleBigIntTLE(const BigInt x, const BigInt y)
 }
 
 // Returns x as a big decimal.
-BigDec nimbleBigIntToBigDec(const BigInt x)
+BigDec_t nimbleBigIntToBigDec(const BigInt_t x)
 {
-    BigDec result = {};
+    BigDec_t result = {};
     result.integer.number = nimbleMemoryAllocate(x.size * sizeof(uint32_t));
     result.integer.size = x.size;
     memcpy(result.integer.number, x.number, x.size * sizeof(uint32_t));
@@ -525,9 +525,9 @@ BigDec nimbleBigIntToBigDec(const BigInt x)
 
 // NOTE: Big decimal consists of two big integers: one for the integer and one for the decimal. The decimal big integer does not have a signed bit.
 // Returns a big decimal defined as string.
-BigDec nimbleBigDecFromString(const char * string, uint32_t * error)
+BigDec_t nimbleBigDecFromString(const char * string, uint32_t * error)
 {
-    BigDec result = {};
+    BigDec_t result = {};
     
     if (!string)
     {
@@ -574,7 +574,7 @@ BigDec nimbleBigDecFromString(const char * string, uint32_t * error)
             noDecimalString[decimalPosition] = '\0';
         }
         
-        BigInt resultInteger = nimbleBigIntFromString(noDecimalString, error);
+        BigInt_t resultInteger = nimbleBigIntFromString(noDecimalString, error);
         result = nimbleBigIntToBigDec(resultInteger);
         nimbleBigIntFree(resultInteger);
         nimbleMemoryFree(noDecimalString, signlessStringLength + sign + 1);
@@ -632,14 +632,14 @@ BigDec nimbleBigDecFromString(const char * string, uint32_t * error)
 }
 
 // Returns big decimal x as a string.
-char * nimbleBigDecToString(const BigDec x, uint32_t * error)
+char * nimbleBigDecToString(const BigDec_t x, uint32_t * error)
 {
     // TODO
     return NULL;
 }
 
 // Returns x + y.
-int32_t nimbleBigDecAdd(const BigDec x, const BigDec y, BigDec result)
+int32_t nimbleBigDecAdd(const BigDec_t x, const BigDec_t y, BigDec_t result)
 {
     // TODO
     if (BIG_DEC_NULL(x) || BIG_DEC_NULL(y))
@@ -651,7 +651,7 @@ int32_t nimbleBigDecAdd(const BigDec x, const BigDec y, BigDec result)
 }
 
 // Returns x - y.
-int32_t nimbleBigDecSub(const BigDec x, const BigDec y, BigDec result)
+int32_t nimbleBigDecSub(const BigDec_t x, const BigDec_t y, BigDec_t result)
 {
     // TODO
     if (BIG_DEC_NULL(x) || BIG_DEC_NULL(y))
@@ -663,14 +663,14 @@ int32_t nimbleBigDecSub(const BigDec x, const BigDec y, BigDec result)
 }
 
 // Returns x * y.
-int32_t nimbleBigDecMul(const BigDec x, const BigDec y, BigDec result)
+int32_t nimbleBigDecMul(const BigDec_t x, const BigDec_t y, BigDec_t result)
 {
     // TODO
     return 0;
 }
 
 // Returns x / y.
-int32_t nimbleBigDecDiv(const BigDec x, const BigDec y, BigDec result)
+int32_t nimbleBigDecDiv(const BigDec_t x, const BigDec_t y, BigDec_t result)
 {
     
     if (BIG_DEC_NULL(x) || BIG_DEC_NULL(y))
@@ -683,7 +683,7 @@ int32_t nimbleBigDecDiv(const BigDec x, const BigDec y, BigDec result)
 }
 
 // Returns x % y.
-int32_t nimbleBigDecMod(const BigDec x, const BigDec y, BigDec result)
+int32_t nimbleBigDecMod(const BigDec_t x, const BigDec_t y, BigDec_t result)
 {
     
     if (BIG_DEC_NULL(x) || BIG_DEC_NULL(y))
@@ -696,7 +696,7 @@ int32_t nimbleBigDecMod(const BigDec x, const BigDec y, BigDec result)
 }
 
 // Returns x ^ y.
-int32_t nimbleBigDecPow(const BigDec x, const BigDec y, BigDec result)
+int32_t nimbleBigDecPow(const BigDec_t x, const BigDec_t y, BigDec_t result)
 {
     
     if (BIG_DEC_NULL(x) || BIG_DEC_NULL(y))
@@ -709,7 +709,7 @@ int32_t nimbleBigDecPow(const BigDec x, const BigDec y, BigDec result)
 }
 
 // Returns x rounded up.
-int32_t nimbleBigDecCeil(const BigDec x, BigDec result)
+int32_t nimbleBigDecCeil(const BigDec_t x, BigDec_t result)
 {
     
     if (BIG_DEC_NULL(x))
@@ -722,7 +722,7 @@ int32_t nimbleBigDecCeil(const BigDec x, BigDec result)
 }
 
 // Returns x rounded down.
-int32_t nimbleBigDecFloor(const BigDec x, BigDec result)
+int32_t nimbleBigDecFloor(const BigDec_t x, BigDec_t result)
 {
     
     if (BIG_DEC_NULL(x))
@@ -735,7 +735,7 @@ int32_t nimbleBigDecFloor(const BigDec x, BigDec result)
 }
 
 // Returns x == y.
-int32_t nimbleBigDecTET(const BigDec x, const BigDec y)
+int32_t nimbleBigDecTET(const BigDec_t x, const BigDec_t y)
 {
     
     if (BIG_DEC_NULL(x) || BIG_DEC_NULL(y))
@@ -772,7 +772,7 @@ int32_t nimbleBigDecTET(const BigDec x, const BigDec y)
 }
 
 // Returns x > y.
-int32_t nimbleBigDecTGT(const BigDec x, const BigDec y)
+int32_t nimbleBigDecTGT(const BigDec_t x, const BigDec_t y)
 {
     
     if (BIG_DEC_NULL(x) || BIG_DEC_NULL(y))
@@ -829,7 +829,7 @@ int32_t nimbleBigDecTGT(const BigDec x, const BigDec y)
 }
 
 // Returns x < y.
-int32_t nimbleBigDecTLT(const BigDec x, const BigDec y)
+int32_t nimbleBigDecTLT(const BigDec_t x, const BigDec_t y)
 {
     
     if (BIG_DEC_NULL(x) || BIG_DEC_NULL(y))
@@ -886,7 +886,7 @@ int32_t nimbleBigDecTLT(const BigDec x, const BigDec y)
 }
 
 // Returns x >= y.
-int32_t nimbleBigDecTGE(const BigDec x, const BigDec y)
+int32_t nimbleBigDecTGE(const BigDec_t x, const BigDec_t y)
 {
     
     if (BIG_DEC_NULL(x) || BIG_DEC_NULL(y))
@@ -943,7 +943,7 @@ int32_t nimbleBigDecTGE(const BigDec x, const BigDec y)
 }
 
 // Returns x <= y.
-int32_t nimbleBigDecTLE(const BigDec x, const BigDec y)
+int32_t nimbleBigDecTLE(const BigDec_t x, const BigDec_t y)
 {
     
     if (BIG_DEC_NULL(x) || BIG_DEC_NULL(y))
