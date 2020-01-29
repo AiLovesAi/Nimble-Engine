@@ -13,6 +13,8 @@
 #include <stdint.h>
 #include <math.h>
 
+#include "NimbleError.h"
+
 #ifndef ALWAYS_INLINE
 #define ALWAYS_INLINE static inline __attribute((always_inline))
 #endif
@@ -22,7 +24,7 @@
 #define M_RAD_TO_DEG (180.0 / M_PI)
 
 // Sets vec3 destination to values.
-ALWAYS_INLINE void nimbleMathVec3Init(float * destination, const float val0, const float val1, const float val2)
+ALWAYS_INLINE void nimbleMathVec3Init(float * destination, const float val0, const float val1, const float val2, uint32_t * error)
 {
     
     if (destination)
@@ -30,12 +32,15 @@ ALWAYS_INLINE void nimbleMathVec3Init(float * destination, const float val0, con
         destination[0] = val0;
         destination[1] = val1;
         destination[2] = val2;
+    } else if (error)
+    {
+        *error = NIMBLE_ERROR_GENERAL_NULL;
     }
     
 }
 
 // Sets vec3 destination to vec3 from.
-ALWAYS_INLINE void nimbleMathVec3InitFrom(float * destination, const float * from)
+ALWAYS_INLINE void nimbleMathVec3InitFrom(float * destination, const float * from, uint32_t * error)
 {
     
     if (destination && from)
@@ -43,12 +48,15 @@ ALWAYS_INLINE void nimbleMathVec3InitFrom(float * destination, const float * fro
         destination[0] = from[0];
         destination[1] = from[1];
         destination[2] = from[2];
+    } else if (error)
+    {
+        *error = NIMBLE_ERROR_GENERAL_NULL;
     }
     
 }
 
 // Sets vec4 destination to values.
-ALWAYS_INLINE void nimbleMathVec4Init(float * destination, const float val0, const float val1, const float val2, const float val3)
+ALWAYS_INLINE void nimbleMathVec4Init(float * destination, const float val0, const float val1, const float val2, const float val3, uint32_t * error)
 {
     
     if (destination)
@@ -57,12 +65,15 @@ ALWAYS_INLINE void nimbleMathVec4Init(float * destination, const float val0, con
         destination[1] = val1;
         destination[2] = val2;
         destination[3] = val3;
+    } else if (error)
+    {
+        *error = NIMBLE_ERROR_GENERAL_NULL;
     }
     
 }
 
 // Sets vec4 destination to vec4 from.
-ALWAYS_INLINE void nimbleMathVec4InitFrom(float * destination, const float * from)
+ALWAYS_INLINE void nimbleMathVec4InitFrom(float * destination, const float * from, uint32_t * error)
 {
     
     if (destination && from)
@@ -71,35 +82,86 @@ ALWAYS_INLINE void nimbleMathVec4InitFrom(float * destination, const float * fro
         destination[1] = from[2];
         destination[2] = from[2];
         destination[3] = from[3];
+    } else if (error)
+    {
+        *error = NIMBLE_ERROR_GENERAL_NULL;
     }
     
 }
 
-// Returns float x rounded down without checking for overflow.
-ALWAYS_INLINE uint32_t nimbleMathFloorF(const float x)
+// Returns float x rounded down without checking extensively for overflow.
+ALWAYS_INLINE int32_t nimbleMathFloorF(const float x, uint32_t * error)
 {
-    uint32_t i = (uint32_t) x;
+    
+    if ((x >= ((uint64_t) INT32_MAX + 1)) || (x < ((int64_t) INT32_MIN)))
+    {
+        
+        if (error)
+        {
+            *error = NIMBLE_ERROR_MATH_OVERFLOW;
+        }
+        
+        return NIMBLE_ERROR_GENERAL_NULL;
+    }
+    
+    int32_t i = (int32_t) x;
     return i - (i > x);
 }
 
 // Returns float x rounded up without checking for overflow.
-ALWAYS_INLINE uint32_t nimbleMathCeilF(const float x)
+ALWAYS_INLINE int32_t nimbleMathCeilF(const float x, uint32_t * error)
 {
-    uint32_t i = (uint32_t) x;
+    
+    if ((x > ((int64_t) INT32_MAX)) || (x <= ((int64_t) INT32_MIN - 1)))
+    {
+        
+        if (error)
+        {
+            *error = NIMBLE_ERROR_MATH_OVERFLOW;
+        }
+        
+        return NIMBLE_ERROR_GENERAL_NULL;
+    }
+    
+    int32_t i = (int32_t) x;
     return i + (x > i);
 }
 
 // Returns double x rounded down without checking for overflow.
-ALWAYS_INLINE uint32_t nimbleMathFloorD(const double x)
+ALWAYS_INLINE int64_t nimbleMathFloorD(const double x, uint32_t * error)
 {
-    uint32_t i = (uint32_t) x;
+    
+    if ((x >= ((uint64_t) INT64_MAX + 1)) || (x < INT64_MIN))
+    {
+        
+        if (error)
+        {
+            *error = NIMBLE_ERROR_MATH_OVERFLOW;
+        }
+        
+        return NIMBLE_ERROR_GENERAL_NULL;
+    }
+    
+    int64_t i = (int64_t) x;
     return i - (i > x);
 }
 
 // Returns double x rounded up without checking for overflow.
-ALWAYS_INLINE uint32_t nimbleMathCeilD(const double x)
+ALWAYS_INLINE int64_t nimbleMathCeilD(const double x, uint32_t * error)
 {
-    uint32_t i = (uint32_t) x;
+    
+    if ((x > INT64_MAX) || (x < (INT64_MIN)))
+    {
+        
+        if (error)
+        {
+            *error = NIMBLE_ERROR_MATH_OVERFLOW;
+        }
+        
+        return NIMBLE_ERROR_GENERAL_NULL;
+    }
+    
+    int64_t i = (int64_t) x;
     return i + (x > i);
 }
 
@@ -135,10 +197,10 @@ ALWAYS_INLINE uint8_t nimbleMathDigits8(const int8_t x)
 }
 
 // Returns the number of digits in float x.
-extern uint8_t nimbleMathDigitsF(const float x);
+extern uint8_t nimbleMathDigitsF(const float x, uint32_t * error);
 
 // Returns the number of digits in double x.
-extern uint8_t nimbleMathDigitsD(const double x);
+extern uint8_t nimbleMathDigitsD(const double x, uint32_t * error);
 
 #endif /* NimbleMath_h */
 
