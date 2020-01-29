@@ -23,38 +23,39 @@
 #define NULL (void *) 0
 #endif
 
-extern struct nimbleWorldObject * worldObjects;
-extern volatile uint32_t objectCount;
-extern volatile uint32_t objectMemory;
-extern struct nimbleTexture * textures;
-extern volatile uint32_t textureCount;
 
-struct nimbleTexture {
+typedef struct nimbleTexture {
     uint32_t textureID;
     uint32_t textureIndex;
     uint16_t width;
     uint16_t height;
     uint8_t colorChannels;
-};
+} nimbleTexture;
 
-struct nimbleMesh {
+typedef struct nimbleMesh {
     GLuint VAO;
     GLuint VBO;
     GLuint IBO;
     uint32_t indexCount;
     uint32_t vertexCount;
-};
+} nimbleMesh;
 
-struct nimbleWorldObject {
+typedef struct nimbleWorldObject {
     uint32_t objectID;
     uint32_t objectIndex;
-    struct nimbleMesh mesh;
+    nimbleMesh mesh;
     uint32_t faces;
     uint32_t textureIDs[256];
     vec3 position; // World position
     versor orientation; // Rotational orientation quaternion
     uint32_t parentObject; // ID of the parent object (0 if none)
-};
+} nimbleWorldObject;
+
+extern nimbleWorldObject * worldObjects;
+extern volatile uint32_t objectCount;
+extern volatile uint32_t objectMemory;
+extern nimbleTexture * textures;
+extern volatile uint32_t textureCount;
 
 
 // Loads a texture and returns its ID.
