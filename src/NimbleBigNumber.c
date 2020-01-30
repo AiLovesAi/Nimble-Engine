@@ -12,7 +12,6 @@
 #include <string.h>
 
 #include "NimbleBigNumber.h"
-#include "NimbleEndianness.h"
 #include "NimbleError.h"
 #include "NimbleMath.h"
 

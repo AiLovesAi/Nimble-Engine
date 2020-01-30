@@ -9,26 +9,21 @@
 
 #include "NimbleEndianness.h"
 
-#define ORDER_LITTLE_ENDIAN 0x03020100UL
-#define ORDER_BIG_ENDIAN    0x00010203UL
-const union {
-    uint8_t input[4];
-    uint32_t value;
-} hostOrder = {{0x00, 0x01, 0x02, 0x03}};
-#define HOST_ENDIANNESS hostOrder.value
-
 // Forces input to be in little endian order.
-uint32_t * nimbleForceLittleEndian(uint32_t * input, const uint32_t length)
+uint64_t * nimbleByteSwap(uint64_t * input, const uint64_t length)
 {
-    
-    if (HOST_ENDIANNESS == ORDER_BIG_ENDIAN)
+        
+    for (int64_t i = (length - 1); i >= 0; i--)
     {
-        
-        for (int32_t i = (length - 1); i >= 0; i--)
-        {
-            input[i] = ((input[i] >> 24) & 0xff) | ((input[i] << 8) & 0xff0000) | ((input[i] >> 8) & 0xff00) | ((input[i] << 24) & 0xff000000);
-        }
-        
+        input[i] =
+        ((input[i] & 0xff00000000000000) >> 56) |
+        ((input[i] & 0x00ff000000000000) >> 40) |
+        ((input[i] & 0x0000ff0000000000) >> 24) |
+        ((input[i] & 0x000000ff00000000) >> 8) |
+        ((input[i] & 0x00000000ff000000) << 8) |
+        ((input[i] & 0x0000000000ff0000) << 24) |
+        ((input[i] & 0x000000000000ff00) << 40) |
+        ((input[i] & 0x00000000000000ff) << 56);
     }
     
     return input;

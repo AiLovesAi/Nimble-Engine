@@ -13,8 +13,8 @@
 #include <stdint.h>
 
 
-// Forces input to be in little endian order.
-extern uint32_t * nimbleForceLittleEndian(uint32_t * input, const uint32_t length);
+// Swaps the endianness of input.
+extern uint64_t * nimbleByteSwap(uint64_t * input, const uint64_t length);
 
 #endif /* NimbleEndianness_h */
 
