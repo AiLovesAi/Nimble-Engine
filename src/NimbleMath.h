@@ -71,6 +71,7 @@ ALWAYS_INLINE void nimbleMathVec4Init(float * destination, const float val0, con
     }
     
 }
+#define nimbleMathQuatInit nimbleMathVec4Init
 
 // Sets vec4 destination to vec4 from.
 ALWAYS_INLINE void nimbleMathVec4InitFrom(float * destination, const float * from, uint32_t * error)
@@ -88,6 +89,7 @@ ALWAYS_INLINE void nimbleMathVec4InitFrom(float * destination, const float * fro
     }
     
 }
+#define nimbleMathQuatInitFrom nimbleMathVec4InitFrom
 
 // Returns float x rounded down without checking extensively for overflow.
 ALWAYS_INLINE int32_t nimbleMathFloorF(const float x, uint32_t * error)

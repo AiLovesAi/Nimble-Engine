@@ -26,39 +26,13 @@
 
 #include "NimbleMemory.h"
 
-#ifndef ALWAYS_INLINE
-#define ALWAYS_INLINE static inline __attribute((always_inline))
-#endif
 #ifndef NULL
 #define NULL (void *) 0
 #endif
 
 
 // Sets buffer to the directory of the executable, and sets bufferSize to its length.
-ALWAYS_INLINE char * nimbleFileGetExecutableDirectory(size_t * length)
-{
-    char * buffer = nimbleMemoryAllocate(PATH_MAX + 1);
-#   ifdef _WIN32
-    GetModuleFileName(NULL, buffer, PATH_MAX);
-#   elif defined(__APPLE__)
-    uint32_t bufferSize = PATH_MAX;
-    _NSGetExecutablePath(buffer, &bufferSize);
-#   elif defined(__linux__)
-    readlink("/proc/self/exe", buffer, PATH_MAX);
-#   endif
-    
-    if (!buffer)
-    {
-        return NULL;
-    }
-    
-    char * temp = strrchr(buffer, '/');
-    const uint16_t index = temp - buffer;
-    buffer[index + 1] = '\0';
-    *length = strlen(buffer);
-    buffer = nimbleMemoryReallocate(buffer, PATH_MAX + 1, *length + 1);
-    return buffer;
-}
+extern char * nimbleFileGetExecutableDirectory(size_t * length);
 
 #endif /* NimbleFileManager_h */
 

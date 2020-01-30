@@ -39,7 +39,7 @@ typedef struct BigDec {
 extern BigInt_t nimbleBigIntFromString(const char * string, uint32_t * error);
 
 // Returns big integer x as a string.
-extern char * nimbleBigIntToString(const BigInt_t x, uint32_t * error);
+extern char * nimbleBigIntToString(const BigInt_t x, uint64_t * length, uint32_t * error);
 
 // Frees a big integer.
 ALWAYS_INLINE void nimbleBigIntFree(BigInt_t x)
@@ -91,7 +91,7 @@ extern BigDec_t nimbleBigIntToBigDec(const BigInt_t x);
 extern BigDec_t nimbleBigDecFromString(const char * string, uint32_t * error);
 
 // Returns big decimal x as a string.
-extern char * nimbleBigDecToString(const BigDec_t x, uint32_t * error);
+char * nimbleBigDecToString(const BigDec_t x, uint64_t * length, uint32_t * error);
 
 // Frees a big decimal.
 ALWAYS_INLINE void nimbleBigDecFree(BigDec_t x)
@@ -120,11 +120,23 @@ extern int32_t nimbleBigDecMod(const BigDec_t x, const BigDec_t y, BigDec_t resu
 // Returns x ^ y.
 extern int32_t nimbleBigDecPow(const BigDec_t x, const BigDec_t y, BigDec_t result);
 
-// Returns x rounded up.
+// Rounds x down and stores it in result.
+extern int32_t nimbleBigDecFloor(const BigDec_t x, BigDec_t result);
+
+// Rounds x up and stores it in result.
 extern int32_t nimbleBigDecCeil(const BigDec_t x, BigDec_t result);
 
-// Returns x rounded down.
-extern int32_t nimbleBigDecFloor(const BigDec_t x, BigDec_t result);
+// Rounds x down at digit "precision" and stores it in result.
+extern int32_t nimbleBigDecFloorToPrecision(const BigDec_t x, const uint32_t precision, BigDec_t result);
+
+// Rounds x up at digit "precision" and stores it in result.
+extern int32_t nimbleBigDecCeilToPrecision(const BigDec_t x, const uint32_t precision, BigDec_t result);
+
+// Rounds x down and stores it in result as a big integer.
+extern int32_t nimbleBigDecFloorToBigInt(const BigDec_t x, BigInt_t result);
+
+// Rounds x up and stores it in result as a big integer.
+extern int32_t nimbleBigDecCeilToBigInt(const BigDec_t x, BigInt_t result);
 
 // Returns x == y.
 extern int32_t nimbleBigDecTET(const BigDec_t x, const BigDec_t y);

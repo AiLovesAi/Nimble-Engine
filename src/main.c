@@ -7,9 +7,6 @@
  *
  */
 
-// Compile using: gcc -v -Ofast -Os -lopengl32 -lglew32 -lglfw3 -lOpenAL32 -lcglm -lm main.c -o OUTPUTNAME[.exe] // FIXME
-
-
 /* COMPILE CONFIG */
 
 #define EMERGENCY_MEMORY         5000UL // Bytes to be freed in case memory limit is reached
@@ -17,7 +14,7 @@
 #define ALLOCATED_MEMORY_DEFAULT 100000000UL // Default amount of memory in bytes to be allocated
 #define CRASH_WAIT_TIME          (5 * MILLIS_PER_SEC) // Time to wait for other threads when crashing.
 
-#define GAME_TITLE   "3D Game"
+#define GAME_TITLE   "Nimble Example"
 #define GAME_VERSION "0.1.0"
 
 #define GAME_TPS_MAX             200 // Maximum ticks per second
@@ -1596,7 +1593,7 @@ static inline void render(void)
     if (cameraAngleDifference[0])
     {
         const float cameraPitchSin = sinf(cameraAngleDifference[0] / 2.0f);
-        nimbleMathVec4Init(rotatePitchQuat, (cameraPitchAxis[0] * cameraPitchSin), (cameraPitchAxis[1] * cameraPitchSin),
+        nimbleMathQuatInit(rotatePitchQuat, (cameraPitchAxis[0] * cameraPitchSin), (cameraPitchAxis[1] * cameraPitchSin),
                  (cameraPitchAxis[2] * cameraPitchSin), cosf(cameraAngleDifference[0] / 2.0f), NULL);
         cameraAngleDifference[0] = 0;
     }
@@ -1604,7 +1601,7 @@ static inline void render(void)
     if (cameraAngleDifference[1])
     {
         const float cameraYawSin = sinf(cameraAngleDifference[1] / 2.0f);
-        nimbleMathVec4Init(rotateYawQuat, (cameraYawAxis[0] * cameraYawSin), (cameraYawAxis[1] * cameraYawSin),
+        nimbleMathQuatInit(rotateYawQuat, (cameraYawAxis[0] * cameraYawSin), (cameraYawAxis[1] * cameraYawSin),
                  (cameraYawAxis[2] * cameraYawSin), cosf(cameraAngleDifference[1] / 2.0f), NULL);
         cameraAngleDifference[1] = 0;
     }
@@ -1612,7 +1609,7 @@ static inline void render(void)
     if (cameraAngleDifference[2])
     {
         const float cameraRollSin = sinf(cameraAngleDifference[2] / 2.0f);
-        nimbleMathVec4Init(rotateRollQuat, (cameraRollAxis[0] * cameraRollSin), (cameraRollAxis[1] * cameraRollSin),
+        nimbleMathQuatInit(rotateRollQuat, (cameraRollAxis[0] * cameraRollSin), (cameraRollAxis[1] * cameraRollSin),
                  (cameraRollAxis[2] * cameraRollSin), cosf(cameraAngleDifference[2] / 2.0f), NULL);
         cameraAngleDifference[2] = 0;
     }

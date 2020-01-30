@@ -38,7 +38,10 @@ DerivedData/
 
 # End of https://www.gitignore.io/api/xcode
 
+*.DS_Store
 
 
 # Project files
-stb_image.h
+products/log.txt
+products/crashlog.txt
+products/options.txt

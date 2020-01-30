@@ -117,7 +117,7 @@ BigInt_t nimbleBigIntFromString(const char * string, uint32_t * error)
         return result;
     }
     
-    result.size = nimbleMathCeilF(digits / DIGITS_PER_BYTE, error) + sign;
+    result.size = nimbleMathCeilF(digits / DIGITS_PER_BYTE, NULL) + sign;
     result.number = nimbleMemoryAllocate((sizeof(uint32_t) * result.size));
     
     uint32_t byte = uintStringToBinary(signlessString, digits, result, NULL);
@@ -141,7 +141,7 @@ BigInt_t nimbleBigIntFromString(const char * string, uint32_t * error)
 }
 
 // Returns big integer x as a string.
-char * nimbleBigIntToString(const BigInt_t x, uint32_t * error)
+char * nimbleBigIntToString(const BigInt_t x, uint64_t * length, uint32_t * error)
 {
     
     if (BIG_INT_NULL(x))
@@ -151,9 +151,9 @@ char * nimbleBigIntToString(const BigInt_t x, uint32_t * error)
     }
     
     const uint8_t sign = (x.number[0] >> 31) & 1UL;
-    const uint32_t expectedSize = (x.size * sizeof(uint32_t)) * DIGITS_PER_BYTE;
-    char * string = nimbleMemoryAllocate(expectedSize + 1);
-    string[expectedSize] = '\0';
+    *length = (x.size * sizeof(uint32_t)) * DIGITS_PER_BYTE;
+    char * string = nimbleMemoryAllocate(*length + 1);
+    string[*length] = '\0';
     
     for (uint64_t bit = 0; bit < ((x.size * 32) - 1); bit++) // Subtract one to ignore the sign bit.
     {
@@ -591,7 +591,7 @@ BigDec_t nimbleBigDecFromString(const char * string, uint32_t * error)
     
     if (decimalPosition)
     {
-        result.integer.size = nimbleMathCeilF(decimalPosition / DIGITS_PER_BYTE, error) + sign;
+        result.integer.size = nimbleMathCeilF(decimalPosition / DIGITS_PER_BYTE, NULL) + sign;
         result.integer.number = nimbleMemoryAllocate((sizeof(uint32_t) * result.integer.size));
         uint32_t byte = uintStringToBinary(signlessString, decimalPosition, result.integer, NULL);
         
@@ -617,7 +617,7 @@ BigDec_t nimbleBigDecFromString(const char * string, uint32_t * error)
         result.integer.number[0] = 0;
     }
     
-    result.decimal.size = nimbleMathCeilF(decimalLength / DIGITS_PER_BYTE, error);
+    result.decimal.size = nimbleMathCeilF(decimalLength / DIGITS_PER_BYTE, NULL);
     result.decimal.number = nimbleMemoryAllocate((sizeof(uint32_t) * result.decimal.size));
     uint32_t byte = uintStringToBinary(signlessString + decimalPosition + 1, decimalLength, result.decimal, &result.leadingZeros);
     
@@ -632,10 +632,42 @@ BigDec_t nimbleBigDecFromString(const char * string, uint32_t * error)
 }
 
 // Returns big decimal x as a string.
-char * nimbleBigDecToString(const BigDec_t x, uint32_t * error)
+char * nimbleBigDecToString(const BigDec_t x, uint64_t * length, uint32_t * error)
 {
-    // TODO
-    return NULL;
+    
+    if (BIG_DEC_NULL(x))
+    {
+        *error = NIMBLE_ERROR_GENERAL_NULL;
+        return NULL;
+    }
+    
+    uint64_t integerLength = 0;
+    uint64_t decimalLength = 0;
+    char * result = nimbleBigIntToString(x.integer, &integerLength, error);
+    
+    if (*error)
+    {
+        return NULL;
+    }
+    
+    const char * decimalString = nimbleBigIntToString(x.decimal, &decimalLength, error); // FIXME Use non-negative version
+    
+    if (*error)
+    {
+        return NULL;
+    }
+    
+    *length = integerLength + decimalLength + x.leadingZeros + 1;
+    result = nimbleMemoryReallocate(result, integerLength + 1, *length + 1);
+    result[integerLength] = '.';
+    
+    for (uint64_t i = integerLength + 1; i < (integerLength + 1 + x.leadingZeros); i++)
+    {
+        result[i] = '0';
+    }
+    
+    strncat(result, decimalString, decimalLength + 1);
+    return result;
 }
 
 // Returns x + y.
@@ -708,7 +740,20 @@ int32_t nimbleBigDecPow(const BigDec_t x, const BigDec_t y, BigDec_t result)
     return 0;
 }
 
-// Returns x rounded up.
+// Rounds x down and stores it in result.
+int32_t nimbleBigDecFloor(const BigDec_t x, BigDec_t result)
+{
+    
+    if (BIG_DEC_NULL(x))
+    {
+        return NIMBLE_ERROR_GENERAL_NULL;
+    }
+    
+    // TODO
+    return 0;
+}
+
+// Rounds x up and stores it in result.
 int32_t nimbleBigDecCeil(const BigDec_t x, BigDec_t result)
 {
     
@@ -721,8 +766,47 @@ int32_t nimbleBigDecCeil(const BigDec_t x, BigDec_t result)
     return 0;
 }
 
-// Returns x rounded down.
-int32_t nimbleBigDecFloor(const BigDec_t x, BigDec_t result)
+// Rounds x down at digit "precision" and stores it in result.
+int32_t nimbleBigDecFloorToPrecision(const BigDec_t x, const uint32_t precision, BigDec_t result)
+{
+    
+    if (BIG_DEC_NULL(x))
+    {
+        return NIMBLE_ERROR_GENERAL_NULL;
+    }
+    
+    // TODO
+    return 0;
+}
+
+// Rounds x up at digit "precision" and stores it in result.
+int32_t nimbleBigDecCeilToPrecision(const BigDec_t x, const uint32_t precision, BigDec_t result)
+{
+    
+    if (BIG_DEC_NULL(x))
+    {
+        return NIMBLE_ERROR_GENERAL_NULL;
+    }
+    
+    // TODO
+    return 0;
+}
+
+// Rounds x down and stores it in result as a big integer.
+int32_t nimbleBigDecFloorToBigInt(const BigDec_t x, BigInt_t result)
+{
+    
+    if (BIG_DEC_NULL(x))
+    {
+        return NIMBLE_ERROR_GENERAL_NULL;
+    }
+    
+    // TODO
+    return 0;
+}
+
+// Rounds x up and stores it in result as a big integer.
+int32_t nimbleBigDecCeilToBigInt(const BigDec_t x, BigInt_t result)
 {
     
     if (BIG_DEC_NULL(x))
