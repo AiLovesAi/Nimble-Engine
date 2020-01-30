@@ -2,13 +2,28 @@
 
 PRODUCT_NAME="Nimble Example Mac"
 
+ls | grep "compilers"
+exitCode=$?
+
+
+
+case $exitCode in
+  0)
+    cd "compilers/"
+  ;;
+  1)
+  ;;
+  2)
+    echo "Grep failed to run, compiler not able to run."
+    exit
+  ;;
+esac
 
 gcc-9 -v \
 -march=x86-64 -mtune=intel \
 -Ofast -Os \
 \
 -Wall \
--Wno-deprecated \
 \
 -I/usr/local/include \
 -L/usr/local/Cellar \
@@ -20,9 +35,9 @@ gcc-9 -v \
 /usr/local/Cellar/cglm/0.5.4/lib/libcglm.a \
 -lm \
 \
-../*.c -o "../products/$PRODUCT_NAME" \
+../src/*.c -o "../products/$PRODUCT_NAME" \
 2>&1 \
-| grep --color "\^|warning:\|error:"
+| grep -B 1 --color "\^|warning:\|error:"
 
 exitCode=$?
 case $exitCode in
@@ -34,5 +49,6 @@ case $exitCode in
   ;;
   2)
     echo "Grep failed to run, compilation status unknown."
+    exit
   ;;
 esac
