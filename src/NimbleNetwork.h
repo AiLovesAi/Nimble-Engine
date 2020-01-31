@@ -19,6 +19,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
+ #include "NimbleLicense.c"
 
 #ifndef NimbleNetwork_h
 #define NimbleNetwork_h
