@@ -88,8 +88,6 @@ const char VOLUME_MASTER_DEFAULT_STRING[] = "1.0";
 #include <GLFW/glfw3.h>
 #include <limits.h>
 #include <math.h>
-#include <OpenAL/al.h>
-#include <OpenAL/alc.h>
 #include <pthread.h>
 #include <signal.h>
 #include <string.h>
@@ -106,8 +104,6 @@ const char VOLUME_MASTER_DEFAULT_STRING[] = "1.0";
 #include <limits.h>
 #include <mach-o/dyld.h>
 #include <math.h>
-#include <OpenAL/al.h>
-#include <OpenAL/alc.h>
 #include <pthread.h>
 #include <signal.h>
 #include <string.h>
@@ -121,13 +117,14 @@ const char VOLUME_MASTER_DEFAULT_STRING[] = "1.0";
 #endif
 
 #include "NimbleBigNumber.h"
+#include "NimbleError.h"
 #include "NimbleFileManager.h"
+#include "NimbleInput.h"
 #include "NimbleMath.h"
 #include "NimbleTime.h"
 #include "NimbleLogger.h"
 #include "NimbleSystemInfo.h"
 #include "NimbleWorldObjects.h"
-
 
 /* GLOBAL DEFINITIONS */
 #ifndef NULL
@@ -228,8 +225,6 @@ mat4         projection        = {};
 GLuint       uniformModel      = 0;
 GLuint       uniformView       = 0;
 GLuint       uniformProjection = 0;
-uint8_t      keyDown[1024]     = {};
-uint8_t      buttonDown[20]    = {};
 
 const versor emptyVersor = {0.0f, 0.0f, 0.0f, 1.0f};
 
@@ -257,10 +252,6 @@ const float vertices[] = {
     1.0f,  -1.0f, 0.0f,  1.0f, 0.0f,
     0.0f,  0.5f,  0.0f,  0.5f, 1.0f
 };
-
-// OpenAL
-ALCdevice *  audioDevice  = NULL;
-ALCcontext * audioContext = NULL;
 
 
 // Threads
@@ -416,18 +407,6 @@ static void crash(const char * error)
             
         }
         
-    }
-    
-    if (audioContext)
-    {
-        audioContext = alcGetCurrentContext();
-        audioContext = NULL;
-    }
-    
-    if (audioDevice)
-    {
-        audioDevice = alcGetContextsDevice(audioContext);
-        audioDevice = NULL;
     }
     
     if (window)
@@ -838,15 +817,6 @@ static inline void closeGame(void)
         nimbleTextureUnload(0);
     }
     
-    if (audioContext)
-    {
-        audioContext = alcGetCurrentContext();
-        audioDevice = alcGetContextsDevice(audioContext);
-        alcMakeContextCurrent(NULL);
-        alcDestroyContext(audioContext);
-        alcCloseDevice(audioDevice);
-    }
-    
     glfwDestroyWindow(window);
     window = NULL;
     glfwTerminate();
@@ -980,42 +950,6 @@ static inline void logSystemInfo(void)
     nimbleMemoryFree(output, outputLength + 1);
 }
 
-// Initializes OpenAL or logs an error and disables sound.
-static inline void initializeOpenAL(void)
-{
-    audioDevice = alcOpenDevice(NULL); // Default device
-    
-    if (!audioDevice)
-    {
-        const char errorMessage[] = "Could not open OpenAL device. Sound will not be used.";
-        nimbleLoggerLog(logFile, errorMessage, (sizeof(errorMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING, 1);
-        return;
-    }
-    
-    audioContext = alcCreateContext(audioDevice, NULL);
-    
-    if (!audioContext)
-    {
-        // Invalid device or too many contexts on device.
-        const char errorMessage[] = "Could not create OpenAL context. Sound will not be used.";
-        nimbleLoggerLog(logFile, errorMessage, (sizeof(errorMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING, 1);
-        alcCloseDevice(audioDevice);
-        return;
-    }
-    
-    if (!alcMakeContextCurrent(audioContext))
-    {
-        // Context is invalid.
-        const char errorMessage[] = "Could not set current OpenAL context. Sound will not be used.";
-        nimbleLoggerLog(logFile, errorMessage, (sizeof(errorMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_WARNING, 1);
-        alcDestroyContext(audioContext);
-        alcCloseDevice(audioDevice);
-        return;
-    }
-    
-    const char successMessage[] = "Sucessfully initialized OpenAL.";
-    nimbleLoggerLog(logFile, successMessage, (sizeof(successMessage) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
-}
 
 // Clears frame buffer data to prevent unwanted behavior when swapping buffers.
 static inline void clearFrameBuffers(void)
@@ -1123,9 +1057,9 @@ static void onWindowFocus(GLFWwindow * w, const int isFocused)
 static void onKeyboardInput(GLFWwindow * w, const int key, const int scancode, const int action, const int mods)
 {
     
-    if (key > 0 && key < sizeof(keyDown))
+    if (key > 0 && key < sizeof(nimbleInputKeyDown))
     {
-        keyDown[key] = action;
+        nimbleInputKeyDown[key] = action;
     }
     
 }
@@ -1134,9 +1068,9 @@ static void onKeyboardInput(GLFWwindow * w, const int key, const int scancode, c
 static void onMouseButton(GLFWwindow * w, const int button, const int action, const int mods)
 {
     
-    if (button > 0 && button < sizeof(buttonDown))
+    if (button > 0 && button < sizeof(nimbleInputButtonDown))
     {
-        buttonDown[button] = action;
+        nimbleInputButtonDown[button] = action;
     }
     
 }
@@ -1464,15 +1398,15 @@ static void * pollEvents(void * args)
     while (running)
     {
         
-        if (keyDown[KEY_QUIT] == GLFW_PRESS)
+        if (nimbleInputKeyDown[KEY_QUIT] == GLFW_PRESS)
         {
-            keyDown[KEY_QUIT] = GLFW_RELEASE;
+            nimbleInputKeyDown[KEY_QUIT] = GLFW_RELEASE;
             glfwSetWindowShouldClose(window, 1);
         }
         
-        if (keyDown[KEY_DEBUG] == GLFW_PRESS)
+        if (nimbleInputKeyDown[KEY_DEBUG] == GLFW_PRESS)
         {
-            keyDown[KEY_DEBUG] = GLFW_RELEASE;
+            nimbleInputKeyDown[KEY_DEBUG] = GLFW_RELEASE;
             
             if (debug)
             {
@@ -1487,9 +1421,9 @@ static void * pollEvents(void * args)
             debug = !debug;
         }
         
-        if (keyDown[GLFW_KEY_F2] == GLFW_PRESS)
+        if (nimbleInputKeyDown[GLFW_KEY_F2] == GLFW_PRESS)
         {
-            keyDown[KEY_FULLSCREEN] = GLFW_RELEASE;
+            nimbleInputKeyDown[KEY_FULLSCREEN] = GLFW_RELEASE;
             fullscreen = !fullscreen;
             
             if (debug)
@@ -1510,43 +1444,43 @@ static void * pollEvents(void * args)
             windowShouldFullscreen = 1;
         }
         
-        if (keyDown[KEY_LOG_TEST] == GLFW_PRESS)
+        if (nimbleInputKeyDown[KEY_LOG_TEST] == GLFW_PRESS)
         {
-            keyDown[KEY_LOG_TEST] = GLFW_RELEASE;
+            nimbleInputKeyDown[KEY_LOG_TEST] = GLFW_RELEASE;
             const char entryTest[] = "Testing log entry.";
             nimbleLoggerLog(logFile, entryTest, (sizeof(entryTest) - sizeof(NULL_CHAR)), ENTRY_TYPE_INFO, 1);
         }
         
         if (nimbleTimeHasPast(eventTimer))
         {
-            const float movement = MOVEMENT_SPEED * (keyDown[KEY_SPRINT] ? SPRINT_MULTIPLIER : 1);
-            if (keyDown[KEY_FORWARD])
+            const float movement = MOVEMENT_SPEED * (nimbleInputKeyDown[KEY_SPRINT] ? SPRINT_MULTIPLIER : 1);
+            if (nimbleInputKeyDown[KEY_FORWARD])
             {
                 glm_vec3_muladds(cameraRollAxis, -movement, cameraPosition);
             }
             
-            if (keyDown[KEY_BACKWARD])
+            if (nimbleInputKeyDown[KEY_BACKWARD])
             {
                 glm_vec3_muladds(cameraRollAxis, movement, cameraPosition);
             }
             
-            if (keyDown[KEY_LEFT])
+            if (nimbleInputKeyDown[KEY_LEFT])
             {
                 glm_vec3_muladds(cameraPitchAxis, -movement, cameraPosition);
             }
             
-            if (keyDown[KEY_RIGHT])
+            if (nimbleInputKeyDown[KEY_RIGHT])
             {
                 glm_vec3_muladds(cameraPitchAxis, movement, cameraPosition);
             }
             
-            if (keyDown[KEY_ROLL_LEFT])
+            if (nimbleInputKeyDown[KEY_ROLL_LEFT])
             {
                 cameraAngleDifference[2] -= 0.000025f;
                 cameraAngles[2] -= 0.000025f;
             }
             
-            if (keyDown[KEY_ROLL_RIGHT])
+            if (nimbleInputKeyDown[KEY_ROLL_RIGHT])
             {
                 cameraAngleDifference[2] += 0.000025f;
                 cameraAngles[2] += 0.000025f;
@@ -1671,7 +1605,6 @@ int main(int argc, char * argv[])
     
     
     initializeLogger();
-    initializeOpenAL();
     initializeOpenGL();
     logSystemInfo();
     

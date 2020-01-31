@@ -1,5 +1,5 @@
 /*
- *  NimbleInput.c
+ *  NimbleSound.h
  *  Nimble Game Engine
  *
  *  Created by Avery Aaron on 1/30/20.
@@ -21,13 +21,14 @@
  */
 #include "NimbleLicense.h"
 
-#include "NimbleInput.h"
 
+#ifndef NimbleSound_h
+#define NimbleSound_h
 
-uint8_t nimbleInputKeyDown[1024]  = {};
-uint8_t nimbleInputButtonDown[20] = {};
+#include <stdint.h>
 
 // TODO
 
+#endif /* NimbleSound_h */
 
-// NimbleInput.c
+// NimbleSound.h

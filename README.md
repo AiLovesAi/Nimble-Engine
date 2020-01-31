@@ -19,5 +19,5 @@ A lightweight and fast game engine written in C using OpenGL and OpenAL.
 * **[STB](https://github.com/nothings/stb)**:  
     Used for image type conversion (eg. png to array)
 
-* **[OpenAL](https://www.openal.org/) (Open Audio Library)**:  
+* **[libsoundio](http://libsound.io/)**:  
     Used for sound programming

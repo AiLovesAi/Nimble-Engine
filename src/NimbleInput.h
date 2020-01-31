@@ -26,8 +26,8 @@
 
 #include <stdint.h>
 
-extern uint8_t nimbleKeyDown[1024];
-extern uint8_t nimbleButtonDown[20];
+extern uint8_t nimbleInputKeyDown[1024];
+extern uint8_t nimbleInputButtonDown[20];
 
 // TODO
 
