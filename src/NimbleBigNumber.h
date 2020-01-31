@@ -19,7 +19,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
- #include "NimbleLicense.c"
+#include "NimbleLicense.h"
 
 #ifndef NimbleBigNumber_h
 #define NimbleBigNumber_h

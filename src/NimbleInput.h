@@ -19,15 +19,15 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
- #include "NimbleLicense.c"
+#include "NimbleLicense.h"
 
 #ifndef NimbleInput_h
 #define NimbleInput_h
 
 #include <stdint.h>
 
-extern uint8_t keyDown[1024];
-extern uint8_t buttonDown[20];
+extern uint8_t nimbleKeyDown[1024];
+extern uint8_t nimbleButtonDown[20];
 
 // TODO
 

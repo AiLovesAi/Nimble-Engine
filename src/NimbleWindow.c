@@ -19,11 +19,11 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
- #include "NimbleLicense.c"
+#include "NimbleLicense.h"
 
 #include "NimbleWindow.h"
 
-GLFWwindow * window = NULL;
+GLFWwindow * nimbleWindowMain = NULL;
 
 // TODO
 

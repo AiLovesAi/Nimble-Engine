@@ -19,7 +19,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
- #include "NimbleLicense.c"
+#include "NimbleLicense.h"
 
 #ifndef NimbleWindow_h
 #define NimbleWindow_h
@@ -32,7 +32,7 @@
 #define NULL (void *) 0
 #endif
 
-extern GLFWwindow * window;
+extern GLFWwindow * nimbleWindowMain;
 
 // TODO
 
