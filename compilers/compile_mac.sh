@@ -28,11 +28,11 @@ gcc-9 -v \
 -I/usr/local/include \
 -L/usr/local/Cellar \
 \
--framework OpenAL \
 -framework OpenGL \
 /usr/local/Cellar/glew/2.1.0/lib/libGLEW.dylib \
 /usr/local/Cellar/glfw/3.3/lib/libglfw.dylib \
-/usr/local/Cellar/cglm/0.5.4/lib/libcglm.a \
+/usr/local/Cellar/cglm/0.6.2/lib/libcglm.dylib \
+/usr/local/Cellar/libsoundio/2.0.0/lib/libsoundio.dylib \
 -lm \
 \
 ../src/*.c -o "../products/$PRODUCT_NAME" \
