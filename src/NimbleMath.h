@@ -30,7 +30,7 @@
 #include "NimbleError.h"
 
 #ifndef ALWAYS_INLINE
-#define ALWAYS_INLINE static inline __attribute((always_inline))
+#define ALWAYS_INLINE static inline __attribute__((always_inline))
 #endif
 
 #define M_PI2 6.28318530717958647692528676655900576 // pi * 2

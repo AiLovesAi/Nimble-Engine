@@ -23,6 +23,8 @@
 
 #include "NimbleWindow.h"
 
+volatile uint8_t nimbleGameRunning = 0;
+
 GLFWwindow * nimbleWindowMain = NULL;
 
 // TODO

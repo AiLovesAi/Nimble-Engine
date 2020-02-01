@@ -28,7 +28,7 @@
 #include <stdlib.h>
 
 #ifndef ALWAYS_INLINE
-#define ALWAYS_INLINE static inline __attribute((always_inline))
+#define ALWAYS_INLINE static inline __attribute__((always_inline))
 #endif
 #ifndef NULL
 #define NULL (void *) 0

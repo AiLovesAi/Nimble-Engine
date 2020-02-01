@@ -43,6 +43,13 @@
 #define NIMBLE_ERROR_BIGNUM_OVERFLOW NIMBLE_ERROR_BIGNUM | 0x000001 // Big number function input was too large and would overflow memory.
 
 
+// EROR TYPES
+#define NIMBLE_ERROR_TYPE_ERRNO 1
+#define NIMBLE_ERROR_TYPE_NIMBLE 2
+
+// Crashes the game with crashMessage and errorCOde, and generates a crash log.
+extern void nimbleErrorCrash(const char * crashMessage, const uint64_t crashMessageLength, const int64_t errorCode, const uint8_t errorType);
+
 // Returns a string description of errorCode.
 extern char * nimbleErrorString(const uint32_t errorCode);
 

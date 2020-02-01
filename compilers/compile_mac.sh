@@ -2,10 +2,10 @@
 
 PRODUCT_NAME="Nimble Example Mac"
 
-ls | grep "compilers"
+
+
+ls | grep "compilers" > /dev/null
 exitCode=$?
-
-
 
 case $exitCode in
   0)
@@ -18,6 +18,8 @@ case $exitCode in
     exit
   ;;
 esac
+
+./generate_license_mac.sh
 
 gcc-9 -v \
 -march=x86-64 -mtune=intel \

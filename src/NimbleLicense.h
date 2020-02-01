@@ -28,7 +28,6 @@
 // NOTE: Produced from xxd -i LICENSE.md
 
 extern const unsigned char LICENSE_md[];
-extern const unsigned int LICENSE_md_length;
 
 #endif /* NimbleLicese_h */
 

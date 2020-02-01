@@ -34,7 +34,7 @@
 #endif
 
 #ifndef ALWAYS_INLINE
-#define ALWAYS_INLINE static inline __attribute((always_inline))
+#define ALWAYS_INLINE static inline __attribute__((always_inline))
 #endif
 
 

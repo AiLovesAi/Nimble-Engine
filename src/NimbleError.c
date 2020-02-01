@@ -21,10 +21,80 @@
  */
 #include "NimbleLicense.h"
 
+#include <signal.h>
+#include <stdio.h>
 #include <string.h>
 
 #include "NimbleError.h"
+#include "NimbleMath.h"
 #include "NimbleMemory.h"
+#include "NimbleWindow.h"
+
+#ifndef FORMAT_LENGTH_2
+#define FORMAT_LENGTH_2 2
+#endif
+
+
+volatile uint8_t alreadyCrashed = 0;
+
+// Crashes the game with crashMessage and errorCOde, and generates a crash log.
+void nimbleErrorCrash(const char * crashMessage, const uint64_t crashMessageLength, const int64_t errorCode, const uint8_t errorType)
+{
+    
+    if (alreadyCrashed)
+    {
+        raise(SIGTERM);
+    }
+    
+    alreadyCrashed = 1;
+    nimbleGameRunning = 0;
+    
+    char *     output              = NULL;
+    char *     errorMessage        = NULL;
+    uint64_t   errorMessageLength  = 0;
+    const char crashFormatString[] = "%s\nError code: %lld (%s)";
+    
+    if (errorCode)
+    {
+        switch (errorType) {
+            case NIMBLE_ERROR_TYPE_ERRNO:
+            {
+                // TODO
+            }
+            break;
+            
+            case NIMBLE_ERROR_TYPE_NIMBLE:
+            {
+                // TODO
+            }
+            break;
+            
+            default:
+            {
+                // TODO
+            }
+            break;
+        }
+    }
+    
+    if (crashMessage && crashMessageLength)
+    {
+        const uint64_t outputLength = (sizeof(crashFormatString) - (FORMAT_LENGTH_2 * 3) - 1) + crashMessageLength + nimbleMathDigits64(errorCode) + errorMessageLength + 1;
+        output = malloc(sizeof(char *) + outputLength);
+        snprintf(output, outputLength, crashFormatString, crashMessage, errorCode, errorMessage);
+    } else
+    {
+        const char crashMessageDefault[] = "Game crashed with no crash message.";
+        const uint64_t outputLength = (sizeof(crashFormatString) - (FORMAT_LENGTH_2 * 3) - 1) + (sizeof(crashMessageDefault) - 1) + nimbleMathDigits64(errorCode) + errorMessageLength + 1;
+        output = malloc(sizeof(char *) + outputLength);
+        strcpy(output, crashMessageDefault);
+        snprintf(output, outputLength, crashFormatString, crashMessageDefault, errorCode, errorMessage);
+    }
+    
+    // TODO
+    
+    exit(EXIT_FAILURE);
+}
 
 // Returns a string description of error.
 char * nimbleErrorString(const uint32_t errorCode)
