@@ -81,6 +81,7 @@ const char VOLUME_MASTER_DEFAULT_STRING[] = "1.0";
 #include <stdlib.h>
 #include <sys/time.h>
 #include <time.h>
+#include <vulkan/vulkan.h> // TODO
 #include <windows.h>
 #elif defined(__linux__)
 #include <cglm/cglm.h>
@@ -97,6 +98,7 @@ const char VOLUME_MASTER_DEFAULT_STRING[] = "1.0";
 #include <sys/errno.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include <vulkan/vulkan.h>
 #elif defined(__APPLE__)
 #include <cglm/cglm.h>
 #include <GL/glew.h>
@@ -114,6 +116,7 @@ const char VOLUME_MASTER_DEFAULT_STRING[] = "1.0";
 #include <sys/sysctl.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include <vulkan/vulkan.h>
 #endif
 
 #include "NimbleBigNumber.h"

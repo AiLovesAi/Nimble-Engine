@@ -27,6 +27,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <stdint.h>
+#include <vulkan/vulkan.h>
 
 #ifndef NULL
 #define NULL (void *) 0

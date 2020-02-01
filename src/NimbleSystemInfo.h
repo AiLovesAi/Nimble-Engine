@@ -26,6 +26,7 @@
 
 #include <stdint.h>
 #include <GL/glew.h>
+#include <vulkan/vulkan.h> // TODO
 
 #if defined(__APPLE__) || defined(__linux__)
 #include <sys/sysctl.h>

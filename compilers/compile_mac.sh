@@ -29,20 +29,22 @@ gcc-9 -v \
 -L/usr/local/Cellar \
 \
 -framework OpenGL \
-/usr/local/Cellar/glew/2.1.0/lib/libGLEW.dylib \
-/usr/local/Cellar/glfw/3.3/lib/libglfw.dylib \
-/usr/local/Cellar/cglm/0.6.2/lib/libcglm.dylib \
-/usr/local/Cellar/libsoundio/2.0.0/lib/libsoundio.dylib \
+/usr/local/Cellar/glew/2.1.0_1/lib/libglew.dylib \
+/usr/local/Cellar/glfw/3.3.1/lib/libglfw.dylib \
+/usr/local/Cellar/vulkan/libvulkan.dylib \
+/usr/local/Cellar/cglm/0.6.2/lib/libcglm.a \
+/usr/local/Cellar/libsoundio/2.0.0/lib/libsoundio.a \
 -lm \
 \
 ../src/*.c -o "../products/$PRODUCT_NAME" \
 2>&1 \
-| grep -B 1 --color "\^|warning:\|error:"
+| grep -B 10 --color "\^|warning:\|error:"
 
 exitCode=$?
 case $exitCode in
   0)
     echo "Compile had warnings and/or errors."
+    exit
   ;;
   1)
     echo "Compile succeeded."
@@ -52,3 +54,5 @@ case $exitCode in
     exit
   ;;
 esac
+
+codesign -f -s "Mac Developer: averyaaron@me.com" "../products/$PRODUCT_NAME"

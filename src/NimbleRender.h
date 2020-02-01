@@ -25,6 +25,7 @@
 #define NimbleRender_h
 
 #include <GL/glew.h>
+#include <vulkan/vulkan.h>
 #include <stdint.h>
 
 
@@ -35,6 +36,8 @@
 #ifndef NIMBLE_RENDERMODE
 #define NIMBLE_RENDERMODE NIMBLE_RENDERMODE_PERSPECTIVE
 #endif
+
+// TODO
 
 #endif /* NimbleRender_h */
 
