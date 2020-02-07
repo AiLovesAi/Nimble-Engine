@@ -7,24 +7,32 @@ assignees: ''
 
 ---
 
-**Describe the bug**
+## **Bug Description:**
+
 A clear and concise description of what the bug is.
 
-**Give the steps to reproduce**
+## **Steps to Reproduce:**
+
 Steps to reproduce the behavior.
 
-**Expected behavior**
+## **Expected Behavior:**
+
 A clear and concise description of what you expected to happen.
 
-**Error log**
-Paste the error logged in a code block.
+## **Error Log:**
 
-**Screenshots**
+Paste the error logged (or any relevant logged information) in a code block.
+
+## **Screenshots:**
+
 If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. Windows]
- - Version [e.g. 10]
+## **Hardware Information:**
 
-**Additional context**
+ - OS: [e.g. Windows 10]
+ - CPU: [e.g. Intel i7 7700k]
+ - GPU: [e.g. GTX 1080]
+ - Any other relevant hardware information.
+
+## **Additional Context:**
 Add any other context about the problem here.
