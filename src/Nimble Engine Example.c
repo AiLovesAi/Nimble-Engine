@@ -1710,6 +1710,10 @@ int main(int argc, char * argv[])
         printf(BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY((bigDec1.decimal.number[i] >> 24) & 0xff), BYTE_TO_BINARY((bigDec1.decimal.number[i] >> 16) & 0xff), BYTE_TO_BINARY((bigDec1.decimal.number[i] >> 8) & 0xff), BYTE_TO_BINARY(bigDec1.decimal.number[i] & 0xff));
     }
     printf("\n%d\n%d\n", bigDec1.leadingZeros, nimbleBigDecTGT(bigDec1, bigDec2));
+    uint64_t length = 0;
+    char * bigIntString = nimbleBigIntToString(bigInt2, &length, NULL);
+    printf("%s\n", bigIntString);
+    nimbleMemoryFree(bigIntString, length + 1);
     nimbleBigIntFree(bigInt1);
     nimbleBigIntFree(bigInt2);
     nimbleBigDecFree(bigDec1);

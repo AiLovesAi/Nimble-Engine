@@ -44,6 +44,13 @@ ALWAYS_INLINE __attribute__((warn_unused_result)) void * nimbleMemoryAllocate(co
     return malloc(sizeof(void *) + size);
 }
 
+// Returns the allocated pointer and adds size to the total used memory.
+ALWAYS_INLINE __attribute__((warn_unused_result)) void * nimbleMemoryAllocateClear(const size_t size)
+{
+    nimbleMemoryUsed += size;
+    return calloc(sizeof(void *) + size, 1);
+}
+
 // Returns the reallocated pointer and adds (newSize - oldSize) to the total used memory.
 ALWAYS_INLINE __attribute__((warn_unused_result)) void * nimbleMemoryReallocate(void * pointer, const size_t oldSize, const size_t newSize)
 {

@@ -29,6 +29,8 @@
 #include "NimbleError.h"
 #include "NimbleMath.h"
 
+// TODO Nullable types (*length can be null, BigInt_t * instead of BigInt_t)
+
 #define BIG_INT_NULL(x) (!x.number || !x.size)
 #define BIG_DEC_NULL(x) (!x.integer.number || !x.integer.size || !x.decimal.number || !x.decimal.size)
 
@@ -43,13 +45,13 @@ uint32_t uintStringToBinary(const char * string, const uint64_t digits, BigInt_t
         convertedString[i] = string[i] - '0'; // Convert to base 10 digits
     }
     
-    const char *buffer = convertedString;
-    uint8_t remainingDigits = digits;
-    uint8_t remainder = 0;
-    uint8_t nextRemainder = 0;
-    uint8_t i = 0;
-    uint8_t firstNonZero = 0;
-    uint32_t byte = result.size;
+    const char * buffer          = convertedString;
+    uint8_t      remainingDigits = digits;
+    uint8_t      remainder       = 0;
+    uint8_t      nextRemainder   = 0;
+    uint8_t      i               = 0;
+    uint8_t      firstNonZero    = 0;
+    uint32_t     byte            = result.size;
     for (uint64_t bit = 0; (remainingDigits || (*convertedString)); bit++) // While convertedString != "0"
     {
         
@@ -103,12 +105,16 @@ uint32_t uintStringToBinary(const char * string, const uint64_t digits, BigInt_t
 // Returns a big integer defined as string.
 BigInt_t nimbleBigIntFromString(const char * string, uint32_t * error)
 {
-    
     BigInt_t result = {};
     
     if (!string)
     {
-        *error = NIMBLE_ERROR_GENERAL_NULL;
+        
+        if (error)
+        {
+            *error = NIMBLE_ERROR_GENERAL_NULL;
+        }
+        
         return result;
     }
     
@@ -126,11 +132,11 @@ BigInt_t nimbleBigIntFromString(const char * string, uint32_t * error)
     {
         result.size = 1;
         result.number = nimbleMemoryAllocate(sizeof(uint32_t));
-        result.number[0] = 0; // TODO When working on other functions, make sure to maintain signless zeros as to not mess up compare test functions.
+        result.number[0] = 0;
         return result;
     }
     
-    result.size = nimbleMathCeilF(digits / DIGITS_PER_BYTE, NULL) + sign;
+    result.size = (uint32_t) nimbleMathCeilD(digits / DIGITS_PER_BYTE, NULL) + sign;
     result.number = nimbleMemoryAllocate((sizeof(uint32_t) * result.size));
     
     uint32_t byte = uintStringToBinary(signlessString, digits, result, NULL);
@@ -157,23 +163,113 @@ BigInt_t nimbleBigIntFromString(const char * string, uint32_t * error)
 char * nimbleBigIntToString(const BigInt_t x, uint64_t * length, uint32_t * error)
 {
     
-    if (BIG_INT_NULL(x))
+    if (BIG_INT_NULL(x) || !length)
     {
-        *error = NIMBLE_ERROR_GENERAL_NULL;
+        
+        if (error)
+        {
+            *error = NIMBLE_ERROR_GENERAL_NULL;
+        }
+        
         return NULL;
     }
     
     const uint8_t sign = (x.number[0] >> 31) & 1UL;
-    *length = (x.size * sizeof(uint32_t)) * DIGITS_PER_BYTE;
-    char * string = nimbleMemoryAllocate(*length + 1);
-    string[*length] = '\0';
+    *length = nimbleMathCeilD((x.size * sizeof(uint32_t)) * DIGITS_PER_BYTE, error) + sign;
+    char *   currentPower           = nimbleMemoryAllocate(*length + 1);
+    uint64_t currentPowerLength     = 1;
+    uint8_t  currentPowerRemainder  = 0;
+    uint8_t  nextPowerRemainder     = 0;
+    uint64_t currentResultLength    = 1;
+    uint8_t  currentResultRemainder = 0;
+    uint8_t  nextResultRemainder    = 0;
+    uint32_t byte                   = x.size;
+    currentPower[*length] = '\0';
+    currentPower[*length - 1] = 1;
+    char * currentPowerBuffer = currentPower + (*length - 1);
+    char * result = nimbleMemoryAllocateClear(*length + 1);
+    result[*length] = '\0';
+    char * resultBuffer = result + (*length - 1);
+    
     
     for (uint64_t bit = 0; bit < ((x.size * 32) - 1); bit++) // Subtract one to ignore the sign bit.
     {
         
+        if (!(bit % 32))
+        {
+            byte--;
+        }
+        
+        if ((x.number[byte] >> bit) & 1UL)
+        {
+            
+            for (uint64_t digit = 0; digit < currentPowerLength; digit++)
+            {
+                nextResultRemainder = (*resultBuffer + *currentPowerBuffer) >= 10;
+                *resultBuffer = ((*resultBuffer + *currentPowerBuffer) % 10) + currentResultRemainder;
+                
+                if (*resultBuffer == 10)
+                {
+                    nextResultRemainder = 1;
+                    *resultBuffer = 0;
+                }
+                
+                currentResultRemainder = nextResultRemainder;
+                resultBuffer--;
+                currentPowerBuffer--;
+            }
+            
+            if (currentResultRemainder)
+            {
+                *resultBuffer = 1;
+                currentResultRemainder = 0;
+            }
+            
+            resultBuffer = result + (*length - 1);
+            currentPowerBuffer = currentPower + (*length - 1);
+            currentResultLength = currentPowerLength;
+        }
+        
+        for (uint64_t digit = 0; digit < currentPowerLength; digit++)
+        {
+            nextPowerRemainder = (*currentPowerBuffer * 2) >= 10;
+            *currentPowerBuffer = ((*currentPowerBuffer * 2) % 10) + currentPowerRemainder;
+            currentPowerRemainder = nextPowerRemainder;
+            currentPowerBuffer--;
+        }
+        
+        if (currentPowerRemainder)
+        {
+            currentPowerLength++;
+            *currentPowerBuffer = 1;
+            currentPowerRemainder = 0;
+        }
+        
+        currentPowerBuffer = currentPower + (*length - 1);
     }
     
-    return NULL;
+    nimbleMemoryFree(currentPower, *length + 1);
+    
+    if (sign)
+    {
+        result[*length - currentResultLength - 1] = '-';
+        currentResultLength--;
+    }
+    
+    if (*length - currentResultLength)
+    {
+        memcpy(result, result + currentResultLength, *length - currentResultLength);
+        result = nimbleMemoryReallocate(result, *length + 1, *length - currentResultLength + 1);
+        *length -= currentResultLength;
+    }
+    
+    // Translate from number to string
+    for (uint64_t digit = sign; digit < *length; digit++)
+    {
+        result[digit] += '0';
+    }
+    
+    return result;
 }
 
 // Returns x + y.
@@ -604,7 +700,7 @@ BigDec_t nimbleBigDecFromString(const char * string, uint32_t * error)
     
     if (decimalPosition)
     {
-        result.integer.size = nimbleMathCeilF(decimalPosition / DIGITS_PER_BYTE, NULL) + sign;
+        result.integer.size = (uint32_t) nimbleMathCeilD(decimalPosition / DIGITS_PER_BYTE, NULL) + sign;
         result.integer.number = nimbleMemoryAllocate((sizeof(uint32_t) * result.integer.size));
         uint32_t byte = uintStringToBinary(signlessString, decimalPosition, result.integer, NULL);
         
@@ -630,7 +726,7 @@ BigDec_t nimbleBigDecFromString(const char * string, uint32_t * error)
         result.integer.number[0] = 0;
     }
     
-    result.decimal.size = nimbleMathCeilF(decimalLength / DIGITS_PER_BYTE, NULL);
+    result.decimal.size = (uint32_t) nimbleMathCeilD(decimalLength / DIGITS_PER_BYTE, NULL);
     result.decimal.number = nimbleMemoryAllocate((sizeof(uint32_t) * result.decimal.size));
     uint32_t byte = uintStringToBinary(signlessString + decimalPosition + 1, decimalLength, result.decimal, &result.leadingZeros);
     
