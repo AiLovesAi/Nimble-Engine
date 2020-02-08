@@ -14,10 +14,7 @@ Nimble is a cross-platform, light 3D game engine written in C, and is designed t
     Used for checking and handling OpenGL extentions
 
 * **[GLM C](https://github.com/recp/cglm) (OpenGL Mathematics for C)**:  
-    Used for graphics mathematics (eg. 3-dimentional matrices)
-
-* **[STB](https://github.com/nothings/stb)**:  
-    Used for image type conversion (eg. png to array)
+    Used for graphics mathematics (e.g. 3-dimentional matrices)
 
 * **[libsoundio](http://libsound.io/)**:  
     Used for sound programming
