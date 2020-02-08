@@ -1,6 +1,6 @@
 # Nimble Game Engine
 
-A lightweight and fast game engine written in C using OpenGL and OpenAL.
+Nimble is a cross-platform, light 3D game engine written in C, and is designed to run efficiently.
 
 ## Library Dependencies
 
