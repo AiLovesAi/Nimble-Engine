@@ -31,9 +31,9 @@ gcc-9 -v \
 -L/usr/local/Cellar \
 \
 -framework OpenGL \
-/usr/local/Cellar/glew/2.1.0_1/lib/libglew.dylib \
-/usr/local/Cellar/glfw/3.3.1/lib/libglfw.dylib \
-/usr/local/Cellar/vulkan/libvulkan.dylib \
+/usr/local/Cellar/glew/2.1.0_1/lib/libglew.a \
+/usr/local/Cellar/glfw/3.3.2/lib/libglfw3.a \
+/usr/local/Cellar/vulkan/libvulkan.a \
 /usr/local/Cellar/cglm/0.6.2/lib/libcglm.a \
 /usr/local/Cellar/libsoundio/2.0.0/lib/libsoundio.a \
 -lm \
