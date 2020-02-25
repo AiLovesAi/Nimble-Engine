@@ -13,7 +13,7 @@ Nimble is a cross-platform, light 3D game engine written in C, and is designed t
 * **[GLEW](http://glew.sourceforge.net/) (OpenGL Extension Wrangler):**  
     Used for checking and handling OpenGL extentions
 
-* **[GLM C](https://github.com/recp/cglm) (OpenGL Mathematics for C)**:  
+* **[CGLM](https://github.com/recp/cglm)**:  
     Used for graphics mathematics (e.g. 3-dimentional matrices)
 
 * **[libsoundio](http://libsound.io/)**:  
