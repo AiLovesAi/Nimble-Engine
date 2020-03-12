@@ -142,24 +142,24 @@ static void catchFunctionError(uint8_t function);
 const char * vertexShaderSource =
 "#version 330 core\n"
 "layout (location = 0) in vec3 pos;\n"
-"layout (location = 1) in vec2 tex;\n"
+"layout (location = 1) in vec2 texPos;\n"
 "uniform mat4 model;\n"
 "uniform mat4 projection;\n"
 "uniform mat4 view;\n"
-"out vec2 texPos;\n"
+"out vec2 texCoords;\n"
 "void main()\n"
 "{\n"
 "    gl_Position = projection * view * model * vec4(pos, 1.0f);\n"
-"    texPos = tex;\n"
+"    texCoords = tex;\n"
 "}";
 const char * fragmentShaderSource =
 "#version 330 core\n"
-"in vec2 texPos;\n"
+"in vec2 texCoords;\n"
 "uniform sampler2D tex;"
 "out vec4 color;\n"
 "void main()\n"
 "{\n"
-"    color = texture(tex, texPos);\n"
+"    color = texture(tex, texCoords);\n"
 "}";
 
 extern int (*__errno(void));
