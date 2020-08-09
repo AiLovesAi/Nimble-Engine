@@ -4,7 +4,7 @@ Nimble is a cross-platform, light 3D game engine written in C. It is designed to
 
 # Products:
 
-* Nimble Application:
+* Nimble Game Engine Application:
     The main application that is used to create games.
 
 * Nimble Library:
@@ -21,3 +21,6 @@ Nimble is a cross-platform, light 3D game engine written in C. It is designed to
 
 * Nimble Level Compiler:
     The program that compiles levels into a playable file.
+
+* Nimble Game Engine Installer:
+    The installer for Nimble Game Engine Application.

@@ -42,13 +42,6 @@ DerivedData/
 
 
 # Project files
-products/log.txt
-products/crashlog.txt
-products/options.txt
 
-src/external/steamworks/glmgr/
-src/external/steamworks/public/
-src/external/steamworks/Readme.txt
-src/external/steamworks/redistributable_bin/
-src/external/steamworks/steamworksexample/
-src/external/steamworks/tools/
+# Ignore executables: they will be put in the binaries of releases, but should not be in source code.
+*.exe

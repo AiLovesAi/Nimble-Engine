@@ -1,5 +1,7 @@
 # Nimble Game Engine License
 
+The Nimble Game Engine logos are not to be redistributed by anyone without explicit permission by: its creator, Candace Aaron; and Avery Aaron.
+
 ## Nimble Game Engine:
 
 The MIT License (MIT)

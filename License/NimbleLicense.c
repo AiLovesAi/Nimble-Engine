@@ -10,6 +10,8 @@
 const char LICENSE_md[] = "\n\
 # Nimble Game Engine License\n\
 \n\
+The Nimble Game Engine logos are not to be redistributed by anyone without explicit permission by: its creator, Candace Aaron; and Avery Aaron.\n\
+\n\
 ## Nimble Game Engine:\n\
 \n\
 The MIT License (MIT)\n\
