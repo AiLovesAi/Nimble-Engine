@@ -2,7 +2,7 @@
 *  NimbleLicense.c
 *  Nimble Game Engine
 *
-*  Created automatically by NimbleLicenseGenerator.py on 2020-08-08.
+*  Created automatically by NimbleLicenseGenerator.py on 2020-08-09.
 *  Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
 *
 */
