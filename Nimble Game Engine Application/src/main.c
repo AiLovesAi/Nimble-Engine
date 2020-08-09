@@ -15,7 +15,8 @@
 
 int main(int argc, char **argv)
 {
-	return 0;
+    printf("Hello world.\n");
+    return EXIT_SUCCESS;
 }
 
 // main.c
