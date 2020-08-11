@@ -16,10 +16,10 @@
 !define author "Avery Aaron"
 !define version "1.0.4"
 
-!define icon "build\images\icon.ico"
-!define logo "build\images\logo.bmp"
-!define banner "build\images\banner.bmp"
-!define uninstallIcon "build\images\uninstall.ico"
+!define icon "assets\images\icon.ico"
+!define logo "assets\images\logo.bmp"
+!define banner "assets\images\banner.bmp"
+!define uninstallIcon "assets\images\uninstall.ico"
 
 !define MUI_ICON "${icon}"
 !define MUI_UNICON "${uninstallIcon}"
@@ -36,7 +36,7 @@
 !define installer "NimbleInstaller.exe"
 !define uninstaller "NimbleUninstaller.exe"
 !define exe "${productName}.exe"
-!define exePath "build\${exe}"
+!define exePath "assets\${exe}"
 !define shortcut "${productName}.lnk"
 !define uninstallerShortcut "NimbleUninstaller.lnk"
 
@@ -71,7 +71,7 @@ Click Next to get started."
 
 !define MUI_LICENSEPAGE_TEXT_BOTTOM "Once you have finished reading the license, click Next to continue."
 !define MUI_LICENSEPAGE_BUTTON "Next"
-!insertmacro MUI_PAGE_LICENSE "build\LICENSE.txt"
+!insertmacro MUI_PAGE_LICENSE "assets\LICENSE.txt"
 
 !define MUI_COMPONENTSPAGE_NODESC
 Var SMDir

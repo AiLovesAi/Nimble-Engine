@@ -46,7 +46,7 @@ DerivedData/
 *cache*
 */CMakeFiles/
 *.cmake
-*/products/
+*/build/
 */Makefile
 
 # Ignore executables: they will be put in the binaries of releases, but should not be in source code.
