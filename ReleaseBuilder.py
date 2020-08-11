@@ -1,6 +1,6 @@
 """
 
-  LicenseGenerator.py
+  ReleaseBuilder.py
   Nimble Game Engine
 
   Created by Avery Aaron on 2020-08-10.
