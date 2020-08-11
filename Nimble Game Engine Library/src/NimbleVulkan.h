@@ -8,8 +8,8 @@
 *
 */
 
-#ifndef NIMBLE_OPENGL_H
-#define NIMBLE_OPENGL_H
+#ifndef NIMBLE_GRAPHICS_H
+#define NIMBLE_GRAPHICS_H
 
 #include "NimbleGraphics/Vulkan/Hardware.h"
 #include "NimbleGraphics/Vulkan/Render.h"

@@ -8,8 +8,8 @@
 *
 */
 
-#ifndef NIMBLE_DIRECTX11_SHADERS_H
-#define NIMBLE_DIRECTX11_SHADERS_H
+#ifndef NIMBLE_GRAPHICS_SHADERS_H
+#define NIMBLE_GRAPHICS_SHADERS_H
 
 #include "../../NimbleDirectX11.h"
 

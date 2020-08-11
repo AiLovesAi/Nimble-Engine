@@ -8,8 +8,8 @@
 *
 */
 
-#ifndef NIMBLE_OPENGL_WINDOW_H
-#define NIMBLE_OPENGL_WINDOW_H
+#ifndef NIMBLE_GRAPHICS_WINDOW_H
+#define NIMBLE_GRAPHICS_WINDOW_H
 
 #include "../../NimbleOpenGL.h"
 

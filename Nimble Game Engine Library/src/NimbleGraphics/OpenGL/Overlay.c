@@ -1,6 +1,6 @@
 #include "../../../../License/NimbleLicense.h"
 /*
-*  Render.h
+*  Overlay.c
 *  Nimble Game Engine
 *
 *  Created by Avery Aaron on 2020-08-10.
@@ -8,11 +8,6 @@
 *
 */
 
-#ifndef NIMBLE_GRAPHICS_RENDER_H
-#define NIMBLE_GRAPHICS_RENDER_H
+#include "Overlay.h"
 
-#include "../../NimbleVulkan.h"
-
-#endif
-
-// Render.h
+// Overlay.c

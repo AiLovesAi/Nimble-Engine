@@ -8,8 +8,8 @@
 *
 */
 
-#ifndef NIMBLE_DIRECTX11_HARDWARE_H
-#define NIMBLE_DIRECTX11_HARDWARE_H
+#ifndef NIMBLE_GRAPHICS_HARDWARE_H
+#define NIMBLE_GRAPHICS_HARDWARE_H
 
 #include "../../NimbleDirectX11.h"
 

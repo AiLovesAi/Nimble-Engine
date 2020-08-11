@@ -8,8 +8,8 @@
 *
 */
 
-#ifndef NIMBLE_VULKAN_WINDOW_H
-#define NIMBLE_VULKAN_WINDOW_H
+#ifndef NIMBLE_GRAPHICS_WINDOW_H
+#define NIMBLE_GRAPHICS_WINDOW_H
 
 #include "../../NimbleVulkan.h"
 

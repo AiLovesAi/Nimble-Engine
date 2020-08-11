@@ -8,8 +8,8 @@
 *
 */
 
-#ifndef NIMBLE_DIRECTX12_WINDOW_H
-#define NIMBLE_DIRECTX12_WINDOW_H
+#ifndef NIMBLE_GRAPHICS_WINDOW_H
+#define NIMBLE_GRAPHICS_WINDOW_H
 
 #include "../../NimbleDirectX12.h"
 

@@ -8,8 +8,8 @@
 *
 */
 
-#ifndef NIMBLE_VULKAN_HARDWARE_H
-#define NIMBLE_VULKAN_HARDWARE_H
+#ifndef NIMBLE_GRAPHICS_HARDWARE_H
+#define NIMBLE_GRAPHICS_HARDWARE_H
 
 #include "../../NimbleVulkan.h"
 

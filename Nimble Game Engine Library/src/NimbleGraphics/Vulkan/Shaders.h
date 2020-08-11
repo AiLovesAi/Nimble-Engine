@@ -8,8 +8,8 @@
 *
 */
 
-#ifndef NIMBLE_VULKAN_SHADERS_H
-#define NIMBLE_VULKAN_SHADERS_H
+#ifndef NIMBLE_GRAPHICS_SHADERS_H
+#define NIMBLE_GRAPHICS_SHADERS_H
 
 #include "../../NimbleVulkan.h"
 
