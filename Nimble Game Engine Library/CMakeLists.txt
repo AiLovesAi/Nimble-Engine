@@ -7,8 +7,9 @@
 #
 
 cmake_minimum_required(VERSION 3.18)
+set(ver 0.1.0)
 
-project(NimbleGameEngineLibrary VERSION 0.1.0)
+project(NimbleGameEngineLibrary VERSION ${ver})
 
 # Graphics libraries
 file(GLOB ogl
@@ -39,10 +40,10 @@ file(GLOB dx12
   "src/Graphics/DirectX12/*.h"
 )
 
-add_library(NimbleOGL SHARED ${ogl})
-add_library(NimbleVulkan SHARED ${vulkan})
-add_library(NimbleDX11 SHARED ${dx11})
-add_library(NimbleDX12 SHARED ${dx12})
+add_library(NimbleOGL_${ver} SHARED ${ogl})
+add_library(NimbleVulkan_${ver} SHARED ${vulkan})
+add_library(NimbleDX11_${ver} SHARED ${dx11})
+add_library(NimbleDX12_${ver} SHARED ${dx12})
 
 # Engine libraries
 file(GLOB engine
@@ -52,4 +53,4 @@ file(GLOB engine
   "src/Engine/*.h"
 )
 
-add_library(NimbleEngine SHARED ${engine})
+add_library(NimbleEngine_${ver} SHARED ${engine})

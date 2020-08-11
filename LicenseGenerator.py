@@ -1,10 +1,13 @@
 """
 
-  NimbleLicenseGenerator.py
+  LicenseGenerator.py
   Nimble Game Engine
 
   Created by Avery Aaron on 2020-08-08.
   Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+
+  This program makes the NimbleLicense.c file from LICENSE.md that gets
+  included in every header file, and therefor all compiled executables in plain text.
 
 """
 
@@ -19,7 +22,7 @@ def main():
 *  NimbleLicense.c\n\
 *  Nimble Game Engine\n\
 *\n\
-*  Created automatically by NimbleLicenseGenerator.py on " + str(datetime.date(datetime.now())) + ".\n\
+*  Created automatically by LicenseGenerator.py on " + str(datetime.date(datetime.now())) + ".\n\
 *  Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>\n\
 *\n\
 */\n\n\
@@ -53,4 +56,4 @@ const char LICENSE_md[] = \"\\n\\\n"
 if __name__ == "__main__":
     main()
 
-# NimbleLicenseGenerator.py
+# LicenseGenerator.py
