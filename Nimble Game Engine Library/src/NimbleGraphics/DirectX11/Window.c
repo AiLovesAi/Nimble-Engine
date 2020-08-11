@@ -1,6 +1,6 @@
 #include "../../../../License/NimbleLicense.h"
 /*
-*  NimbleOpenGL.h
+*  Window.c
 *  Nimble Game Engine
 *
 *  Created by Avery Aaron on 2020-08-10.
@@ -8,9 +8,6 @@
 *
 */
 
-#include "Hardware.h"
-#include "Render.h"
-#include "Shaders.h"
 #include "Window.h"
 
-// NimbleOpenGL.h
+// Window.c
