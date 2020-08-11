@@ -11,10 +11,14 @@
 """
 
 
-import os, sys, platform
+import os, sys
+import platform
+import shutil
+import glob
 from os import path
 
 def main():
+    # Setup
     sys.argv.pop(0)
     if (not sys.argv):
         print("Invalid arguments. Please specificy a directory to build")
@@ -36,28 +40,38 @@ def main():
             exit(1)
     os.chdir(directory)
     
+    # Build by system
     system = platform.system()
     if (system == "Windows"):
         print("Building for Windows to " + directory)
         os.system("cmake -G \"MinGW Makefiles\" ..")
         os.system("mingw32-make.exe")
-        # TODO Organize output
     elif (system == "Darwin"):
         print("Building for Mac OS X to " + directory)
         os.system("cmake -G \"Unix Makefiles\" ..")
         os.system("make")
-        # TODO
     elif (system == "Linux"):
         print("Building for Linux to " + directory)
         os.system("cmake -G \"Unix Makefiles\" ..")
         os.system("make")
-        # TODO
     else:
         print("OS not supported.")
         exit(1)
     
-    os.chdir(originalDirectory)
     print("Done building CMake for " + directory)
+    os.chdir("..")
+    
+    # Organize
+    if (not path.exists("products/")):
+        os.mkdir("products/")
+        if (not path.exists("products/")):
+            print("Could not make directory products/. You will need to organize the output files yourself.")
+            exit(1)
+    
+    for file in glob.glob("build/Nimble*"):
+        shutil.move(file, "products/" + file[len("build/"):])
+    
+    os.chdir(originalDirectory)
 
 if __name__ == "__main__":
     main()

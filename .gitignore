@@ -48,6 +48,7 @@ DerivedData/
 *.cmake
 */build/
 */Makefile
+*/products/
 
 # Ignore executables: they will be put in the binaries of releases, but should not be in source code.
 *.exe
