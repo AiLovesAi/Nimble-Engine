@@ -8,6 +8,6 @@
  *
  */
 
-#include "Overlay.h"
+#include "../../../include/Nimble/NimbleGraphics/OpenGL/Overlay.h"
 
 // Overlay.c

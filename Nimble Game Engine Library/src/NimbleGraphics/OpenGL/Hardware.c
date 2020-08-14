@@ -8,6 +8,6 @@
  *
  */
 
-#include "Hardware.h"
+#include "../../../include/Nimble/NimbleGraphics/OpenGL/Hardware.h"
 
 // Hardware.c

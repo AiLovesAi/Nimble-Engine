@@ -8,6 +8,6 @@
  *
  */
 
-#include "NimbleEngine.h"
+#include "../include/Nimble/NimbleEngine.h"
 
 // NimbleEngine.c

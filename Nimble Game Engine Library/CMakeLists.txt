@@ -13,39 +13,39 @@ project(NimbleGameEngineLibrary VERSION ${ver})
 
 # Graphics libraries
 file(GLOB ogl
-  "../License/NimbleLicense.c"
-  "../License/NimbleLicense.h"
+  "src/NimbleLicense.c"
+  "include/Nimble/NimbleLicense.h"
   "src/NimbleOpenGL.c"
-  "src/NimbleOpenGL.h"
+  "include/Nimble/NimbleOpenGL.h"
   "src/NimbleGraphics/OpenGL/*.c"
-  "src/NimbleGraphics/OpenGL/*.h"
+  "include/Nimble/NimbleGraphics/OpenGL/*.h"
 )
 
 file(GLOB vulkan
-  "../License/NimbleLicense.c"
-  "../License/NimbleLicense.h"
+  "src/NimbleLicense.c"
+  "include/Nimble/NimbleLicense.h"
   "src/NimbleVulkan.c"
-  "src/NimbleVulkan.h"
+  "include/Nimble/NimbleVulkan.h"
   "src/NimbleGraphics/vulkan/*.c"
-  "src/NimbleGraphics/vulkan/*.h"
+  "include/Nimble/NimbleGraphics/vulkan/*.h"
 )
 
 file(GLOB dx11
-  "../License/NimbleLicense.c"
-  "../License/NimbleLicense.h"
+  "src/NimbleLicense.c"
+  "include/Nimble/NimbleLicense.h"
   "src/NimbleDirectX11.c"
-  "src/NimbleDirectX11.h"
+  "include/Nimble/NimbleDirectX11.h"
   "src/NimbleGraphics/DirectX11/*.c"
-  "src/NimbleGraphics/DirectX11/*.h"
+  "include/Nimble/NimbleGraphics/DirectX11/*.h"
 )
 
 file(GLOB dx12
-  "../License/NimbleLicense.c"
-  "../License/NimbleLicense.h"
+  "src/NimbleLicense.c"
+  "include/Nimble/NimbleLicense.h"
   "src/NimbleDirectX12.c"
-  "src/NimbleDirectX12.h"
+  "include/Nimble/NimbleDirectX12.h"
   "src/NimbleGraphics/DirectX12/*.c"
-  "src/NimbleGraphics/DirectX12/*.h"
+  "include/Nimble/NimbleGraphics/DirectX12/*.h"
 )
 
 add_library(NimbleOGL_${ver} SHARED ${ogl})
@@ -55,12 +55,12 @@ add_library(NimbleDX12_${ver} SHARED ${dx12})
 
 # Engine libraries
 file(GLOB engine
-  "../License/NimbleLicense.c"
-  "../License/NimbleLicense.h"
+  "src/NimbleLicense.c"
+  "include/Nimble/NimbleLicense.h"
   "src/NimbleEngine.c"
-  "src/NimbleEngine.h"
+  "include/Nimble/NimbleEngine.h"
   "src/NimbleEngine/*.c"
-  "src/NimbleEngine/*.h"
+  "include/Nimble/NimbleEngine/*.h"
 )
 
 add_library(NimbleEngine_${ver} SHARED ${engine})

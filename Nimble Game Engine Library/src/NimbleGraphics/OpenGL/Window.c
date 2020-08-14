@@ -8,7 +8,7 @@
  *
  */
 
-#include "Window.h"
+#include "../../../include/Nimble/NimbleGraphics/OpenGL/Window.h"
 
 
 

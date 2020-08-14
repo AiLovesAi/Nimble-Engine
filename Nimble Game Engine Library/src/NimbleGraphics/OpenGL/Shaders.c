@@ -8,6 +8,6 @@
  *
  */
 
-#include "Shaders.h"
+#include "../../../include/Nimble/NimbleGraphics/OpenGL/Shaders.h"
 
 // Shaders.c

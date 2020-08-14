@@ -8,6 +8,6 @@
  *
  */
 
-#include "WindowEvents.h"
+#include "../../../include/Nimble/NimbleGraphics/OpenGL/WindowEvents.h"
 
 // WindowEvents.c
