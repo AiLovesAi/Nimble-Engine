@@ -1,12 +1,12 @@
 """
 
-  Builder.py
-  Nimble Game Engine
+ Builder.py
+ Nimble Game Engine
 
-  Created by Avery Aaron on 2020-08-11.
-  Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ Created by Avery Aaron on 2020-08-11.
+ Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
 
-  This program builds the CMakeLists.txt for the directory specified.
+ This program builds the CMakeLists.txt for the directory specified.
 
 """
 
@@ -68,8 +68,9 @@ def main():
             print("Could not make directory products/. You will need to organize the output files yourself.")
             exit(1)
     
-    for file in glob.glob("build/Nimble*"):
+    for file in glob.glob("build/*Nimble*"):
         shutil.move(file, "products/" + file[len("build/"):])
+    print("Moved all output files to " + directory[:-len("build/")] + "products/")
     
     os.chdir(originalDirectory)
 

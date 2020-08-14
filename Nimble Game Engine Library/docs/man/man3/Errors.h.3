@@ -1,0 +1,116 @@
+.TH "C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.h" 3 "Fri Aug 14 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.h \- This class defines error values and has error parsing functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include '\&.\&./\&.\&./\&.\&./\&.\&./License/NimbleLicense\&.h'\fP
+.br
+\fC#include '\&.\&./\&.\&./NimbleEngine\&.h'\fP
+.br
+\fC#include <limits\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBNIMBLE_ENGINE_ERRORS_H\fP"
+.br
+.RI "Header definition\&. "
+.ti -1c
+.RI "#define \fBNSUCCESS\fP   (int32_t) 0"
+.br
+.RI "Returned when a function succeeds\&. "
+.ti -1c
+.RI "#define \fBNERROR\fP   (int32_t) \-1"
+.br
+.RI "Returned when a function encounters an error\&. "
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBnErrors\fP { \fBNERROR_UNKNOWN\fP = INT_MIN, \fBNERROR_NULL\fP, \fBNERROR_FILE_NOT_FOUND\fP }"
+.br
+.RI "The possible error values used by the \fBerror handler \fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class defines error values and has error parsing functions\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+Avery Aaron 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+The MIT License (MIT) Copyright (C) 2020 Avery Aaron business.a3ology@gmail.com
+.PP
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+.PP
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software\&.
+.PP
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT\&. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE\&. 
+.RE
+.PP
+.PP
+\fBDate\fP
+.RS 4
+2020-08-14
+.RE
+.PP
+This class defines error values and has error parsing functions\&. 
+.PP
+Definition in file \fBErrors\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define NERROR   (int32_t) \-1"
+
+.PP
+Returned when a function encounters an error\&. 
+.PP
+Definition at line 57 of file Errors\&.h\&.
+.SS "#define NIMBLE_ENGINE_ERRORS_H"
+
+.PP
+Header definition\&. 
+.PP
+Definition at line 49 of file Errors\&.h\&.
+.SS "#define NSUCCESS   (int32_t) 0"
+
+.PP
+Returned when a function succeeds\&. 
+.PP
+Definition at line 56 of file Errors\&.h\&.
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBnErrors\fP"
+
+.PP
+The possible error values used by the \fBerror handler \fP\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fINERROR_UNKNOWN \fP\fP
+Unknown error\&. 
+.TP
+\fB\fINERROR_NULL \fP\fP
+A variable was null when it was expecting a value\&. 
+.TP
+\fB\fINERROR_FILE_NOT_FOUND \fP\fP
+A file was not found where specified\&. 
+.PP
+Definition at line 62 of file Errors\&.h\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Nimble Game Engine Library from the source code\&.
