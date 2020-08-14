@@ -57,6 +57,9 @@ def main():
  * \n\
  * @brief Defines the value of #LICENSE_md, which gets compiled into the binaries.\n\
  */\n\n\n\
+/**\n\
+ * @brief The license that gets compiled into the binaries.\n\
+ */\n\
 const char LICENSE_md[] = \"\\n\\\n"
     with open("LICENSE.md", 'r') as fp:
         if (not fp):

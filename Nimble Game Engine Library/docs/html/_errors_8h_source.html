@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Game Engine Library: C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.h Source File</title>
+<title>Nimble Game Engine Library: C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/Errors.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_80f32698bea97c008881dc677c836d3c.html">NimbleEngine</a></li><li class="navelem"><a class="el" href="dir_97610859dbb0274777a1dcedb1b4104b.html">Output</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_e199a4a8b7e3f15feb3fec61134dda65.html">Nimble</a></li><li class="navelem"><a class="el" href="dir_ed6d0683457492f648e7144c081567ca.html">NimbleEngine</a></li><li class="navelem"><a class="el" href="dir_39572a6d4f127c09a43f08223d4da7c9.html">Output</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -82,36 +82,36 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#ifndef NIMBLE_ENGINE_ERRORS_H</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="_errors_8h.html#a6d4dacac75d1b30e861eb6ccc7adcf41">   49</a></span>&#160;<span class="preprocessor">#define NIMBLE_ENGINE_ERRORS_H </span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#include &quot;../../NimbleEngine.h&quot;</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#include &lt;limits.h&gt;</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">   56</a></span>&#160;<span class="preprocessor">#define NSUCCESS (int32_t) 0 </span></div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">   57</a></span>&#160;<span class="preprocessor">#define NERROR (int32_t) -1 </span></div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6">   62</a></span>&#160;<span class="preprocessor">enum nErrors {</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">   63</a></span>&#160;    <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a> = INT_MIN, </div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">   64</a></span>&#160;    <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a> </div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">   66</a></span>&#160;};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#ifndef NIMBLE_ENGINE_ERRORS_H</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="_errors_8h.html#a6d4dacac75d1b30e861eb6ccc7adcf41">   47</a></span>&#160;<span class="preprocessor">#define NIMBLE_ENGINE_ERRORS_H </span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;../../NimbleEngine.h&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#include &lt;limits.h&gt;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">   54</a></span>&#160;<span class="preprocessor">#define NSUCCESS (int32_t) 0 </span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">   55</a></span>&#160;<span class="preprocessor">#define NERROR (int32_t) -1 </span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6">   60</a></span>&#160;<span class="preprocessor">enum nErrors {</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">   61</a></span>&#160;    <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a> = INT_MIN, </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">   62</a></span>&#160;    <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a> </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">   64</a></span>&#160;};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_ERRORS_H</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_ERRORS_H</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">// Errors.h</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">// Errors.h</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a></div><div class="ttdeci">@ NERROR_UNKNOWN</div><div class="ttdoc">Unknown error.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00063">Errors.h:63</a></div></div>
-<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a></div><div class="ttdeci">@ NERROR_FILE_NOT_FOUND</div><div class="ttdoc">A file was not found where specified.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00066">Errors.h:65</a></div></div>
-<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A variable was null when it was expecting a value.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00064">Errors.h:64</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a></div><div class="ttdeci">@ NERROR_UNKNOWN</div><div class="ttdoc">Unknown error.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00061">Errors.h:61</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a></div><div class="ttdeci">@ NERROR_FILE_NOT_FOUND</div><div class="ttdoc">A file was not found where specified.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00064">Errors.h:63</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A variable was null when it was expecting a value.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00062">Errors.h:62</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

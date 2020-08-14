@@ -40,6 +40,7 @@
  * @brief This class defines #LICENSE_md, which gets compiled into the binaries.
  */
 
+
 #ifndef NIMBLE_LICENSE_H_
 #define NIMBLE_LICENSE_H_ /**< Header definition. */
 

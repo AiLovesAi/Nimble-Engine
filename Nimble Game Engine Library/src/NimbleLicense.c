@@ -39,6 +39,9 @@
  */
 
 
+/**
+ * @brief The license that gets compiled into the binaries.
+ */
 const char LICENSE_md[] = "\n\
 # Nimble Game Engine License\n\
 \n\
