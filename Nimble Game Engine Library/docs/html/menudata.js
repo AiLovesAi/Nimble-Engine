@@ -29,8 +29,10 @@ var menudata={children:[
 {text:"File List",url:"files.html"},
 {text:"Globals",url:"globals.html",children:[
 {text:"All",url:"globals.html",children:[
+{text:"f",url:"globals.html#index_f"},
 {text:"l",url:"globals.html#index_l"},
-{text:"n",url:"globals.html#index_n"}]},
+{text:"n",url:"globals.html#index_n"},
+{text:"u",url:"globals.html#index_u"}]},
 {text:"Functions",url:"globals_func.html"},
 {text:"Variables",url:"globals_vars.html"},
 {text:"Typedefs",url:"globals_type.html"},

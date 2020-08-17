@@ -1,4 +1,4 @@
-#include "../../../../License/NimbleLicense.h"
+#include "../../../include/Nimble/NimbleLicense.h"
 /*
  * Hardware.c
  * Nimble Game Engine

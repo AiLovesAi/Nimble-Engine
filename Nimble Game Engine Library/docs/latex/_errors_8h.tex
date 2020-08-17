@@ -29,7 +29,7 @@ enum \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6}{n\+Errors}} 
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} char $\ast$ \mbox{\hyperlink{_errors_8h_adb900059cc94331fa116543d6e08929b}{n\+Error\+To\+String}} (char $\ast$dst, const int32\+\_\+t error)
+\mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} char $\ast$ \mbox{\hyperlink{_errors_8h_a2138e0ceb14f33039dec16bdd593473a}{n\+Error\+To\+String}} (char $\ast$dst, const int32\+\_\+t error, const char $\ast$info)
 \begin{DoxyCompactList}\small\item\em Describes an error and returns a string. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} char $\ast$ \mbox{\hyperlink{_errors_8h_ae6b418b4ba4235a79b2b1fce495da5f4}{n\+Error\+Get\+Stacktrace}} (char $\ast$dst, int32\+\_\+t $\ast$size, int32\+\_\+t $\ast$levels)
 \begin{DoxyCompactList}\small\item\em Returns the current stack trace as a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -183,11 +183,11 @@ Example\+:
 \begin{DoxyNote}{Note}
 Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. 
 \end{DoxyNote}
-\mbox{\Hypertarget{_errors_8h_adb900059cc94331fa116543d6e08929b}\label{_errors_8h_adb900059cc94331fa116543d6e08929b}} 
+\mbox{\Hypertarget{_errors_8h_a2138e0ceb14f33039dec16bdd593473a}\label{_errors_8h_a2138e0ceb14f33039dec16bdd593473a}} 
 \index{Errors.h@{Errors.h}!nErrorToString@{nErrorToString}}
 \index{nErrorToString@{nErrorToString}!Errors.h@{Errors.h}}
 \doxysubsubsection{\texorpdfstring{nErrorToString()}{nErrorToString()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} char$\ast$ n\+Error\+To\+String (\begin{DoxyParamCaption}\item[{char $\ast$}]{dst,  }\item[{const int32\+\_\+t}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} char$\ast$ n\+Error\+To\+String (\begin{DoxyParamCaption}\item[{char $\ast$}]{dst,  }\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{info }\end{DoxyParamCaption})}
 
 
 
@@ -202,7 +202,7 @@ Example\+:
 \DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{    \textcolor{keywordtype}{char} * errorString;}
-\DoxyCodeLine{    \mbox{\hyperlink{_errors_8h_adb900059cc94331fa116543d6e08929b}{nErrorToString}}(errorString, \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365}{NERROR\_NULL}});}
+\DoxyCodeLine{    \mbox{\hyperlink{_errors_8c_a7dff871c787a3334ae9b72a2b5ab059c}{nErrorToString}}(errorString, \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}{NERROR\_FILE\_NOT\_FOUND}}, \textcolor{stringliteral}{"{}example.txt"{}});}
 \DoxyCodeLine{    \textcolor{keywordflow}{if} (errorString == \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to get error string.\(\backslash\)n"{}});}
@@ -220,7 +220,13 @@ Example\+:
 \hline
 \mbox{\texttt{ in}}  & {\em error} & The error to get described. \\
 \hline
+\mbox{\texttt{ in}}  & {\em info} & Relevant information, such as a file location, that could help diagnose the error. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 {\ttfamily dst} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}} is returned. 
 \end{DoxyReturn}
+T\+O\+DO Throw error
+
+Definition at line 23 of file Errors.\+c.
+

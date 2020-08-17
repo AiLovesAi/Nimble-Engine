@@ -76,7 +76,7 @@ enum nErrors {
  * int main(int argc, char ** argv)
  * {
  *     char * errorString;
- *     nErrorToString(errorString, NERROR_NULL);
+ *     nErrorToString(errorString, NERROR_FILE_NOT_FOUND, "example.txt");
  *     if (errorString == NULL)
  *     {
  *         fprintf(stderr, "Failed to get error string.\n");
@@ -89,12 +89,15 @@ enum nErrors {
  *
  * @param[out] dst The destination to store the string describing @p error.
  * @param[in] error The error to get described.
+ * @param[in] info Relevant information, such as a file location, that could help
+ * diagnose the error. This can be #NULL.
  * @return @p dst is returned if successful; otherwise @c #NULL is returned.
  */
 NIMBLE_EXPORT
 char *
 nErrorToString(char * dst,
-               const int32_t error
+               const int32_t error,
+               const char * info
                );
 
 /**

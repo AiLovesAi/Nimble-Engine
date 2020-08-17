@@ -61,6 +61,18 @@ file(GLOB engine
   "include/Nimble/NimbleEngine.h"
   "src/NimbleEngine/*.c"
   "include/Nimble/NimbleEngine/*.h"
+  "src/NimbleEngine/Game/*.c"
+  "include/Nimble/NimbleEngine/Game/*.h"
+  "src/NimbleEngine/Math/*.c"
+  "include/Nimble/NimbleEngine/Math/*.h"
+  "src/NimbleEngine/Network/*.c"
+  "include/Nimble/NimbleEngine/Network/*.h"
+  "src/NimbleEngine/Output/*.c"
+  "include/Nimble/NimbleEngine/Output/*.h"
+  "src/NimbleEngine/System/*.c"
+  "include/Nimble/NimbleEngine/System/*.h"
+  "src/NimbleEngine/Threads/*.c"
+  "include/Nimble/NimbleEngine/Threads/*.h"
 )
 
 add_library(NimbleEngine_${ver} SHARED ${engine})

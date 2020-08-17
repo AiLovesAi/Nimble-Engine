@@ -1,2 +1,127 @@
 \hypertarget{_errors_8c}{}\doxysection{C\+:/\+Users/\+Avery/\+Desktop/\+Nimble Game Engine/\+Nimble Game Engine Library/src/\+Nimble\+Engine/\+Output/\+Errors.c File Reference}
 \label{_errors_8c}\index{C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c@{C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c}}
+{\ttfamily \#include \char`\"{}../../../include/\+Nimble/\+Nimble\+License.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../../include/\+Nimble/\+Nimble\+Engine/\+Output/\+Errors.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{_errors_8c_a7dff871c787a3334ae9b72a2b5ab059c}{n\+Error\+To\+String}} (char $\ast$dst, const int32\+\_\+t error, const char $\ast$info)
+\begin{DoxyCompactList}\small\item\em Describes an error and returns a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \mbox{\hyperlink{_errors_8c_a43fb2a7f109395609e691d13dd603297}{no\+Info\+Str}} \mbox{[}$\,$\mbox{]} = \char`\"{}No info\char`\"{}
+\item 
+const char \mbox{\hyperlink{_errors_8c_a4b5bded8aa4ba9751caff215532f117e}{unknown\+Err\+Str}} \mbox{[}$\,$\mbox{]} = \char`\"{}N\+E\+R\+R\+O\+R\+\_\+\+U\+N\+K\+N\+O\+W\+N\+: An unknown error occurred\+: \char`\"{}
+\item 
+const char \mbox{\hyperlink{_errors_8c_a6f4e63d463a7ffdca6cc1b9b45bdc61a}{null\+Err\+Str}} \mbox{[}$\,$\mbox{]}
+\item 
+const char \mbox{\hyperlink{_errors_8c_a89acda8dffb30240e0d307c2c3204360}{file\+Not\+Found\+Err\+Str}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_errors_8c_a7dff871c787a3334ae9b72a2b5ab059c}\label{_errors_8c_a7dff871c787a3334ae9b72a2b5ab059c}} 
+\index{Errors.c@{Errors.c}!nErrorToString@{nErrorToString}}
+\index{nErrorToString@{nErrorToString}!Errors.c@{Errors.c}}
+\doxysubsubsection{\texorpdfstring{nErrorToString()}{nErrorToString()}}
+{\footnotesize\ttfamily char$\ast$ n\+Error\+To\+String (\begin{DoxyParamCaption}\item[{char $\ast$}]{dst,  }\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{info }\end{DoxyParamCaption})}
+
+
+
+Describes an error and returns a string. 
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{_nimble_engine_8h}{Nimble/NimbleEngine.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} * errorString;}
+\DoxyCodeLine{    \mbox{\hyperlink{_errors_8c_a7dff871c787a3334ae9b72a2b5ab059c}{nErrorToString}}(errorString, \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}{NERROR\_FILE\_NOT\_FOUND}}, \textcolor{stringliteral}{"{}example.txt"{}});}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (errorString == \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to get error string.\(\backslash\)n"{}});}
+\DoxyCodeLine{        exit(EXIT\_FAILURE);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}NERROR\_NULL as string: \%s\(\backslash\)n"{}}, errorString);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em dst} & The destination to store the string describing {\ttfamily error}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em error} & The error to get described. \\
+\hline
+\mbox{\texttt{ in}}  & {\em info} & Relevant information, such as a file location, that could help diagnose the error. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily dst} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}} is returned. 
+\end{DoxyReturn}
+T\+O\+DO Throw error
+
+Definition at line 23 of file Errors.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_errors_8c_a89acda8dffb30240e0d307c2c3204360}\label{_errors_8c_a89acda8dffb30240e0d307c2c3204360}} 
+\index{Errors.c@{Errors.c}!fileNotFoundErrStr@{fileNotFoundErrStr}}
+\index{fileNotFoundErrStr@{fileNotFoundErrStr}!Errors.c@{Errors.c}}
+\doxysubsubsection{\texorpdfstring{fileNotFoundErrStr}{fileNotFoundErrStr}}
+{\footnotesize\ttfamily const char file\+Not\+Found\+Err\+Str\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{stringliteral}{"{}NERROR\_FILE\_NOT\_FOUND: The specified file "{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{}was not found: "{}}}
+
+\end{DoxyCode}
+
+
+Definition at line 20 of file Errors.\+c.
+
+\mbox{\Hypertarget{_errors_8c_a43fb2a7f109395609e691d13dd603297}\label{_errors_8c_a43fb2a7f109395609e691d13dd603297}} 
+\index{Errors.c@{Errors.c}!noInfoStr@{noInfoStr}}
+\index{noInfoStr@{noInfoStr}!Errors.c@{Errors.c}}
+\doxysubsubsection{\texorpdfstring{noInfoStr}{noInfoStr}}
+{\footnotesize\ttfamily const char no\+Info\+Str\mbox{[}$\,$\mbox{]} = \char`\"{}No info\char`\"{}}
+
+
+
+Definition at line 16 of file Errors.\+c.
+
+\mbox{\Hypertarget{_errors_8c_a6f4e63d463a7ffdca6cc1b9b45bdc61a}\label{_errors_8c_a6f4e63d463a7ffdca6cc1b9b45bdc61a}} 
+\index{Errors.c@{Errors.c}!nullErrStr@{nullErrStr}}
+\index{nullErrStr@{nullErrStr}!Errors.c@{Errors.c}}
+\doxysubsubsection{\texorpdfstring{nullErrStr}{nullErrStr}}
+{\footnotesize\ttfamily const char null\+Err\+Str\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{stringliteral}{"{}NERROR\_NULL: A null pointer was passed "{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{}when a nonnull pointer was expected."{}}}
+
+\end{DoxyCode}
+
+
+Definition at line 18 of file Errors.\+c.
+
+\mbox{\Hypertarget{_errors_8c_a4b5bded8aa4ba9751caff215532f117e}\label{_errors_8c_a4b5bded8aa4ba9751caff215532f117e}} 
+\index{Errors.c@{Errors.c}!unknownErrStr@{unknownErrStr}}
+\index{unknownErrStr@{unknownErrStr}!Errors.c@{Errors.c}}
+\doxysubsubsection{\texorpdfstring{unknownErrStr}{unknownErrStr}}
+{\footnotesize\ttfamily const char unknown\+Err\+Str\mbox{[}$\,$\mbox{]} = \char`\"{}N\+E\+R\+R\+O\+R\+\_\+\+U\+N\+K\+N\+O\+W\+N\+: An unknown error occurred\+: \char`\"{}}
+
+
+
+Definition at line 17 of file Errors.\+c.
+

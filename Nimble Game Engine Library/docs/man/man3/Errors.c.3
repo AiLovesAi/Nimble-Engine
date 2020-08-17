@@ -6,6 +6,112 @@ C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleE
 .SH SYNOPSIS
 .br
 .PP
+\fC#include '\&.\&./\&.\&./\&.\&./include/Nimble/NimbleLicense\&.h'\fP
+.br
+\fC#include '\&.\&./\&.\&./\&.\&./include/Nimble/NimbleEngine/Output/Errors\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "char * \fBnErrorToString\fP (char *dst, const int32_t error, const char *info)"
+.br
+.RI "Describes an error and returns a string\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const char \fBnoInfoStr\fP [] = 'No info'"
+.br
+.ti -1c
+.RI "const char \fBunknownErrStr\fP [] = 'NERROR_UNKNOWN: An unknown error occurred: '"
+.br
+.ti -1c
+.RI "const char \fBnullErrStr\fP []"
+.br
+.ti -1c
+.RI "const char \fBfileNotFoundErrStr\fP []"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "char* nErrorToString (char * dst, const int32_t error, const char * info)"
+
+.PP
+Describes an error and returns a string\&. Example: 
+.PP
+.nf
+#include <stdio\&.h>
+#include <stdlib\&.h>
+#include <Nimble/NimbleEngine\&.h>
+
+int main(int argc, char ** argv)
+{
+    char * errorString;
+    nErrorToString(errorString, NERROR_FILE_NOT_FOUND, "example\&.txt");
+    if (errorString == NULL)
+    {
+        fprintf(stderr, "Failed to get error string\&.\n");
+        exit(EXIT_FAILURE);
+    }
+    printf("NERROR_NULL as string: %s\n", errorString);
+    return EXIT_SUCCESS;
+}
+
+.fi
+.PP
+.PP
+\fBParameters\fP
+.RS 4
+\fIdst\fP The destination to store the string describing \fCerror\fP\&. 
+.br
+\fIerror\fP The error to get described\&. 
+.br
+\fIinfo\fP Relevant information, such as a file location, that could help diagnose the error\&. This can be \fBNULL\fP\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fCdst\fP is returned if successful; otherwise \fC\fBNULL\fP\fP is returned\&. 
+.RE
+.PP
+TODO Throw error
+.PP
+Definition at line 23 of file Errors\&.c\&.
+.SH "Variable Documentation"
+.PP 
+.SS "const char fileNotFoundErrStr[]"
+\fBInitial value:\fP
+.PP
+.nf
+= "NERROR_FILE_NOT_FOUND: The specified file "
+                                  "was not found: "
+.fi
+.PP
+Definition at line 20 of file Errors\&.c\&.
+.SS "const char noInfoStr[] = 'No info'"
+
+.PP
+Definition at line 16 of file Errors\&.c\&.
+.SS "const char nullErrStr[]"
+\fBInitial value:\fP
+.PP
+.nf
+= "NERROR_NULL: A null pointer was passed "
+                                  "when a nonnull pointer was expected\&."
+.fi
+.PP
+Definition at line 18 of file Errors\&.c\&.
+.SS "const char unknownErrStr[] = 'NERROR_UNKNOWN: An unknown error occurred: '"
+
+.PP
+Definition at line 17 of file Errors\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Nimble Game Engine Library from the source code\&.

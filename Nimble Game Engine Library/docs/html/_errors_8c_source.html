@@ -72,7 +72,100 @@ $(function() {
 <div class="title">Errors.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_errors_8c.html">Go to the documentation of this file.</a><div class="fragment"></div><!-- fragment --></div><!-- contents -->
+<a href="_errors_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../../../include/Nimble/NimbleLicense.h&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Errors.c</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Nimble Game Engine</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Created by Avery Aaron on 2020-08-17.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Copyright (C) 2020 Avery Aaron &lt;business.a3ology@gmail.com&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../../../include/Nimble/NimbleEngine/Output/Errors.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">   16</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a>[]          = <span class="stringliteral">&quot;No info&quot;</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="_errors_8c.html#a4b5bded8aa4ba9751caff215532f117e">   17</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="_errors_8c.html#a4b5bded8aa4ba9751caff215532f117e">unknownErrStr</a>[]      = <span class="stringliteral">&quot;NERROR_UNKNOWN: An unknown error occurred: &quot;</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="_errors_8c.html#a6f4e63d463a7ffdca6cc1b9b45bdc61a">   18</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="_errors_8c.html#a6f4e63d463a7ffdca6cc1b9b45bdc61a">nullErrStr</a>[]         = <span class="stringliteral">&quot;NERROR_NULL: A null pointer was passed &quot;</span>\</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                                  <span class="stringliteral">&quot;when a nonnull pointer was expected.&quot;</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="_errors_8c.html#a89acda8dffb30240e0d307c2c3204360">   20</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="_errors_8c.html#a89acda8dffb30240e0d307c2c3204360">fileNotFoundErrStr</a>[] = <span class="stringliteral">&quot;NERROR_FILE_NOT_FOUND: The specified file &quot;</span>\</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                                  <span class="stringliteral">&quot;was not found: &quot;</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="_errors_8h.html#a2138e0ceb14f33039dec16bdd593473a">   23</a></span>&#160;<span class="keywordtype">char</span> * <a class="code" href="_errors_8c.html#a7dff871c787a3334ae9b72a2b5ab059c">nErrorToString</a>(<span class="keywordtype">char</span> * dst, <span class="keyword">const</span> int32_t error, <span class="keyword">const</span> <span class="keywordtype">char</span> * info)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    int32_t infoLen = 0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">if</span> (info != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        infoLen = strlen(info);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">switch</span> (error)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordflow">if</span> (info != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                dst = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">void</span> *) + <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a4b5bded8aa4ba9751caff215532f117e">unknownErrStr</a>) + infoLen);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                strncpy(dst, <a class="code" href="_errors_8c.html#a4b5bded8aa4ba9751caff215532f117e">unknownErrStr</a>, <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a4b5bded8aa4ba9751caff215532f117e">unknownErrStr</a>));</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                strncat(dst, info, infoLen + 1);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                dst = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">void</span> *) + <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a4b5bded8aa4ba9751caff215532f117e">unknownErrStr</a>) +</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                       <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a>));</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                strncpy(dst, <a class="code" href="_errors_8c.html#a4b5bded8aa4ba9751caff215532f117e">unknownErrStr</a>, <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a4b5bded8aa4ba9751caff215532f117e">unknownErrStr</a>));</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                strncat(dst, <a class="code" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a>, <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a>));</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            dst = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">void</span> *) + <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a6f4e63d463a7ffdca6cc1b9b45bdc61a">nullErrStr</a>));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            strncpy(dst, <a class="code" href="_errors_8c.html#a6f4e63d463a7ffdca6cc1b9b45bdc61a">nullErrStr</a>, <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a6f4e63d463a7ffdca6cc1b9b45bdc61a">nullErrStr</a>));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a>:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">if</span> (info != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                dst = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">void</span> *) + <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a89acda8dffb30240e0d307c2c3204360">fileNotFoundErrStr</a>) +</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                       infoLen);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                strncpy(dst, <a class="code" href="_errors_8c.html#a89acda8dffb30240e0d307c2c3204360">fileNotFoundErrStr</a>, <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a89acda8dffb30240e0d307c2c3204360">fileNotFoundErrStr</a>));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                strncat(dst, info, infoLen + 1);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                dst = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">void</span> *) + <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a89acda8dffb30240e0d307c2c3204360">fileNotFoundErrStr</a>) +</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                       <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a>));</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                strncpy(dst, <a class="code" href="_errors_8c.html#a89acda8dffb30240e0d307c2c3204360">fileNotFoundErrStr</a>, <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a89acda8dffb30240e0d307c2c3204360">fileNotFoundErrStr</a>));</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                strncat(dst, <a class="code" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a>, <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a>));</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            dst = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">return</span> dst;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">// Errors.c</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a></div><div class="ttdeci">@ NERROR_UNKNOWN</div><div class="ttdoc">Unknown error.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00061">Errors.h:61</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a></div><div class="ttdeci">@ NERROR_FILE_NOT_FOUND</div><div class="ttdoc">A file was not found where specified.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00064">Errors.h:63</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a89acda8dffb30240e0d307c2c3204360"><div class="ttname"><a href="_errors_8c.html#a89acda8dffb30240e0d307c2c3204360">fileNotFoundErrStr</a></div><div class="ttdeci">const char fileNotFoundErrStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00020">Errors.c:20</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a43fb2a7f109395609e691d13dd603297"><div class="ttname"><a href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a></div><div class="ttdeci">const char noInfoStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00016">Errors.c:16</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00114">Nimble.h:114</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a7dff871c787a3334ae9b72a2b5ab059c"><div class="ttname"><a href="_errors_8c.html#a7dff871c787a3334ae9b72a2b5ab059c">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, const int32_t error, const char *info)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00023">Errors.c:23</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a6f4e63d463a7ffdca6cc1b9b45bdc61a"><div class="ttname"><a href="_errors_8c.html#a6f4e63d463a7ffdca6cc1b9b45bdc61a">nullErrStr</a></div><div class="ttdeci">const char nullErrStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00018">Errors.c:18</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a4b5bded8aa4ba9751caff215532f117e"><div class="ttname"><a href="_errors_8c.html#a4b5bded8aa4ba9751caff215532f117e">unknownErrStr</a></div><div class="ttdeci">const char unknownErrStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00017">Errors.c:17</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A variable was null when it was expecting a value.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00062">Errors.h:62</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

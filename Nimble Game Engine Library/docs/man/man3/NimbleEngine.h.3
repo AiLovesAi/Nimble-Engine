@@ -38,6 +38,14 @@ C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nim
 .br
 .RI "Header definition\&. "
 .in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBNIMBLE_EXPORT\fP int32_t \fBnEngineInit\fP (void)"
+.br
+.RI "Initialized the game engine\&. "
+.in -1c
 .SH "Detailed Description"
 .PP 
 Includes all the necessary game engine header files\&. 
@@ -77,6 +85,42 @@ Definition in file \fBNimbleEngine\&.h\fP\&.
 Header definition\&. 
 .PP
 Definition at line 50 of file NimbleEngine\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "\fBNIMBLE_EXPORT\fP int32_t nEngineInit (void)"
+
+.PP
+Initialized the game engine\&. Initialized the game engine by starting the error/crash handlers, logger, and thread manager\&.
+.PP
+\fBExample:\fP
+.RS 4
+
+.PP
+.nf
+#include <stdint\&.h>
+#include <Nimble/NimbleEngine\&.h>
+
+int main(int argc, char ** argv)
+{
+    if (nEngineInit() == NERROR)
+    {
+        fprintf(stderr, "Failed to initialize Nimble\&.");
+        exit(EXIT_FAILURE);
+    }
+    printf("Successfully initialized game engine\&.");
+    exit(EXIT_SUCCESS);
+}
+
+.fi
+.PP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBNSUCCESS\fP is returned if successful; otherwise \fBNERROR\fP is returned and a corresponding error is sent to the error callback set by \fBnErrorHandlerSetErrorCallback()\fP\&. 
+.RE
+.PP
+
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Nimble Game Engine Library from the source code\&.

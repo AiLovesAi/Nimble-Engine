@@ -64,6 +64,37 @@ extern "C" {
 #include "NimbleEngine/Threads/Threads.h"
 #include "NimbleEngine/Threads/ThreadManager.h"
 
+
+/**
+ * @brief Initialized the game engine.
+ * Initialized the game engine by starting the error/crash handlers, logger, and
+ * thread manager.
+ *
+ * @par Example:
+ * @code
+ * #include <stdint.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     if (nEngineInit() == NERROR)
+ *     {
+ *         fprintf(stderr, "Failed to initialize Nimble.");
+ *         exit(EXIT_FAILURE);
+ *     }
+ *     printf("Successfully initialized game engine.");
+ *     exit(EXIT_SUCCESS);
+ * }
+ * @endcode
+ *
+ * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
+ * a corresponding error is sent to the error callback set by
+ * nErrorHandlerSetErrorCallback().
+ */
+NIMBLE_EXPORT
+int32_t
+nEngineInit(void);
+
 #endif // NIMBLE_ENGINE_H
 
 #ifdef __cplusplus

@@ -21,6 +21,11 @@ Includes all the necessary game engine header files.
 \item 
 \#define \mbox{\hyperlink{_nimble_engine_8h_a6f4cebf238ea84ac1712a15c43288e71}{N\+I\+M\+B\+L\+E\+\_\+\+E\+N\+G\+I\+N\+E\+\_\+H}}
 \begin{DoxyCompactList}\small\item\em Header definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} int32\+\_\+t \mbox{\hyperlink{_nimble_engine_8h_afd0f66b34b9adde9356d21f11b3ab778}{n\+Engine\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialized the game engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -60,3 +65,40 @@ Header definition.
 
 Definition at line 50 of file Nimble\+Engine.\+h.
 
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_nimble_engine_8h_afd0f66b34b9adde9356d21f11b3ab778}\label{_nimble_engine_8h_afd0f66b34b9adde9356d21f11b3ab778}} 
+\index{NimbleEngine.h@{NimbleEngine.h}!nEngineInit@{nEngineInit}}
+\index{nEngineInit@{nEngineInit}!NimbleEngine.h@{NimbleEngine.h}}
+\doxysubsubsection{\texorpdfstring{nEngineInit()}{nEngineInit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} int32\+\_\+t n\+Engine\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialized the game engine. 
+
+Initialized the game engine by starting the error/crash handlers, logger, and thread manager.
+
+\begin{DoxyParagraph}{Example\+:}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{_nimble_engine_8h}{Nimble/NimbleEngine.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (\mbox{\hyperlink{_nimble_engine_8h_afd0f66b34b9adde9356d21f11b3ab778}{nEngineInit}}() == \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{NERROR}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to initialize Nimble."{}});}
+\DoxyCodeLine{        exit(EXIT\_FAILURE);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Successfully initialized game engine."{}});}
+\DoxyCodeLine{    exit(EXIT\_SUCCESS);}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}} is returned if successful; otherwise \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}} is returned and a corresponding error is sent to the error callback set by \mbox{\hyperlink{_error_handler_8h_a96e8664feb520accc127616c198c5197}{n\+Error\+Handler\+Set\+Error\+Callback()}}. 
+\end{DoxyReturn}

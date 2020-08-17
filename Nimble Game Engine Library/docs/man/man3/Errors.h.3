@@ -44,7 +44,7 @@ C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nim
 
 .in +1c
 .ti -1c
-.RI "\fBNIMBLE_EXPORT\fP char * \fBnErrorToString\fP (char *dst, const int32_t error)"
+.RI "\fBNIMBLE_EXPORT\fP char * \fBnErrorToString\fP (char *dst, const int32_t error, const char *info)"
 .br
 .RI "Describes an error and returns a string\&. "
 .ti -1c
@@ -174,7 +174,7 @@ Each time a function is called, it is added to the stack\&. When a function retu
 .RE
 .PP
 
-.SS "\fBNIMBLE_EXPORT\fP char* nErrorToString (char * dst, const int32_t error)"
+.SS "\fBNIMBLE_EXPORT\fP char* nErrorToString (char * dst, const int32_t error, const char * info)"
 
 .PP
 Describes an error and returns a string\&. Example: 
@@ -187,7 +187,7 @@ Describes an error and returns a string\&. Example:
 int main(int argc, char ** argv)
 {
     char * errorString;
-    nErrorToString(errorString, NERROR_NULL);
+    nErrorToString(errorString, NERROR_FILE_NOT_FOUND, "example\&.txt");
     if (errorString == NULL)
     {
         fprintf(stderr, "Failed to get error string\&.\n");
@@ -205,6 +205,8 @@ int main(int argc, char ** argv)
 \fIdst\fP The destination to store the string describing \fCerror\fP\&. 
 .br
 \fIerror\fP The error to get described\&. 
+.br
+\fIinfo\fP Relevant information, such as a file location, that could help diagnose the error\&. This can be \fBNULL\fP\&. 
 .RE
 .PP
 \fBReturns\fP
@@ -212,7 +214,9 @@ int main(int argc, char ** argv)
 \fCdst\fP is returned if successful; otherwise \fC\fBNULL\fP\fP is returned\&. 
 .RE
 .PP
-
+TODO Throw error
+.PP
+Definition at line 23 of file Errors\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Nimble Game Engine Library from the source code\&.
