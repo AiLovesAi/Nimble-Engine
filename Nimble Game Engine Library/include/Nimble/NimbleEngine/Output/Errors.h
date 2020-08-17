@@ -55,7 +55,7 @@ extern "C" {
 #define NERROR (int32_t) -1 /**< Returned when a function encounters an error. */
 
 /**
- * @brief The possible error values used by the @link ErrorHandler.h error handler @endlink.
+ * @brief The possible error values used by ErrorHandler.h error handler.
  */
 enum nErrors {
     NERROR_UNKNOWN = INT_MIN, /**< Unknown error. */
