@@ -5,7 +5,7 @@
 This class handles errors thrown by the engine. This class handles errors thrown by the engine, and defines functions the developer can send callback functions to.  
 
 
-{\ttfamily \#include \char`\"{}../../../../\+License/\+Nimble\+License.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../\+Nimble\+License.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}../../\+Nimble\+Engine.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include $<$time.\+h$>$}\newline
@@ -17,7 +17,7 @@ This class handles errors thrown by the engine. This class handles errors thrown
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} int32\+\_\+t \mbox{\hyperlink{_error_handler_8h_a4d6e471168d764b53095706419383a48}{n\+Error\+Handler\+Set\+Error\+Callback}} (int32\+\_\+t($\ast$callback)(const char $\ast$, const char $\ast$, const char $\ast$, const time\+\_\+t),)
+\mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} int32\+\_\+t \mbox{\hyperlink{_error_handler_8h_a96e8664feb520accc127616c198c5197}{n\+Error\+Handler\+Set\+Error\+Callback}} (int32\+\_\+t($\ast$callback)(const char $\ast$, const char $\ast$, const char $\ast$, const time\+\_\+t))
 \begin{DoxyCompactList}\small\item\em Sets the callback function to handle errors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -61,7 +61,7 @@ Definition at line 49 of file Error\+Handler.\+h.
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{_error_handler_8h_a4d6e471168d764b53095706419383a48}\label{_error_handler_8h_a4d6e471168d764b53095706419383a48}} 
+\mbox{\Hypertarget{_error_handler_8h_a96e8664feb520accc127616c198c5197}\label{_error_handler_8h_a96e8664feb520accc127616c198c5197}} 
 \index{ErrorHandler.h@{ErrorHandler.h}!nErrorHandlerSetErrorCallback@{nErrorHandlerSetErrorCallback}}
 \index{nErrorHandlerSetErrorCallback@{nErrorHandlerSetErrorCallback}!ErrorHandler.h@{ErrorHandler.h}}
 \doxysubsubsection{\texorpdfstring{nErrorHandlerSetErrorCallback()}{nErrorHandlerSetErrorCallback()}}
@@ -102,7 +102,7 @@ Sets the callback function {\ttfamily callback} that gets called when an error o
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
 \DoxyCodeLine{\{}
-\DoxyCodeLine{    \textcolor{keywordflow}{if} (\mbox{\hyperlink{_error_handler_8h_a4d6e471168d764b53095706419383a48}{nErrorHandlerSetErrorCallback}}(errorHandler) == \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{NERROR}})}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (\mbox{\hyperlink{_error_handler_8h_a96e8664feb520accc127616c198c5197}{nErrorHandlerSetErrorCallback}}(errorHandler) == \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{NERROR}})}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Could not set error callback for Nimble.\(\backslash\)n"{}});}
 \DoxyCodeLine{        \textcolor{keywordflow}{return} EXIT\_FAILURE;}

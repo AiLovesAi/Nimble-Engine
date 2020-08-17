@@ -1,4 +1,4 @@
-#include "../../../../License/NimbleLicense.h"
+#include "../../NimbleLicense.h"
 /*
  * ErrorHandler.h
  * Nimble Game Engine
@@ -107,7 +107,7 @@ nErrorHandlerSetErrorCallback(int32_t (*callback)(
                                                   const char *,
                                                   const char *,
                                                   const time_t
-                                                  ),
+                                                  )
                               );
 
 #endif // NIMBLE_ENGINE_ERROR_HANDLER_H

@@ -78,7 +78,7 @@ $(function() {
 
 <p>This class handles errors thrown by the engine. This class handles errors thrown by the engine, and defines functions the developer can send callback functions to.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;../../../../License/NimbleLicense.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_nimble_license_8h_source.html">../../NimbleLicense.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_nimble_engine_8h_source.html">../../NimbleEngine.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;time.h&gt;</code><br />
@@ -93,9 +93,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4d6e471168d764b53095706419383a48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_error_handler_8h.html#a4d6e471168d764b53095706419383a48">nErrorHandlerSetErrorCallback</a> (int32_t(*callback)(const char *, const char *, const char *, const time_t),)</td></tr>
-<tr class="memdesc:a4d6e471168d764b53095706419383a48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function to handle errors.  <a href="_error_handler_8h.html#a4d6e471168d764b53095706419383a48">More...</a><br /></td></tr>
-<tr class="separator:a4d6e471168d764b53095706419383a48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96e8664feb520accc127616c198c5197"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_error_handler_8h.html#a96e8664feb520accc127616c198c5197">nErrorHandlerSetErrorCallback</a> (int32_t(*callback)(const char *, const char *, const char *, const time_t))</td></tr>
+<tr class="memdesc:a96e8664feb520accc127616c198c5197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function to handle errors.  <a href="_error_handler_8h.html#a96e8664feb520accc127616c198c5197">More...</a><br /></td></tr>
+<tr class="separator:a96e8664feb520accc127616c198c5197"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class handles errors thrown by the engine. This class handles errors thrown by the engine, and defines functions the developer can send callback functions to. </p>
@@ -128,8 +128,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a4d6e471168d764b53095706419383a48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d6e471168d764b53095706419383a48">&#9670;&nbsp;</a></span>nErrorHandlerSetErrorCallback()</h2>
+<a id="a96e8664feb520accc127616c198c5197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96e8664feb520accc127616c198c5197">&#9670;&nbsp;</a></span>nErrorHandlerSetErrorCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,7 +172,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
 <div class="line">{</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_error_handler_8h.html#a4d6e471168d764b53095706419383a48">nErrorHandlerSetErrorCallback</a>(errorHandler) == <a class="code" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a>)</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_error_handler_8h.html#a96e8664feb520accc127616c198c5197">nErrorHandlerSetErrorCallback</a>(errorHandler) == <a class="code" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a>)</div>
 <div class="line">    {</div>
 <div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Could not set error callback for Nimble.\n&quot;</span>);</div>
 <div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
@@ -192,10 +192,10 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
+<div class="ttc" id="a_error_handler_8h_html_a96e8664feb520accc127616c198c5197"><div class="ttname"><a href="_error_handler_8h.html#a96e8664feb520accc127616c198c5197">nErrorHandlerSetErrorCallback</a></div><div class="ttdeci">NIMBLE_EXPORT int32_t nErrorHandlerSetErrorCallback(int32_t(*callback)(const char *, const char *, const char *, const time_t))</div><div class="ttdoc">Sets the callback function to handle errors.</div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00114">Nimble.h:114</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">Includes all the necessary game engine header files.</div></div>
 <div class="ttc" id="a_errors_8h_html_abc17e6456e8237f1fec82260310055b1"><div class="ttname"><a href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a></div><div class="ttdeci">#define NERROR</div><div class="ttdoc">Returned when a function encounters an error.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
-<div class="ttc" id="a_error_handler_8h_html_a4d6e471168d764b53095706419383a48"><div class="ttname"><a href="_error_handler_8h.html#a4d6e471168d764b53095706419383a48">nErrorHandlerSetErrorCallback</a></div><div class="ttdeci">NIMBLE_EXPORT int32_t nErrorHandlerSetErrorCallback(int32_t(*callback)(const char *, const char *, const char *, const time_t),)</div><div class="ttdoc">Sets the callback function to handle errors.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

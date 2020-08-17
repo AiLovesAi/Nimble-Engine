@@ -6,7 +6,7 @@ var searchData=
   ['nerror_5fnull_30',['NERROR_NULL',['../_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365',1,'Errors.h']]],
   ['nerror_5funknown_31',['NERROR_UNKNOWN',['../_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d',1,'Errors.h']]],
   ['nerrorgetstacktrace_32',['nErrorGetStacktrace',['../_errors_8h.html#ae6b418b4ba4235a79b2b1fce495da5f4',1,'Errors.h']]],
-  ['nerrorhandlerseterrorcallback_33',['nErrorHandlerSetErrorCallback',['../_error_handler_8h.html#a4d6e471168d764b53095706419383a48',1,'ErrorHandler.h']]],
+  ['nerrorhandlerseterrorcallback_33',['nErrorHandlerSetErrorCallback',['../_error_handler_8h.html#a96e8664feb520accc127616c198c5197',1,'ErrorHandler.h']]],
   ['nerrors_34',['nErrors',['../_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6',1,'Errors.h']]],
   ['nerrortostring_35',['nErrorToString',['../_errors_8h.html#adb900059cc94331fa116543d6e08929b',1,'Errors.h']]],
   ['network_2ec_36',['Network.c',['../_network_8c.html',1,'']]],
