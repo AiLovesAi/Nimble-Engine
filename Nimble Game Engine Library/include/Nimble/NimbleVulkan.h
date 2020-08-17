@@ -52,9 +52,11 @@ extern "C" {
 #include "Nimble.h"
 
 #include "NimbleGraphics/Vulkan/Hardware.h"
+#include "NimbleGraphics/Vulkan/Overlay.h"
 #include "NimbleGraphics/Vulkan/Render.h"
 #include "NimbleGraphics/Vulkan/Shaders.h"
 #include "NimbleGraphics/Vulkan/Window.h"
+#include "NimbleGraphics/Vulkan/WindowEvents.h"
 
 #endif // NIMBLE_GRAPHICS_H
 

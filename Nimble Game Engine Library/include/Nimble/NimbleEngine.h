@@ -51,6 +51,19 @@ extern "C" {
 
 #include "Nimble.h"
 
+#include "NimbleEngine/Network/Network.h"
+
+#include "NimbleEngine/Output/CrashHandler.h"
+#include "NimbleEngine/Output/Errors.h"
+#include "NimbleEngine/Output/ErrorHandler.h"
+#include "NimbleEngine/Output/Files.h"
+#include "NimbleEngine/Output/Logging.h"
+
+#include "NimbleEngine/System/Hardware.h"
+
+#include "NimbleEngine/Threads/Threads.h"
+#include "NimbleEngine/Threads/ThreadManager.h"
+
 #endif // NIMBLE_ENGINE_H
 
 #ifdef __cplusplus

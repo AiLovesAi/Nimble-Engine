@@ -142,25 +142,29 @@ nWindowCreate(const char * title,
  *
  * @par Example:
  * @code
- * uint8_t *iconData = nWindowLoadIcon("path/to/icon.ico");
+ * uint8_t * iconData;
+ * nWindowLoadIcon("path/to/icon.ico");
  * if (iconData == NULL)
  * {
  *     fprintf(stderr, "Failed to load window icon.\n");
  * }
  * @endcode
  *
+ * @param[out] dst The destination to store the pixel data of the icon
+ * @p iconPath.
  * @param[in] iconPath The file path (local or absolute; local is preferred) to
  * the icon to be loaded.
- * @return The pixel data of the icon @p iconPath is returned if successful;
- * otherwise @c #NULL is returned and a corresponding error is sent to the error
- * callback set by nErrorHandlerSetErrorCallback().
+ * @return @p dst is returned if successful; otherwise @c #NULL is returned and a
+ * corresponding error is sent to the error callback set by
+ * nErrorHandlerSetErrorCallback().
  *
  * @note This function is the same as nFileLoadImage(), but ensures RGBA format
  * is used. The supported file types are the same.
  */
 NIMBLE_EXPORT
 uint8_t *
-nWindowLoadIcon(const char * iconPath
+nWindowLoadIcon(uint8_t * dst,
+                const char * iconPath
                 );
 
 #endif // NIMBLE_GRAPHICS_WINDOW_H

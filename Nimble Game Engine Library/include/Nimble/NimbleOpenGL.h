@@ -52,9 +52,11 @@ extern "C" {
 #include "Nimble.h"
 
 #include "NimbleGraphics/OpenGL/Hardware.h"
+#include "NimbleGraphics/OpenGL/Overlay.h"
 #include "NimbleGraphics/OpenGL/Render.h"
 #include "NimbleGraphics/OpenGL/Shaders.h"
 #include "NimbleGraphics/OpenGL/Window.h"
+#include "NimbleGraphics/OpenGL/WindowEvents.h"
 
 #endif // NIMBLE_GRAPHICS_H
 

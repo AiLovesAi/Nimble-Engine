@@ -65,18 +65,18 @@ enum nErrors {
 
 
 /**
- * @brief Describes an error and outputs a string.
+ * @brief Describes an error and returns a string.
  *
  * Example:
  * @code
  * #include <stdio.h>
  * #include <stdlib.h>
- * #include <time.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * int main(int argc, char ** argv)
  * {
- *     const char * errorString = nErrorToString(NERROR_NULL);
+ *     char * errorString;
+ *     nErrorToString(errorString, NERROR_NULL);
  *     if (errorString == NULL)
  *     {
  *         fprintf(stderr, "Failed to get error string.\n");
@@ -87,15 +87,58 @@ enum nErrors {
  * }
  * @endcode
  *
+ * @param[out] dst The destination to store the string describing @p error.
  * @param[in] error The error to get described.
- * @return A string describing @p error is returned if successful; otherwise
- * @c #NULL is returned.
- *
+ * @return @p dst is returned if successful; otherwise @c #NULL is returned.
  */
 NIMBLE_EXPORT
 char *
-nErrorToString(const int32_t error
+nErrorToString(char * dst,
+               const int32_t error
                );
+
+/**
+ * @brief Returns the current stack trace as a string.
+ * Returns the current stack trace as a string, and sets @p 
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     int32_t levels, size;
+ *     char * stack;
+ *     nErrorGetStacktrace(stack, &levels, &size);
+ *     if (stack == NULL)
+ *     {
+ *         fprintf(stderr, "Failed to get stack trace.\n");
+ *         exit(EXIT_FAILURE);
+ *     }
+ *     printf("Last %d levels of stack trace: %s\n", levels, stack);
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[out] dst The destination to store the stacktrace string.
+ * @param[out] size The length of the string returned, including the null
+ * character. This can be NULL.
+ * @param[out] levels The number of levels of the stack. This can be NULL.
+ * @return @p dst is returned if successful; otherwise @c #NULL is returned
+ * and a corresponding error is sent to the error callback set by
+ * nErrorHandlerSetErrorCallback().
+ *
+ * @note Each time a function is called, it is added to the stack. When a
+ * function returns, it is removed from the stack.
+ */
+NIMBLE_EXPORT
+char *
+nErrorGetStacktrace(char * dst,
+                    int32_t * size,
+                    int32_t * levels
+                    );
 
 #endif // NIMBLE_ENGINE_ERRORS_H
 

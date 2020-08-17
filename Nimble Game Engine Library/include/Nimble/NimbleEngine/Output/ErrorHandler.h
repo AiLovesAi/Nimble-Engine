@@ -99,7 +99,6 @@ extern "C" {
  * @param[in] callback The function that gets called when an error occurs.
  * @return #NSUCCESS is returned if successful; otherwise @c #NERROR is
  * returned.
- *
  */
 NIMBLE_EXPORT
 int32_t

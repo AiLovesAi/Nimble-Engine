@@ -52,9 +52,11 @@ extern "C" {
 #include "Nimble.h"
 
 #include "NimbleGraphics/DirectX11/Hardware.h"
+#include "NimbleGraphics/DirectX11/Overlay.h"
 #include "NimbleGraphics/DirectX11/Render.h"
 #include "NimbleGraphics/DirectX11/Shaders.h"
 #include "NimbleGraphics/DirectX11/Window.h"
+#include "NimbleGraphics/DirectX11/WindowEvents.h"
 
 #endif // NIMBLE_GRAPHICS_H
 

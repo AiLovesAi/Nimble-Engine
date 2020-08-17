@@ -44,9 +44,13 @@ C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nim
 
 .in +1c
 .ti -1c
-.RI "\fBNIMBLE_EXPORT\fP char * \fBnErrorToString\fP (const int32_t error)"
+.RI "\fBNIMBLE_EXPORT\fP char * \fBnErrorToString\fP (char *dst, const int32_t error)"
 .br
-.RI "Describes an error and outputs a string\&. "
+.RI "Describes an error and returns a string\&. "
+.ti -1c
+.RI "\fBNIMBLE_EXPORT\fP char * \fBnErrorGetStacktrace\fP (char *dst, int32_t *size, int32_t *levels)"
+.br
+.RI "Returns the current stack trace as a string\&. "
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -121,20 +125,69 @@ A file was not found where specified\&.
 Definition at line 60 of file Errors\&.h\&.
 .SH "Function Documentation"
 .PP 
-.SS "\fBNIMBLE_EXPORT\fP char* nErrorToString (const int32_t error)"
+.SS "\fBNIMBLE_EXPORT\fP char* nErrorGetStacktrace (char * dst, int32_t * size, int32_t * levels)"
 
 .PP
-Describes an error and outputs a string\&. Example: 
+Returns the current stack trace as a string\&. Returns the current stack trace as a string, and sets \fC\fP 
+.PP
+Example: 
 .PP
 .nf
 #include <stdio\&.h>
 #include <stdlib\&.h>
-#include <time\&.h>
 #include <Nimble/NimbleEngine\&.h>
 
 int main(int argc, char ** argv)
 {
-    const char * errorString = nErrorToString(NERROR_NULL);
+    int32_t levels, size;
+    char * stack;
+    nErrorGetStacktrace(stack, &levels, &size);
+    if (stack == NULL)
+    {
+        fprintf(stderr, "Failed to get stack trace\&.\n");
+        exit(EXIT_FAILURE);
+    }
+    printf("Last %d levels of stack trace: %s\n", levels, stack);
+    return EXIT_SUCCESS;
+}
+
+.fi
+.PP
+.PP
+\fBParameters\fP
+.RS 4
+\fIdst\fP The destination to store the stacktrace string\&. 
+.br
+\fIsize\fP The length of the string returned, including the null character\&. This can be NULL\&. 
+.br
+\fIlevels\fP The number of levels of the stack\&. This can be NULL\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fCdst\fP is returned if successful; otherwise \fC\fBNULL\fP\fP is returned and a corresponding error is sent to the error callback set by \fBnErrorHandlerSetErrorCallback()\fP\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+Each time a function is called, it is added to the stack\&. When a function returns, it is removed from the stack\&. 
+.RE
+.PP
+
+.SS "\fBNIMBLE_EXPORT\fP char* nErrorToString (char * dst, const int32_t error)"
+
+.PP
+Describes an error and returns a string\&. Example: 
+.PP
+.nf
+#include <stdio\&.h>
+#include <stdlib\&.h>
+#include <Nimble/NimbleEngine\&.h>
+
+int main(int argc, char ** argv)
+{
+    char * errorString;
+    nErrorToString(errorString, NERROR_NULL);
     if (errorString == NULL)
     {
         fprintf(stderr, "Failed to get error string\&.\n");
@@ -149,12 +202,14 @@ int main(int argc, char ** argv)
 .PP
 \fBParameters\fP
 .RS 4
+\fIdst\fP The destination to store the string describing \fCerror\fP\&. 
+.br
 \fIerror\fP The error to get described\&. 
 .RE
 .PP
 \fBReturns\fP
 .RS 4
-A string describing \fCerror\fP is returned if successful; otherwise \fC\fBNULL\fP\fP is returned\&. 
+\fCdst\fP is returned if successful; otherwise \fC\fBNULL\fP\fP is returned\&. 
 .RE
 .PP
 
