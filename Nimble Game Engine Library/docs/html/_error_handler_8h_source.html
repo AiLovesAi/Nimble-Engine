@@ -72,7 +72,47 @@ $(function() {
 <div class="title">ErrorHandler.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_error_handler_8h.html">Go to the documentation of this file.</a><div class="fragment"></div><!-- fragment --></div><!-- contents -->
+<a href="_error_handler_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../../../../License/NimbleLicense.h&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * ErrorHandler.h</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Nimble Game Engine</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Created by Avery Aaron on 2020-08-16.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Copyright (C) 2020 Avery Aaron &lt;business.a3ology@gmail.com&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#ifndef NIMBLE_ENGINE_ERROR_HANDLER_H</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="_error_handler_8h.html#ae4d00977a5e21558a6bb8029eaf3ca08">   49</a></span>&#160;<span class="preprocessor">#define NIMBLE_ENGINE_ERROR_HANDLER_H </span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#include &quot;../../NimbleEngine.h&quot;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;int32_t</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="_error_handler_8h.html#a4d6e471168d764b53095706419383a48">  106</a></span>&#160;<a class="code" href="_error_handler_8h.html#a4d6e471168d764b53095706419383a48">nErrorHandlerSetErrorCallback</a>(int32_t (*callback)(</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                                                  <span class="keyword">const</span> <span class="keywordtype">char</span> *,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                                                  <span class="keyword">const</span> <span class="keywordtype">char</span> *,</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                                                  <span class="keyword">const</span> <span class="keywordtype">char</span> *,</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                                                  <span class="keyword">const</span> time_t</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                                                  ),</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                              );</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_ERROR_HANDLER_H</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">// ErrorHandler.h</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="a_nimble_8h_html_a217e8380e1998f7b39a24176186eeaa4"><div class="ttname"><a href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div><div class="ttdeci">#define NIMBLE_EXPORT</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00107">Nimble.h:107</a></div></div>
+<div class="ttc" id="a_error_handler_8h_html_a4d6e471168d764b53095706419383a48"><div class="ttname"><a href="_error_handler_8h.html#a4d6e471168d764b53095706419383a48">nErrorHandlerSetErrorCallback</a></div><div class="ttdeci">NIMBLE_EXPORT int32_t nErrorHandlerSetErrorCallback(int32_t(*callback)(const char *, const char *, const char *, const time_t),)</div><div class="ttdoc">Sets the callback function to handle errors.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

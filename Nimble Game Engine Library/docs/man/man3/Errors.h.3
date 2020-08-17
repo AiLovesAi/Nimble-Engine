@@ -1,4 +1,4 @@
-.TH "C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/Errors.h" 3 "Fri Aug 14 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
+.TH "C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/Errors.h" 3 "Mon Aug 17 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -38,7 +38,15 @@ C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nim
 .ti -1c
 .RI "enum \fBnErrors\fP { \fBNERROR_UNKNOWN\fP = INT_MIN, \fBNERROR_NULL\fP, \fBNERROR_FILE_NOT_FOUND\fP }"
 .br
-.RI "The possible error values used by the \fBerror handler \fP\&. "
+.RI "The possible error values used by \fBErrorHandler\&.h\fP error handler\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBNIMBLE_EXPORT\fP char * \fBnErrorToString\fP (const int32_t error)"
+.br
+.RI "Describes an error and outputs a string\&. "
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -96,7 +104,7 @@ Definition at line 54 of file Errors\&.h\&.
 .SS "enum \fBnErrors\fP"
 
 .PP
-The possible error values used by the \fBerror handler \fP\&. 
+The possible error values used by \fBErrorHandler\&.h\fP error handler\&. 
 .PP
 \fBEnumerator\fP
 .in +1c
@@ -111,6 +119,45 @@ A variable was null when it was expecting a value\&.
 A file was not found where specified\&. 
 .PP
 Definition at line 60 of file Errors\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "\fBNIMBLE_EXPORT\fP char* nErrorToString (const int32_t error)"
+
+.PP
+Describes an error and outputs a string\&. Example: 
+.PP
+.nf
+#include <stdio\&.h>
+#include <stdlib\&.h>
+#include <time\&.h>
+#include <Nimble/NimbleEngine\&.h>
+
+int main(int argc, char ** argv)
+{
+    const char * errorString = nErrorToString(NERROR_NULL);
+    if (errorString == NULL)
+    {
+        fprintf(stderr, "Failed to get error string\&.\n");
+        exit(EXIT_FAILURE);
+    }
+    printf("NERROR_NULL as string: %s\n", errorString);
+    return EXIT_SUCCESS;
+}
+
+.fi
+.PP
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP The error to get described\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A string describing \fCerror\fP is returned if successful; otherwise \fC\fBNULL\fP\fP is returned\&. 
+.RE
+.PP
+
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Nimble Game Engine Library from the source code\&.

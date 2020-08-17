@@ -111,7 +111,7 @@ extern "C" {
 #endif
 
 #ifndef NULL
-#define NULL ((void *) 0) /** Null pointer */
+#define NULL ((void *) 0) /**< Null pointer */
 #endif
 
 #endif // NIMBLE_H

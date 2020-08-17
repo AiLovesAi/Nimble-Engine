@@ -55,13 +55,47 @@ extern "C" {
 #define NERROR (int32_t) -1 /**< Returned when a function encounters an error. */
 
 /**
- * @brief The possible error values used by the @link ErrorHandler.h error handler @endlink.
+ * @brief The possible error values used by ErrorHandler.h error handler.
  */
 enum nErrors {
     NERROR_UNKNOWN = INT_MIN, /**< Unknown error. */
     NERROR_NULL, /**< A variable was null when it was expecting a value. */
 	NERROR_FILE_NOT_FOUND /**< A file was not found where specified. */
 };
+
+
+/**
+ * @brief Describes an error and outputs a string.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <time.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     const char * errorString = nErrorToString(NERROR_NULL);
+ *     if (errorString == NULL)
+ *     {
+ *         fprintf(stderr, "Failed to get error string.\n");
+ *         exit(EXIT_FAILURE);
+ *     }
+ *     printf("NERROR_NULL as string: %s\n", errorString);
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[in] error The error to get described.
+ * @return A string describing @p error is returned if successful; otherwise
+ * @c #NULL is returned.
+ *
+ */
+NIMBLE_EXPORT
+char *
+nErrorToString(const int32_t error
+               );
 
 #endif // NIMBLE_ENGINE_ERRORS_H
 

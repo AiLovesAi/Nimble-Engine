@@ -25,7 +25,12 @@ enum \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6}{n\+Errors}} 
 \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365}{N\+E\+R\+R\+O\+R\+\_\+\+N\+U\+LL}}, 
 \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}{N\+E\+R\+R\+O\+R\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}}
  \}
-\begin{DoxyCompactList}\small\item\em The possible error values used by the \mbox{\hyperlink{_error_handler_8h}{error handler }}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The possible error values used by \mbox{\hyperlink{_error_handler_8h}{Error\+Handler.\+h}} error handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} char $\ast$ \mbox{\hyperlink{_errors_8h_aec5ae76adae887fd54b88633d43e69e3}{n\+Error\+To\+String}} (const int32\+\_\+t error)
+\begin{DoxyCompactList}\small\item\em Describes an error and outputs a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -104,7 +109,7 @@ Definition at line 54 of file Errors.\+h.
 
 
 
-The possible error values used by the \mbox{\hyperlink{_error_handler_8h}{error handler }}. 
+The possible error values used by \mbox{\hyperlink{_error_handler_8h}{Error\+Handler.\+h}} error handler. 
 
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{NERROR\_UNKNOWN@{NERROR\_UNKNOWN}!Errors.h@{Errors.h}}\index{Errors.h@{Errors.h}!NERROR\_UNKNOWN@{NERROR\_UNKNOWN}}}\mbox{\Hypertarget{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d}\label{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d}} 
@@ -124,3 +129,45 @@ N\+E\+R\+R\+O\+R\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND&A file was 
 
 Definition at line 60 of file Errors.\+h.
 
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_errors_8h_aec5ae76adae887fd54b88633d43e69e3}\label{_errors_8h_aec5ae76adae887fd54b88633d43e69e3}} 
+\index{Errors.h@{Errors.h}!nErrorToString@{nErrorToString}}
+\index{nErrorToString@{nErrorToString}!Errors.h@{Errors.h}}
+\doxysubsubsection{\texorpdfstring{nErrorToString()}{nErrorToString()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} char$\ast$ n\+Error\+To\+String (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{error }\end{DoxyParamCaption})}
+
+
+
+Describes an error and outputs a string. 
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{_nimble_engine_8h}{Nimble/NimbleEngine.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{char} * errorString = \mbox{\hyperlink{_errors_8h_aec5ae76adae887fd54b88633d43e69e3}{nErrorToString}}(\mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365}{NERROR\_NULL}});}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (errorString == \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to get error string.\(\backslash\)n"{}});}
+\DoxyCodeLine{        exit(EXIT\_FAILURE);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}NERROR\_NULL as string: \%s\(\backslash\)n"{}}, errorString);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em error} & The error to get described. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string describing {\ttfamily error} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}} is returned. 
+\end{DoxyReturn}
