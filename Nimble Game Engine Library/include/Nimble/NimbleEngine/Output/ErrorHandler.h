@@ -78,7 +78,7 @@ extern "C" {
  *         return;
  *     }
  *     strftime(timeString, sizeof(example), format, timeInfo);
- *     
+ *
  *     fprintf(stderr, "\nAn error occurred at %s:\nError name: %s\nError "\
  *      "description: %s\nStack trace: %s\n\n", timeString, error, description,
  *      stack);

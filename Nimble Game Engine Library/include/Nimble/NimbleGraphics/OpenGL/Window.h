@@ -87,6 +87,7 @@ typedef enum nWindowMonitor {
  * #include <stdio.h>
  * #include <stdlib.h>
  * #include <Nimble/NimbleOpenGL.h>
+ *
  * int main(int argc, char ** argv)
  * {
  *     uint8_t * iconData = nWindowLoadIcon("icon.ico");
