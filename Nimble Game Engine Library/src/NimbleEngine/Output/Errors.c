@@ -64,7 +64,7 @@ int32_t (*errorCallback) (const int32_t, const char *, const char *,
                           const time_t) = NULL;
 
 
-int32_t nErrorThrow(const int32_t error, const char * info)
+int32_t nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
 {
     time_t errorTime = time(NULL);
     
@@ -73,10 +73,10 @@ int32_t nErrorThrow(const int32_t error, const char * info)
         /** @todo Crash. */
         return NERROR;
     }
-
+    
     char * errorDesc;
     int32_t errorDescLen;
-    if (nErrorToString(errorDesc, &errorDescLen, error, info) == NULL)
+    if (nErrorToString(errorDesc, &errorDescLen, error, info, infoLen) == NULL)
     {
         /** @todo Crash. */
         return NERROR;
@@ -95,11 +95,9 @@ int32_t nErrorThrow(const int32_t error, const char * info)
 }
 
 char * nErrorToString(char * dst, int32_t * size, const int32_t error,
-        const char * info)
+        const char * info, int32_t infoLen)
 {
-    int32_t infoLen = 0;
-    
-    if (info != NULL)
+    if ((info != NULL) && (infoLen == 0))
     {
         infoLen = strlen(info);
     }
@@ -110,80 +108,87 @@ char * nErrorToString(char * dst, int32_t * size, const int32_t error,
         {
             if (info != NULL)
             {
-                dst = malloc(sizeof(void *) + sizeof(unknownErrStr) + infoLen);
+                *size = sizeof(unknownErrStr) + infoLen;
+                dst = malloc(sizeof(void *) + *size);
                 strncpy(dst, unknownErrStr, sizeof(unknownErrStr));
                 strncat(dst, info, infoLen + 1);
             }
             else
             {
-                dst = malloc(sizeof(void *) + sizeof(unknownErrStr) +
-                       sizeof(noInfoStr) - 1);
+                *size = sizeof(unknownErrStr) + sizeof(noInfoStr) - 1;
+                dst = malloc(sizeof(void *) + *size);
                 strncpy(dst, unknownErrStr, sizeof(unknownErrStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
+            dst[*size - 1] = '\0';
         }
         break;
         case NERROR_NULL:
         {
             if (info != NULL)
             {
-                dst = malloc(sizeof(void *) + sizeof(nullErrStr) + infoLen);
+                *size =  sizeof(nullErrStr) + infoLen;
+                dst = malloc(sizeof(void *) + *size);
 				strncpy(dst, nullErrStr, sizeof(nullErrStr));
 				strncat(dst, info, infoLen + 1);
             }
             else
 		    {
-                dst = malloc(sizeof(void *) + sizeof(nullErrStr) +
-                       sizeof(noInfoStr) - 1);
+                *size = sizeof(nullErrStr) + sizeof(noInfoStr) - 1;
+                dst = malloc(sizeof(void *) + *size);
                 strncpy(dst, nullErrStr, sizeof(nullErrStr));
 				strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
+            dst[*size - 1] = '\0';
         }
         break;
         case NERROR_FILE_NOT_FOUND:
         {
             if (info != NULL)
             {
-                dst = malloc(sizeof(void *) + sizeof(fileNotFoundErrStr) +
-                       infoLen);
+                *size = sizeof(fileNotFoundErrStr) + infoLen;
+                dst = malloc(sizeof(void *) + *size);
                 strncpy(dst, fileNotFoundErrStr, sizeof(fileNotFoundErrStr));
                 strncat(dst, info, infoLen + 1);
             }
             else
             {
-                dst = malloc(sizeof(void *) + sizeof(fileNotFoundErrStr) +
-                       sizeof(noInfoStr) - 1);
+                *size = sizeof(fileNotFoundErrStr) + sizeof(noInfoStr) - 1;
+                dst = malloc(sizeof(void *) + *size);
                 strncpy(dst, fileNotFoundErrStr, sizeof(fileNotFoundErrStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
+            dst[*size - 1] = '\0';
         }
         break;
         case NERROR_ERROR_NOT_FOUND:
         {
             if (info != NULL)
 		    {
-                dst = malloc(sizeof(void *) + sizeof(errorNotFoundErrStr) +
-                       infoLen);
+                *size = sizeof(errorNotFoundErrStr) + infoLen;
+                dst = malloc(sizeof(void *) + *size);
                 strncpy(dst, errorNotFoundErrStr, sizeof(errorNotFoundErrStr));
                 strncat(dst, info, infoLen + 1);
             }
             else
             {
-                dst = malloc(sizeof(void *) + sizeof(errorNotFoundErrStr) +
-                       sizeof(noInfoStr) - 1);
+                *size = sizeof(errorNotFoundErrStr) + sizeof(noInfoStr) - 1;
+                dst = malloc(sizeof(void *) + *size);
                 strncpy(dst, errorNotFoundErrStr, sizeof(errorNotFoundErrStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
+            dst[*size - 1] = '\0';
         }
         break;
         default:
         {
             dst = NULL;
+            *size = 0;
             int32_t errorNumLen = snprintf(NULL, 0, "%d", error) + 1;
             char * errorNumStr = malloc(sizeof(void *) + errorNumLen);
 			snprintf(errorNumStr, errorNumLen, "%d", error);
             
-            if (nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr) != NSUCCESS)
+            if (nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, *size) != NSUCCESS)
 		    {
                 /** @todo Crash. */
             }
@@ -199,7 +204,8 @@ int32_t nErrorSetCallback(int32_t (*callback)(const int32_t, const char *,
 {
     if (callback == NULL)
     {
-        nErrorThrow(NERROR_NULL, "Callback parameter null in nErrorSetCallback().");
+        char callbackErrStr[] = "Callback parameter null in nErrorSetCallback().";
+        nErrorThrow(NERROR_NULL, callbackErrStr, sizeof(callbackErrStr));
         return NERROR;
     }
     

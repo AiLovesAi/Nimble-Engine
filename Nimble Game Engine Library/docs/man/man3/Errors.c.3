@@ -1,4 +1,4 @@
-.TH "C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c" 3 "Mon Aug 17 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
+.TH "C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c" 3 "Tue Aug 18 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -26,11 +26,11 @@ C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleE
 
 .in +1c
 .ti -1c
-.RI "int32_t \fBnErrorThrow\fP (const int32_t error, const char *info)"
+.RI "int32_t \fBnErrorThrow\fP (const int32_t error, const char *info, int32_t infoLen)"
 .br
 .RI "Sends an error to the error callback\&. "
 .ti -1c
-.RI "char * \fBnErrorToString\fP (char *dst, int32_t *size, const int32_t error, const char *info)"
+.RI "char * \fBnErrorToString\fP (char *dst, int32_t *size, const int32_t error, const char *info, int32_t infoLen)"
 .br
 .RI "Describes an error and returns a string\&. "
 .ti -1c
@@ -155,7 +155,7 @@ Get stack trace\&.
 .PP
 
 .PP
-Definition at line 210 of file Errors\&.c\&.
+Definition at line 216 of file Errors\&.c\&.
 .SS "int32_t nErrorSetCallback (int32_t(*)(const int32_t, const char *, const char *, const time_t) callback)"
 
 .PP
@@ -221,8 +221,8 @@ The callback parameters are \fCerror, errorDesc, stack, errorTime\fP\&.
 .PP
 
 .PP
-Definition at line 197 of file Errors\&.c\&.
-.SS "int32_t nErrorThrow (const int32_t error, const char * info)"
+Definition at line 202 of file Errors\&.c\&.
+.SS "int32_t nErrorThrow (const int32_t error, const char * info, int32_t infoLen)"
 
 .PP
 Sends an error to the error callback\&. Sends an error to the error callback defined by nErrorHandlerSetErrorCallback(), and determines whether or not crashing is necessary\&.
@@ -236,7 +236,9 @@ Example:
 
 int main(int argc, char ** argv)
 {
-    if (nErrorThrow(NERROR_FILE_NOT_FOUND, "example\&.txt") != NSUCCESS)
+    char exampleFilePath[] = "example\&.txt";
+    if (nErrorThrow(NERROR_FILE_NOT_FOUND, exampleFilePath,
+        sizeof(exampleFilePath)) != NSUCCESS)
     {
         fprintf(stderr, "Failed to throw error\&.\n");
         exit(EXIT_FAILURE);
@@ -252,7 +254,9 @@ int main(int argc, char ** argv)
 .RS 4
 \fIerror\fP The error to throw\&. 
 .br
-\fIinfo\fP Relevant information, such as a file location, that could help diagnose the error\&. This can be \fBNULL\fP\&. 
+\fIinfo\fP Relevant information, such as a file location, that could help 
+.br
+\fIinfoLen\fP The length of the \fCinfo\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. diagnose the error\&. This can be \fBNULL\fP\&. 
 .RE
 .PP
 \fBReturns\fP
@@ -282,7 +286,7 @@ Crash\&.
 
 .PP
 Definition at line 67 of file Errors\&.c\&.
-.SS "char* nErrorToString (char * dst, int32_t * size, const int32_t error, const char * info)"
+.SS "char* nErrorToString (char * dst, int32_t * size, const int32_t error, const char * info, int32_t infoLen)"
 
 .PP
 Describes an error and returns a string\&. Example: 
@@ -296,7 +300,9 @@ int main(int argc, char ** argv)
 {
     char * errorStr;
     int32_t errorLen;
-    nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND, "example\&.txt");
+    char exampleFilePath[] = "example\&.txt";
+    nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND, exampleFilePath,
+     sizeof(exampleFilePath));
     if (errorStr == NULL)
     {
         fprintf(stderr, "Failed to get error string\&.\n");
@@ -318,16 +324,13 @@ int main(int argc, char ** argv)
 \fIerror\fP The error to get described\&. 
 .br
 \fIinfo\fP Relevant information, such as a file location, that could help diagnose the error\&. This can be \fBNULL\fP\&. 
+.br
+\fIinfoLen\fP The length of the \fCinfo\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. 
 .RE
 .PP
 \fBReturns\fP
 .RS 4
-\fCdst\fP is returned if successful; otherwise \fC\fBNULL\fP\fP is returned\&.
-.RE
-.PP
-\fBTodo\fP
-.RS 4
-Add an optional size to \fCinfo\fP (and all other char pointers) to avoid repetitive strlen() calls\&. 
+\fCdst\fP is returned if successful; otherwise \fC\fBNULL\fP\fP is returned\&. 
 .RE
 .PP
 

@@ -80,7 +80,9 @@ enum nErrors {
  *
  * int main(int argc, char ** argv)
  * {
- *     if (nErrorThrow(NERROR_FILE_NOT_FOUND, "example.txt") != NSUCCESS)
+ *     char exampleFilePath[] = "example.txt";
+ *     if (nErrorThrow(NERROR_FILE_NOT_FOUND, exampleFilePath,
+           sizeof(exampleFilePath)) != NSUCCESS)
  *     {
  *         fprintf(stderr, "Failed to throw error.\n");
  *         exit(EXIT_FAILURE);
@@ -92,13 +94,16 @@ enum nErrors {
  *
  * @param[in] error The error to throw.
  * @param[in] info Relevant information, such as a file location, that could help
+ * @param[in] infoLen The length of the @p info argument, including the null
+ * character. A length of zero (0) uses strlen() to determine length.
  * diagnose the error. This can be #NULL.
  * @return #NSUCCESS is returned if successful; otherwise @c #NERROR is returned.
  */
 NIMBLE_EXTERN
 int32_t
 nErrorThrow(const int32_t error,
-            const char * info
+            const char * info,
+            int32_t infoLen
             );
 
 /**
@@ -114,7 +119,9 @@ nErrorThrow(const int32_t error,
  * {
  *     char * errorStr;
  *     int32_t errorLen;
- *     nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND, "example.txt");
+ *     char exampleFilePath[] = "example.txt";
+ *     nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND, exampleFilePath,
+ *      sizeof(exampleFilePath));
  *     if (errorStr == NULL)
  *     {
  *         fprintf(stderr, "Failed to get error string.\n");
@@ -131,17 +138,17 @@ nErrorThrow(const int32_t error,
  * @param[in] error The error to get described.
  * @param[in] info Relevant information, such as a file location, that could help
  * diagnose the error. This can be #NULL.
+ * @param[in] infoLen The length of the @p info argument, including the null
+ * character. A length of zero (0) uses strlen() to determine length.
  * @return @p dst is returned if successful; otherwise @c #NULL is returned.
- *
- * @todo Add an optional size to @p info (and all other char pointers) to avoid
- * repetitive strlen() calls.
  */
 NIMBLE_EXTERN
 char *
 nErrorToString(char * dst,
                int32_t * size,
                const int32_t error,
-               const char * info
+               const char * info,
+               int32_t infoLen
                );
 
 /**

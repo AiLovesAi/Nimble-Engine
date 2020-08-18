@@ -15,9 +15,9 @@ This class defines error values and error handling functions.
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int32\+\_\+t \mbox{\hyperlink{_errors_8c_a7d282f7b1946c1fc11fa7b75308da784}{n\+Error\+Throw}} (const int32\+\_\+t error, const char $\ast$info)
+int32\+\_\+t \mbox{\hyperlink{_errors_8c_ab17af6118ec5a69109949c0485f2bb9d}{n\+Error\+Throw}} (const int32\+\_\+t error, const char $\ast$info, int32\+\_\+t info\+Len)
 \begin{DoxyCompactList}\small\item\em Sends an error to the error callback. \end{DoxyCompactList}\item 
-char $\ast$ \mbox{\hyperlink{_errors_8c_ae4125b7ad9b7d399521546473d3ccfff}{n\+Error\+To\+String}} (char $\ast$dst, int32\+\_\+t $\ast$size, const int32\+\_\+t error, const char $\ast$info)
+char $\ast$ \mbox{\hyperlink{_errors_8c_a5c2568530315002dcbfccaafc5821883}{n\+Error\+To\+String}} (char $\ast$dst, int32\+\_\+t $\ast$size, const int32\+\_\+t error, const char $\ast$info, int32\+\_\+t info\+Len)
 \begin{DoxyCompactList}\small\item\em Describes an error and returns a string. \end{DoxyCompactList}\item 
 int32\+\_\+t \mbox{\hyperlink{_errors_8c_a466fe7ed9ade09e5570ceff75d49131e}{n\+Error\+Set\+Callback}} (int32\+\_\+t($\ast$callback)(const int32\+\_\+t, const char $\ast$, const char $\ast$, const time\+\_\+t))
 \begin{DoxyCompactList}\small\item\em Sets the callback function to handle errors. \end{DoxyCompactList}\item 
@@ -116,7 +116,7 @@ Each time a function is called, it is added to the stack. When a function return
 \item[\mbox{\hyperlink{todo__todo000005}{Todo}}]Get stack trace. \end{DoxyRefDesc}
 
 
-Definition at line 210 of file Errors.\+c.
+Definition at line 216 of file Errors.\+c.
 
 \mbox{\Hypertarget{_errors_8c_a466fe7ed9ade09e5570ceff75d49131e}\label{_errors_8c_a466fe7ed9ade09e5570ceff75d49131e}} 
 \index{Errors.c@{Errors.c}!nErrorSetCallback@{nErrorSetCallback}}
@@ -182,13 +182,13 @@ The callback parameters are {\ttfamily error, error\+Desc, stack, error\+Time}.
 \end{DoxyNote}
 
 
-Definition at line 197 of file Errors.\+c.
+Definition at line 202 of file Errors.\+c.
 
-\mbox{\Hypertarget{_errors_8c_a7d282f7b1946c1fc11fa7b75308da784}\label{_errors_8c_a7d282f7b1946c1fc11fa7b75308da784}} 
+\mbox{\Hypertarget{_errors_8c_ab17af6118ec5a69109949c0485f2bb9d}\label{_errors_8c_ab17af6118ec5a69109949c0485f2bb9d}} 
 \index{Errors.c@{Errors.c}!nErrorThrow@{nErrorThrow}}
 \index{nErrorThrow@{nErrorThrow}!Errors.c@{Errors.c}}
 \doxysubsubsection{\texorpdfstring{nErrorThrow()}{nErrorThrow()}}
-{\footnotesize\ttfamily int32\+\_\+t n\+Error\+Throw (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{info }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int32\+\_\+t n\+Error\+Throw (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{info,  }\item[{int32\+\_\+t}]{info\+Len }\end{DoxyParamCaption})}
 
 
 
@@ -204,7 +204,9 @@ Example\+:
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
 \DoxyCodeLine{\{}
-\DoxyCodeLine{    \textcolor{keywordflow}{if} (\mbox{\hyperlink{_errors_8c_a7d282f7b1946c1fc11fa7b75308da784}{nErrorThrow}}(\mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}{NERROR\_FILE\_NOT\_FOUND}}, \textcolor{stringliteral}{"{}example.txt"{}}) != \mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{NSUCCESS}})}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} exampleFilePath[] = \textcolor{stringliteral}{"{}example.txt"{}};}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (\mbox{\hyperlink{_errors_8c_ab17af6118ec5a69109949c0485f2bb9d}{nErrorThrow}}(\mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}{NERROR\_FILE\_NOT\_FOUND}}, exampleFilePath,}
+\DoxyCodeLine{        \textcolor{keyword}{sizeof}(exampleFilePath)) != \mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{NSUCCESS}})}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to throw error.\(\backslash\)n"{}});}
 \DoxyCodeLine{        exit(EXIT\_FAILURE);}
@@ -219,7 +221,9 @@ Example\+:
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em error} & The error to throw. \\
 \hline
-\mbox{\texttt{ in}}  & {\em info} & Relevant information, such as a file location, that could help diagnose the error. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\mbox{\texttt{ in}}  & {\em info} & Relevant information, such as a file location, that could help \\
+\hline
+\mbox{\texttt{ in}}  & {\em info\+Len} & The length of the {\ttfamily info} argument, including the null character. A length of zero (0) uses strlen() to determine length. diagnose the error. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -239,11 +243,11 @@ Example\+:
 
 Definition at line 67 of file Errors.\+c.
 
-\mbox{\Hypertarget{_errors_8c_ae4125b7ad9b7d399521546473d3ccfff}\label{_errors_8c_ae4125b7ad9b7d399521546473d3ccfff}} 
+\mbox{\Hypertarget{_errors_8c_a5c2568530315002dcbfccaafc5821883}\label{_errors_8c_a5c2568530315002dcbfccaafc5821883}} 
 \index{Errors.c@{Errors.c}!nErrorToString@{nErrorToString}}
 \index{nErrorToString@{nErrorToString}!Errors.c@{Errors.c}}
 \doxysubsubsection{\texorpdfstring{nErrorToString()}{nErrorToString()}}
-{\footnotesize\ttfamily char$\ast$ n\+Error\+To\+String (\begin{DoxyParamCaption}\item[{char $\ast$}]{dst,  }\item[{int32\+\_\+t $\ast$}]{size,  }\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{info }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily char$\ast$ n\+Error\+To\+String (\begin{DoxyParamCaption}\item[{char $\ast$}]{dst,  }\item[{int32\+\_\+t $\ast$}]{size,  }\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{info,  }\item[{int32\+\_\+t}]{info\+Len }\end{DoxyParamCaption})}
 
 
 
@@ -259,7 +263,9 @@ Example\+:
 \DoxyCodeLine{\{}
 \DoxyCodeLine{    \textcolor{keywordtype}{char} * errorStr;}
 \DoxyCodeLine{    int32\_t errorLen;}
-\DoxyCodeLine{    \mbox{\hyperlink{_errors_8c_ae4125b7ad9b7d399521546473d3ccfff}{nErrorToString}}(errorStr, \&errorLen, \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}{NERROR\_FILE\_NOT\_FOUND}}, \textcolor{stringliteral}{"{}example.txt"{}});}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} exampleFilePath[] = \textcolor{stringliteral}{"{}example.txt"{}};}
+\DoxyCodeLine{    \mbox{\hyperlink{_errors_8c_a5c2568530315002dcbfccaafc5821883}{nErrorToString}}(errorStr, \&errorLen, \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}{NERROR\_FILE\_NOT\_FOUND}}, exampleFilePath,}
+\DoxyCodeLine{     \textcolor{keyword}{sizeof}(exampleFilePath));}
 \DoxyCodeLine{    \textcolor{keywordflow}{if} (errorStr == \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to get error string.\(\backslash\)n"{}});}
@@ -281,12 +287,12 @@ Example\+:
 \hline
 \mbox{\texttt{ in}}  & {\em info} & Relevant information, such as a file location, that could help diagnose the error. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
 \hline
+\mbox{\texttt{ in}}  & {\em info\+Len} & The length of the {\ttfamily info} argument, including the null character. A length of zero (0) uses strlen() to determine length. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-{\ttfamily dst} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}} is returned.
+{\ttfamily dst} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}} is returned. 
 \end{DoxyReturn}
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000008}{Todo}}]Add an optional size to {\ttfamily info} (and all other char pointers) to avoid repetitive strlen() calls. \end{DoxyRefDesc}
 \begin{DoxyRefDesc}{Todo}
 \item[\mbox{\hyperlink{todo__todo000004}{Todo}}]Crash. \end{DoxyRefDesc}
 
