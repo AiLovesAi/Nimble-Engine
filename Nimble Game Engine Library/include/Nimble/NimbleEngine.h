@@ -55,7 +55,6 @@ extern "C" {
 
 #include "NimbleEngine/Output/CrashHandler.h"
 #include "NimbleEngine/Output/Errors.h"
-#include "NimbleEngine/Output/ErrorHandler.h"
 #include "NimbleEngine/Output/Files.h"
 #include "NimbleEngine/Output/Logging.h"
 

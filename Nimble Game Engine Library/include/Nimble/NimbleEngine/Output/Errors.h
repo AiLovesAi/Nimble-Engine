@@ -36,7 +36,7 @@
  * @endparblock
  * @date 2020-08-14
  *
- * @brief This class defines error values and has error parsing functions.
+ * @brief This class defines error values and error handling functions.
  */
 
 #ifdef __cplusplus
@@ -50,6 +50,7 @@ extern "C" {
 
 #include <limits.h>
 #include <stdint.h>
+#include <time.h>
 
 #define NSUCCESS (int32_t) 0 /**< Returned when a function succeeds. */
 #define NERROR (int32_t) -1 /**< Returned when a function encounters an error. */
@@ -58,11 +59,47 @@ extern "C" {
  * @brief The possible error values used by ErrorHandler.h error handler.
  */
 enum nErrors {
-    NERROR_UNKNOWN = INT_MIN, /**< Unknown error. */
-    NERROR_NULL, /**< A variable was null when it was expecting a value. */
-	NERROR_FILE_NOT_FOUND /**< A file was not found where specified. */
+    NERROR_UNKNOWN = INT_MIN, /**< An nknown error occurred. */
+    NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
+	NERROR_FILE_NOT_FOUND, /**< A file was not found where specified. */
+	NERROR_ERROR_NOT_FOUND /**< An error passed to a function was not valid. */
 };
 
+
+/**
+ * @brief Sends an error to the error callback.
+ * Sends an error to the error callback defined by
+ * nErrorHandlerSetErrorCallback(), and determines whether or not crashing is
+ * necessary.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     if (nErrorThrow(NERROR_FILE_NOT_FOUND, "example.txt") != NSUCCESS)
+ *     {
+ *         fprintf(stderr, "Failed to throw error.\n");
+ *         exit(EXIT_FAILURE);
+ *     }
+ *     printf("Successfully threw error.\n");
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[in] error The error to throw.
+ * @param[in] info Relevant information, such as a file location, that could help
+ * diagnose the error. This can be #NULL.
+ * @return #NSUCCESS is returned if successful; otherwise @c #NERROR is returned.
+ */
+NIMBLE_EXTERN
+int32_t
+nErrorThrow(const int32_t error,
+            const char * info
+            );
 
 /**
  * @brief Describes an error and returns a string.
@@ -75,30 +112,95 @@ enum nErrors {
  *
  * int main(int argc, char ** argv)
  * {
- *     char * errorString;
- *     nErrorToString(errorString, NERROR_FILE_NOT_FOUND, "example.txt");
- *     if (errorString == NULL)
+ *     char * errorStr;
+ *     int32_t errorLen;
+ *     nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND, "example.txt");
+ *     if (errorStr == NULL)
  *     {
  *         fprintf(stderr, "Failed to get error string.\n");
  *         exit(EXIT_FAILURE);
  *     }
- *     printf("NERROR_NULL as string: %s\n", errorString);
+ *     printf("NERROR_NULL as string: %s\n", errorStr);
  *     return EXIT_SUCCESS;
  * }
  * @endcode
  *
  * @param[out] dst The destination to store the string describing @p error.
+ * @param[out] size The length of the string returned, including the null
+ * character. This can be #NULL.
  * @param[in] error The error to get described.
  * @param[in] info Relevant information, such as a file location, that could help
  * diagnose the error. This can be #NULL.
  * @return @p dst is returned if successful; otherwise @c #NULL is returned.
+ *
+ * @todo Add an optional size to @p info (and all other char pointers) to avoid
+ * repetitive strlen() calls.
  */
-NIMBLE_EXPORT
+NIMBLE_EXTERN
 char *
 nErrorToString(char * dst,
+               int32_t * size,
                const int32_t error,
                const char * info
                );
+
+/**
+ * @brief Sets the callback function to handle errors.
+ *
+ * Sets the callback function @p callback that gets called when an error occurs.
+ *
+ * @par Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <time.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * void errorHandler(const int32_t error, const char * errorDesc,
+ *       const char * stack, const time_t errorTime)
+ * {
+ *     struct tm * timeInfo = localtime(&errorTime);
+ *     const char format[] = "%x %X %Z";
+ *     const char example = "01/01/2020 16:30:45 GMT"
+ *     char * timeString = malloc(sizeof(void *) + sizeof(example));
+ *     if (timeString == NULL)
+ *     {
+ *         fprintf(stderr, "Failed to allocate to timeString.\n");
+ *         return;
+ *     }
+ *     strftime(timeString, sizeof(example), format, timeInfo);
+ *
+ *     fprintf(stderr, "\nAn error occurred at %s:\nError description: "\
+ *      "%s\nStack trace: %s\n\n", timeString, errorDesc, stack);
+ * }
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     if (nErrorHandlerSetErrorCallback(errorHandler) != NSUCCESS)
+ *     {
+ *         fprintf(stderr, "Could not set error callback for Nimble.\n");
+ *         return EXIT_FAILURE;
+ *     }
+ *     printf("Successfully set error callback for Nimble.\n");
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[in] callback The function that gets called when an error occurs.
+ * @return #NSUCCESS is returned if successful; otherwise @c #NERROR is
+ * returned.
+ *
+ * @note The callback parameters are <tt>error, errorDesc, stack, errorTime</tt>.
+ */
+NIMBLE_EXTERN
+int32_t
+nErrorSetCallback(int32_t (*callback)(
+                                      const int32_t,
+                                      const char *,
+                                      const char *,
+                                      const time_t
+                                      )
+                  );
 
 /**
  * @brief Returns the current stack trace as a string.
@@ -127,8 +229,8 @@ nErrorToString(char * dst,
  *
  * @param[out] dst The destination to store the stacktrace string.
  * @param[out] size The length of the string returned, including the null
- * character. This can be NULL.
- * @param[out] levels The number of levels of the stack. This can be NULL.
+ * character. This can be #NULL.
+ * @param[out] levels The number of levels of the stack. This can be #NULL.
  * @return @p dst is returned if successful; otherwise @c #NULL is returned
  * and a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
@@ -136,7 +238,7 @@ nErrorToString(char * dst,
  * @note Each time a function is called, it is added to the stack. When a
  * function returns, it is removed from the stack.
  */
-NIMBLE_EXPORT
+NIMBLE_EXTERN
 char *
 nErrorGetStacktrace(char * dst,
                     int32_t * size,

@@ -80,6 +80,8 @@ extern "C" {
 #ifndef NIMBLE_H
 #define NIMBLE_H /**< Header definition */
 
+#include <stdint.h>
+
 #if defined(_WIN32) || defined(__CYGWIN__)
 #  ifdef BUILDING_DLL
 #    ifdef __GNUC__
@@ -109,6 +111,8 @@ extern "C" {
 #  endif
 #  define NIMBLE_INLINE static inline __attribute__((always_inline))
 #endif
+
+#define NIMBLE_EXTERN extern
 
 #ifndef NULL
 #define NULL ((void *) 0) /**< Null pointer */
