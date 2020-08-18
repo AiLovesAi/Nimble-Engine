@@ -72,7 +72,51 @@ $(function() {
 <div class="title">CrashHandler.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_crash_handler_8h.html">Go to the documentation of this file.</a><div class="fragment"></div><!-- fragment --></div><!-- contents -->
+<a href="_crash_handler_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../../NimbleLicense.h&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * CrashHandler.h</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Nimble Game Engine</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Created by Avery Aaron on 2020-08-18.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Copyright (C) 2020 Avery Aaron &lt;business.a3ology@gmail.com&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#ifndef NIMBLE_ENGINE_CRASH_HANDLER_H</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="_crash_handler_8h.html#af2eaee6c848eb42aa446c54735f336d3">   47</a></span>&#160;<span class="preprocessor">#define NIMBLE_ENGINE_CRASH_HANDLER_H </span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;../../NimbleEngine.h&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="_crash_handler_8h.html#ae1d01fa2a0db5fb774bfc0e5a3fd49c7">   93</a></span>&#160;<a class="code" href="_crash_handler_8h.html#ae1d01fa2a0db5fb774bfc0e5a3fd49c7">nCrashSafe</a>(<span class="keyword">const</span> int32_t error,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;           <span class="keyword">const</span> <span class="keywordtype">char</span> * errorDesc,</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;           int32_t errorDescLen,</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;           <span class="keyword">const</span> <span class="keywordtype">char</span> * crashFilePath,</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;           int32_t crashFilePathLen</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;           )</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;__attribute__((noreturn));</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">  120</a></span>&#160;<a class="code" href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">nCrashAbort</a>(<span class="keyword">const</span> int32_t error</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            )</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;__attribute__((noreturn));</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_CRASH_HANDLER_H</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">// CrashHandler.h</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="a_nimble_8h_html_a99b09cd8c8c999889cf8113c3d281368"><div class="ttname"><a href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div><div class="ttdeci">#define NIMBLE_EXTERN</div><div class="ttdoc">Extern alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00115">Nimble.h:115</a></div></div>
+<div class="ttc" id="a_crash_handler_8h_html_aa980b8029665aac24b758ba6893eb71a"><div class="ttname"><a href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">nCrashAbort</a></div><div class="ttdeci">NIMBLE_EXTERN void nCrashAbort(const int32_t error) __attribute__((noreturn))</div><div class="ttdoc">Crashes the program without notifying the callback.</div></div>
+<div class="ttc" id="a_crash_handler_8h_html_ae1d01fa2a0db5fb774bfc0e5a3fd49c7"><div class="ttname"><a href="_crash_handler_8h.html#ae1d01fa2a0db5fb774bfc0e5a3fd49c7">nCrashSafe</a></div><div class="ttdeci">NIMBLE_EXTERN void nCrashSafe(const int32_t error, const char *errorDesc, int32_t errorDescLen, const char *crashFilePath, int32_t crashFilePathLen) __attribute__((noreturn))</div><div class="ttdoc">Crashes the program safely.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

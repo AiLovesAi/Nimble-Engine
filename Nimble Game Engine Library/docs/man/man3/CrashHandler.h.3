@@ -2,10 +2,159 @@
 .ad l
 .nh
 .SH NAME
-C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/CrashHandler.h
+C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/CrashHandler.h \- This class defines crash handling functions\&.  
+
 .SH SYNOPSIS
 .br
 .PP
+\fC#include '\&.\&./\&.\&./NimbleLicense\&.h'\fP
+.br
+\fC#include '\&.\&./\&.\&./NimbleEngine\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBNIMBLE_ENGINE_CRASH_HANDLER_H\fP"
+.br
+.RI "Header definition\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBNIMBLE_EXTERN\fP void \fBnCrashSafe\fP (const int32_t error, const char *errorDesc, int32_t errorDescLen, const char *crashFilePath, int32_t crashFilePathLen) __attribute__((noreturn))"
+.br
+.RI "Crashes the program safely\&. "
+.ti -1c
+.RI "\fBNIMBLE_EXTERN\fP void \fBnCrashAbort\fP (const int32_t error) __attribute__((noreturn))"
+.br
+.RI "Crashes the program without notifying the callback\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class defines crash handling functions\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+Avery Aaron 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+The MIT License (MIT) Copyright (C) 2020 Avery Aaron business.a3ology@gmail.com
+.PP
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+.PP
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software\&.
+.PP
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT\&. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE\&. 
+.RE
+.PP
+.PP
+\fBDate\fP
+.RS 4
+2020-08-18 
+.RE
+.PP
+
+.PP
+Definition in file \fBCrashHandler\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define NIMBLE_ENGINE_CRASH_HANDLER_H"
+
+.PP
+Header definition\&. 
+.PP
+Definition at line 47 of file CrashHandler\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "\fBNIMBLE_EXTERN\fP void nCrashAbort (const int32_t error)"
+
+.PP
+Crashes the program without notifying the callback\&. Example: 
+.PP
+.nf
+#include <Nimble/NimbleEngine\&.h>
+
+int main(int argc, char ** argv)
+{
+    nCrashAbort(NERROR_NULL);
+}
+
+.fi
+.PP
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP The error that caused the crash\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+This function does not return, and exits the program\&. 
+.RE
+.PP
+
+.SS "\fBNIMBLE_EXTERN\fP void nCrashSafe (const int32_t error, const char * errorDesc, int32_t errorDescLen, const char * crashFilePath, int32_t crashFilePathLen)"
+
+.PP
+Crashes the program safely\&. Crashes the program safely by attempting to safely close threads, logging the error that caused the crash to the file defined by \fCcrashFilePath\fP\&.
+.PP
+Example: 
+.PP
+.nf
+#include <stdio\&.h>
+#include <stdlib\&.h>
+#include <Nimble/NimbleEngine\&.h>
+
+int main(int argc, char ** argv)
+{
+    const int32_t error = NERROR_NULL;
+    char * errorDesc;
+    int32_t errorDescLen;
+    if (nErrorToString(errorDesc, &errorDescLen, error, NULL, 0) == NULL)
+    {
+        fprintf(stderr, "Failed to get error description\&.\n");
+        return(EXIT_FAILURE);
+    }
+
+    const char crashFilePath[] = "crash\&.txt";
+    nCrashSafe(error, errorDesc, errorDescLen, crashFilePath,
+     sizeof(crashFilePath));
+}
+
+.fi
+.PP
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP The error that caused the crash\&. 
+.br
+\fIerrorDesc\fP The description of \fCerror\fP\&. 
+.br
+\fIerrorDescLen\fP The length of the \fCerrorDesc\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. 
+.br
+\fIcrashFilePath\fP The path to the file where the crash info is logged\&. 
+.br
+\fIcrashFilePathLen\fP The length of \fCcrashFilePath\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+This function does not return, and exits the program\&. 
+.RE
+.PP
+\fBTodo\fP
+.RS 4
+Make a callback function for the developer to handle crashes, but with only one attempt before taking over\&. 
+.RE
+.PP
+
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Nimble Game Engine Library from the source code\&.

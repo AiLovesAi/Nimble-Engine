@@ -54,7 +54,7 @@ C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nim
 .br
 .RI "Describes an error and returns a string\&. "
 .ti -1c
-.RI "\fBNIMBLE_EXTERN\fP int32_t \fBnErrorSetCallback\fP (int32_t(*callback)(const int32_t, const char *, const char *, const time_t))"
+.RI "\fBNIMBLE_EXTERN\fP int32_t \fBnErrorSetCallback\fP (int32_t(*callback)(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t))"
 .br
 .RI "Sets the callback function to handle errors\&. "
 .ti -1c
@@ -141,7 +141,7 @@ Definition at line 61 of file Errors\&.h\&.
 .SS "\fBNIMBLE_EXTERN\fP char* nErrorGetStacktrace (char * dst, int32_t * size, int32_t * levels)"
 
 .PP
-Returns the current stack trace as a string\&. Returns the current stack trace as a string, and sets \fC\fP 
+Returns the current stack trace as a string\&. Returns the current stack trace as a string, and sets the \fCsize\fP of the string and \fClevels\fP of the stack\&.
 .PP
 Example: 
 .PP
@@ -196,7 +196,7 @@ Get stack trace\&.
 
 .PP
 Definition at line 216 of file Errors\&.c\&.
-.SS "\fBNIMBLE_EXTERN\fP int32_t nErrorSetCallback (int32_t(*)(const int32_t, const char *, const char *, const time_t) callback)"
+.SS "\fBNIMBLE_EXTERN\fP int32_t nErrorSetCallback (int32_t(*)(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) callback)"
 
 .PP
 Sets the callback function to handle errors\&. Sets the callback function \fCcallback\fP that gets called when an error occurs\&.
@@ -256,7 +256,7 @@ int main(int argc, char ** argv)
 .PP
 \fBNote\fP
 .RS 4
-The callback parameters are \fCerror, errorDesc, stack, errorTime\fP\&. 
+The callback parameters are \fCerror, errorDesc, errorDescLen, stack, stackLen, errorTime\fP\&. 
 .RE
 .PP
 
@@ -278,7 +278,7 @@ int main(int argc, char ** argv)
 {
     char exampleFilePath[] = "example\&.txt";
     if (nErrorThrow(NERROR_FILE_NOT_FOUND, exampleFilePath,
-        sizeof(exampleFilePath)) != NSUCCESS)
+         sizeof(exampleFilePath)) != NSUCCESS)
     {
         fprintf(stderr, "Failed to throw error\&.\n");
         exit(EXIT_FAILURE);
@@ -301,7 +301,12 @@ int main(int argc, char ** argv)
 .PP
 \fBReturns\fP
 .RS 4
-\fBNSUCCESS\fP is returned if successful; otherwise \fC\fBNERROR\fP\fP is returned\&. 
+\fBNSUCCESS\fP is returned if successful; otherwise \fC\fBNERROR\fP\fP is returned\&.
+.RE
+.PP
+\fBTodo\fP
+.RS 4
+Set a default error manager\&. 
 .RE
 .PP
 
@@ -341,9 +346,8 @@ int main(int argc, char ** argv)
     char * errorStr;
     int32_t errorLen;
     char exampleFilePath[] = "example\&.txt";
-    nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND, exampleFilePath,
-     sizeof(exampleFilePath));
-    if (errorStr == NULL)
+    if (nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND,
+         exampleFilePath, sizeof(exampleFilePath)) == NULL)
     {
         fprintf(stderr, "Failed to get error string\&.\n");
         exit(EXIT_FAILURE);

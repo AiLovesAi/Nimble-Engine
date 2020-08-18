@@ -60,8 +60,8 @@ const char errorNotFoundErrStr[] = "NERROR_ERROR_NOT_FOUND: An error passed to "
 /**
  * @brief The error callback function that gets defined by nErrorSetCallback().
  */
-int32_t (*errorCallback) (const int32_t, const char *, const char *,
-                          const time_t) = NULL;
+int32_t (*errorCallback) (const int32_t, const char *, const int32_t,
+                          const char *, const int32_t, const time_t) = NULL; /** @todo Set a default error manager. */
 
 
 int32_t nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
@@ -83,14 +83,14 @@ int32_t nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
     }
     
     char * stack;
-    int32_t size, levels;
-    if (nErrorGetStacktrace(stack, &size, &levels) == NULL)
+    int32_t stackLen, levels;
+    if (nErrorGetStacktrace(stack, &stackLen, &levels) == NULL)
     {
         /** @todo Crash. */
         return NERROR;
     }
     
-    errorCallback(error, errorDesc, stack, errorTime);
+    errorCallback(error, errorDesc, errorDescLen, stack, stackLen, errorTime);
     return NSUCCESS;
 }
 
@@ -200,7 +200,7 @@ char * nErrorToString(char * dst, int32_t * size, const int32_t error,
 }
 
 int32_t nErrorSetCallback(int32_t (*callback)(const int32_t, const char *,
-         const char *, const time_t))
+         const int32_t, const char *, const int32_t, const time_t))
 {
     if (callback == NULL)
     {

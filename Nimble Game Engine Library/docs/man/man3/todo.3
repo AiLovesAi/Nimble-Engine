@@ -5,6 +5,8 @@
 todo \- Todo List 
 
 .IP "\fBGlobal \fBnErrorThrow\fP (const int32_t error, const char *info, int32_t infoLen)\fP" 1c
+Set a default error manager\&. 
+.PP
 Crash\&. 
 .PP
 Crash\&. 
@@ -17,6 +19,8 @@ Get stack trace\&.
 .IP "\fBpage \fBNimble Game Engine Library\fP \fP" 1c
 Explain how to link the library or use the app to write code 
 .PP
-Explain how to get started, setting up a window and doing basic 2D/3D stuff
+Explain how to get started, setting up a window and doing basic 2D/3D stuff 
+.IP "\fBGlobal \fBnCrashSafe\fP (const int32_t error, const char *errorDesc, int32_t errorDescLen, const char *crashFilePath, int32_t crashFilePathLen) __attribute__((noreturn))\fP" 1c
+Make a callback function for the developer to handle crashes, but with only one attempt before taking over\&. 
 .PP
 

@@ -68,13 +68,187 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">CrashHandler.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>This class defines crash handling functions.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="_nimble_license_8h_source.html">../../NimbleLicense.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_nimble_engine_8h_source.html">../../NimbleEngine.h</a>&quot;</code><br />
+</div>
 <p><a href="_crash_handler_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:af2eaee6c848eb42aa446c54735f336d3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8h.html#af2eaee6c848eb42aa446c54735f336d3">NIMBLE_ENGINE_CRASH_HANDLER_H</a></td></tr>
+<tr class="memdesc:af2eaee6c848eb42aa446c54735f336d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Header definition.  <a href="_crash_handler_8h.html#af2eaee6c848eb42aa446c54735f336d3">More...</a><br /></td></tr>
+<tr class="separator:af2eaee6c848eb42aa446c54735f336d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ae1d01fa2a0db5fb774bfc0e5a3fd49c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8h.html#ae1d01fa2a0db5fb774bfc0e5a3fd49c7">nCrashSafe</a> (const int32_t error, const char *errorDesc, int32_t errorDescLen, const char *crashFilePath, int32_t crashFilePathLen) __attribute__((noreturn))</td></tr>
+<tr class="memdesc:ae1d01fa2a0db5fb774bfc0e5a3fd49c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program safely.  <a href="_crash_handler_8h.html#ae1d01fa2a0db5fb774bfc0e5a3fd49c7">More...</a><br /></td></tr>
+<tr class="separator:ae1d01fa2a0db5fb774bfc0e5a3fd49c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa980b8029665aac24b758ba6893eb71a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">nCrashAbort</a> (const int32_t error) __attribute__((noreturn))</td></tr>
+<tr class="memdesc:aa980b8029665aac24b758ba6893eb71a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program without notifying the callback.  <a href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">More...</a><br /></td></tr>
+<tr class="separator:aa980b8029665aac24b758ba6893eb71a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class defines crash handling functions. </p>
+<dl class="section author"><dt>Author</dt><dd>Avery Aaron </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.a'+'3ol'+'og'+'y@g'+'ma'+'il.'+'co'+'m'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>a3olo<span style="display: none;">.nosp@m.</span>gy@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a></p>
+<p class="interdd">Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p class="interdd">The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p class="enddd">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </p>
+</dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2020-08-18 </dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="_crash_handler_8h_source.html">CrashHandler.h</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="af2eaee6c848eb42aa446c54735f336d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2eaee6c848eb42aa446c54735f336d3">&#9670;&nbsp;</a></span>NIMBLE_ENGINE_CRASH_HANDLER_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NIMBLE_ENGINE_CRASH_HANDLER_H</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Header definition. </p>
+
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8h_source.html#l00047">47</a> of file <a class="el" href="_crash_handler_8h_source.html">CrashHandler.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aa980b8029665aac24b758ba6893eb71a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa980b8029665aac24b758ba6893eb71a">&#9670;&nbsp;</a></span>nCrashAbort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void nCrashAbort </td>
+          <td>(</td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>error</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crashes the program without notifying the callback. </p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">nCrashAbort</a>(<a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>);</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The error that caused the crash.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. </dd></dl>
+
+</div>
+</div>
+<a id="ae1d01fa2a0db5fb774bfc0e5a3fd49c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1d01fa2a0db5fb774bfc0e5a3fd49c7">&#9670;&nbsp;</a></span>nCrashSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void nCrashSafe </td>
+          <td>(</td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>error</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>errorDesc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>errorDescLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>crashFilePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>crashFilePathLen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crashes the program safely. </p>
+<p>Crashes the program safely by attempting to safely close threads, logging the error that caused the crash to the file defined by <code>crashFilePath</code>.</p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">const</span> int32_t error = <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>;</div>
+<div class="line">    <span class="keywordtype">char</span> * errorDesc;</div>
+<div class="line">    int32_t errorDescLen;</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#a5c2568530315002dcbfccaafc5821883">nErrorToString</a>(errorDesc, &amp;errorDescLen, error, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, 0) == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line">    {</div>
+<div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to get error description.\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span>(EXIT_FAILURE);</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span> crashFilePath[] = <span class="stringliteral">&quot;crash.txt&quot;</span>;</div>
+<div class="line">    <a class="code" href="_crash_handler_8h.html#ae1d01fa2a0db5fb774bfc0e5a3fd49c7">nCrashSafe</a>(error, errorDesc, errorDescLen, crashFilePath,</div>
+<div class="line">     <span class="keyword">sizeof</span>(crashFilePath));</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The error that caused the crash. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">errorDesc</td><td>The description of <code>error</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">errorDescLen</td><td>The length of the <code>errorDesc</code> argument, including the null character. A length of zero (0) uses strlen() to determine length. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">crashFilePath</td><td>The path to the file where the crash info is logged. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">crashFilePathLen</td><td>The length of <code>crashFilePath</code> argument, including the null character. A length of zero (0) uses strlen() to determine length.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Make a callback function for the developer to handle crashes, but with only one attempt before taking over. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
+<div class="ttc" id="a_errors_8c_html_a5c2568530315002dcbfccaafc5821883"><div class="ttname"><a href="_errors_8c.html#a5c2568530315002dcbfccaafc5821883">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *size, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00097">Errors.c:97</a></div></div>
+<div class="ttc" id="a_crash_handler_8h_html_aa980b8029665aac24b758ba6893eb71a"><div class="ttname"><a href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">nCrashAbort</a></div><div class="ttdeci">NIMBLE_EXTERN void nCrashAbort(const int32_t error) __attribute__((noreturn))</div><div class="ttdoc">Crashes the program without notifying the callback.</div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00118">Nimble.h:118</a></div></div>
+<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">Includes all the necessary game engine header files.</div></div>
+<div class="ttc" id="a_crash_handler_8h_html_ae1d01fa2a0db5fb774bfc0e5a3fd49c7"><div class="ttname"><a href="_crash_handler_8h.html#ae1d01fa2a0db5fb774bfc0e5a3fd49c7">nCrashSafe</a></div><div class="ttdeci">NIMBLE_EXTERN void nCrashSafe(const int32_t error, const char *errorDesc, int32_t errorDescLen, const char *crashFilePath, int32_t crashFilePathLen) __attribute__((noreturn))</div><div class="ttdoc">Crashes the program safely.</div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00063">Errors.h:63</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

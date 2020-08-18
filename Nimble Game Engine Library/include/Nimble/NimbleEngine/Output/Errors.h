@@ -82,7 +82,7 @@ enum nErrors {
  * {
  *     char exampleFilePath[] = "example.txt";
  *     if (nErrorThrow(NERROR_FILE_NOT_FOUND, exampleFilePath,
-           sizeof(exampleFilePath)) != NSUCCESS)
+            sizeof(exampleFilePath)) != NSUCCESS)
  *     {
  *         fprintf(stderr, "Failed to throw error.\n");
  *         exit(EXIT_FAILURE);
@@ -120,9 +120,8 @@ nErrorThrow(const int32_t error,
  *     char * errorStr;
  *     int32_t errorLen;
  *     char exampleFilePath[] = "example.txt";
- *     nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND, exampleFilePath,
- *      sizeof(exampleFilePath));
- *     if (errorStr == NULL)
+ *     if (nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND,
+ *          exampleFilePath, sizeof(exampleFilePath)) == NULL)
  *     {
  *         fprintf(stderr, "Failed to get error string.\n");
  *         exit(EXIT_FAILURE);
@@ -197,21 +196,25 @@ nErrorToString(char * dst,
  * @return #NSUCCESS is returned if successful; otherwise @c #NERROR is
  * returned.
  *
- * @note The callback parameters are <tt>error, errorDesc, stack, errorTime</tt>.
+ * @note The callback parameters are <tt>error, errorDesc, errorDescLen, stack,
+ * stackLen, errorTime</tt>.
  */
 NIMBLE_EXTERN
 int32_t
 nErrorSetCallback(int32_t (*callback)(
                                       const int32_t,
                                       const char *,
+                                      const int32_t,
                                       const char *,
+                                      const int32_t,
                                       const time_t
                                       )
                   );
 
 /**
  * @brief Returns the current stack trace as a string.
- * Returns the current stack trace as a string, and sets @p 
+ * Returns the current stack trace as a string, and sets the @p size of the
+ * string and @p levels of the stack.
  *
  * Example:
  * @code
