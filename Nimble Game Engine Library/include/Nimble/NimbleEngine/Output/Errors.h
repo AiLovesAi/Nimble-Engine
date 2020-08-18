@@ -120,7 +120,7 @@ nErrorThrow(const int32_t error,
  *         fprintf(stderr, "Failed to get error string.\n");
  *         exit(EXIT_FAILURE);
  *     }
- *     printf("NERROR_NULL as string: %s\n", errorStr);
+ *     printf("NERROR_FILE_NOT_FOUND as string: %s\n", errorStr);
  *     return EXIT_SUCCESS;
  * }
  * @endcode
