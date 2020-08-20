@@ -1,5 +1,5 @@
-\hypertarget{_crash_handler_8h}{}\doxysection{include/\+Nimble/\+Nimble\+Engine/\+Output/\+Crash\+Handler.h File Reference}
-\label{_crash_handler_8h}\index{include/Nimble/NimbleEngine/Output/CrashHandler.h@{include/Nimble/NimbleEngine/Output/CrashHandler.h}}
+\hypertarget{_crash_handler_8h}{}\doxysection{C\+:/\+Users/\+Avery/\+Desktop/\+Nimble Game Engine/\+Nimble Game Engine Library/include/\+Nimble/\+Nimble\+Engine/\+Output/\+Crash\+Handler.h File Reference}
+\label{_crash_handler_8h}\index{C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/CrashHandler.h@{C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/CrashHandler.h}}
 
 
 This class defines crash handling functions.  
@@ -15,6 +15,8 @@ This class defines crash handling functions.
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} int32\+\_\+t \mbox{\hyperlink{_crash_handler_8h_a1fa40421c4206d25b97f5f23d85d4eae}{n\+Crash\+Set\+Handler}} (void($\ast$callback)(int32\+\_\+t error))
+\begin{DoxyCompactList}\small\item\em Sets the crash handler callback function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} void \mbox{\hyperlink{_crash_handler_8h_ae1d01fa2a0db5fb774bfc0e5a3fd49c7}{n\+Crash\+Safe}} (const int32\+\_\+t error, const char $\ast$error\+Desc, int32\+\_\+t error\+Desc\+Len, const char $\ast$crash\+File\+Path, int32\+\_\+t crash\+File\+Path\+Len) \+\_\+\+\_\+attribute\+\_\+\+\_\+((noreturn))
 \begin{DoxyCompactList}\small\item\em Crashes the program safely. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} void \mbox{\hyperlink{_crash_handler_8h_aa980b8029665aac24b758ba6893eb71a}{n\+Crash\+Abort}} (const int32\+\_\+t error) \+\_\+\+\_\+attribute\+\_\+\+\_\+((noreturn))
@@ -91,10 +93,10 @@ Example\+:
 This function does not return, and exits the program. 
 \end{DoxyNote}
 \begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]Make abort function. \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]Make abort function. \end{DoxyRefDesc}
 
 
-Definition at line 49 of file Crash\+Handler.\+c.
+Definition at line 96 of file Crash\+Handler.\+c.
 
 \mbox{\Hypertarget{_crash_handler_8h_ae1d01fa2a0db5fb774bfc0e5a3fd49c7}\label{_crash_handler_8h_ae1d01fa2a0db5fb774bfc0e5a3fd49c7}} 
 \index{CrashHandler.h@{CrashHandler.h}!nCrashSafe@{nCrashSafe}}
@@ -146,7 +148,35 @@ Example\+:
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-This function does not return, and exits the program. 
+This function does not return, and exits the program. If an error occurs, the program will abort with \mbox{\hyperlink{_crash_handler_8h_aa980b8029665aac24b758ba6893eb71a}{n\+Crash\+Abort()}}. 
 \end{DoxyNote}
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000007}{Todo}}]Make a callback function for the developer to handle crashes, but with only one attempt before taking over. \end{DoxyRefDesc}
+\mbox{\Hypertarget{_crash_handler_8h_a1fa40421c4206d25b97f5f23d85d4eae}\label{_crash_handler_8h_a1fa40421c4206d25b97f5f23d85d4eae}} 
+\index{CrashHandler.h@{CrashHandler.h}!nCrashSetHandler@{nCrashSetHandler}}
+\index{nCrashSetHandler@{nCrashSetHandler}!CrashHandler.h@{CrashHandler.h}}
+\doxysubsubsection{\texorpdfstring{nCrashSetHandler()}{nCrashSetHandler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} int32\+\_\+t n\+Crash\+Set\+Handler (\begin{DoxyParamCaption}\item[{void($\ast$)(int32\+\_\+t error)}]{callback }\end{DoxyParamCaption})}
+
+
+
+Sets the crash handler callback function. 
+
+Sets the callback function that gets called when the game crashes.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em callback} & The function that gets called when a crash occurs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily \mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}}} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}} is returned.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The callback function can only be called once. If an error occurs, the program will abort with \mbox{\hyperlink{_crash_handler_8h_aa980b8029665aac24b758ba6893eb71a}{n\+Crash\+Abort()}}. Check \mbox{\hyperlink{_crash_handler_8c_ab1ceb77327adca914ad64c2ab83148a7}{n\+Crash\+Handler\+Default()}} for parameter information. 
+\end{DoxyNote}

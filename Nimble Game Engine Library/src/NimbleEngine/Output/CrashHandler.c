@@ -46,6 +46,53 @@
 #include <stdio.h>
 #include <time.h>
 
+#include "../../../include/Nimble/NimbleEngine/Output/Errors.h"
+
+/**
+ * @brief The default crash handler callback.
+ * @param[in] error The error number.
+ * @param[in] errorDesc The description of @p error.
+ * @param[in] errorDescLen The length of the @p errorDesc argument, including the
+ * null character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] stack The stacktrace of the thread that caused the crash.
+ * @param[in] stackLen The length of the @p stack argument, including the null
+ * character. A length of zero (0) uses strlen() to determine length.
+ */
+void nCrashHandlerDefault(const int32_t error,
+                          const char * errorDesc,
+                          const int32_t errorDescLen,
+                          const char * stack,
+                          const int32_t stackLen,
+                          const time_t errorTime
+                          );
+
+void (* crashCallback) (const int32_t error, const char * errorDesc, 
+         const int32_t errorDescLen, const char * stack, const int32_t stackLen,
+         const time_t errorTime) = nCrashHandlerDefault;
+
+
+void nCrashHandlerDefault(const int32_t error, const char * errorDesc,
+      const int32_t errorDescLen, const char * stack, const int32_t stackLen,
+      const time_t errorTime)
+{
+    /** @todo Make default callback. */
+}
+
+int32_t nCrashSetCallback(void (* callback)(const int32_t error,
+         const char * errorDesc, const int32_t errorDescLen, const char * stack,
+         const int32_t stackLen, const time_t errorTime))
+{
+    if (callback == NULL)
+    {
+        char callbackErrStr[] = "Callback parameter null in nCrashSetCallback().";
+        nErrorThrow(NERROR_NULL, callbackErrStr, sizeof(callbackErrStr));
+        return NERROR;
+    }
+    
+    crashCallback = callback;
+    return NSUCCESS;
+}
+
 void nCrashAbort(const int32_t error)
 {
     /** @todo Make abort function. */

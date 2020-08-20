@@ -59,27 +59,34 @@ const char errorNotFoundErrStr[] = "NERROR_ERROR_NOT_FOUND: An error passed to "
                                    "a function was not valid: ";
 
 /**
- * @brief The default error callback.
- * @note Check nErrorSetCallback() for parameter information.
+ * @brief The default error handler callback.
+ * @param[in] error The error number.
+ * @param[in] errorDesc The description of @p error.
+ * @param[in] errorDescLen The length of the @p errorDesc argument, including the
+ * null character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] stack The stacktrace of the thread that caused the crash.
+ * @param[in] stackLen The length of the @p stack argument, including the null
+ * character. A length of zero (0) uses strlen() to determine length.
  */
-int32_t errorCallbackDefault(const int32_t error,
-                             const char * errorDesc,
-                             const int32_t errorDescLen,
-                             const char * stack,
-                             const int32_t stackLen,
-                             const time_t errorTime
-                             );
+void nErrorHandlerDefault(const int32_t error,
+                          const char * errorDesc,
+                          const int32_t errorDescLen,
+                          const char * stack,
+                          const int32_t stackLen,
+                          const time_t errorTime
+                          );
 
 /**
  * @brief The error callback function that gets defined by nErrorSetCallback().
  */
-int32_t (* errorCallback) (const int32_t, const char *, const int32_t,
-            const char *, const int32_t, const time_t) = errorCallbackDefault;
-
-
-int32_t errorCallbackDefault(const int32_t error, const char * errorDesc,
+void (* errorCallback) (const int32_t error, const char * errorDesc, 
          const int32_t errorDescLen, const char * stack, const int32_t stackLen,
-         const time_t errorTime)
+         const time_t errorTime) = nErrorHandlerDefault;
+
+
+void nErrorHandlerDefault(const int32_t error, const char * errorDesc,
+      const int32_t errorDescLen, const char * stack, const int32_t stackLen,
+      const time_t errorTime)
 {
     /** @todo Make default callback. */
 }
@@ -213,8 +220,9 @@ char * nErrorToString(char * dst, int32_t * size, const int32_t error,
     return dst;
 }
 
-int32_t nErrorSetCallback(int32_t (*callback)(const int32_t, const char *,
-         const int32_t, const char *, const int32_t, const time_t))
+int32_t nErrorSetCallback(void (* callback)(const int32_t error,
+         const char * errorDesc, const int32_t errorDescLen, const char * stack,
+         const int32_t stackLen, const time_t errorTime))
 {
     if (callback == NULL)
     {

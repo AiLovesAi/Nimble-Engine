@@ -1,5 +1,5 @@
-\hypertarget{_errors_8c}{}\doxysection{src/\+Nimble\+Engine/\+Output/\+Errors.c File Reference}
-\label{_errors_8c}\index{src/NimbleEngine/Output/Errors.c@{src/NimbleEngine/Output/Errors.c}}
+\hypertarget{_errors_8c}{}\doxysection{C\+:/\+Users/\+Avery/\+Desktop/\+Nimble Game Engine/\+Nimble Game Engine Library/src/\+Nimble\+Engine/\+Output/\+Errors.c File Reference}
+\label{_errors_8c}\index{C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c@{C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c}}
 
 
 This class defines error values and error handling functions.  
@@ -16,13 +16,13 @@ This class defines error values and error handling functions.
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int32\+\_\+t \mbox{\hyperlink{_errors_8c_a5575beb1cd20f6c534ab4e6342b81f2e}{error\+Callback\+Default}} (const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time)
-\begin{DoxyCompactList}\small\item\em The default error callback. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_errors_8c_a97d561d08d5d0201d37d1773e19c26e0}{n\+Error\+Handler\+Default}} (const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time)
+\begin{DoxyCompactList}\small\item\em The default error handler callback. \end{DoxyCompactList}\item 
 int32\+\_\+t \mbox{\hyperlink{_errors_8c_ab17af6118ec5a69109949c0485f2bb9d}{n\+Error\+Throw}} (const int32\+\_\+t error, const char $\ast$info, int32\+\_\+t info\+Len)
 \begin{DoxyCompactList}\small\item\em Sends an error to the error callback. \end{DoxyCompactList}\item 
 char $\ast$ \mbox{\hyperlink{_errors_8c_a5c2568530315002dcbfccaafc5821883}{n\+Error\+To\+String}} (char $\ast$dst, int32\+\_\+t $\ast$size, const int32\+\_\+t error, const char $\ast$info, int32\+\_\+t info\+Len)
 \begin{DoxyCompactList}\small\item\em Describes an error and returns a string. \end{DoxyCompactList}\item 
-int32\+\_\+t \mbox{\hyperlink{_errors_8c_af018df8136f2b31b2d88cdc5db710295}{n\+Error\+Set\+Callback}} (int32\+\_\+t($\ast$callback)(const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const time\+\_\+t))
+int32\+\_\+t \mbox{\hyperlink{_errors_8c_aa4b8bf82ecb33621b0b5e536ccd32439}{n\+Error\+Set\+Callback}} (void($\ast$callback)(const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time))
 \begin{DoxyCompactList}\small\item\em Sets the callback function to handle errors. \end{DoxyCompactList}\item 
 char $\ast$ \mbox{\hyperlink{_errors_8c_a51c5b711f13bd8a6090936b7b2c21ecb}{n\+Error\+Get\+Stacktrace}} (char $\ast$dst, int32\+\_\+t $\ast$size, int32\+\_\+t $\ast$levels)
 \begin{DoxyCompactList}\small\item\em Returns the current stack trace as a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -39,8 +39,8 @@ const char \mbox{\hyperlink{_errors_8c_a89acda8dffb30240e0d307c2c3204360}{file\+
 \item 
 const char \mbox{\hyperlink{_errors_8c_ad0b629ed61ab8832819b916b751bc034}{error\+Not\+Found\+Err\+Str}} \mbox{[}$\,$\mbox{]}
 \item 
-int32\+\_\+t($\ast$ \mbox{\hyperlink{_errors_8c_add9997cdc667fa7973c8f7d1e1675400}{error\+Callback}} )(const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const time\+\_\+t) = \mbox{\hyperlink{_errors_8c_a5575beb1cd20f6c534ab4e6342b81f2e}{error\+Callback\+Default}}
-\begin{DoxyCompactList}\small\item\em The error callback function that gets defined by \mbox{\hyperlink{_errors_8c_af018df8136f2b31b2d88cdc5db710295}{n\+Error\+Set\+Callback()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void($\ast$ \mbox{\hyperlink{_errors_8c_ae29006615c247a56c2692ae27a8c68d4}{error\+Callback}} )(const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time) = \mbox{\hyperlink{_errors_8c_a97d561d08d5d0201d37d1773e19c26e0}{n\+Error\+Handler\+Default}}
+\begin{DoxyCompactList}\small\item\em The error callback function that gets defined by \mbox{\hyperlink{_errors_8c_aa4b8bf82ecb33621b0b5e536ccd32439}{n\+Error\+Set\+Callback()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -66,25 +66,6 @@ T\+HE S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{_errors_8c_a5575beb1cd20f6c534ab4e6342b81f2e}\label{_errors_8c_a5575beb1cd20f6c534ab4e6342b81f2e}} 
-\index{Errors.c@{Errors.c}!errorCallbackDefault@{errorCallbackDefault}}
-\index{errorCallbackDefault@{errorCallbackDefault}!Errors.c@{Errors.c}}
-\doxysubsubsection{\texorpdfstring{errorCallbackDefault()}{errorCallbackDefault()}}
-{\footnotesize\ttfamily int32\+\_\+t error\+Callback\+Default (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{error\+Desc,  }\item[{const int32\+\_\+t}]{error\+Desc\+Len,  }\item[{const char $\ast$}]{stack,  }\item[{const int32\+\_\+t}]{stack\+Len,  }\item[{const time\+\_\+t}]{error\+Time }\end{DoxyParamCaption})}
-
-
-
-The default error callback. 
-
-\begin{DoxyNote}{Note}
-Check \mbox{\hyperlink{_errors_8c_af018df8136f2b31b2d88cdc5db710295}{n\+Error\+Set\+Callback()}} for parameter information. 
-\end{DoxyNote}
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]Make default callback. \end{DoxyRefDesc}
-
-
-Definition at line 80 of file Errors.\+c.
-
 \mbox{\Hypertarget{_errors_8c_a51c5b711f13bd8a6090936b7b2c21ecb}\label{_errors_8c_a51c5b711f13bd8a6090936b7b2c21ecb}} 
 \index{Errors.c@{Errors.c}!nErrorGetStacktrace@{nErrorGetStacktrace}}
 \index{nErrorGetStacktrace@{nErrorGetStacktrace}!Errors.c@{Errors.c}}
@@ -123,9 +104,9 @@ Example\+:
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ out}}  & {\em dst} & The destination to store the stacktrace string. \\
 \hline
-\mbox{\texttt{ out}}  & {\em size} & The length of the string returned, including the null character. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\mbox{\texttt{ out}}  & {\em size} & The length of the string returned, including the null character. This can be {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}}. \\
 \hline
-\mbox{\texttt{ out}}  & {\em levels} & The number of levels of the stack. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\mbox{\texttt{ out}}  & {\em levels} & The number of levels of the stack. This can be {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -135,16 +116,45 @@ Example\+:
 Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. 
 \end{DoxyNote}
 \begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000004}{Todo}}]Get stack trace. \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{todo__todo000005}{Todo}}]Get stack trace. \end{DoxyRefDesc}
 
 
-Definition at line 230 of file Errors.\+c.
+Definition at line 238 of file Errors.\+c.
 
-\mbox{\Hypertarget{_errors_8c_af018df8136f2b31b2d88cdc5db710295}\label{_errors_8c_af018df8136f2b31b2d88cdc5db710295}} 
+\mbox{\Hypertarget{_errors_8c_a97d561d08d5d0201d37d1773e19c26e0}\label{_errors_8c_a97d561d08d5d0201d37d1773e19c26e0}} 
+\index{Errors.c@{Errors.c}!nErrorHandlerDefault@{nErrorHandlerDefault}}
+\index{nErrorHandlerDefault@{nErrorHandlerDefault}!Errors.c@{Errors.c}}
+\doxysubsubsection{\texorpdfstring{nErrorHandlerDefault()}{nErrorHandlerDefault()}}
+{\footnotesize\ttfamily void n\+Error\+Handler\+Default (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{error\+Desc,  }\item[{const int32\+\_\+t}]{error\+Desc\+Len,  }\item[{const char $\ast$}]{stack,  }\item[{const int32\+\_\+t}]{stack\+Len,  }\item[{const time\+\_\+t}]{error\+Time }\end{DoxyParamCaption})}
+
+
+
+The default error handler callback. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em error} & The error number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em error\+Desc} & The description of {\ttfamily error}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em error\+Desc\+Len} & The length of the {\ttfamily error\+Desc} argument, including the null character. A length of zero (0) uses strlen() to determine length. \\
+\hline
+\mbox{\texttt{ in}}  & {\em stack} & The stacktrace of the thread that caused the crash. \\
+\hline
+\mbox{\texttt{ in}}  & {\em stack\+Len} & The length of the {\ttfamily stack} argument, including the null character. A length of zero (0) uses strlen() to determine length. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]Make default callback. \end{DoxyRefDesc}
+
+
+Definition at line 87 of file Errors.\+c.
+
+\mbox{\Hypertarget{_errors_8c_aa4b8bf82ecb33621b0b5e536ccd32439}\label{_errors_8c_aa4b8bf82ecb33621b0b5e536ccd32439}} 
 \index{Errors.c@{Errors.c}!nErrorSetCallback@{nErrorSetCallback}}
 \index{nErrorSetCallback@{nErrorSetCallback}!Errors.c@{Errors.c}}
 \doxysubsubsection{\texorpdfstring{nErrorSetCallback()}{nErrorSetCallback()}}
-{\footnotesize\ttfamily int32\+\_\+t n\+Error\+Set\+Callback (\begin{DoxyParamCaption}\item[{int32\+\_\+t($\ast$)(const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const time\+\_\+t)}]{callback }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int32\+\_\+t n\+Error\+Set\+Callback (\begin{DoxyParamCaption}\item[{void($\ast$)(const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time)}]{callback }\end{DoxyParamCaption})}
 
 
 
@@ -197,14 +207,14 @@ Sets the callback function {\ttfamily callback} that gets called when an error o
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}} is returned.
+{\ttfamily \mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}}} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}} is returned.
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-The callback parameters are {\ttfamily error, error\+Desc, error\+Desc\+Len, stack, stack\+Len, error\+Time}. 
+Check \mbox{\hyperlink{_errors_8c_a97d561d08d5d0201d37d1773e19c26e0}{n\+Error\+Handler\+Default()}} for parameter information. 
 \end{DoxyNote}
 
 
-Definition at line 216 of file Errors.\+c.
+Definition at line 223 of file Errors.\+c.
 
 \mbox{\Hypertarget{_errors_8c_ab17af6118ec5a69109949c0485f2bb9d}\label{_errors_8c_ab17af6118ec5a69109949c0485f2bb9d}} 
 \index{Errors.c@{Errors.c}!nErrorThrow@{nErrorThrow}}
@@ -245,15 +255,15 @@ Example\+:
 \hline
 \mbox{\texttt{ in}}  & {\em info} & Relevant information, such as a file location, that could help \\
 \hline
-\mbox{\texttt{ in}}  & {\em info\+Len} & The length of the {\ttfamily info} argument, including the null character. A length of zero (0) uses strlen() to determine length. diagnose the error. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\mbox{\texttt{ in}}  & {\em info\+Len} & The length of the {\ttfamily info} argument, including the null character. A length of zero (0) uses strlen() to determine length. diagnose the error. This can be {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}} is returned. 
+{\ttfamily \mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}}} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}} is returned. 
 \end{DoxyReturn}
 
 
-Definition at line 87 of file Errors.\+c.
+Definition at line 94 of file Errors.\+c.
 
 \mbox{\Hypertarget{_errors_8c_a5c2568530315002dcbfccaafc5821883}\label{_errors_8c_a5c2568530315002dcbfccaafc5821883}} 
 \index{Errors.c@{Errors.c}!nErrorToString@{nErrorToString}}
@@ -292,11 +302,11 @@ Example\+:
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ out}}  & {\em dst} & The destination to store the string describing {\ttfamily error}. \\
 \hline
-\mbox{\texttt{ out}}  & {\em size} & The length of the string returned, including the null character. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\mbox{\texttt{ out}}  & {\em size} & The length of the string returned, including the null character. This can be {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}}. \\
 \hline
 \mbox{\texttt{ in}}  & {\em error} & The error to get described. \\
 \hline
-\mbox{\texttt{ in}}  & {\em info} & Relevant information, such as a file location, that could help diagnose the error. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\mbox{\texttt{ in}}  & {\em info} & Relevant information, such as a file location, that could help diagnose the error. This can be {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}}. \\
 \hline
 \mbox{\texttt{ in}}  & {\em info\+Len} & The length of the {\ttfamily info} argument, including the null character. A length of zero (0) uses strlen() to determine length. \\
 \hline
@@ -305,27 +315,27 @@ Example\+:
 {\ttfamily dst} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}} is returned. 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]Crash. \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{todo__todo000004}{Todo}}]Crash. \end{DoxyRefDesc}
 
 
-Definition at line 111 of file Errors.\+c.
+Definition at line 118 of file Errors.\+c.
 
 
 
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{_errors_8c_add9997cdc667fa7973c8f7d1e1675400}\label{_errors_8c_add9997cdc667fa7973c8f7d1e1675400}} 
+\mbox{\Hypertarget{_errors_8c_ae29006615c247a56c2692ae27a8c68d4}\label{_errors_8c_ae29006615c247a56c2692ae27a8c68d4}} 
 \index{Errors.c@{Errors.c}!errorCallback@{errorCallback}}
 \index{errorCallback@{errorCallback}!Errors.c@{Errors.c}}
 \doxysubsubsection{\texorpdfstring{errorCallback}{errorCallback}}
-{\footnotesize\ttfamily int32\+\_\+t($\ast$ error\+Callback) (const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const time\+\_\+t) = \mbox{\hyperlink{_errors_8c_a5575beb1cd20f6c534ab4e6342b81f2e}{error\+Callback\+Default}}}
+{\footnotesize\ttfamily void($\ast$ error\+Callback) (const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time) = \mbox{\hyperlink{_errors_8c_a97d561d08d5d0201d37d1773e19c26e0}{n\+Error\+Handler\+Default}}}
 
 
 
-The error callback function that gets defined by \mbox{\hyperlink{_errors_8c_af018df8136f2b31b2d88cdc5db710295}{n\+Error\+Set\+Callback()}}. 
+The error callback function that gets defined by \mbox{\hyperlink{_errors_8c_aa4b8bf82ecb33621b0b5e536ccd32439}{n\+Error\+Set\+Callback()}}. 
 
 
 
-Definition at line 76 of file Errors.\+c.
+Definition at line 82 of file Errors.\+c.
 
 \mbox{\Hypertarget{_errors_8c_ad0b629ed61ab8832819b916b751bc034}\label{_errors_8c_ad0b629ed61ab8832819b916b751bc034}} 
 \index{Errors.c@{Errors.c}!errorNotFoundErrStr@{errorNotFoundErrStr}}

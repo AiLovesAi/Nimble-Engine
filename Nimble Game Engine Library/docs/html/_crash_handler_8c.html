@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Game Engine Library: src/NimbleEngine/Output/CrashHandler.c File Reference</title>
+<title>Nimble Game Engine Library: C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/CrashHandler.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">CrashHandler.c File Reference</div>  </div>
 </div><!--header-->
@@ -83,14 +84,25 @@ $(function() {
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;time.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="_errors_8h_source.html">../../../include/Nimble/NimbleEngine/Output/Errors.h</a>&quot;</code><br />
 </div>
 <p><a href="_crash_handler_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ab1ceb77327adca914ad64c2ab83148a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8c.html#ab1ceb77327adca914ad64c2ab83148a7">nCrashHandlerDefault</a> (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)</td></tr>
+<tr class="memdesc:ab1ceb77327adca914ad64c2ab83148a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default crash handler callback.  <a href="_crash_handler_8c.html#ab1ceb77327adca914ad64c2ab83148a7">More...</a><br /></td></tr>
+<tr class="separator:ab1ceb77327adca914ad64c2ab83148a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4daf5921dfce25be3fb4021f0aee0f91"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8c.html#a4daf5921dfce25be3fb4021f0aee0f91">nCrashSetCallback</a> (void(*callback)(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime))</td></tr>
+<tr class="separator:a4daf5921dfce25be3fb4021f0aee0f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9d107d452d67ebd418f4534ae31cab3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a> (const int32_t error)</td></tr>
 <tr class="memdesc:af9d107d452d67ebd418f4534ae31cab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program without notifying the callback.  <a href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">More...</a><br /></td></tr>
 <tr class="separator:af9d107d452d67ebd418f4534ae31cab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a21a5220879bc0486667a37e4bf202377"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8c.html#a21a5220879bc0486667a37e4bf202377">crashCallback</a> )(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime) = <a class="el" href="_crash_handler_8c.html#ab1ceb77327adca914ad64c2ab83148a7">nCrashHandlerDefault</a></td></tr>
+<tr class="separator:a21a5220879bc0486667a37e4bf202377"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines crash handling functions. </p>
@@ -134,15 +146,119 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Make abort function. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Make abort function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00049">49</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00096">96</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
+
+</div>
+</div>
+<a id="ab1ceb77327adca914ad64c2ab83148a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1ceb77327adca914ad64c2ab83148a7">&#9670;&nbsp;</a></span>nCrashHandlerDefault()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nCrashHandlerDefault </td>
+          <td>(</td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>error</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>errorDesc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>errorDescLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>stack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>stackLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const time_t&#160;</td>
+          <td class="paramname"><em>errorTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The default crash handler callback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The error number. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">errorDesc</td><td>The description of <code>error</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">errorDescLen</td><td>The length of the <code>errorDesc</code> argument, including the null character. A length of zero (0) uses strlen() to determine length. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stack</td><td>The stacktrace of the thread that caused the crash. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stackLen</td><td>The length of the <code>stack</code> argument, including the null character. A length of zero (0) uses strlen() to determine length. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Make default callback. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00074">74</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
+
+</div>
+</div>
+<a id="a4daf5921dfce25be3fb4021f0aee0f91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4daf5921dfce25be3fb4021f0aee0f91">&#9670;&nbsp;</a></span>nCrashSetCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t nCrashSetCallback </td>
+          <td>(</td>
+          <td class="paramtype">void(*)(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)&#160;</td>
+          <td class="paramname"><em>callback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00081">81</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a21a5220879bc0486667a37e4bf202377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21a5220879bc0486667a37e4bf202377">&#9670;&nbsp;</a></span>crashCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* crashCallback) (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime) = <a class="el" href="_crash_handler_8c.html#ab1ceb77327adca914ad64c2ab83148a7">nCrashHandlerDefault</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00069">69</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_crash_handler_8c_html_af9d107d452d67ebd418f4534ae31cab3"><div class="ttname"><a href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a></div><div class="ttdeci">void nCrashAbort(const int32_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00049">CrashHandler.c:49</a></div></div>
-<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">Includes all the necessary game engine header files.</div></div>
+<div class="ttc" id="a_crash_handler_8c_html_af9d107d452d67ebd418f4534ae31cab3"><div class="ttname"><a href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a></div><div class="ttdeci">void nCrashAbort(const int32_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00096">CrashHandler.c:96</a></div></div>
+<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
 <div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00063">Errors.h:63</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

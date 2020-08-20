@@ -4,9 +4,11 @@
 .SH NAME
 todo \- Todo List 
 
+.IP "\fBGlobal \fBnCrashHandlerDefault\fP (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)\fP" 1c
+Make default callback\&.  
 .IP "\fBGlobal \fBnCrashAbort\fP (const int32_t error)\fP" 1c
 Make abort function\&.  
-.IP "\fBGlobal \fBerrorCallbackDefault\fP (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)\fP" 1c
+.IP "\fBGlobal \fBnErrorHandlerDefault\fP (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)\fP" 1c
 Make default callback\&.  
 .IP "\fBGlobal \fBnErrorToString\fP (char *dst, int32_t *size, const int32_t error, const char *info, int32_t infoLen)\fP" 1c
 Crash\&.  
@@ -15,8 +17,6 @@ Get stack trace\&.
 .IP "\fBpage \fBNimble Game Engine Library\fP \fP" 1c
 Explain how to link the library or use the app to write code 
 .PP
-Explain how to get started, setting up a window and doing basic 2D/3D stuff 
-.IP "\fBGlobal \fBnCrashSafe\fP (const int32_t error, const char *errorDesc, int32_t errorDescLen, const char *crashFilePath, int32_t crashFilePathLen) __attribute__((noreturn))\fP" 1c
-Make a callback function for the developer to handle crashes, but with only one attempt before taking over\&. 
+Explain how to get started, setting up a window and doing basic 2D/3D stuff
 .PP
 

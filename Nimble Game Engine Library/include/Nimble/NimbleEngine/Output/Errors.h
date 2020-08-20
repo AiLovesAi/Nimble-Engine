@@ -96,8 +96,9 @@ enum nErrors {
  * @param[in] info Relevant information, such as a file location, that could help
  * @param[in] infoLen The length of the @p info argument, including the null
  * character. A length of zero (0) uses strlen() to determine length.
- * diagnose the error. This can be #NULL.
- * @return #NSUCCESS is returned if successful; otherwise @c #NERROR is returned.
+ * diagnose the error. This can be @c #NULL.
+ * @return @c #NSUCCESS is returned if successful; otherwise @c #NERROR is
+ * returned.
  */
 NIMBLE_EXTERN
 int32_t
@@ -133,10 +134,10 @@ nErrorThrow(const int32_t error,
  *
  * @param[out] dst The destination to store the string describing @p error.
  * @param[out] size The length of the string returned, including the null
- * character. This can be #NULL.
+ * character. This can be @c #NULL.
  * @param[in] error The error to get described.
  * @param[in] info Relevant information, such as a file location, that could help
- * diagnose the error. This can be #NULL.
+ * diagnose the error. This can be @c #NULL.
  * @param[in] infoLen The length of the @p info argument, including the null
  * character. A length of zero (0) uses strlen() to determine length.
  * @return @p dst is returned if successful; otherwise @c #NULL is returned.
@@ -193,22 +194,21 @@ nErrorToString(char * dst,
  * @endcode
  *
  * @param[in] callback The function that gets called when an error occurs.
- * @return #NSUCCESS is returned if successful; otherwise @c #NERROR is
+ * @return @c #NSUCCESS is returned if successful; otherwise @c #NERROR is
  * returned.
  *
- * @note The callback parameters are <tt>error, errorDesc, errorDescLen, stack,
- * stackLen, errorTime</tt>.
+ * @note Check nErrorHandlerDefault() for parameter information.
  */
 NIMBLE_EXTERN
 int32_t
-nErrorSetCallback(int32_t (*callback)(
-                                      const int32_t,
-                                      const char *,
-                                      const int32_t,
-                                      const char *,
-                                      const int32_t,
-                                      const time_t
-                                      )
+nErrorSetCallback(void (* callback)(
+                                    const int32_t error,
+                                    const char * errorDesc,
+                                    const int32_t errorDescLen,
+                                    const char * stack,
+                                    const int32_t stackLen,
+                                    const time_t errorTime
+                                    )
                   );
 
 /**
@@ -239,8 +239,8 @@ nErrorSetCallback(int32_t (*callback)(
  *
  * @param[out] dst The destination to store the stacktrace string.
  * @param[out] size The length of the string returned, including the null
- * character. This can be #NULL.
- * @param[out] levels The number of levels of the stack. This can be #NULL.
+ * character. This can be @c #NULL.
+ * @param[out] levels The number of levels of the stack. This can be @c #NULL.
  * @return @p dst is returned if successful; otherwise the program crashes.
  *
  * @note Each time a function is called, it is added to the stack. When a

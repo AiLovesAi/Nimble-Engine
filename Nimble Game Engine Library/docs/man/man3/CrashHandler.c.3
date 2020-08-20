@@ -1,8 +1,8 @@
-.TH "src/NimbleEngine/Output/CrashHandler.c" 3 "Wed Aug 19 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
+.TH "C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/CrashHandler.c" 3 "Wed Aug 19 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-src/NimbleEngine/Output/CrashHandler.c \- This class defines crash handling functions\&.  
+C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/CrashHandler.c \- This class defines crash handling functions\&.  
 
 .SH SYNOPSIS
 .br
@@ -19,14 +19,30 @@ src/NimbleEngine/Output/CrashHandler.c \- This class defines crash handling func
 .br
 \fC#include <time\&.h>\fP
 .br
+\fC#include '\&.\&./\&.\&./\&.\&./include/Nimble/NimbleEngine/Output/Errors\&.h'\fP
+.br
 
 .SS "Functions"
 
 .in +1c
 .ti -1c
+.RI "void \fBnCrashHandlerDefault\fP (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)"
+.br
+.RI "The default crash handler callback\&. "
+.ti -1c
+.RI "int32_t \fBnCrashSetCallback\fP (void(*callback)(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime))"
+.br
+.ti -1c
 .RI "void \fBnCrashAbort\fP (const int32_t error)"
 .br
 .RI "Crashes the program without notifying the callback\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "void(* \fBcrashCallback\fP )(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime) = \fBnCrashHandlerDefault\fP"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -96,7 +112,45 @@ Make abort function\&.
 .PP
 
 .PP
-Definition at line 49 of file CrashHandler\&.c\&.
+Definition at line 96 of file CrashHandler\&.c\&.
+.SS "void nCrashHandlerDefault (const int32_t error, const char * errorDesc, const int32_t errorDescLen, const char * stack, const int32_t stackLen, const time_t errorTime)"
+
+.PP
+The default crash handler callback\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP The error number\&. 
+.br
+\fIerrorDesc\fP The description of \fCerror\fP\&. 
+.br
+\fIerrorDescLen\fP The length of the \fCerrorDesc\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. 
+.br
+\fIstack\fP The stacktrace of the thread that caused the crash\&. 
+.br
+\fIstackLen\fP The length of the \fCstack\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. 
+.RE
+.PP
+
+.PP
+\fBTodo\fP
+.RS 4
+Make default callback\&. 
+.RE
+.PP
+
+.PP
+Definition at line 74 of file CrashHandler\&.c\&.
+.SS "int32_t nCrashSetCallback (void(*)(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime) callback)"
+
+.PP
+Definition at line 81 of file CrashHandler\&.c\&.
+.SH "Variable Documentation"
+.PP 
+.SS "void(* crashCallback) (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime) = \fBnCrashHandlerDefault\fP"
+
+.PP
+Definition at line 69 of file CrashHandler\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Nimble Game Engine Library from the source code\&.

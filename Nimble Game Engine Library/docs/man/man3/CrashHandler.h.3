@@ -1,8 +1,8 @@
-.TH "include/Nimble/NimbleEngine/Output/CrashHandler.h" 3 "Wed Aug 19 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
+.TH "C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/CrashHandler.h" 3 "Wed Aug 19 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-include/Nimble/NimbleEngine/Output/CrashHandler.h \- This class defines crash handling functions\&.  
+C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/CrashHandler.h \- This class defines crash handling functions\&.  
 
 .SH SYNOPSIS
 .br
@@ -23,6 +23,10 @@ include/Nimble/NimbleEngine/Output/CrashHandler.h \- This class defines crash ha
 .SS "Functions"
 
 .in +1c
+.ti -1c
+.RI "\fBNIMBLE_EXTERN\fP int32_t \fBnCrashSetHandler\fP (void(*callback)(int32_t error))"
+.br
+.RI "Sets the crash handler callback function\&. "
 .ti -1c
 .RI "\fBNIMBLE_EXTERN\fP void \fBnCrashSafe\fP (const int32_t error, const char *errorDesc, int32_t errorDescLen, const char *crashFilePath, int32_t crashFilePathLen) __attribute__((noreturn))"
 .br
@@ -108,7 +112,7 @@ Make abort function\&.
 .PP
 
 .PP
-Definition at line 49 of file CrashHandler\&.c\&.
+Definition at line 96 of file CrashHandler\&.c\&.
 .SS "\fBNIMBLE_EXTERN\fP void nCrashSafe (const int32_t error, const char * errorDesc, int32_t errorDescLen, const char * crashFilePath, int32_t crashFilePathLen)"
 
 .PP
@@ -155,12 +159,37 @@ int main(int argc, char ** argv)
 .PP
 \fBNote\fP
 .RS 4
-This function does not return, and exits the program\&. 
+This function does not return, and exits the program\&. If an error occurs, the program will abort with \fBnCrashAbort()\fP\&. 
 .RE
 .PP
-\fBTodo\fP
+
+.SS "\fBNIMBLE_EXTERN\fP int32_t nCrashSetHandler (void(*)(int32_t error) callback)"
+
+.PP
+Sets the crash handler callback function\&. Sets the callback function that gets called when the game crashes\&.
+.PP
+Example: 
+.PP
+.nf
+#include <stdio\&.h>
+#include <stdlib\&.h>
+
+.fi
+.PP
+.PP
+\fBParameters\fP
 .RS 4
-Make a callback function for the developer to handle crashes, but with only one attempt before taking over\&. 
+\fIcallback\fP The function that gets called when a crash occurs\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fC\fBNSUCCESS\fP\fP is returned if successful; otherwise \fC\fBNERROR\fP\fP is returned\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+The callback function can only be called once\&. If an error occurs, the program will abort with \fBnCrashAbort()\fP\&. Check \fBnCrashHandlerDefault()\fP for parameter information\&. 
 .RE
 .PP
 

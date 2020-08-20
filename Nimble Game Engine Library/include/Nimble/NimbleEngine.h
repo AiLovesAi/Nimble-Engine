@@ -36,10 +36,10 @@
  * @endparblock
  * @date 2020-08-10
  *
- * @brief Includes all the necessary game engine header files.
+ * @brief This class includes all the necessary game engine header files.
  *
- * This header includes all the necessary game engine header files that are
- * used in game development.
+ * This class includes all the necessary game engine header files that are
+ * used in game development, and defines the functions used in initialization.
  */
 
 #ifdef __cplusplus

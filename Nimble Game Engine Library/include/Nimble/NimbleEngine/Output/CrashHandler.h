@@ -49,6 +49,30 @@ extern "C" {
 #include "../../NimbleEngine.h"
 
 /**
+ * @brief Sets the crash handler callback function.
+ * Sets the callback function that gets called when the game crashes.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * @endcode
+ *
+ * @param[in] callback The function that gets called when a crash occurs.
+ * @return @c #NSUCCESS is returned if successful; otherwise @c #NERROR is
+ * returned.
+ *
+ * @note The callback function can only be called once. If an error occurs, the
+ * program will abort with nCrashAbort(). Check nCrashHandlerDefault() for
+ * parameter information.
+ */
+NIMBLE_EXTERN
+int32_t
+nCrashSetHandler(void (* callback) (int32_t error
+                                    )
+                 );
+
+/**
  * @brief Crashes the program safely.
  * Crashes the program safely by attempting to safely close threads, logging the
  * error that caused the crash to the file defined by @p crashFilePath.
@@ -84,9 +108,8 @@ extern "C" {
  * @param[in] crashFilePathLen The length of @p crashFilePath argument, including
  * the null character. A length of zero (0) uses strlen() to determine length.
  *
- * @note This function does not return, and exits the program.
- * @todo Make a callback function for the developer to handle crashes, but with
- * only one attempt before taking over.
+ * @note This function does not return, and exits the program. If an error occurs,
+ * the program will abort with nCrashAbort().
  */
 NIMBLE_EXTERN
 void

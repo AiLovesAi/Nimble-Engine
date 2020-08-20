@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Game Engine Library: src/NimbleEngine/Output/Errors.c File Reference</title>
+<title>Nimble Game Engine Library: C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -91,18 +91,18 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5575beb1cd20f6c534ab4e6342b81f2e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a5575beb1cd20f6c534ab4e6342b81f2e">errorCallbackDefault</a> (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)</td></tr>
-<tr class="memdesc:a5575beb1cd20f6c534ab4e6342b81f2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default error callback.  <a href="_errors_8c.html#a5575beb1cd20f6c534ab4e6342b81f2e">More...</a><br /></td></tr>
-<tr class="separator:a5575beb1cd20f6c534ab4e6342b81f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97d561d08d5d0201d37d1773e19c26e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a97d561d08d5d0201d37d1773e19c26e0">nErrorHandlerDefault</a> (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)</td></tr>
+<tr class="memdesc:a97d561d08d5d0201d37d1773e19c26e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default error handler callback.  <a href="_errors_8c.html#a97d561d08d5d0201d37d1773e19c26e0">More...</a><br /></td></tr>
+<tr class="separator:a97d561d08d5d0201d37d1773e19c26e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab17af6118ec5a69109949c0485f2bb9d"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ab17af6118ec5a69109949c0485f2bb9d">nErrorThrow</a> (const int32_t error, const char *info, int32_t infoLen)</td></tr>
 <tr class="memdesc:ab17af6118ec5a69109949c0485f2bb9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an error to the error callback.  <a href="_errors_8c.html#ab17af6118ec5a69109949c0485f2bb9d">More...</a><br /></td></tr>
 <tr class="separator:ab17af6118ec5a69109949c0485f2bb9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c2568530315002dcbfccaafc5821883"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a5c2568530315002dcbfccaafc5821883">nErrorToString</a> (char *dst, int32_t *size, const int32_t error, const char *info, int32_t infoLen)</td></tr>
 <tr class="memdesc:a5c2568530315002dcbfccaafc5821883"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string.  <a href="_errors_8c.html#a5c2568530315002dcbfccaafc5821883">More...</a><br /></td></tr>
 <tr class="separator:a5c2568530315002dcbfccaafc5821883"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af018df8136f2b31b2d88cdc5db710295"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#af018df8136f2b31b2d88cdc5db710295">nErrorSetCallback</a> (int32_t(*callback)(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t))</td></tr>
-<tr class="memdesc:af018df8136f2b31b2d88cdc5db710295"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function to handle errors.  <a href="_errors_8c.html#af018df8136f2b31b2d88cdc5db710295">More...</a><br /></td></tr>
-<tr class="separator:af018df8136f2b31b2d88cdc5db710295"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4b8bf82ecb33621b0b5e536ccd32439"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#aa4b8bf82ecb33621b0b5e536ccd32439">nErrorSetCallback</a> (void(*callback)(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime))</td></tr>
+<tr class="memdesc:aa4b8bf82ecb33621b0b5e536ccd32439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function to handle errors.  <a href="_errors_8c.html#aa4b8bf82ecb33621b0b5e536ccd32439">More...</a><br /></td></tr>
+<tr class="separator:aa4b8bf82ecb33621b0b5e536ccd32439"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51c5b711f13bd8a6090936b7b2c21ecb"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a51c5b711f13bd8a6090936b7b2c21ecb">nErrorGetStacktrace</a> (char *dst, int32_t *size, int32_t *levels)</td></tr>
 <tr class="memdesc:a51c5b711f13bd8a6090936b7b2c21ecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current stack trace as a string.  <a href="_errors_8c.html#a51c5b711f13bd8a6090936b7b2c21ecb">More...</a><br /></td></tr>
 <tr class="separator:a51c5b711f13bd8a6090936b7b2c21ecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,9 +119,9 @@ Variables</h2></td></tr>
 <tr class="separator:a89acda8dffb30240e0d307c2c3204360"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0b629ed61ab8832819b916b751bc034"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ad0b629ed61ab8832819b916b751bc034">errorNotFoundErrStr</a> []</td></tr>
 <tr class="separator:ad0b629ed61ab8832819b916b751bc034"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add9997cdc667fa7973c8f7d1e1675400"><td class="memItemLeft" align="right" valign="top">int32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#add9997cdc667fa7973c8f7d1e1675400">errorCallback</a> )(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) = <a class="el" href="_errors_8c.html#a5575beb1cd20f6c534ab4e6342b81f2e">errorCallbackDefault</a></td></tr>
-<tr class="memdesc:add9997cdc667fa7973c8f7d1e1675400"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error callback function that gets defined by <a class="el" href="_errors_8c.html#af018df8136f2b31b2d88cdc5db710295" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>.  <a href="_errors_8c.html#add9997cdc667fa7973c8f7d1e1675400">More...</a><br /></td></tr>
-<tr class="separator:add9997cdc667fa7973c8f7d1e1675400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae29006615c247a56c2692ae27a8c68d4"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ae29006615c247a56c2692ae27a8c68d4">errorCallback</a> )(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime) = <a class="el" href="_errors_8c.html#a97d561d08d5d0201d37d1773e19c26e0">nErrorHandlerDefault</a></td></tr>
+<tr class="memdesc:ae29006615c247a56c2692ae27a8c68d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error callback function that gets defined by <a class="el" href="_errors_8c.html#aa4b8bf82ecb33621b0b5e536ccd32439" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>.  <a href="_errors_8c.html#ae29006615c247a56c2692ae27a8c68d4">More...</a><br /></td></tr>
+<tr class="separator:ae29006615c247a56c2692ae27a8c68d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines error values and error handling functions. </p>
@@ -135,64 +135,6 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a5575beb1cd20f6c534ab4e6342b81f2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5575beb1cd20f6c534ab4e6342b81f2e">&#9670;&nbsp;</a></span>errorCallbackDefault()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t errorCallbackDefault </td>
-          <td>(</td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>error</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>errorDesc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>errorDescLen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>stack</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>stackLen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const time_t&#160;</td>
-          <td class="paramname"><em>errorTime</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The default error callback. </p>
-<dl class="section note"><dt>Note</dt><dd>Check <a class="el" href="_errors_8c.html#af018df8136f2b31b2d88cdc5db710295" title="Sets the callback function to handle errors.">nErrorSetCallback()</a> for parameter information. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Make default callback. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00080">80</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
-
-</div>
-</div>
 <a id="a51c5b711f13bd8a6090936b7b2c21ecb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a51c5b711f13bd8a6090936b7b2c21ecb">&#9670;&nbsp;</a></span>nErrorGetStacktrace()</h2>
 
@@ -247,21 +189,88 @@ Variables</h2></td></tr>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>The destination to store the stacktrace string. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">size</td><td>The length of the string returned, including the null character. This can be <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">levels</td><td>The number of levels of the stack. This can be <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">size</td><td>The length of the string returned, including the null character. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">levels</td><td>The number of levels of the stack. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise the program crashes.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Get stack trace. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Get stack trace. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00230">230</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00238">238</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="af018df8136f2b31b2d88cdc5db710295"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af018df8136f2b31b2d88cdc5db710295">&#9670;&nbsp;</a></span>nErrorSetCallback()</h2>
+<a id="a97d561d08d5d0201d37d1773e19c26e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97d561d08d5d0201d37d1773e19c26e0">&#9670;&nbsp;</a></span>nErrorHandlerDefault()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nErrorHandlerDefault </td>
+          <td>(</td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>error</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>errorDesc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>errorDescLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>stack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>stackLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const time_t&#160;</td>
+          <td class="paramname"><em>errorTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The default error handler callback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The error number. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">errorDesc</td><td>The description of <code>error</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">errorDescLen</td><td>The length of the <code>errorDesc</code> argument, including the null character. A length of zero (0) uses strlen() to determine length. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stack</td><td>The stacktrace of the thread that caused the crash. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stackLen</td><td>The length of the <code>stack</code> argument, including the null character. A length of zero (0) uses strlen() to determine length. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Make default callback. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00087">87</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="aa4b8bf82ecb33621b0b5e536ccd32439"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4b8bf82ecb33621b0b5e536ccd32439">&#9670;&nbsp;</a></span>nErrorSetCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -269,7 +278,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int32_t nErrorSetCallback </td>
           <td>(</td>
-          <td class="paramtype">int32_t(*)(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t)&#160;</td>
+          <td class="paramtype">void(*)(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)&#160;</td>
           <td class="paramname"><em>callback</em></td><td>)</td>
           <td></td>
         </tr>
@@ -318,10 +327,10 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise <code><a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a></code> is returned.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>The callback parameters are <code>error, errorDesc, errorDescLen, stack, stackLen, errorTime</code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful; otherwise <code><a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a></code> is returned.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Check <a class="el" href="_errors_8c.html#a97d561d08d5d0201d37d1773e19c26e0" title="The default error handler callback.">nErrorHandlerDefault()</a> for parameter information. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00216">216</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00223">223</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -379,13 +388,13 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The error to throw. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>Relevant information, such as a file location, that could help </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">infoLen</td><td>The length of the <code>info</code> argument, including the null character. A length of zero (0) uses strlen() to determine length. diagnose the error. This can be <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">infoLen</td><td>The length of the <code>info</code> argument, including the null character. A length of zero (0) uses strlen() to determine length. diagnose the error. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise <code><a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a></code> is returned. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful; otherwise <code><a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a></code> is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00087">87</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00094">94</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -455,36 +464,36 @@ Variables</h2></td></tr>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>The destination to store the string describing <code>error</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">size</td><td>The length of the string returned, including the null character. This can be <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">size</td><td>The length of the string returned, including the null character. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The error to get described. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>Relevant information, such as a file location, that could help diagnose the error. This can be <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>Relevant information, such as a file location, that could help diagnose the error. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">infoLen</td><td>The length of the <code>info</code> argument, including the null character. A length of zero (0) uses strlen() to determine length. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code> is returned. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Crash. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Crash. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00111">111</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00118">118</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="add9997cdc667fa7973c8f7d1e1675400"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add9997cdc667fa7973c8f7d1e1675400">&#9670;&nbsp;</a></span>errorCallback</h2>
+<a id="ae29006615c247a56c2692ae27a8c68d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae29006615c247a56c2692ae27a8c68d4">&#9670;&nbsp;</a></span>errorCallback</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t(* errorCallback) (const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) = <a class="el" href="_errors_8c.html#a5575beb1cd20f6c534ab4e6342b81f2e">errorCallbackDefault</a></td>
+          <td class="memname">void(* errorCallback) (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime) = <a class="el" href="_errors_8c.html#a97d561d08d5d0201d37d1773e19c26e0">nErrorHandlerDefault</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>The error callback function that gets defined by <a class="el" href="_errors_8c.html#af018df8136f2b31b2d88cdc5db710295" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>. </p>
+<p>The error callback function that gets defined by <a class="el" href="_errors_8c.html#aa4b8bf82ecb33621b0b5e536ccd32439" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00076">76</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00082">82</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -576,12 +585,12 @@ Variables</h2></td></tr>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a></div><div class="ttdeci">@ NERROR_FILE_NOT_FOUND</div><div class="ttdoc">A file was not found where specified.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00064">Errors.h:64</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a5c2568530315002dcbfccaafc5821883"><div class="ttname"><a href="_errors_8c.html#a5c2568530315002dcbfccaafc5821883">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *size, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00111">Errors.c:111</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a5c2568530315002dcbfccaafc5821883"><div class="ttname"><a href="_errors_8c.html#a5c2568530315002dcbfccaafc5821883">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *size, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00118">Errors.c:118</a></div></div>
 <div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00118">Nimble.h:118</a></div></div>
-<div class="ttc" id="a_errors_8c_html_ab17af6118ec5a69109949c0485f2bb9d"><div class="ttname"><a href="_errors_8c.html#ab17af6118ec5a69109949c0485f2bb9d">nErrorThrow</a></div><div class="ttdeci">int32_t nErrorThrow(const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00087">Errors.c:87</a></div></div>
-<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">Includes all the necessary game engine header files.</div></div>
-<div class="ttc" id="a_errors_8c_html_a51c5b711f13bd8a6090936b7b2c21ecb"><div class="ttname"><a href="_errors_8c.html#a51c5b711f13bd8a6090936b7b2c21ecb">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(char *dst, int32_t *size, int32_t *levels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00230">Errors.c:230</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ab17af6118ec5a69109949c0485f2bb9d"><div class="ttname"><a href="_errors_8c.html#ab17af6118ec5a69109949c0485f2bb9d">nErrorThrow</a></div><div class="ttdeci">int32_t nErrorThrow(const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00094">Errors.c:94</a></div></div>
+<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
+<div class="ttc" id="a_errors_8c_html_a51c5b711f13bd8a6090936b7b2c21ecb"><div class="ttname"><a href="_errors_8c.html#a51c5b711f13bd8a6090936b7b2c21ecb">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(char *dst, int32_t *size, int32_t *levels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00238">Errors.c:238</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

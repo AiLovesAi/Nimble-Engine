@@ -1,5 +1,5 @@
-\hypertarget{_crash_handler_8c}{}\doxysection{src/\+Nimble\+Engine/\+Output/\+Crash\+Handler.c File Reference}
-\label{_crash_handler_8c}\index{src/NimbleEngine/Output/CrashHandler.c@{src/NimbleEngine/Output/CrashHandler.c}}
+\hypertarget{_crash_handler_8c}{}\doxysection{C\+:/\+Users/\+Avery/\+Desktop/\+Nimble Game Engine/\+Nimble Game Engine Library/src/\+Nimble\+Engine/\+Output/\+Crash\+Handler.c File Reference}
+\label{_crash_handler_8c}\index{C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/CrashHandler.c@{C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/CrashHandler.c}}
 
 
 This class defines crash handling functions.  
@@ -11,11 +11,21 @@ This class defines crash handling functions.
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../../include/\+Nimble/\+Nimble\+Engine/\+Output/\+Errors.\+h\char`\"{}}\newline
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{_crash_handler_8c_ab1ceb77327adca914ad64c2ab83148a7}{n\+Crash\+Handler\+Default}} (const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time)
+\begin{DoxyCompactList}\small\item\em The default crash handler callback. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{_crash_handler_8c_a4daf5921dfce25be3fb4021f0aee0f91}{n\+Crash\+Set\+Callback}} (void($\ast$callback)(const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time))
+\item 
 void \mbox{\hyperlink{_crash_handler_8c_af9d107d452d67ebd418f4534ae31cab3}{n\+Crash\+Abort}} (const int32\+\_\+t error)
 \begin{DoxyCompactList}\small\item\em Crashes the program without notifying the callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+void($\ast$ \mbox{\hyperlink{_crash_handler_8c_a21a5220879bc0486667a37e4bf202377}{crash\+Callback}} )(const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time) = \mbox{\hyperlink{_crash_handler_8c_ab1ceb77327adca914ad64c2ab83148a7}{n\+Crash\+Handler\+Default}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -71,8 +81,60 @@ Example\+:
 This function does not return, and exits the program. 
 \end{DoxyNote}
 \begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]Make abort function. \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]Make abort function. \end{DoxyRefDesc}
 
 
-Definition at line 49 of file Crash\+Handler.\+c.
+Definition at line 96 of file Crash\+Handler.\+c.
+
+\mbox{\Hypertarget{_crash_handler_8c_ab1ceb77327adca914ad64c2ab83148a7}\label{_crash_handler_8c_ab1ceb77327adca914ad64c2ab83148a7}} 
+\index{CrashHandler.c@{CrashHandler.c}!nCrashHandlerDefault@{nCrashHandlerDefault}}
+\index{nCrashHandlerDefault@{nCrashHandlerDefault}!CrashHandler.c@{CrashHandler.c}}
+\doxysubsubsection{\texorpdfstring{nCrashHandlerDefault()}{nCrashHandlerDefault()}}
+{\footnotesize\ttfamily void n\+Crash\+Handler\+Default (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{error\+Desc,  }\item[{const int32\+\_\+t}]{error\+Desc\+Len,  }\item[{const char $\ast$}]{stack,  }\item[{const int32\+\_\+t}]{stack\+Len,  }\item[{const time\+\_\+t}]{error\+Time }\end{DoxyParamCaption})}
+
+
+
+The default crash handler callback. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em error} & The error number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em error\+Desc} & The description of {\ttfamily error}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em error\+Desc\+Len} & The length of the {\ttfamily error\+Desc} argument, including the null character. A length of zero (0) uses strlen() to determine length. \\
+\hline
+\mbox{\texttt{ in}}  & {\em stack} & The stacktrace of the thread that caused the crash. \\
+\hline
+\mbox{\texttt{ in}}  & {\em stack\+Len} & The length of the {\ttfamily stack} argument, including the null character. A length of zero (0) uses strlen() to determine length. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]Make default callback. \end{DoxyRefDesc}
+
+
+Definition at line 74 of file Crash\+Handler.\+c.
+
+\mbox{\Hypertarget{_crash_handler_8c_a4daf5921dfce25be3fb4021f0aee0f91}\label{_crash_handler_8c_a4daf5921dfce25be3fb4021f0aee0f91}} 
+\index{CrashHandler.c@{CrashHandler.c}!nCrashSetCallback@{nCrashSetCallback}}
+\index{nCrashSetCallback@{nCrashSetCallback}!CrashHandler.c@{CrashHandler.c}}
+\doxysubsubsection{\texorpdfstring{nCrashSetCallback()}{nCrashSetCallback()}}
+{\footnotesize\ttfamily int32\+\_\+t n\+Crash\+Set\+Callback (\begin{DoxyParamCaption}\item[{void($\ast$)(const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time)}]{callback }\end{DoxyParamCaption})}
+
+
+
+Definition at line 81 of file Crash\+Handler.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_crash_handler_8c_a21a5220879bc0486667a37e4bf202377}\label{_crash_handler_8c_a21a5220879bc0486667a37e4bf202377}} 
+\index{CrashHandler.c@{CrashHandler.c}!crashCallback@{crashCallback}}
+\index{crashCallback@{crashCallback}!CrashHandler.c@{CrashHandler.c}}
+\doxysubsubsection{\texorpdfstring{crashCallback}{crashCallback}}
+{\footnotesize\ttfamily void($\ast$ crash\+Callback) (const int32\+\_\+t error, const char $\ast$error\+Desc, const int32\+\_\+t error\+Desc\+Len, const char $\ast$stack, const int32\+\_\+t stack\+Len, const time\+\_\+t error\+Time) = \mbox{\hyperlink{_crash_handler_8c_ab1ceb77327adca914ad64c2ab83148a7}{n\+Crash\+Handler\+Default}}}
+
+
+
+Definition at line 69 of file Crash\+Handler.\+c.
 

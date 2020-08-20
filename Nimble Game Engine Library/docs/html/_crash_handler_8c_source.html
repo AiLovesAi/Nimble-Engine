@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Game Engine Library: src/NimbleEngine/Output/CrashHandler.c Source File</title>
+<title>Nimble Game Engine Library: C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/CrashHandler.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,14 +89,58 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">   49</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a>(<span class="keyword">const</span> int32_t error)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    abort();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">// CrashHandler.c</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;../../../include/Nimble/NimbleEngine/Output/Errors.h&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_crash_handler_8c.html#ab1ceb77327adca914ad64c2ab83148a7">nCrashHandlerDefault</a>(<span class="keyword">const</span> int32_t error,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                          <span class="keyword">const</span> <span class="keywordtype">char</span> * errorDesc,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                          <span class="keyword">const</span> int32_t errorDescLen,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                          <span class="keyword">const</span> <span class="keywordtype">char</span> * stack,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                          <span class="keyword">const</span> int32_t stackLen,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                          <span class="keyword">const</span> time_t errorTime</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                          );</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#a21a5220879bc0486667a37e4bf202377">   69</a></span>&#160;void (* <a class="code" href="_crash_handler_8c.html#a21a5220879bc0486667a37e4bf202377">crashCallback</a>) (<span class="keyword">const</span> int32_t error, <span class="keyword">const</span> <span class="keywordtype">char</span> * errorDesc, </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;         <span class="keyword">const</span> int32_t errorDescLen, <span class="keyword">const</span> <span class="keywordtype">char</span> * stack, <span class="keyword">const</span> int32_t stackLen,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;         <span class="keyword">const</span> time_t errorTime) = <a class="code" href="_crash_handler_8c.html#ab1ceb77327adca914ad64c2ab83148a7">nCrashHandlerDefault</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#ab1ceb77327adca914ad64c2ab83148a7">   74</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_crash_handler_8c.html#ab1ceb77327adca914ad64c2ab83148a7">nCrashHandlerDefault</a>(<span class="keyword">const</span> int32_t error, <span class="keyword">const</span> <span class="keywordtype">char</span> * errorDesc,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;      <span class="keyword">const</span> int32_t errorDescLen, <span class="keyword">const</span> <span class="keywordtype">char</span> * stack, <span class="keyword">const</span> int32_t stackLen,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <span class="keyword">const</span> time_t errorTime)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#a4daf5921dfce25be3fb4021f0aee0f91">   81</a></span>&#160;int32_t <a class="code" href="_crash_handler_8c.html#a4daf5921dfce25be3fb4021f0aee0f91">nCrashSetCallback</a>(<span class="keywordtype">void</span> (* callback)(<span class="keyword">const</span> int32_t error,</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;         <span class="keyword">const</span> <span class="keywordtype">char</span> * errorDesc, <span class="keyword">const</span> int32_t errorDescLen, <span class="keyword">const</span> <span class="keywordtype">char</span> * stack,</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;         <span class="keyword">const</span> int32_t stackLen, <span class="keyword">const</span> time_t errorTime))</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;{</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">if</span> (callback == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">char</span> callbackErrStr[] = <span class="stringliteral">&quot;Callback parameter null in nCrashSetCallback().&quot;</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="_errors_8c.html#ab17af6118ec5a69109949c0485f2bb9d">nErrorThrow</a>(<a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, callbackErrStr, <span class="keyword">sizeof</span>(callbackErrStr));</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="_crash_handler_8c.html#a21a5220879bc0486667a37e4bf202377">crashCallback</a> = callback;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">   96</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a>(<span class="keyword">const</span> int32_t error)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;{</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    abort();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">// CrashHandler.c</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="a_crash_handler_8c_html_af9d107d452d67ebd418f4534ae31cab3"><div class="ttname"><a href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a></div><div class="ttdeci">void nCrashAbort(const int32_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00049">CrashHandler.c:49</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_af9d107d452d67ebd418f4534ae31cab3"><div class="ttname"><a href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a></div><div class="ttdeci">void nCrashAbort(const int32_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00096">CrashHandler.c:96</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00118">Nimble.h:118</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ab17af6118ec5a69109949c0485f2bb9d"><div class="ttname"><a href="_errors_8c.html#ab17af6118ec5a69109949c0485f2bb9d">nErrorThrow</a></div><div class="ttdeci">int32_t nErrorThrow(const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00094">Errors.c:94</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_a21a5220879bc0486667a37e4bf202377"><div class="ttname"><a href="_crash_handler_8c.html#a21a5220879bc0486667a37e4bf202377">crashCallback</a></div><div class="ttdeci">void(* crashCallback)(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00069">CrashHandler.c:69</a></div></div>
+<div class="ttc" id="a_errors_8h_html_abc17e6456e8237f1fec82260310055b1"><div class="ttname"><a href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a></div><div class="ttdeci">#define NERROR</div><div class="ttdoc">Returned when a function encounters an error.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00056">Errors.h:56</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_ab1ceb77327adca914ad64c2ab83148a7"><div class="ttname"><a href="_crash_handler_8c.html#ab1ceb77327adca914ad64c2ab83148a7">nCrashHandlerDefault</a></div><div class="ttdeci">void nCrashHandlerDefault(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)</div><div class="ttdoc">The default crash handler callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00074">CrashHandler.c:74</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_a4daf5921dfce25be3fb4021f0aee0f91"><div class="ttname"><a href="_crash_handler_8c.html#a4daf5921dfce25be3fb4021f0aee0f91">nCrashSetCallback</a></div><div class="ttdeci">int32_t nCrashSetCallback(void(*callback)(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime))</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00081">CrashHandler.c:81</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00063">Errors.h:63</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

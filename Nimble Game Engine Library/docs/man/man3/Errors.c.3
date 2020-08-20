@@ -1,8 +1,8 @@
-.TH "src/NimbleEngine/Output/Errors.c" 3 "Wed Aug 19 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
+.TH "C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c" 3 "Wed Aug 19 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-src/NimbleEngine/Output/Errors.c \- This class defines error values and error handling functions\&.  
+C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c \- This class defines error values and error handling functions\&.  
 
 .SH SYNOPSIS
 .br
@@ -28,9 +28,9 @@ src/NimbleEngine/Output/Errors.c \- This class defines error values and error ha
 
 .in +1c
 .ti -1c
-.RI "int32_t \fBerrorCallbackDefault\fP (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)"
+.RI "void \fBnErrorHandlerDefault\fP (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)"
 .br
-.RI "The default error callback\&. "
+.RI "The default error handler callback\&. "
 .ti -1c
 .RI "int32_t \fBnErrorThrow\fP (const int32_t error, const char *info, int32_t infoLen)"
 .br
@@ -40,7 +40,7 @@ src/NimbleEngine/Output/Errors.c \- This class defines error values and error ha
 .br
 .RI "Describes an error and returns a string\&. "
 .ti -1c
-.RI "int32_t \fBnErrorSetCallback\fP (int32_t(*callback)(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t))"
+.RI "int32_t \fBnErrorSetCallback\fP (void(*callback)(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime))"
 .br
 .RI "Sets the callback function to handle errors\&. "
 .ti -1c
@@ -67,7 +67,7 @@ src/NimbleEngine/Output/Errors.c \- This class defines error values and error ha
 .RI "const char \fBerrorNotFoundErrStr\fP []"
 .br
 .ti -1c
-.RI "int32_t(* \fBerrorCallback\fP )(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) = \fBerrorCallbackDefault\fP"
+.RI "void(* \fBerrorCallback\fP )(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime) = \fBnErrorHandlerDefault\fP"
 .br
 .RI "The error callback function that gets defined by \fBnErrorSetCallback()\fP\&. "
 .in -1c
@@ -104,26 +104,6 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Definition in file \fBErrors\&.c\fP\&.
 .SH "Function Documentation"
 .PP 
-.SS "int32_t errorCallbackDefault (const int32_t error, const char * errorDesc, const int32_t errorDescLen, const char * stack, const int32_t stackLen, const time_t errorTime)"
-
-.PP
-The default error callback\&. 
-.PP
-\fBNote\fP
-.RS 4
-Check \fBnErrorSetCallback()\fP for parameter information\&. 
-.RE
-.PP
-
-.PP
-\fBTodo\fP
-.RS 4
-Make default callback\&. 
-.RE
-.PP
-
-.PP
-Definition at line 80 of file Errors\&.c\&.
 .SS "char* nErrorGetStacktrace (char * dst, int32_t * size, int32_t * levels)"
 
 .PP
@@ -157,9 +137,9 @@ int main(int argc, char ** argv)
 .RS 4
 \fIdst\fP The destination to store the stacktrace string\&. 
 .br
-\fIsize\fP The length of the string returned, including the null character\&. This can be \fBNULL\fP\&. 
+\fIsize\fP The length of the string returned, including the null character\&. This can be \fC\fBNULL\fP\fP\&. 
 .br
-\fIlevels\fP The number of levels of the stack\&. This can be \fBNULL\fP\&. 
+\fIlevels\fP The number of levels of the stack\&. This can be \fC\fBNULL\fP\fP\&. 
 .RE
 .PP
 \fBReturns\fP
@@ -181,8 +161,36 @@ Get stack trace\&.
 .PP
 
 .PP
-Definition at line 230 of file Errors\&.c\&.
-.SS "int32_t nErrorSetCallback (int32_t(*)(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) callback)"
+Definition at line 238 of file Errors\&.c\&.
+.SS "void nErrorHandlerDefault (const int32_t error, const char * errorDesc, const int32_t errorDescLen, const char * stack, const int32_t stackLen, const time_t errorTime)"
+
+.PP
+The default error handler callback\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP The error number\&. 
+.br
+\fIerrorDesc\fP The description of \fCerror\fP\&. 
+.br
+\fIerrorDescLen\fP The length of the \fCerrorDesc\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. 
+.br
+\fIstack\fP The stacktrace of the thread that caused the crash\&. 
+.br
+\fIstackLen\fP The length of the \fCstack\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. 
+.RE
+.PP
+
+.PP
+\fBTodo\fP
+.RS 4
+Make default callback\&. 
+.RE
+.PP
+
+.PP
+Definition at line 87 of file Errors\&.c\&.
+.SS "int32_t nErrorSetCallback (void(*)(const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime) callback)"
 
 .PP
 Sets the callback function to handle errors\&. Sets the callback function \fCcallback\fP that gets called when an error occurs\&.
@@ -237,17 +245,17 @@ int main(int argc, char ** argv)
 .PP
 \fBReturns\fP
 .RS 4
-\fBNSUCCESS\fP is returned if successful; otherwise \fC\fBNERROR\fP\fP is returned\&.
+\fC\fBNSUCCESS\fP\fP is returned if successful; otherwise \fC\fBNERROR\fP\fP is returned\&.
 .RE
 .PP
 \fBNote\fP
 .RS 4
-The callback parameters are \fCerror, errorDesc, errorDescLen, stack, stackLen, errorTime\fP\&. 
+Check \fBnErrorHandlerDefault()\fP for parameter information\&. 
 .RE
 .PP
 
 .PP
-Definition at line 216 of file Errors\&.c\&.
+Definition at line 223 of file Errors\&.c\&.
 .SS "int32_t nErrorThrow (const int32_t error, const char * info, int32_t infoLen)"
 
 .PP
@@ -282,17 +290,17 @@ int main(int argc, char ** argv)
 .br
 \fIinfo\fP Relevant information, such as a file location, that could help 
 .br
-\fIinfoLen\fP The length of the \fCinfo\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. diagnose the error\&. This can be \fBNULL\fP\&. 
+\fIinfoLen\fP The length of the \fCinfo\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. diagnose the error\&. This can be \fC\fBNULL\fP\fP\&. 
 .RE
 .PP
 \fBReturns\fP
 .RS 4
-\fBNSUCCESS\fP is returned if successful; otherwise \fC\fBNERROR\fP\fP is returned\&. 
+\fC\fBNSUCCESS\fP\fP is returned if successful; otherwise \fC\fBNERROR\fP\fP is returned\&. 
 .RE
 .PP
 
 .PP
-Definition at line 87 of file Errors\&.c\&.
+Definition at line 94 of file Errors\&.c\&.
 .SS "char* nErrorToString (char * dst, int32_t * size, const int32_t error, const char * info, int32_t infoLen)"
 
 .PP
@@ -325,11 +333,11 @@ int main(int argc, char ** argv)
 .RS 4
 \fIdst\fP The destination to store the string describing \fCerror\fP\&. 
 .br
-\fIsize\fP The length of the string returned, including the null character\&. This can be \fBNULL\fP\&. 
+\fIsize\fP The length of the string returned, including the null character\&. This can be \fC\fBNULL\fP\fP\&. 
 .br
 \fIerror\fP The error to get described\&. 
 .br
-\fIinfo\fP Relevant information, such as a file location, that could help diagnose the error\&. This can be \fBNULL\fP\&. 
+\fIinfo\fP Relevant information, such as a file location, that could help diagnose the error\&. This can be \fC\fBNULL\fP\fP\&. 
 .br
 \fIinfoLen\fP The length of the \fCinfo\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. 
 .RE
@@ -348,15 +356,15 @@ Crash\&.
 .PP
 
 .PP
-Definition at line 111 of file Errors\&.c\&.
+Definition at line 118 of file Errors\&.c\&.
 .SH "Variable Documentation"
 .PP 
-.SS "int32_t(* errorCallback) (const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) = \fBerrorCallbackDefault\fP"
+.SS "void(* errorCallback) (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime) = \fBnErrorHandlerDefault\fP"
 
 .PP
 The error callback function that gets defined by \fBnErrorSetCallback()\fP\&. 
 .PP
-Definition at line 76 of file Errors\&.c\&.
+Definition at line 82 of file Errors\&.c\&.
 .SS "const char errorNotFoundErrStr[]"
 \fBInitial value:\fP
 .PP
