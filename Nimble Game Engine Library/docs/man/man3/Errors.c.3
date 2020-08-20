@@ -1,8 +1,8 @@
-.TH "C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c" 3 "Tue Aug 18 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
+.TH "src/NimbleEngine/Output/Errors.c" 3 "Wed Aug 19 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/Errors.c \- This class defines error values and error handling functions\&.  
+src/NimbleEngine/Output/Errors.c \- This class defines error values and error handling functions\&.  
 
 .SH SYNOPSIS
 .br
@@ -11,13 +11,15 @@ C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleE
 .br
 \fC#include '\&.\&./\&.\&./\&.\&./include/Nimble/NimbleEngine/Output/Errors\&.h'\fP
 .br
-\fC#include <stdlib\&.h>\fP
-.br
 \fC#include <stdint\&.h>\fP
 .br
 \fC#include <stdio\&.h>\fP
 .br
+\fC#include <stdlib\&.h>\fP
+.br
 \fC#include <string\&.h>\fP
+.br
+\fC#include <time\&.h>\fP
 .br
 \fC#include '\&.\&./\&.\&./\&.\&./include/Nimble/NimbleEngine/Output/CrashHandler\&.h'\fP
 .br
@@ -25,6 +27,10 @@ C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleE
 .SS "Functions"
 
 .in +1c
+.ti -1c
+.RI "int32_t \fBerrorCallbackDefault\fP (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)"
+.br
+.RI "The default error callback\&. "
 .ti -1c
 .RI "int32_t \fBnErrorThrow\fP (const int32_t error, const char *info, int32_t infoLen)"
 .br
@@ -61,7 +67,7 @@ C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleE
 .RI "const char \fBerrorNotFoundErrStr\fP []"
 .br
 .ti -1c
-.RI "int32_t(* \fBerrorCallback\fP )(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) = \fBNULL\fP"
+.RI "int32_t(* \fBerrorCallback\fP )(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) = \fBerrorCallbackDefault\fP"
 .br
 .RI "The error callback function that gets defined by \fBnErrorSetCallback()\fP\&. "
 .in -1c
@@ -98,6 +104,26 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Definition in file \fBErrors\&.c\fP\&.
 .SH "Function Documentation"
 .PP 
+.SS "int32_t errorCallbackDefault (const int32_t error, const char * errorDesc, const int32_t errorDescLen, const char * stack, const int32_t stackLen, const time_t errorTime)"
+
+.PP
+The default error callback\&. 
+.PP
+\fBNote\fP
+.RS 4
+Check \fBnErrorSetCallback()\fP for parameter information\&. 
+.RE
+.PP
+
+.PP
+\fBTodo\fP
+.RS 4
+Make default callback\&. 
+.RE
+.PP
+
+.PP
+Definition at line 80 of file Errors\&.c\&.
 .SS "char* nErrorGetStacktrace (char * dst, int32_t * size, int32_t * levels)"
 
 .PP
@@ -138,7 +164,7 @@ int main(int argc, char ** argv)
 .PP
 \fBReturns\fP
 .RS 4
-\fCdst\fP is returned if successful; otherwise \fC\fBNULL\fP\fP is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback()\&.
+\fCdst\fP is returned if successful; otherwise the program crashes\&.
 .RE
 .PP
 \fBNote\fP
@@ -155,7 +181,7 @@ Get stack trace\&.
 .PP
 
 .PP
-Definition at line 216 of file Errors\&.c\&.
+Definition at line 230 of file Errors\&.c\&.
 .SS "int32_t nErrorSetCallback (int32_t(*)(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) callback)"
 
 .PP
@@ -221,39 +247,52 @@ The callback parameters are \fCerror, errorDesc, errorDescLen, stack, stackLen, 
 .PP
 
 .PP
-Definition at line 202 of file Errors\&.c\&.
+Definition at line 216 of file Errors\&.c\&.
 .SS "int32_t nErrorThrow (const int32_t error, const char * info, int32_t infoLen)"
 
 .PP
-Sends an error to the error callback\&. 
+Sends an error to the error callback\&. Sends an error to the error callback defined by nErrorHandlerSetErrorCallback(), and determines whether or not crashing is necessary\&.
 .PP
-\fBTodo\fP
+Example: 
+.PP
+.nf
+#include <stdio\&.h>
+#include <stdlib\&.h>
+#include <Nimble/NimbleEngine\&.h>
+
+int main(int argc, char ** argv)
+{
+    char exampleFilePath[] = "example\&.txt";
+    if (nErrorThrow(NERROR_FILE_NOT_FOUND, exampleFilePath,
+         sizeof(exampleFilePath)) != NSUCCESS)
+    {
+        fprintf(stderr, "Failed to throw error\&.\n");
+        exit(EXIT_FAILURE);
+    }
+    printf("Successfully threw error\&.\n");
+    return EXIT_SUCCESS;
+}
+
+.fi
+.PP
+.PP
+\fBParameters\fP
 .RS 4
-Set a default error manager\&. 
+\fIerror\fP The error to throw\&. 
+.br
+\fIinfo\fP Relevant information, such as a file location, that could help 
+.br
+\fIinfoLen\fP The length of the \fCinfo\fP argument, including the null character\&. A length of zero (0) uses strlen() to determine length\&. diagnose the error\&. This can be \fBNULL\fP\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBNSUCCESS\fP is returned if successful; otherwise \fC\fBNERROR\fP\fP is returned\&. 
 .RE
 .PP
 
 .PP
-\fBTodo\fP
-.RS 4
-Crash\&. 
-.RE
-.PP
-.PP
-\fBTodo\fP
-.RS 4
-Crash\&. 
-.RE
-.PP
-.PP
-\fBTodo\fP
-.RS 4
-Crash\&. 
-.RE
-.PP
-
-.PP
-Definition at line 67 of file Errors\&.c\&.
+Definition at line 87 of file Errors\&.c\&.
 .SS "char* nErrorToString (char * dst, int32_t * size, const int32_t error, const char * info, int32_t infoLen)"
 
 .PP
@@ -309,15 +348,15 @@ Crash\&.
 .PP
 
 .PP
-Definition at line 97 of file Errors\&.c\&.
+Definition at line 111 of file Errors\&.c\&.
 .SH "Variable Documentation"
 .PP 
-.SS "int32_t(* errorCallback) (const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) = \fBNULL\fP"
+.SS "int32_t(* errorCallback) (const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) = \fBerrorCallbackDefault\fP"
 
 .PP
 The error callback function that gets defined by \fBnErrorSetCallback()\fP\&. 
 .PP
-Definition at line 63 of file Errors\&.c\&.
+Definition at line 76 of file Errors\&.c\&.
 .SS "const char errorNotFoundErrStr[]"
 \fBInitial value:\fP
 .PP
@@ -326,7 +365,7 @@ Definition at line 63 of file Errors\&.c\&.
                                    "a function was not valid: "
 .fi
 .PP
-Definition at line 57 of file Errors\&.c\&.
+Definition at line 58 of file Errors\&.c\&.
 .SS "const char fileNotFoundErrStr[]"
 \fBInitial value:\fP
 .PP
@@ -335,11 +374,11 @@ Definition at line 57 of file Errors\&.c\&.
                                    "found where specified: "
 .fi
 .PP
-Definition at line 55 of file Errors\&.c\&.
+Definition at line 56 of file Errors\&.c\&.
 .SS "const char noInfoStr[] = 'No info\&.'"
 
 .PP
-Definition at line 51 of file Errors\&.c\&.
+Definition at line 52 of file Errors\&.c\&.
 .SS "const char nullErrStr[]"
 \fBInitial value:\fP
 .PP
@@ -348,11 +387,11 @@ Definition at line 51 of file Errors\&.c\&.
                                    "a nonnull pointer was expected: "
 .fi
 .PP
-Definition at line 53 of file Errors\&.c\&.
+Definition at line 54 of file Errors\&.c\&.
 .SS "const char unknownErrStr[] = 'NERROR_UNKNOWN: An unknown error occurred: '"
 
 .PP
-Definition at line 52 of file Errors\&.c\&.
+Definition at line 53 of file Errors\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Nimble Game Engine Library from the source code\&.

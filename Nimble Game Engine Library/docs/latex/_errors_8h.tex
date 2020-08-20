@@ -1,5 +1,5 @@
-\hypertarget{_errors_8h}{}\doxysection{C\+:/\+Users/\+Avery/\+Desktop/\+Nimble Game Engine/\+Nimble Game Engine Library/include/\+Nimble/\+Nimble\+Engine/\+Output/\+Errors.h File Reference}
-\label{_errors_8h}\index{C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/Errors.h@{C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/Errors.h}}
+\hypertarget{_errors_8h}{}\doxysection{include/\+Nimble/\+Nimble\+Engine/\+Output/\+Errors.h File Reference}
+\label{_errors_8h}\index{include/Nimble/NimbleEngine/Output/Errors.h@{include/Nimble/NimbleEngine/Output/Errors.h}}
 
 
 This class defines error values and error handling functions.  
@@ -188,16 +188,16 @@ Example\+:
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-{\ttfamily dst} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}} is returned and a corresponding error is sent to the error callback set by n\+Error\+Handler\+Set\+Error\+Callback().
+{\ttfamily dst} is returned if successful; otherwise the program crashes.
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
 Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. 
 \end{DoxyNote}
 \begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000006}{Todo}}]Get stack trace. \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{todo__todo000004}{Todo}}]Get stack trace. \end{DoxyRefDesc}
 
 
-Definition at line 216 of file Errors.\+c.
+Definition at line 230 of file Errors.\+c.
 
 \mbox{\Hypertarget{_errors_8h_a4e2efa68d735c4316c52841b6afea67f}\label{_errors_8h_a4e2efa68d735c4316c52841b6afea67f}} 
 \index{Errors.h@{Errors.h}!nErrorSetCallback@{nErrorSetCallback}}
@@ -263,7 +263,7 @@ The callback parameters are {\ttfamily error, error\+Desc, error\+Desc\+Len, sta
 \end{DoxyNote}
 
 
-Definition at line 202 of file Errors.\+c.
+Definition at line 216 of file Errors.\+c.
 
 \mbox{\Hypertarget{_errors_8h_add73124e9808e451792228721e636eab}\label{_errors_8h_add73124e9808e451792228721e636eab}} 
 \index{Errors.h@{Errors.h}!nErrorThrow@{nErrorThrow}}
@@ -308,23 +308,11 @@ Example\+:
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}} is returned.
+\mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}} is returned. 
 \end{DoxyReturn}
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]Set a default error manager. \end{DoxyRefDesc}
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]Crash. \end{DoxyRefDesc}
 
 
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]Crash. \end{DoxyRefDesc}
-
-
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000004}{Todo}}]Crash. \end{DoxyRefDesc}
-
-
-Definition at line 67 of file Errors.\+c.
+Definition at line 87 of file Errors.\+c.
 
 \mbox{\Hypertarget{_errors_8h_a48ebddf8575e60d2536f5ba7f95b43ea}\label{_errors_8h_a48ebddf8575e60d2536f5ba7f95b43ea}} 
 \index{Errors.h@{Errors.h}!nErrorToString@{nErrorToString}}
@@ -376,8 +364,8 @@ Example\+:
 {\ttfamily dst} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}} is returned. 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000005}{Todo}}]Crash. \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]Crash. \end{DoxyRefDesc}
 
 
-Definition at line 97 of file Errors.\+c.
+Definition at line 111 of file Errors.\+c.
 

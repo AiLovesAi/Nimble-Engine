@@ -1,17 +1,13 @@
-.TH "todo" 3 "Tue Aug 18 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
+.TH "todo" 3 "Wed Aug 19 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
 todo \- Todo List 
 
-.IP "\fBGlobal \fBnErrorThrow\fP (const int32_t error, const char *info, int32_t infoLen)\fP" 1c
-Set a default error manager\&. 
-.PP
-Crash\&. 
-.PP
-Crash\&. 
-.PP
-Crash\&.  
+.IP "\fBGlobal \fBnCrashAbort\fP (const int32_t error)\fP" 1c
+Make abort function\&.  
+.IP "\fBGlobal \fBerrorCallbackDefault\fP (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen, const time_t errorTime)\fP" 1c
+Make default callback\&.  
 .IP "\fBGlobal \fBnErrorToString\fP (char *dst, int32_t *size, const int32_t error, const char *info, int32_t infoLen)\fP" 1c
 Crash\&.  
 .IP "\fBGlobal \fBnErrorGetStacktrace\fP (char *dst, int32_t *size, int32_t *levels)\fP" 1c

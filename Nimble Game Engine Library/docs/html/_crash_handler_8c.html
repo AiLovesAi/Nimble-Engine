@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Game Engine Library: C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/src/NimbleEngine/Output/CrashHandler.c File Reference</title>
+<title>Nimble Game Engine Library: src/NimbleEngine/Output/CrashHandler.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,13 +68,82 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">CrashHandler.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>This class defines crash handling functions.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="_nimble_license_8h_source.html">../../../include/Nimble/NimbleLicense.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_crash_handler_8h_source.html">../../../include/Nimble/NimbleEngine/Output/CrashHandler.h</a>&quot;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+</div>
 <p><a href="_crash_handler_8c_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:af9d107d452d67ebd418f4534ae31cab3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a> (const int32_t error)</td></tr>
+<tr class="memdesc:af9d107d452d67ebd418f4534ae31cab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program without notifying the callback.  <a href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">More...</a><br /></td></tr>
+<tr class="separator:af9d107d452d67ebd418f4534ae31cab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class defines crash handling functions. </p>
+<dl class="section author"><dt>Author</dt><dd>Avery Aaron </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.a'+'3ol'+'og'+'y@g'+'ma'+'il.'+'co'+'m'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>a3olo<span style="display: none;">.nosp@m.</span>gy@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a></p>
+<p class="interdd">Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p class="interdd">The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p class="enddd">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </p>
+</dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2020-08-19 </dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="af9d107d452d67ebd418f4534ae31cab3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9d107d452d67ebd418f4534ae31cab3">&#9670;&nbsp;</a></span>nCrashAbort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nCrashAbort </td>
+          <td>(</td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>error</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crashes the program without notifying the callback. </p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a>(<a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>);</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The error that caused the crash.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Make abort function. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00049">49</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
+<div class="ttc" id="a_crash_handler_8c_html_af9d107d452d67ebd418f4534ae31cab3"><div class="ttname"><a href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a></div><div class="ttdeci">void nCrashAbort(const int32_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00049">CrashHandler.c:49</a></div></div>
+<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">Includes all the necessary game engine header files.</div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00063">Errors.h:63</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

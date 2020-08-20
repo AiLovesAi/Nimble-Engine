@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Game Engine Library: C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/CrashHandler.h File Reference</title>
+<title>Nimble Game Engine Library: include/Nimble/NimbleEngine/Output/CrashHandler.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -150,7 +150,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">nCrashAbort</a>(<a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>);</div>
+<div class="line">    <a class="code" href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a>(<a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>);</div>
 <div class="line">}</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -159,6 +159,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Make abort function. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00049">49</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
 
 </div>
 </div>
@@ -238,13 +241,13 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Make a callback function for the developer to handle crashes, but with only one attempt before taking over. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Make a callback function for the developer to handle crashes, but with only one attempt before taking over. </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_errors_8c_html_a5c2568530315002dcbfccaafc5821883"><div class="ttname"><a href="_errors_8c.html#a5c2568530315002dcbfccaafc5821883">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *size, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00097">Errors.c:97</a></div></div>
-<div class="ttc" id="a_crash_handler_8h_html_aa980b8029665aac24b758ba6893eb71a"><div class="ttname"><a href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a">nCrashAbort</a></div><div class="ttdeci">NIMBLE_EXTERN void nCrashAbort(const int32_t error) __attribute__((noreturn))</div><div class="ttdoc">Crashes the program without notifying the callback.</div></div>
+<div class="ttc" id="a_crash_handler_8c_html_af9d107d452d67ebd418f4534ae31cab3"><div class="ttname"><a href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a></div><div class="ttdeci">void nCrashAbort(const int32_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00049">CrashHandler.c:49</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a5c2568530315002dcbfccaafc5821883"><div class="ttname"><a href="_errors_8c.html#a5c2568530315002dcbfccaafc5821883">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *size, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00111">Errors.c:111</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00118">Nimble.h:118</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">Includes all the necessary game engine header files.</div></div>
 <div class="ttc" id="a_crash_handler_8h_html_ae1d01fa2a0db5fb774bfc0e5a3fd49c7"><div class="ttname"><a href="_crash_handler_8h.html#ae1d01fa2a0db5fb774bfc0e5a3fd49c7">nCrashSafe</a></div><div class="ttdeci">NIMBLE_EXTERN void nCrashSafe(const int32_t error, const char *errorDesc, int32_t errorDescLen, const char *crashFilePath, int32_t crashFilePathLen) __attribute__((noreturn))</div><div class="ttdoc">Crashes the program safely.</div></div>

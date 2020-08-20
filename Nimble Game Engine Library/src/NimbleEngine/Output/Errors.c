@@ -41,10 +41,11 @@
  * @brief This class defines error values and error handling functions.
  */
 
-#include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "../../../include/Nimble/NimbleEngine/Output/CrashHandler.h"
 
@@ -58,37 +59,50 @@ const char errorNotFoundErrStr[] = "NERROR_ERROR_NOT_FOUND: An error passed to "
                                    "a function was not valid: ";
 
 /**
+ * @brief The default error callback.
+ * @note Check nErrorSetCallback() for parameter information.
+ */
+int32_t errorCallbackDefault(const int32_t error,
+                             const char * errorDesc,
+                             const int32_t errorDescLen,
+                             const char * stack,
+                             const int32_t stackLen,
+                             const time_t errorTime
+                             );
+
+/**
  * @brief The error callback function that gets defined by nErrorSetCallback().
  */
-int32_t (*errorCallback) (const int32_t, const char *, const int32_t,
-                          const char *, const int32_t, const time_t) = NULL; /** @todo Set a default error manager. */
+int32_t (* errorCallback) (const int32_t, const char *, const int32_t,
+            const char *, const int32_t, const time_t) = errorCallbackDefault;
 
+
+int32_t errorCallbackDefault(const int32_t error, const char * errorDesc,
+         const int32_t errorDescLen, const char * stack, const int32_t stackLen,
+         const time_t errorTime)
+{
+    /** @todo Make default callback. */
+}
 
 int32_t nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
 {
-    time_t errorTime = time(NULL);
+    const time_t errorTime = time(NULL);
     
     if (errorCallback == NULL)
     {
-        /** @todo Crash. */
-        return NERROR;
+        nCrashAbort(NERROR_NULL);
     }
     
     char * errorDesc;
     int32_t errorDescLen;
     if (nErrorToString(errorDesc, &errorDescLen, error, info, infoLen) == NULL)
     {
-        /** @todo Crash. */
-        return NERROR;
+        nCrashAbort(NERROR_NULL);
     }
     
     char * stack;
     int32_t stackLen, levels;
-    if (nErrorGetStacktrace(stack, &stackLen, &levels) == NULL)
-    {
-        /** @todo Crash. */
-        return NERROR;
-    }
+    nErrorGetStacktrace(stack, &stackLen, &levels);
     
     errorCallback(error, errorDesc, errorDescLen, stack, stackLen, errorTime);
     return NSUCCESS;

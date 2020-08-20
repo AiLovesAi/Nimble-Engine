@@ -1,8 +1,8 @@
-.TH "C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/Errors.h" 3 "Tue Aug 18 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
+.TH "include/Nimble/NimbleEngine/Output/Errors.h" 3 "Wed Aug 19 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-C:/Users/Avery/Desktop/Nimble Game Engine/Nimble Game Engine Library/include/Nimble/NimbleEngine/Output/Errors.h \- This class defines error values and error handling functions\&.  
+include/Nimble/NimbleEngine/Output/Errors.h \- This class defines error values and error handling functions\&.  
 
 .SH SYNOPSIS
 .br
@@ -178,7 +178,7 @@ int main(int argc, char ** argv)
 .PP
 \fBReturns\fP
 .RS 4
-\fCdst\fP is returned if successful; otherwise \fC\fBNULL\fP\fP is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback()\&.
+\fCdst\fP is returned if successful; otherwise the program crashes\&.
 .RE
 .PP
 \fBNote\fP
@@ -195,7 +195,7 @@ Get stack trace\&.
 .PP
 
 .PP
-Definition at line 216 of file Errors\&.c\&.
+Definition at line 230 of file Errors\&.c\&.
 .SS "\fBNIMBLE_EXTERN\fP int32_t nErrorSetCallback (int32_t(*)(const int32_t, const char *, const int32_t, const char *, const int32_t, const time_t) callback)"
 
 .PP
@@ -261,7 +261,7 @@ The callback parameters are \fCerror, errorDesc, errorDescLen, stack, stackLen, 
 .PP
 
 .PP
-Definition at line 202 of file Errors\&.c\&.
+Definition at line 216 of file Errors\&.c\&.
 .SS "\fBNIMBLE_EXTERN\fP int32_t nErrorThrow (const int32_t error, const char * info, int32_t infoLen)"
 
 .PP
@@ -301,36 +301,12 @@ int main(int argc, char ** argv)
 .PP
 \fBReturns\fP
 .RS 4
-\fBNSUCCESS\fP is returned if successful; otherwise \fC\fBNERROR\fP\fP is returned\&.
-.RE
-.PP
-\fBTodo\fP
-.RS 4
-Set a default error manager\&. 
+\fBNSUCCESS\fP is returned if successful; otherwise \fC\fBNERROR\fP\fP is returned\&. 
 .RE
 .PP
 
 .PP
-\fBTodo\fP
-.RS 4
-Crash\&. 
-.RE
-.PP
-.PP
-\fBTodo\fP
-.RS 4
-Crash\&. 
-.RE
-.PP
-.PP
-\fBTodo\fP
-.RS 4
-Crash\&. 
-.RE
-.PP
-
-.PP
-Definition at line 67 of file Errors\&.c\&.
+Definition at line 87 of file Errors\&.c\&.
 .SS "\fBNIMBLE_EXTERN\fP char* nErrorToString (char * dst, int32_t * size, const int32_t error, const char * info, int32_t infoLen)"
 
 .PP
@@ -386,7 +362,7 @@ Crash\&.
 .PP
 
 .PP
-Definition at line 97 of file Errors\&.c\&.
+Definition at line 111 of file Errors\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Nimble Game Engine Library from the source code\&.

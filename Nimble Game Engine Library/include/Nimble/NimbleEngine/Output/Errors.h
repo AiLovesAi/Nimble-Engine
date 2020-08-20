@@ -241,9 +241,7 @@ nErrorSetCallback(int32_t (*callback)(
  * @param[out] size The length of the string returned, including the null
  * character. This can be #NULL.
  * @param[out] levels The number of levels of the stack. This can be #NULL.
- * @return @p dst is returned if successful; otherwise @c #NULL is returned
- * and a corresponding error is sent to the error callback set by
- * nErrorHandlerSetErrorCallback().
+ * @return @p dst is returned if successful; otherwise the program crashes.
  *
  * @note Each time a function is called, it is added to the stack. When a
  * function returns, it is removed from the stack.
