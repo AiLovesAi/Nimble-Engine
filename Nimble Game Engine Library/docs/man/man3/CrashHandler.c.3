@@ -1,0 +1,102 @@
+.TH "src/NimbleEngine/Output/CrashHandler.c" 3 "Wed Aug 19 2020" "Version 0.1.0" "Nimble Game Engine Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/NimbleEngine/Output/CrashHandler.c \- This class defines crash handling functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include '\&.\&./\&.\&./\&.\&./include/Nimble/NimbleLicense\&.h'\fP
+.br
+\fC#include '\&.\&./\&.\&./\&.\&./include/Nimble/NimbleEngine/Output/CrashHandler\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <time\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBnCrashAbort\fP (const int32_t error)"
+.br
+.RI "Crashes the program without notifying the callback\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class defines crash handling functions\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+Avery Aaron 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+The MIT License (MIT) Copyright (C) 2020 Avery Aaron business.a3ology@gmail.com
+.PP
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+.PP
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software\&.
+.PP
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT\&. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE\&. 
+.RE
+.PP
+.PP
+\fBDate\fP
+.RS 4
+2020-08-19 
+.RE
+.PP
+
+.PP
+Definition in file \fBCrashHandler\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void nCrashAbort (const int32_t error)"
+
+.PP
+Crashes the program without notifying the callback\&. Example: 
+.PP
+.nf
+#include <Nimble/NimbleEngine\&.h>
+
+int main(int argc, char ** argv)
+{
+    nCrashAbort(NERROR_NULL);
+}
+
+.fi
+.PP
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP The error that caused the crash\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+This function does not return, and exits the program\&. 
+.RE
+.PP
+
+.PP
+\fBTodo\fP
+.RS 4
+Make abort function\&. 
+.RE
+.PP
+
+.PP
+Definition at line 49 of file CrashHandler\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Nimble Game Engine Library from the source code\&.

@@ -1,0 +1,371 @@
+\hypertarget{_errors_8h}{}\doxysection{include/\+Nimble/\+Nimble\+Engine/\+Output/\+Errors.h File Reference}
+\label{_errors_8h}\index{include/Nimble/NimbleEngine/Output/Errors.h@{include/Nimble/NimbleEngine/Output/Errors.h}}
+
+
+This class defines error values and error handling functions.  
+
+
+{\ttfamily \#include \char`\"{}../../\+Nimble\+License.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../\+Nimble\+Engine.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_errors_8h_a6d4dacac75d1b30e861eb6ccc7adcf41}{N\+I\+M\+B\+L\+E\+\_\+\+E\+N\+G\+I\+N\+E\+\_\+\+E\+R\+R\+O\+R\+S\+\_\+H}}
+\begin{DoxyCompactList}\small\item\em Header definition. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}}~(int32\+\_\+t) 0
+\begin{DoxyCompactList}\small\item\em Returned when a function succeeds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}~(int32\+\_\+t) -\/1
+\begin{DoxyCompactList}\small\item\em Returned when a function encounters an error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6}{n\+Errors}} \{ \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d}{N\+E\+R\+R\+O\+R\+\_\+\+U\+N\+K\+N\+O\+WN}} = I\+N\+T\+\_\+\+M\+IN, 
+\mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365}{N\+E\+R\+R\+O\+R\+\_\+\+N\+U\+LL}}, 
+\mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}{N\+E\+R\+R\+O\+R\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}}, 
+\mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6ac272f5c8c914a925f70fb179c204176e}{N\+E\+R\+R\+O\+R\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}}
+ \}
+\begin{DoxyCompactList}\small\item\em The possible error values used by Error\+Handler.\+h error handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} int32\+\_\+t \mbox{\hyperlink{_errors_8h_add73124e9808e451792228721e636eab}{n\+Error\+Throw}} (const int32\+\_\+t error, const char $\ast$info, int32\+\_\+t info\+Len)
+\begin{DoxyCompactList}\small\item\em Sends an error to the error callback. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} char $\ast$ \mbox{\hyperlink{_errors_8h_a48ebddf8575e60d2536f5ba7f95b43ea}{n\+Error\+To\+String}} (char $\ast$dst, int32\+\_\+t $\ast$size, const int32\+\_\+t error, const char $\ast$info, int32\+\_\+t info\+Len)
+\begin{DoxyCompactList}\small\item\em Describes an error and returns a string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} int32\+\_\+t \mbox{\hyperlink{_errors_8h_a4e2efa68d735c4316c52841b6afea67f}{n\+Error\+Set\+Callback}} (int32\+\_\+t($\ast$callback)(const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const time\+\_\+t))
+\begin{DoxyCompactList}\small\item\em Sets the callback function to handle errors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} char $\ast$ \mbox{\hyperlink{_errors_8h_a5170a68db336600ea49e73483968307d}{n\+Error\+Get\+Stacktrace}} (char $\ast$dst, int32\+\_\+t $\ast$size, int32\+\_\+t $\ast$levels)
+\begin{DoxyCompactList}\small\item\em Returns the current stack trace as a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class defines error values and error handling functions. 
+
+\begin{DoxyAuthor}{Author}
+Avery Aaron 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+The M\+IT License (M\+IT) Copyright (C) 2020 Avery Aaron \href{mailto:business.a3ology@gmail.com}{\texttt{ business.\+a3ology@gmail.\+com}}
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+T\+HE S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}, W\+I\+T\+H\+O\+UT W\+A\+R\+R\+A\+N\+TY OF A\+NY K\+I\+ND, E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED, I\+N\+C\+L\+U\+D\+I\+NG B\+UT N\+OT L\+I\+M\+I\+T\+ED TO T\+HE W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY, F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+ND N\+O\+N\+I\+N\+F\+R\+I\+N\+G\+E\+M\+E\+NT. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE A\+U\+T\+H\+O\+RS OR C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY C\+L\+A\+IM, D\+A\+M\+A\+G\+ES OR O\+T\+H\+ER L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN AN A\+C\+T\+I\+ON OF C\+O\+N\+T\+R\+A\+CT, T\+O\+RT OR O\+T\+H\+E\+R\+W\+I\+SE, A\+R\+I\+S\+I\+NG F\+R\+OM, O\+UT OF OR IN C\+O\+N\+N\+E\+C\+T\+I\+ON W\+I\+TH T\+HE S\+O\+F\+T\+W\+A\+RE OR T\+HE U\+SE OR O\+T\+H\+ER D\+E\+A\+L\+I\+N\+GS IN T\+HE S\+O\+F\+T\+W\+A\+RE. 
+\end{DoxyCopyright}
+
+
+\begin{DoxyDate}{Date}
+2020-\/08-\/14 
+\end{DoxyDate}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_errors_8h_abc17e6456e8237f1fec82260310055b1}\label{_errors_8h_abc17e6456e8237f1fec82260310055b1}} 
+\index{Errors.h@{Errors.h}!NERROR@{NERROR}}
+\index{NERROR@{NERROR}!Errors.h@{Errors.h}}
+\doxysubsubsection{\texorpdfstring{NERROR}{NERROR}}
+{\footnotesize\ttfamily \#define N\+E\+R\+R\+OR~(int32\+\_\+t) -\/1}
+
+
+
+Returned when a function encounters an error. 
+
+
+
+Definition at line 56 of file Errors.\+h.
+
+\mbox{\Hypertarget{_errors_8h_a6d4dacac75d1b30e861eb6ccc7adcf41}\label{_errors_8h_a6d4dacac75d1b30e861eb6ccc7adcf41}} 
+\index{Errors.h@{Errors.h}!NIMBLE\_ENGINE\_ERRORS\_H@{NIMBLE\_ENGINE\_ERRORS\_H}}
+\index{NIMBLE\_ENGINE\_ERRORS\_H@{NIMBLE\_ENGINE\_ERRORS\_H}!Errors.h@{Errors.h}}
+\doxysubsubsection{\texorpdfstring{NIMBLE\_ENGINE\_ERRORS\_H}{NIMBLE\_ENGINE\_ERRORS\_H}}
+{\footnotesize\ttfamily \#define N\+I\+M\+B\+L\+E\+\_\+\+E\+N\+G\+I\+N\+E\+\_\+\+E\+R\+R\+O\+R\+S\+\_\+H}
+
+
+
+Header definition. 
+
+
+
+Definition at line 47 of file Errors.\+h.
+
+\mbox{\Hypertarget{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}\label{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}} 
+\index{Errors.h@{Errors.h}!NSUCCESS@{NSUCCESS}}
+\index{NSUCCESS@{NSUCCESS}!Errors.h@{Errors.h}}
+\doxysubsubsection{\texorpdfstring{NSUCCESS}{NSUCCESS}}
+{\footnotesize\ttfamily \#define N\+S\+U\+C\+C\+E\+SS~(int32\+\_\+t) 0}
+
+
+
+Returned when a function succeeds. 
+
+
+
+Definition at line 55 of file Errors.\+h.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6}\label{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6}} 
+\index{Errors.h@{Errors.h}!nErrors@{nErrors}}
+\index{nErrors@{nErrors}!Errors.h@{Errors.h}}
+\doxysubsubsection{\texorpdfstring{nErrors}{nErrors}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6}{n\+Errors}}}
+
+
+
+The possible error values used by Error\+Handler.\+h error handler. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NERROR\_UNKNOWN@{NERROR\_UNKNOWN}!Errors.h@{Errors.h}}\index{Errors.h@{Errors.h}!NERROR\_UNKNOWN@{NERROR\_UNKNOWN}}}\mbox{\Hypertarget{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d}\label{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d}} 
+N\+E\+R\+R\+O\+R\+\_\+\+U\+N\+K\+N\+O\+WN&An nknown error occurred. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NERROR\_NULL@{NERROR\_NULL}!Errors.h@{Errors.h}}\index{Errors.h@{Errors.h}!NERROR\_NULL@{NERROR\_NULL}}}\mbox{\Hypertarget{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365}\label{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365}} 
+N\+E\+R\+R\+O\+R\+\_\+\+N\+U\+LL&A pointer was null when a nonnull pointer was expected. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NERROR\_FILE\_NOT\_FOUND@{NERROR\_FILE\_NOT\_FOUND}!Errors.h@{Errors.h}}\index{Errors.h@{Errors.h}!NERROR\_FILE\_NOT\_FOUND@{NERROR\_FILE\_NOT\_FOUND}}}\mbox{\Hypertarget{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}\label{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}} 
+N\+E\+R\+R\+O\+R\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND&A file was not found where specified. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NERROR\_ERROR\_NOT\_FOUND@{NERROR\_ERROR\_NOT\_FOUND}!Errors.h@{Errors.h}}\index{Errors.h@{Errors.h}!NERROR\_ERROR\_NOT\_FOUND@{NERROR\_ERROR\_NOT\_FOUND}}}\mbox{\Hypertarget{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6ac272f5c8c914a925f70fb179c204176e}\label{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6ac272f5c8c914a925f70fb179c204176e}} 
+N\+E\+R\+R\+O\+R\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND&An error passed to a function was not valid. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 61 of file Errors.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_errors_8h_a5170a68db336600ea49e73483968307d}\label{_errors_8h_a5170a68db336600ea49e73483968307d}} 
+\index{Errors.h@{Errors.h}!nErrorGetStacktrace@{nErrorGetStacktrace}}
+\index{nErrorGetStacktrace@{nErrorGetStacktrace}!Errors.h@{Errors.h}}
+\doxysubsubsection{\texorpdfstring{nErrorGetStacktrace()}{nErrorGetStacktrace()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} char$\ast$ n\+Error\+Get\+Stacktrace (\begin{DoxyParamCaption}\item[{char $\ast$}]{dst,  }\item[{int32\+\_\+t $\ast$}]{size,  }\item[{int32\+\_\+t $\ast$}]{levels }\end{DoxyParamCaption})}
+
+
+
+Returns the current stack trace as a string. 
+
+Returns the current stack trace as a string, and sets the {\ttfamily size} of the string and {\ttfamily levels} of the stack.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{_nimble_engine_8h}{Nimble/NimbleEngine.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    int32\_t levels, size;}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} * stack;}
+\DoxyCodeLine{    \mbox{\hyperlink{_errors_8c_a51c5b711f13bd8a6090936b7b2c21ecb}{nErrorGetStacktrace}}(stack, \&levels, \&size);}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (stack == \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to get stack trace.\(\backslash\)n"{}});}
+\DoxyCodeLine{        exit(EXIT\_FAILURE);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Last \%d levels of stack trace: \%s\(\backslash\)n"{}}, levels, stack);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em dst} & The destination to store the stacktrace string. \\
+\hline
+\mbox{\texttt{ out}}  & {\em size} & The length of the string returned, including the null character. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em levels} & The number of levels of the stack. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily dst} is returned if successful; otherwise the program crashes.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. 
+\end{DoxyNote}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000004}{Todo}}]Get stack trace. \end{DoxyRefDesc}
+
+
+Definition at line 230 of file Errors.\+c.
+
+\mbox{\Hypertarget{_errors_8h_a4e2efa68d735c4316c52841b6afea67f}\label{_errors_8h_a4e2efa68d735c4316c52841b6afea67f}} 
+\index{Errors.h@{Errors.h}!nErrorSetCallback@{nErrorSetCallback}}
+\index{nErrorSetCallback@{nErrorSetCallback}!Errors.h@{Errors.h}}
+\doxysubsubsection{\texorpdfstring{nErrorSetCallback()}{nErrorSetCallback()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} int32\+\_\+t n\+Error\+Set\+Callback (\begin{DoxyParamCaption}\item[{int32\+\_\+t($\ast$)(const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const char $\ast$, const int32\+\_\+t, const time\+\_\+t)}]{callback }\end{DoxyParamCaption})}
+
+
+
+Sets the callback function to handle errors. 
+
+Sets the callback function {\ttfamily callback} that gets called when an error occurs.
+
+\begin{DoxyParagraph}{Example\+:}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{_nimble_engine_8h}{Nimble/NimbleEngine.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} errorHandler(\textcolor{keyword}{const} int32\_t error, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * errorDesc,}
+\DoxyCodeLine{      \textcolor{keyword}{const} \textcolor{keywordtype}{char} * stack, \textcolor{keyword}{const} time\_t errorTime)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{struct }tm * timeInfo = localtime(\&errorTime);}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{char} format[] = \textcolor{stringliteral}{"{}\%x \%X \%Z"{}};}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{char} example = \textcolor{stringliteral}{"{}01/01/2020 16:30:45 GMT"{}}}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} * timeString = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{void} *) + \textcolor{keyword}{sizeof}(example));}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (timeString == \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to allocate to timeString.\(\backslash\)n"{}});}
+\DoxyCodeLine{        \textcolor{keywordflow}{return};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    strftime(timeString, \textcolor{keyword}{sizeof}(example), format, timeInfo);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    fprintf(stderr, \textcolor{stringliteral}{"{}\(\backslash\)nAn error occurred at \%s:\(\backslash\)nError description: "{}}\(\backslash\)}
+\DoxyCodeLine{     \textcolor{stringliteral}{"{}\%s\(\backslash\)nStack trace: \%s\(\backslash\)n\(\backslash\)n"{}}, timeString, errorDesc, stack);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (nErrorHandlerSetErrorCallback(errorHandler) != \mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{NSUCCESS}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Could not set error callback for Nimble.\(\backslash\)n"{}});}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} EXIT\_FAILURE;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Successfully set error callback for Nimble.\(\backslash\)n"{}});}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em callback} & The function that gets called when an error occurs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}} is returned.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The callback parameters are {\ttfamily error, error\+Desc, error\+Desc\+Len, stack, stack\+Len, error\+Time}. 
+\end{DoxyNote}
+
+
+Definition at line 216 of file Errors.\+c.
+
+\mbox{\Hypertarget{_errors_8h_add73124e9808e451792228721e636eab}\label{_errors_8h_add73124e9808e451792228721e636eab}} 
+\index{Errors.h@{Errors.h}!nErrorThrow@{nErrorThrow}}
+\index{nErrorThrow@{nErrorThrow}!Errors.h@{Errors.h}}
+\doxysubsubsection{\texorpdfstring{nErrorThrow()}{nErrorThrow()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} int32\+\_\+t n\+Error\+Throw (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{info,  }\item[{int32\+\_\+t}]{info\+Len }\end{DoxyParamCaption})}
+
+
+
+Sends an error to the error callback. 
+
+Sends an error to the error callback defined by n\+Error\+Handler\+Set\+Error\+Callback(), and determines whether or not crashing is necessary.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{_nimble_engine_8h}{Nimble/NimbleEngine.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} exampleFilePath[] = \textcolor{stringliteral}{"{}example.txt"{}};}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (\mbox{\hyperlink{_errors_8c_ab17af6118ec5a69109949c0485f2bb9d}{nErrorThrow}}(\mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}{NERROR\_FILE\_NOT\_FOUND}}, exampleFilePath,}
+\DoxyCodeLine{         \textcolor{keyword}{sizeof}(exampleFilePath)) != \mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{NSUCCESS}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to throw error.\(\backslash\)n"{}});}
+\DoxyCodeLine{        exit(EXIT\_FAILURE);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Successfully threw error.\(\backslash\)n"{}});}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em error} & The error to throw. \\
+\hline
+\mbox{\texttt{ in}}  & {\em info} & Relevant information, such as a file location, that could help \\
+\hline
+\mbox{\texttt{ in}}  & {\em info\+Len} & The length of the {\ttfamily info} argument, including the null character. A length of zero (0) uses strlen() to determine length. diagnose the error. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{_errors_8h_a34eedfdb3dfef7fc00ea46dcb487bb17}{N\+S\+U\+C\+C\+E\+SS}} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}} is returned. 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file Errors.\+c.
+
+\mbox{\Hypertarget{_errors_8h_a48ebddf8575e60d2536f5ba7f95b43ea}\label{_errors_8h_a48ebddf8575e60d2536f5ba7f95b43ea}} 
+\index{Errors.h@{Errors.h}!nErrorToString@{nErrorToString}}
+\index{nErrorToString@{nErrorToString}!Errors.h@{Errors.h}}
+\doxysubsubsection{\texorpdfstring{nErrorToString()}{nErrorToString()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a99b09cd8c8c999889cf8113c3d281368}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+T\+E\+RN}} char$\ast$ n\+Error\+To\+String (\begin{DoxyParamCaption}\item[{char $\ast$}]{dst,  }\item[{int32\+\_\+t $\ast$}]{size,  }\item[{const int32\+\_\+t}]{error,  }\item[{const char $\ast$}]{info,  }\item[{int32\+\_\+t}]{info\+Len }\end{DoxyParamCaption})}
+
+
+
+Describes an error and returns a string. 
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{_nimble_engine_8h}{Nimble/NimbleEngine.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} * errorStr;}
+\DoxyCodeLine{    int32\_t errorLen;}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} exampleFilePath[] = \textcolor{stringliteral}{"{}example.txt"{}};}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (\mbox{\hyperlink{_errors_8c_a5c2568530315002dcbfccaafc5821883}{nErrorToString}}(errorStr, \&errorLen, \mbox{\hyperlink{_errors_8h_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87}{NERROR\_FILE\_NOT\_FOUND}},}
+\DoxyCodeLine{         exampleFilePath, \textcolor{keyword}{sizeof}(exampleFilePath)) == \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to get error string.\(\backslash\)n"{}});}
+\DoxyCodeLine{        exit(EXIT\_FAILURE);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}NERROR\_FILE\_NOT\_FOUND as string: \%s\(\backslash\)n"{}}, errorStr);}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em dst} & The destination to store the string describing {\ttfamily error}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em size} & The length of the string returned, including the null character. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em error} & The error to get described. \\
+\hline
+\mbox{\texttt{ in}}  & {\em info} & Relevant information, such as a file location, that could help diagnose the error. This can be \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em info\+Len} & The length of the {\ttfamily info} argument, including the null character. A length of zero (0) uses strlen() to determine length. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily dst} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}} is returned. 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]Crash. \end{DoxyRefDesc}
+
+
+Definition at line 111 of file Errors.\+c.
+

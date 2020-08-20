@@ -1,0 +1,272 @@
+\hypertarget{_open_g_l_2_window_8h}{}\doxysection{include/\+Nimble/\+Nimble\+Graphics/\+Open\+G\+L/\+Window.h File Reference}
+\label{_open_g_l_2_window_8h}\index{include/Nimble/NimbleGraphics/OpenGL/Window.h@{include/Nimble/NimbleGraphics/OpenGL/Window.h}}
+
+
+Creates and controls application windows.  
+
+
+{\ttfamily \#include \char`\"{}../../\+Nimble\+License.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../\+Nimble\+Open\+G\+L.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_open_g_l_2_window_8h_abf97e5b3a4efabb7fefb14a5cffca2e8}{N\+I\+M\+B\+L\+E\+\_\+\+G\+R\+A\+P\+H\+I\+C\+S\+\_\+\+W\+I\+N\+D\+O\+W\+\_\+H}}
+\begin{DoxyCompactList}\small\item\em Header definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864}{n\+Window\+Flags}} \mbox{\hyperlink{_open_g_l_2_window_8h_a46dfd928090ff523a5e831907d255580}{n\+Window\+Flags\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The flags used for creating or changing a window. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26}{n\+Window\+Monitor}} \mbox{\hyperlink{_open_g_l_2_window_8h_a1db2b278e0226776aa6b3ed67970b3c7}{n\+Window\+Monitor\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The type of monitor to be selected instead of a monitor ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864}{n\+Window\+Flags}} \{ \mbox{\hyperlink{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864ac11a402a341faadbbb7bc9ee52f3f3b4}{N\+W\+I\+N\+D\+O\+W\+\_\+\+F\+U\+L\+L\+S\+C\+R\+E\+EN}} = 1 $<$$<$ 0, 
+\mbox{\hyperlink{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864ae3ae01708c980ab207c68dfe64dfdac9}{N\+W\+I\+N\+D\+O\+W\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+S\+H\+O\+WN}} = 1 $<$$<$ 1, 
+\mbox{\hyperlink{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864a5b029e10f0fe3d96115e28252253385e}{N\+W\+I\+N\+D\+O\+W\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+H\+I\+D\+D\+EN}} = 1 $<$$<$ 2
+ \}
+\begin{DoxyCompactList}\small\item\em The flags used for creating or changing a window. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26}{n\+Window\+Monitor}} \{ \mbox{\hyperlink{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26a03c35a2bf03ae0221347bc9d93cab329}{N\+W\+I\+N\+D\+O\+W\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+D\+E\+F\+A\+U\+LT}} = I\+N\+T\+\_\+\+M\+IN, 
+\mbox{\hyperlink{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26a2ef079523d9f6845de538b584fc3669b}{N\+W\+I\+N\+D\+O\+W\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+F\+I\+R\+ST}}, 
+\mbox{\hyperlink{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26aa7497822a55b4d7941f46b9fc7d05ea5}{N\+W\+I\+N\+D\+O\+W\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+L\+A\+ST}}
+ \}
+\begin{DoxyCompactList}\small\item\em The type of monitor to be selected instead of a monitor ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} int32\+\_\+t \mbox{\hyperlink{_open_g_l_2_window_8h_a2cae917f6153f0793aee5eb5e04ee1e4}{n\+Window\+Create}} (const char $\ast$title, const uint8\+\_\+t $\ast$icon\+Data, const uint32\+\_\+t $\ast$dimensions, const int32\+\_\+t flags)
+\begin{DoxyCompactList}\small\item\em Creates a window. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} uint8\+\_\+t $\ast$ \mbox{\hyperlink{_open_g_l_2_window_8h_a1597abb946204b9711779f9bbc66b5ed}{n\+Window\+Load\+Icon}} (uint8\+\_\+t $\ast$dst, const char $\ast$icon\+Path)
+\begin{DoxyCompactList}\small\item\em Loads a window icon file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Creates and controls application windows. 
+
+\begin{DoxyAuthor}{Author}
+Avery Aaron 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+The M\+IT License (M\+IT) Copyright (C) 2020 Avery Aaron \href{mailto:business.a3ology@gmail.com}{\texttt{ business.\+a3ology@gmail.\+com}}
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+T\+HE S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}, W\+I\+T\+H\+O\+UT W\+A\+R\+R\+A\+N\+TY OF A\+NY K\+I\+ND, E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED, I\+N\+C\+L\+U\+D\+I\+NG B\+UT N\+OT L\+I\+M\+I\+T\+ED TO T\+HE W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY, F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+ND N\+O\+N\+I\+N\+F\+R\+I\+N\+G\+E\+M\+E\+NT. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE A\+U\+T\+H\+O\+RS OR C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY C\+L\+A\+IM, D\+A\+M\+A\+G\+ES OR O\+T\+H\+ER L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN AN A\+C\+T\+I\+ON OF C\+O\+N\+T\+R\+A\+CT, T\+O\+RT OR O\+T\+H\+E\+R\+W\+I\+SE, A\+R\+I\+S\+I\+NG F\+R\+OM, O\+UT OF OR IN C\+O\+N\+N\+E\+C\+T\+I\+ON W\+I\+TH T\+HE S\+O\+F\+T\+W\+A\+RE OR T\+HE U\+SE OR O\+T\+H\+ER D\+E\+A\+L\+I\+N\+GS IN T\+HE S\+O\+F\+T\+W\+A\+RE. 
+\end{DoxyCopyright}
+
+
+\begin{DoxyDate}{Date}
+2020-\/08-\/10
+\end{DoxyDate}
+This class is used to and controls application windows. Window input and events are not handled by this class. 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_open_g_l_2_window_8h_abf97e5b3a4efabb7fefb14a5cffca2e8}\label{_open_g_l_2_window_8h_abf97e5b3a4efabb7fefb14a5cffca2e8}} 
+\index{Window.h@{Window.h}!NIMBLE\_GRAPHICS\_WINDOW\_H@{NIMBLE\_GRAPHICS\_WINDOW\_H}}
+\index{NIMBLE\_GRAPHICS\_WINDOW\_H@{NIMBLE\_GRAPHICS\_WINDOW\_H}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{NIMBLE\_GRAPHICS\_WINDOW\_H}{NIMBLE\_GRAPHICS\_WINDOW\_H}}
+{\footnotesize\ttfamily \#define N\+I\+M\+B\+L\+E\+\_\+\+G\+R\+A\+P\+H\+I\+C\+S\+\_\+\+W\+I\+N\+D\+O\+W\+\_\+H}
+
+
+
+Header definition. 
+
+
+
+Definition at line 51 of file Window.\+h.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_open_g_l_2_window_8h_a46dfd928090ff523a5e831907d255580}\label{_open_g_l_2_window_8h_a46dfd928090ff523a5e831907d255580}} 
+\index{Window.h@{Window.h}!nWindowFlags\_t@{nWindowFlags\_t}}
+\index{nWindowFlags\_t@{nWindowFlags\_t}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{nWindowFlags\_t}{nWindowFlags\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864}{n\+Window\+Flags}} \mbox{\hyperlink{_open_g_l_2_window_8h_a46dfd928090ff523a5e831907d255580}{n\+Window\+Flags\+\_\+t}}}
+
+
+
+The flags used for creating or changing a window. 
+
+\mbox{\Hypertarget{_open_g_l_2_window_8h_a1db2b278e0226776aa6b3ed67970b3c7}\label{_open_g_l_2_window_8h_a1db2b278e0226776aa6b3ed67970b3c7}} 
+\index{Window.h@{Window.h}!nWindowMonitor\_t@{nWindowMonitor\_t}}
+\index{nWindowMonitor\_t@{nWindowMonitor\_t}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{nWindowMonitor\_t}{nWindowMonitor\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26}{n\+Window\+Monitor}} \mbox{\hyperlink{_open_g_l_2_window_8h_a1db2b278e0226776aa6b3ed67970b3c7}{n\+Window\+Monitor\+\_\+t}}}
+
+
+
+The type of monitor to be selected instead of a monitor ID. 
+
+\begin{DoxyNote}{Note}
+The elements of this enumerator are negative so they can be used as a {\ttfamily monitor} argument in functions that can also take a positive monitor ID. 
+\end{DoxyNote}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864}\label{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864}} 
+\index{Window.h@{Window.h}!nWindowFlags@{nWindowFlags}}
+\index{nWindowFlags@{nWindowFlags}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{nWindowFlags}{nWindowFlags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864}{n\+Window\+Flags}}}
+
+
+
+The flags used for creating or changing a window. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NWINDOW\_FULLSCREEN@{NWINDOW\_FULLSCREEN}!Window.h@{Window.h}}\index{Window.h@{Window.h}!NWINDOW\_FULLSCREEN@{NWINDOW\_FULLSCREEN}}}\mbox{\Hypertarget{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864ac11a402a341faadbbb7bc9ee52f3f3b4}\label{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864ac11a402a341faadbbb7bc9ee52f3f3b4}} 
+N\+W\+I\+N\+D\+O\+W\+\_\+\+F\+U\+L\+L\+S\+C\+R\+E\+EN&Sets the window to fullscreen. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NWINDOW\_CURSOR\_SHOWN@{NWINDOW\_CURSOR\_SHOWN}!Window.h@{Window.h}}\index{Window.h@{Window.h}!NWINDOW\_CURSOR\_SHOWN@{NWINDOW\_CURSOR\_SHOWN}}}\mbox{\Hypertarget{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864ae3ae01708c980ab207c68dfe64dfdac9}\label{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864ae3ae01708c980ab207c68dfe64dfdac9}} 
+N\+W\+I\+N\+D\+O\+W\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+S\+H\+O\+WN&Sets the cursor to be visible. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NWINDOW\_CURSOR\_HIDDEN@{NWINDOW\_CURSOR\_HIDDEN}!Window.h@{Window.h}}\index{Window.h@{Window.h}!NWINDOW\_CURSOR\_HIDDEN@{NWINDOW\_CURSOR\_HIDDEN}}}\mbox{\Hypertarget{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864a5b029e10f0fe3d96115e28252253385e}\label{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864a5b029e10f0fe3d96115e28252253385e}} 
+N\+W\+I\+N\+D\+O\+W\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+H\+I\+D\+D\+EN&Sets the cursor to be hidden. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 61 of file Window.\+h.
+
+\mbox{\Hypertarget{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26}\label{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26}} 
+\index{Window.h@{Window.h}!nWindowMonitor@{nWindowMonitor}}
+\index{nWindowMonitor@{nWindowMonitor}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{nWindowMonitor}{nWindowMonitor}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26}{n\+Window\+Monitor}}}
+
+
+
+The type of monitor to be selected instead of a monitor ID. 
+
+\begin{DoxyNote}{Note}
+The elements of this enumerator are negative so they can be used as a {\ttfamily monitor} argument in functions that can also take a positive monitor ID. 
+\end{DoxyNote}
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NWINDOW\_MONITOR\_DEFAULT@{NWINDOW\_MONITOR\_DEFAULT}!Window.h@{Window.h}}\index{Window.h@{Window.h}!NWINDOW\_MONITOR\_DEFAULT@{NWINDOW\_MONITOR\_DEFAULT}}}\mbox{\Hypertarget{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26a03c35a2bf03ae0221347bc9d93cab329}\label{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26a03c35a2bf03ae0221347bc9d93cab329}} 
+N\+W\+I\+N\+D\+O\+W\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+D\+E\+F\+A\+U\+LT&The default monitor. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NWINDOW\_MONITOR\_FIRST@{NWINDOW\_MONITOR\_FIRST}!Window.h@{Window.h}}\index{Window.h@{Window.h}!NWINDOW\_MONITOR\_FIRST@{NWINDOW\_MONITOR\_FIRST}}}\mbox{\Hypertarget{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26a2ef079523d9f6845de538b584fc3669b}\label{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26a2ef079523d9f6845de538b584fc3669b}} 
+N\+W\+I\+N\+D\+O\+W\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+F\+I\+R\+ST&The first monitor found. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NWINDOW\_MONITOR\_LAST@{NWINDOW\_MONITOR\_LAST}!Window.h@{Window.h}}\index{Window.h@{Window.h}!NWINDOW\_MONITOR\_LAST@{NWINDOW\_MONITOR\_LAST}}}\mbox{\Hypertarget{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26aa7497822a55b4d7941f46b9fc7d05ea5}\label{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26aa7497822a55b4d7941f46b9fc7d05ea5}} 
+N\+W\+I\+N\+D\+O\+W\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+L\+A\+ST&The last monitor found. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 73 of file Window.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_open_g_l_2_window_8h_a2cae917f6153f0793aee5eb5e04ee1e4}\label{_open_g_l_2_window_8h_a2cae917f6153f0793aee5eb5e04ee1e4}} 
+\index{Window.h@{Window.h}!nWindowCreate@{nWindowCreate}}
+\index{nWindowCreate@{nWindowCreate}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{nWindowCreate()}{nWindowCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} int32\+\_\+t n\+Window\+Create (\begin{DoxyParamCaption}\item[{const char $\ast$}]{title,  }\item[{const uint8\+\_\+t $\ast$}]{icon\+Data,  }\item[{const uint32\+\_\+t $\ast$}]{dimensions,  }\item[{const int32\+\_\+t}]{flags }\end{DoxyParamCaption})}
+
+
+
+Creates a window. 
+
+Creates a window with dimensions {\ttfamily dimensions}, title {\ttfamily title}, icon {\ttfamily icon\+Data}, and flags {\ttfamily flags}.
+
+\begin{DoxyParagraph}{Example\+:}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{_nimble_open_g_l_8h}{Nimble/NimbleOpenGL.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} ** argv)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t * iconData = \mbox{\hyperlink{_open_g_l_2_window_8h_a1597abb946204b9711779f9bbc66b5ed}{nWindowLoadIcon}}(\textcolor{stringliteral}{"{}icon.ico"{}});}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (iconData == \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to load window icon.\(\backslash\)n"{}});}
+\DoxyCodeLine{        exit(EXIT\_FAILURE);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    uint32\_t * dimensions = nWindowDimensions(\mbox{\hyperlink{_open_g_l_2_window_8h_a117394808edf37c326ca2ee536dd0e26a03c35a2bf03ae0221347bc9d93cab329}{NWINDOW\_MONITOR\_DEFAULT}},}
+\DoxyCodeLine{                             windowPosX, windowPosY, windowWidth,}
+\DoxyCodeLine{                             windowHeight);}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (dimensions == \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to load window dimensions.\(\backslash\)n"{}});}
+\DoxyCodeLine{        exit(EXIT\_FAILURE);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    int32\_t window = \mbox{\hyperlink{_open_g_l_2_window_8h_a2cae917f6153f0793aee5eb5e04ee1e4}{nWindowCreate}}(\textcolor{stringliteral}{"{}Hello World"{}}, iconData, dimensions,}
+\DoxyCodeLine{                      \mbox{\hyperlink{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864ac11a402a341faadbbb7bc9ee52f3f3b4}{NWINDOW\_FULLSCREEN}} | \mbox{\hyperlink{_open_g_l_2_window_8h_ac0c6cf62312e3543f0c0493676e8e864a5b029e10f0fe3d96115e28252253385e}{NWINDOW\_CURSOR\_HIDDEN}});}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (window == \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{NERROR}})}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        fprintf(stderr, \textcolor{stringliteral}{"{}Failed to create window.\(\backslash\)n"{}});}
+\DoxyCodeLine{        exit(EXIT\_FAILURE);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Successfully created window.\(\backslash\)n"{}});}
+\DoxyCodeLine{    exit(EXIT\_SUCCESS);}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em title} & The title that is displayed at the top of the window. \\
+\hline
+\mbox{\texttt{ in}}  & {\em icon\+Data} & The image data of the icon for the window. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dimensions} & The position and size of the window, generated by {\ttfamily n\+Window\+Dimensions()}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em flags} & The flags set when creating the window, defined by {\ttfamily \mbox{\hyperlink{_open_g_l_2_window_8h_a46dfd928090ff523a5e831907d255580}{n\+Window\+Flags\+\_\+t}}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window ID generated by the new window is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_errors_8h_abc17e6456e8237f1fec82260310055b1}{N\+E\+R\+R\+OR}}} is returned and a corresponding error is sent to the error callback set by \mbox{\hyperlink{_errors_8c_af018df8136f2b31b2d88cdc5db710295}{n\+Error\+Set\+Callback()}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_open_g_l_2_window_8h_a1597abb946204b9711779f9bbc66b5ed}\label{_open_g_l_2_window_8h_a1597abb946204b9711779f9bbc66b5ed}} 
+\index{Window.h@{Window.h}!nWindowLoadIcon@{nWindowLoadIcon}}
+\index{nWindowLoadIcon@{nWindowLoadIcon}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{nWindowLoadIcon()}{nWindowLoadIcon()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_nimble_8h_a217e8380e1998f7b39a24176186eeaa4}{N\+I\+M\+B\+L\+E\+\_\+\+E\+X\+P\+O\+RT}} uint8\+\_\+t$\ast$ n\+Window\+Load\+Icon (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{dst,  }\item[{const char $\ast$}]{icon\+Path }\end{DoxyParamCaption})}
+
+
+
+Loads a window icon file. 
+
+Loads the icon file at {\ttfamily icon\+Path} and returns the pixel data as a {\ttfamily uint8\+\_\+t $\ast$}.
+
+\begin{DoxyParagraph}{Example\+:}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uint8\_t * iconData;}
+\DoxyCodeLine{\mbox{\hyperlink{_open_g_l_2_window_8h_a1597abb946204b9711779f9bbc66b5ed}{nWindowLoadIcon}}(\textcolor{stringliteral}{"{}path/to/icon.ico"{}});}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (iconData == \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    fprintf(stderr, \textcolor{stringliteral}{"{}Failed to load window icon.\(\backslash\)n"{}});}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em dst} & The destination to store the pixel data of the icon {\ttfamily icon\+Path}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em icon\+Path} & The file path (local or absolute; local is preferred) to the icon to be loaded. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily dst} is returned if successful; otherwise {\ttfamily \mbox{\hyperlink{_nimble_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}} is returned and a corresponding error is sent to the error callback set by \mbox{\hyperlink{_errors_8c_af018df8136f2b31b2d88cdc5db710295}{n\+Error\+Set\+Callback()}}.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is the same as n\+File\+Load\+Image(), but ensures R\+G\+BA format is used. The supported file types are the same. 
+\end{DoxyNote}
