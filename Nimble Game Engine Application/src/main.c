@@ -1,4 +1,3 @@
-#include "../../License/NimbleLicense.h"
 /*
 *  main.c
 *  Nimble Game Engine
@@ -13,7 +12,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-//#include <NimbleWindow.h>
+//#include <Nimble/NimbleEngine.h>
+//#include <Nimble/NimbleOpenGL.h>
 
 int main(int argc, char **argv)
 {

@@ -17,13 +17,20 @@ import shutil
 import glob
 from os import path
 
+def find_nth(haystack, needle, n):
+    start = haystack.find(needle)
+    while start >= 0 and n > 1:
+        start = haystack.find(needle, start+len(needle))
+        n -= 1
+    return start
+
 def main():
     # Setup
     sys.argv.pop(0)
     if (not sys.argv):
         print("Invalid arguments. Please specificy a directory to build")
         exit(1)
-
+    
     originalDirectory = os.getcwd()
     directory = " ".join(sys.argv).replace('"', '')
     if (not directory.endswith("/")):
@@ -69,8 +76,35 @@ def main():
             exit(1)
     
     for file in glob.glob("build/*Nimble*"):
+        fileIsLibrary = (file.endswith(".dll") or file.endswith(".lib") or file.endswith(".so") or file.endswith(".a"))
+        # If library, move
+        if (fileIsLibrary):
+            if (not path.exists(originalDirectory + "/lib/Nimble/")):
+                os.mkdir(originalDirectory + "/lib/Nimble/")
+                if (not path.exists(originalDirectory + "/lib/Nimble/")):
+                    print("Could not make directory lib/Nimble/. You will need to organize the output files yourself.")
+                    exit(1)
+            
+            fileNoVersion = file[len("build/"):]
+            if ("_" in fileNoVersion):
+                version = fileNoVersion[fileNoVersion.rindex("_"):find_nth(fileNoVersion, ".", 3)]
+                fileNoVersion = fileNoVersion.replace(version, "")
+            shutil.copy(file, originalDirectory + "/lib/Nimble/" + fileNoVersion)
+        else:
+            if (not path.exists(originalDirectory + "/products/")):
+                os.mkdir(originalDirectory + "/lib/Nimble/")
+                if (not path.exists(originalDirectory + "/products/")):
+                    print("Could not make directory lib/Nimble/. You will need to organize the output files yourself.")
+                    exit(1)
+            
+            fileNoVersion = file[len("build/"):]
+            if ("_" in fileNoVersion):
+                version = fileNoVersion[fileNoVersion.rindex("_"):find_nth(fileNoVersion, ".", 3)]
+                fileNoVersion = fileNoVersion.replace(version, "")
+            shutil.copy(file, originalDirectory + "/products/" + fileNoVersion)
+        
         shutil.move(file, "products/" + file[len("build/"):])
-    print("Moved all output files to " + directory[:-len("build/")] + "products/")
+    print("Moved all output files to " + directory[:-len("build/")] + "products/ and lib/Nimble/")
     
     os.chdir(originalDirectory)
 
