@@ -38,8 +38,8 @@ ELSE()
 ENDIF()
 
 
-add_executable(NimbleGameEngine ${src})
+add_executable(NimbleGameEngineApp ${src})
 
 find_library(NIMBLE_ENGINE NimbleEngine HINTS "../lib/Nimble/")
 find_library(NIMBLE_OGL NimbleOGL HINTS "../lib/Nimble/")
-target_link_libraries(NimbleGameEngine ${NIMBLE_ENGINE} ${NIMBLE_OGL})
+target_link_libraries(NimbleGameEngineApp ${NIMBLE_ENGINE} ${NIMBLE_OGL})
