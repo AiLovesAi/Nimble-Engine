@@ -44,7 +44,7 @@ PROJECT_NUMBER         = 0.1.0
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "Nimble is a cross-platform, light 3D game engine written in C. It is designed to make games that run efficiently and smoothly."
+PROJECT_BRIEF          = "The Nimble Game Engine Library is the engine and library used for Nimble Game Engine game development."
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
