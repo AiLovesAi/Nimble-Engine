@@ -64,6 +64,7 @@ const char errorNotFoundErrStr[] = "NERROR_ERROR_NOT_FOUND: An error passed to "
  * @param[in] errorDesc The description of @p error.
  * @param[in] errorDescLen The length of the @p errorDesc argument, including the
  * null character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] errorTime The time the error was thrown.
  * @param[in] stack The stacktrace of the thread that caused the crash.
  * @param[in] stackLen The length of the @p stack argument, including the null
  * character. A length of zero (0) uses strlen() to determine length.
@@ -71,56 +72,81 @@ const char errorNotFoundErrStr[] = "NERROR_ERROR_NOT_FOUND: An error passed to "
 void nErrorHandlerDefault(const int32_t error,
                           const char * errorDesc,
                           const int32_t errorDescLen,
+                          const time_t errorTime,
                           const char * stack,
-                          const int32_t stackLen,
-                          const time_t errorTime
+                          const int32_t stackLen
                           );
 
 /**
  * @brief The error callback function that gets defined by nErrorSetCallback().
  */
 void (* errorCallback) (const int32_t error, const char * errorDesc, 
-         const int32_t errorDescLen, const char * stack, const int32_t stackLen,
-         const time_t errorTime) = nErrorHandlerDefault;
+         const int32_t errorDescLen, const time_t errorTime, const char * stack,
+         const int32_t stackLen) = nErrorHandlerDefault;
 
 
 void nErrorHandlerDefault(const int32_t error, const char * errorDesc,
-      const int32_t errorDescLen, const char * stack, const int32_t stackLen,
-      const time_t errorTime)
+      const int32_t errorDescLen, const time_t errorTime, const char * stack,
+      const int32_t stackLen)
 {
     /** @todo Make default callback. */
 }
 
-int32_t nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
+void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
 {
     const time_t errorTime = time(NULL);
     
     if (errorCallback == NULL)
     {
-        nCrashAbort(NERROR_NULL);
+        const time_t crashErrorTime = time(NULL);
+        const char callbackErrStr[] = "Callback argument NULL in nErrorThrow().";
+        /** @todo Append info  */
+        char * crashErrorDesc;
+        int32_t crashErrorDescLen;
+        
+        if (nErrorToString(crashErrorDesc, &crashErrorDescLen, NERROR_NULL,
+             callbackErrStr, sizeof(callbackErrStr)) == NULL)
+        {
+            /** @todo Figure out case. */
+        }
+        
+        nCrashSafe(NERROR_NULL, crashErrorDesc, crashErrorDescLen,
+         crashErrorTime);
     }
     
     char * errorDesc;
     int32_t errorDescLen;
     if (nErrorToString(errorDesc, &errorDescLen, error, info, infoLen) == NULL)
     {
-        nCrashAbort(NERROR_NULL);
+        const time_t crashErrorTime = time(NULL);
+        const char parseErrStr[] = "Error not found in nErrorThrow().";
+        /** @todo Append info  */
+        char * crashErrorDesc;
+        int32_t crashErrorDescLen;
+        
+        if (nErrorToString(crashErrorDesc, &crashErrorDescLen,
+             NERROR_ERROR_NOT_FOUND, parseErrStr, sizeof(parseErrStr)) == NULL)
+        {
+            /** @todo Figure out case. */
+        }
+        
+        nCrashSafe(NERROR_ERROR_NOT_FOUND, crashErrorDesc, crashErrorDescLen,
+         crashErrorTime);
     }
     
     char * stack;
-    int32_t stackLen, levels;
-    nErrorGetStacktrace(stack, &stackLen, &levels);
+    int32_t stackLen, stackLevels;
+    nErrorGetStacktrace(stack, &stackLen, &stackLevels);
     
-    errorCallback(error, errorDesc, errorDescLen, stack, stackLen, errorTime);
-    return NSUCCESS;
+    errorCallback(error, errorDesc, errorDescLen, errorTime, stack, stackLen);
 }
 
-char * nErrorToString(char * dst, int32_t * size, const int32_t error,
+char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
         const char * info, int32_t infoLen)
 {
     if ((info != NULL) && (infoLen == 0))
     {
-        infoLen = strlen(info);
+        infoLen = strlen(info) + 1;
     }
     
     switch (error)
@@ -129,90 +155,87 @@ char * nErrorToString(char * dst, int32_t * size, const int32_t error,
         {
             if (info != NULL)
             {
-                *size = sizeof(unknownErrStr) + infoLen;
-                dst = malloc(sizeof(void *) + *size);
+                *errorLen = sizeof(unknownErrStr) + infoLen - 1;
+                dst = malloc(sizeof(void *) + *errorLen);
                 strncpy(dst, unknownErrStr, sizeof(unknownErrStr));
-                strncat(dst, info, infoLen + 1);
+                strncat(dst, info, infoLen);
             }
             else
             {
-                *size = sizeof(unknownErrStr) + sizeof(noInfoStr) - 1;
-                dst = malloc(sizeof(void *) + *size);
+                *errorLen = sizeof(unknownErrStr) + sizeof(noInfoStr) - 1;
+                dst = malloc(sizeof(void *) + *errorLen);
                 strncpy(dst, unknownErrStr, sizeof(unknownErrStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
-            dst[*size - 1] = '\0';
+            dst[*errorLen - 1] = '\0';
         }
         break;
         case NERROR_NULL:
         {
             if (info != NULL)
             {
-                *size =  sizeof(nullErrStr) + infoLen;
-                dst = malloc(sizeof(void *) + *size);
+                *errorLen =  sizeof(nullErrStr) + infoLen - 1;
+                dst = malloc(sizeof(void *) + *errorLen);
 				strncpy(dst, nullErrStr, sizeof(nullErrStr));
-				strncat(dst, info, infoLen + 1);
+				strncat(dst, info, infoLen);
             }
             else
 		    {
-                *size = sizeof(nullErrStr) + sizeof(noInfoStr) - 1;
-                dst = malloc(sizeof(void *) + *size);
+                *errorLen = sizeof(nullErrStr) + sizeof(noInfoStr) - 1;
+                dst = malloc(sizeof(void *) + *errorLen);
                 strncpy(dst, nullErrStr, sizeof(nullErrStr));
 				strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
-            dst[*size - 1] = '\0';
+            dst[*errorLen - 1] = '\0';
         }
         break;
         case NERROR_FILE_NOT_FOUND:
         {
             if (info != NULL)
             {
-                *size = sizeof(fileNotFoundErrStr) + infoLen;
-                dst = malloc(sizeof(void *) + *size);
+                *errorLen = sizeof(fileNotFoundErrStr) + infoLen - 1;
+                dst = malloc(sizeof(void *) + *errorLen);
                 strncpy(dst, fileNotFoundErrStr, sizeof(fileNotFoundErrStr));
-                strncat(dst, info, infoLen + 1);
+                strncat(dst, info, infoLen);
             }
             else
             {
-                *size = sizeof(fileNotFoundErrStr) + sizeof(noInfoStr) - 1;
-                dst = malloc(sizeof(void *) + *size);
+                *errorLen = sizeof(fileNotFoundErrStr) + sizeof(noInfoStr) - 1;
+                dst = malloc(sizeof(void *) + *errorLen);
                 strncpy(dst, fileNotFoundErrStr, sizeof(fileNotFoundErrStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
-            dst[*size - 1] = '\0';
+            dst[*errorLen - 1] = '\0';
         }
         break;
         case NERROR_ERROR_NOT_FOUND:
         {
             if (info != NULL)
 		    {
-                *size = sizeof(errorNotFoundErrStr) + infoLen;
-                dst = malloc(sizeof(void *) + *size);
+                *errorLen = sizeof(errorNotFoundErrStr) + infoLen - 1;
+                dst = malloc(sizeof(void *) + *errorLen);
                 strncpy(dst, errorNotFoundErrStr, sizeof(errorNotFoundErrStr));
-                strncat(dst, info, infoLen + 1);
+                strncat(dst, info, infoLen);
             }
             else
             {
-                *size = sizeof(errorNotFoundErrStr) + sizeof(noInfoStr) - 1;
-                dst = malloc(sizeof(void *) + *size);
+                *errorLen = sizeof(errorNotFoundErrStr) + sizeof(noInfoStr) - 1;
+                dst = malloc(sizeof(void *) + *errorLen);
                 strncpy(dst, errorNotFoundErrStr, sizeof(errorNotFoundErrStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
-            dst[*size - 1] = '\0';
+            dst[*errorLen - 1] = '\0';
         }
         break;
         default:
         {
             dst = NULL;
-            *size = 0;
+            *errorLen = 0;
             int32_t errorNumLen = snprintf(NULL, 0, "%d", error) + 1;
             char * errorNumStr = malloc(sizeof(void *) + errorNumLen);
 			snprintf(errorNumStr, errorNumLen, "%d", error);
             
-            if (nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, *size) != NSUCCESS)
-		    {
-                /** @todo Crash. */
-            }
+            nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, *errorLen);
         }
         break;
     }
@@ -221,12 +244,13 @@ char * nErrorToString(char * dst, int32_t * size, const int32_t error,
 }
 
 int32_t nErrorSetCallback(void (* callback)(const int32_t error,
-         const char * errorDesc, const int32_t errorDescLen, const char * stack,
-         const int32_t stackLen, const time_t errorTime))
+         const char * errorDesc, const int32_t errorDescLen,
+         const time_t errorTime, const char * stack, const int32_t stackLen))
 {
     if (callback == NULL)
     {
-        char callbackErrStr[] = "Callback parameter null in nErrorSetCallback().";
+        const char callbackErrStr[] = "Callback argument NULL in "\
+                                      "nErrorSetCallback().";
         nErrorThrow(NERROR_NULL, callbackErrStr, sizeof(callbackErrStr));
         return NERROR;
     }
@@ -235,7 +259,7 @@ int32_t nErrorSetCallback(void (* callback)(const int32_t error,
     return NSUCCESS;
 }
 
-char * nErrorGetStacktrace(char * dst, int32_t * size, int32_t * levels)
+char * nErrorGetStacktrace(char * dst, int32_t * errorLen, int32_t * stackLevels)
 {
     /** @todo Get stack trace. */
     return dst;

@@ -48,6 +48,9 @@ extern "C" {
 
 #include "../../NimbleEngine.h"
 
+#include <stdint.h>
+#include <time.h>
+
 /**
  * @brief Sets the crash handler callback function.
  * Sets the callback function that gets called when the game crashes.
@@ -85,6 +88,7 @@ nCrashSetHandler(void (* callback) (int32_t error
  *
  * int main(int argc, char ** argv)
  * {
+ *     const time_t errorTime = time(NULL);
  *     const int32_t error = NERROR_NULL;
  *     char * errorDesc;
  *     int32_t errorDescLen;
@@ -94,9 +98,7 @@ nCrashSetHandler(void (* callback) (int32_t error
  *         return(EXIT_FAILURE);
  *     }
  *
- *     const char crashFilePath[] = "crash.txt";
- *     nCrashSafe(error, errorDesc, errorDescLen, crashFilePath,
- *      sizeof(crashFilePath));
+ *     nCrashSafe(error, errorDesc, errorDescLen, errorTime);
  * }
  * @endcode
  *
@@ -104,20 +106,19 @@ nCrashSetHandler(void (* callback) (int32_t error
  * @param[in] errorDesc The description of @p error.
  * @param[in] errorDescLen The length of the @p errorDesc argument, including the
  * null character. A length of zero (0) uses strlen() to determine length.
- * @param[in] crashFilePath The path to the file where the crash info is logged.
- * @param[in] crashFilePathLen The length of @p crashFilePath argument, including
- * the null character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] errorTime The time the error was thrown.
  *
  * @note This function does not return, and exits the program. If an error occurs,
- * the program will abort with nCrashAbort().
+ * the program will abort with nCrashAbort(). Also note that this function
+ * automatically sets all the arguments if possible, so resetting them is not
+ * needed and may cause more errors, though checking them is acceptable.
  */
 NIMBLE_EXTERN
 void
 nCrashSafe(const int32_t error,
-           const char * errorDesc,
+           char * errorDesc,
            int32_t errorDescLen,
-           const char * crashFilePath,
-           int32_t crashFilePathLen
+           time_t errorTime
            )
 __attribute__((noreturn));
 

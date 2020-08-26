@@ -97,11 +97,11 @@ enum nErrors {
  * @param[in] infoLen The length of the @p info argument, including the null
  * character. A length of zero (0) uses strlen() to determine length.
  * diagnose the error. This can be @c #NULL.
- * @return @c #NSUCCESS is returned if successful; otherwise @c #NERROR is
- * returned.
+ *
+ * @note The program will crash if this is unsuccessful.
  */
 NIMBLE_EXTERN
-int32_t
+void
 nErrorThrow(const int32_t error,
             const char * info,
             int32_t infoLen
@@ -132,8 +132,9 @@ nErrorThrow(const int32_t error,
  * }
  * @endcode
  *
- * @param[out] dst The destination to store the string describing @p error.
- * @param[out] size The length of the string returned, including the null
+ * @param[out] dst The destination to store the string describing @p error. This
+ * can be @c #NULL.
+ * @param[out] errorLen The length of the string returned, including the null
  * character. This can be @c #NULL.
  * @param[in] error The error to get described.
  * @param[in] info Relevant information, such as a file location, that could help
@@ -145,7 +146,7 @@ nErrorThrow(const int32_t error,
 NIMBLE_EXTERN
 char *
 nErrorToString(char * dst,
-               int32_t * size,
+               int32_t * errorLen,
                const int32_t error,
                const char * info,
                int32_t infoLen
@@ -164,7 +165,8 @@ nErrorToString(char * dst,
  * #include <Nimble/NimbleEngine.h>
  *
  * void errorHandler(const int32_t error, const char * errorDesc,
- *       const char * stack, const time_t errorTime)
+ *       const int32_t errorDescLen, const time_t errorTime, const char * stack,
+ *       const int32_t stackLen)
  * {
  *     struct tm * timeInfo = localtime(&errorTime);
  *     const char format[] = "%x %X %Z";
@@ -205,15 +207,15 @@ nErrorSetCallback(void (* callback)(
                                     const int32_t error,
                                     const char * errorDesc,
                                     const int32_t errorDescLen,
+                                    const time_t errorTime,
                                     const char * stack,
-                                    const int32_t stackLen,
-                                    const time_t errorTime
+                                    const int32_t stackLen
                                     )
                   );
 
 /**
  * @brief Returns the current stack trace as a string.
- * Returns the current stack trace as a string, and sets the @p size of the
+ * Returns the current stack trace as a string, and sets the @p stackLen of the
  * string and @p levels of the stack.
  *
  * Example:
@@ -224,23 +226,24 @@ nErrorSetCallback(void (* callback)(
  *
  * int main(int argc, char ** argv)
  * {
- *     int32_t levels, size;
+ *     int32_t stackLen, stackLevels;
  *     char * stack;
- *     nErrorGetStacktrace(stack, &levels, &size);
+ *     nErrorGetStacktrace(stack, &stackLen, &stackLevels);
  *     if (stack == NULL)
  *     {
  *         fprintf(stderr, "Failed to get stack trace.\n");
  *         exit(EXIT_FAILURE);
  *     }
- *     printf("Last %d levels of stack trace: %s\n", levels, stack);
+ *     printf("Last %d levels of stack trace: %s\n", stackLevels, stack);
  *     return EXIT_SUCCESS;
  * }
  * @endcode
  *
- * @param[out] dst The destination to store the stacktrace string.
- * @param[out] size The length of the string returned, including the null
+ * @param[out] dst The destination to store the stacktrace string. This can be
+ * @c #NULL.
+ * @param[out] stackLen The length of the string returned, including the null
  * character. This can be @c #NULL.
- * @param[out] levels The number of levels of the stack. This can be @c #NULL.
+ * @param[out] stackLevels The number of levels of the stack. This can be @c #NULL.
  * @return @p dst is returned if successful; otherwise the program crashes.
  *
  * @note Each time a function is called, it is added to the stack. When a
@@ -249,8 +252,8 @@ nErrorSetCallback(void (* callback)(
 NIMBLE_EXTERN
 char *
 nErrorGetStacktrace(char * dst,
-                    int32_t * size,
-                    int32_t * levels
+                    int32_t * stackLen,
+                    int32_t * stackLevels
                     );
 
 #endif // NIMBLE_ENGINE_ERRORS_H
