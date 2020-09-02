@@ -231,11 +231,6 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
         {
             dst = NULL;
             *errorLen = 0;
-            int32_t errorNumLen = snprintf(NULL, 0, "%d", error) + 1;
-            char * errorNumStr = malloc(sizeof(void *) + errorNumLen);
-			snprintf(errorNumStr, errorNumLen, "%d", error);
-            
-            nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, *errorLen);
             return NERROR_ERROR_NOT_FOUND;
         }
         break;
@@ -248,8 +243,12 @@ char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
         const char * info, int32_t infoLen)
 {
     int32_t result = nErrorToStringLocal(dst, errorLen, error, info, infoLen);
-    if (result != N_SUCCESS)
+    if (result != NSUCCESS)
     {
+        int32_t errorNumLen = snprintf(NULL, 0, "%d", error) + 1;
+        char * errorNumStr = malloc(sizeof(void *) + errorNumLen);
+        snprintf(errorNumStr, errorNumLen, "%d", error);
+        
         nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, *errorLen);
         return dst;
     }
