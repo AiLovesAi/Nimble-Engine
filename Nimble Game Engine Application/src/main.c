@@ -12,8 +12,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-//#include <Nimble/NimbleEngine.h>
-//#include <Nimble/NimbleOpenGL.h>
+#if 0
+#include <Nimble/NimbleEngine.h>
+#include <Nimble/NimbleOpenGL.h>
+#endif
 
 int main(int argc, char **argv)
 {

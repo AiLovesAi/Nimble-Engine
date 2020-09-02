@@ -67,6 +67,55 @@ enum nErrors {
 
 
 /**
+ * @brief Describes an error and returns a string with no error handling.
+ *
+ * Example:
+ * @todo Do this
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     char * errorStr;
+ *     int32_t errorLen;
+ *     char exampleFilePath[] = "example.txt";
+ *     if (nErrorToStringLocal(errorStr, &errorLen, NERROR_FILE_NOT_FOUND,
+ *          exampleFilePath, sizeof(exampleFilePath)) != NSUCCESS)
+ *     {
+ *         fprintf(stderr, "Failed to get error string.\n");
+ *         exit(EXIT_FAILURE);
+ *     }
+ *     printf("NERROR_FILE_NOT_FOUND as string: %s\n", errorStr);
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[out] dst The destination to store the string describing @p error. This
+ * can be @c #NULL.
+ * @param[out] errorLen The length of the string returned, including the null
+ * character. This can be @c #NULL.
+ * @param[in] error The error to get described.
+ * @param[in] info Relevant information, such as a file location, that could help
+ * diagnose the error. This can be @c #NULL.
+ * @param[in] infoLen The length of the @p info argument, including the null
+ * character. A length of zero (0) uses strlen() to determine length.
+ * @return @p dst is returned if successful; otherwise @c #NULL is returned.
+ *
+ * @note This function is used by the game engine and is not expected to be used
+ * by developers, but is optional.
+ */
+NIMBLE_EXTERN
+int32_t
+nErrorToStringLocal(char * dst,
+                    int32_t * errorLen,
+                    const int32_t error,
+                    const char * info,
+                    int32_t infoLen
+                    );
+
+/**
  * @brief Sends an error to the error callback.
  * Sends an error to the error callback defined by
  * nErrorHandlerSetErrorCallback(), and determines whether or not crashing is

@@ -141,8 +141,8 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
     errorCallback(error, errorDesc, errorDescLen, errorTime, stack, stackLen);
 }
 
-char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
-        const char * info, int32_t infoLen)
+int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
+         const int32_t error, const char * info, int32_t infoLen)
 {
     if ((info != NULL) && (infoLen == 0))
     {
@@ -236,8 +236,22 @@ char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
 			snprintf(errorNumStr, errorNumLen, "%d", error);
             
             nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, *errorLen);
+            return NERROR_ERROR_NOT_FOUND;
         }
         break;
+    }
+    
+    return NSUCCESS;
+}
+
+char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
+        const char * info, int32_t infoLen)
+{
+    int32_t result = nErrorToStringLocal(dst, errorLen, error, info, infoLen);
+    if (result != N_SUCCESS)
+    {
+        nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, *errorLen);
+        return dst;
     }
     
     return dst;

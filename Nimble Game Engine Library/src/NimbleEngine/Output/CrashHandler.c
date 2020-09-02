@@ -91,11 +91,6 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
       time_t errorTime)
 {
     /** @todo Make safe crash function. */
-    if (crashCallback == NULL)
-    {
-        nCrashAbort(error);
-    }
-    
     if (errorTime == 0)
     {
         errorTime = time(NULL);
@@ -114,6 +109,11 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
     if ((errorDescLen <= 0) && (errorDesc != NULL))
     {
         errorDescLen = strlen(errorDesc) + 1;
+    }
+    
+    if (crashCallback == NULL)
+    {
+        nCrashAbort(error);
     }
     
     crashCallback(error, errorDesc, errorDescLen, errorTime);
