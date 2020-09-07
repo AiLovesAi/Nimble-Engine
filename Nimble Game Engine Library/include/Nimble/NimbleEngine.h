@@ -121,7 +121,24 @@ __attribute__((noreturn));
  */
 NIMBLE_EXTERN
 int32_t
-nEngineInit(void);
+nEngineInit(void (* errorCallback)(
+                                   const int32_t error,
+                                   const time_t errorTime,
+                                   char * errorDesc,
+                                   int32_t errorDescLen,
+                                   char * stack,
+                                   int32_t stackLen
+                                   )
+            ),
+            void (* crashCallback) (const int32_t error,
+                                    const time_t errorTime,
+                                    char * errorDesc,
+                                    int32_t errorDescLen,
+                                    char * stack,
+                                    int32_t stackLen
+                                    )
+            )
+            ); /** @todo Make these callback functions the same through each file. */
 
 #endif // NIMBLE_ENGINE_H
 

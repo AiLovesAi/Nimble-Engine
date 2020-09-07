@@ -64,21 +64,26 @@ volatile uint8_t crashtest = 0;
 void nCrashHandlerDefault(const int32_t error,
                           char * errorDesc,
                           int32_t errorDescLen,
+                          char * stack,
+                          int32_t stackLen,
                           time_t errorTime
                           );
 
 void (* crashCallback) (const int32_t error, char * errorDesc, 
-         int32_t errorDescLen, time_t errorTime) = nCrashHandlerDefault;
+         int32_t errorDescLen, char * stack, int32_t stackLen,
+         time_t errorTime) = nCrashHandlerDefault;
 
 
 void nCrashHandlerDefault(const int32_t error, char * errorDesc,
-      int32_t errorDescLen, time_t errorTime)
+      int32_t errorDescLen, char * stack, int32_t stackLen,
+      time_t errorTime)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
 }
 
 int32_t nCrashSetCallback(void (* callback)(const int32_t error,
-         char * errorDesc, int32_t errorDescLen, time_t errorTime))
+         const time_t errorTime, char * errorDesc, int32_t errorDescLen,
+         char * stack, int32_t stackLen))
 {
     if (callback == NULL)
     {
