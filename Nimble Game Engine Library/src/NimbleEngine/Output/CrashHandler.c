@@ -41,6 +41,7 @@
  * @brief This class defines crash handling functions.
  */
 
+#include <signal.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -130,6 +131,67 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
     
     crashCallback(error, errorDesc, errorDescLen, errorTime);
     exit(error);
+}
+
+void nCrashSignal(const int signum)
+{
+    const time_t errorTime = time(NULL);
+    char * errorDesc;
+    int32_t errorDescLen;
+    
+    switch(signum)
+    {
+        case SIGABRT:
+        {
+            signal(SIGABRT, SIG_DFL);
+            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGABRT, NULL,
+             0);
+            nCrashSafe(NERROR_SIGABRT, errorDesc, errorDescLen, errorTime);
+        }
+        break;
+        case SIGFPE:
+        {
+            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGFPE, NULL,
+             0);
+            nCrashSafe(NERROR_SIGFPE, errorDesc, errorDescLen, errorTime);
+        }
+        break;
+        case SIGILL:
+        {
+            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGILL, NULL,
+             0);
+            nCrashSafe(NERROR_SIGILL, errorDesc, errorDescLen, errorTime);
+        }
+        break;
+        case SIGINT:
+        {
+            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGINT, NULL,
+             0);
+            nCrashSafe(NERROR_SIGINT, errorDesc, errorDescLen, errorTime);
+        }
+        break;
+        case SIGSEGV:
+        {
+            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGSEGV, NULL,
+             0);
+            nCrashSafe(NERROR_SIGSEGV, errorDesc, errorDescLen, errorTime);
+        }
+        break;
+        case SIGTERM:
+        {
+            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGTERM, NULL,
+             0);
+            nCrashSafe(NERROR_SIGTERM, errorDesc, errorDescLen, errorTime);
+        }
+        break;
+        default:
+        {
+            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_ERROR_NOT_FOUND,
+            NULL, 0);
+            nCrashSafe(NERROR_ERROR_NOT_FOUND, errorDesc, errorDescLen, errorTime);
+        }
+        break;
+    }
 }
 
 void nCrashAbort(const int32_t error)

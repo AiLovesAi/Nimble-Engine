@@ -84,8 +84,42 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../include/Nimble/NimbleEngine.h&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// NimbleEngine.c</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &lt;signal.h&gt;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;../include/Nimble/NimbleEngine/Output/CrashHandler.h&quot;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="_nimble_engine_8h.html#aaca2e068de89949f92e1df34db595f82">   52</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_nimble_engine_8c.html#ab8c7bd56f1a182aae20bfe4b83efc9b6">nEngineExit</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    exit(EXIT_SUCCESS);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="_nimble_engine_8c.html#a423c175276803c38b3c8c6cade84e3a6">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_nimble_engine_8c.html#a423c175276803c38b3c8c6cade84e3a6">nEngineExitSignal</a>(<span class="keywordtype">int</span> signum)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="_nimble_engine_8c.html#ab8c7bd56f1a182aae20bfe4b83efc9b6">nEngineExit</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="_nimble_engine_8h.html#a1f80c9cf1de75188c133b2ce492e10ef">   63</a></span>&#160;int32_t <a class="code" href="_nimble_engine_8c.html#a56b4588439f06d31ca33701f03a6f183">nEngineInit</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    atexit(<a class="code" href="_nimble_engine_8c.html#ab8c7bd56f1a182aae20bfe4b83efc9b6">nEngineExit</a>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    signal(SIGTERM, <a class="code" href="_nimble_engine_8c.html#a423c175276803c38b3c8c6cade84e3a6">nEngineExitSignal</a>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    signal(SIGABRT, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    signal(SIGFPE, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    signal(SIGILL, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    signal(SIGINT, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    signal(SIGSEGV, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">// NimbleEngine.c</span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="a_nimble_engine_8c_html_ab8c7bd56f1a182aae20bfe4b83efc9b6"><div class="ttname"><a href="_nimble_engine_8c.html#ab8c7bd56f1a182aae20bfe4b83efc9b6">nEngineExit</a></div><div class="ttdeci">void nEngineExit(void)</div><div class="ttdoc">Initialized the game engine.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00052">NimbleEngine.c:52</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
+<div class="ttc" id="a_nimble_engine_8c_html_a423c175276803c38b3c8c6cade84e3a6"><div class="ttname"><a href="_nimble_engine_8c.html#a423c175276803c38b3c8c6cade84e3a6">nEngineExitSignal</a></div><div class="ttdeci">void nEngineExitSignal(int signum)</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00058">NimbleEngine.c:58</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_a492ccecf4451d50498f34704d656b74c"><div class="ttname"><a href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a></div><div class="ttdeci">void nCrashSignal(const int signum)</div><div class="ttdoc">Calls nCrashSafe() to handle a caught signal.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00136">CrashHandler.c:136</a></div></div>
+<div class="ttc" id="a_nimble_engine_8c_html_a56b4588439f06d31ca33701f03a6f183"><div class="ttname"><a href="_nimble_engine_8c.html#a56b4588439f06d31ca33701f03a6f183">nEngineInit</a></div><div class="ttdeci">int32_t nEngineInit(void)</div><div class="ttdoc">Initialized the game engine.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00063">NimbleEngine.c:63</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

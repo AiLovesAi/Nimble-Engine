@@ -62,6 +62,13 @@ enum nErrors {
     NERROR_MIN = INT_MIN, /**< The mininum error number. */
     
     NERROR_UNKNOWN, /**< An nknown error occurred. */
+    
+    NERROR_SIGABRT, /**< Caught abort signal. */
+    NERROR_SIGFPE, /**< Caught floating point exception signal. */
+    NERROR_SIGILL, /**< Caught illegal expression signal. */
+    NERROR_SIGINT, /**< Caught interrupt signal. */
+    NERROR_SIGSEGV, /**< Caught memory address violation signal. */
+    NERROR_SIGTERM, /**< Caught termination signal. */
     NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
 	NERROR_FILE_NOT_FOUND, /**< A file was not found where specified. */
 	NERROR_ERROR_NOT_FOUND, /**< An error passed to a function was not valid. */

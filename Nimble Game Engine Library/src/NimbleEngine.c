@@ -44,6 +44,35 @@
  * used in game development, and defines the functions used in initialization.
  */
 
+#include <signal.h>
+#include <stdlib.h>
 
+#include "../include/Nimble/NimbleEngine/Output/CrashHandler.h"
+
+void nEngineExit(void)
+{
+    /** @todo Make safe exit function */
+    exit(EXIT_SUCCESS);
+}
+
+void nEngineExitSignal(int signum)
+{
+    nEngineExit();
+}
+
+int32_t nEngineInit(void)
+{
+    /** @todo Make init function */
+    atexit(nEngineExit);
+    signal(SIGTERM, nEngineExitSignal);
+    
+    signal(SIGABRT, nCrashSignal);
+    signal(SIGFPE, nCrashSignal);
+    signal(SIGILL, nCrashSignal);
+    signal(SIGINT, nCrashSignal);
+    signal(SIGSEGV, nCrashSignal);
+    
+    return NSUCCESS;
+}
 
 // NimbleEngine.c

@@ -123,6 +123,15 @@ nCrashSafe(const int32_t error,
 __attribute__((noreturn));
 
 /**
+ * @brief Calls nCrashSafe() to handle a caught signal.
+ */
+NIMBLE_EXTERN
+void
+nCrashSignal(const int signum
+             )
+__attribute__((noreturn));
+
+/**
  * @brief Crashes the program without notifying the callback.
  *
  * Example:
