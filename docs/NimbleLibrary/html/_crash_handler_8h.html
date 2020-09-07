@@ -164,9 +164,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Make abort function. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00123">123</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00135">135</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
 
 </div>
 </div>
@@ -238,10 +237,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. If an error occurs, the program will abort with <a class="el" href="_crash_handler_8h.html#aa980b8029665aac24b758ba6893eb71a" title="Crashes the program without notifying the callback.">nCrashAbort()</a>. Also note that this function automatically sets all the arguments if possible, so resetting them is not needed and may cause more errors, though checking them is acceptable. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Make safe crash function. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Set manually </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00090">90</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00093">93</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
 
 </div>
 </div>
@@ -277,12 +274,12 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_crash_handler_8c_html_af9d107d452d67ebd418f4534ae31cab3"><div class="ttname"><a href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a></div><div class="ttdeci">void nCrashAbort(const int32_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00123">CrashHandler.c:123</a></div></div>
-<div class="ttc" id="a_errors_8c_html_ade8a5b44ad47489e587d8d07d27c3464"><div class="ttname"><a href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00247">Errors.c:247</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_af9d107d452d67ebd418f4534ae31cab3"><div class="ttname"><a href="_crash_handler_8c.html#af9d107d452d67ebd418f4534ae31cab3">nCrashAbort</a></div><div class="ttdeci">void nCrashAbort(const int32_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00135">CrashHandler.c:135</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ade8a5b44ad47489e587d8d07d27c3464"><div class="ttname"><a href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00263">Errors.c:263</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00118">Nimble.h:118</a></div></div>
-<div class="ttc" id="a_crash_handler_8c_html_a365558e03c89ea69c07ee2aeb17ccf01"><div class="ttname"><a href="_crash_handler_8c.html#a365558e03c89ea69c07ee2aeb17ccf01">nCrashSafe</a></div><div class="ttdeci">void nCrashSafe(const int32_t error, char *errorDesc, int32_t errorDescLen, time_t errorTime)</div><div class="ttdoc">Crashes the program safely.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00090">CrashHandler.c:90</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_a365558e03c89ea69c07ee2aeb17ccf01"><div class="ttname"><a href="_crash_handler_8c.html#a365558e03c89ea69c07ee2aeb17ccf01">nCrashSafe</a></div><div class="ttdeci">void nCrashSafe(const int32_t error, char *errorDesc, int32_t errorDescLen, time_t errorTime)</div><div class="ttdoc">Crashes the program safely.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00093">CrashHandler.c:93</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
-<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00063">Errors.h:63</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00065">Errors.h:65</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

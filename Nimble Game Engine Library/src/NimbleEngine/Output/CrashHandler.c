@@ -49,6 +49,9 @@
 
 #include "../../../include/Nimble/NimbleEngine/Output/Errors.h"
 
+
+volatile uint8_t crashtest = 0;
+
 /**
  * @brief The default crash handler callback.
  * @param[in] error The error that caused the crash.
@@ -70,7 +73,7 @@ void (* crashCallback) (const int32_t error, char * errorDesc,
 void nCrashHandlerDefault(const int32_t error, char * errorDesc,
       int32_t errorDescLen, time_t errorTime)
 {
-    /** @todo Make default callback. */
+    /** @todo Make default callback (threads, engine, logs, etc.). */
 }
 
 int32_t nCrashSetCallback(void (* callback)(const int32_t error,
@@ -90,7 +93,14 @@ int32_t nCrashSetCallback(void (* callback)(const int32_t error,
 void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
       time_t errorTime)
 {
-    /** @todo Make safe crash function. */
+    if (crashtest || (crashCallback == NULL))
+    {
+        nCrashAbort(error);
+    }
+    
+    crashtest++;
+    
+    
     if (errorTime == 0)
     {
         errorTime = time(NULL);
@@ -99,9 +109,15 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
     if (errorDesc == NULL)
     {
         
-        if (nErrorToString(errorDesc, &errorDescLen, error, NULL, 0) == NULL)
+        if (nErrorToStringLocal(errorDesc, &errorDescLen, error, NULL, 0) !=
+            NSUCCESS)
         {
-            /** @todo Set manually */
+            const char defaultErrorStr[] = "NERROR_ERROR_NOT_FOUND: An error "\
+"passed to a function was not valid: nErrorToStringLocal() failed while "\
+"crashing with nCrashSafe().";
+            errorDescLen = sizeof(defaultErrorStr);
+            errorDesc = malloc(sizeof(void *) + errorDescLen);
+            strncpy(errorDesc, defaultErrorStr, errorDescLen);
         }
         
     }
@@ -111,10 +127,6 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
         errorDescLen = strlen(errorDesc) + 1;
     }
     
-    if (crashCallback == NULL)
-    {
-        nCrashAbort(error);
-    }
     
     crashCallback(error, errorDesc, errorDescLen, errorTime);
     exit(error);
@@ -122,7 +134,8 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
 
 void nCrashAbort(const int32_t error)
 {
-    /** @todo Make abort function. */
+    fprintf(stderr, "Aborting program with error code: %s (%d)",
+     NERROR_STRING(error), error);
     abort();
 }
 

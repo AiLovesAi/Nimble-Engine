@@ -49,14 +49,35 @@
 
 #include "../../../include/Nimble/NimbleEngine/Output/CrashHandler.h"
 
+const char nErrMinStr[]           = "NERROR_MIN";
+
+const char nErrUnknownStr[]       = "NERROR_UNKNOWN";
+const char nErrNullStr[]          = "NERROR_NULL";
+const char nErrFileNotFoundStr[]  = "NERROR_FILE_NOT_FOUND";
+const char nErrErrorNotFoundStr[] = "NERROR_ERROR_NOT_FOUND";
+
+const char nErrMaxStr[]           = "NERROR_MAX";
+
+
+const char * nErrorStrings[] = {
+    nErrMinStr,
+    
+    nErrUnknownStr,
+    nErrNullStr,
+    nErrFileNotFoundStr,
+    nErrErrorNotFoundStr,
+    
+    nErrMaxStr
+};
+
 const char noInfoStr[]           = "No info.";
 const char unknownErrStr[]       = "NERROR_UNKNOWN: An unknown error occurred: ";
 const char nullErrStr[]          = "NERROR_NULL: A pointer was null when "\
-                                   "a nonnull pointer was expected: ";
+"a nonnull pointer was expected: ";
 const char fileNotFoundErrStr[]  = "NERROR_FILE_NOT_FOUND: A file was not "\
-                                   "found where specified: ";
+"found where specified: ";
 const char errorNotFoundErrStr[] = "NERROR_ERROR_NOT_FOUND: An error passed to "\
-                                   "a function was not valid: ";
+"a function was not valid: ";
 
 /**
  * @brief The default error handler callback.

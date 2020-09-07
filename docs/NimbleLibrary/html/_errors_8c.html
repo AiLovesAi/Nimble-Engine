@@ -112,6 +112,20 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:ad8e0c07b8f24abd04aad4b8999d0d351"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ad8e0c07b8f24abd04aad4b8999d0d351">nErrMinStr</a> [] = &quot;NERROR_MIN&quot;</td></tr>
+<tr class="separator:ad8e0c07b8f24abd04aad4b8999d0d351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8da024ed11ed3e7421bdfe65081edd9"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#aa8da024ed11ed3e7421bdfe65081edd9">nErrUnknownStr</a> [] = &quot;NERROR_UNKNOWN&quot;</td></tr>
+<tr class="separator:aa8da024ed11ed3e7421bdfe65081edd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afead839202aa4d5b6ac57b34e7e51e68"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#afead839202aa4d5b6ac57b34e7e51e68">nErrNullStr</a> [] = &quot;NERROR_NULL&quot;</td></tr>
+<tr class="separator:afead839202aa4d5b6ac57b34e7e51e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ff59df63c38a7633269f055c48a89f7"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a2ff59df63c38a7633269f055c48a89f7">nErrFileNotFoundStr</a> [] = &quot;NERROR_FILE_NOT_FOUND&quot;</td></tr>
+<tr class="separator:a2ff59df63c38a7633269f055c48a89f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcfc452b2a52b1d722b594d21da5a664"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#abcfc452b2a52b1d722b594d21da5a664">nErrErrorNotFoundStr</a> [] = &quot;NERROR_ERROR_NOT_FOUND&quot;</td></tr>
+<tr class="separator:abcfc452b2a52b1d722b594d21da5a664"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a515d7ecf1a4c7640e188d459a9d162c6"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a515d7ecf1a4c7640e188d459a9d162c6">nErrMaxStr</a> [] = &quot;NERROR_MAX&quot;</td></tr>
+<tr class="separator:a515d7ecf1a4c7640e188d459a9d162c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a0720ef0b8154b77efda6dae86c358a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a6a0720ef0b8154b77efda6dae86c358a">nErrorStrings</a> []</td></tr>
+<tr class="separator:a6a0720ef0b8154b77efda6dae86c358a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43fb2a7f109395609e691d13dd603297"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a> [] = &quot;No info.&quot;</td></tr>
 <tr class="separator:a43fb2a7f109395609e691d13dd603297"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b5bded8aa4ba9751caff215532f117e"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a4b5bded8aa4ba9751caff215532f117e">unknownErrStr</a> [] = &quot;NERROR_UNKNOWN: An unknown error occurred: &quot;</td></tr>
@@ -199,9 +213,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise the program crashes.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Get stack trace. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Get stack trace. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00276">276</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00296">296</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -267,9 +281,9 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Make default callback. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Make default callback. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00088">88</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00109">109</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -335,7 +349,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful; otherwise <code><a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a></code> is returned.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Check <a class="el" href="_errors_8c.html#ac93766453bcbe84b6c4b8872b1735012" title="The default error handler callback.">nErrorHandlerDefault()</a> for parameter information. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00260">260</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00280">280</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -398,14 +412,14 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The program will crash if this is unsuccessful. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Append info <br  />
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Append info <br  />
  </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Figure out case. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Append info <br  />
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Figure out case. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Append info <br  />
  </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Figure out case. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Figure out case. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00095">95</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00116">116</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -484,7 +498,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code> is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00247">247</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00263">263</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -533,7 +547,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Describes an error and returns a string with no error handling. </p>
-<p>Example: </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>Do this </dd></dl>
+<p>Example: </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Do this </dd></dl>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
@@ -565,7 +579,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code> is returned.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used by the game engine and is not expected to be used by developers, but is optional. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00144">144</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00165">165</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -584,7 +598,7 @@ Variables</h2></td></tr>
 
 <p>The error callback function that gets defined by <a class="el" href="_errors_8c.html#a945a3daa2c179f4f0464611fec7a9ceb" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00083">83</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00104">104</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -600,9 +614,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_ERROR_NOT_FOUND: An error passed to &quot;</span></div>
-<div class="line">                                   <span class="stringliteral">&quot;a function was not valid: &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;a function was not valid: &quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00058">58</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00079">79</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -618,9 +632,131 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_FILE_NOT_FOUND: A file was not &quot;</span></div>
-<div class="line">                                   <span class="stringliteral">&quot;found where specified: &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;found where specified: &quot;</span></div>
 </div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00077">77</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="abcfc452b2a52b1d722b594d21da5a664"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcfc452b2a52b1d722b594d21da5a664">&#9670;&nbsp;</a></span>nErrErrorNotFoundStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrErrorNotFoundStr[] = &quot;NERROR_ERROR_NOT_FOUND&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00057">57</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a2ff59df63c38a7633269f055c48a89f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ff59df63c38a7633269f055c48a89f7">&#9670;&nbsp;</a></span>nErrFileNotFoundStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrFileNotFoundStr[] = &quot;NERROR_FILE_NOT_FOUND&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00056">56</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a515d7ecf1a4c7640e188d459a9d162c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a515d7ecf1a4c7640e188d459a9d162c6">&#9670;&nbsp;</a></span>nErrMaxStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrMaxStr[] = &quot;NERROR_MAX&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00059">59</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="ad8e0c07b8f24abd04aad4b8999d0d351"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8e0c07b8f24abd04aad4b8999d0d351">&#9670;&nbsp;</a></span>nErrMinStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrMinStr[] = &quot;NERROR_MIN&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00052">52</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="afead839202aa4d5b6ac57b34e7e51e68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afead839202aa4d5b6ac57b34e7e51e68">&#9670;&nbsp;</a></span>nErrNullStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrNullStr[] = &quot;NERROR_NULL&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00055">55</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a6a0720ef0b8154b77efda6dae86c358a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a0720ef0b8154b77efda6dae86c358a">&#9670;&nbsp;</a></span>nErrorStrings</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* nErrorStrings[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    <a class="code" href="_errors_8c.html#ad8e0c07b8f24abd04aad4b8999d0d351">nErrMinStr</a>,</div>
+<div class="line">    </div>
+<div class="line">    <a class="code" href="_errors_8c.html#aa8da024ed11ed3e7421bdfe65081edd9">nErrUnknownStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#afead839202aa4d5b6ac57b34e7e51e68">nErrNullStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a2ff59df63c38a7633269f055c48a89f7">nErrFileNotFoundStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#abcfc452b2a52b1d722b594d21da5a664">nErrErrorNotFoundStr</a>,</div>
+<div class="line">    </div>
+<div class="line">    <a class="code" href="_errors_8c.html#a515d7ecf1a4c7640e188d459a9d162c6">nErrMaxStr</a></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00062">62</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="aa8da024ed11ed3e7421bdfe65081edd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8da024ed11ed3e7421bdfe65081edd9">&#9670;&nbsp;</a></span>nErrUnknownStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrUnknownStr[] = &quot;NERROR_UNKNOWN&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00054">54</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -636,7 +772,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00052">52</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00073">73</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -652,9 +788,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_NULL: A pointer was null when &quot;</span></div>
-<div class="line">                                   <span class="stringliteral">&quot;a nonnull pointer was expected: &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;a nonnull pointer was expected: &quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00054">54</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00075">75</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -670,19 +806,25 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00053">53</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00074">74</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a></div><div class="ttdeci">@ NERROR_FILE_NOT_FOUND</div><div class="ttdoc">A file was not found where specified.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00064">Errors.h:64</a></div></div>
-<div class="ttc" id="a_errors_8c_html_ade8a5b44ad47489e587d8d07d27c3464"><div class="ttname"><a href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00247">Errors.c:247</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a7b859178d30b508713aa63fca6612f8e"><div class="ttname"><a href="_errors_8c.html#a7b859178d30b508713aa63fca6612f8e">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(char *dst, int32_t *errorLen, int32_t *stackLevels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00276">Errors.c:276</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a></div><div class="ttdeci">@ NERROR_FILE_NOT_FOUND</div><div class="ttdoc">A file was not found where specified.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00066">Errors.h:66</a></div></div>
+<div class="ttc" id="a_errors_8c_html_abcfc452b2a52b1d722b594d21da5a664"><div class="ttname"><a href="_errors_8c.html#abcfc452b2a52b1d722b594d21da5a664">nErrErrorNotFoundStr</a></div><div class="ttdeci">const char nErrErrorNotFoundStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00057">Errors.c:57</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a2ff59df63c38a7633269f055c48a89f7"><div class="ttname"><a href="_errors_8c.html#a2ff59df63c38a7633269f055c48a89f7">nErrFileNotFoundStr</a></div><div class="ttdeci">const char nErrFileNotFoundStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00056">Errors.c:56</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ade8a5b44ad47489e587d8d07d27c3464"><div class="ttname"><a href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00263">Errors.c:263</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a7b859178d30b508713aa63fca6612f8e"><div class="ttname"><a href="_errors_8c.html#a7b859178d30b508713aa63fca6612f8e">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(char *dst, int32_t *errorLen, int32_t *stackLevels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00296">Errors.c:296</a></div></div>
 <div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
+<div class="ttc" id="a_errors_8c_html_aa8da024ed11ed3e7421bdfe65081edd9"><div class="ttname"><a href="_errors_8c.html#aa8da024ed11ed3e7421bdfe65081edd9">nErrUnknownStr</a></div><div class="ttdeci">const char nErrUnknownStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00054">Errors.c:54</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00118">Nimble.h:118</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a7ce818a6ef8c3ad8d003f25d7aa1482f"><div class="ttname"><a href="_errors_8c.html#a7ce818a6ef8c3ad8d003f25d7aa1482f">nErrorToStringLocal</a></div><div class="ttdeci">int32_t nErrorToStringLocal(char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string with no error handling.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00144">Errors.c:144</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a7ce818a6ef8c3ad8d003f25d7aa1482f"><div class="ttname"><a href="_errors_8c.html#a7ce818a6ef8c3ad8d003f25d7aa1482f">nErrorToStringLocal</a></div><div class="ttdeci">int32_t nErrorToStringLocal(char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string with no error handling.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00165">Errors.c:165</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a515d7ecf1a4c7640e188d459a9d162c6"><div class="ttname"><a href="_errors_8c.html#a515d7ecf1a4c7640e188d459a9d162c6">nErrMaxStr</a></div><div class="ttdeci">const char nErrMaxStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00059">Errors.c:59</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ad8e0c07b8f24abd04aad4b8999d0d351"><div class="ttname"><a href="_errors_8c.html#ad8e0c07b8f24abd04aad4b8999d0d351">nErrMinStr</a></div><div class="ttdeci">const char nErrMinStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00052">Errors.c:52</a></div></div>
+<div class="ttc" id="a_errors_8c_html_afead839202aa4d5b6ac57b34e7e51e68"><div class="ttname"><a href="_errors_8c.html#afead839202aa4d5b6ac57b34e7e51e68">nErrNullStr</a></div><div class="ttdeci">const char nErrNullStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00055">Errors.c:55</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
-<div class="ttc" id="a_errors_8c_html_ada150208dfff4322a1be89604b87eb68"><div class="ttname"><a href="_errors_8c.html#ada150208dfff4322a1be89604b87eb68">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00095">Errors.c:95</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ada150208dfff4322a1be89604b87eb68"><div class="ttname"><a href="_errors_8c.html#ada150208dfff4322a1be89604b87eb68">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00116">Errors.c:116</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

@@ -59,11 +59,29 @@ extern "C" {
  * @brief The possible error values used by ErrorHandler.h error handler.
  */
 enum nErrors {
-    NERROR_UNKNOWN = INT_MIN, /**< An nknown error occurred. */
+    NERROR_MIN = INT_MIN, /**< The mininum error number. */
+    
+    NERROR_UNKNOWN, /**< An nknown error occurred. */
     NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
 	NERROR_FILE_NOT_FOUND, /**< A file was not found where specified. */
-	NERROR_ERROR_NOT_FOUND /**< An error passed to a function was not valid. */
+	NERROR_ERROR_NOT_FOUND, /**< An error passed to a function was not valid. */
+    
+    NERROR_MAX /**< The maximum error number. */
 };
+
+
+/**
+ * @brief The strings used to represent error codes defined by #nErrors.
+ */
+NIMBLE_EXTERN
+const char * nErrorStrings[];
+
+/*
+ * @brief Gets the error code represented as a string from #nErrorStrings.
+ */
+#define NERROR_STRING(err) ((err <= NERROR_MAX) ?\
+                            nErrorStrings[err - NERROR_MIN] :\
+                            nErrorStrings[NERROR_UNKNOWN - NERROR_MIN])
 
 
 /**
