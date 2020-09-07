@@ -97,6 +97,7 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
     if (crashtest || (crashCallback == NULL))
     {
         nCrashAbort(error);
+        /* NO RETURN */
     }
     
     crashtest++;
@@ -131,6 +132,7 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
     
     crashCallback(error, errorDesc, errorDescLen, errorTime);
     exit(error);
+    /* NO RETURN */
 }
 
 void nCrashSignal(const int signum)
@@ -148,6 +150,7 @@ void nCrashSignal(const int signum)
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGABRT, NULL,
              0);
             nCrashSafe(NERROR_SIGABRT, errorDesc, errorDescLen, errorTime);
+            /* NO RETURN */
         }
         break;
         case SIGFPE:
@@ -155,6 +158,7 @@ void nCrashSignal(const int signum)
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGFPE, NULL,
              0);
             nCrashSafe(NERROR_SIGFPE, errorDesc, errorDescLen, errorTime);
+            /* NO RETURN */
         }
         break;
         case SIGILL:
@@ -162,6 +166,7 @@ void nCrashSignal(const int signum)
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGILL, NULL,
              0);
             nCrashSafe(NERROR_SIGILL, errorDesc, errorDescLen, errorTime);
+            /* NO RETURN */
         }
         break;
         case SIGINT:
@@ -169,6 +174,7 @@ void nCrashSignal(const int signum)
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGINT, NULL,
              0);
             nCrashSafe(NERROR_SIGINT, errorDesc, errorDescLen, errorTime);
+            /* NO RETURN */
         }
         break;
         case SIGSEGV:
@@ -176,6 +182,7 @@ void nCrashSignal(const int signum)
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGSEGV, NULL,
              0);
             nCrashSafe(NERROR_SIGSEGV, errorDesc, errorDescLen, errorTime);
+            /* NO RETURN */
         }
         break;
         case SIGTERM:
@@ -183,6 +190,7 @@ void nCrashSignal(const int signum)
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGTERM, NULL,
              0);
             nCrashSafe(NERROR_SIGTERM, errorDesc, errorDescLen, errorTime);
+            /* NO RETURN */
         }
         break;
         default:
@@ -190,9 +198,12 @@ void nCrashSignal(const int signum)
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_ERROR_NOT_FOUND,
             NULL, 0);
             nCrashSafe(NERROR_ERROR_NOT_FOUND, errorDesc, errorDescLen, errorTime);
+            /* NO RETURN */
         }
         break;
-    } 
+        /* NO RETURN */
+    }
+    /* NO RETURN */
 }
 
 void nCrashAbort(const int32_t error)
@@ -200,6 +211,7 @@ void nCrashAbort(const int32_t error)
     fprintf(stderr, "Aborting program with error code: %s (%d)",
      NERROR_STRING(error), error);
     abort();
+    /* NO RETURN */
 }
 
 // CrashHandler.c

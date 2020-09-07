@@ -184,14 +184,11 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
         char * crashErrorDesc;
         int32_t crashErrorDescLen;
         
-        if (nErrorToString(crashErrorDesc, &crashErrorDescLen, NERROR_NULL,
-             callbackStr, sizeof(callbackStr)) == NULL)
-        {
-            /** @todo Figure out case. */
-        }
-        
+        nErrorToString(crashErrorDesc, &crashErrorDescLen, NERROR_NULL,
+         callbackStr, sizeof(callbackStr));
         nCrashSafe(NERROR_NULL, crashErrorDesc, crashErrorDescLen,
          crashErrorTime);
+        /* NO RETURN */
     }
     
     char * errorDesc;
@@ -204,14 +201,11 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
         char * crashErrorDesc;
         int32_t crashErrorDescLen;
         
-        if (nErrorToString(crashErrorDesc, &crashErrorDescLen,
-             NERROR_ERROR_NOT_FOUND, parseStr, sizeof(parseStr)) == NULL)
-        {
-            /** @todo Figure out case. */
-        }
-        
+        nErrorToString(crashErrorDesc, &crashErrorDescLen,
+         NERROR_ERROR_NOT_FOUND, parseStr, sizeof(parseStr));
         nCrashSafe(NERROR_ERROR_NOT_FOUND, crashErrorDesc, crashErrorDescLen,
          crashErrorTime);
+        /* NO RETURN */
     }
     
     char * stack;
