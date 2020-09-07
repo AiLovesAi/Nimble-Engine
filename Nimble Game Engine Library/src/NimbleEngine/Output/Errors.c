@@ -49,35 +49,94 @@
 
 #include "../../../include/Nimble/NimbleEngine/Output/CrashHandler.h"
 
-const char nErrMinStr[]           = "NERROR_MIN";
+const char nErrMinStr[]             = "NERROR_MIN";
 
-const char nErrUnknownStr[]       = "NERROR_UNKNOWN";
-const char nErrNullStr[]          = "NERROR_NULL";
-const char nErrFileNotFoundStr[]  = "NERROR_FILE_NOT_FOUND";
-const char nErrErrorNotFoundStr[] = "NERROR_ERROR_NOT_FOUND";
+const char nErrUnknownStr[]         = "NERROR_UNKNOWN";
 
-const char nErrMaxStr[]           = "NERROR_MAX";
+const char nErrSigAbrtStr[]         = "NERROR_SIGABRT";
+const char nErrSigFpeStr[]          = "NERROR_SIGFPE";
+const char nErrSigIllStr[]          = "NERROR_SIGILL";
+const char nErrSigIntStr[]          = "NERROR_SIGINT";
+const char nErrSigSegvStr[]         = "NERROR_SIGSEGV";
+const char nErrSigTermStr[]         = "NERROR_SIGTERM";
+
+const char nErrNullStr[]            = "NERROR_NULL";
+const char nErrInternalFailureStr[] = "NERROR_INTERNAL_FAILURE";
+const char nErrFileNotFoundStr[]    = "NERROR_FILE_NOT_FOUND";
+const char nErrErrorNotFoundStr[]   = "NERROR_ERROR_NOT_FOUND";
+
+const char nErrMaxStr[]             = "NERROR_MAX";
 
 
 const char * nErrorStrings[] = {
     nErrMinStr,
     
     nErrUnknownStr,
+    
+    nErrSigAbrtStr,
+    nErrSigFpeStr,
+    nErrSigIllStr,
+    nErrSigIntStr,
+    nErrSigSegvStr,
+    nErrSigTermStr,
+    
     nErrNullStr,
+    nErrInternalFailureStr,
     nErrFileNotFoundStr,
     nErrErrorNotFoundStr,
     
     nErrMaxStr
 };
 
-const char noInfoStr[]           = "No info.";
-const char unknownErrStr[]       = "NERROR_UNKNOWN: An unknown error occurred: ";
-const char nullErrStr[]          = "NERROR_NULL: A pointer was null when "\
-"a nonnull pointer was expected: ";
-const char fileNotFoundErrStr[]  = "NERROR_FILE_NOT_FOUND: A file was not "\
-"found where specified: ";
-const char errorNotFoundErrStr[] = "NERROR_ERROR_NOT_FOUND: An error passed to "\
-"a function was not valid: ";
+const char nErrDescMinStr[]           = "NERROR_MIN - The minimum error value, "\
+"likely caused by programmer error or a corruption issue";
+
+const char nErrDescUnknownStr[]       = "NERROR_UNKNOWN - An unknown error "\
+"occurred";
+
+const char nErrDescSigAbrtStr[]       = "NERROR_SIGABRT - Caught an abort "\
+"signal";
+const char nErrDescSigFpeStr[]        = "NERROR_SIGFPE - Caught a floating "\
+"point exception signal";
+const char nErrDescSigIllStr[]        = "NERROR_SIGFPE - Caught an illegal "\
+"instruction signal";
+const char nErrDescSigIntStr[]        = "NERROR_SIGFPE - Caught an interrupt "\
+"signal";
+const char nErrDescSigSegvStr[]       = "NERROR_SIGFPE - Caught a memory "\
+"address violation signal";
+const char nErrDescSigTermStr[]       = "NERROR_SIGFPE - Caught a termination "\
+"signal";
+
+const char nErrDescNullStr[]          = "NERROR_NULL - A pointer was null when "\
+"a nonnull pointer was expected";
+const char nErrDescFileNotFoundStr[]  = "NERROR_FILE_NOT_FOUND - A file was "\
+"not found where specified";
+const char nErrDescErrorNotFoundStr[] = "NERROR_ERROR_NOT_FOUND - An error "\
+"passed to a function was not valid";
+
+const char nErrDescMaxStr[]           = "NERROR_MAX - The maximum error value, "\
+"likely caused by programmer error or a corruption issue";
+
+
+const char * nErrorDescriptions[] = {
+    nErrDescMinStr,
+    
+    nErrDescSigAbrtStr,
+    nErrDescSigFpeStr,
+    nErrDescSigIllStr,
+    nErrDescSigIntStr,
+    nErrDescSigSegvStr,
+    nErrDescSigTermStr,
+    
+    nErrDescNullStr,
+    nErrDescFileNotFoundStr,
+    nErrDescErrorNotFoundStr,
+    
+    nErrDescMaxStr
+};
+
+
+const char noInfoStr[] = "No info.";
 
 /**
  * @brief The default error handler callback.
@@ -120,13 +179,13 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
     if (errorCallback == NULL)
     {
         const time_t crashErrorTime = time(NULL);
-        const char callbackErrStr[] = "Callback argument NULL in nErrorThrow().";
+        const char callbackStr[] = "Callback argument NULL in nErrorThrow().";
         /** @todo Append info  */
         char * crashErrorDesc;
         int32_t crashErrorDescLen;
         
         if (nErrorToString(crashErrorDesc, &crashErrorDescLen, NERROR_NULL,
-             callbackErrStr, sizeof(callbackErrStr)) == NULL)
+             callbackStr, sizeof(callbackStr)) == NULL)
         {
             /** @todo Figure out case. */
         }
@@ -140,13 +199,13 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
     if (nErrorToString(errorDesc, &errorDescLen, error, info, infoLen) == NULL)
     {
         const time_t crashErrorTime = time(NULL);
-        const char parseErrStr[] = "Error not found in nErrorThrow().";
+        const char parseStr[] = "Error not found in nErrorThrow().";
         /** @todo Append info  */
         char * crashErrorDesc;
         int32_t crashErrorDescLen;
         
         if (nErrorToString(crashErrorDesc, &crashErrorDescLen,
-             NERROR_ERROR_NOT_FOUND, parseErrStr, sizeof(parseErrStr)) == NULL)
+             NERROR_ERROR_NOT_FOUND, parseStr, sizeof(parseStr)) == NULL)
         {
             /** @todo Figure out case. */
         }
@@ -170,22 +229,22 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
         infoLen = strlen(info) + 1;
     }
     
-    switch (error)
+    switch (error) /** @todo Errno and signum values; update to use NERROR_DESCRIPTION; use changed format. */
     {
         case NERROR_UNKNOWN:
         {
             if (info != NULL)
             {
-                *errorLen = sizeof(unknownErrStr) + infoLen - 1;
+                *errorLen = sizeof(nErrDescUnknownStr) + infoLen - 1;
                 dst = malloc(sizeof(void *) + *errorLen);
-                strncpy(dst, unknownErrStr, sizeof(unknownErrStr));
+                strncpy(dst, nErrDescUnknownStr, sizeof(nErrDescUnknownStr));
                 strncat(dst, info, infoLen);
             }
             else
             {
-                *errorLen = sizeof(unknownErrStr) + sizeof(noInfoStr) - 1;
+                *errorLen = sizeof(nErrDescUnknownStr) + sizeof(noInfoStr) - 1;
                 dst = malloc(sizeof(void *) + *errorLen);
-                strncpy(dst, unknownErrStr, sizeof(unknownErrStr));
+                strncpy(dst, nErrDescUnknownStr, sizeof(nErrDescUnknownStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
             dst[*errorLen - 1] = '\0';
@@ -195,16 +254,16 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
         {
             if (info != NULL)
             {
-                *errorLen =  sizeof(nullErrStr) + infoLen - 1;
+                *errorLen =  sizeof(nErrDescNullStr) + infoLen - 1;
                 dst = malloc(sizeof(void *) + *errorLen);
-				strncpy(dst, nullErrStr, sizeof(nullErrStr));
+				strncpy(dst, nErrDescNullStr, sizeof(nErrDescNullStr));
 				strncat(dst, info, infoLen);
             }
             else
 		    {
-                *errorLen = sizeof(nullErrStr) + sizeof(noInfoStr) - 1;
+                *errorLen = sizeof(nErrDescNullStr) + sizeof(noInfoStr) - 1;
                 dst = malloc(sizeof(void *) + *errorLen);
-                strncpy(dst, nullErrStr, sizeof(nullErrStr));
+                strncpy(dst, nErrDescNullStr, sizeof(nErrDescNullStr));
 				strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
             dst[*errorLen - 1] = '\0';
@@ -214,16 +273,16 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
         {
             if (info != NULL)
             {
-                *errorLen = sizeof(fileNotFoundErrStr) + infoLen - 1;
+                *errorLen = sizeof(nErrDescFileNotFoundStr) + infoLen - 1;
                 dst = malloc(sizeof(void *) + *errorLen);
-                strncpy(dst, fileNotFoundErrStr, sizeof(fileNotFoundErrStr));
+                strncpy(dst, nErrDescFileNotFoundStr, sizeof(nErrDescFileNotFoundStr));
                 strncat(dst, info, infoLen);
             }
             else
             {
-                *errorLen = sizeof(fileNotFoundErrStr) + sizeof(noInfoStr) - 1;
+                *errorLen = sizeof(nErrDescFileNotFoundStr) + sizeof(noInfoStr) - 1;
                 dst = malloc(sizeof(void *) + *errorLen);
-                strncpy(dst, fileNotFoundErrStr, sizeof(fileNotFoundErrStr));
+                strncpy(dst, nErrDescFileNotFoundStr, sizeof(nErrDescFileNotFoundStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
             dst[*errorLen - 1] = '\0';
@@ -233,16 +292,16 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
         {
             if (info != NULL)
 		    {
-                *errorLen = sizeof(errorNotFoundErrStr) + infoLen - 1;
+                *errorLen = sizeof(nErrDescErrorNotFoundStr) + infoLen - 1;
                 dst = malloc(sizeof(void *) + *errorLen);
-                strncpy(dst, errorNotFoundErrStr, sizeof(errorNotFoundErrStr));
+                strncpy(dst, nErrDescErrorNotFoundStr, sizeof(nErrDescErrorNotFoundStr));
                 strncat(dst, info, infoLen);
             }
             else
             {
-                *errorLen = sizeof(errorNotFoundErrStr) + sizeof(noInfoStr) - 1;
+                *errorLen = sizeof(nErrDescErrorNotFoundStr) + sizeof(noInfoStr) - 1;
                 dst = malloc(sizeof(void *) + *errorLen);
-                strncpy(dst, errorNotFoundErrStr, sizeof(errorNotFoundErrStr));
+                strncpy(dst, nErrDescErrorNotFoundStr, sizeof(nErrDescErrorNotFoundStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
             dst[*errorLen - 1] = '\0';
@@ -283,9 +342,9 @@ int32_t nErrorSetCallback(void (* callback)(const int32_t error,
 {
     if (callback == NULL)
     {
-        const char callbackErrStr[] = "Callback argument NULL in "\
+        const char callbackStr[] = "Callback argument NULL in "\
                                       "nErrorSetCallback().";
-        nErrorThrow(NERROR_NULL, callbackErrStr, sizeof(callbackErrStr));
+        nErrorThrow(NERROR_NULL, callbackStr, sizeof(callbackStr));
         return NERROR;
     }
     

@@ -124,6 +124,11 @@ __attribute__((noreturn));
 
 /**
  * @brief Calls nCrashSafe() to handle a caught signal.
+ *
+ * @param[in] signum The signal caught.
+ *
+ * @note This function is used by the game engine and is not expected to be used
+ * by developers, but is optional.
  */
 NIMBLE_EXTERN
 void

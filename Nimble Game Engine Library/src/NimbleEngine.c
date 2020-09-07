@@ -63,7 +63,10 @@ void nEngineExitSignal(int signum)
 int32_t nEngineInit(void)
 {
     /** @todo Make init function */
-    atexit(nEngineExit);
+    if (atexit(nEngineExit) != NSUCCESS)
+    {
+        
+    }
     signal(SIGTERM, nEngineExitSignal);
     
     signal(SIGABRT, nCrashSignal);

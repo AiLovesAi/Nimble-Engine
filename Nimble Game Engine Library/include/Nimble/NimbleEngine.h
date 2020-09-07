@@ -65,9 +65,8 @@ extern "C" {
 
 
 /**
- * @brief Initialized the game engine.
- * Initialized the game engine by starting the error/crash handlers, logger, and
- * thread manager.
+ * @brief Exits the game engine.
+ * Exits the game engine by safely stopping threads
  *
  * @par Example:
  * @code
@@ -76,12 +75,11 @@ extern "C" {
  *
  * int main(int argc, char ** argv)
  * {
- *     if (nEngineInit() == NERROR)
+ *     if (nEngineInit() == NSUCCESS)
  *     {
- *         fprintf(stderr, "Failed to initialize Nimble.");
- *         exit(EXIT_FAILURE);
+ *         nEngineExit();
  *     }
- *     printf("Successfully initialized game engine.");
+ *     fprintf(stderr, "Failed to initialize Nimble.");
  *     exit(EXIT_SUCCESS);
  * }
  * @endcode
@@ -97,7 +95,7 @@ __attribute__((noreturn));
 
 /**
  * @brief Initialized the game engine.
- * Initialized the game engine by starting the error/crash handlers, logger, and
+ * Initializes the game engine by setting up the error/crash handlers, logger, and
  * thread manager.
  *
  * @par Example:
@@ -107,7 +105,7 @@ __attribute__((noreturn));
  *
  * int main(int argc, char ** argv)
  * {
- *     if (nEngineInit() == NERROR)
+ *     if (nEngineInit() != NSUCCESS)
  *     {
  *         fprintf(stderr, "Failed to initialize Nimble.");
  *         exit(EXIT_FAILURE);

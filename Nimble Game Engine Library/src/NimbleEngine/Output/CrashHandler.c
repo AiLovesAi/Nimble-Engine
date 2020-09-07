@@ -139,11 +139,12 @@ void nCrashSignal(const int signum)
     char * errorDesc;
     int32_t errorDescLen;
     
+    signal(signum, SIG_DFL);
+    
     switch(signum)
     {
         case SIGABRT:
         {
-            signal(SIGABRT, SIG_DFL);
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGABRT, NULL,
              0);
             nCrashSafe(NERROR_SIGABRT, errorDesc, errorDescLen, errorTime);
@@ -191,7 +192,7 @@ void nCrashSignal(const int signum)
             nCrashSafe(NERROR_ERROR_NOT_FOUND, errorDesc, errorDescLen, errorTime);
         }
         break;
-    }
+    } 
 }
 
 void nCrashAbort(const int32_t error)

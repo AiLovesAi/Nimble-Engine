@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['filenotfounderrstr_221',['fileNotFoundErrStr',['../_errors_8c.html#a89acda8dffb30240e0d307c2c3204360',1,'Errors.c']]]
+  ['license_5fmd_237',['LICENSE_md',['../_nimble_license_8c.html#ab450cf8653ff805274fb24db2d389512',1,'LICENSE_md():&#160;NimbleLicense.c'],['../_nimble_license_8h.html#acfeb49c8484dde5f594ec26572e2885b',1,'LICENSE_md():&#160;NimbleLicense.c']]]
 ];

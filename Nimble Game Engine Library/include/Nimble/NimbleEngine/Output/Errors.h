@@ -69,6 +69,7 @@ enum nErrors {
     NERROR_SIGINT, /**< Caught interrupt signal. */
     NERROR_SIGSEGV, /**< Caught memory address violation signal. */
     NERROR_SIGTERM, /**< Caught termination signal. */
+    
     NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
 	NERROR_FILE_NOT_FOUND, /**< A file was not found where specified. */
 	NERROR_ERROR_NOT_FOUND, /**< An error passed to a function was not valid. */
@@ -84,11 +85,30 @@ NIMBLE_EXTERN
 const char * nErrorStrings[];
 
 /*
- * @brief Gets the error code represented as a string from #nErrorStrings.
+ * @brief Gets the error code @p err represented as a string from #nErrorStrings.
+ *
+ * @param[in] err The error code to translate to a string.
+ * @return @p err translated to a string.
  */
-#define NERROR_STRING(err) ((err <= NERROR_MAX) ?\
+#define NERROR_STRING(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
                             nErrorStrings[err - NERROR_MIN] :\
                             nErrorStrings[NERROR_UNKNOWN - NERROR_MIN])
+
+/**
+ * @brief The descriptions of error codes defined by #nErrors.
+ */
+NIMBLE_EXTERN
+const char * nErrorDescriptions[];
+
+/*
+ * @brief Gets the error description of the error code @p err from #nErrorDescriptions.
+ *
+ * @param[in] err The error code to describe.
+ * @return The description of @p err as a string.
+ */
+#define NERROR_DESCRIPTION(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
+                                 nErrorDescriptions[err - NERROR_MIN] :\
+                                 nErrorDescriptions[NERROR_UNKNOWN - NERROR_MIN])
 
 
 /**
