@@ -123,7 +123,8 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
 "passed to a function was not valid: nErrorToStringLocal() failed while "\
 "crashing with nCrashSafe().";
             errorDescLen = sizeof(defaultErrorStr);
-            errorDesc = malloc(sizeof(void *) + errorDescLen);
+            /** @todo Remove sizeof(void *) allocations, clean up after yourself */
+            errorDesc = malloc(errorDescLen);
             strncpy(errorDesc, defaultErrorStr, errorDescLen);
         }
         
@@ -136,6 +137,12 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
     
     
     crashCallback(error, errorDesc, errorDescLen, errorTime);
+  
+    if (errorDesc)
+    {
+      free(errorDesc);
+    }
+  
     exit(error);
     /* NO RETURN */
 }
