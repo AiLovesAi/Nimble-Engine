@@ -65,7 +65,13 @@ int32_t nEngineInit(void)
     /** @todo Make init function */
     if (atexit(nEngineExit) != NSUCCESS)
     {
+        char * errorDesc;
+        int32_t errorDescLen;
+        char * info;
+        char * infoLen;
         
+        nErrorToString();
+        nCrashSafe(NERROR);
     }
     signal(SIGTERM, nEngineExitSignal);
     
