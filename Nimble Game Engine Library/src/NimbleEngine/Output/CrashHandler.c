@@ -51,7 +51,7 @@
 #include "../../../include/Nimble/NimbleEngine/Output/Errors.h"
 
 
-volatile uint8_t crashtest = 0;
+volatile _Bool crashtest = 0;
 
 /**
  * @brief The default crash handler callback.
@@ -105,7 +105,7 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
         /* NO RETURN */
     }
     
-    crashtest++;
+    crashtest = 1;
     
     
     if (errorTime == 0)
