@@ -124,7 +124,7 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
 "crashing with nCrashSafe().";
             errorDescLen = sizeof(defaultErrorStr);
             /** @todo Remove sizeof(void *) allocations, clean up after yourself */
-            errorDesc = malloc(errorDescLen);
+            errorDesc = realloc(errorDesc, errorDescLen);
             strncpy(errorDesc, defaultErrorStr, errorDescLen);
         }
         
@@ -137,12 +137,12 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
     
     
     crashCallback(error, errorDesc, errorDescLen, errorTime);
-  
+
     if (errorDesc)
     {
-      free(errorDesc);
+        free(errorDesc);
     }
-  
+
     exit(error);
     /* NO RETURN */
 }
