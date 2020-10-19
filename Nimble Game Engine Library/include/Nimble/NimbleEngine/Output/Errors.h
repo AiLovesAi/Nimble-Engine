@@ -299,9 +299,9 @@ NIMBLE_EXTERN
 int32_t
 nErrorSetCallback(void (* callback)(
                                     const int32_t error,
+                                    const time_t errorTime,
                                     const char * errorDesc,
                                     const int32_t errorDescLen,
-                                    const time_t errorTime,
                                     const char * stack,
                                     const int32_t stackLen
                                     )

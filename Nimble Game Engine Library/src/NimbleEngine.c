@@ -60,7 +60,12 @@ void nEngineExitSignal(int signum)
     nEngineExit();
 }
 
-int32_t nEngineInit(void)
+int32_t nEngineInit(void (* errorCallback)(const int32_t error,
+         const time_t errorTime, char * errorDesc, int32_t errorDescLen,
+         char * stack, int32_t stackLen),
+         void (* crashCallback)(const int32_t error, const time_t errorTime,
+         char * errorDesc, int32_t errorDescLen, char * stack,
+         int32_t stackLen))
 {
     /** @todo Make init function */
     if (atexit(nEngineExit) != NSUCCESS)

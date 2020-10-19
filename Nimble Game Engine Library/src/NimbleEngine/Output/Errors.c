@@ -230,14 +230,14 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
             if (info != NULL)
             {
                 *errorLen = sizeof(nErrDescUnknownStr) + infoLen - 1;
-                dst = malloc(sizeof(void *) + *errorLen);
+                dst = realloc(dst, *errorLen);
                 strncpy(dst, nErrDescUnknownStr, sizeof(nErrDescUnknownStr));
                 strncat(dst, info, infoLen);
             }
             else
             {
                 *errorLen = sizeof(nErrDescUnknownStr) + sizeof(noInfoStr) - 1;
-                dst = malloc(sizeof(void *) + *errorLen);
+                dst = realloc(dst, *errorLen);
                 strncpy(dst, nErrDescUnknownStr, sizeof(nErrDescUnknownStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
@@ -249,16 +249,16 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
             if (info != NULL)
             {
                 *errorLen =  sizeof(nErrDescNullStr) + infoLen - 1;
-                dst = malloc(sizeof(void *) + *errorLen);
-				strncpy(dst, nErrDescNullStr, sizeof(nErrDescNullStr));
-				strncat(dst, info, infoLen);
+                dst = realloc(dst, *errorLen);
+		strncpy(dst, nErrDescNullStr, sizeof(nErrDescNullStr));
+		strncat(dst, info, infoLen);
             }
             else
 		    {
                 *errorLen = sizeof(nErrDescNullStr) + sizeof(noInfoStr) - 1;
-                dst = malloc(sizeof(void *) + *errorLen);
+                dst = realloc(dst, *errorLen);
                 strncpy(dst, nErrDescNullStr, sizeof(nErrDescNullStr));
-				strncat(dst, noInfoStr, sizeof(noInfoStr));
+		strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
             dst[*errorLen - 1] = '\0';
         }
@@ -268,14 +268,14 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
             if (info != NULL)
             {
                 *errorLen = sizeof(nErrDescFileNotFoundStr) + infoLen - 1;
-                dst = malloc(sizeof(void *) + *errorLen);
+                dst = realloc(dst, *errorLen);
                 strncpy(dst, nErrDescFileNotFoundStr, sizeof(nErrDescFileNotFoundStr));
                 strncat(dst, info, infoLen);
             }
             else
             {
                 *errorLen = sizeof(nErrDescFileNotFoundStr) + sizeof(noInfoStr) - 1;
-                dst = malloc(sizeof(void *) + *errorLen);
+                dst = realloc(dst, *errorLen);
                 strncpy(dst, nErrDescFileNotFoundStr, sizeof(nErrDescFileNotFoundStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
@@ -287,14 +287,14 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
             if (info != NULL)
 		    {
                 *errorLen = sizeof(nErrDescErrorNotFoundStr) + infoLen - 1;
-                dst = malloc(sizeof(void *) + *errorLen);
+                dst = realloc(dst, *errorLen);
                 strncpy(dst, nErrDescErrorNotFoundStr, sizeof(nErrDescErrorNotFoundStr));
                 strncat(dst, info, infoLen);
             }
             else
             {
                 *errorLen = sizeof(nErrDescErrorNotFoundStr) + sizeof(noInfoStr) - 1;
-                dst = malloc(sizeof(void *) + *errorLen);
+                dst = realloc(dst, *errorLen);
                 strncpy(dst, nErrDescErrorNotFoundStr, sizeof(nErrDescErrorNotFoundStr));
                 strncat(dst, noInfoStr, sizeof(noInfoStr));
             }
@@ -320,10 +320,16 @@ char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
     if (result != NSUCCESS)
     {
         int32_t errorNumLen = snprintf(NULL, 0, "%d", error) + 1;
-        char * errorNumStr = malloc(sizeof(void *) + errorNumLen);
+        char * errorNumStr = malloc(errorNumLen);
         snprintf(errorNumStr, errorNumLen, "%d", error);
         
         nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, *errorLen);
+	    
+        if (errorNumStr)
+        {
+            free(errorNumStr);
+        }
+
         return dst;
     }
     

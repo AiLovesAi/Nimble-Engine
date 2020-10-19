@@ -71,7 +71,12 @@ extern "C" {
  */
 NIMBLE_EXTERN
 int32_t
-nCrashSetHandler(void (* callback) (int32_t error
+nCrashSetHandler(void (* callback) (const int32_t error,
+                                    const time_t errorTime,
+                                    char * errorDesc,
+                                    int32_t errorDescLen,
+                                    char * stack,
+                                    int32_t stackLen
                                     )
                  );
 
@@ -116,9 +121,9 @@ nCrashSetHandler(void (* callback) (int32_t error
 NIMBLE_EXTERN
 void
 nCrashSafe(const int32_t error,
+           time_t errorTime,
            char * errorDesc,
-           int32_t errorDescLen,
-           time_t errorTime
+           int32_t errorDescLen
            )
 __attribute__((noreturn));
 
