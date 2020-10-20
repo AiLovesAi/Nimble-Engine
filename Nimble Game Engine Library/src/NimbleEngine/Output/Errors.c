@@ -301,6 +301,7 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
             dst[*errorLen - 1] = '\0';
         }
         break;
+        
         default:
         {
             dst = NULL;
