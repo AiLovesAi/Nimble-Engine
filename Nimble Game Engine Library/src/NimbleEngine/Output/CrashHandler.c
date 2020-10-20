@@ -140,6 +140,7 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
     if (errorDesc)
     {
         free(errorDesc);
+        errorDesc = NULL;
     }
 
     exit(error);
