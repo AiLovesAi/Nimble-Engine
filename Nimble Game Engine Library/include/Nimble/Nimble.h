@@ -118,6 +118,8 @@ extern "C" {
 #define NULL ((void *) 0) /**< Null pointer */
 #endif
 
+
+
 #endif // NIMBLE_H
 
 #ifdef __cplusplus
