@@ -71,8 +71,8 @@ enum nErrors {
     NERROR_SIGTERM, /**< Caught termination signal. */
     
     NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
-	NERROR_FILE_NOT_FOUND, /**< A file was not found where specified. */
-	NERROR_ERROR_NOT_FOUND, /**< An error passed to a function was not valid. */
+    NERROR_FILE_NOT_FOUND, /**< A file was not found where specified. */
+    NERROR_ERROR_NOT_FOUND, /**< An error passed to a function was not valid. */
     
     NERROR_MAX /**< The maximum error number. */
 };
