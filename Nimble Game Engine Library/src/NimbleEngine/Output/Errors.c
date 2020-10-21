@@ -160,7 +160,7 @@ const char * nErrorDescriptions[] = {
     
     nErrDescMaxStr
 };
-const int32_t nErrorStringLengths[] = {
+const int32_t nErrorDescLengths[] = {
     sizeof(nErrMinStr),
     
     sizeof(nErrUnknownStr),
@@ -266,7 +266,7 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
         infoLen = strlen(info) + 1;
     }
     
-    const char * errorDesc = NERROR_STRING(error);
+    const char * errorDesc = NERROR_DESCRIPTION(error);
     
     if (errorDesc == NULL)
     {
@@ -275,7 +275,7 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
         return NERROR_ERROR_NOT_FOUND;
     }
     
-    const int32_t descLen = NERROR_LENGTH(error);
+    const int32_t descLen = NERROR_DESCLENGTH(error);
     if (info == NULL)
     {
         *errorLen = descLen + sizeof(noInfoStr) - 1;
