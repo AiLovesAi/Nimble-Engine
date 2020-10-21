@@ -94,6 +94,16 @@ const char * nErrorStrings[];
                             nErrorStrings[err - NERROR_MIN] :\
                             nErrorStrings[NERROR_UNKNOWN - NERROR_MIN])
 
+/*
+ * @brief Gets the length of the error code @p err from #nErrorStringLengths.
+ *
+ * @param[in] err The error code to determine the length of.
+ * @return @p err's string translation length.
+ */
+#define NERROR_LENGTH(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
+                            nErrorStringLengths[err - NERROR_MIN] :\
+                            nErrorStringLengths[NERROR_UNKNOWN - NERROR_MIN])
+
 /**
  * @brief The descriptions of error codes defined by #nErrors.
  */
