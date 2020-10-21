@@ -52,7 +52,11 @@
 const char nErrMinStr[]             = "NERROR_MIN";
 
 const char nErrUnknownStr[]         = "NERROR_UNKNOWN";
+const char nErrInternalFailureStr[] = "NERROR_INTERNAL_FAILURE";
+const char nErrNullStr[]            = "NERROR_NULL";
+const char nErrErrorNotFoundStr[]   = "NERROR_ERROR_NOT_FOUND";
 
+//SIGNUM
 const char nErrSigAbrtStr[]         = "NERROR_SIGABRT";
 const char nErrSigFpeStr[]          = "NERROR_SIGFPE";
 const char nErrSigIllStr[]          = "NERROR_SIGILL";
@@ -60,10 +64,8 @@ const char nErrSigIntStr[]          = "NERROR_SIGINT";
 const char nErrSigSegvStr[]         = "NERROR_SIGSEGV";
 const char nErrSigTermStr[]         = "NERROR_SIGTERM";
 
-const char nErrNullStr[]            = "NERROR_NULL";
-const char nErrInternalFailureStr[] = "NERROR_INTERNAL_FAILURE";
+//ERRNO /** @todo Errno values */
 const char nErrFileNotFoundStr[]    = "NERROR_FILE_NOT_FOUND";
-const char nErrErrorNotFoundStr[]   = "NERROR_ERROR_NOT_FOUND";
 
 const char nErrMaxStr[]             = "NERROR_MAX";
 
@@ -72,6 +74,9 @@ const char * nErrorStrings[] = {
     nErrMinStr,
     
     nErrUnknownStr,
+    nErrInternalFailureStr,
+    nErrNullStr,
+    nErrErrorNotFoundStr,
     
     nErrSigAbrtStr,
     nErrSigFpeStr,
@@ -80,10 +85,7 @@ const char * nErrorStrings[] = {
     nErrSigSegvStr,
     nErrSigTermStr,
     
-    nErrNullStr,
-    nErrInternalFailureStr,
     nErrFileNotFoundStr,
-    nErrErrorNotFoundStr,
     
     nErrMaxStr
 };
@@ -91,6 +93,10 @@ const int32_t nErrorStringLengths[] = {
     sizeof(nErrMinStr),
     
     sizeof(nErrUnknownStr),
+    sizeof(nErrInternalFailureStr),
+    sizeof(nErrNullStr),
+    sizeof(nErrErrorNotFoundStr),
+    
     sizeof(nErrSigAbrtStr),
     sizeof(nErrSigFpeStr),
     sizeof(nErrSigIllStr),
@@ -98,47 +104,50 @@ const int32_t nErrorStringLengths[] = {
     sizeof(nErrSigSegvStr),
     sizeof(nErrSigTermStr),
     
-    sizeof(nErrNullStr),
-    sizeof(nErrInternalFailureStr),
     sizeof(nErrFileNotFoundStr),
-    sizeof(nErrErrorNotFoundStr),
     
     sizeof(nErrMaxStr)
 };
 
-const char nErrDescMinStr[]           = "NERROR_MIN - The minimum error value, "\
-"likely caused by programmer error or a corruption issue";
+const char nErrDescMinStr[]            = "NERROR_MIN - The minimum error "\
+"value, likely caused by programmer error or a corruption issue";
 
-const char nErrDescUnknownStr[]       = "NERROR_UNKNOWN - An unknown error "\
+const char nErrDescUnknownStr[]        = "NERROR_UNKNOWN - An unknown error "\
 "occurred";
-
-const char nErrDescSigAbrtStr[]       = "NERROR_SIGABRT - Caught an abort "\
-"signal";
-const char nErrDescSigFpeStr[]        = "NERROR_SIGFPE - Caught a floating "\
-"point exception signal";
-const char nErrDescSigIllStr[]        = "NERROR_SIGFPE - Caught an illegal "\
-"instruction signal";
-const char nErrDescSigIntStr[]        = "NERROR_SIGFPE - Caught an interrupt "\
-"signal";
-const char nErrDescSigSegvStr[]       = "NERROR_SIGFPE - Caught a memory "\
-"address violation signal";
-const char nErrDescSigTermStr[]       = "NERROR_SIGFPE - Caught a termination "\
-"signal";
-
-/** @todo Errno and signum values */
-const char nErrDescNullStr[]          = "NERROR_NULL - A pointer was null when "\
-"a nonnull pointer was expected";
-const char nErrDescFileNotFoundStr[]  = "NERROR_FILE_NOT_FOUND - A file was "\
-"not found where specified";
-const char nErrDescErrorNotFoundStr[] = "NERROR_ERROR_NOT_FOUND - An error "\
+const char nErrDecInternalFailureStr[] = "NERROR_INTERNAL_FAILURE - An "\
+"internal error occurred within the Nimble game engine";
+const char nErrDescNullStr[]           = "NERROR_NULL - A pointer was null "\
+"when a nonnull pointer was expected";
+const char nErrDescErrorNotFoundStr[]  = "NERROR_ERROR_NOT_FOUND - An error "\
 "passed to a function was not valid";
 
-const char nErrDescMaxStr[]           = "NERROR_MAX - The maximum error value, "\
+const char nErrDescSigAbrtStr[]        = "NERROR_SIGABRT - Caught an abort "\
+"signal";
+const char nErrDescSigFpeStr[]         = "NERROR_SIGFPE - Caught a floating "\
+"point exception signal";
+const char nErrDescSigIllStr[]         = "NERROR_SIGFPE - Caught an illegal "\
+"instruction signal";
+const char nErrDescSigIntStr[]         = "NERROR_SIGFPE - Caught an interrupt "\
+"signal";
+const char nErrDescSigSegvStr[]        = "NERROR_SIGFPE - Caught a memory "\
+"address violation signal";
+const char nErrDescSigTermStr[]        = "NERROR_SIGFPE - Caught a termination "\
+"signal";
+
+const char nErrDescFileNotFoundStr[]   = "NERROR_FILE_NOT_FOUND - A file was "\
+"not found where specified";
+
+const char nErrDescMaxStr[]            = "NERROR_MAX - The maximum error value, "\
 "likely caused by programmer error or a corruption issue";
 
 
 const char * nErrorDescriptions[] = {
     nErrDescMinStr,
+    
+    nErrDescUnknownStr,
+    nErrDecInternalFailureStr,
+    nErrDescNullStr,
+    nErrDescErrorNotFoundStr,
     
     nErrDescSigAbrtStr,
     nErrDescSigFpeStr,
@@ -147,11 +156,28 @@ const char * nErrorDescriptions[] = {
     nErrDescSigSegvStr,
     nErrDescSigTermStr,
     
-    nErrDescNullStr,
     nErrDescFileNotFoundStr,
-    nErrDescErrorNotFoundStr,
     
     nErrDescMaxStr
+};
+const int32_t nErrorStringLengths[] = {
+    sizeof(nErrMinStr),
+    
+    sizeof(nErrUnknownStr),
+    sizeof(nErrInternalFailureStr),
+    sizeof(nErrNullStr),
+    sizeof(nErrErrorNotFoundStr),
+    
+    sizeof(nErrSigAbrtStr),
+    sizeof(nErrSigFpeStr),
+    sizeof(nErrSigIllStr),
+    sizeof(nErrSigIntStr),
+    sizeof(nErrSigSegvStr),
+    sizeof(nErrSigTermStr),
+    
+    sizeof(nErrFileNotFoundStr),
+    
+    sizeof(nErrMaxStr)
 };
 
 
