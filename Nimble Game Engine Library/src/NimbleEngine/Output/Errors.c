@@ -34,7 +34,7 @@
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * SOFTWARE.t
  * @endparblock
  * @date 2020-08-17
  *
@@ -87,6 +87,24 @@ const char * nErrorStrings[] = {
     
     nErrMaxStr
 };
+const int32_t nErrorStringLengths[] = {
+    sizeof(nErrMinStr),
+    
+    sizeof(nErrUnknownStr),
+    sizeof(nErrSigAbrtStr),
+    sizeof(nErrSigFpeStr),
+    sizeof(nErrSigIllStr),
+    sizeof(nErrSigIntStr),
+    sizeof(nErrSigSegvStr),
+    sizeof(nErrSigTermStr),
+    
+    sizeof(nErrNullStr),
+    sizeof(nErrInternalFailureStr),
+    sizeof(nErrFileNotFoundStr),
+    sizeof(nErrErrorNotFoundStr),
+    
+    sizeof(nErrMaxStr)
+};
 
 const char nErrDescMinStr[]           = "NERROR_MIN - The minimum error value, "\
 "likely caused by programmer error or a corruption issue";
@@ -107,6 +125,7 @@ const char nErrDescSigSegvStr[]       = "NERROR_SIGFPE - Caught a memory "\
 const char nErrDescSigTermStr[]       = "NERROR_SIGFPE - Caught a termination "\
 "signal";
 
+/** @todo Errno and signum values */
 const char nErrDescNullStr[]          = "NERROR_NULL - A pointer was null when "\
 "a nonnull pointer was expected";
 const char nErrDescFileNotFoundStr[]  = "NERROR_FILE_NOT_FOUND - A file was "\
@@ -180,7 +199,6 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
     {
         const time_t crashErrorTime = time(NULL);
         const char callbackStr[] = "Callback argument NULL in nErrorThrow().";
-        /** @todo Append info  */
         char * crashErrorDesc;
         int32_t crashErrorDescLen;
         
@@ -197,7 +215,6 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
     {
         const time_t crashErrorTime = time(NULL);
         const char parseStr[] = "Error not found in nErrorThrow().";
-        /** @todo Append info  */
         char * crashErrorDesc;
         int32_t crashErrorDescLen;
         
@@ -223,92 +240,29 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
         infoLen = strlen(info) + 1;
     }
     
-    switch (error) /** @todo Errno and signum values; update to use NERROR_DESCRIPTION; use changed format. */
+    const char * errorDesc = NERROR_STRING(error);
+    
+    if (errorDesc == NULL)
     {
-        case NERROR_UNKNOWN:
-        {
-            if (info != NULL)
-            {
-                *errorLen = sizeof(nErrDescUnknownStr) + infoLen - 1;
-                dst = realloc(dst, *errorLen);
-                strncpy(dst, nErrDescUnknownStr, sizeof(nErrDescUnknownStr));
-                strncat(dst, info, infoLen);
-            }
-            else
-            {
-                *errorLen = sizeof(nErrDescUnknownStr) + sizeof(noInfoStr) - 1;
-                dst = realloc(dst, *errorLen);
-                strncpy(dst, nErrDescUnknownStr, sizeof(nErrDescUnknownStr));
-                strncat(dst, noInfoStr, sizeof(noInfoStr));
-            }
-            dst[*errorLen - 1] = '\0';
-        }
-        break;
-        case NERROR_NULL:
-        {
-            if (info != NULL)
-            {
-                *errorLen =  sizeof(nErrDescNullStr) + infoLen - 1;
-                dst = realloc(dst, *errorLen);
-		strncpy(dst, nErrDescNullStr, sizeof(nErrDescNullStr));
-		strncat(dst, info, infoLen);
-            }
-            else
-		    {
-                *errorLen = sizeof(nErrDescNullStr) + sizeof(noInfoStr) - 1;
-                dst = realloc(dst, *errorLen);
-                strncpy(dst, nErrDescNullStr, sizeof(nErrDescNullStr));
-		strncat(dst, noInfoStr, sizeof(noInfoStr));
-            }
-            dst[*errorLen - 1] = '\0';
-        }
-        break;
-        case NERROR_FILE_NOT_FOUND:
-        {
-            if (info != NULL)
-            {
-                *errorLen = sizeof(nErrDescFileNotFoundStr) + infoLen - 1;
-                dst = realloc(dst, *errorLen);
-                strncpy(dst, nErrDescFileNotFoundStr, sizeof(nErrDescFileNotFoundStr));
-                strncat(dst, info, infoLen);
-            }
-            else
-            {
-                *errorLen = sizeof(nErrDescFileNotFoundStr) + sizeof(noInfoStr) - 1;
-                dst = realloc(dst, *errorLen);
-                strncpy(dst, nErrDescFileNotFoundStr, sizeof(nErrDescFileNotFoundStr));
-                strncat(dst, noInfoStr, sizeof(noInfoStr));
-            }
-            dst[*errorLen - 1] = '\0';
-        }
-        break;
-        case NERROR_ERROR_NOT_FOUND:
-        {
-            if (info != NULL)
-		    {
-                *errorLen = sizeof(nErrDescErrorNotFoundStr) + infoLen - 1;
-                dst = realloc(dst, *errorLen);
-                strncpy(dst, nErrDescErrorNotFoundStr, sizeof(nErrDescErrorNotFoundStr));
-                strncat(dst, info, infoLen);
-            }
-            else
-            {
-                *errorLen = sizeof(nErrDescErrorNotFoundStr) + sizeof(noInfoStr) - 1;
-                dst = realloc(dst, *errorLen);
-                strncpy(dst, nErrDescErrorNotFoundStr, sizeof(nErrDescErrorNotFoundStr));
-                strncat(dst, noInfoStr, sizeof(noInfoStr));
-            }
-            dst[*errorLen - 1] = '\0';
-        }
-        break;
-        
-        default:
-        {
-            dst = NULL;
-            *errorLen = 0;
-            return NERROR_ERROR_NOT_FOUND;
-        }
-        break;
+        nFree(dst);
+        *errorLen = 0;
+        return NERROR_ERROR_NOT_FOUND;
+    }
+    
+    const int32_t descLen = NERROR_LENGTH(error);
+    if (info == NULL)
+    {
+        *errorLen = descLen + sizeof(noInfoStr) - 1;
+        dst = realloc(dst, *errorLen);
+        memcpy(dst, errorDesc, descLen);
+        memcpy(dst + descLen - 1, noInfoStr, sizeof(noInfoStr));
+    }
+    else
+    {
+        *errorLen = descLen + infoLen - 1;
+        dst = realloc(dst, *errorLen);
+        memcpy(dst, errorDesc, descLen);
+        memcpy(dst + descLen - 1, info, infoLen);
     }
     
     return NSUCCESS;
@@ -325,12 +279,7 @@ char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
         snprintf(errorNumStr, errorNumLen, "%d", error);
         
         nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, *errorLen);
-	    
-        if (errorNumStr)
-        {
-            free(errorNumStr);
-        }
-
+        nFree(errorNumStr);
         return dst;
     }
     
