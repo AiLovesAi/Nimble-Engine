@@ -118,7 +118,11 @@ extern "C" {
 #define NULL ((void *) 0) /**< Null pointer */
 #endif
 
-
+NIMBLE_INLINE
+void nFree (void * ptr) {
+    free(ptr);
+    ptr = NULL;
+};
 
 #endif // NIMBLE_H
 
