@@ -137,11 +137,7 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
     
     crashCallback(error, errorDesc, errorDescLen, errorTime);
 
-    if (errorDesc)
-    {
-        free(errorDesc);
-        errorDesc = NULL;
-    }
+    nFree(errorDesc);
 
     exit(error);
     /* NO RETURN */
