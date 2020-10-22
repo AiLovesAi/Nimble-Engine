@@ -62,6 +62,9 @@ enum nErrors {
     NERROR_MIN = INT_MIN, /**< The mininum error number. */
     
     NERROR_UNKNOWN, /**< An nknown error occurred. */
+    NERROR_INTERNAL_FAILURE, /**< An internal error occurred. */
+    NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
+    NERROR_ERROR_NOT_FOUND, /**< An error passed to a function was not valid. */
     
     NERROR_SIGABRT, /**< Caught abort signal. */
     NERROR_SIGFPE, /**< Caught floating point exception signal. */
@@ -70,9 +73,7 @@ enum nErrors {
     NERROR_SIGSEGV, /**< Caught memory address violation signal. */
     NERROR_SIGTERM, /**< Caught termination signal. */
     
-    NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
     NERROR_FILE_NOT_FOUND, /**< A file was not found where specified. */
-    NERROR_ERROR_NOT_FOUND, /**< An error passed to a function was not valid. */
     
     NERROR_MAX /**< The maximum error number. */
 };
@@ -100,9 +101,9 @@ const char * nErrorStrings[];
  * @param[in] err The error code to determine the length of.
  * @return @p err's string translation length.
  */
-#define NERROR_LENGTH(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
-                            nErrorStringLengths[err - NERROR_MIN] :\
-                            nErrorStringLengths[NERROR_UNKNOWN - NERROR_MIN])
+#define NERROR_STRLENGTH(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
+                               nErrorStringLengths[err - NERROR_MIN] :\
+                               nErrorStringLengths[NERROR_UNKNOWN - NERROR_MIN])
 
 /**
  * @brief The descriptions of error codes defined by #nErrors.
@@ -119,6 +120,9 @@ const char * nErrorDescriptions[];
 #define NERROR_DESCRIPTION(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
                                  nErrorDescriptions[err - NERROR_MIN] :\
                                  nErrorDescriptions[NERROR_UNKNOWN - NERROR_MIN])
+#define NERROR_DESCLENGTH(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
+                                nErrorDescLengths[err - NERROR_MIN] :\
+                                nErrorDescLengths[NERROR_UNKNOWN - NERROR_MIN])
 
 
 /**
