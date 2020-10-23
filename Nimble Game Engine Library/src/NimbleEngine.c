@@ -70,6 +70,7 @@ int32_t nEngineInit(void (* errorCallback)(const int32_t error,
     /** @todo Make init function */
     if (atexit(nEngineExit) != NSUCCESS)
     {
+        const time_t errorTime = time(NULL);
         char * errorDesc;
         int32_t errorDescLen;
         char * info;
@@ -77,7 +78,7 @@ int32_t nEngineInit(void (* errorCallback)(const int32_t error,
         
         nErrorToString(errorDesc, &errorDescLen, NERROR_INTERNAL_FAILURE,
          info, infoLen);
-        nCrashSafe(NERROR_INTERNAL_FAILURE, time(NULL), errorDesc,
+        nCrashSafe(NERROR_INTERNAL_FAILURE, errorTime, errorDesc,
          errorDescLen);
     }
     signal(SIGTERM, nEngineExitSignal);

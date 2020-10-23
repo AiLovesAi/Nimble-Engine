@@ -124,7 +124,7 @@ void nCrashSafe(const int32_t error, time_t errorTime, char * errorDesc,
 "crashing with nCrashSafe().";
             errorDescLen = sizeof(defaultErrorStr);
             errorDesc = realloc(errorDesc, errorDescLen);
-            strncpy(errorDesc, defaultErrorStr, errorDescLen);
+            memcpy(errorDesc, defaultErrorStr, errorDescLen);
         }
         
     }

@@ -108,28 +108,29 @@ $(function() {
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">if</span> (atexit(<a class="code" href="_nimble_engine_8c.html#ab8c7bd56f1a182aae20bfe4b83efc9b6">nEngineExit</a>) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">char</span> * errorDesc;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        int32_t errorDescLen;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">char</span> * info;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        int32_t infoLen;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">nErrorToString</a>(errorDesc, &amp;errorDescLen, <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;         info, infoLen);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="_crash_handler_8c.html#a392e9e58f50d378f703e42609137f8e5">nCrashSafe</a>(<a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>, time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), errorDesc,</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;         errorDescLen);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    signal(SIGTERM, <a class="code" href="_nimble_engine_8c.html#a423c175276803c38b3c8c6cade84e3a6">nEngineExitSignal</a>);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    signal(SIGABRT, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    signal(SIGFPE, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    signal(SIGILL, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    signal(SIGINT, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    signal(SIGSEGV, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">// NimbleEngine.c</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keyword">const</span> time_t errorTime = time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">char</span> * errorDesc;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        int32_t errorDescLen;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">char</span> * info;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        int32_t infoLen;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">nErrorToString</a>(errorDesc, &amp;errorDescLen, <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;         info, infoLen);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="_crash_handler_8c.html#a392e9e58f50d378f703e42609137f8e5">nCrashSafe</a>(<a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>, errorTime, errorDesc,</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;         errorDescLen);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    signal(SIGTERM, <a class="code" href="_nimble_engine_8c.html#a423c175276803c38b3c8c6cade84e3a6">nEngineExitSignal</a>);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    signal(SIGABRT, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    signal(SIGFPE, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    signal(SIGILL, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    signal(SIGINT, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    signal(SIGSEGV, <a class="code" href="_crash_handler_8c.html#a492ccecf4451d50498f34704d656b74c">nCrashSignal</a>);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">// NimbleEngine.c</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a></div><div class="ttdeci">@ NERROR_INTERNAL_FAILURE</div><div class="ttdoc">An internal error occurred.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00065">Errors.h:65</a></div></div>
 <div class="ttc" id="a_errors_8c_html_ade8a5b44ad47489e587d8d07d27c3464"><div class="ttname"><a href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00308">Errors.c:308</a></div></div>
