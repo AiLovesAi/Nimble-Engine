@@ -81,6 +81,7 @@ extern "C" {
 #define NIMBLE_H /**< Header definition */
 
 #include <stdint.h>
+#include <stdlib.h>
 
 #if defined(_WIN32) || defined(__CYGWIN__)
 #  ifdef BUILDING_DLL

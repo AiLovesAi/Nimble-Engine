@@ -69,7 +69,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Nimble.h File Reference</div>  </div>
 </div><!--header-->
@@ -79,6 +80,7 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_nimble_license_8h_source.html">NimbleLicense.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
 </div>
 <p><a href="_nimble_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -102,6 +104,11 @@ Macros</h2></td></tr>
 <tr class="memitem:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>&#160;&#160;&#160;((void *) 0)</td></tr>
 <tr class="memdesc:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Null pointer.  <a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">More...</a><br /></td></tr>
 <tr class="separator:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab00257d1df4dc613f905152ff0768c03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#ab00257d1df4dc613f905152ff0768c03">nFree</a> (void *ptr)</td></tr>
+<tr class="separator:ab00257d1df4dc613f905152ff0768c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines the macros that are used by other files. </p>
@@ -130,7 +137,7 @@ Macros</h2></td></tr>
 
 <p>Export alias. </p>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00109">109</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00110">110</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
@@ -148,7 +155,7 @@ Macros</h2></td></tr>
 
 <p>Extern alias. </p>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00115">115</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00116">116</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
@@ -184,7 +191,7 @@ Macros</h2></td></tr>
 
 <p>Inline alias. </p>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00112">112</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00113">113</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
@@ -202,7 +209,7 @@ Macros</h2></td></tr>
 
 <p>Local alias. </p>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00110">110</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00111">111</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
@@ -220,7 +227,28 @@ Macros</h2></td></tr>
 
 <p>Null pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00118">118</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00119">119</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ab00257d1df4dc613f905152ff0768c03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab00257d1df4dc613f905152ff0768c03">&#9670;&nbsp;</a></span>nFree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a> void nFree </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00123">123</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>

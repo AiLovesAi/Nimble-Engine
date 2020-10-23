@@ -69,32 +69,22 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt>Global <a class="el" href="_crash_handler_8c.html#a84ac8cfa39667bffb0cfc421ca44a20e">nCrashHandlerDefault</a>  (const int32_t error, char *errorDesc, int32_t errorDescLen, time_t errorTime)</dt>
+<dt>Global <a class="el" href="_crash_handler_8c.html#a95059c5f795d58abf94b09762c974ea1">nCrashHandlerDefault</a>  (const int32_t error, const time_t errorTime, char *errorDesc, int32_t errorDescLen, char *stack, int32_t stackLen)</dt>
 <dd><a class="anchor" id="_todo000001"></a>Make default callback (threads, engine, logs, etc.).  </dd>
-<dt>Global <a class="el" href="_errors_8c.html#ac93766453bcbe84b6c4b8872b1735012">nErrorHandlerDefault</a>  (const int32_t error, const char *errorDesc, const int32_t errorDescLen, const time_t errorTime, const char *stack, const int32_t stackLen)</dt>
+<dt>Global <a class="el" href="_errors_8c.html#a01ea162685de9ac9bd12f2b44c819b6f">nErrorHandlerDefault</a>  (const int32_t error, const time_t errorTime, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen)</dt>
 <dd><a class="anchor" id="_todo000002"></a>Make default callback.  </dd>
-<dt>Global <a class="el" href="_errors_8c.html#ada150208dfff4322a1be89604b87eb68">nErrorThrow</a>  (const int32_t error, const char *info, int32_t infoLen)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000003"></a>Append info <br  />
- </p>
-<p class="interdd"><a class="anchor" id="_todo000004"></a>Figure out case. </p>
-<p class="interdd"><a class="anchor" id="_todo000005"></a>Append info <br  />
- </p>
-<p class="enddd"><a class="anchor" id="_todo000006"></a>Figure out case.  </p>
-</dd>
-<dt>Global <a class="el" href="_errors_8c.html#a7ce818a6ef8c3ad8d003f25d7aa1482f">nErrorToStringLocal</a>  (char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</dt>
-<dd><a class="anchor" id="_todo000007"></a>Errno and signum values; update to use NERROR_DESCRIPTION; use changed format.  </dd>
-<dt>Global <a class="el" href="_errors_8c.html#a7b859178d30b508713aa63fca6612f8e">nErrorGetStacktrace</a>  (char *dst, int32_t *errorLen, int32_t *stackLevels)</dt>
-<dd><a class="anchor" id="_todo000008"></a>Get stack trace.  </dd>
+<dt>Global <a class="el" href="_errors_8c.html#aa87886c559395e1bc5cda18e2de0c981">nErrorGetStacktrace</a>  (char *dst, int32_t *stackLen, int32_t *stackLevels)</dt>
+<dd><a class="anchor" id="_todo000003"></a>Get stack trace. Remember *stackLevels is max levels  </dd>
 <dt>Global <a class="el" href="_nimble_engine_8c.html#ab8c7bd56f1a182aae20bfe4b83efc9b6">nEngineExit</a>  (void)</dt>
-<dd><a class="anchor" id="_todo000009"></a>Make safe exit function  </dd>
-<dt>Global <a class="el" href="_nimble_engine_8c.html#a56b4588439f06d31ca33701f03a6f183">nEngineInit</a>  (void)</dt>
-<dd><a class="anchor" id="_todo000010"></a>Make init function  </dd>
+<dd><a class="anchor" id="_todo000004"></a>Make safe exit function  </dd>
+<dt>Global <a class="el" href="_nimble_engine_8c.html#a9470a2860fd6fa483bafd576bf72684e">nEngineInit</a>  (void(*errorCallback)(const int32_t error, const time_t errorTime, char *errorDesc, int32_t errorDescLen, char *stack, int32_t stackLen), void(*crashCallback)(const int32_t error, const time_t errorTime, char *errorDesc, int32_t errorDescLen, char *stack, int32_t stackLen))</dt>
+<dd><a class="anchor" id="_todo000005"></a>Make init function  </dd>
 <dt>page <a class="el" href="index.html">Nimble Game Engine Library</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000011"></a>Explain how to link the library or use the app to write code </p>
-<p class="enddd"><a class="anchor" id="_todo000012"></a>Explain how to get started, setting up a window and doing basic 2D/3D stuff </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000006"></a>Explain how to link the library or use the app to write code </p>
+<p class="enddd"><a class="anchor" id="_todo000007"></a>Explain how to get started, setting up a window and doing basic 2D/3D stuff </p>
 </dd>
 <dt>Global <a class="el" href="_errors_8c.html#a7ce818a6ef8c3ad8d003f25d7aa1482f">nErrorToStringLocal</a>  (char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</dt>
-<dd><a class="anchor" id="_todo000013"></a>Do this </dd>
+<dd><a class="anchor" id="_todo000008"></a>Do this </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

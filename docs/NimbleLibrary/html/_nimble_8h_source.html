@@ -89,51 +89,61 @@ $(function() {
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#ifndef NIMBLE_H</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="_nimble_8h.html#ae0420863abe1bb0153394a252a8e5e0a">   81</a></span>&#160;<span class="preprocessor">#define NIMBLE_H </span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#if defined(_WIN32) || defined(__CYGWIN__)</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#  ifdef BUILDING_DLL</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#    ifdef __GNUC__</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#      define NIMBLE_EXPORT __attribute__((dllexport)) </span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#      define NIMBLE_INLINE static inline __attribute__((always_inline)) </span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#    else</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#      define NIMBLE_EXPORT __declspec(dllexport) </span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#      define NIMBLE_INLINE __forceinline </span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#    endif</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#  else</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#    ifdef __GNUC__</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#      define NIMBLE_EXPORT __attribute__((dllimport)) </span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#      define NIMBLE_INLINE static inline __attribute__((always_inline)) </span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#    else</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#      define NIMBLE_EXPORT __declspec(dllimport) </span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#      define NIMBLE_INLINE __forceinline </span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#    endif</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#  endif</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#  define NIMBLE_LOCAL </span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#  if __GNUC__ &gt;= 4</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#    define NIMBLE_EXPORT __attribute__((visibility(&quot;default&quot;))) </span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#    define NIMBLE_LOCAL __attribute__((visibility(&quot;hidden&quot;))) </span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#  else</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">  109</a></span>&#160;<span class="preprocessor">#    define NIMBLE_EXPORT </span></div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="_nimble_8h.html#ae68784e6c3f7dcb765ad47cecaa80b21">  110</a></span>&#160;<span class="preprocessor">#    define NIMBLE_LOCAL </span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#  endif</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">  112</a></span>&#160;<span class="preprocessor">#  define NIMBLE_INLINE static inline __attribute__((always_inline)) </span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">  115</a></span>&#160;<span class="preprocessor">#define NIMBLE_EXTERN extern </span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#ifndef NULL</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">  118</a></span>&#160;<span class="preprocessor">#define NULL ((void *) 0) </span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#endif // NIMBLE_H</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">// Nimble.h</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#if defined(_WIN32) || defined(__CYGWIN__)</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#  ifdef BUILDING_DLL</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#    ifdef __GNUC__</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#      define NIMBLE_EXPORT __attribute__((dllexport)) </span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#      define NIMBLE_INLINE static inline __attribute__((always_inline)) </span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#    else</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#      define NIMBLE_EXPORT __declspec(dllexport) </span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#      define NIMBLE_INLINE __forceinline </span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#    endif</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#  else</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#    ifdef __GNUC__</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#      define NIMBLE_EXPORT __attribute__((dllimport)) </span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#      define NIMBLE_INLINE static inline __attribute__((always_inline)) </span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#    else</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#      define NIMBLE_EXPORT __declspec(dllimport) </span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#      define NIMBLE_INLINE __forceinline </span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#    endif</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#  endif</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#  define NIMBLE_LOCAL </span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#  if __GNUC__ &gt;= 4</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#    define NIMBLE_EXPORT __attribute__((visibility(&quot;default&quot;))) </span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#    define NIMBLE_LOCAL __attribute__((visibility(&quot;hidden&quot;))) </span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#  else</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">  110</a></span>&#160;<span class="preprocessor">#    define NIMBLE_EXPORT </span></div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="_nimble_8h.html#ae68784e6c3f7dcb765ad47cecaa80b21">  111</a></span>&#160;<span class="preprocessor">#    define NIMBLE_LOCAL </span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#  endif</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">  113</a></span>&#160;<span class="preprocessor">#  define NIMBLE_INLINE static inline __attribute__((always_inline)) </span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">  116</a></span>&#160;<span class="preprocessor">#define NIMBLE_EXTERN extern </span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#ifndef NULL</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">  119</a></span>&#160;<span class="preprocessor">#define NULL ((void *) 0) </span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<a class="code" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a></div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="_nimble_8h.html#ab00257d1df4dc613f905152ff0768c03">  123</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_nimble_8h.html#ab00257d1df4dc613f905152ff0768c03">nFree</a> (<span class="keywordtype">void</span> * ptr) {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    free(ptr);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    ptr = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;};</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif // NIMBLE_H</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">// Nimble.h</span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="a_nimble_8h_html_aa82aaf62c4b04a2f8899150966feebb2"><div class="ttname"><a href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a></div><div class="ttdeci">#define NIMBLE_INLINE</div><div class="ttdoc">Inline alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00113">Nimble.h:113</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00119">Nimble.h:119</a></div></div>
 <div class="ttc" id="a_nimble_license_8h_html"><div class="ttname"><a href="_nimble_license_8h.html">NimbleLicense.h</a></div><div class="ttdoc">This class defines LICENSE_md, which gets compiled into the binaries.</div></div>
+<div class="ttc" id="a_nimble_8h_html_ab00257d1df4dc613f905152ff0768c03"><div class="ttname"><a href="_nimble_8h.html#ab00257d1df4dc613f905152ff0768c03">nFree</a></div><div class="ttdeci">NIMBLE_INLINE void nFree(void *ptr)</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00123">Nimble.h:123</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

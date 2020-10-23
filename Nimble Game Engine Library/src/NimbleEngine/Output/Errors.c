@@ -195,9 +195,9 @@ const char noInfoStr[] = "No info.";
  * character. A length of zero (0) uses strlen() to determine length.
  */
 void nErrorHandlerDefault(const int32_t error,
+                          const time_t errorTime,
                           const char * errorDesc,
                           const int32_t errorDescLen,
-                          const time_t errorTime,
                           const char * stack,
                           const int32_t stackLen
                           );
@@ -205,13 +205,13 @@ void nErrorHandlerDefault(const int32_t error,
 /**
  * @brief The error callback function that gets defined by nErrorSetCallback().
  */
-void (* errorCallback) (const int32_t error, const char * errorDesc, 
-         const int32_t errorDescLen, const time_t errorTime, const char * stack,
+void (* errorCallback) (const int32_t error, const time_t errorTime,
+         const char * errorDesc, const int32_t errorDescLen, const char * stack,
          const int32_t stackLen) = nErrorHandlerDefault;
 
 
-void nErrorHandlerDefault(const int32_t error, const char * errorDesc,
-      const int32_t errorDescLen, const time_t errorTime, const char * stack,
+void nErrorHandlerDefault(const int32_t error, const time_t errorTime,
+      const char * errorDesc, const int32_t errorDescLen, const char * stack,
       const int32_t stackLen)
 {
     /** @todo Make default callback. */
@@ -230,8 +230,8 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
         
         nErrorToString(crashErrorDesc, &crashErrorDescLen, NERROR_NULL,
          callbackStr, sizeof(callbackStr));
-        nCrashSafe(NERROR_NULL, crashErrorDesc, crashErrorDescLen,
-         crashErrorTime);
+        nCrashSafe(NERROR_NULL, crashErrorTime, crashErrorDesc,
+         crashErrorDescLen);
         /* NO RETURN */
     }
     
@@ -246,8 +246,8 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
         
         nErrorToString(crashErrorDesc, &crashErrorDescLen,
          NERROR_ERROR_NOT_FOUND, parseStr, sizeof(parseStr));
-        nCrashSafe(NERROR_ERROR_NOT_FOUND, crashErrorDesc, crashErrorDescLen,
-         crashErrorTime);
+        nCrashSafe(NERROR_ERROR_NOT_FOUND, crashErrorTime, crashErrorDesc,
+         crashErrorDescLen);
         /* NO RETURN */
     }
     
@@ -255,7 +255,7 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
     int32_t stackLen, stackLevels;
     nErrorGetStacktrace(stack, &stackLen, &stackLevels);
     
-    errorCallback(error, errorDesc, errorDescLen, errorTime, stack, stackLen);
+    errorCallback(error, errorTime, errorDesc, errorDescLen, stack, stackLen);
 }
 
 int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
@@ -270,25 +270,36 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
     
     if (errorDesc == NULL)
     {
+        
+        if (errorLen != NULL)
+        {
+            *errorLen = 0;
+        }
+        
         nFree(dst);
-        *errorLen = 0;
         return NERROR_ERROR_NOT_FOUND;
     }
     
     const int32_t descLen = NERROR_DESCLENGTH(error);
+    int32_t errLen;
     if (info == NULL)
     {
-        *errorLen = descLen + sizeof(noInfoStr) - 1;
-        dst = realloc(dst, *errorLen);
+        errLen = descLen + sizeof(noInfoStr) - 1;
+        dst = realloc(dst, errLen);
         memcpy(dst, errorDesc, descLen);
         memcpy(dst + descLen - 1, noInfoStr, sizeof(noInfoStr));
     }
     else
     {
-        *errorLen = descLen + infoLen - 1;
-        dst = realloc(dst, *errorLen);
+        errLen = descLen + infoLen - 1;
+        dst = realloc(dst, errLen);
         memcpy(dst, errorDesc, descLen);
         memcpy(dst + descLen - 1, info, infoLen);
+    }
+    
+    if (errorLen != NULL)
+    {
+        *errorLen = errLen;
     }
     
     return NSUCCESS;
@@ -304,7 +315,7 @@ char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
         char * errorNumStr = malloc(errorNumLen);
         snprintf(errorNumStr, errorNumLen, "%d", error);
         
-        nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, *errorLen);
+        nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, errorNumLen);
         nFree(errorNumStr);
         return dst;
     }
@@ -313,8 +324,8 @@ char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
 }
 
 int32_t nErrorSetCallback(void (* callback)(const int32_t error,
-         const char * errorDesc, const int32_t errorDescLen,
-         const time_t errorTime, const char * stack, const int32_t stackLen))
+         const time_t errorTime, const char * errorDesc,
+         const int32_t errorDescLen, const char * stack, const int32_t stackLen))
 {
     if (callback == NULL)
     {
@@ -328,9 +339,9 @@ int32_t nErrorSetCallback(void (* callback)(const int32_t error,
     return NSUCCESS;
 }
 
-char * nErrorGetStacktrace(char * dst, int32_t * errorLen, int32_t * stackLevels)
+char * nErrorGetStacktrace(char * dst, int32_t * stackLen, int32_t * stackLevels)
 {
-    /** @todo Get stack trace. */
+    /** @todo Get stack trace. Remember *stackLevels is max levels */
     return dst;
 }
 

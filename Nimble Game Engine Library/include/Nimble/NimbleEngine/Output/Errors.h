@@ -351,7 +351,9 @@ nErrorSetCallback(void (* callback)(
  * @c #NULL.
  * @param[out] stackLen The length of the string returned, including the null
  * character. This can be @c #NULL.
- * @param[out] stackLevels The number of levels of the stack. This can be @c #NULL.
+ * @param[in,out] stackLevels The number of levels found on the stack. If the
+ * value of this is nonzero when passed, it will act as the maximum number of
+ * stack levels to be returned in @p dst. This can be @c #NULL.
  * @return @p dst is returned if successful; otherwise the program crashes.
  *
  * @note Each time a function is called, it is added to the stack. When a

@@ -73,10 +73,12 @@ int32_t nEngineInit(void (* errorCallback)(const int32_t error,
         char * errorDesc;
         int32_t errorDescLen;
         char * info;
-        char * infoLen;
+        int32_t infoLen;
         
-        nErrorToString();
-        nCrashSafe(NERROR);
+        nErrorToString(errorDesc, &errorDescLen, NERROR_INTERNAL_FAILURE,
+         info, infoLen);
+        nCrashSafe(NERROR_INTERNAL_FAILURE, time(NULL), errorDesc,
+         errorDescLen);
     }
     signal(SIGTERM, nEngineExitSignal);
     

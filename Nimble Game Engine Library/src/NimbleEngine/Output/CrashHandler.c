@@ -62,21 +62,21 @@ volatile _Bool crashtest = 0;
  * @param[in] errorTime The time the error was thrown.
  */
 void nCrashHandlerDefault(const int32_t error,
+                          const time_t errorTime,
                           char * errorDesc,
                           int32_t errorDescLen,
                           char * stack,
-                          int32_t stackLen,
-                          time_t errorTime
+                          int32_t stackLen
                           );
 
-void (* crashCallback) (const int32_t error, char * errorDesc, 
-         int32_t errorDescLen, char * stack, int32_t stackLen,
-         time_t errorTime) = nCrashHandlerDefault;
+void (* crashCallback) (const int32_t error, const time_t errorTime,
+                        char * errorDesc, int32_t errorDescLen, char * stack,
+                        int32_t stackLen) = nCrashHandlerDefault;
 
 
-void nCrashHandlerDefault(const int32_t error, char * errorDesc,
-      int32_t errorDescLen, char * stack, int32_t stackLen,
-      time_t errorTime)
+void nCrashHandlerDefault(const int32_t error, const time_t errorTime,
+                          char * errorDesc, int32_t errorDescLen, char * stack,
+                          int32_t stackLen)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
 }
@@ -96,8 +96,8 @@ int32_t nCrashSetCallback(void (* callback)(const int32_t error,
     return NSUCCESS;
 }
 
-void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
-      time_t errorTime)
+void nCrashSafe(const int32_t error, time_t errorTime, char * errorDesc,
+                int32_t errorDescLen)
 {
     if (crashtest || (crashCallback == NULL))
     {
@@ -134,8 +134,10 @@ void nCrashSafe(const int32_t error, char * errorDesc, int32_t errorDescLen,
         errorDescLen = strlen(errorDesc) + 1;
     }
     
-    
-    crashCallback(error, errorDesc, errorDescLen, errorTime);
+    char * stack;
+    int32_t stackLen;
+    nErrorGetStacktrace(stack, &stackLen, NULL);
+    crashCallback(error, errorTime, errorDesc, errorDescLen, stack, stackLen);
 
     nFree(errorDesc);
 
@@ -157,7 +159,7 @@ void nCrashSignal(const int signum)
         {
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGABRT, NULL,
              0);
-            nCrashSafe(NERROR_SIGABRT, errorDesc, errorDescLen, errorTime);
+            nCrashSafe(NERROR_SIGABRT, errorTime, errorDesc, errorDescLen);
             /* NO RETURN */
         }
         break;
@@ -165,7 +167,7 @@ void nCrashSignal(const int signum)
         {
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGFPE, NULL,
              0);
-            nCrashSafe(NERROR_SIGFPE, errorDesc, errorDescLen, errorTime);
+            nCrashSafe(NERROR_SIGFPE, errorTime, errorDesc, errorDescLen);
             /* NO RETURN */
         }
         break;
@@ -173,7 +175,7 @@ void nCrashSignal(const int signum)
         {
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGILL, NULL,
              0);
-            nCrashSafe(NERROR_SIGILL, errorDesc, errorDescLen, errorTime);
+            nCrashSafe(NERROR_SIGILL, errorTime, errorDesc, errorDescLen);
             /* NO RETURN */
         }
         break;
@@ -181,7 +183,7 @@ void nCrashSignal(const int signum)
         {
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGINT, NULL,
              0);
-            nCrashSafe(NERROR_SIGINT, errorDesc, errorDescLen, errorTime);
+            nCrashSafe(NERROR_SIGINT, errorTime, errorDesc, errorDescLen);
             /* NO RETURN */
         }
         break;
@@ -189,7 +191,7 @@ void nCrashSignal(const int signum)
         {
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGSEGV, NULL,
              0);
-            nCrashSafe(NERROR_SIGSEGV, errorDesc, errorDescLen, errorTime);
+            nCrashSafe(NERROR_SIGSEGV, errorTime, errorDesc, errorDescLen);
             /* NO RETURN */
         }
         break;
@@ -197,7 +199,7 @@ void nCrashSignal(const int signum)
         {
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGTERM, NULL,
              0);
-            nCrashSafe(NERROR_SIGTERM, errorDesc, errorDescLen, errorTime);
+            nCrashSafe(NERROR_SIGTERM, errorTime, errorDesc, errorDescLen);
             /* NO RETURN */
         }
         break;
@@ -205,7 +207,7 @@ void nCrashSignal(const int signum)
         {
             nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_ERROR_NOT_FOUND,
             NULL, 0);
-            nCrashSafe(NERROR_ERROR_NOT_FOUND, errorDesc, errorDescLen, errorTime);
+            nCrashSafe(NERROR_ERROR_NOT_FOUND, errorTime, errorDesc, errorDescLen);
             /* NO RETURN */
         }
         break;

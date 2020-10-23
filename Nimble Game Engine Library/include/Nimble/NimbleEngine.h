@@ -128,8 +128,7 @@ nEngineInit(void (* errorCallback)(
                                    int32_t errorDescLen,
                                    char * stack,
                                    int32_t stackLen
-                                   )
-            ),
+                                   ),
             void (* crashCallback) (const int32_t error,
                                     const time_t errorTime,
                                     char * errorDesc,
@@ -137,7 +136,6 @@ nEngineInit(void (* errorCallback)(
                                     char * stack,
                                     int32_t stackLen
                                     )
-            )
             ); /** @todo Make these callback functions the same through each file. */
 
 #endif // NIMBLE_ENGINE_H
