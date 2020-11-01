@@ -52,7 +52,7 @@
 
 
 volatile _Bool crashtest = 0;
-nMutex_t crashMutex = 0;
+nMutex_t crashMutex = NULL;
 
 /**
  * @brief The default crash handler callback.
