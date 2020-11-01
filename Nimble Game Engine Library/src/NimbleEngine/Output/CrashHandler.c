@@ -52,6 +52,7 @@
 
 
 volatile _Bool crashtest = 0;
+nMutex_t crashMutex = 0;
 
 /**
  * @brief The default crash handler callback.
@@ -99,6 +100,7 @@ int32_t nCrashSetCallback(void (* callback)(const int32_t error,
 void nCrashSafe(const int32_t error, time_t errorTime, char * errorDesc,
                 int32_t errorDescLen)
 {
+    nThreadMutexLock(&crashMutex);
     if (crashtest || (crashCallback == NULL))
     {
         nCrashAbort(error);
@@ -138,8 +140,10 @@ void nCrashSafe(const int32_t error, time_t errorTime, char * errorDesc,
     int32_t stackLen;
     nErrorGetStacktrace(stack, &stackLen, NULL);
     crashCallback(error, errorTime, errorDesc, errorDescLen, stack, stackLen);
-
+    
     nFree(errorDesc);
+    nThreadMutexUnlock(&crashMutex);
+    nThreadMutexDestroy(&crashMutex);
 
     exit(error);
     /* NO RETURN */
