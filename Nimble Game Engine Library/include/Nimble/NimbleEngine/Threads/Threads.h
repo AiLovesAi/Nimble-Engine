@@ -84,15 +84,30 @@ typedef mtx_t * nMutex_t;
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
+ * void * func(void * data)
+ * {
+ *     int ret = *((int *) data);
+ *     printf("%x\n", ret);
+ *     return &ret;
+ * }
+ *
  * int main(int argc, char ** argv)
  * {
  *     nThread_t thread = NULL;
- *     nThreadCreate(&thread);
+ *     int arg = 10;
+ *     if (nThreadCreate(&thread, 0, func, (void *) &arg) != NSUCCESS)
+ *     {
+ *         printf("Could not create thread.\n");
+ *         return EXIT_FAILURE;
+ *     }
+ *     printf("Successfully created thread.\n");
+ *     return EXIT_SUCCESS;
  * }
  * @endcode
  *
  * @param[out] thread The thread identity of the created thread.
- * @param[in] attributes The attribute flags for the thread creation @todo Figure out the attributes for this!
+ * @param[in] attributes The attribute flags for the thread creation, or 0 for
+ * default attributes. @todo Figure out the attributes for this!
  * @param[in] start The start function for the thread to start in. This function
  * should take a @c void * argument, which @p data is sent to, and should
  * return its return value as a @c void *.
