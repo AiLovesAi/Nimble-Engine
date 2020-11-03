@@ -44,6 +44,7 @@
  * used in game development, and defines the functions used in initialization.
  */
 
+#include <inttypes.h>
 #include <signal.h>
 #include <stdlib.h>
 
