@@ -276,7 +276,7 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
             *errorLen = 0;
         }
         
-        nFree(dst);
+        dst = nFree(dst);
         return NERROR_ERROR_NOT_FOUND;
     }
     
@@ -316,7 +316,7 @@ char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
         snprintf(errorNumStr, errorNumLen, "%d", error);
         
         nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, errorNumLen);
-        nFree(errorNumStr);
+        errorNumStr = nFree(errorNumStr);
         return dst;
     }
     
