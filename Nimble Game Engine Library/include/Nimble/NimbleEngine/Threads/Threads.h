@@ -95,7 +95,7 @@ typedef mtx_t * nMutex_t;
  * {
  *     nThread_t thread = NULL;
  *     int arg = 10;
- *     if (nThreadCreate(&thread, NULL, 0, func, (void *) &arg) != NSUCCESS)
+ *     if (nThreadCreate(&thread, 0, func, (void *) &arg) != NSUCCESS)
  *     {
  *         printf("Could not create thread.\n");
  *         return EXIT_FAILURE;
@@ -107,7 +107,6 @@ typedef mtx_t * nMutex_t;
  * @endcode
  *
  * @param[out] thread The thread identity of the created thread.
- * @param[out] id The ID of the created thread. This can be #NULL.
  * @param[in] attributes The attribute flags for the thread creation, or 0 for
  * default attributes. @todo Figure out the attributes for this!
  * @param[in] start The start function for the thread to start in. This function
@@ -121,7 +120,6 @@ typedef mtx_t * nMutex_t;
 NIMBLE_EXTERN
 int32_t
 nThreadCreate(nThread_t * thread,
-              int32_t * id,
               int32_t attributes,
               void * (*start)(void *),
               void * data
@@ -192,7 +190,7 @@ nThreadSelf(void
  * {
  *     nThread_t thread = NULL;
  *     int arg = 10;
- *     if (nThreadCreate(&thread, NULL, 0, func, (void *) &arg) != NSUCCESS)
+ *     if (nThreadCreate(&thread, 0, func, (void *) &arg) != NSUCCESS)
  *     {
  *         printf("Could not create thread.\n");
  *         return EXIT_FAILURE;
@@ -260,7 +258,7 @@ nThreadJoin(nThread_t thread,
  *     char success[] = "Successfully created thread #0.\n";
  *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
  *     {
- *         if (nThreadCreate(&threads[i], NULL, 0, func, (void *) &i) != NSUCCESS)
+ *         if (nThreadCreate(&threads[i], 0, func, (void *) &i) != NSUCCESS)
  *         {
  *             printf("Could not create thread.\n");
  *             return EXIT_FAILURE;
@@ -331,7 +329,7 @@ nThreadMutexCreate(nMutex_t mutex
  *     char success[] = "Successfully created thread #0.\n";
  *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
  *     {
- *         if (nThreadCreate(&threads[i], NULL, 0, func, (void *) &i) != NSUCCESS)
+ *         if (nThreadCreate(&threads[i], 0, func, (void *) &i) != NSUCCESS)
  *         {
  *             printf("Could not create thread.\n");
  *             return EXIT_FAILURE;
@@ -404,7 +402,7 @@ nThreadMutexLock(nMutex_t mutex
  *     char success[] = "Successfully created thread #0.\n";
  *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
  *     {
- *         if (nThreadCreate(&threads[i], NULL, 0, func, (void *) &i) != NSUCCESS)
+ *         if (nThreadCreate(&threads[i], 0, func, (void *) &i) != NSUCCESS)
  *         {
  *             printf("Could not create thread.\n");
  *             return EXIT_FAILURE;
@@ -477,7 +475,7 @@ nThreadMutexUnlock(nMutex_t mutex
  *     char success[] = "Successfully created thread #0.\n";
  *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
  *     {
- *         if (nThreadCreate(&threads[i], NULL, 0, func, (void *) &i) != NSUCCESS)
+ *         if (nThreadCreate(&threads[i], 0, func, (void *) &i) != NSUCCESS)
  *         {
  *             printf("Could not create thread.\n");
  *             return EXIT_FAILURE;
