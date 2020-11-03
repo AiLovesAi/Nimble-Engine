@@ -119,7 +119,7 @@ typedef mtx_t * nMutex_t;
  */
 NIMBLE_EXTERN
 int32_t
-nThreadCreate(nThread_t thread,
+nThreadCreate(nThread_t * thread,
               int32_t attributes,
               void * (*start)(void *),
               void * data
