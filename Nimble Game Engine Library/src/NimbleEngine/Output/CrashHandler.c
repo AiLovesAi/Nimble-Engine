@@ -41,9 +41,9 @@
  * @brief This class defines crash handling functions.
  */
 
+#include <inttypes.h>
 #include <signal.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
