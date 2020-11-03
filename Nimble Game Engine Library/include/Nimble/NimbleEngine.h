@@ -63,6 +63,8 @@ extern "C" {
 #include "NimbleEngine/Threads/Threads.h"
 #include "NimbleEngine/Threads/ThreadManager.h"
 
+#include <inttypes.h>
+
 
 /**
  * @brief Exits the game engine.
