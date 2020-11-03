@@ -80,7 +80,7 @@ extern "C" {
 #ifndef NIMBLE_H
 #define NIMBLE_H /**< Header definition */
 
-#include <stdint.h>
+#include <inttypes.h>
 #include <stdlib.h>
 
 #if defined(_WIN32) || defined(__CYGWIN__)
