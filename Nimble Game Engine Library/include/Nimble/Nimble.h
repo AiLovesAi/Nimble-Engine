@@ -83,6 +83,14 @@ extern "C" {
 #include <inttypes.h>
 #include <stdlib.h>
 
+#if UINTPTR_MAX == 0xffffffff
+#define NIMBLE_32BIT
+#elif UINTPTR_MAX == 0xffffffffffffffff
+#define NIMBLE_64BIT
+#else
+#error Only 32-bit and 64-bit hardware is supported.
+#endif
+
 #if defined(_WIN32) || defined(__CYGWIN__)
 #  ifdef BUILDING_DLL
 #    ifdef __GNUC__
