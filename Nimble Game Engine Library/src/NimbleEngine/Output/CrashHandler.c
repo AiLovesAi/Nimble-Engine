@@ -100,7 +100,8 @@ int32_t nCrashSetCallback(void (* callback)(const int32_t error,
 void nCrashSafe(const int32_t error, time_t errorTime, char * errorDesc,
                 int32_t errorDescLen)
 {
-    nThreadMutexLock(&crashMutex);
+    nThreadMutexCreate(crashMutex);
+    nThreadMutexLock(crashMutex);
     if (crashtest || (crashCallback == NULL))
     {
         nCrashAbort(error);
