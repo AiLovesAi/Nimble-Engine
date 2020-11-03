@@ -44,15 +44,66 @@
 #include <inttypes.h>
 #include <stdlib.h>
 
-int32_t nThreadCreate(nThread_t thread, int32_t attributes,
+#ifdef NTHREAD_WINAPI
+#include <windows.h>
+#elif defined(NTHREAD_PTHREAD)
+#include <pthread.h>
+#else
+#include <threads.h>
+#endif
+
+int32_t nThreadCreate(nThread_t * thread, int32_t attributes,
                       void * (*start)(void *), void * data)
 {
+    /// @todo Attributes, pointer conversion for some arguments
 #ifdef NTHREAD_WINAPI
-    ///@todo
+    *thread = CreateThread(NULL, 0, start, data, NULL);
+    if (*thread == NULL)
+    {
+        /// @todo nErrorThrow();
+        return NERROR;
+    }
 #elif defined(NTHREAD_PTHREAD)
-    ///@todo
+    int32_t err = pthread_create(*thread, NULL, start, data);
+    if (err)
+    {
+        /// @todo nErrorThrow();
+        return NERROR;
+    }
 #else
-    ///@todo
+    int32_t err = thrd_create(thread, start, data);
+    if (err)
+    {
+        switch (err)
+        {
+            case thrd_timedout:
+            {
+                /// @todo nErrorThrow();
+            }
+            break;
+            case thrd_busy:
+            {
+                //
+            }
+            break;
+            case thrd_nomem:
+            {
+                //
+            }
+            break;
+            case thrd_error:
+            {
+                //
+            }
+            break;
+            default:
+            {
+                //
+            }
+            break;
+        }
+        return NERROR;
+    }
 #endif
 }
 
