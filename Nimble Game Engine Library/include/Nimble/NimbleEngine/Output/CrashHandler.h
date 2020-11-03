@@ -48,7 +48,7 @@ extern "C" {
 
 #include "../../NimbleEngine.h"
 
-#include <stdint.h>
+#include <inttypes.h>
 #include <time.h>
 
 /**
