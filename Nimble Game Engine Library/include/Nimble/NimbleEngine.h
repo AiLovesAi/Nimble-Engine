@@ -70,7 +70,7 @@ extern "C" {
  *
  * @par Example:
  * @code
- * #include <stdint.h>
+ * #include <inttypes.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * int main(int argc, char ** argv)
@@ -100,7 +100,7 @@ __attribute__((noreturn));
  *
  * @par Example:
  * @code
- * #include <stdint.h>
+ * #include <inttypes.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * int main(int argc, char ** argv)
