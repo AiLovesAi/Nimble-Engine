@@ -127,11 +127,38 @@ extern "C" {
 #define NULL ((void *) 0) /**< Null pointer */
 #endif
 
-NIMBLE_INLINE
-void nFree (void * ptr) {
-    free(ptr);
-    ptr = NULL;
-};
+/**
+ * @brief Frees a pointer.
+ * Frees a pointer and returns #NULL to allow the invoker to optionally nullify
+ * the pointer. Should the freed pointer location be needed again, no assignment
+ * is necessary.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     char original[] = "Hello world.";
+ *     char * new = malloc(sizeof(original) + 1);
+ *     new[sizeof(original) - 1] = '\n';
+ *     new[sizeof(original)] = '\0';
+ *     puts(new);
+ *     new = nFree(new);
+ *     if (new)
+ *     {
+ *         puts("We will get here only if we use nFree(new) with no assignment!");
+ *     }
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[in] ptr The pointer to free.
+ * @return #NULL is always returned.
+ */
+#define nFree(ptr) ({free(ptr);NULL;})
 
 #endif // NIMBLE_H
 
