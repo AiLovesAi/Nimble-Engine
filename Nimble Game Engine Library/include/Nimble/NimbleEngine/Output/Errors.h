@@ -48,8 +48,8 @@ extern "C" {
 
 #include "../../NimbleEngine.h"
 
+#include <inttypes.h>
 #include <limits.h>
-#include <stdint.h>
 #include <time.h>
 
 #define NSUCCESS (int32_t) 0 /**< Returned when a function succeeds. */
