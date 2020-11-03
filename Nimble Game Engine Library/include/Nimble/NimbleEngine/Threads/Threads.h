@@ -138,7 +138,7 @@ nThreadCreate(nThread_t * thread,
  * {
  *     int ret = *((int *) data);
  *     nThread_t thread = nThreadSelf();
- *     printf("New thread ID: %x\n", nThreadGetID(thread));
+ *     printf("New thread ID: %x\n", ret);
  *     return &ret;
  * }
  *
@@ -154,7 +154,6 @@ nThreadCreate(nThread_t * thread,
  *     printf("Successfully created thread.\n");
  *
  *     nThread_t thread = nThreadSelf();
- *     printf("Main thread ID: %x\n", nThreadGetID(thread));
  *
  *     return EXIT_SUCCESS;
  * }
@@ -182,7 +181,7 @@ nThreadSelf(void
  * {
  *     nThread_t thread = nThreadSelf();
  *     int ret = *((int *) data);
- *     printf("New thread ID: %x\n", nThreadGetID(thread));
+ *     printf("New thread ID: %x\n", ret);
  *     return &ret;
  * }
  *
@@ -238,7 +237,7 @@ nThreadJoin(nThread_t thread,
  *     puts("Mutex locked.\n");
  *
  *     nThread_t thread = nThreadSelf();
- *     int ret = nThreadGetID(thread);
+ *     int ret = *((int *) data);
  *     printf("New thread ID: %x\n", ret);
  *
  *     puts("Unlocking mutex.\n");
@@ -309,7 +308,7 @@ nThreadMutexCreate(nMutex_t mutex
  *     puts("Mutex locked.\n");
  *
  *     nThread_t thread = nThreadSelf();
- *     int ret = nThreadGetID(thread);
+ *     int ret = *((int *) data);
  *     printf("New thread ID: %x\n", ret);
  *
  *     puts("Unlocking mutex.\n");
@@ -382,7 +381,7 @@ nThreadMutexLock(nMutex_t mutex
  *     puts("Mutex locked.\n");
  *
  *     nThread_t thread = nThreadSelf();
- *     int ret = nThreadGetID(thread);
+ *     int ret = *((int *) data);
  *     printf("New thread ID: %x\n", ret);
  *
  *     puts("Unlocking mutex.\n");
@@ -455,7 +454,7 @@ nThreadMutexUnlock(nMutex_t mutex
  *     puts("Mutex locked.\n");
  *
  *     nThread_t thread = nThreadSelf();
- *     int ret = nThreadGetID(thread);
+ *     int ret = *((int *) data);
  *     printf("New thread ID: %x\n", ret);
  *
  *     puts("Unlocking mutex.\n");
