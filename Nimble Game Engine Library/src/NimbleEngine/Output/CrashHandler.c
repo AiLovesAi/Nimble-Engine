@@ -141,7 +141,7 @@ void nCrashSafe(const int32_t error, time_t errorTime, char * errorDesc,
     nErrorGetStacktrace(stack, &stackLen, NULL);
     crashCallback(error, errorTime, errorDesc, errorDescLen, stack, stackLen);
     
-    nFree(errorDesc);
+    errorDesc = nFree(errorDesc);
     nThreadMutexUnlock(&crashMutex);
     nThreadMutexDestroy(&crashMutex);
 
