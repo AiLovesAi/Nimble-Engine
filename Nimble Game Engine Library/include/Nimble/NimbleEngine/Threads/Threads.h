@@ -115,8 +115,6 @@ typedef mtx_t * nMutex_t;
  * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
- * @note Each time a function is called, it is added to the stack. When a
- * function returns, it is removed from the stack.
  */
 NIMBLE_EXTERN
 int32_t
@@ -125,6 +123,111 @@ nThreadCreate(nThread_t * thread,
               void * (*start)(void *),
               void * data
               );
+
+/**
+ * @brief Joins (or waits for) a thread until its completion.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * void * func(void * data)
+ * {
+ *     int ret = *((int *) data);
+ *     nThread_t thread = nThreadSelf();
+ *     printf("New thread ID: %x\n", nThreadGetID(thread));
+ *     return &ret;
+ * }
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     nThread_t thread = NULL;
+ *     int arg = 10;
+ *     if (nThreadCreate(&thread, 0, func, (void *) &arg) != NSUCCESS)
+ *     {
+ *         printf("Could not create thread.\n");
+ *         return EXIT_FAILURE;
+ *     }
+ *     printf("Successfully created thread.\n");
+ *     nThread_t thread = nThreadSelf();
+ *     printf("Main thread ID: %x\n", nThreadGetID(thread));
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @return The @c nThread_t of the invoking thread if successful; otherwise
+ * #NERROR is returned and a corresponding error is sent to the error callback
+ * set by nErrorHandlerSetErrorCallback().
+ */
+NIMBLE_EXTERN
+nThread_t
+nThreadSelf(void
+            );
+
+/**
+ * @brief Joins (or waits for) a thread until its completion.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * void * func(void * data)
+ * {
+ *     nThread_t thread = nThreadSelf();
+ *     int ret = *((int *) data);
+ *     printf("New thread ID: %x\n", nThreadGetID(thread));
+ *     return &ret;
+ * }
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     nThread_t thread = NULL;
+ *     int arg = 10;
+ *     if (nThreadCreate(&thread, 0, func, (void *) &arg) != NSUCCESS)
+ *     {
+ *         printf("Could not create thread.\n");
+ *         return EXIT_FAILURE;
+ *     }
+ *     printf("Successfully created thread.\n");
+ *     if (nThreadJoin(thread) != NSUCCESS)
+ *     {
+ *         printf("Could not join thread.\n");
+ *         return EXIT_FAILURE;
+ *     }
+ *     printf("Successfully joined thread until its completion.\n");
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[in] thread The thread identity of the created thread.
+ * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
+ * a corresponding error is sent to the error callback set by
+ * nErrorHandlerSetErrorCallback().
+ */
+NIMBLE_EXTERN
+int32_t
+nThreadJoin(nThread_t thread
+            );
+
+
+NIMBLE_EXTERN
+int32_t
+nThreadMutexLock(
+                 );
+
+NIMBLE_EXTERN
+int32_t
+nThreadMutexUnlock(
+                   );
+
+NIMBLE_EXTERN
+int32_t
+nThreadMutexDestroy(
+                    );
 
 /** @todo Thread and mutex functions */
 
