@@ -70,13 +70,13 @@ extern "C" {
  * parameter information.
  */
 NIMBLE_EXTERN
-int32_t
-nCrashSetHandler(void (* callback) (const int32_t error,
+nint_t
+nCrashSetHandler(void (* callback) (const nint_t error,
                                     const time_t errorTime,
                                     char * errorDesc,
-                                    int32_t errorDescLen,
+                                    nint_t errorDescLen,
                                     char * stack,
-                                    int32_t stackLen
+                                    nint_t stackLen
                                     )
                  );
 
@@ -94,9 +94,9 @@ nCrashSetHandler(void (* callback) (const int32_t error,
  * int main(int argc, char ** argv)
  * {
  *     const time_t errorTime = time(NULL);
- *     const int32_t error = NERROR_NULL;
+ *     const nint_t error = NERROR_NULL;
  *     char * errorDesc;
- *     int32_t errorDescLen;
+ *     nint_t errorDescLen;
  *     if (nErrorToString(errorDesc, &errorDescLen, error, NULL, 0) == NULL)
  *     {
  *         fprintf(stderr, "Failed to get error description.\n");
@@ -120,10 +120,10 @@ nCrashSetHandler(void (* callback) (const int32_t error,
  */
 NIMBLE_EXTERN
 void
-nCrashSafe(const int32_t error,
+nCrashSafe(const nint_t error,
            time_t errorTime,
            char * errorDesc,
-           int32_t errorDescLen
+           nint_t errorDescLen
            )
 __attribute__((noreturn));
 
@@ -160,7 +160,7 @@ __attribute__((noreturn));
  */
 NIMBLE_EXTERN
 void
-nCrashAbort(const int32_t error
+nCrashAbort(const nint_t error
             )
 __attribute__((noreturn));
 

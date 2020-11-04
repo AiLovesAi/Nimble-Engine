@@ -41,7 +41,9 @@
  * @brief This class defines error values and error handling functions.
  */
 
+#include <errorno.h>
 #include <inttypes.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -54,7 +56,7 @@ const char nErrMinStr[]             = "NERROR_MIN";
 const char nErrUnknownStr[]         = "NERROR_UNKNOWN";
 const char nErrInternalFailureStr[] = "NERROR_INTERNAL_FAILURE";
 const char nErrNullStr[]            = "NERROR_NULL";
-const char nErrErrorNotFoundStr[]   = "NERROR_ERROR_NOT_FOUND";
+const char nErrInvErrorStr[]        = "NERROR_INV_ERROR";
 
 //SIGNUM
 const char nErrSigAbrtStr[]         = "NERROR_SIGABRT";
@@ -64,8 +66,16 @@ const char nErrSigIntStr[]          = "NERROR_SIGINT";
 const char nErrSigSegvStr[]         = "NERROR_SIGSEGV";
 const char nErrSigTermStr[]         = "NERROR_SIGTERM";
 
-//ERRNO /** @todo Errno values */
-const char nErrFileNotFoundStr[]    = "NERROR_FILE_NOT_FOUND";
+//ERRNO
+const char nErrNoPermStr[]          = "NERROR_NO_PERM";
+const char nErrNoFileStr[]          = "NERROR_NO_FILE";
+const char nErrNoProcessStr[]       = "NERROR_NO_PROCESS";
+const char nErrInterruptStr[]       = "NERROR_INTERRUPT";
+const char nErrIOStr[]              = "NERROR_IO";
+const char nErrNoDeviceStr[]        = "NERROR_NO_DEVICE";
+const char nErrMaxArgsStr[]         = "NERROR_MAX_ARGS";
+const char nErrInvExecFormatStr[]   = "NERROR_INV_EXEC_FORMAT";
+const char nErrInvFPStr[]           = "NERROR_INV_FP";
 
 const char nErrMaxStr[]             = "NERROR_MAX";
 
@@ -76,7 +86,7 @@ const char * nErrorStrings[] = {
     nErrUnknownStr,
     nErrInternalFailureStr,
     nErrNullStr,
-    nErrErrorNotFoundStr,
+    nErrInvErrorStr,
     
     nErrSigAbrtStr,
     nErrSigFpeStr,
@@ -85,17 +95,24 @@ const char * nErrorStrings[] = {
     nErrSigSegvStr,
     nErrSigTermStr,
     
-    nErrFileNotFoundStr,
+    nErrNoPermStr,
+    nErrNoFileStr,
+    nErrNoProcessStr,
+    nErrInterruptStr,
+    nErrIOStr,
+    nErrNoDeviceStr,
+    nErrMaxArgsStr,
+    nErrInvExecFormatStr,
     
     nErrMaxStr
 };
-const int32_t nErrorStringLengths[] = {
+const nint_t nErrorStringLengths[] = {
     sizeof(nErrMinStr),
     
     sizeof(nErrUnknownStr),
     sizeof(nErrInternalFailureStr),
     sizeof(nErrNullStr),
-    sizeof(nErrErrorNotFoundStr),
+    sizeof(nErrInvErrorStr),
     
     sizeof(nErrSigAbrtStr),
     sizeof(nErrSigFpeStr),
@@ -104,41 +121,68 @@ const int32_t nErrorStringLengths[] = {
     sizeof(nErrSigSegvStr),
     sizeof(nErrSigTermStr),
     
-    sizeof(nErrFileNotFoundStr),
+    sizeof(nErrNoPermStr),
+    sizeof(nErrNoFileStr),
+    sizeof(nErrNoProcessStr),
+    sizeof(nErrInterruptStr),
+    sizeof(nErrIOStr),
+    sizeof(nErrNoDeviceStr),
+    sizeof(nErrMaxArgsStr),
+    sizeof(nErrInvExecFormatStr),
+    sizeof(nErrInvFPStr),
     
     sizeof(nErrMaxStr)
 };
 
-const char nErrDescMinStr[]            = "NERROR_MIN - The minimum error "\
-"value, likely caused by programmer error or a corruption issue";
+const char nErrDescMinStr[]            = "The minimum error value, likely "\
+"caused by programmer error or a corruption issue.";
 
-const char nErrDescUnknownStr[]        = "NERROR_UNKNOWN - An unknown error "\
-"occurred";
-const char nErrDecInternalFailureStr[] = "NERROR_INTERNAL_FAILURE - An "\
-"internal error occurred within the Nimble game engine";
-const char nErrDescNullStr[]           = "NERROR_NULL - A pointer was null "\
-"when a nonnull pointer was expected";
-const char nErrDescErrorNotFoundStr[]  = "NERROR_ERROR_NOT_FOUND - An error "\
-"passed to a function was not valid";
+const char nErrDescUnknownStr[]        = "An unknown error occurred.";
+const char nErrDecInternalFailureStr[] = "An internal error occurred within "\
+"the Nimble game engine.";
+const char nErrDescNullStr[]           = "A pointer was null when a nonnull "\
+"pointer was expected.";
+const char nErrDescInvErrorStr[]       = "An error passed to a function was "\
+"not valid.";
 
-const char nErrDescSigAbrtStr[]        = "NERROR_SIGABRT - Caught an abort "\
-"signal";
-const char nErrDescSigFpeStr[]         = "NERROR_SIGFPE - Caught a floating "\
-"point exception signal";
-const char nErrDescSigIllStr[]         = "NERROR_SIGFPE - Caught an illegal "\
-"instruction signal";
-const char nErrDescSigIntStr[]         = "NERROR_SIGFPE - Caught an interrupt "\
-"signal";
-const char nErrDescSigSegvStr[]        = "NERROR_SIGFPE - Caught a memory "\
-"address violation signal";
-const char nErrDescSigTermStr[]        = "NERROR_SIGFPE - Caught a termination "\
-"signal";
+const char nErrDescSigAbrtStr[]        = "Caught an abort signal.";
+const char nErrDescSigFpeStr[]         = "Caught a floating point exception "\
+"signal.";
+const char nErrDescSigIllStr[]         = "Caught an illegal instruction signal.";
+const char nErrDescSigIntStr[]         = "Caught an interrupt signal";
+const char nErrDescSigSegvStr[]        = "Caught a memory address violation "\
+"signal.";
+const char nErrDescSigTermStr[]        = "Caught a termination signal.";
 
-const char nErrDescFileNotFoundStr[]   = "NERROR_FILE_NOT_FOUND - A file was "\
-"not found where specified";
+const char nErrDescNoPermStr[]         = "Operation not permitted. Only the "\
+"owner of the file (or other resource) or processes with special privileges "\
+"can perform the operation.";
+const char nErrDescNoFileStr[]         = "No such file or directory. This is a "\
+"\"file doesn't exist\" error for ordinary files that are referenced in "\
+"contexts where they are expected to already exist.";
+const char nErrDescNoProcessStr[]      = "No such process. No process matches "\
+"the specified process ID.";
+const char nErrDescInterruptStr[]      = "Interrupted system call. An "\
+"asynchronous signal occurred and prevented completion of the call. When this "\
+"happens, you should try the call again.";
+const char nErrDescIOStr[]             = "Input/output error. Usually used for "\
+"physical read or write errors.";
+const char nErrDescNoDeviceStr[]       = "No such device or address. The "\
+"system tried to use the device represented by a file you specified, and it "\
+"couldn't find the device. This can mean that the device file was installed "\
+"incorrectly, or that the physical device is missing or not correctly attached "\
+"to the computer.";
+const char nErrDescMaxArgsStr[]        = "Argument list too long. Used when "\
+"the arguments passed to a new program being executed with one of the exec "\
+"functions occupy too much memory space.";
+const char nErrDescInvExecFormatStr[]  = "Exec format error. Invalid "\
+"executable file format. This condition is detected by the exec functions.";
+const char nErrDescInvFPStr[]          = "Bad file descriptor. For example, "\
+"I/O on a descriptor that has been closed or reading from a descriptor open "\
+"only for writing (or vice versa).";
 
-const char nErrDescMaxStr[]            = "NERROR_MAX - The maximum error value, "\
-"likely caused by programmer error or a corruption issue";
+const char nErrDescMaxStr[]            = "The maximum error value, likely "\
+"caused by programmer error or a corruption issue.";
 
 
 const char * nErrorDescriptions[] = {
@@ -147,7 +191,7 @@ const char * nErrorDescriptions[] = {
     nErrDescUnknownStr,
     nErrDecInternalFailureStr,
     nErrDescNullStr,
-    nErrDescErrorNotFoundStr,
+    nErrDescInvErrorStr,
     
     nErrDescSigAbrtStr,
     nErrDescSigFpeStr,
@@ -156,28 +200,42 @@ const char * nErrorDescriptions[] = {
     nErrDescSigSegvStr,
     nErrDescSigTermStr,
     
-    nErrDescFileNotFoundStr,
+    nErrDescNoPermStr,
+    nErrDescNoFileStr,
+    nErrDescNoProcessStr,
+    nErrDescInterruptStr,
+    nErrDescIOStr,
+    nErrDescMaxArgsStr,
+    nErrDescInvExecFormatStr,
+    nErrDescInvFPStr,
     
     nErrDescMaxStr
 };
-const int32_t nErrorDescLengths[] = {
-    sizeof(nErrMinStr),
+const nint_t nErrorDescLengths[] = {
+    sizeof(nErrDescMinStr),
     
-    sizeof(nErrUnknownStr),
-    sizeof(nErrInternalFailureStr),
-    sizeof(nErrNullStr),
-    sizeof(nErrErrorNotFoundStr),
+    sizeof(nErrDescUnknownStr),
+    sizeof(nErrDescInternalFailureStr),
+    sizeof(nErrDescNullStr),
+    sizeof(nErrDescInvErrorStr),
     
-    sizeof(nErrSigAbrtStr),
-    sizeof(nErrSigFpeStr),
-    sizeof(nErrSigIllStr),
-    sizeof(nErrSigIntStr),
-    sizeof(nErrSigSegvStr),
-    sizeof(nErrSigTermStr),
+    sizeof(nErrDescSigAbrtStr),
+    sizeof(nErrDescSigFpeStr),
+    sizeof(nErrDescSigIllStr),
+    sizeof(nErrDescSigIntStr),
+    sizeof(nErrDescSigSegvStr),
+    sizeof(nErrDescSigTermStr),
     
-    sizeof(nErrFileNotFoundStr),
+    sizeof(nErrDescNoPermStr),
+    sizeof(nErrDescNoFileStr),
+    sizeof(nErrDescNoProcessStr),
+    sizeof(nErrDescInterruptStr),
+    sizeof(nErrDescIOStr),
+    sizeof(nErrDescMaxArgsStr),
+    sizeof(nErrDescInvExecFormatStr),
+    sizeof(nErrDescInvFPStr),
     
-    sizeof(nErrMaxStr)
+    sizeof(nErrDescMaxStr)
 };
 
 
@@ -194,30 +252,272 @@ const char noInfoStr[] = "No info.";
  * @param[in] stackLen The length of the @p stack argument, including the null
  * character. A length of zero (0) uses strlen() to determine length.
  */
-void nErrorHandlerDefault(const int32_t error,
+void nErrorHandlerDefault(const nint_t error,
                           const time_t errorTime,
                           const char * errorDesc,
-                          const int32_t errorDescLen,
+                          const nint_t errorDescLen,
                           const char * stack,
-                          const int32_t stackLen
+                          const nint_t stackLen
                           );
 
 /**
  * @brief The error callback function that gets defined by nErrorSetCallback().
  */
-void (* errorCallback) (const int32_t error, const time_t errorTime,
-         const char * errorDesc, const int32_t errorDescLen, const char * stack,
-         const int32_t stackLen) = nErrorHandlerDefault;
+void (* errorCallback) (const nint_t error, const time_t errorTime,
+         const char * errorDesc, const nint_t errorDescLen, const char * stack,
+         const nint_t stackLen) = nErrorHandlerDefault;
 
 
-void nErrorHandlerDefault(const int32_t error, const time_t errorTime,
-      const char * errorDesc, const int32_t errorDescLen, const char * stack,
-      const int32_t stackLen)
+void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
+      const char * errorDesc, const nint_t errorDescLen, const char * stack,
+      const nint_t stackLen)
 {
     /** @todo Make default callback. */
 }
 
-void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
+nint_t nErrorFromSignal(const int error)
+{
+    switch (error)
+    {
+        #ifdef SIGABRT
+        case SIGABRT:
+        {
+            return NERROR_SIGABRT;
+        }
+        break;
+        #endif
+        #ifdef SIGFPE
+        case SIGFPE:
+        {
+            return NERROR_SIGFPE;
+        }
+        break;
+        #endif
+        #ifdef SIGILL
+        case SIGILL:
+        {
+            return NERROR_SIGILL;
+        }
+        break;
+        #endif
+        #ifdef SIGINT
+        case SIGINT:
+        {
+            return NERROR_SIGINT;
+        }
+        break;
+        #endif
+        #ifdef SIGSEGV
+        case SIGSEGV:
+        {
+            return NERROR_SIGSEGV;
+        }
+        break;
+        #endif
+        #ifdef SIGTERM
+        case SIGTERM:
+        {
+            return NERROR_SIGTERM;
+        }
+        break;
+        #endif
+        default:
+        {
+            return NERROR_INV_ERROR;
+        }
+        break;
+    }
+}
+
+nint_t nErrorFromErrno(const int error)
+{
+    switch (error)
+    {
+        #ifdef EPERM
+        case EPERM:
+        {
+            return NERROR_NO_PERM;
+        }
+        break;
+        #endif
+        #ifdef ENOENT
+        case ENOENT:
+        {
+            return NERROR_NO_FILE;
+        }
+        break;
+        #endif
+        #ifdef ESRCH
+        case ESRCH:
+        {
+            return NERROR_NO_PROCESS;
+        }
+        break;
+        #endif
+        #ifdef EINTR
+        case EINTR:
+        {
+            return NERROR_INTERRUPT;
+        }
+        break;
+        #endif
+        #ifdef EIO
+        case EIO:
+        {
+            return NERROR_IO;
+        }
+        break;
+        #endif
+        #ifdef ENXIO
+        case ENXIO:
+        {
+            return NERROR_NO_DEVICE;
+        }
+        break;
+        #endif
+        #ifdef E2BIG
+        case E2BIG:
+        {
+            return NERROR_MAX_ARGS;
+        }
+        break;
+        #endif
+        #ifdef ENOEXEC
+        case ENOEXEC:
+        {
+            return NERROR_INV_EXEC_FORMAT;
+        }
+        break;
+        #endif
+        #ifdef EBADF
+        case EBADF:
+        {
+            return NERROR_INV_FP;
+        }
+        break;
+        #endif
+        #ifdef ECHILD
+        case ECHILD:
+        {
+            return NERROR_NO_CHILD;
+        }
+        break;
+        #endif
+        #ifdef EDEADLK
+        case EDEAKLK:
+        {
+            return NERROR_DEADLOCK;
+        }
+        break;
+        #endif
+        #ifdef ENOMEM
+        case ENOMEM:
+        {
+            return NERROR_NO_MEMORY;
+        }
+        break;
+        #endif
+        #ifdef EACCESS
+        case EACCESS:
+        {
+            return NERROR_NO_FILE_PERM;
+        }
+        break;
+        #endif
+        #ifdef EFAULT
+        case EFAULT:
+        {
+            return NERROR_FAULT;
+        }
+        break;
+        #endif
+        #ifdef ENOTBLK
+        case ENOTBLK:
+        {
+            return NERROR_NOT_BLOCK;
+        }
+        break;
+        #endif
+        #ifdef EBUSY
+        case EBUSY:
+        {
+            return NERROR_DEVICE_BUSY;
+        }
+        break;
+        #endif
+        #ifdef EEXIST
+        case EEXIST:
+        {
+            return NERROR_FILE_EXISTS;
+        }
+        break;
+        #endif
+        #ifdef EXDEV
+        case EXDEV:
+        {
+            return NERROR_INV_CROSSLINK;
+        }
+        break;
+        #endif
+        #ifdef ENODEV
+        case ENODEV:
+        {
+            return NERROR_INV_DEVICE;
+        }
+        break;
+        #endif
+        #ifdef ENOTDIR
+        case ENOTDIR:
+        {
+            return NERROR_NOT_DIR;
+        }
+        break;
+        #endif
+        #ifdef EISDIR
+        case EISDIR:
+        {
+            return NERROR_IS_DIR;
+        }
+        break;
+        #endif
+        #ifdef EINVAL
+        case EINVAL:
+        {
+            return NERROR_INV_ARG;
+        }
+        break;
+        #endif
+        #ifdef EMFILE
+        case EMFILE:
+        {
+            return NERROR_MAX_FILE;
+        }
+        break;
+        #endif
+        #ifdef ENFILE
+        case ENFILE:
+        {
+            return NERROR_MAX_FILE_SYS;
+        }
+        break;
+        #endif
+        #ifdef ENOTTY
+        case ENOTTY:
+        {
+            return NERROR_INV_IOCTL;
+        }
+        break;
+        #endif
+        /// @todo Continue with errnos from https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html
+        default:
+        {
+            return NERROR_INV_ERROR;
+        }
+        break;
+    }
+}
+
+void nErrorThrow(const nint_t error, const char * info, nint_t infoLen)
 {
     const time_t errorTime = time(NULL);
     
@@ -226,7 +526,7 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
         const time_t crashErrorTime = time(NULL);
         const char callbackStr[] = "Callback argument NULL in nErrorThrow().";
         char * crashErrorDesc;
-        int32_t crashErrorDescLen;
+        nint_t crashErrorDescLen;
         
         nErrorToString(crashErrorDesc, &crashErrorDescLen, NERROR_NULL,
          callbackStr, sizeof(callbackStr));
@@ -236,37 +536,37 @@ void nErrorThrow(const int32_t error, const char * info, int32_t infoLen)
     }
     
     char * errorDesc;
-    int32_t errorDescLen;
+    nint_t errorDescLen;
     if (nErrorToString(errorDesc, &errorDescLen, error, info, infoLen) == NULL)
     {
         const time_t crashErrorTime = time(NULL);
         const char parseStr[] = "Error not found in nErrorThrow().";
         char * crashErrorDesc;
-        int32_t crashErrorDescLen;
+        nint_t crashErrorDescLen;
         
         nErrorToString(crashErrorDesc, &crashErrorDescLen,
-         NERROR_ERROR_NOT_FOUND, parseStr, sizeof(parseStr));
-        nCrashSafe(NERROR_ERROR_NOT_FOUND, crashErrorTime, crashErrorDesc,
+         NERROR_INV_ERROR, parseStr, sizeof(parseStr));
+        nCrashSafe(NERROR_INV_ERROR, crashErrorTime, crashErrorDesc,
          crashErrorDescLen);
         /* NO RETURN */
     }
     
     char * stack;
-    int32_t stackLen, stackLevels;
+    nint_t stackLen, stackLevels;
     nErrorGetStacktrace(stack, &stackLen, &stackLevels);
     
     errorCallback(error, errorTime, errorDesc, errorDescLen, stack, stackLen);
 }
 
-int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
-         const int32_t error, const char * info, int32_t infoLen)
+nint_t nErrorToStringLocal(char * dst, nint_t * errorLen,
+         const nint_t error, const char * info, nint_t infoLen)
 {
     if ((info != NULL) && (infoLen == 0))
     {
         infoLen = strlen(info) + 1;
     }
     
-    const char * errorDesc = NERROR_DESCRIPTION(error);
+    const char errorDesc[] = nErrDesc(error);
     
     if (errorDesc == NULL)
     {
@@ -277,11 +577,11 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
         }
         
         dst = nFree(dst);
-        return NERROR_ERROR_NOT_FOUND;
+        return NERROR_INV_ERROR;
     }
     
-    const int32_t descLen = NERROR_DESCLENGTH(error);
-    int32_t errLen;
+    const nint_t descLen = nErrDescLen(error);
+    nint_t errLen;
     if (info == NULL)
     {
         errLen = descLen + sizeof(noInfoStr) - 1;
@@ -305,17 +605,17 @@ int32_t nErrorToStringLocal(char * dst, int32_t * errorLen,
     return NSUCCESS;
 }
 
-char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
-        const char * info, int32_t infoLen)
+char * nErrorToString(char * dst, nint_t * errorLen, const nint_t error,
+        const char * info, nint_t infoLen)
 {
-    int32_t result = nErrorToStringLocal(dst, errorLen, error, info, infoLen);
+    nint_t result = nErrorToStringLocal(dst, errorLen, error, info, infoLen);
     if (result != NSUCCESS)
     {
-        int32_t errorNumLen = snprintf(NULL, 0, "%d", error) + 1;
+        nint_t errorNumLen = snprintf(NULL, 0, "%d", error) + 1;
         char * errorNumStr = malloc(errorNumLen);
         snprintf(errorNumStr, errorNumLen, "%d", error);
         
-        nErrorThrow(NERROR_ERROR_NOT_FOUND, errorNumStr, errorNumLen);
+        nErrorThrow(NERROR_INV_ERROR, errorNumStr, errorNumLen);
         errorNumStr = nFree(errorNumStr);
         return dst;
     }
@@ -323,9 +623,9 @@ char * nErrorToString(char * dst, int32_t * errorLen, const int32_t error,
     return dst;
 }
 
-int32_t nErrorSetCallback(void (* callback)(const int32_t error,
+nint_t nErrorSetCallback(void (* callback)(const nint_t error,
          const time_t errorTime, const char * errorDesc,
-         const int32_t errorDescLen, const char * stack, const int32_t stackLen))
+         const nint_t errorDescLen, const char * stack, const nint_t stackLen))
 {
     if (callback == NULL)
     {
@@ -339,7 +639,7 @@ int32_t nErrorSetCallback(void (* callback)(const int32_t error,
     return NSUCCESS;
 }
 
-char * nErrorGetStacktrace(char * dst, int32_t * stackLen, int32_t * stackLevels)
+char * nErrorGetStacktrace(char * dst, nint_t * stackLen, nint_t * stackLevels)
 {
     /** @todo Get stack trace. Remember *stackLevels is max levels */
     return dst;

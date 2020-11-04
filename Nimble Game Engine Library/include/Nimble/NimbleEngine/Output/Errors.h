@@ -52,11 +52,14 @@ extern "C" {
 #include <limits.h>
 #include <time.h>
 
-#define NSUCCESS (int32_t) 0 /**< Returned when a function succeeds. */
-#define NERROR (int32_t) -1 /**< Returned when a function encounters an error. */
+#define NSUCCESS (nint_t) 0 /**< Returned when a function succeeds. */
+#define NERROR (nint_t) -1 /**< Returned when a function encounters an error. */
 
 /**
  * @brief The possible error values used by ErrorHandler.h error handler.
+ *
+ * @note For more detailed info on an error, see the error descriptions in
+ * Errors.c (#nErrorDescriptions).
  */
 enum nErrors {
     NERROR_MIN = INT_MIN, /**< The mininum error number. */
@@ -64,7 +67,7 @@ enum nErrors {
     NERROR_UNKNOWN, /**< An nknown error occurred. */
     NERROR_INTERNAL_FAILURE, /**< An internal error occurred. */
     NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
-    NERROR_ERROR_NOT_FOUND, /**< An error passed to a function was not valid. */
+    NERROR_INV_ERROR, /**< An error passed to a function was not valid. */
     
     NERROR_SIGABRT, /**< Caught abort signal. */
     NERROR_SIGFPE, /**< Caught floating point exception signal. */
@@ -73,7 +76,15 @@ enum nErrors {
     NERROR_SIGSEGV, /**< Caught memory address violation signal. */
     NERROR_SIGTERM, /**< Caught termination signal. */
     
-    NERROR_FILE_NOT_FOUND, /**< A file was not found where specified. */
+    NERROR_NO_PERM, /**< Operation not permitted. */
+    NERROR_NO_FILE, /**< No such file or directory. */
+    NERROR_NO_PROCESS, /**< No such process. */
+    NERROR_INTERRUPT, /**< Interrupted system call. */
+    NERROR_IO, /**< Input/output error. */
+    NERROR_NO_DEVICE, /**< No such device or address. */
+    NERROR_MAX_ARGS, /**< Argument list too long. */
+    NERROR_INV_EXEC_FORMAT, /**< Exec format error. */
+    NERROR_INV_FP, /**< Bad file descriptor. */
     
     NERROR_MAX /**< The maximum error number. */
 };
@@ -91,19 +102,19 @@ const char * nErrorStrings[];
  * @param[in] err The error code to translate to a string.
  * @return @p err translated to a string.
  */
-#define NERROR_STRING(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
-                            nErrorStrings[err - NERROR_MIN] :\
-                            nErrorStrings[NERROR_UNKNOWN - NERROR_MIN])
+#define nErrorStr(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
+                        nErrorStrings[err - NERROR_MIN] :\
+                        nErrorStrings[NERROR_UNKNOWN - NERROR_MIN])
 
 /*
  * @brief Gets the length of the error code @p err from #nErrorStringLengths.
  *
  * @param[in] err The error code to determine the length of.
- * @return @p err's string translation length.
+ * @return@p erorr's string translation length
  */
-#define NERROR_STRLENGTH(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
-                               nErrorStringLengths[err - NERROR_MIN] :\
-                               nErrorStringLengths[NERROR_UNKNOWN - NERROR_MIN])
+#define nErrorStrLen(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
+                           nErrorStringLengths[err - NERROR_MIN] :\
+                           nErrorStringLengths[NERROR_UNKNOWN - NERROR_MIN])
 
 /**
  * @brief The descriptions of error codes defined by #nErrors.
@@ -117,62 +128,39 @@ const char * nErrorDescriptions[];
  * @param[in] err The error code to describe.
  * @return The description of @p err as a string.
  */
-#define NERROR_DESCRIPTION(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
-                                 nErrorDescriptions[err - NERROR_MIN] :\
-                                 nErrorDescriptions[NERROR_UNKNOWN - NERROR_MIN])
-#define NERROR_DESCLENGTH(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
-                                nErrorDescLengths[err - NERROR_MIN] :\
-                                nErrorDescLengths[NERROR_UNKNOWN - NERROR_MIN])
+#define nErrorDesc(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
+                         nErrorDescriptions[err - NERROR_MIN] :\
+                         nErrorDescriptions[NERROR_UNKNOWN - NERROR_MIN])
+/*
+ * @brief Gets the length of the error code @p err from #nErrorDescLengths.
+ *
+ * @param[in] err The error code to determine the length of.
+ * @return @p erorr's string translation length
+ */
+#define nErrorDescLen(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
+                            nErrorDescLengths[err - NERROR_MIN] :\
+                            nErrorDescLengths[NERROR_UNKNOWN - NERROR_MIN])
 
 
-/**
- * @brief Describes an error and returns a string with no error handling.
+/*
+ * @brief Gets the error code of the signal value @p error.
  *
- * Example:
- * @todo Do this
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char ** argv)
- * {
- *     char * errorStr;
- *     int32_t errorLen;
- *     char exampleFilePath[] = "example.txt";
- *     if (nErrorToStringLocal(errorStr, &errorLen, NERROR_FILE_NOT_FOUND,
- *          exampleFilePath, sizeof(exampleFilePath)) != NSUCCESS)
- *     {
- *         fprintf(stderr, "Failed to get error string.\n");
- *         exit(EXIT_FAILURE);
- *     }
- *     printf("NERROR_FILE_NOT_FOUND as string: %s\n", errorStr);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
- * @param[out] dst The destination to store the string describing @p error. This
- * can be @c #NULL.
- * @param[out] errorLen The length of the string returned, including the null
- * character. This can be @c #NULL.
- * @param[in] error The error to get described.
- * @param[in] info Relevant information, such as a file location, that could help
- * diagnose the error. This can be @c #NULL.
- * @param[in] infoLen The length of the @p info argument, including the null
- * character. A length of zero (0) uses strlen() to determine length.
- * @return @p dst is returned if successful; otherwise @c #NULL is returned.
- *
- * @note This function is used by the game engine and is not expected to be used
- * by developers, but is optional.
+ * @param[in] error The signal value.
+ * @return The NERROR version of @p error.
  */
 NIMBLE_EXTERN
-int32_t
-nErrorToStringLocal(char * dst,
-                    int32_t * errorLen,
-                    const int32_t error,
-                    const char * info,
-                    int32_t infoLen
-                    );
+nint_t
+nErrorFromSignal(const int error);
+
+/*
+ * @brief Gets the error code of the errno value @p err.
+ *
+ * @param[in] err The errno value.
+ * @return An NERROR version of @p err.
+ */
+NIMBLE_EXTERN
+nint_t
+nErrorFromErrno(const int err);
 
 /**
  * @brief Sends an error to the error callback.
@@ -210,10 +198,59 @@ nErrorToStringLocal(char * dst,
  */
 NIMBLE_EXTERN
 void
-nErrorThrow(const int32_t error,
+nErrorThrow(const nint_t error,
             const char * info,
-            int32_t infoLen
+            nint_t infoLen
             );
+
+/**
+ * @brief Describes an error and returns a string with no error handling.
+ *
+ * Example:
+ * @todo Do this
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     char * errorStr;
+ *     nint_t errorLen;
+ *     char exampleFilePath[] = "example.txt";
+ *     if (nErrorToStringLocal(errorStr, &errorLen, NERROR_FILE_NOT_FOUND,
+ *          exampleFilePath, sizeof(exampleFilePath)) != NSUCCESS)
+ *     {
+ *         fprintf(stderr, "Failed to get error string.\n");
+ *         exit(EXIT_FAILURE);
+ *     }
+ *     printf("NERROR_FILE_NOT_FOUND as string: %s\n", errorStr);
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[out] dst The destination to store the string describing @p error. This
+ * can be @c #NULL.
+ * @param[out] errorLen The length of the string returned, including the null
+ * character. This can be @c #NULL.
+ * @param[in] error The error to get described.
+ * @param[in] info Relevant information, such as a file location, that could help
+ * diagnose the error. This can be @c #NULL.
+ * @param[in] infoLen The length of the @p info argument, including the null
+ * character. A length of zero (0) uses strlen() to determine length.
+ * @return @p dst is returned if successful; otherwise @c #NULL is returned.
+ *
+ * @note This function is used by the game engine and is not expected to be used
+ * by developers, but is optional.
+ */
+NIMBLE_EXTERN
+nint_t
+nErrorToStringLocal(char * dst,
+                    nint_t * errorLen,
+                    const nint_t error,
+                    const char * info,
+                    nint_t infoLen
+                    );
 
 /**
  * @brief Describes an error and returns a string.
@@ -227,7 +264,7 @@ nErrorThrow(const int32_t error,
  * int main(int argc, char ** argv)
  * {
  *     char * errorStr;
- *     int32_t errorLen;
+ *     nint_t errorLen;
  *     char exampleFilePath[] = "example.txt";
  *     if (nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND,
  *          exampleFilePath, sizeof(exampleFilePath)) == NULL)
@@ -254,10 +291,10 @@ nErrorThrow(const int32_t error,
 NIMBLE_EXTERN
 char *
 nErrorToString(char * dst,
-               int32_t * errorLen,
-               const int32_t error,
+               nint_t * errorLen,
+               const nint_t error,
                const char * info,
-               int32_t infoLen
+               nint_t infoLen
                );
 
 /**
@@ -272,9 +309,9 @@ nErrorToString(char * dst,
  * #include <time.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * void errorHandler(const int32_t error, const char * errorDesc,
- *       const int32_t errorDescLen, const time_t errorTime, const char * stack,
- *       const int32_t stackLen)
+ * void errorHandler(const nint_t error, const char * errorDesc,
+ *       const nint_t errorDescLen, const time_t errorTime, const char * stack,
+ *       const nint_t stackLen)
  * {
  *     struct tm * timeInfo = localtime(&errorTime);
  *     const char format[] = "%x %X %Z";
@@ -310,14 +347,14 @@ nErrorToString(char * dst,
  * @note Check nErrorHandlerDefault() for parameter information.
  */
 NIMBLE_EXTERN
-int32_t
+nint_t
 nErrorSetCallback(void (* callback)(
-                                    const int32_t error,
+                                    const nint_t error,
                                     const time_t errorTime,
                                     const char * errorDesc,
-                                    const int32_t errorDescLen,
+                                    const nint_t errorDescLen,
                                     const char * stack,
-                                    const int32_t stackLen
+                                    const nint_t stackLen
                                     )
                   );
 
@@ -334,7 +371,7 @@ nErrorSetCallback(void (* callback)(
  *
  * int main(int argc, char ** argv)
  * {
- *     int32_t stackLen, stackLevels;
+ *     nint_t stackLen, stackLevels;
  *     char * stack;
  *     nErrorGetStacktrace(stack, &stackLen, &stackLevels);
  *     if (stack == NULL)
@@ -362,8 +399,8 @@ nErrorSetCallback(void (* callback)(
 NIMBLE_EXTERN
 char *
 nErrorGetStacktrace(char * dst,
-                    int32_t * stackLen,
-                    int32_t * stackLevels
+                    nint_t * stackLen,
+                    nint_t * stackLevels
                     );
 
 #endif // NIMBLE_ENGINE_ERRORS_H

@@ -61,34 +61,46 @@ void nEngineExitSignal(int signum)
     nEngineExit();
 }
 
-int32_t nEngineInit(void (* errorCallback)(const int32_t error,
-         const time_t errorTime, char * errorDesc, int32_t errorDescLen,
-         char * stack, int32_t stackLen),
-         void (* crashCallback)(const int32_t error, const time_t errorTime,
-         char * errorDesc, int32_t errorDescLen, char * stack,
-         int32_t stackLen))
+nint_t nEngineInit(void (* errorCallback)(const nint_t error,
+         const time_t errorTime, char * errorDesc, nint_t errorDescLen,
+         char * stack, nint_t stackLen),
+         void (* crashCallback)(const nint_t error, const time_t errorTime,
+         char * errorDesc, nint_t errorDescLen, char * stack,
+         nint_t stackLen))
 {
     /** @todo Make init function */
     if (atexit(nEngineExit) != NSUCCESS)
     {
         const time_t errorTime = time(NULL);
         char * errorDesc;
-        int32_t errorDescLen;
+        nint_t errorDescLen;
         char * info;
-        int32_t infoLen;
+        nint_t infoLen;
         
         nErrorToString(errorDesc, &errorDescLen, NERROR_INTERNAL_FAILURE,
          info, infoLen);
         nCrashSafe(NERROR_INTERNAL_FAILURE, errorTime, errorDesc,
          errorDescLen);
     }
+    #ifdef SIGTERM
     signal(SIGTERM, nEngineExitSignal);
+    #endif
     
+    #ifdef SIGABRT
     signal(SIGABRT, nCrashSignal);
+    #endif
+    #ifdef SIGFPE
     signal(SIGFPE, nCrashSignal);
+    #endif
+    #ifdef SIGILL
     signal(SIGILL, nCrashSignal);
+    #endif
+    #ifdef SIGINT
     signal(SIGINT, nCrashSignal);
+    #endif
+    #ifdef SIGSEGV
     signal(SIGSEGV, nCrashSignal);
+    #endif
     
     return NSUCCESS;
 }

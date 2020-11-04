@@ -127,6 +127,22 @@ extern "C" {
 #define NULL ((void *) 0) /**< Null pointer */
 #endif
 
+
+typedef int_fast8_t   nbyte_t;
+typedef uint_fast8_t  nubyte_t;
+typedef int_fast16_t  nshort_t;
+typedef uint_fast16_t nushort_t;
+typedef int_fast32_t  nint_t;
+typedef uint_fast32_t nuint_t;
+#ifdef NIMBLE_64BIT
+typedef int_fast64_t  nlong_t;
+typedef uint_fast64_t nulong_t;
+#else
+typedef intmax_t      nlong_t;
+typedef uintmax_t     nulong_t;
+#endif
+
+
 /**
  * @brief Frees a pointer.
  * Frees a pointer and returns #NULL to allow the invoker to optionally nullify

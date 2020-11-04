@@ -122,21 +122,21 @@ __attribute__((noreturn));
  * nErrorHandlerSetErrorCallback().
  */
 NIMBLE_EXTERN
-int32_t
+nint_t
 nEngineInit(void (* errorCallback)(
-                                   const int32_t error,
+                                   const nint_t error,
                                    const time_t errorTime,
                                    char * errorDesc,
-                                   int32_t errorDescLen,
+                                   nint_t errorDescLen,
                                    char * stack,
-                                   int32_t stackLen
+                                   nint_t stackLen
                                    ),
-            void (* crashCallback) (const int32_t error,
+            void (* crashCallback) (const nint_t error,
                                     const time_t errorTime,
                                     char * errorDesc,
-                                    int32_t errorDescLen,
+                                    nint_t errorDescLen,
                                     char * stack,
-                                    int32_t stackLen
+                                    nint_t stackLen
                                     )
             ); /** @todo Make these callback functions the same through each file. */
 

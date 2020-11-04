@@ -62,29 +62,29 @@ nMutex_t crashMutex = NULL;
  * null character. A length of zero (0) uses strlen() to determine length.
  * @param[in] errorTime The time the error was thrown.
  */
-void nCrashHandlerDefault(const int32_t error,
+void nCrashHandlerDefault(const nint_t error,
                           const time_t errorTime,
                           char * errorDesc,
-                          int32_t errorDescLen,
+                          nint_t errorDescLen,
                           char * stack,
-                          int32_t stackLen
+                          nint_t stackLen
                           );
 
-void (* crashCallback) (const int32_t error, const time_t errorTime,
-                        char * errorDesc, int32_t errorDescLen, char * stack,
-                        int32_t stackLen) = nCrashHandlerDefault;
+void (* crashCallback) (const nint_t error, const time_t errorTime,
+                        char * errorDesc, nint_t errorDescLen, char * stack,
+                        nint_t stackLen) = nCrashHandlerDefault;
 
 
-void nCrashHandlerDefault(const int32_t error, const time_t errorTime,
-                          char * errorDesc, int32_t errorDescLen, char * stack,
-                          int32_t stackLen)
+void nCrashHandlerDefault(const nint_t error, const time_t errorTime,
+                          char * errorDesc, nint_t errorDescLen, char * stack,
+                          nint_t stackLen)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
 }
 
-int32_t nCrashSetCallback(void (* callback)(const int32_t error,
-         const time_t errorTime, char * errorDesc, int32_t errorDescLen,
-         char * stack, int32_t stackLen))
+nint_t nCrashSetCallback(void (* callback)(const nint_t error,
+         const time_t errorTime, char * errorDesc, nint_t errorDescLen,
+         char * stack, nint_t stackLen))
 {
     if (callback == NULL)
     {
@@ -97,8 +97,8 @@ int32_t nCrashSetCallback(void (* callback)(const int32_t error,
     return NSUCCESS;
 }
 
-void nCrashSafe(const int32_t error, time_t errorTime, char * errorDesc,
-                int32_t errorDescLen)
+void nCrashSafe(const nint_t error, time_t errorTime, char * errorDesc,
+                nint_t errorDescLen)
 {
     nThreadMutexCreate(crashMutex);
     nThreadMutexLock(crashMutex);
@@ -138,7 +138,7 @@ void nCrashSafe(const int32_t error, time_t errorTime, char * errorDesc,
     }
     
     char * stack;
-    int32_t stackLen;
+    nint_t stackLen;
     nErrorGetStacktrace(stack, &stackLen, NULL);
     crashCallback(error, errorTime, errorDesc, errorDescLen, stack, stackLen);
     
@@ -150,76 +150,18 @@ void nCrashSafe(const int32_t error, time_t errorTime, char * errorDesc,
 
 void nCrashSignal(const int signum)
 {
+    const nint_t error = nErrorFromSignal(signum);
     const time_t errorTime = time(NULL);
     char * errorDesc;
-    int32_t errorDescLen;
+    nint_t errorDescLen;
     
     signal(signum, SIG_DFL);
-    
-    switch(signum)
-    {
-        case SIGABRT:
-        {
-            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGABRT, NULL,
-             0);
-            nCrashSafe(NERROR_SIGABRT, errorTime, errorDesc, errorDescLen);
-            /* NO RETURN */
-        }
-        break;
-        case SIGFPE:
-        {
-            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGFPE, NULL,
-             0);
-            nCrashSafe(NERROR_SIGFPE, errorTime, errorDesc, errorDescLen);
-            /* NO RETURN */
-        }
-        break;
-        case SIGILL:
-        {
-            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGILL, NULL,
-             0);
-            nCrashSafe(NERROR_SIGILL, errorTime, errorDesc, errorDescLen);
-            /* NO RETURN */
-        }
-        break;
-        case SIGINT:
-        {
-            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGINT, NULL,
-             0);
-            nCrashSafe(NERROR_SIGINT, errorTime, errorDesc, errorDescLen);
-            /* NO RETURN */
-        }
-        break;
-        case SIGSEGV:
-        {
-            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGSEGV, NULL,
-             0);
-            nCrashSafe(NERROR_SIGSEGV, errorTime, errorDesc, errorDescLen);
-            /* NO RETURN */
-        }
-        break;
-        case SIGTERM:
-        {
-            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_SIGTERM, NULL,
-             0);
-            nCrashSafe(NERROR_SIGTERM, errorTime, errorDesc, errorDescLen);
-            /* NO RETURN */
-        }
-        break;
-        default:
-        {
-            nErrorToStringLocal(errorDesc, &errorDescLen, NERROR_ERROR_NOT_FOUND,
-            NULL, 0);
-            nCrashSafe(NERROR_ERROR_NOT_FOUND, errorTime, errorDesc, errorDescLen);
-            /* NO RETURN */
-        }
-        break;
-        /* NO RETURN */
-    }
+    nErrorToStringLocal(errorDesc, &errorDescLen, error, NULL, 0);
+    nCrashSafe(error, errorTime, errorDesc, errorDescLen);
     /* NO RETURN */
 }
 
-void nCrashAbort(const int32_t error)
+void nCrashAbort(const nint_t error)
 {
     fprintf(stderr, "Aborting program with error code: %s (%d)",
      NERROR_STRING(error), error);

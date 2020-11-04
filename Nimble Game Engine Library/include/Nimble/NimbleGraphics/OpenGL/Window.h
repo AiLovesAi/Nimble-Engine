@@ -104,7 +104,7 @@ typedef enum nWindowMonitor {
  *         fprintf(stderr, "Failed to load window dimensions.\n");
  *         exit(EXIT_FAILURE);
  *     }
- *     int32_t window = nWindowCreate("Hello World", iconData, dimensions,
+ *     nint_t window = nWindowCreate("Hello World", iconData, dimensions,
  *                       NWINDOW_FULLSCREEN | NWINDOW_CURSOR_HIDDEN);
  *     if (window == NERROR)
  *     {
@@ -127,11 +127,11 @@ typedef enum nWindowMonitor {
  * error callback set by nErrorSetCallback().
  */
 NIMBLE_EXPORT
-int32_t
+nint_t
 nWindowCreate(const char * title,
               const uint8_t * iconData,
               const uint32_t * dimensions,
-              const int32_t flags
+              const nint_t flags
               );
 
 /**
