@@ -104,6 +104,9 @@ const char * nErrorStrings[];
  *
  * @param[in] err The error code to translate to a string.
  * @return @p err translated to a string.
+ * @note The returned string is a pointer to a constant string on the stack. This
+ * means that one should not allocate or free the pointer. If editing is needed,
+ * copy the result to dynamically allocated memory.
  */
 #define nErrorStr(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
                         nErrorStrings[err - NERROR_MIN] :\
@@ -130,6 +133,9 @@ const char * nErrorDescriptions[];
  *
  * @param[in] err The error code to describe.
  * @return The description of @p err as a string.
+ * @note The returned string is a pointer to a constant string on the stack. This
+ * means that one should not allocate or free the pointer. If editing is needed,
+ * copy the result to dynamically allocated memory.
  */
 #define nErrorDesc(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
                          nErrorDescriptions[err - NERROR_MIN] :\
