@@ -6,7 +6,7 @@
 # Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
 #
 
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.17)
 
 project(NimbleGameEngineApplication VERSION 0.1.0)
 

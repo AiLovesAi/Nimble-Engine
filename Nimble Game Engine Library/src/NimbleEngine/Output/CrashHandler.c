@@ -85,8 +85,8 @@ void nCrashHandlerDefault(const nint_t error, const time_t errorTime,
 }
 
 nint_t nCrashSetCallback(void (* callback)(const nint_t error,
-         const time_t errorTime, char * errorDesc, nint_t errorDescLen,
-         char * stack, nint_t stackLen))
+        const time_t errorTime, char * errorDesc, nint_t errorDescLen,
+        char * stack, nint_t stackLen))
 {
     if (callback == NULL)
     {

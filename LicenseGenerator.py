@@ -60,14 +60,14 @@ def main():
 /**\n\
  * @brief The license that gets compiled into the binaries.\n\
  */\n\
-const char LICENSE_md[] = \"\\n\\\n"
+const char LICENSE_md[] = \"\\n\"\\\n\""
     with open("LICENSE.md", 'r') as fp:
         if (not fp):
             print("Could not open LICENSE.md")
             exit(1)
         line = str(fp.readline()).replace('"', '\\"')
         while line:
-            licenseData += line[:-1] + "\\n\\\n"
+            licenseData += line[:-1] + "\\n\"\\\n\""
             line = str(fp.readline()).replace('"', '\\"')
     
     licenseData += "\";\n\n\n// NimbleLicense.c\n"
