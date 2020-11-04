@@ -76,6 +76,9 @@ const char nErrNoDeviceStr[]        = "NERROR_NO_DEVICE";
 const char nErrMaxArgsStr[]         = "NERROR_MAX_ARGS";
 const char nErrInvExecFormatStr[]   = "NERROR_INV_EXEC_FORMAT";
 const char nErrInvFPStr[]           = "NERROR_INV_FP";
+const char nErrNoChildStr[]         = "NERROR_NO_CHILD";
+
+const char nErrWouldBlockStr[]      = "NERROR_WOULD_BLOCK";
 
 const char nErrMaxStr[]             = "NERROR_MAX";
 
@@ -103,6 +106,9 @@ const char * nErrorStrings[] = {
     nErrNoDeviceStr,
     nErrMaxArgsStr,
     nErrInvExecFormatStr,
+    nErrNoChildStr,
+    
+    nErrWouldBlockStr,
     
     nErrMaxStr
 };
@@ -130,6 +136,9 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrMaxArgsStr),
     sizeof(nErrInvExecFormatStr),
     sizeof(nErrInvFPStr),
+    sizeof(nErrNoChildStr),
+    
+    sizeof(nErrWouldBlockStr),
     
     sizeof(nErrMaxStr)
 };
@@ -181,6 +190,25 @@ const char nErrDescInvExecFormatStr[]   = "Exec format error. Invalid "\
 const char nErrDescInvFPStr[]           = "Bad file descriptor. For example, "\
 "I/O on a descriptor that has been closed or reading from a descriptor open "\
 "only for writing (or vice versa).";
+const char nErrDescNoChildStr[]         = "No child process. This error "\
+"happens on operations that are supposed to manipulate child processes, when "\
+"there aren’t any processes to manipulate.";
+
+const char nErrDescWouldBlockStr[]      = "Resource temporarily unavailable; "\
+"Operation would block. The call might work if you try again later. This error "\
+"can happen in a few different situations:\n"\
+"1) An operation that would block was attempted on an object that has "\
+"non-blocking mode selected. Trying the same operation again will block until "\
+"some external condition makes it possible to read, write, or connect "\
+"(whatever the operation). You can use select to find out when the operation "\
+"will be possible.\n"\
+"2) A temporary resource shortage made an operation impossible. fork can "\
+"return this error. It indicates that the shortage is expected to pass, so "\
+"your program can try the call again later and it may succeed. It is probably "\
+"a good idea to delay for a few seconds before trying it again, to allow time "\
+"for other processes to release scarce resources. Such shortages are usually "\
+"fairly serious and affect the whole system, so usually an interactive program "\
+"should report the error to the user and return to its command loop.";
 
 const char nErrDescMaxStr[]             = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
@@ -209,6 +237,9 @@ const char * nErrorDescriptions[] = {
     nErrDescMaxArgsStr,
     nErrDescInvExecFormatStr,
     nErrDescInvFPStr,
+    nErrDescNoChildStr,
+    
+    nErrDescWouldBlockStr,
     
     nErrDescMaxStr
 };
@@ -235,6 +266,8 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescMaxArgsStr),
     sizeof(nErrDescInvExecFormatStr),
     sizeof(nErrDescInvFPStr),
+    sizeof(nErrDescNoChildStr),
+    sizeof(nErrDescWouldBlockStr),
     
     sizeof(nErrDescMaxStr)
 };
@@ -397,7 +430,7 @@ nint_t nErrorFromErrno(const int error)
         }
         break;
         #endif
-        /*#ifdef ECHILD
+        #ifdef ECHILD
         case ECHILD:
         {
             return NERROR_NO_CHILD;
@@ -508,7 +541,89 @@ nint_t nErrorFromErrno(const int error)
             return NERROR_INV_IOCTL;
         }
         break;
-        #endif*/
+        #endif
+        #ifdef ETXTBSY
+        case ETXTBSY:
+        {
+            return NERROR_TEXT_BUSY;
+        }
+        break;
+        #endif
+        #ifdef EFBIG
+        case EFBIG:
+        {
+            return NERROR_FILE_TOO_BIG;
+        }
+        break;
+        #endif
+        #ifdef ENOSPC
+        case ENOSPC:
+        {
+            return NERROR_NO_SPACE;
+        }
+        break;
+        #endif
+        #ifdef ESPIPE
+        case ESPIPE:
+        {
+            return NERROR_INV_SEEK;
+        }
+        break;
+        #endif
+        #ifdef EROFS
+        case EROFS:
+        {
+            return NERROR_READ_ONLY;
+        }
+        break;
+        #endif
+        #ifdef EMLINK
+        case EMLINK:
+        {
+            return NERROR_MAX_LINKS;
+        }
+        break;
+        #endif
+        #ifdef EPIPE
+        case EPIPE:
+        {
+            return NERROR_INV_PIPE;
+        }
+        break;
+        #endif
+        #ifdef EDOM
+        case EDOM:
+        {
+            return NERROR_DOMAIN;
+        }
+        break;
+        #endif
+        #ifdef ERANGE
+        case ERANGE:
+        {
+            return NERROR_RESULT_TOO_BIG;
+        }
+        break;
+        #endif
+        #if defined(EAGAIN) || defined(EWOULDBLOCK)
+        #ifdef EAGAIN
+        case EAGAIN:
+        #endif
+        #ifdef EWOULDBLOCK
+        case EWOULDBLOCK:
+        #endif
+        {
+            return NERROR_WOULD_BLOCK;
+        }
+        break;
+        #endif
+        #ifdef EINPROGRESS
+        case EINPROGRESS:
+        {
+            return NERROR_IN_PROGRESS;
+        }
+        break;
+        #endif
         /// @todo Continue with errnos from https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html
         default:
         {
