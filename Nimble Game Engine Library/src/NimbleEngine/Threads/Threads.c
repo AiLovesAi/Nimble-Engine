@@ -52,26 +52,26 @@
 #include <threads.h>
 #endif
 
-int32_t nThreadCreate(nThread_t * thread, int32_t attributes,
+nint_t nThreadCreate(nThread_t * thread, nint_t attributes,
                       void * (*start)(void *), void * data)
 {
     /// @todo Attributes, pointer conversion for some arguments
 #ifdef NTHREAD_WINAPI
-    *thread = CreateThread(NULL, 0, start, data, NULL);
+    *thread = CreateThread(NULL, 0, start, data, 0, NULL);
     if (*thread == NULL)
     {
         /// @todo nErrorThrow();
         return NERROR;
     }
 #elif defined(NTHREAD_PTHREAD)
-    int32_t err = pthread_create(*thread, NULL, start, data);
+    nint_t err = pthread_create(*thread, NULL, start, data);
     if (err)
     {
         /// @todo nErrorThrow();
         return NERROR;
     }
 #else
-    int32_t err = thrd_create(thread, start, data);
+    nint_t err = thrd_create(thread, start, data);
     if (err)
     {
         switch (err)
@@ -105,6 +105,42 @@ int32_t nThreadCreate(nThread_t * thread, int32_t attributes,
         return NERROR;
     }
 #endif
+}
+
+nThread_t nThreadSelf(void)
+{
+    /// @todo
+    return NSUCCESS;
+}
+
+nint_t nThreadJoin(nThread_t thread, void * ret)
+{
+    /// @todo
+    return NSUCCESS;
+}
+
+nint_t nThreadMutexCreate(nMutex_t mutex)
+{
+    /// @todo
+    return NSUCCESS;
+}
+
+nint_t nThreadMutexLock(nMutex_t mutex)
+{
+    /// @todo
+    return NSUCCESS;
+}
+
+nint_t nThreadMutexUnlock(nMutex_t mutex)
+{
+    /// @todo
+    return NSUCCESS;
+}
+
+nint_t nThreadMutexDestroy(nMutex_t mutex)
+{
+    /// @todo
+    return NSUCCESS;
 }
 
 // Threads.c

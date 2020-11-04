@@ -68,13 +68,626 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Threads.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>This class defines thread functions.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="_nimble_license_8h_source.html">../../../include/Nimble/NimbleLicense.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_errors_8h_source.html">../../../include/Nimble/NimbleEngine/Output/Errors.h</a>&quot;</code><br />
+<code>#include &lt;inttypes.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;threads.h&gt;</code><br />
+</div>
 <p><a href="_threads_8c_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aff7b47e959d06126af654dffbe0f349a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a> (<a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> *thread, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> attributes, void *(*start)(void *), void *data)</td></tr>
+<tr class="memdesc:aff7b47e959d06126af654dffbe0f349a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a thread.  <a href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">More...</a><br /></td></tr>
+<tr class="separator:aff7b47e959d06126af654dffbe0f349a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc2562bfb4e069fcf08b93043fa770d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a> (void)</td></tr>
+<tr class="memdesc:abc2562bfb4e069fcf08b93043fa770d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joins (or waits for) a thread until its completion.  <a href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">More...</a><br /></td></tr>
+<tr class="separator:abc2562bfb4e069fcf08b93043fa770d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5e752c9fec5f1e4d0596509ab72016f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a> (<a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread, void *ret)</td></tr>
+<tr class="memdesc:af5e752c9fec5f1e4d0596509ab72016f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joins (or waits for) a thread until its completion.  <a href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">More...</a><br /></td></tr>
+<tr class="separator:af5e752c9fec5f1e4d0596509ab72016f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c0440efdfb2dc726e0a7f542c93b383"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a> (<a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</td></tr>
+<tr class="memdesc:a0c0440efdfb2dc726e0a7f542c93b383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> mutex.  <a href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">More...</a><br /></td></tr>
+<tr class="separator:a0c0440efdfb2dc726e0a7f542c93b383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8818f090f3a604edfb4d2750581213c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a> (<a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</td></tr>
+<tr class="memdesc:a8818f090f3a604edfb4d2750581213c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks a mutex, or waits or the already locked mutex to unlock.  <a href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">More...</a><br /></td></tr>
+<tr class="separator:a8818f090f3a604edfb4d2750581213c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b89d83d7adac17362b8a30c1c76d7d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a> (<a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</td></tr>
+<tr class="memdesc:a3b89d83d7adac17362b8a30c1c76d7d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlocks a mutex.  <a href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">More...</a><br /></td></tr>
+<tr class="separator:a3b89d83d7adac17362b8a30c1c76d7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4236971be3d509df3739252af6acf61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a> (<a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</td></tr>
+<tr class="memdesc:ac4236971be3d509df3739252af6acf61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a mutex to prevent memory leaks.  <a href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">More...</a><br /></td></tr>
+<tr class="separator:ac4236971be3d509df3739252af6acf61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class defines thread functions. </p>
+<dl class="section author"><dt>Author</dt><dd>Avery Aaron </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.a'+'3ol'+'og'+'y@g'+'ma'+'il.'+'co'+'m'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>a3olo<span style="display: none;">.nosp@m.</span>gy@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a></p>
+<p class="interdd">Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p class="interdd">The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p class="enddd">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.t </p>
+</dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2020-11-03 </dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="aff7b47e959d06126af654dffbe0f349a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff7b47e959d06126af654dffbe0f349a">&#9670;&nbsp;</a></span>nThreadCreate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadCreate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> *&#160;</td>
+          <td class="paramname"><em>thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramname"><em>attributes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *(*)(void *)&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a thread. </p>
+<p>Creates a thread starting at <code>start()</code> where <code>data</code> is passed, whose identity is stored in <code>thread</code> with <code>attributes</code> attributes.</p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;%x\n&quot;</span>, ret);</div>
+<div class="line">    <span class="keywordflow">return</span> &amp;ret;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line">    <span class="keywordtype">int</span> arg = 10;</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;thread, 0, func, (<span class="keywordtype">void</span> *) &amp;arg) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Could not create thread.\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">    }</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Successfully created thread.\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">thread</td><td>The thread identity of the created thread. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">attributes</td><td>The attribute flags for the thread creation, or 0 for default attributes. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>Figure out the attributes for this! </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">start</td><td>The start function for the thread to start in. This function should take a <code>void</code> * argument, which <code>data</code> is sent to, and should return its return value as a <code>void</code> *. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>A pointer to the argument to pass to <code>start</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise <a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a> is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Attributes, pointer conversion for some arguments </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd><a class="el" href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1" title="Sends an error to the error callback.">nErrorThrow()</a>; </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00055">55</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+
+</div>
+</div>
+<a id="af5e752c9fec5f1e4d0596509ab72016f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5e752c9fec5f1e4d0596509ab72016f">&#9670;&nbsp;</a></span>nThreadJoin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadJoin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ret</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Joins (or waits for) a thread until its completion. </p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
+<div class="line">    <span class="keywordflow">return</span> &amp;ret;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line">    <span class="keywordtype">int</span> arg = 10;</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;thread, 0, func, (<span class="keywordtype">void</span> *) &amp;arg) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Could not create thread.\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">    }</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Successfully created thread.\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">int</span> ret;</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(thread, (<span class="keywordtype">void</span> *) &amp;ret) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Could not join thread.\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">    }</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Successfully joined thread until its completion: %d\n&quot;</span>, ret);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">thread</td><td>The thread identity of the thread to join. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ret</td><td>The return value of the thread on its completion. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise <a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a> is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00116">116</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+
+</div>
+</div>
+<a id="a0c0440efdfb2dc726e0a7f542c93b383"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c0440efdfb2dc726e0a7f542c93b383">&#9670;&nbsp;</a></span>nThreadMutexCreate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadMutexCreate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a>&#160;</td>
+          <td class="paramname"><em>mutex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> mutex. </p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(mutex);</div>
+<div class="line">    puts(<span class="stringliteral">&quot;Mutex locked.\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
+<div class="line"> </div>
+<div class="line">    puts(<span class="stringliteral">&quot;Unlocking mutex.\n&quot;</span>);</div>
+<div class="line">    <a class="code" href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a>(mutex);</div>
+<div class="line">    <span class="keywordflow">return</span> &amp;ret;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a>(mutex) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Could not create mutex.\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
+<div class="line">    <span class="keywordtype">char</span> success[] = <span class="stringliteral">&quot;Successfully created thread #0.\n&quot;</span>;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;threads[i], 0, func, (<span class="keywordtype">void</span> *) &amp;i) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">        {</div>
+<div class="line">            printf(<span class="stringliteral">&quot;Could not create thread.\n&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">        }</div>
+<div class="line">        success[<span class="keyword">sizeof</span>(success) - 4]++;</div>
+<div class="line">        puts(success);</div>
+<div class="line">     }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">int</span> ret;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(thread, (<span class="keywordtype">void</span> *) &amp;ret) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">        {</div>
+<div class="line">            printf(<span class="stringliteral">&quot;Could not join thread.\n&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">        }</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Successfully joined thread #%d until its completion.\n&quot;</span>, ret);</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a>(mutex);</div>
+<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mutex</td><td>The mutex to initialize. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise <a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a> is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00122">122</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+
+</div>
+</div>
+<a id="ac4236971be3d509df3739252af6acf61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4236971be3d509df3739252af6acf61">&#9670;&nbsp;</a></span>nThreadMutexDestroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadMutexDestroy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a>&#160;</td>
+          <td class="paramname"><em>mutex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroys a mutex to prevent memory leaks. </p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(mutex);</div>
+<div class="line">    puts(<span class="stringliteral">&quot;Mutex locked.\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
+<div class="line"> </div>
+<div class="line">    puts(<span class="stringliteral">&quot;Unlocking mutex.\n&quot;</span>);</div>
+<div class="line">    <a class="code" href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a>(mutex);</div>
+<div class="line">    <span class="keywordflow">return</span> &amp;ret;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a>(mutex) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Could not create mutex.\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
+<div class="line">    <span class="keywordtype">char</span> success[] = <span class="stringliteral">&quot;Successfully created thread #0.\n&quot;</span>;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;threads[i], 0, func, (<span class="keywordtype">void</span> *) &amp;i) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">        {</div>
+<div class="line">            printf(<span class="stringliteral">&quot;Could not create thread.\n&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">        }</div>
+<div class="line">        success[<span class="keyword">sizeof</span>(success) - 4]++;</div>
+<div class="line">        puts(success);</div>
+<div class="line">     }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">int</span> ret;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(thread, (<span class="keywordtype">void</span> *) &amp;ret) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">        {</div>
+<div class="line">            printf(<span class="stringliteral">&quot;Could not join thread.\n&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">        }</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Successfully joined thread #%d until its completion.\n&quot;</span>, ret);</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a>(mutex);</div>
+<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mutex</td><td>The mutex to destroy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise <a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a> is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00140">140</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+
+</div>
+</div>
+<a id="a8818f090f3a604edfb4d2750581213c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8818f090f3a604edfb4d2750581213c9">&#9670;&nbsp;</a></span>nThreadMutexLock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadMutexLock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a>&#160;</td>
+          <td class="paramname"><em>mutex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Locks a mutex, or waits or the already locked mutex to unlock. </p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(mutex);</div>
+<div class="line">    puts(<span class="stringliteral">&quot;Mutex locked.\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
+<div class="line"> </div>
+<div class="line">    puts(<span class="stringliteral">&quot;Unlocking mutex.\n&quot;</span>);</div>
+<div class="line">    <a class="code" href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a>(mutex);</div>
+<div class="line">    <span class="keywordflow">return</span> &amp;ret;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a>(mutex) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Could not create mutex.\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
+<div class="line">    <span class="keywordtype">char</span> success[] = <span class="stringliteral">&quot;Successfully created thread #0.\n&quot;</span>;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;threads[i], 0, func, (<span class="keywordtype">void</span> *) &amp;i) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">        {</div>
+<div class="line">            printf(<span class="stringliteral">&quot;Could not create thread.\n&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">        }</div>
+<div class="line">        success[<span class="keyword">sizeof</span>(success) - 4]++;</div>
+<div class="line">        puts(success);</div>
+<div class="line">     }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">int</span> ret;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(thread, (<span class="keywordtype">void</span> *) &amp;ret) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">        {</div>
+<div class="line">            printf(<span class="stringliteral">&quot;Could not join thread.\n&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">        }</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Successfully joined thread #%d until its completion.\n&quot;</span>, ret);</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a>(mutex);</div>
+<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mutex</td><td>The mutex to lock. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise <a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a> is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The mutex must be initialized by <a class="el" href="_threads_8h.html#ad671abc494307c1448840e42696f4bbd" title="Initializes a NULL mutex.">nThreadMutexCreate()</a> prior to use. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00128">128</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+
+</div>
+</div>
+<a id="a3b89d83d7adac17362b8a30c1c76d7d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b89d83d7adac17362b8a30c1c76d7d0">&#9670;&nbsp;</a></span>nThreadMutexUnlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadMutexUnlock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a>&#160;</td>
+          <td class="paramname"><em>mutex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unlocks a mutex. </p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(mutex);</div>
+<div class="line">    puts(<span class="stringliteral">&quot;Mutex locked.\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
+<div class="line"> </div>
+<div class="line">    puts(<span class="stringliteral">&quot;Unlocking mutex.\n&quot;</span>);</div>
+<div class="line">    <a class="code" href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a>(mutex);</div>
+<div class="line">    <span class="keywordflow">return</span> &amp;ret;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a>(mutex) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Could not create mutex.\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
+<div class="line">    <span class="keywordtype">char</span> success[] = <span class="stringliteral">&quot;Successfully created thread #0.\n&quot;</span>;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;threads[i], 0, func, (<span class="keywordtype">void</span> *) &amp;i) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">        {</div>
+<div class="line">            printf(<span class="stringliteral">&quot;Could not create thread.\n&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">        }</div>
+<div class="line">        success[<span class="keyword">sizeof</span>(success) - 4]++;</div>
+<div class="line">        puts(success);</div>
+<div class="line">     }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">int</span> ret;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(thread, (<span class="keywordtype">void</span> *) &amp;ret) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">        {</div>
+<div class="line">            printf(<span class="stringliteral">&quot;Could not join thread.\n&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">        }</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Successfully joined thread #%d until its completion.\n&quot;</span>, ret);</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a>(mutex);</div>
+<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mutex</td><td>The mutex to unlock. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise <a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a> is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The mutex must be initialized by <a class="el" href="_threads_8h.html#ad671abc494307c1448840e42696f4bbd" title="Initializes a NULL mutex.">nThreadMutexCreate()</a> prior to use. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00134">134</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+
+</div>
+</div>
+<a id="abc2562bfb4e069fcf08b93043fa770d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc2562bfb4e069fcf08b93043fa770d5">&#9670;&nbsp;</a></span>nThreadSelf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> nThreadSelf </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Joins (or waits for) a thread until its completion. </p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
+<div class="line">    <span class="keywordflow">return</span> &amp;ret;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line">    <span class="keywordtype">int</span> arg = 10;</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;thread, 0, func, (<span class="keywordtype">void</span> *) &amp;arg) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;Could not create thread.\n&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line">    }</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Successfully created thread.\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>The <code>nThread_t</code> of the invoking thread if successful; otherwise <a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a> is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00110">110</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
+<div class="ttc" id="a_threads_8c_html_af5e752c9fec5f1e4d0596509ab72016f"><div class="ttname"><a href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a></div><div class="ttdeci">nint_t nThreadJoin(nThread_t thread, void *ret)</div><div class="ttdoc">Joins (or waits for) a thread until its completion.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00116">Threads.c:116</a></div></div>
+<div class="ttc" id="a_threads_8c_html_ac4236971be3d509df3739252af6acf61"><div class="ttname"><a href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a></div><div class="ttdeci">nint_t nThreadMutexDestroy(nMutex_t mutex)</div><div class="ttdoc">Destroys a mutex to prevent memory leaks.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00140">Threads.c:140</a></div></div>
+<div class="ttc" id="a_threads_8c_html_a8818f090f3a604edfb4d2750581213c9"><div class="ttname"><a href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a></div><div class="ttdeci">nint_t nThreadMutexLock(nMutex_t mutex)</div><div class="ttdoc">Locks a mutex, or waits or the already locked mutex to unlock.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00128">Threads.c:128</a></div></div>
+<div class="ttc" id="a_threads_8c_html_abc2562bfb4e069fcf08b93043fa770d5"><div class="ttname"><a href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a></div><div class="ttdeci">nThread_t nThreadSelf(void)</div><div class="ttdoc">Joins (or waits for) a thread until its completion.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00110">Threads.c:110</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00127">Nimble.h:127</a></div></div>
+<div class="ttc" id="a_threads_8h_html_adf8e53aef7ecfc328eec93f6e35b7746"><div class="ttname"><a href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a></div><div class="ttdeci">mtx_t * nMutex_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00070">Threads.h:70</a></div></div>
+<div class="ttc" id="a_threads_8c_html_aff7b47e959d06126af654dffbe0f349a"><div class="ttname"><a href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a></div><div class="ttdeci">nint_t nThreadCreate(nThread_t *thread, nint_t attributes, void *(*start)(void *), void *data)</div><div class="ttdoc">Creates a thread.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00055">Threads.c:55</a></div></div>
+<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
+<div class="ttc" id="a_threads_8c_html_a3b89d83d7adac17362b8a30c1c76d7d0"><div class="ttname"><a href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a></div><div class="ttdeci">nint_t nThreadMutexUnlock(nMutex_t mutex)</div><div class="ttdoc">Unlocks a mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00134">Threads.c:134</a></div></div>
+<div class="ttc" id="a_threads_8h_html_a24cc6d228c1c5e77e8bf4ba454e75f87"><div class="ttname"><a href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a></div><div class="ttdeci">thrd_t * nThread_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00069">Threads.h:69</a></div></div>
+<div class="ttc" id="a_threads_8c_html_a0c0440efdfb2dc726e0a7f542c93b383"><div class="ttname"><a href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a></div><div class="ttdeci">nint_t nThreadMutexCreate(nMutex_t mutex)</div><div class="ttdoc">Initializes a NULL mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00122">Threads.c:122</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

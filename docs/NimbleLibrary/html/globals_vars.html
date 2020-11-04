@@ -68,7 +68,10 @@ $(function() {
 
 <h3><a id="index_c"></a>- c -</h3><ul>
 <li>crashCallback
-: <a class="el" href="_crash_handler_8c.html#ad3eb694d5a211180d68726796f33af68">CrashHandler.c</a>
+: <a class="el" href="_crash_handler_8c.html#ade2cb6de40c4551c99164769edf3f2fb">CrashHandler.c</a>
+</li>
+<li>crashMutex
+: <a class="el" href="_crash_handler_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3">CrashHandler.c</a>
 </li>
 <li>crashtest
 : <a class="el" href="_crash_handler_8c.html#a2d18ce4502a3a450ce12415f679d80b7">CrashHandler.c</a>
@@ -78,7 +81,7 @@ $(function() {
 
 <h3><a id="index_e"></a>- e -</h3><ul>
 <li>errorCallback
-: <a class="el" href="_errors_8c.html#afbaaff0108bfb6549130e1a72e3c9a05">Errors.c</a>
+: <a class="el" href="_errors_8c.html#ab46836b186757a790d96bbcc1cb240f9">Errors.c</a>
 </li>
 </ul>
 
@@ -92,20 +95,44 @@ $(function() {
 
 
 <h3><a id="index_n"></a>- n -</h3><ul>
-<li>nErrDecInternalFailureStr
-: <a class="el" href="_errors_8c.html#a9f2c7a0588df58a9d04aaffa8626b5b6">Errors.c</a>
+<li>nErrDescInternalFailureStr
+: <a class="el" href="_errors_8c.html#a542e36d296cc5efbb93498588602c690">Errors.c</a>
 </li>
-<li>nErrDescErrorNotFoundStr
-: <a class="el" href="_errors_8c.html#a5868a4b4cb3385f8f4ffccf42a9cbd16">Errors.c</a>
+<li>nErrDescInterruptStr
+: <a class="el" href="_errors_8c.html#ac21a44759e82f0ba3105140be4050cc2">Errors.c</a>
 </li>
-<li>nErrDescFileNotFoundStr
-: <a class="el" href="_errors_8c.html#a4353de60fd06a4f1731033c6f3382323">Errors.c</a>
+<li>nErrDescInvErrorStr
+: <a class="el" href="_errors_8c.html#af0da9d0f1d3ee54189753547b9f80e8e">Errors.c</a>
+</li>
+<li>nErrDescInvExecFormatStr
+: <a class="el" href="_errors_8c.html#a2ed47101fbc97594f8dd22f825be6d66">Errors.c</a>
+</li>
+<li>nErrDescInvFPStr
+: <a class="el" href="_errors_8c.html#aba5c1b809434adcc0e3357e62287612b">Errors.c</a>
+</li>
+<li>nErrDescIOStr
+: <a class="el" href="_errors_8c.html#aae30b00559769f6349b59fbc59921a39">Errors.c</a>
+</li>
+<li>nErrDescMaxArgsStr
+: <a class="el" href="_errors_8c.html#ae5f9247a50e0d075f74a816decc3a1df">Errors.c</a>
 </li>
 <li>nErrDescMaxStr
 : <a class="el" href="_errors_8c.html#acab0227cff8650d2f69048554baeaeb0">Errors.c</a>
 </li>
 <li>nErrDescMinStr
 : <a class="el" href="_errors_8c.html#a21e1a77ae4589e911f35570cbd97632c">Errors.c</a>
+</li>
+<li>nErrDescNoDeviceStr
+: <a class="el" href="_errors_8c.html#a7ad1a4bb74e3bf88008548b5cdcc919e">Errors.c</a>
+</li>
+<li>nErrDescNoFileStr
+: <a class="el" href="_errors_8c.html#ac60755889d4e9da5fd40892a1bbaa405">Errors.c</a>
+</li>
+<li>nErrDescNoPermStr
+: <a class="el" href="_errors_8c.html#a5ecd01255d7449b849b607ee45db8944">Errors.c</a>
+</li>
+<li>nErrDescNoProcessStr
+: <a class="el" href="_errors_8c.html#ae3ae69fe47b9d7b6afc3a873ed69d169">Errors.c</a>
 </li>
 <li>nErrDescNullStr
 : <a class="el" href="_errors_8c.html#adff5072b6a77c292d28e8fc3d0779d0e">Errors.c</a>
@@ -131,14 +158,26 @@ $(function() {
 <li>nErrDescUnknownStr
 : <a class="el" href="_errors_8c.html#a9b58be1432beabae618e1ccbb64b3331">Errors.c</a>
 </li>
-<li>nErrErrorNotFoundStr
-: <a class="el" href="_errors_8c.html#abcfc452b2a52b1d722b594d21da5a664">Errors.c</a>
-</li>
-<li>nErrFileNotFoundStr
-: <a class="el" href="_errors_8c.html#a2ff59df63c38a7633269f055c48a89f7">Errors.c</a>
-</li>
 <li>nErrInternalFailureStr
 : <a class="el" href="_errors_8c.html#aa94fd8144a129abb850827d448840f70">Errors.c</a>
+</li>
+<li>nErrInterruptStr
+: <a class="el" href="_errors_8c.html#a18b7ce575b6c470740d4f1d5cb1fb86a">Errors.c</a>
+</li>
+<li>nErrInvErrorStr
+: <a class="el" href="_errors_8c.html#a452454c3e1aa1651ff0e62f45a49f696">Errors.c</a>
+</li>
+<li>nErrInvExecFormatStr
+: <a class="el" href="_errors_8c.html#a9a40be49162b962fac725f67d948c133">Errors.c</a>
+</li>
+<li>nErrInvFPStr
+: <a class="el" href="_errors_8c.html#ab9a7629813dcf56681b9232a7c6b76b8">Errors.c</a>
+</li>
+<li>nErrIOStr
+: <a class="el" href="_errors_8c.html#ac75ecdefd0d0956408e9b028c20b288a">Errors.c</a>
+</li>
+<li>nErrMaxArgsStr
+: <a class="el" href="_errors_8c.html#a8a7d9b2f898d5a8a171a73b98a294a84">Errors.c</a>
 </li>
 <li>nErrMaxStr
 : <a class="el" href="_errors_8c.html#a515d7ecf1a4c7640e188d459a9d162c6">Errors.c</a>
@@ -146,18 +185,30 @@ $(function() {
 <li>nErrMinStr
 : <a class="el" href="_errors_8c.html#ad8e0c07b8f24abd04aad4b8999d0d351">Errors.c</a>
 </li>
+<li>nErrNoDeviceStr
+: <a class="el" href="_errors_8c.html#acce0900e1e744853b492cdc4c4a36ae2">Errors.c</a>
+</li>
+<li>nErrNoFileStr
+: <a class="el" href="_errors_8c.html#a6fc019b0d50ca5b0f1013fd1ce1f83a5">Errors.c</a>
+</li>
+<li>nErrNoPermStr
+: <a class="el" href="_errors_8c.html#ac98a60c69b0cae7472584bef2f65e811">Errors.c</a>
+</li>
+<li>nErrNoProcessStr
+: <a class="el" href="_errors_8c.html#a5989f3e94cd31ab9c808a7476ea69413">Errors.c</a>
+</li>
 <li>nErrNullStr
 : <a class="el" href="_errors_8c.html#afead839202aa4d5b6ac57b34e7e51e68">Errors.c</a>
 </li>
 <li>nErrorDescLengths
-: <a class="el" href="_errors_8c.html#a6ceedb606c2897b267a507e35c356e37">Errors.c</a>
+: <a class="el" href="_errors_8c.html#a5327fef2f77d30c35de589010fd75683">Errors.c</a>
 </li>
 <li>nErrorDescriptions
 : <a class="el" href="_errors_8c.html#a84bfb01a665003519a4987d7e5a543c4">Errors.c</a>
 , <a class="el" href="_errors_8h.html#a211850f60c9938f003e303e7d78d9a15">Errors.h</a>
 </li>
 <li>nErrorStringLengths
-: <a class="el" href="_errors_8c.html#af6a6d14e186b8b2407d03017170d4aa0">Errors.c</a>
+: <a class="el" href="_errors_8c.html#a67be449a641a523a7f488f29f3584de5">Errors.c</a>
 </li>
 <li>nErrorStrings
 : <a class="el" href="_errors_8c.html#a6a0720ef0b8154b77efda6dae86c358a">Errors.c</a>

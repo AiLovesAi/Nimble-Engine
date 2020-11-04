@@ -69,22 +69,42 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt>Global <a class="el" href="_crash_handler_8c.html#a95059c5f795d58abf94b09762c974ea1">nCrashHandlerDefault</a>  (const int32_t error, const time_t errorTime, char *errorDesc, int32_t errorDescLen, char *stack, int32_t stackLen)</dt>
+<dt>Global <a class="el" href="_crash_handler_8c.html#af5c3239ed0279c3c08553d3e0210aee1">nCrashHandlerDefault</a>  (const nint_t error, const time_t errorTime, char *errorDesc, nint_t errorDescLen, char *stack, nint_t stackLen)</dt>
 <dd><a class="anchor" id="_todo000001"></a>Make default callback (threads, engine, logs, etc.).  </dd>
-<dt>Global <a class="el" href="_errors_8c.html#a01ea162685de9ac9bd12f2b44c819b6f">nErrorHandlerDefault</a>  (const int32_t error, const time_t errorTime, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen)</dt>
+<dt>Global <a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">nErrorHandlerDefault</a>  (const nint_t error, const time_t errorTime, const char *errorDesc, const nint_t errorDescLen, const char *stack, const nint_t stackLen)</dt>
 <dd><a class="anchor" id="_todo000002"></a>Make default callback.  </dd>
-<dt>Global <a class="el" href="_errors_8c.html#aa87886c559395e1bc5cda18e2de0c981">nErrorGetStacktrace</a>  (char *dst, int32_t *stackLen, int32_t *stackLevels)</dt>
-<dd><a class="anchor" id="_todo000003"></a>Get stack trace. Remember *stackLevels is max levels  </dd>
-<dt>Global <a class="el" href="_nimble_engine_8c.html#ab8c7bd56f1a182aae20bfe4b83efc9b6">nEngineExit</a>  (void)</dt>
-<dd><a class="anchor" id="_todo000004"></a>Make safe exit function  </dd>
-<dt>Global <a class="el" href="_nimble_engine_8c.html#a9470a2860fd6fa483bafd576bf72684e">nEngineInit</a>  (void(*errorCallback)(const int32_t error, const time_t errorTime, char *errorDesc, int32_t errorDescLen, char *stack, int32_t stackLen), void(*crashCallback)(const int32_t error, const time_t errorTime, char *errorDesc, int32_t errorDescLen, char *stack, int32_t stackLen))</dt>
-<dd><a class="anchor" id="_todo000005"></a>Make init function  </dd>
-<dt>page <a class="el" href="index.html">Nimble Game Engine Library</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000006"></a>Explain how to link the library or use the app to write code </p>
-<p class="enddd"><a class="anchor" id="_todo000007"></a>Explain how to get started, setting up a window and doing basic 2D/3D stuff </p>
+<dt>Global <a class="el" href="_errors_8c.html#afacd40936484e65be2f6a1920cc87482">nErrorFromErrno</a>  (const int error)</dt>
+<dd><a class="anchor" id="_todo000003"></a>Continue with errnos from <a href="https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html">https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html</a>  </dd>
+<dt>Global <a class="el" href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">nErrorGetStacktrace</a>  (char *dst, nint_t *stackLen, nint_t *stackLevels)</dt>
+<dd><a class="anchor" id="_todo000004"></a>Get stack trace. Remember *stackLevels is max levels  </dd>
+<dt>Global <a class="el" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>  (nThread_t *thread, nint_t attributes, void *(*start)(void *), void *data)</dt>
+<dd><p class="startdd"><a class="anchor" id="_todo000005"></a>Attributes, pointer conversion for some arguments </p>
+<p class="enddd"><a class="anchor" id="_todo000006"></a><a class="el" href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1" title="Sends an error to the error callback.">nErrorThrow()</a>;  </p>
 </dd>
-<dt>Global <a class="el" href="_errors_8c.html#a7ce818a6ef8c3ad8d003f25d7aa1482f">nErrorToStringLocal</a>  (char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</dt>
-<dd><a class="anchor" id="_todo000008"></a>Do this </dd>
+<dt>Global <a class="el" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>  (void)</dt>
+<dd><a class="anchor" id="_todo000007"></a>  </dd>
+<dt>Global <a class="el" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>  (nThread_t thread, void *ret)</dt>
+<dd><a class="anchor" id="_todo000008"></a>  </dd>
+<dt>Global <a class="el" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a>  (nMutex_t mutex)</dt>
+<dd><a class="anchor" id="_todo000009"></a>  </dd>
+<dt>Global <a class="el" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>  (nMutex_t mutex)</dt>
+<dd><a class="anchor" id="_todo000010"></a>  </dd>
+<dt>Global <a class="el" href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a>  (nMutex_t mutex)</dt>
+<dd><a class="anchor" id="_todo000011"></a>  </dd>
+<dt>Global <a class="el" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a>  (nMutex_t mutex)</dt>
+<dd><a class="anchor" id="_todo000012"></a>  </dd>
+<dt>Global <a class="el" href="_nimble_engine_8c.html#ab8c7bd56f1a182aae20bfe4b83efc9b6">nEngineExit</a>  (void)</dt>
+<dd><a class="anchor" id="_todo000013"></a>Make safe exit function  </dd>
+<dt>Global <a class="el" href="_nimble_engine_8c.html#aeb160911f12c65f5af5e37643a16f4a1">nEngineInit</a>  (void(*errorCallback)(const nint_t error, const time_t errorTime, char *errorDesc, nint_t errorDescLen, char *stack, nint_t stackLen), void(*crashCallback)(const nint_t error, const time_t errorTime, char *errorDesc, nint_t errorDescLen, char *stack, nint_t stackLen))</dt>
+<dd><a class="anchor" id="_todo000014"></a>Make init function  </dd>
+<dt>page <a class="el" href="index.html">Nimble Game Engine Library</a>  </dt>
+<dd><p class="startdd"><a class="anchor" id="_todo000015"></a>Explain how to link the library or use the app to write code </p>
+<p class="enddd"><a class="anchor" id="_todo000016"></a>Explain how to get started, setting up a window and doing basic 2D/3D stuff </p>
+</dd>
+<dt>Global <a class="el" href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">nErrorToStringLocal</a>  (char *dst, nint_t *errorLen, const nint_t error, const char *info, nint_t infoLen)</dt>
+<dd><a class="anchor" id="_todo000017"></a>Do this  </dd>
+<dt>Global <a class="el" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>  (nThread_t *thread, nint_t attributes, void *(*start)(void *), void *data)</dt>
+<dd><a class="anchor" id="_todo000018"></a>Figure out the attributes for this! </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

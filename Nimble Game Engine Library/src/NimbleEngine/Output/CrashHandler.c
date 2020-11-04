@@ -163,8 +163,8 @@ void nCrashSignal(const int signum)
 
 void nCrashAbort(const nint_t error)
 {
-    fprintf(stderr, "Aborting program with error code: %s (%d)",
-     NERROR_STRING(error), error);
+    fprintf(stderr, "Aborting program with error code: %s (%d) - %s",
+     nErrorStr(error), error, nErrorDesc(error));
     abort();
     /* NO RETURN */
 }

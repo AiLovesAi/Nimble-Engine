@@ -48,7 +48,7 @@ extern "C" {
 
 #include "../../NimbleEngine.h"
 
-#ifdef (_WIN32)
+#ifdef _WIN32
 #include <windows.h>
 #define NTHREAD_WINAPI
 
@@ -118,9 +118,9 @@ typedef mtx_t * nMutex_t;
  * nErrorHandlerSetErrorCallback().
  */
 NIMBLE_EXTERN
-int32_t
+nint_t
 nThreadCreate(nThread_t * thread,
-              int32_t attributes,
+              nint_t attributes,
               void * (*start)(void *),
               void * data
               );
@@ -215,7 +215,7 @@ nThreadSelf(void
  * nErrorHandlerSetErrorCallback().
  */
 NIMBLE_EXTERN
-int32_t
+nint_t
 nThreadJoin(nThread_t thread,
             void * ret
             );
@@ -288,7 +288,7 @@ nThreadJoin(nThread_t thread,
  * nErrorHandlerSetErrorCallback().
  */
 NIMBLE_EXTERN
-int32_t
+nint_t
 nThreadMutexCreate(nMutex_t mutex
                    );
 /**
@@ -360,7 +360,7 @@ nThreadMutexCreate(nMutex_t mutex
  * @note The mutex must be initialized by nThreadMutexCreate() prior to use.
  */
 NIMBLE_EXTERN
-int32_t
+nint_t
 nThreadMutexLock(nMutex_t mutex
                  );
 
@@ -433,7 +433,7 @@ nThreadMutexLock(nMutex_t mutex
  * @note The mutex must be initialized by nThreadMutexCreate() prior to use.
  */
 NIMBLE_EXTERN
-int32_t
+nint_t
 nThreadMutexUnlock(nMutex_t mutex
                    );
 
@@ -505,7 +505,7 @@ nThreadMutexUnlock(nMutex_t mutex
  * nErrorHandlerSetErrorCallback().
  */
 NIMBLE_EXTERN
-int32_t
+nint_t
 nThreadMutexDestroy(nMutex_t mutex
                     );
 

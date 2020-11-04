@@ -70,7 +70,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">Nimble.h File Reference</div>  </div>
 </div><!--header-->
@@ -79,7 +79,7 @@ $(function() {
 <p>Defines the macros that are used by other files.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_nimble_license_8h_source.html">NimbleLicense.h</a>&quot;</code><br />
-<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;inttypes.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 </div>
 <p><a href="_nimble_8h_source.html">Go to the source code of this file.</a></p>
@@ -104,11 +104,28 @@ Macros</h2></td></tr>
 <tr class="memitem:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>&#160;&#160;&#160;((void *) 0)</td></tr>
 <tr class="memdesc:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Null pointer.  <a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">More...</a><br /></td></tr>
 <tr class="separator:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a26e97861a00f16172cc85dc5b9b041"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a>(ptr)&#160;&#160;&#160;({free(ptr);<a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;})</td></tr>
+<tr class="memdesc:a8a26e97861a00f16172cc85dc5b9b041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a pointer.  <a href="_nimble_8h.html#a8a26e97861a00f16172cc85dc5b9b041">More...</a><br /></td></tr>
+<tr class="separator:a8a26e97861a00f16172cc85dc5b9b041"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ab00257d1df4dc613f905152ff0768c03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#ab00257d1df4dc613f905152ff0768c03">nFree</a> (void *ptr)</td></tr>
-<tr class="separator:ab00257d1df4dc613f905152ff0768c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ab018ac8f36b4dec177a16fa18c168cdd"><td class="memItemLeft" align="right" valign="top">typedef int_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#ab018ac8f36b4dec177a16fa18c168cdd">nbyte_t</a></td></tr>
+<tr class="separator:ab018ac8f36b4dec177a16fa18c168cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9971e2754d9d28c84a2bdb18fd13abd8"><td class="memItemLeft" align="right" valign="top">typedef uint_fast8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#a9971e2754d9d28c84a2bdb18fd13abd8">nubyte_t</a></td></tr>
+<tr class="separator:a9971e2754d9d28c84a2bdb18fd13abd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07c7840c48ff44655d8ab1531037775e"><td class="memItemLeft" align="right" valign="top">typedef int_fast16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#a07c7840c48ff44655d8ab1531037775e">nshort_t</a></td></tr>
+<tr class="separator:a07c7840c48ff44655d8ab1531037775e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1543b62ee8ace527b78d8e63ce9f69e0"><td class="memItemLeft" align="right" valign="top">typedef uint_fast16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#a1543b62ee8ace527b78d8e63ce9f69e0">nushort_t</a></td></tr>
+<tr class="separator:a1543b62ee8ace527b78d8e63ce9f69e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a437464835742c38c8b375c048b8f8993"><td class="memItemLeft" align="right" valign="top">typedef int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></td></tr>
+<tr class="separator:a437464835742c38c8b375c048b8f8993"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b550e9b53a564a8bb9009f77ae7cfe3"><td class="memItemLeft" align="right" valign="top">typedef uint_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#a8b550e9b53a564a8bb9009f77ae7cfe3">nuint_t</a></td></tr>
+<tr class="separator:a8b550e9b53a564a8bb9009f77ae7cfe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab98723b54366ad2cc7b911b277fd5e48"><td class="memItemLeft" align="right" valign="top">typedef intmax_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#ab98723b54366ad2cc7b911b277fd5e48">nlong_t</a></td></tr>
+<tr class="separator:ab98723b54366ad2cc7b911b277fd5e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdb3781e72f7880798ef74cb89c9996d"><td class="memItemLeft" align="right" valign="top">typedef uintmax_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#afdb3781e72f7880798ef74cb89c9996d">nulong_t</a></td></tr>
+<tr class="separator:afdb3781e72f7880798ef74cb89c9996d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines the macros that are used by other files. </p>
@@ -123,6 +140,54 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a8a26e97861a00f16172cc85dc5b9b041"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a26e97861a00f16172cc85dc5b9b041">&#9670;&nbsp;</a></span>nFree</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define nFree</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ptr</td><td>)</td>
+          <td>&#160;&#160;&#160;({free(ptr);<a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;})</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Frees a pointer. </p>
+<p>Frees a pointer and returns <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> to allow the invoker to optionally nullify the pointer. Should the freed pointer location be needed again, no assignment is necessary.</p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordtype">char</span> original[] = <span class="stringliteral">&quot;Hello world.&quot;</span>;</div>
+<div class="line">    <span class="keywordtype">char</span> * <span class="keyword">new</span> = malloc(<span class="keyword">sizeof</span>(original) + 1);</div>
+<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original) - 1] = <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original)] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line">    puts(<span class="keyword">new</span>);</div>
+<div class="line">    <span class="keyword">new</span> = <a class="code" href="_nimble_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a>(<span class="keyword">new</span>);</div>
+<div class="line">    <span class="keywordflow">if</span> (<span class="keyword">new</span>)</div>
+<div class="line">    {</div>
+<div class="line">        puts(<span class="stringliteral">&quot;We will get here only if we use nFree(new) with no assignment!&quot;</span>);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>The pointer to free. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> is always returned. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00177">177</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+
+</div>
+</div>
 <a id="a217e8380e1998f7b39a24176186eeaa4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a217e8380e1998f7b39a24176186eeaa4">&#9670;&nbsp;</a></span>NIMBLE_EXPORT</h2>
 
@@ -137,7 +202,7 @@ Functions</h2></td></tr>
 
 <p>Export alias. </p>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00110">110</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00118">118</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
@@ -155,7 +220,7 @@ Functions</h2></td></tr>
 
 <p>Extern alias. </p>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00116">116</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00124">124</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
@@ -191,7 +256,7 @@ Functions</h2></td></tr>
 
 <p>Inline alias. </p>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00113">113</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00121">121</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
@@ -209,7 +274,7 @@ Functions</h2></td></tr>
 
 <p>Local alias. </p>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00111">111</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00119">119</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
@@ -227,32 +292,142 @@ Functions</h2></td></tr>
 
 <p>Null pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00119">119</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00127">127</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ab00257d1df4dc613f905152ff0768c03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab00257d1df4dc613f905152ff0768c03">&#9670;&nbsp;</a></span>nFree()</h2>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ab018ac8f36b4dec177a16fa18c168cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab018ac8f36b4dec177a16fa18c168cdd">&#9670;&nbsp;</a></span>nbyte_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a> void nFree </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>ptr</em></td><td>)</td>
-          <td></td>
+          <td class="memname">typedef int_fast8_t <a class="el" href="_nimble_8h.html#ab018ac8f36b4dec177a16fa18c168cdd">nbyte_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00123">123</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00131">131</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+
+</div>
+</div>
+<a id="a437464835742c38c8b375c048b8f8993"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a437464835742c38c8b375c048b8f8993">&#9670;&nbsp;</a></span>nint_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int_fast32_t <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00135">135</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+
+</div>
+</div>
+<a id="ab98723b54366ad2cc7b911b277fd5e48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab98723b54366ad2cc7b911b277fd5e48">&#9670;&nbsp;</a></span>nlong_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef intmax_t <a class="el" href="_nimble_8h.html#ab98723b54366ad2cc7b911b277fd5e48">nlong_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00141">141</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+
+</div>
+</div>
+<a id="a07c7840c48ff44655d8ab1531037775e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07c7840c48ff44655d8ab1531037775e">&#9670;&nbsp;</a></span>nshort_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int_fast16_t <a class="el" href="_nimble_8h.html#a07c7840c48ff44655d8ab1531037775e">nshort_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00133">133</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+
+</div>
+</div>
+<a id="a9971e2754d9d28c84a2bdb18fd13abd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9971e2754d9d28c84a2bdb18fd13abd8">&#9670;&nbsp;</a></span>nubyte_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint_fast8_t <a class="el" href="_nimble_8h.html#a9971e2754d9d28c84a2bdb18fd13abd8">nubyte_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00132">132</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+
+</div>
+</div>
+<a id="a8b550e9b53a564a8bb9009f77ae7cfe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b550e9b53a564a8bb9009f77ae7cfe3">&#9670;&nbsp;</a></span>nuint_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint_fast32_t <a class="el" href="_nimble_8h.html#a8b550e9b53a564a8bb9009f77ae7cfe3">nuint_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00136">136</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+
+</div>
+</div>
+<a id="afdb3781e72f7880798ef74cb89c9996d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdb3781e72f7880798ef74cb89c9996d">&#9670;&nbsp;</a></span>nulong_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uintmax_t <a class="el" href="_nimble_8h.html#afdb3781e72f7880798ef74cb89c9996d">nulong_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00142">142</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
+
+</div>
+</div>
+<a id="a1543b62ee8ace527b78d8e63ce9f69e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1543b62ee8ace527b78d8e63ce9f69e0">&#9670;&nbsp;</a></span>nushort_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint_fast16_t <a class="el" href="_nimble_8h.html#a1543b62ee8ace527b78d8e63ce9f69e0">nushort_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00134">134</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
+<div class="ttc" id="a_nimble_8h_html_a8a26e97861a00f16172cc85dc5b9b041"><div class="ttname"><a href="_nimble_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a></div><div class="ttdeci">#define nFree(ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00177">Nimble.h:177</a></div></div>
+<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

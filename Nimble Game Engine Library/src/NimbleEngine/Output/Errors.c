@@ -41,7 +41,7 @@
  * @brief This class defines error values and error handling functions.
  */
 
-#include <errorno.h>
+#include <errno.h>
 #include <inttypes.h>
 #include <signal.h>
 #include <stdio.h>
@@ -134,54 +134,55 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrMaxStr)
 };
 
-const char nErrDescMinStr[]            = "The minimum error value, likely "\
+const char nErrDescMinStr[]             = "The minimum error value, likely "\
 "caused by programmer error or a corruption issue.";
 
-const char nErrDescUnknownStr[]        = "An unknown error occurred.";
-const char nErrDecInternalFailureStr[] = "An internal error occurred within "\
+const char nErrDescUnknownStr[]         = "An unknown error occurred.";
+const char nErrDescInternalFailureStr[] = "An internal error occurred within "\
 "the Nimble game engine.";
-const char nErrDescNullStr[]           = "A pointer was null when a nonnull "\
+const char nErrDescNullStr[]            = "A pointer was null when a nonnull "\
 "pointer was expected.";
-const char nErrDescInvErrorStr[]       = "An error passed to a function was "\
+const char nErrDescInvErrorStr[]        = "An error passed to a function was "\
 "not valid.";
 
-const char nErrDescSigAbrtStr[]        = "Caught an abort signal.";
-const char nErrDescSigFpeStr[]         = "Caught a floating point exception "\
+const char nErrDescSigAbrtStr[]         = "Caught an abort signal.";
+const char nErrDescSigFpeStr[]          = "Caught a floating point exception "\
 "signal.";
-const char nErrDescSigIllStr[]         = "Caught an illegal instruction signal.";
-const char nErrDescSigIntStr[]         = "Caught an interrupt signal";
-const char nErrDescSigSegvStr[]        = "Caught a memory address violation "\
+const char nErrDescSigIllStr[]          = "Caught an illegal instruction "\
 "signal.";
-const char nErrDescSigTermStr[]        = "Caught a termination signal.";
+const char nErrDescSigIntStr[]          = "Caught an interrupt signal";
+const char nErrDescSigSegvStr[]         = "Caught a memory address violation "\
+"signal.";
+const char nErrDescSigTermStr[]         = "Caught a termination signal.";
 
-const char nErrDescNoPermStr[]         = "Operation not permitted. Only the "\
+const char nErrDescNoPermStr[]          = "Operation not permitted. Only the "\
 "owner of the file (or other resource) or processes with special privileges "\
 "can perform the operation.";
-const char nErrDescNoFileStr[]         = "No such file or directory. This is a "\
-"\"file doesn't exist\" error for ordinary files that are referenced in "\
+const char nErrDescNoFileStr[]          = "No such file or directory. This is "\
+"a \"file doesn't exist\" error for ordinary files that are referenced in "\
 "contexts where they are expected to already exist.";
-const char nErrDescNoProcessStr[]      = "No such process. No process matches "\
+const char nErrDescNoProcessStr[]       = "No such process. No process matches "\
 "the specified process ID.";
-const char nErrDescInterruptStr[]      = "Interrupted system call. An "\
+const char nErrDescInterruptStr[]       = "Interrupted system call. An "\
 "asynchronous signal occurred and prevented completion of the call. When this "\
 "happens, you should try the call again.";
-const char nErrDescIOStr[]             = "Input/output error. Usually used for "\
-"physical read or write errors.";
-const char nErrDescNoDeviceStr[]       = "No such device or address. The "\
+const char nErrDescIOStr[]              = "Input/output error. Usually used "\
+"for physical read or write errors.";
+const char nErrDescNoDeviceStr[]        = "No such device or address. The "\
 "system tried to use the device represented by a file you specified, and it "\
 "couldn't find the device. This can mean that the device file was installed "\
 "incorrectly, or that the physical device is missing or not correctly attached "\
 "to the computer.";
-const char nErrDescMaxArgsStr[]        = "Argument list too long. Used when "\
+const char nErrDescMaxArgsStr[]         = "Argument list too long. Used when "\
 "the arguments passed to a new program being executed with one of the exec "\
 "functions occupy too much memory space.";
-const char nErrDescInvExecFormatStr[]  = "Exec format error. Invalid "\
+const char nErrDescInvExecFormatStr[]   = "Exec format error. Invalid "\
 "executable file format. This condition is detected by the exec functions.";
-const char nErrDescInvFPStr[]          = "Bad file descriptor. For example, "\
+const char nErrDescInvFPStr[]           = "Bad file descriptor. For example, "\
 "I/O on a descriptor that has been closed or reading from a descriptor open "\
 "only for writing (or vice versa).";
 
-const char nErrDescMaxStr[]            = "The maximum error value, likely "\
+const char nErrDescMaxStr[]             = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
 
 
@@ -189,7 +190,7 @@ const char * nErrorDescriptions[] = {
     nErrDescMinStr,
     
     nErrDescUnknownStr,
-    nErrDecInternalFailureStr,
+    nErrDescInternalFailureStr,
     nErrDescNullStr,
     nErrDescInvErrorStr,
     
@@ -396,7 +397,7 @@ nint_t nErrorFromErrno(const int error)
         }
         break;
         #endif
-        #ifdef ECHILD
+        /*#ifdef ECHILD
         case ECHILD:
         {
             return NERROR_NO_CHILD;
@@ -507,7 +508,7 @@ nint_t nErrorFromErrno(const int error)
             return NERROR_INV_IOCTL;
         }
         break;
-        #endif
+        #endif*/
         /// @todo Continue with errnos from https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html
         default:
         {
@@ -566,7 +567,7 @@ nint_t nErrorToStringLocal(char * dst, nint_t * errorLen,
         infoLen = strlen(info) + 1;
     }
     
-    const char errorDesc[] = nErrDesc(error);
+    const char * errorDesc = nErrorDesc(error);
     
     if (errorDesc == NULL)
     {
@@ -580,7 +581,7 @@ nint_t nErrorToStringLocal(char * dst, nint_t * errorLen,
         return NERROR_INV_ERROR;
     }
     
-    const nint_t descLen = nErrDescLen(error);
+    const nint_t descLen = nErrorDescLen(error);
     nint_t errLen;
     if (info == NULL)
     {

@@ -85,6 +85,7 @@ enum nErrors {
     NERROR_MAX_ARGS, /**< Argument list too long. */
     NERROR_INV_EXEC_FORMAT, /**< Exec format error. */
     NERROR_INV_FP, /**< Bad file descriptor. */
+    //NERROR_NO_CHILD, /**< No child process. */
     
     NERROR_MAX /**< The maximum error number. */
 };

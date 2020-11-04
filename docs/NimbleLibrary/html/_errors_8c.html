@@ -80,7 +80,9 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_nimble_license_8h_source.html">../../../include/Nimble/NimbleLicense.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_errors_8h_source.html">../../../include/Nimble/NimbleEngine/Output/Errors.h</a>&quot;</code><br />
-<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;inttypes.h&gt;</code><br />
+<code>#include &lt;signal.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
@@ -91,24 +93,28 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a01ea162685de9ac9bd12f2b44c819b6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a01ea162685de9ac9bd12f2b44c819b6f">nErrorHandlerDefault</a> (const int32_t error, const time_t errorTime, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen)</td></tr>
-<tr class="memdesc:a01ea162685de9ac9bd12f2b44c819b6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default error handler callback.  <a href="_errors_8c.html#a01ea162685de9ac9bd12f2b44c819b6f">More...</a><br /></td></tr>
-<tr class="separator:a01ea162685de9ac9bd12f2b44c819b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada150208dfff4322a1be89604b87eb68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ada150208dfff4322a1be89604b87eb68">nErrorThrow</a> (const int32_t error, const char *info, int32_t infoLen)</td></tr>
-<tr class="memdesc:ada150208dfff4322a1be89604b87eb68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an error to the error callback.  <a href="_errors_8c.html#ada150208dfff4322a1be89604b87eb68">More...</a><br /></td></tr>
-<tr class="separator:ada150208dfff4322a1be89604b87eb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ce818a6ef8c3ad8d003f25d7aa1482f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a7ce818a6ef8c3ad8d003f25d7aa1482f">nErrorToStringLocal</a> (char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</td></tr>
-<tr class="memdesc:a7ce818a6ef8c3ad8d003f25d7aa1482f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string with no error handling.  <a href="_errors_8c.html#a7ce818a6ef8c3ad8d003f25d7aa1482f">More...</a><br /></td></tr>
-<tr class="separator:a7ce818a6ef8c3ad8d003f25d7aa1482f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade8a5b44ad47489e587d8d07d27c3464"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">nErrorToString</a> (char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</td></tr>
-<tr class="memdesc:ade8a5b44ad47489e587d8d07d27c3464"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string.  <a href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">More...</a><br /></td></tr>
-<tr class="separator:ade8a5b44ad47489e587d8d07d27c3464"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9e29925632a94959c07259a67ef85bf"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ab9e29925632a94959c07259a67ef85bf">nErrorSetCallback</a> (void(*callback)(const int32_t error, const time_t errorTime, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen))</td></tr>
-<tr class="memdesc:ab9e29925632a94959c07259a67ef85bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function to handle errors.  <a href="_errors_8c.html#ab9e29925632a94959c07259a67ef85bf">More...</a><br /></td></tr>
-<tr class="separator:ab9e29925632a94959c07259a67ef85bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa87886c559395e1bc5cda18e2de0c981"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#aa87886c559395e1bc5cda18e2de0c981">nErrorGetStacktrace</a> (char *dst, int32_t *stackLen, int32_t *stackLevels)</td></tr>
-<tr class="memdesc:aa87886c559395e1bc5cda18e2de0c981"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current stack trace as a string.  <a href="_errors_8c.html#aa87886c559395e1bc5cda18e2de0c981">More...</a><br /></td></tr>
-<tr class="separator:aa87886c559395e1bc5cda18e2de0c981"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb0b9e8cec4e120d781a875a49eb0d7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">nErrorHandlerDefault</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, const char *stack, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen)</td></tr>
+<tr class="memdesc:acb0b9e8cec4e120d781a875a49eb0d7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default error handler callback.  <a href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">More...</a><br /></td></tr>
+<tr class="separator:acb0b9e8cec4e120d781a875a49eb0d7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cad5752ceccf50ece11c1e1fcc88ee5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a7cad5752ceccf50ece11c1e1fcc88ee5">nErrorFromSignal</a> (const int error)</td></tr>
+<tr class="separator:a7cad5752ceccf50ece11c1e1fcc88ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afacd40936484e65be2f6a1920cc87482"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#afacd40936484e65be2f6a1920cc87482">nErrorFromErrno</a> (const int error)</td></tr>
+<tr class="separator:afacd40936484e65be2f6a1920cc87482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47d62aea349025651404d67b5e87bbb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1">nErrorThrow</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> infoLen)</td></tr>
+<tr class="memdesc:a47d62aea349025651404d67b5e87bbb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an error to the error callback.  <a href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1">More...</a><br /></td></tr>
+<tr class="separator:a47d62aea349025651404d67b5e87bbb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a986223a1bd08833af99d7193fbb633ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">nErrorToStringLocal</a> (char *dst, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *errorLen, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> infoLen)</td></tr>
+<tr class="memdesc:a986223a1bd08833af99d7193fbb633ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string with no error handling.  <a href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">More...</a><br /></td></tr>
+<tr class="separator:a986223a1bd08833af99d7193fbb633ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ea33a06254b37a5f515c5f24a38ea15"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">nErrorToString</a> (char *dst, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *errorLen, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> infoLen)</td></tr>
+<tr class="memdesc:a1ea33a06254b37a5f515c5f24a38ea15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string.  <a href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">More...</a><br /></td></tr>
+<tr class="separator:a1ea33a06254b37a5f515c5f24a38ea15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3cf33d6f2850edcf77840464f0e9350"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ab3cf33d6f2850edcf77840464f0e9350">nErrorSetCallback</a> (void(*callback)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, const char *stack, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen))</td></tr>
+<tr class="memdesc:ab3cf33d6f2850edcf77840464f0e9350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function to handle errors.  <a href="_errors_8c.html#ab3cf33d6f2850edcf77840464f0e9350">More...</a><br /></td></tr>
+<tr class="separator:ab3cf33d6f2850edcf77840464f0e9350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f3681cae40fc7f7bbb0d839d4a80986"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">nErrorGetStacktrace</a> (char *dst, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *stackLen, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *stackLevels)</td></tr>
+<tr class="memdesc:a2f3681cae40fc7f7bbb0d839d4a80986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current stack trace as a string.  <a href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">More...</a><br /></td></tr>
+<tr class="separator:a2f3681cae40fc7f7bbb0d839d4a80986"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -120,8 +126,8 @@ Variables</h2></td></tr>
 <tr class="separator:aa94fd8144a129abb850827d448840f70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afead839202aa4d5b6ac57b34e7e51e68"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#afead839202aa4d5b6ac57b34e7e51e68">nErrNullStr</a> [] = &quot;NERROR_NULL&quot;</td></tr>
 <tr class="separator:afead839202aa4d5b6ac57b34e7e51e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcfc452b2a52b1d722b594d21da5a664"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#abcfc452b2a52b1d722b594d21da5a664">nErrErrorNotFoundStr</a> [] = &quot;NERROR_ERROR_NOT_FOUND&quot;</td></tr>
-<tr class="separator:abcfc452b2a52b1d722b594d21da5a664"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a452454c3e1aa1651ff0e62f45a49f696"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a452454c3e1aa1651ff0e62f45a49f696">nErrInvErrorStr</a> [] = &quot;NERROR_INV_ERROR&quot;</td></tr>
+<tr class="separator:a452454c3e1aa1651ff0e62f45a49f696"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c8df6eafab2a2856ba029b7c37b3853"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a7c8df6eafab2a2856ba029b7c37b3853">nErrSigAbrtStr</a> [] = &quot;NERROR_SIGABRT&quot;</td></tr>
 <tr class="separator:a7c8df6eafab2a2856ba029b7c37b3853"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac96cb2a606a454626fa92f8ce9eaba0a"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ac96cb2a606a454626fa92f8ce9eaba0a">nErrSigFpeStr</a> [] = &quot;NERROR_SIGFPE&quot;</td></tr>
@@ -134,49 +140,81 @@ Variables</h2></td></tr>
 <tr class="separator:acd2a2cc72b112c6b22b9e7399698c83b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad89674300f89c640ec5db48ea596632e"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ad89674300f89c640ec5db48ea596632e">nErrSigTermStr</a> [] = &quot;NERROR_SIGTERM&quot;</td></tr>
 <tr class="separator:ad89674300f89c640ec5db48ea596632e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ff59df63c38a7633269f055c48a89f7"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a2ff59df63c38a7633269f055c48a89f7">nErrFileNotFoundStr</a> [] = &quot;NERROR_FILE_NOT_FOUND&quot;</td></tr>
-<tr class="separator:a2ff59df63c38a7633269f055c48a89f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac98a60c69b0cae7472584bef2f65e811"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ac98a60c69b0cae7472584bef2f65e811">nErrNoPermStr</a> [] = &quot;NERROR_NO_PERM&quot;</td></tr>
+<tr class="separator:ac98a60c69b0cae7472584bef2f65e811"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fc019b0d50ca5b0f1013fd1ce1f83a5"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a6fc019b0d50ca5b0f1013fd1ce1f83a5">nErrNoFileStr</a> [] = &quot;NERROR_NO_FILE&quot;</td></tr>
+<tr class="separator:a6fc019b0d50ca5b0f1013fd1ce1f83a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5989f3e94cd31ab9c808a7476ea69413"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a5989f3e94cd31ab9c808a7476ea69413">nErrNoProcessStr</a> [] = &quot;NERROR_NO_PROCESS&quot;</td></tr>
+<tr class="separator:a5989f3e94cd31ab9c808a7476ea69413"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18b7ce575b6c470740d4f1d5cb1fb86a"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a18b7ce575b6c470740d4f1d5cb1fb86a">nErrInterruptStr</a> [] = &quot;NERROR_INTERRUPT&quot;</td></tr>
+<tr class="separator:a18b7ce575b6c470740d4f1d5cb1fb86a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac75ecdefd0d0956408e9b028c20b288a"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ac75ecdefd0d0956408e9b028c20b288a">nErrIOStr</a> [] = &quot;NERROR_IO&quot;</td></tr>
+<tr class="separator:ac75ecdefd0d0956408e9b028c20b288a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acce0900e1e744853b492cdc4c4a36ae2"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#acce0900e1e744853b492cdc4c4a36ae2">nErrNoDeviceStr</a> [] = &quot;NERROR_NO_DEVICE&quot;</td></tr>
+<tr class="separator:acce0900e1e744853b492cdc4c4a36ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a7d9b2f898d5a8a171a73b98a294a84"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a8a7d9b2f898d5a8a171a73b98a294a84">nErrMaxArgsStr</a> [] = &quot;NERROR_MAX_ARGS&quot;</td></tr>
+<tr class="separator:a8a7d9b2f898d5a8a171a73b98a294a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a40be49162b962fac725f67d948c133"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a9a40be49162b962fac725f67d948c133">nErrInvExecFormatStr</a> [] = &quot;NERROR_INV_EXEC_FORMAT&quot;</td></tr>
+<tr class="separator:a9a40be49162b962fac725f67d948c133"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9a7629813dcf56681b9232a7c6b76b8"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ab9a7629813dcf56681b9232a7c6b76b8">nErrInvFPStr</a> [] = &quot;NERROR_INV_FP&quot;</td></tr>
+<tr class="separator:ab9a7629813dcf56681b9232a7c6b76b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a515d7ecf1a4c7640e188d459a9d162c6"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a515d7ecf1a4c7640e188d459a9d162c6">nErrMaxStr</a> [] = &quot;NERROR_MAX&quot;</td></tr>
 <tr class="separator:a515d7ecf1a4c7640e188d459a9d162c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a0720ef0b8154b77efda6dae86c358a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a6a0720ef0b8154b77efda6dae86c358a">nErrorStrings</a> []</td></tr>
 <tr class="separator:a6a0720ef0b8154b77efda6dae86c358a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6a6d14e186b8b2407d03017170d4aa0"><td class="memItemLeft" align="right" valign="top">const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#af6a6d14e186b8b2407d03017170d4aa0">nErrorStringLengths</a> []</td></tr>
-<tr class="separator:af6a6d14e186b8b2407d03017170d4aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67be449a641a523a7f488f29f3584de5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a67be449a641a523a7f488f29f3584de5">nErrorStringLengths</a> []</td></tr>
+<tr class="separator:a67be449a641a523a7f488f29f3584de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21e1a77ae4589e911f35570cbd97632c"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a21e1a77ae4589e911f35570cbd97632c">nErrDescMinStr</a> []</td></tr>
 <tr class="separator:a21e1a77ae4589e911f35570cbd97632c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b58be1432beabae618e1ccbb64b3331"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a9b58be1432beabae618e1ccbb64b3331">nErrDescUnknownStr</a> []</td></tr>
+<tr class="memitem:a9b58be1432beabae618e1ccbb64b3331"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a9b58be1432beabae618e1ccbb64b3331">nErrDescUnknownStr</a> [] = &quot;An unknown error occurred.&quot;</td></tr>
 <tr class="separator:a9b58be1432beabae618e1ccbb64b3331"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f2c7a0588df58a9d04aaffa8626b5b6"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a9f2c7a0588df58a9d04aaffa8626b5b6">nErrDecInternalFailureStr</a> []</td></tr>
-<tr class="separator:a9f2c7a0588df58a9d04aaffa8626b5b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a542e36d296cc5efbb93498588602c690"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a542e36d296cc5efbb93498588602c690">nErrDescInternalFailureStr</a> []</td></tr>
+<tr class="separator:a542e36d296cc5efbb93498588602c690"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adff5072b6a77c292d28e8fc3d0779d0e"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#adff5072b6a77c292d28e8fc3d0779d0e">nErrDescNullStr</a> []</td></tr>
 <tr class="separator:adff5072b6a77c292d28e8fc3d0779d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5868a4b4cb3385f8f4ffccf42a9cbd16"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a5868a4b4cb3385f8f4ffccf42a9cbd16">nErrDescErrorNotFoundStr</a> []</td></tr>
-<tr class="separator:a5868a4b4cb3385f8f4ffccf42a9cbd16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af61c5cdf1f0a900f22b10ea883b0c219"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#af61c5cdf1f0a900f22b10ea883b0c219">nErrDescSigAbrtStr</a> []</td></tr>
+<tr class="memitem:af0da9d0f1d3ee54189753547b9f80e8e"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#af0da9d0f1d3ee54189753547b9f80e8e">nErrDescInvErrorStr</a> []</td></tr>
+<tr class="separator:af0da9d0f1d3ee54189753547b9f80e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af61c5cdf1f0a900f22b10ea883b0c219"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#af61c5cdf1f0a900f22b10ea883b0c219">nErrDescSigAbrtStr</a> [] = &quot;Caught an abort signal.&quot;</td></tr>
 <tr class="separator:af61c5cdf1f0a900f22b10ea883b0c219"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e87c3307d84bb22f000ffb12e76bcd7"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a1e87c3307d84bb22f000ffb12e76bcd7">nErrDescSigFpeStr</a> []</td></tr>
 <tr class="separator:a1e87c3307d84bb22f000ffb12e76bcd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb73959e1168fafc6b2a64947259ea10"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#afb73959e1168fafc6b2a64947259ea10">nErrDescSigIllStr</a> []</td></tr>
 <tr class="separator:afb73959e1168fafc6b2a64947259ea10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ed84b655783ac3b06edc599c9e61f8c"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a8ed84b655783ac3b06edc599c9e61f8c">nErrDescSigIntStr</a> []</td></tr>
+<tr class="memitem:a8ed84b655783ac3b06edc599c9e61f8c"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a8ed84b655783ac3b06edc599c9e61f8c">nErrDescSigIntStr</a> [] = &quot;Caught an interrupt signal&quot;</td></tr>
 <tr class="separator:a8ed84b655783ac3b06edc599c9e61f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d61d7a3079c0eb933c44d99e4ad4112"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a6d61d7a3079c0eb933c44d99e4ad4112">nErrDescSigSegvStr</a> []</td></tr>
 <tr class="separator:a6d61d7a3079c0eb933c44d99e4ad4112"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8cb1e7b346dcdfc84eeca57b3e494d4"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ab8cb1e7b346dcdfc84eeca57b3e494d4">nErrDescSigTermStr</a> []</td></tr>
+<tr class="memitem:ab8cb1e7b346dcdfc84eeca57b3e494d4"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ab8cb1e7b346dcdfc84eeca57b3e494d4">nErrDescSigTermStr</a> [] = &quot;Caught a termination signal.&quot;</td></tr>
 <tr class="separator:ab8cb1e7b346dcdfc84eeca57b3e494d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4353de60fd06a4f1731033c6f3382323"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a4353de60fd06a4f1731033c6f3382323">nErrDescFileNotFoundStr</a> []</td></tr>
-<tr class="separator:a4353de60fd06a4f1731033c6f3382323"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ecd01255d7449b849b607ee45db8944"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a5ecd01255d7449b849b607ee45db8944">nErrDescNoPermStr</a> []</td></tr>
+<tr class="separator:a5ecd01255d7449b849b607ee45db8944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac60755889d4e9da5fd40892a1bbaa405"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ac60755889d4e9da5fd40892a1bbaa405">nErrDescNoFileStr</a> []</td></tr>
+<tr class="separator:ac60755889d4e9da5fd40892a1bbaa405"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3ae69fe47b9d7b6afc3a873ed69d169"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ae3ae69fe47b9d7b6afc3a873ed69d169">nErrDescNoProcessStr</a> []</td></tr>
+<tr class="separator:ae3ae69fe47b9d7b6afc3a873ed69d169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac21a44759e82f0ba3105140be4050cc2"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ac21a44759e82f0ba3105140be4050cc2">nErrDescInterruptStr</a> []</td></tr>
+<tr class="separator:ac21a44759e82f0ba3105140be4050cc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae30b00559769f6349b59fbc59921a39"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#aae30b00559769f6349b59fbc59921a39">nErrDescIOStr</a> []</td></tr>
+<tr class="separator:aae30b00559769f6349b59fbc59921a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ad1a4bb74e3bf88008548b5cdcc919e"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a7ad1a4bb74e3bf88008548b5cdcc919e">nErrDescNoDeviceStr</a> []</td></tr>
+<tr class="separator:a7ad1a4bb74e3bf88008548b5cdcc919e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5f9247a50e0d075f74a816decc3a1df"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ae5f9247a50e0d075f74a816decc3a1df">nErrDescMaxArgsStr</a> []</td></tr>
+<tr class="separator:ae5f9247a50e0d075f74a816decc3a1df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ed47101fbc97594f8dd22f825be6d66"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a2ed47101fbc97594f8dd22f825be6d66">nErrDescInvExecFormatStr</a> []</td></tr>
+<tr class="separator:a2ed47101fbc97594f8dd22f825be6d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba5c1b809434adcc0e3357e62287612b"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#aba5c1b809434adcc0e3357e62287612b">nErrDescInvFPStr</a> []</td></tr>
+<tr class="separator:aba5c1b809434adcc0e3357e62287612b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acab0227cff8650d2f69048554baeaeb0"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#acab0227cff8650d2f69048554baeaeb0">nErrDescMaxStr</a> []</td></tr>
 <tr class="separator:acab0227cff8650d2f69048554baeaeb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84bfb01a665003519a4987d7e5a543c4"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a84bfb01a665003519a4987d7e5a543c4">nErrorDescriptions</a> []</td></tr>
 <tr class="separator:a84bfb01a665003519a4987d7e5a543c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ceedb606c2897b267a507e35c356e37"><td class="memItemLeft" align="right" valign="top">const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a6ceedb606c2897b267a507e35c356e37">nErrorDescLengths</a> []</td></tr>
-<tr class="separator:a6ceedb606c2897b267a507e35c356e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5327fef2f77d30c35de589010fd75683"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a5327fef2f77d30c35de589010fd75683">nErrorDescLengths</a> []</td></tr>
+<tr class="separator:a5327fef2f77d30c35de589010fd75683"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43fb2a7f109395609e691d13dd603297"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a> [] = &quot;No info.&quot;</td></tr>
 <tr class="separator:a43fb2a7f109395609e691d13dd603297"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbaaff0108bfb6549130e1a72e3c9a05"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#afbaaff0108bfb6549130e1a72e3c9a05">errorCallback</a> )(const int32_t error, const time_t errorTime, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen) = <a class="el" href="_errors_8c.html#a01ea162685de9ac9bd12f2b44c819b6f">nErrorHandlerDefault</a></td></tr>
-<tr class="memdesc:afbaaff0108bfb6549130e1a72e3c9a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error callback function that gets defined by <a class="el" href="_errors_8c.html#ab9e29925632a94959c07259a67ef85bf" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>.  <a href="_errors_8c.html#afbaaff0108bfb6549130e1a72e3c9a05">More...</a><br /></td></tr>
-<tr class="separator:afbaaff0108bfb6549130e1a72e3c9a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab46836b186757a790d96bbcc1cb240f9"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ab46836b186757a790d96bbcc1cb240f9">errorCallback</a> )(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, const char *stack, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen) = <a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">nErrorHandlerDefault</a></td></tr>
+<tr class="memdesc:ab46836b186757a790d96bbcc1cb240f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error callback function that gets defined by <a class="el" href="_errors_8c.html#ab3cf33d6f2850edcf77840464f0e9350" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>.  <a href="_errors_8c.html#ab46836b186757a790d96bbcc1cb240f9">More...</a><br /></td></tr>
+<tr class="separator:ab46836b186757a790d96bbcc1cb240f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines error values and error handling functions. </p>
@@ -190,8 +228,49 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aa87886c559395e1bc5cda18e2de0c981"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa87886c559395e1bc5cda18e2de0c981">&#9670;&nbsp;</a></span>nErrorGetStacktrace()</h2>
+<a id="afacd40936484e65be2f6a1920cc87482"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afacd40936484e65be2f6a1920cc87482">&#9670;&nbsp;</a></span>nErrorFromErrno()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorFromErrno </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>error</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Continue with errnos from <a href="https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html">https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00333">333</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a7cad5752ceccf50ece11c1e1fcc88ee5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cad5752ceccf50ece11c1e1fcc88ee5">&#9670;&nbsp;</a></span>nErrorFromSignal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorFromSignal </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>error</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00279">279</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a2f3681cae40fc7f7bbb0d839d4a80986"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f3681cae40fc7f7bbb0d839d4a80986">&#9670;&nbsp;</a></span>nErrorGetStacktrace()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,13 +284,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int32_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *&#160;</td>
           <td class="paramname"><em>stackLen</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int32_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *&#160;</td>
           <td class="paramname"><em>stackLevels</em>&#160;</td>
         </tr>
         <tr>
@@ -230,9 +309,9 @@ Variables</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
 <div class="line">{</div>
-<div class="line">    int32_t stackLen, stackLevels;</div>
+<div class="line">    <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen, stackLevels;</div>
 <div class="line">    <span class="keywordtype">char</span> * stack;</div>
-<div class="line">    <a class="code" href="_errors_8c.html#aa87886c559395e1bc5cda18e2de0c981">nErrorGetStacktrace</a>(stack, &amp;stackLen, &amp;stackLevels);</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">nErrorGetStacktrace</a>(stack, &amp;stackLen, &amp;stackLevels);</div>
 <div class="line">    <span class="keywordflow">if</span> (stack == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
 <div class="line">    {</div>
 <div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to get stack trace.\n&quot;</span>);</div>
@@ -251,14 +330,14 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise the program crashes.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Get stack trace. Remember *stackLevels is max levels </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Get stack trace. Remember *stackLevels is max levels </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00342">342</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00643">643</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a01ea162685de9ac9bd12f2b44c819b6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01ea162685de9ac9bd12f2b44c819b6f">&#9670;&nbsp;</a></span>nErrorHandlerDefault()</h2>
+<a id="acb0b9e8cec4e120d781a875a49eb0d7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb0b9e8cec4e120d781a875a49eb0d7a">&#9670;&nbsp;</a></span>nErrorHandlerDefault()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -266,7 +345,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void nErrorHandlerDefault </td>
           <td>(</td>
-          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
           <td class="paramname"><em>error</em>, </td>
         </tr>
         <tr>
@@ -284,7 +363,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
           <td class="paramname"><em>errorDescLen</em>, </td>
         </tr>
         <tr>
@@ -296,7 +375,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
           <td class="paramname"><em>stackLen</em>&#160;</td>
         </tr>
         <tr>
@@ -321,20 +400,20 @@ Variables</h2></td></tr>
 </dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Make default callback. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00213">213</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00272">272</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="ab9e29925632a94959c07259a67ef85bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9e29925632a94959c07259a67ef85bf">&#9670;&nbsp;</a></span>nErrorSetCallback()</h2>
+<a id="ab3cf33d6f2850edcf77840464f0e9350"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3cf33d6f2850edcf77840464f0e9350">&#9670;&nbsp;</a></span>nErrorSetCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t nErrorSetCallback </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorSetCallback </td>
           <td>(</td>
-          <td class="paramtype">void(*)(const int32_t error, const time_t errorTime, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen)&#160;</td>
+          <td class="paramtype">void(*)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, const char *stack, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen)&#160;</td>
           <td class="paramname"><em>callback</em></td><td>)</td>
           <td></td>
         </tr>
@@ -348,9 +427,9 @@ Variables</h2></td></tr>
 <div class="line"><span class="preprocessor">#include &lt;time.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> errorHandler(<span class="keyword">const</span> int32_t error, <span class="keyword">const</span> <span class="keywordtype">char</span> * errorDesc,</div>
-<div class="line">      <span class="keyword">const</span> int32_t errorDescLen, <span class="keyword">const</span> time_t errorTime, <span class="keyword">const</span> <span class="keywordtype">char</span> * stack,</div>
-<div class="line">      <span class="keyword">const</span> int32_t stackLen)</div>
+<div class="line"><span class="keywordtype">void</span> errorHandler(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, <span class="keyword">const</span> <span class="keywordtype">char</span> * errorDesc,</div>
+<div class="line">      <span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, <span class="keyword">const</span> time_t errorTime, <span class="keyword">const</span> <span class="keywordtype">char</span> * stack,</div>
+<div class="line">      <span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keyword">struct </span>tm * timeInfo = localtime(&amp;errorTime);</div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span> format[] = <span class="stringliteral">&quot;%x %X %Z&quot;</span>;</div>
@@ -385,14 +464,14 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful; otherwise <code><a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a></code> is returned.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Check <a class="el" href="_errors_8c.html#a01ea162685de9ac9bd12f2b44c819b6f" title="The default error handler callback.">nErrorHandlerDefault()</a> for parameter information. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Check <a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a" title="The default error handler callback.">nErrorHandlerDefault()</a> for parameter information. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00326">326</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00627">627</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="ada150208dfff4322a1be89604b87eb68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada150208dfff4322a1be89604b87eb68">&#9670;&nbsp;</a></span>nErrorThrow()</h2>
+<a id="a47d62aea349025651404d67b5e87bbb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47d62aea349025651404d67b5e87bbb1">&#9670;&nbsp;</a></span>nErrorThrow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -400,7 +479,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void nErrorThrow </td>
           <td>(</td>
-          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
           <td class="paramname"><em>error</em>, </td>
         </tr>
         <tr>
@@ -412,7 +491,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
           <td class="paramname"><em>infoLen</em>&#160;</td>
         </tr>
         <tr>
@@ -432,7 +511,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordtype">char</span> exampleFilePath[] = <span class="stringliteral">&quot;example.txt&quot;</span>;</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#ada150208dfff4322a1be89604b87eb68">nErrorThrow</a>(<a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a>, exampleFilePath,</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1">nErrorThrow</a>(NERROR_FILE_NOT_FOUND, exampleFilePath,</div>
 <div class="line">         <span class="keyword">sizeof</span>(exampleFilePath)) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">    {</div>
 <div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to throw error.\n&quot;</span>);</div>
@@ -451,12 +530,12 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The program will crash if this is unsuccessful. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00220">220</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00521">521</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="ade8a5b44ad47489e587d8d07d27c3464"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade8a5b44ad47489e587d8d07d27c3464">&#9670;&nbsp;</a></span>nErrorToString()</h2>
+<a id="a1ea33a06254b37a5f515c5f24a38ea15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ea33a06254b37a5f515c5f24a38ea15">&#9670;&nbsp;</a></span>nErrorToString()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -470,13 +549,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int32_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *&#160;</td>
           <td class="paramname"><em>errorLen</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
           <td class="paramname"><em>error</em>, </td>
         </tr>
         <tr>
@@ -488,7 +567,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
           <td class="paramname"><em>infoLen</em>&#160;</td>
         </tr>
         <tr>
@@ -507,9 +586,9 @@ Variables</h2></td></tr>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordtype">char</span> * errorStr;</div>
-<div class="line">    int32_t errorLen;</div>
+<div class="line">    <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorLen;</div>
 <div class="line">    <span class="keywordtype">char</span> exampleFilePath[] = <span class="stringliteral">&quot;example.txt&quot;</span>;</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">nErrorToString</a>(errorStr, &amp;errorLen, <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a>,</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">nErrorToString</a>(errorStr, &amp;errorLen, NERROR_FILE_NOT_FOUND,</div>
 <div class="line">         exampleFilePath, <span class="keyword">sizeof</span>(exampleFilePath)) == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
 <div class="line">    {</div>
 <div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to get error string.\n&quot;</span>);</div>
@@ -530,18 +609,18 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code> is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00308">308</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00609">609</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a7ce818a6ef8c3ad8d003f25d7aa1482f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ce818a6ef8c3ad8d003f25d7aa1482f">&#9670;&nbsp;</a></span>nErrorToStringLocal()</h2>
+<a id="a986223a1bd08833af99d7193fbb633ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a986223a1bd08833af99d7193fbb633ae">&#9670;&nbsp;</a></span>nErrorToStringLocal()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t nErrorToStringLocal </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorToStringLocal </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
@@ -549,13 +628,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int32_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *&#160;</td>
           <td class="paramname"><em>errorLen</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
           <td class="paramname"><em>error</em>, </td>
         </tr>
         <tr>
@@ -567,7 +646,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
           <td class="paramname"><em>infoLen</em>&#160;</td>
         </tr>
         <tr>
@@ -579,7 +658,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Describes an error and returns a string with no error handling. </p>
-<p>Example: </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Do this </dd></dl>
+<p>Example: </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Do this </dd></dl>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
@@ -587,9 +666,9 @@ Variables</h2></td></tr>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordtype">char</span> * errorStr;</div>
-<div class="line">    int32_t errorLen;</div>
+<div class="line">    <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorLen;</div>
 <div class="line">    <span class="keywordtype">char</span> exampleFilePath[] = <span class="stringliteral">&quot;example.txt&quot;</span>;</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#a7ce818a6ef8c3ad8d003f25d7aa1482f">nErrorToStringLocal</a>(errorStr, &amp;errorLen, <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a>,</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">nErrorToStringLocal</a>(errorStr, &amp;errorLen, NERROR_FILE_NOT_FOUND,</div>
 <div class="line">         exampleFilePath, <span class="keyword">sizeof</span>(exampleFilePath)) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">    {</div>
 <div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to get error string.\n&quot;</span>);</div>
@@ -611,80 +690,155 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code> is returned.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used by the game engine and is not expected to be used by developers, but is optional. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00261">261</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00562">562</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="afbaaff0108bfb6549130e1a72e3c9a05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbaaff0108bfb6549130e1a72e3c9a05">&#9670;&nbsp;</a></span>errorCallback</h2>
+<a id="ab46836b186757a790d96bbcc1cb240f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab46836b186757a790d96bbcc1cb240f9">&#9670;&nbsp;</a></span>errorCallback</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* errorCallback) (const int32_t error, const time_t errorTime, const char *errorDesc, const int32_t errorDescLen, const char *stack, const int32_t stackLen) = <a class="el" href="_errors_8c.html#a01ea162685de9ac9bd12f2b44c819b6f">nErrorHandlerDefault</a></td>
+          <td class="memname">void(* errorCallback) (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, const char *stack, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen) = <a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">nErrorHandlerDefault</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>The error callback function that gets defined by <a class="el" href="_errors_8c.html#ab9e29925632a94959c07259a67ef85bf" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>. </p>
+<p>The error callback function that gets defined by <a class="el" href="_errors_8c.html#ab3cf33d6f2850edcf77840464f0e9350" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00208">208</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00267">267</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a9f2c7a0588df58a9d04aaffa8626b5b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f2c7a0588df58a9d04aaffa8626b5b6">&#9670;&nbsp;</a></span>nErrDecInternalFailureStr</h2>
+<a id="a542e36d296cc5efbb93498588602c690"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a542e36d296cc5efbb93498588602c690">&#9670;&nbsp;</a></span>nErrDescInternalFailureStr</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char nErrDecInternalFailureStr[]</td>
+          <td class="memname">const char nErrDescInternalFailureStr[]</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_INTERNAL_FAILURE - An &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;internal error occurred within the Nimble game engine&quot;</span></div>
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;An internal error occurred within &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;the Nimble game engine.&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00117">117</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00141">141</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a5868a4b4cb3385f8f4ffccf42a9cbd16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5868a4b4cb3385f8f4ffccf42a9cbd16">&#9670;&nbsp;</a></span>nErrDescErrorNotFoundStr</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char nErrDescErrorNotFoundStr[]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_ERROR_NOT_FOUND - An error &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;passed to a function was not valid&quot;</span></div>
-</div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00121">121</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
-
-</div>
-</div>
-<a id="a4353de60fd06a4f1731033c6f3382323"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4353de60fd06a4f1731033c6f3382323">&#9670;&nbsp;</a></span>nErrDescFileNotFoundStr</h2>
+<a id="ac21a44759e82f0ba3105140be4050cc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac21a44759e82f0ba3105140be4050cc2">&#9670;&nbsp;</a></span>nErrDescInterruptStr</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char nErrDescFileNotFoundStr[]</td>
+          <td class="memname">const char nErrDescInterruptStr[]</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_FILE_NOT_FOUND - A file was &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;not found where specified&quot;</span></div>
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;Interrupted system call. An &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;asynchronous signal occurred and prevented completion of the call. When this &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;happens, you should try the call again.&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00137">137</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00166">166</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="af0da9d0f1d3ee54189753547b9f80e8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0da9d0f1d3ee54189753547b9f80e8e">&#9670;&nbsp;</a></span>nErrDescInvErrorStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrDescInvErrorStr[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;An error passed to a function was &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;not valid.&quot;</span></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00145">145</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a2ed47101fbc97594f8dd22f825be6d66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ed47101fbc97594f8dd22f825be6d66">&#9670;&nbsp;</a></span>nErrDescInvExecFormatStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrDescInvExecFormatStr[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;Exec format error. Invalid &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;executable file format. This condition is detected by the exec functions.&quot;</span></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00179">179</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="aba5c1b809434adcc0e3357e62287612b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba5c1b809434adcc0e3357e62287612b">&#9670;&nbsp;</a></span>nErrDescInvFPStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrDescInvFPStr[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;Bad file descriptor. For example, &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;I/O on a descriptor that has been closed or reading from a descriptor open &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;only for writing (or vice versa).&quot;</span></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00181">181</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="aae30b00559769f6349b59fbc59921a39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae30b00559769f6349b59fbc59921a39">&#9670;&nbsp;</a></span>nErrDescIOStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrDescIOStr[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;Input/output error. Usually used &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;for physical read or write errors.&quot;</span></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00169">169</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="ae5f9247a50e0d075f74a816decc3a1df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5f9247a50e0d075f74a816decc3a1df">&#9670;&nbsp;</a></span>nErrDescMaxArgsStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrDescMaxArgsStr[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;Argument list too long. Used when &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;the arguments passed to a new program being executed with one of the exec &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;functions occupy too much memory space.&quot;</span></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00176">176</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -699,10 +853,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_MAX - The maximum error value, &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;likely caused by programmer error or a corruption issue&quot;</span></div>
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;The maximum error value, likely &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;caused by programmer error or a corruption issue.&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00140">140</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00185">185</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -717,10 +871,87 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_MIN - The minimum error &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;value, likely caused by programmer error or a corruption issue&quot;</span></div>
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;The minimum error value, likely &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;caused by programmer error or a corruption issue.&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00112">112</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00137">137</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a7ad1a4bb74e3bf88008548b5cdcc919e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ad1a4bb74e3bf88008548b5cdcc919e">&#9670;&nbsp;</a></span>nErrDescNoDeviceStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrDescNoDeviceStr[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;No such device or address. The &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;system tried to use the device represented by a file you specified, and it &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;couldn&#39;t find the device. This can mean that the device file was installed &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;incorrectly, or that the physical device is missing or not correctly attached &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;to the computer.&quot;</span></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00171">171</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="ac60755889d4e9da5fd40892a1bbaa405"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac60755889d4e9da5fd40892a1bbaa405">&#9670;&nbsp;</a></span>nErrDescNoFileStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrDescNoFileStr[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;No such file or directory. This is &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;a \&quot;file doesn&#39;t exist\&quot; error for ordinary files that are referenced in &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;contexts where they are expected to already exist.&quot;</span></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00161">161</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a5ecd01255d7449b849b607ee45db8944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ecd01255d7449b849b607ee45db8944">&#9670;&nbsp;</a></span>nErrDescNoPermStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrDescNoPermStr[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;Operation not permitted. Only the &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;owner of the file (or other resource) or processes with special privileges &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;can perform the operation.&quot;</span></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00158">158</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="ae3ae69fe47b9d7b6afc3a873ed69d169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3ae69fe47b9d7b6afc3a873ed69d169">&#9670;&nbsp;</a></span>nErrDescNoProcessStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrDescNoProcessStr[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;No such process. No process matches &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;the specified process ID.&quot;</span></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00164">164</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -735,10 +966,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_NULL - A pointer was null &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;when a nonnull pointer was expected&quot;</span></div>
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;A pointer was null when a nonnull &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;pointer was expected.&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00119">119</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00143">143</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -749,14 +980,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char nErrDescSigAbrtStr[]</td>
+          <td class="memname">const char nErrDescSigAbrtStr[] = &quot;Caught an abort signal.&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_SIGABRT - Caught an abort &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;signal&quot;</span></div>
-</div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00124">124</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00148">148</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -771,10 +1000,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_SIGFPE - Caught a floating &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;point exception signal&quot;</span></div>
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;Caught a floating point exception &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;signal.&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00126">126</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00149">149</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -789,10 +1018,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_SIGFPE - Caught an illegal &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;instruction signal&quot;</span></div>
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;Caught an illegal instruction &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;signal.&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00128">128</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00151">151</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -803,14 +1032,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char nErrDescSigIntStr[]</td>
+          <td class="memname">const char nErrDescSigIntStr[] = &quot;Caught an interrupt signal&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_SIGFPE - Caught an interrupt &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;signal&quot;</span></div>
-</div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00130">130</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00153">153</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -825,10 +1052,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_SIGFPE - Caught a memory &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;address violation signal&quot;</span></div>
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;Caught a memory address violation &quot;</span></div>
+<div class="line"><span class="stringliteral">&quot;signal.&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00132">132</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00154">154</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -839,14 +1066,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char nErrDescSigTermStr[]</td>
+          <td class="memname">const char nErrDescSigTermStr[] = &quot;Caught a termination signal.&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_SIGFPE - Caught a termination &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;signal&quot;</span></div>
-</div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00134">134</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00156">156</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -857,46 +1082,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char nErrDescUnknownStr[]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;NERROR_UNKNOWN - An unknown error &quot;</span></div>
-<div class="line"><span class="stringliteral">&quot;occurred&quot;</span></div>
-</div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00115">115</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
-
-</div>
-</div>
-<a id="abcfc452b2a52b1d722b594d21da5a664"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcfc452b2a52b1d722b594d21da5a664">&#9670;&nbsp;</a></span>nErrErrorNotFoundStr</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char nErrErrorNotFoundStr[] = &quot;NERROR_ERROR_NOT_FOUND&quot;</td>
+          <td class="memname">const char nErrDescUnknownStr[] = &quot;An unknown error occurred.&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00057">57</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
-
-</div>
-</div>
-<a id="a2ff59df63c38a7633269f055c48a89f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ff59df63c38a7633269f055c48a89f7">&#9670;&nbsp;</a></span>nErrFileNotFoundStr</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char nErrFileNotFoundStr[] = &quot;NERROR_FILE_NOT_FOUND&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00068">68</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00140">140</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -912,7 +1103,103 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00055">55</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00057">57</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a18b7ce575b6c470740d4f1d5cb1fb86a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18b7ce575b6c470740d4f1d5cb1fb86a">&#9670;&nbsp;</a></span>nErrInterruptStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrInterruptStr[] = &quot;NERROR_INTERRUPT&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00073">73</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a452454c3e1aa1651ff0e62f45a49f696"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a452454c3e1aa1651ff0e62f45a49f696">&#9670;&nbsp;</a></span>nErrInvErrorStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrInvErrorStr[] = &quot;NERROR_INV_ERROR&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00059">59</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a9a40be49162b962fac725f67d948c133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a40be49162b962fac725f67d948c133">&#9670;&nbsp;</a></span>nErrInvExecFormatStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrInvExecFormatStr[] = &quot;NERROR_INV_EXEC_FORMAT&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00077">77</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="ab9a7629813dcf56681b9232a7c6b76b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9a7629813dcf56681b9232a7c6b76b8">&#9670;&nbsp;</a></span>nErrInvFPStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrInvFPStr[] = &quot;NERROR_INV_FP&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00078">78</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="ac75ecdefd0d0956408e9b028c20b288a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac75ecdefd0d0956408e9b028c20b288a">&#9670;&nbsp;</a></span>nErrIOStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrIOStr[] = &quot;NERROR_IO&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00074">74</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a8a7d9b2f898d5a8a171a73b98a294a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a7d9b2f898d5a8a171a73b98a294a84">&#9670;&nbsp;</a></span>nErrMaxArgsStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrMaxArgsStr[] = &quot;NERROR_MAX_ARGS&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00076">76</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -928,7 +1215,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00070">70</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00080">80</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -944,7 +1231,71 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00052">52</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00054">54</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="acce0900e1e744853b492cdc4c4a36ae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acce0900e1e744853b492cdc4c4a36ae2">&#9670;&nbsp;</a></span>nErrNoDeviceStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrNoDeviceStr[] = &quot;NERROR_NO_DEVICE&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00075">75</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a6fc019b0d50ca5b0f1013fd1ce1f83a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fc019b0d50ca5b0f1013fd1ce1f83a5">&#9670;&nbsp;</a></span>nErrNoFileStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrNoFileStr[] = &quot;NERROR_NO_FILE&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00071">71</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="ac98a60c69b0cae7472584bef2f65e811"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac98a60c69b0cae7472584bef2f65e811">&#9670;&nbsp;</a></span>nErrNoPermStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrNoPermStr[] = &quot;NERROR_NO_PERM&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00070">70</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+
+</div>
+</div>
+<a id="a5989f3e94cd31ab9c808a7476ea69413"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5989f3e94cd31ab9c808a7476ea69413">&#9670;&nbsp;</a></span>nErrNoProcessStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char nErrNoProcessStr[] = &quot;NERROR_NO_PROCESS&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00072">72</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -960,42 +1311,49 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00056">56</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00058">58</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a6ceedb606c2897b267a507e35c356e37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ceedb606c2897b267a507e35c356e37">&#9670;&nbsp;</a></span>nErrorDescLengths</h2>
+<a id="a5327fef2f77d30c35de589010fd75683"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5327fef2f77d30c35de589010fd75683">&#9670;&nbsp;</a></span>nErrorDescLengths</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int32_t nErrorDescLengths[]</td>
+          <td class="memname">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorDescLengths[]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ad8e0c07b8f24abd04aad4b8999d0d351">nErrMinStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a21e1a77ae4589e911f35570cbd97632c">nErrDescMinStr</a>),</div>
 <div class="line">    </div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#aa8da024ed11ed3e7421bdfe65081edd9">nErrUnknownStr</a>),</div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#aa94fd8144a129abb850827d448840f70">nErrInternalFailureStr</a>),</div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#afead839202aa4d5b6ac57b34e7e51e68">nErrNullStr</a>),</div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#abcfc452b2a52b1d722b594d21da5a664">nErrErrorNotFoundStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a9b58be1432beabae618e1ccbb64b3331">nErrDescUnknownStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a542e36d296cc5efbb93498588602c690">nErrDescInternalFailureStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#adff5072b6a77c292d28e8fc3d0779d0e">nErrDescNullStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#af0da9d0f1d3ee54189753547b9f80e8e">nErrDescInvErrorStr</a>),</div>
 <div class="line">    </div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a7c8df6eafab2a2856ba029b7c37b3853">nErrSigAbrtStr</a>),</div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ac96cb2a606a454626fa92f8ce9eaba0a">nErrSigFpeStr</a>),</div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a9462341f54ebcb50a52414aa97bd0917">nErrSigIllStr</a>),</div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a0e8d27ca8d921dc017ca51aba0a41ce1">nErrSigIntStr</a>),</div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#acd2a2cc72b112c6b22b9e7399698c83b">nErrSigSegvStr</a>),</div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ad89674300f89c640ec5db48ea596632e">nErrSigTermStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#af61c5cdf1f0a900f22b10ea883b0c219">nErrDescSigAbrtStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a1e87c3307d84bb22f000ffb12e76bcd7">nErrDescSigFpeStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#afb73959e1168fafc6b2a64947259ea10">nErrDescSigIllStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a8ed84b655783ac3b06edc599c9e61f8c">nErrDescSigIntStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a6d61d7a3079c0eb933c44d99e4ad4112">nErrDescSigSegvStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ab8cb1e7b346dcdfc84eeca57b3e494d4">nErrDescSigTermStr</a>),</div>
 <div class="line">    </div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a2ff59df63c38a7633269f055c48a89f7">nErrFileNotFoundStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a5ecd01255d7449b849b607ee45db8944">nErrDescNoPermStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ac60755889d4e9da5fd40892a1bbaa405">nErrDescNoFileStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ae3ae69fe47b9d7b6afc3a873ed69d169">nErrDescNoProcessStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ac21a44759e82f0ba3105140be4050cc2">nErrDescInterruptStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#aae30b00559769f6349b59fbc59921a39">nErrDescIOStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ae5f9247a50e0d075f74a816decc3a1df">nErrDescMaxArgsStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a2ed47101fbc97594f8dd22f825be6d66">nErrDescInvExecFormatStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#aba5c1b809434adcc0e3357e62287612b">nErrDescInvFPStr</a>),</div>
 <div class="line">    </div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a515d7ecf1a4c7640e188d459a9d162c6">nErrMaxStr</a>)</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#acab0227cff8650d2f69048554baeaeb0">nErrDescMaxStr</a>)</div>
 <div class="line">}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00163">163</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00215">215</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -1014,9 +1372,9 @@ Variables</h2></td></tr>
 <div class="line">    <a class="code" href="_errors_8c.html#a21e1a77ae4589e911f35570cbd97632c">nErrDescMinStr</a>,</div>
 <div class="line">    </div>
 <div class="line">    <a class="code" href="_errors_8c.html#a9b58be1432beabae618e1ccbb64b3331">nErrDescUnknownStr</a>,</div>
-<div class="line">    <a class="code" href="_errors_8c.html#a9f2c7a0588df58a9d04aaffa8626b5b6">nErrDecInternalFailureStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a542e36d296cc5efbb93498588602c690">nErrDescInternalFailureStr</a>,</div>
 <div class="line">    <a class="code" href="_errors_8c.html#adff5072b6a77c292d28e8fc3d0779d0e">nErrDescNullStr</a>,</div>
-<div class="line">    <a class="code" href="_errors_8c.html#a5868a4b4cb3385f8f4ffccf42a9cbd16">nErrDescErrorNotFoundStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#af0da9d0f1d3ee54189753547b9f80e8e">nErrDescInvErrorStr</a>,</div>
 <div class="line">    </div>
 <div class="line">    <a class="code" href="_errors_8c.html#af61c5cdf1f0a900f22b10ea883b0c219">nErrDescSigAbrtStr</a>,</div>
 <div class="line">    <a class="code" href="_errors_8c.html#a1e87c3307d84bb22f000ffb12e76bcd7">nErrDescSigFpeStr</a>,</div>
@@ -1025,23 +1383,30 @@ Variables</h2></td></tr>
 <div class="line">    <a class="code" href="_errors_8c.html#a6d61d7a3079c0eb933c44d99e4ad4112">nErrDescSigSegvStr</a>,</div>
 <div class="line">    <a class="code" href="_errors_8c.html#ab8cb1e7b346dcdfc84eeca57b3e494d4">nErrDescSigTermStr</a>,</div>
 <div class="line">    </div>
-<div class="line">    <a class="code" href="_errors_8c.html#a4353de60fd06a4f1731033c6f3382323">nErrDescFileNotFoundStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a5ecd01255d7449b849b607ee45db8944">nErrDescNoPermStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#ac60755889d4e9da5fd40892a1bbaa405">nErrDescNoFileStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#ae3ae69fe47b9d7b6afc3a873ed69d169">nErrDescNoProcessStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#ac21a44759e82f0ba3105140be4050cc2">nErrDescInterruptStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#aae30b00559769f6349b59fbc59921a39">nErrDescIOStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#ae5f9247a50e0d075f74a816decc3a1df">nErrDescMaxArgsStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a2ed47101fbc97594f8dd22f825be6d66">nErrDescInvExecFormatStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#aba5c1b809434adcc0e3357e62287612b">nErrDescInvFPStr</a>,</div>
 <div class="line">    </div>
 <div class="line">    <a class="code" href="_errors_8c.html#acab0227cff8650d2f69048554baeaeb0">nErrDescMaxStr</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00144">144</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00189">189</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="af6a6d14e186b8b2407d03017170d4aa0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6a6d14e186b8b2407d03017170d4aa0">&#9670;&nbsp;</a></span>nErrorStringLengths</h2>
+<a id="a67be449a641a523a7f488f29f3584de5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67be449a641a523a7f488f29f3584de5">&#9670;&nbsp;</a></span>nErrorStringLengths</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int32_t nErrorStringLengths[]</td>
+          <td class="memname">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorStringLengths[]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1051,7 +1416,7 @@ Variables</h2></td></tr>
 <div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#aa8da024ed11ed3e7421bdfe65081edd9">nErrUnknownStr</a>),</div>
 <div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#aa94fd8144a129abb850827d448840f70">nErrInternalFailureStr</a>),</div>
 <div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#afead839202aa4d5b6ac57b34e7e51e68">nErrNullStr</a>),</div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#abcfc452b2a52b1d722b594d21da5a664">nErrErrorNotFoundStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a452454c3e1aa1651ff0e62f45a49f696">nErrInvErrorStr</a>),</div>
 <div class="line">    </div>
 <div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a7c8df6eafab2a2856ba029b7c37b3853">nErrSigAbrtStr</a>),</div>
 <div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ac96cb2a606a454626fa92f8ce9eaba0a">nErrSigFpeStr</a>),</div>
@@ -1060,12 +1425,20 @@ Variables</h2></td></tr>
 <div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#acd2a2cc72b112c6b22b9e7399698c83b">nErrSigSegvStr</a>),</div>
 <div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ad89674300f89c640ec5db48ea596632e">nErrSigTermStr</a>),</div>
 <div class="line">    </div>
-<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a2ff59df63c38a7633269f055c48a89f7">nErrFileNotFoundStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ac98a60c69b0cae7472584bef2f65e811">nErrNoPermStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a6fc019b0d50ca5b0f1013fd1ce1f83a5">nErrNoFileStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a5989f3e94cd31ab9c808a7476ea69413">nErrNoProcessStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a18b7ce575b6c470740d4f1d5cb1fb86a">nErrInterruptStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ac75ecdefd0d0956408e9b028c20b288a">nErrIOStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#acce0900e1e744853b492cdc4c4a36ae2">nErrNoDeviceStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a8a7d9b2f898d5a8a171a73b98a294a84">nErrMaxArgsStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a9a40be49162b962fac725f67d948c133">nErrInvExecFormatStr</a>),</div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#ab9a7629813dcf56681b9232a7c6b76b8">nErrInvFPStr</a>),</div>
 <div class="line">    </div>
 <div class="line">    <span class="keyword">sizeof</span>(<a class="code" href="_errors_8c.html#a515d7ecf1a4c7640e188d459a9d162c6">nErrMaxStr</a>)</div>
 <div class="line">}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00092">92</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00109">109</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -1086,7 +1459,7 @@ Variables</h2></td></tr>
 <div class="line">    <a class="code" href="_errors_8c.html#aa8da024ed11ed3e7421bdfe65081edd9">nErrUnknownStr</a>,</div>
 <div class="line">    <a class="code" href="_errors_8c.html#aa94fd8144a129abb850827d448840f70">nErrInternalFailureStr</a>,</div>
 <div class="line">    <a class="code" href="_errors_8c.html#afead839202aa4d5b6ac57b34e7e51e68">nErrNullStr</a>,</div>
-<div class="line">    <a class="code" href="_errors_8c.html#abcfc452b2a52b1d722b594d21da5a664">nErrErrorNotFoundStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a452454c3e1aa1651ff0e62f45a49f696">nErrInvErrorStr</a>,</div>
 <div class="line">    </div>
 <div class="line">    <a class="code" href="_errors_8c.html#a7c8df6eafab2a2856ba029b7c37b3853">nErrSigAbrtStr</a>,</div>
 <div class="line">    <a class="code" href="_errors_8c.html#ac96cb2a606a454626fa92f8ce9eaba0a">nErrSigFpeStr</a>,</div>
@@ -1095,12 +1468,19 @@ Variables</h2></td></tr>
 <div class="line">    <a class="code" href="_errors_8c.html#acd2a2cc72b112c6b22b9e7399698c83b">nErrSigSegvStr</a>,</div>
 <div class="line">    <a class="code" href="_errors_8c.html#ad89674300f89c640ec5db48ea596632e">nErrSigTermStr</a>,</div>
 <div class="line">    </div>
-<div class="line">    <a class="code" href="_errors_8c.html#a2ff59df63c38a7633269f055c48a89f7">nErrFileNotFoundStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#ac98a60c69b0cae7472584bef2f65e811">nErrNoPermStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a6fc019b0d50ca5b0f1013fd1ce1f83a5">nErrNoFileStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a5989f3e94cd31ab9c808a7476ea69413">nErrNoProcessStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a18b7ce575b6c470740d4f1d5cb1fb86a">nErrInterruptStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#ac75ecdefd0d0956408e9b028c20b288a">nErrIOStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#acce0900e1e744853b492cdc4c4a36ae2">nErrNoDeviceStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a8a7d9b2f898d5a8a171a73b98a294a84">nErrMaxArgsStr</a>,</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a9a40be49162b962fac725f67d948c133">nErrInvExecFormatStr</a>,</div>
 <div class="line">    </div>
 <div class="line">    <a class="code" href="_errors_8c.html#a515d7ecf1a4c7640e188d459a9d162c6">nErrMaxStr</a></div>
 <div class="line">}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00073">73</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00083">83</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -1116,7 +1496,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00060">60</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00062">62</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -1132,7 +1512,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00061">61</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00063">63</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -1148,7 +1528,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00062">62</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00064">64</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -1164,7 +1544,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00063">63</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00065">65</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -1180,7 +1560,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00064">64</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00066">66</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -1196,7 +1576,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00065">65</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00067">67</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -1212,7 +1592,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00054">54</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00056">56</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -1228,45 +1608,60 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00184">184</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00243">243</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aeba063a47aba242d82eb97e5af504a87">NERROR_FILE_NOT_FOUND</a></div><div class="ttdeci">@ NERROR_FILE_NOT_FOUND</div><div class="ttdoc">A file was not found where specified.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00076">Errors.h:76</a></div></div>
-<div class="ttc" id="a_errors_8c_html_abcfc452b2a52b1d722b594d21da5a664"><div class="ttname"><a href="_errors_8c.html#abcfc452b2a52b1d722b594d21da5a664">nErrErrorNotFoundStr</a></div><div class="ttdeci">const char nErrErrorNotFoundStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00057">Errors.c:57</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a2ff59df63c38a7633269f055c48a89f7"><div class="ttname"><a href="_errors_8c.html#a2ff59df63c38a7633269f055c48a89f7">nErrFileNotFoundStr</a></div><div class="ttdeci">const char nErrFileNotFoundStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00068">Errors.c:68</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a0e8d27ca8d921dc017ca51aba0a41ce1"><div class="ttname"><a href="_errors_8c.html#a0e8d27ca8d921dc017ca51aba0a41ce1">nErrSigIntStr</a></div><div class="ttdeci">const char nErrSigIntStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00063">Errors.c:63</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a4353de60fd06a4f1731033c6f3382323"><div class="ttname"><a href="_errors_8c.html#a4353de60fd06a4f1731033c6f3382323">nErrDescFileNotFoundStr</a></div><div class="ttdeci">const char nErrDescFileNotFoundStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00137">Errors.c:137</a></div></div>
-<div class="ttc" id="a_errors_8c_html_aa94fd8144a129abb850827d448840f70"><div class="ttname"><a href="_errors_8c.html#aa94fd8144a129abb850827d448840f70">nErrInternalFailureStr</a></div><div class="ttdeci">const char nErrInternalFailureStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00055">Errors.c:55</a></div></div>
-<div class="ttc" id="a_errors_8c_html_ade8a5b44ad47489e587d8d07d27c3464"><div class="ttname"><a href="_errors_8c.html#ade8a5b44ad47489e587d8d07d27c3464">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00308">Errors.c:308</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a5868a4b4cb3385f8f4ffccf42a9cbd16"><div class="ttname"><a href="_errors_8c.html#a5868a4b4cb3385f8f4ffccf42a9cbd16">nErrDescErrorNotFoundStr</a></div><div class="ttdeci">const char nErrDescErrorNotFoundStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00121">Errors.c:121</a></div></div>
-<div class="ttc" id="a_errors_8c_html_ab8cb1e7b346dcdfc84eeca57b3e494d4"><div class="ttname"><a href="_errors_8c.html#ab8cb1e7b346dcdfc84eeca57b3e494d4">nErrDescSigTermStr</a></div><div class="ttdeci">const char nErrDescSigTermStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00134">Errors.c:134</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a7c8df6eafab2a2856ba029b7c37b3853"><div class="ttname"><a href="_errors_8c.html#a7c8df6eafab2a2856ba029b7c37b3853">nErrSigAbrtStr</a></div><div class="ttdeci">const char nErrSigAbrtStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00060">Errors.c:60</a></div></div>
-<div class="ttc" id="a_errors_8c_html_acab0227cff8650d2f69048554baeaeb0"><div class="ttname"><a href="_errors_8c.html#acab0227cff8650d2f69048554baeaeb0">nErrDescMaxStr</a></div><div class="ttdeci">const char nErrDescMaxStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00140">Errors.c:140</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a9a40be49162b962fac725f67d948c133"><div class="ttname"><a href="_errors_8c.html#a9a40be49162b962fac725f67d948c133">nErrInvExecFormatStr</a></div><div class="ttdeci">const char nErrInvExecFormatStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00077">Errors.c:77</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a47d62aea349025651404d67b5e87bbb1"><div class="ttname"><a href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const nint_t error, const char *info, nint_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00521">Errors.c:521</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a6fc019b0d50ca5b0f1013fd1ce1f83a5"><div class="ttname"><a href="_errors_8c.html#a6fc019b0d50ca5b0f1013fd1ce1f83a5">nErrNoFileStr</a></div><div class="ttdeci">const char nErrNoFileStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00071">Errors.c:71</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a0e8d27ca8d921dc017ca51aba0a41ce1"><div class="ttname"><a href="_errors_8c.html#a0e8d27ca8d921dc017ca51aba0a41ce1">nErrSigIntStr</a></div><div class="ttdeci">const char nErrSigIntStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00065">Errors.c:65</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ae5f9247a50e0d075f74a816decc3a1df"><div class="ttname"><a href="_errors_8c.html#ae5f9247a50e0d075f74a816decc3a1df">nErrDescMaxArgsStr</a></div><div class="ttdeci">const char nErrDescMaxArgsStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00176">Errors.c:176</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a8a7d9b2f898d5a8a171a73b98a294a84"><div class="ttname"><a href="_errors_8c.html#a8a7d9b2f898d5a8a171a73b98a294a84">nErrMaxArgsStr</a></div><div class="ttdeci">const char nErrMaxArgsStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00076">Errors.c:76</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ac21a44759e82f0ba3105140be4050cc2"><div class="ttname"><a href="_errors_8c.html#ac21a44759e82f0ba3105140be4050cc2">nErrDescInterruptStr</a></div><div class="ttdeci">const char nErrDescInterruptStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00166">Errors.c:166</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a5ecd01255d7449b849b607ee45db8944"><div class="ttname"><a href="_errors_8c.html#a5ecd01255d7449b849b607ee45db8944">nErrDescNoPermStr</a></div><div class="ttdeci">const char nErrDescNoPermStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00158">Errors.c:158</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a452454c3e1aa1651ff0e62f45a49f696"><div class="ttname"><a href="_errors_8c.html#a452454c3e1aa1651ff0e62f45a49f696">nErrInvErrorStr</a></div><div class="ttdeci">const char nErrInvErrorStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00059">Errors.c:59</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a18b7ce575b6c470740d4f1d5cb1fb86a"><div class="ttname"><a href="_errors_8c.html#a18b7ce575b6c470740d4f1d5cb1fb86a">nErrInterruptStr</a></div><div class="ttdeci">const char nErrInterruptStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00073">Errors.c:73</a></div></div>
+<div class="ttc" id="a_errors_8c_html_aa94fd8144a129abb850827d448840f70"><div class="ttname"><a href="_errors_8c.html#aa94fd8144a129abb850827d448840f70">nErrInternalFailureStr</a></div><div class="ttdeci">const char nErrInternalFailureStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00057">Errors.c:57</a></div></div>
+<div class="ttc" id="a_errors_8c_html_acce0900e1e744853b492cdc4c4a36ae2"><div class="ttname"><a href="_errors_8c.html#acce0900e1e744853b492cdc4c4a36ae2">nErrNoDeviceStr</a></div><div class="ttdeci">const char nErrNoDeviceStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00075">Errors.c:75</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ab8cb1e7b346dcdfc84eeca57b3e494d4"><div class="ttname"><a href="_errors_8c.html#ab8cb1e7b346dcdfc84eeca57b3e494d4">nErrDescSigTermStr</a></div><div class="ttdeci">const char nErrDescSigTermStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00156">Errors.c:156</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a7c8df6eafab2a2856ba029b7c37b3853"><div class="ttname"><a href="_errors_8c.html#a7c8df6eafab2a2856ba029b7c37b3853">nErrSigAbrtStr</a></div><div class="ttdeci">const char nErrSigAbrtStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00062">Errors.c:62</a></div></div>
+<div class="ttc" id="a_errors_8c_html_acab0227cff8650d2f69048554baeaeb0"><div class="ttname"><a href="_errors_8c.html#acab0227cff8650d2f69048554baeaeb0">nErrDescMaxStr</a></div><div class="ttdeci">const char nErrDescMaxStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00185">Errors.c:185</a></div></div>
 <div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
-<div class="ttc" id="a_errors_8c_html_aa8da024ed11ed3e7421bdfe65081edd9"><div class="ttname"><a href="_errors_8c.html#aa8da024ed11ed3e7421bdfe65081edd9">nErrUnknownStr</a></div><div class="ttdeci">const char nErrUnknownStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00054">Errors.c:54</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00119">Nimble.h:119</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a8ed84b655783ac3b06edc599c9e61f8c"><div class="ttname"><a href="_errors_8c.html#a8ed84b655783ac3b06edc599c9e61f8c">nErrDescSigIntStr</a></div><div class="ttdeci">const char nErrDescSigIntStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00130">Errors.c:130</a></div></div>
-<div class="ttc" id="a_errors_8c_html_ad89674300f89c640ec5db48ea596632e"><div class="ttname"><a href="_errors_8c.html#ad89674300f89c640ec5db48ea596632e">nErrSigTermStr</a></div><div class="ttdeci">const char nErrSigTermStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00065">Errors.c:65</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a7ce818a6ef8c3ad8d003f25d7aa1482f"><div class="ttname"><a href="_errors_8c.html#a7ce818a6ef8c3ad8d003f25d7aa1482f">nErrorToStringLocal</a></div><div class="ttdeci">int32_t nErrorToStringLocal(char *dst, int32_t *errorLen, const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Describes an error and returns a string with no error handling.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00261">Errors.c:261</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a515d7ecf1a4c7640e188d459a9d162c6"><div class="ttname"><a href="_errors_8c.html#a515d7ecf1a4c7640e188d459a9d162c6">nErrMaxStr</a></div><div class="ttdeci">const char nErrMaxStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00070">Errors.c:70</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a9f2c7a0588df58a9d04aaffa8626b5b6"><div class="ttname"><a href="_errors_8c.html#a9f2c7a0588df58a9d04aaffa8626b5b6">nErrDecInternalFailureStr</a></div><div class="ttdeci">const char nErrDecInternalFailureStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00117">Errors.c:117</a></div></div>
-<div class="ttc" id="a_errors_8c_html_adff5072b6a77c292d28e8fc3d0779d0e"><div class="ttname"><a href="_errors_8c.html#adff5072b6a77c292d28e8fc3d0779d0e">nErrDescNullStr</a></div><div class="ttdeci">const char nErrDescNullStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00119">Errors.c:119</a></div></div>
-<div class="ttc" id="a_errors_8c_html_aa87886c559395e1bc5cda18e2de0c981"><div class="ttname"><a href="_errors_8c.html#aa87886c559395e1bc5cda18e2de0c981">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(char *dst, int32_t *stackLen, int32_t *stackLevels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00342">Errors.c:342</a></div></div>
-<div class="ttc" id="a_errors_8c_html_ad8e0c07b8f24abd04aad4b8999d0d351"><div class="ttname"><a href="_errors_8c.html#ad8e0c07b8f24abd04aad4b8999d0d351">nErrMinStr</a></div><div class="ttdeci">const char nErrMinStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00052">Errors.c:52</a></div></div>
-<div class="ttc" id="a_errors_8c_html_afb73959e1168fafc6b2a64947259ea10"><div class="ttname"><a href="_errors_8c.html#afb73959e1168fafc6b2a64947259ea10">nErrDescSigIllStr</a></div><div class="ttdeci">const char nErrDescSigIllStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00128">Errors.c:128</a></div></div>
-<div class="ttc" id="a_errors_8c_html_acd2a2cc72b112c6b22b9e7399698c83b"><div class="ttname"><a href="_errors_8c.html#acd2a2cc72b112c6b22b9e7399698c83b">nErrSigSegvStr</a></div><div class="ttdeci">const char nErrSigSegvStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00064">Errors.c:64</a></div></div>
-<div class="ttc" id="a_errors_8c_html_afead839202aa4d5b6ac57b34e7e51e68"><div class="ttname"><a href="_errors_8c.html#afead839202aa4d5b6ac57b34e7e51e68">nErrNullStr</a></div><div class="ttdeci">const char nErrNullStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00056">Errors.c:56</a></div></div>
+<div class="ttc" id="a_errors_8c_html_aa8da024ed11ed3e7421bdfe65081edd9"><div class="ttname"><a href="_errors_8c.html#aa8da024ed11ed3e7421bdfe65081edd9">nErrUnknownStr</a></div><div class="ttdeci">const char nErrUnknownStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00056">Errors.c:56</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00127">Nimble.h:127</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a2f3681cae40fc7f7bbb0d839d4a80986"><div class="ttname"><a href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(char *dst, nint_t *stackLen, nint_t *stackLevels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00643">Errors.c:643</a></div></div>
+<div class="ttc" id="a_errors_8c_html_aae30b00559769f6349b59fbc59921a39"><div class="ttname"><a href="_errors_8c.html#aae30b00559769f6349b59fbc59921a39">nErrDescIOStr</a></div><div class="ttdeci">const char nErrDescIOStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00169">Errors.c:169</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a8ed84b655783ac3b06edc599c9e61f8c"><div class="ttname"><a href="_errors_8c.html#a8ed84b655783ac3b06edc599c9e61f8c">nErrDescSigIntStr</a></div><div class="ttdeci">const char nErrDescSigIntStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00153">Errors.c:153</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ad89674300f89c640ec5db48ea596632e"><div class="ttname"><a href="_errors_8c.html#ad89674300f89c640ec5db48ea596632e">nErrSigTermStr</a></div><div class="ttdeci">const char nErrSigTermStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00067">Errors.c:67</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a986223a1bd08833af99d7193fbb633ae"><div class="ttname"><a href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">nErrorToStringLocal</a></div><div class="ttdeci">nint_t nErrorToStringLocal(char *dst, nint_t *errorLen, const nint_t error, const char *info, nint_t infoLen)</div><div class="ttdoc">Describes an error and returns a string with no error handling.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00562">Errors.c:562</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a2ed47101fbc97594f8dd22f825be6d66"><div class="ttname"><a href="_errors_8c.html#a2ed47101fbc97594f8dd22f825be6d66">nErrDescInvExecFormatStr</a></div><div class="ttdeci">const char nErrDescInvExecFormatStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00179">Errors.c:179</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ae3ae69fe47b9d7b6afc3a873ed69d169"><div class="ttname"><a href="_errors_8c.html#ae3ae69fe47b9d7b6afc3a873ed69d169">nErrDescNoProcessStr</a></div><div class="ttdeci">const char nErrDescNoProcessStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00164">Errors.c:164</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a515d7ecf1a4c7640e188d459a9d162c6"><div class="ttname"><a href="_errors_8c.html#a515d7ecf1a4c7640e188d459a9d162c6">nErrMaxStr</a></div><div class="ttdeci">const char nErrMaxStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00080">Errors.c:80</a></div></div>
+<div class="ttc" id="a_errors_8c_html_adff5072b6a77c292d28e8fc3d0779d0e"><div class="ttname"><a href="_errors_8c.html#adff5072b6a77c292d28e8fc3d0779d0e">nErrDescNullStr</a></div><div class="ttdeci">const char nErrDescNullStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00143">Errors.c:143</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a1ea33a06254b37a5f515c5f24a38ea15"><div class="ttname"><a href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, nint_t *errorLen, const nint_t error, const char *info, nint_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00609">Errors.c:609</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ad8e0c07b8f24abd04aad4b8999d0d351"><div class="ttname"><a href="_errors_8c.html#ad8e0c07b8f24abd04aad4b8999d0d351">nErrMinStr</a></div><div class="ttdeci">const char nErrMinStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00054">Errors.c:54</a></div></div>
+<div class="ttc" id="a_errors_8c_html_afb73959e1168fafc6b2a64947259ea10"><div class="ttname"><a href="_errors_8c.html#afb73959e1168fafc6b2a64947259ea10">nErrDescSigIllStr</a></div><div class="ttdeci">const char nErrDescSigIllStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00151">Errors.c:151</a></div></div>
+<div class="ttc" id="a_errors_8c_html_acd2a2cc72b112c6b22b9e7399698c83b"><div class="ttname"><a href="_errors_8c.html#acd2a2cc72b112c6b22b9e7399698c83b">nErrSigSegvStr</a></div><div class="ttdeci">const char nErrSigSegvStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00066">Errors.c:66</a></div></div>
+<div class="ttc" id="a_errors_8c_html_afead839202aa4d5b6ac57b34e7e51e68"><div class="ttname"><a href="_errors_8c.html#afead839202aa4d5b6ac57b34e7e51e68">nErrNullStr</a></div><div class="ttdeci">const char nErrNullStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00058">Errors.c:58</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ab9a7629813dcf56681b9232a7c6b76b8"><div class="ttname"><a href="_errors_8c.html#ab9a7629813dcf56681b9232a7c6b76b8">nErrInvFPStr</a></div><div class="ttdeci">const char nErrInvFPStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00078">Errors.c:78</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a5989f3e94cd31ab9c808a7476ea69413"><div class="ttname"><a href="_errors_8c.html#a5989f3e94cd31ab9c808a7476ea69413">nErrNoProcessStr</a></div><div class="ttdeci">const char nErrNoProcessStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00072">Errors.c:72</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
-<div class="ttc" id="a_errors_8c_html_ada150208dfff4322a1be89604b87eb68"><div class="ttname"><a href="_errors_8c.html#ada150208dfff4322a1be89604b87eb68">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const int32_t error, const char *info, int32_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00220">Errors.c:220</a></div></div>
-<div class="ttc" id="a_errors_8c_html_af61c5cdf1f0a900f22b10ea883b0c219"><div class="ttname"><a href="_errors_8c.html#af61c5cdf1f0a900f22b10ea883b0c219">nErrDescSigAbrtStr</a></div><div class="ttdeci">const char nErrDescSigAbrtStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00124">Errors.c:124</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a21e1a77ae4589e911f35570cbd97632c"><div class="ttname"><a href="_errors_8c.html#a21e1a77ae4589e911f35570cbd97632c">nErrDescMinStr</a></div><div class="ttdeci">const char nErrDescMinStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00112">Errors.c:112</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a6d61d7a3079c0eb933c44d99e4ad4112"><div class="ttname"><a href="_errors_8c.html#a6d61d7a3079c0eb933c44d99e4ad4112">nErrDescSigSegvStr</a></div><div class="ttdeci">const char nErrDescSigSegvStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00132">Errors.c:132</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a9b58be1432beabae618e1ccbb64b3331"><div class="ttname"><a href="_errors_8c.html#a9b58be1432beabae618e1ccbb64b3331">nErrDescUnknownStr</a></div><div class="ttdeci">const char nErrDescUnknownStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00115">Errors.c:115</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a1e87c3307d84bb22f000ffb12e76bcd7"><div class="ttname"><a href="_errors_8c.html#a1e87c3307d84bb22f000ffb12e76bcd7">nErrDescSigFpeStr</a></div><div class="ttdeci">const char nErrDescSigFpeStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00126">Errors.c:126</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a9462341f54ebcb50a52414aa97bd0917"><div class="ttname"><a href="_errors_8c.html#a9462341f54ebcb50a52414aa97bd0917">nErrSigIllStr</a></div><div class="ttdeci">const char nErrSigIllStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00062">Errors.c:62</a></div></div>
-<div class="ttc" id="a_errors_8c_html_ac96cb2a606a454626fa92f8ce9eaba0a"><div class="ttname"><a href="_errors_8c.html#ac96cb2a606a454626fa92f8ce9eaba0a">nErrSigFpeStr</a></div><div class="ttdeci">const char nErrSigFpeStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00061">Errors.c:61</a></div></div>
+<div class="ttc" id="a_errors_8c_html_af0da9d0f1d3ee54189753547b9f80e8e"><div class="ttname"><a href="_errors_8c.html#af0da9d0f1d3ee54189753547b9f80e8e">nErrDescInvErrorStr</a></div><div class="ttdeci">const char nErrDescInvErrorStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00145">Errors.c:145</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00135">Nimble.h:135</a></div></div>
+<div class="ttc" id="a_errors_8c_html_af61c5cdf1f0a900f22b10ea883b0c219"><div class="ttname"><a href="_errors_8c.html#af61c5cdf1f0a900f22b10ea883b0c219">nErrDescSigAbrtStr</a></div><div class="ttdeci">const char nErrDescSigAbrtStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00148">Errors.c:148</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a21e1a77ae4589e911f35570cbd97632c"><div class="ttname"><a href="_errors_8c.html#a21e1a77ae4589e911f35570cbd97632c">nErrDescMinStr</a></div><div class="ttdeci">const char nErrDescMinStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00137">Errors.c:137</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a6d61d7a3079c0eb933c44d99e4ad4112"><div class="ttname"><a href="_errors_8c.html#a6d61d7a3079c0eb933c44d99e4ad4112">nErrDescSigSegvStr</a></div><div class="ttdeci">const char nErrDescSigSegvStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00154">Errors.c:154</a></div></div>
+<div class="ttc" id="a_errors_8c_html_aba5c1b809434adcc0e3357e62287612b"><div class="ttname"><a href="_errors_8c.html#aba5c1b809434adcc0e3357e62287612b">nErrDescInvFPStr</a></div><div class="ttdeci">const char nErrDescInvFPStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00181">Errors.c:181</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a9b58be1432beabae618e1ccbb64b3331"><div class="ttname"><a href="_errors_8c.html#a9b58be1432beabae618e1ccbb64b3331">nErrDescUnknownStr</a></div><div class="ttdeci">const char nErrDescUnknownStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00140">Errors.c:140</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ac60755889d4e9da5fd40892a1bbaa405"><div class="ttname"><a href="_errors_8c.html#ac60755889d4e9da5fd40892a1bbaa405">nErrDescNoFileStr</a></div><div class="ttdeci">const char nErrDescNoFileStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00161">Errors.c:161</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a542e36d296cc5efbb93498588602c690"><div class="ttname"><a href="_errors_8c.html#a542e36d296cc5efbb93498588602c690">nErrDescInternalFailureStr</a></div><div class="ttdeci">const char nErrDescInternalFailureStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00141">Errors.c:141</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a1e87c3307d84bb22f000ffb12e76bcd7"><div class="ttname"><a href="_errors_8c.html#a1e87c3307d84bb22f000ffb12e76bcd7">nErrDescSigFpeStr</a></div><div class="ttdeci">const char nErrDescSigFpeStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00149">Errors.c:149</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a9462341f54ebcb50a52414aa97bd0917"><div class="ttname"><a href="_errors_8c.html#a9462341f54ebcb50a52414aa97bd0917">nErrSigIllStr</a></div><div class="ttdeci">const char nErrSigIllStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00064">Errors.c:64</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ac98a60c69b0cae7472584bef2f65e811"><div class="ttname"><a href="_errors_8c.html#ac98a60c69b0cae7472584bef2f65e811">nErrNoPermStr</a></div><div class="ttdeci">const char nErrNoPermStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00070">Errors.c:70</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ac75ecdefd0d0956408e9b028c20b288a"><div class="ttname"><a href="_errors_8c.html#ac75ecdefd0d0956408e9b028c20b288a">nErrIOStr</a></div><div class="ttdeci">const char nErrIOStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00074">Errors.c:74</a></div></div>
+<div class="ttc" id="a_errors_8c_html_ac96cb2a606a454626fa92f8ce9eaba0a"><div class="ttname"><a href="_errors_8c.html#ac96cb2a606a454626fa92f8ce9eaba0a">nErrSigFpeStr</a></div><div class="ttdeci">const char nErrSigFpeStr[]</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00063">Errors.c:63</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19
