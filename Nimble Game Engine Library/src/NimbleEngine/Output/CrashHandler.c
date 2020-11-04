@@ -61,6 +61,8 @@ nMutex_t crashMutex = NULL;
  * @param[in] errorDescLen The length of the @p errorDesc argument, including the
  * null character. A length of zero (0) uses strlen() to determine length.
  * @param[in] errorTime The time the error was thrown.
+ * @param[in] stack The stack as a string.
+ * @param[in] stackLen The length of the stack string.
  */
 void nCrashHandlerDefault(const nint_t error,
                           const time_t errorTime,
