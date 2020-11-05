@@ -91,8 +91,18 @@ const char nErrIsDirStr[]           = "NERROR_IS_DIR";
 const char nErrInvArgStr[]          = "NERROR_INV_ARG";
 const char nErrMaxFileStr[]         = "NERROR_MAX_FILE";
 const char nErrMaxFileSysStr[]      = "NERROR_MAX_FILE_SYS";
-
+const char nErrInvIOCtlStr[]        = "NERROR_INV_IOCTL";
+const char nErrTextBusyStr[]        = "NERROR_TEXT_BUSY";
+const char nErrFileTooBigStr[]      = "NERROR_FILE_TOO_BIG";
+const char nErrNoSpaceStr[]         = "NERROR_NO_SPACE";
+const char nErrInvSeekStr[]         = "NERROR_INV_SEEK";
+const char nErrReadOnlyStr[]        = "NERROR_READ_ONLY";
+const char nErrMaxLinksStr[]        = "NERROR_MAX_LINKS";
+const char nErrInvPipeStr[]         = "NERROR_INV_PIPE";
+const char nErrDomainStr[]          = "NERROR_DOMAIN";
+const char nErrResultTooBigStr[]    = "NERROR_RESULT_TOO_BIG";
 const char nErrWouldBlockStr[]      = "NERROR_WOULD_BLOCK";
+const char nErrInProgressStr[]      = "NERROR_IN_PROGRESS";
 
 const char nErrMaxStr[]             = "NERROR_MAX";
 
@@ -135,8 +145,18 @@ const char * nErrorStrings[] = {
     nErrInvArgStr,
     nErrMaxFileStr,
     nErrMaxFileSysStr,
-    
+    nErrInvIOCtlStr,
+    nErrTextBusyStr,
+    nErrFileTooBigStr,
+    nErrNoSpaceStr,
+    nErrInvSeekStr,
+    nErrReadOnlyStr,
+    nErrMaxLinksStr,
+    nErrInvPipeStr,
+    nErrDomainStr,
+    nErrResultTooBigStr,
     nErrWouldBlockStr,
+    nErrInProgressStr,
     
     nErrMaxStr
 };
@@ -179,8 +199,18 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrInvArgStr),
     sizeof(nErrMaxFileStr),
     sizeof(nErrMaxFileSysStr),
-    
+    sizeof(nErrInvIOCtlStr),
+    sizeof(nErrTextBusyStr),
+    sizeof(nErrFileTooBigStr),
+    sizeof(nErrNoSpaceStr),
+    sizeof(nErrInvSeekStr),
+    sizeof(nErrReadOnlyStr),
+    sizeof(nErrMaxLinksStr),
+    sizeof(nErrInvPipeStr),
+    sizeof(nErrDomainStr),
+    sizeof(nErrResultTooBigStr),
     sizeof(nErrWouldBlockStr),
+    sizeof(nErrInProgressStr),
     
     sizeof(nErrMaxStr)
 };
@@ -273,22 +303,54 @@ const char nErrDescMaxFileStr[]         = "Too many open files. The current "\
 const char nErrDescMaxFileSysStr[]      = "Too many open files in system. "\
 "There are too many distinct file openings in the entire system. Note that any "\
 "number of linked channels count as just one file opening.";
-
+const char nErrDescInvIOCtlStr[]        = "Inappropriate ioctl for device. "\
+"Inappropriate I/O control operation, such as trying to set terminal modes on "\
+"an ordinary file.";
+const char nErrDescTextBusyStr[]        = "Text file busy. An attempt to "\
+"execute a file that is currently open for writing, or write to a file that is "\
+"currently being executed. Often using a debugger to run a program is "\
+"considered having it open for writing and will cause this error.";
+const char nErrDescFileTooBigStr[]      = "File too large. The size of a file "\
+"would be larger than allowed by the system.";
+const char nErrDescNoSpaceStr[]         = "No space left on device. Write "\
+"operation on a file failed because the disk is full.";
+const char nErrDescInvSeekStr[]         = "Illegal seek. Invalid seek "\
+"operation (such as on a pipe).";
+const char nErrDescReadOnlyStr[]        = "Read-only file system. An attempt "\
+"was made to modify something on a read-only file system.";
+const char nErrDescMaxLinksStr[]        = "Too many links. The link count of a "\
+"single file would become too large. rename() can cause this error if the file "\
+"being renamed already has as many links as it can take";
+const char nErrDescInvPipeStr[]         = "Broken pipe. There is no process "\
+"reading from the other end of a pipe.";
+const char nErrDescDomainStr[]          = "Numerical argument out of domain. "\
+"Used by mathematical functions when an argument value does not fall into the "\
+"domain over which the function is defined.";
+const char nErrDescResultTooBigStr[]    = "Numerical result out of range. Used "\
+"by mathematical functions when the result value is not representable because "\
+"of overflow or underflow.";
 const char nErrDescWouldBlockStr[]      = "Resource temporarily unavailable; "\
 "Operation would block. The call might work if you try again later. This error "\
 "can happen in a few different situations:\n"\
 "1) An operation that would block was attempted on an object that has "\
 "non-blocking mode selected. Trying the same operation again will block until "\
 "some external condition makes it possible to read, write, or connect "\
-"(whatever the operation). You can use select to find out when the operation "\
+"(whatever the operation). You can use select() to find out when the operation "\
 "will be possible.\n"\
-"2) A temporary resource shortage made an operation impossible. fork can "\
+"2) A temporary resource shortage made an operation impossible. fork() can "\
 "return this error. It indicates that the shortage is expected to pass, so "\
 "your program can try the call again later and it may succeed. It is probably "\
 "a good idea to delay for a few seconds before trying it again, to allow time "\
 "for other processes to release scarce resources. Such shortages are usually "\
 "fairly serious and affect the whole system, so usually an interactive program "\
 "should report the error to the user and return to its command loop.";
+const char nErrDescInProgressStr[]      = "Operation now in progress. An "\
+"operation that cannot complete immediately was initiated on an object that "\
+"has non-blocking mode selected. Some functions that must always block (such "\
+"as connect()) never return EAGAIN. Instead, they return EINPROGRESS to "\
+"indicate that the operation has begun and will take some time. Attempts to "\
+"manipulate the object before the call completes return EALREADY. You can use "\
+"the select function to find out when the pending operation has completed.";
 
 const char nErrDescMaxStr[]             = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
@@ -332,8 +394,18 @@ const char * nErrorDescriptions[] = {
     nErrDescInvArgStr,
     nErrDescMaxFileStr,
     nErrDescMaxFileSysStr,
-    
+    nErrDescInvIOCtlStr,
+    nErrDescTextBusyStr,
+    nErrDescFileTooBigStr,
+    nErrDescNoSpaceStr,
+    nErrDescInvSeekStr,
+    nErrDescReadOnlyStr,
+    nErrDescMaxLinksStr,
+    nErrDescInvPipeStr,
+    nErrDescDomainStr,
+    nErrDescResultTooBigStr,
     nErrDescWouldBlockStr,
+    nErrDescInProgressStr,
     
     nErrDescMaxStr
 };
@@ -375,8 +447,18 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescInvArgStr),
     sizeof(nErrDescMaxFileStr),
     sizeof(nErrDescMaxFileSysStr),
-    
+    sizeof(nErrDescInvIOCtlStr),
+    sizeof(nErrDescTextBusyStr),
+    sizeof(nErrDescFileTooBigStr),
+    sizeof(nErrDescNoSpaceStr),
+    sizeof(nErrDescInvSeekStr),
+    sizeof(nErrDescReadOnlyStr),
+    sizeof(nErrDescMaxLinksStr),
+    sizeof(nErrDescInvPipeStr),
+    sizeof(nErrDescDomainStr),
+    sizeof(nErrDescResultTooBigStr),
     sizeof(nErrDescWouldBlockStr),
+    sizeof(nErrDescInProgressStr),
     
     sizeof(nErrDescMaxStr)
 };
