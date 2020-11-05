@@ -104,6 +104,8 @@ const char nErrDomainStr[]          = "NERROR_DOMAIN";
 const char nErrResultTooBigStr[]    = "NERROR_RESULT_TOO_BIG";
 const char nErrWouldBlockStr[]      = "NERROR_WOULD_BLOCK";
 const char nErrInProgressStr[]      = "NERROR_IN_PROGRESS";
+const char nErrAlresdyStr[]         = "EALREADY";
+const char nErrNotSocketStr[]       = "NERROR_NOT_SOCKET";
 
 const char nErrMaxStr[]             = "NERROR_MAX";
 
@@ -158,6 +160,8 @@ const char * nErrorStrings[] = {
     nErrResultTooBigStr,
     nErrWouldBlockStr,
     nErrInProgressStr,
+    nErrAlresdyStr,
+    nErrNotSocketStr,
     
     nErrMaxStr
 };
@@ -212,6 +216,8 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrResultTooBigStr),
     sizeof(nErrWouldBlockStr),
     sizeof(nErrInProgressStr),
+    sizeof(nErrAlresdyStr),
+    sizeof(nErrNotSocketStr),
     
     sizeof(nErrMaxStr)
 };
@@ -353,6 +359,11 @@ const char nErrDescInProgressStr[]      = "Operation now in progress. An "\
 "some time. Attempts to manipulate the object before the call completes return "\
 "NERROR_ALREADY. You can use the select function to find out when the pending "\
 "operation has completed.";
+const char nErrDescAlresdyStr[]         = "Operation already in progress. An "\
+"operation is already in progress on an object that has non-blocking mode "\
+"selected.";
+const char nErrDescNotSocketStr[]       = "Socket operation on non-socket. A "\
+"file that isn’t a socket was specified when a socket is required.";
 
 const char nErrDescMaxStr[]             = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
@@ -408,6 +419,8 @@ const char * nErrorDescriptions[] = {
     nErrDescResultTooBigStr,
     nErrDescWouldBlockStr,
     nErrDescInProgressStr,
+    nErrDescAlresdyStr,
+    nErrDescNotSocketStr,
     
     nErrDescMaxStr
 };
@@ -461,6 +474,8 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescResultTooBigStr),
     sizeof(nErrDescWouldBlockStr),
     sizeof(nErrDescInProgressStr),
+    sizeof(nErrDescAlresdyStr),
+    sizeof(nErrDescNotSocketStr),
     
     sizeof(nErrDescMaxStr)
 };
@@ -880,6 +895,13 @@ nint_t nErrorFromErrno(const int error)
         #endif
         #ifdef EPFNOSUPPORT
         case EPFNOSUPPORT:
+        {
+            return NERROR_INV_PROTO_FAM;
+        }
+        break;
+        #endif
+        #ifdef EAFNOSUPPORT
+        case EAFNOSUPPORT:
         {
             return NERROR_INV_ADDR_FAM;
         }
