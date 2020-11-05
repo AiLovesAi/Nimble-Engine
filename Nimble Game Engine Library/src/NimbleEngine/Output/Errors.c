@@ -347,10 +347,11 @@ const char nErrDescWouldBlockStr[]      = "Resource temporarily unavailable; "\
 const char nErrDescInProgressStr[]      = "Operation now in progress. An "\
 "operation that cannot complete immediately was initiated on an object that "\
 "has non-blocking mode selected. Some functions that must always block (such "\
-"as connect()) never return EAGAIN. Instead, they return EINPROGRESS to "\
-"indicate that the operation has begun and will take some time. Attempts to "\
-"manipulate the object before the call completes return EALREADY. You can use "\
-"the select function to find out when the pending operation has completed.";
+"as connect()) never return NERROR_WOULD_BLOCK. Instead, they return "\
+"NERROR_IN_PROGRESS to indicate that the operation has begun and will take "\
+"some time. Attempts to manipulate the object before the call completes return "\
+"NERROR_ALREADY. You can use the select function to find out when the pending "\
+"operation has completed.";
 
 const char nErrDescMaxStr[]             = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
