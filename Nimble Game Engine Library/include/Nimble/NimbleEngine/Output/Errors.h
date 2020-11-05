@@ -128,6 +128,98 @@ enum nErrors {
     NERROR_NET_UNREACHABLE, /**< Network is unreachable. */
     NERROR_NET_RESET, /**< Network dropped connection on reset. */
     NERROR_CONN_ABORTED, /**< Software caused connection abort. */
+    NERROR_CONN_RESET, /**< Connection reset by peer. */
+    NERROR_NO_BUFFER_SPACE, /**< No buffer space available. */
+    NERROR_ALREADY_CONN, /**< Transport endpoint is already connected. */
+    NERROR_NOT_CONN, /**< Transport endpoint is not connected. */
+    NERROR_NO_ADDR, /**< Destination address required. */
+    NERROR_SOCK_SHUTDOWN, /**< Cannot send after transport endpoint shutdown. */
+    NERROR_MAX_REFS, /**< Too many references: cannot splice. */
+    NERROR_CONN_TIMEOUT, /**< Connection timed out. */
+    NERROR_CONN_REFUSED, /**< Connection refused. */
+    NERROR_LINK_LOOP, /**< Too many levels of symbolic links. */
+    NERROR_MAX_FILENAME, /**< File name too long. */
+    NERROR_HOST_DOWN, /**< Host is down. */
+    NERROR_HOST_UNREACHABLE, /**< No route to host. */
+    NERROR_DIR_NOT_EMPTY, /**< Directory not empty. */
+    NERROR_MAX_PROCESS, /**< Too many processes. */
+    NERROR_MAX_USERS, /**< Too many users. */
+    NERROR_MAX_DISK_QUOTA, /**< Disk quota exceeded. */
+    NERROR_STALE, /**< Stale file handle. */
+    NERROR_REMOTE, /**< Object is remote. */
+    NERROR_INV_RPC, /**< RPC struct is bad. */
+    NERROR_INV_RPC_VERSION, /**< RPC version wrong. */
+    NERROR_INV_RPC_PROG, /**< RPC program not available. */
+    NERROR_INV_RPC_PROG_VERSION, /**< RPC program version wrong. */
+    NERROR_INV_RPC_PROC, /**< RPC bad procedure for program. */
+    NERROR_NO_FILE_LOCK, /**< No locks available. */
+    NERROR_INV_FILE_TYPE, /**< Inappropriate file type or format. */
+    NERROR_AUTH, /**< Authentication error. */
+    NERROR_NO_AUTH, /**< Need authenticator. */
+    NERROR_FUNC_NOT_SUPPORTED, /**< Function not implemented. */
+    NERROR_NOT_SUPPORTED, /**< Not supported. */
+    NERROR_INV_MULTIBYTE, /**< Invalid or incomplete multibyte or wide character. */
+    NERROR_INV_BACKGROUND, /**< Inappropriate operation for background process. */
+    NERROR_TRANSLATOR_DIED, /**< Translator died. */
+    NERROR_JOKE, /**< You really blew it this time. */
+    NERROR_INV_MESSAGE, /**< Bad message. */
+    NERROR_NO_IDENTIFIER, /**< Identifier removed. */
+    NERROR_MULTIHOP, /**< Multihop attempted. */
+    NERROR_NO_DATA, /**< No data available. */
+    NERROR_NO_LINK, /**< Link has been severed. */
+    NERROR_NO_MESSAGE, /**< No message of desired type. */
+    NERROR_NO_STREAM_RESOURCES, /**< Out of streams resources. */
+    NERROR_DEVICE_NOT_STREAM, /**< Device not a stream. */
+    NERROR_OVERFLOW, /**< Value too large for defined data type. */
+    NERROR_PROTOCOL, /**< Protocol error. */
+    NERROR_TIMER, /**< Timer expired. */
+    NERROR_ASYNC_CANCEL, /**< Operation canceled. */
+    NERROR_OWNED_DIED, /**< Owner died. */
+    NERROR_NOT_RECOVERABLE, /**< State not recoverable. */
+    NERROR_SYSCALL_RESTART, /**< Interrupted system call should be restarted. */
+    NERROR_CHANNEL_RANGE, /**< Channel number out of range. */
+    NERROR_LVL2_NOT_SYNC, /**< Level 2 not synchronized. */
+    NERROR_LVL3_HAULT, /**< Level 3 halted. */
+    NERROR_LVL3_RESET, /**< Level 3 reset. */
+    NERROR_LINK_RANGE, /**< Link number out of range. */
+    NERROR_PROTO_UNATTACHED, /**< Protocol driver not attached. */
+    NERROR_NO_CSI, /**< No CSI structure available. */
+    NERROR_LVL2_HAULT, /**< Level 2 halted. */
+    NERROR_INV_EXCHANGE, /**< Invalid exchange. */
+    NERROR_INV_REQUEST_DESCRIPTOR, /**< Invalid request descriptor. */
+    NERROR_EXCHANGE_FULL, /**< Exchange full. */
+    NERROR_NO_ANODE, /**< No anode. */
+    NERROR_INV_REQUEST_CODE, /**< Invalid request code. */
+    NERROR_INV_SLOT, /**< Invalid slot. */
+    NERROR_INV_FONT_FORMAT, /**< Bad font file format. */
+    NERROR_NO_NET, /**< Machine is not on the network. */
+    NERROR_NO_PACKAGE, /**< Package not installed. */
+    NERROR_ADVERTISE, /**< Advertise error. */
+    NERROR_SRMOUNT, /**< Srmount error. */
+    NERROR_COMM, /**< Communication error on send. */
+    NERROR_RFS_DOTDOT, /**< RFS specific error. */
+    NERROR_NAME_NOT_UNIQUE, /**< Name not unique on network. */
+    NERROR_INV_FILE_DESCRIPTOR, /**< File descriptor in bad state. */
+    NERROR_REMOTE_ADDR_CHANGED, /**< Remote address changed. */
+    NERROR_NO_LIB_ACCESS, /**< Can not access a needed shared library. */
+    NERROR_INV_LIB, /**< Accessing a corrupted shared library. */
+    NERROR_INV_LIB_SECTION, /**< .lib section in a.out corrupted. */
+    NERROR_MAX_LIB, /**< Attempting to link in too many shared libraries. */
+    NERROR_EXEC_LIB, /**< Cannot exec a shared library directly. */
+    NERROR_STREAM_PIPE, /**< Streams pipe error. */
+    NERROR_STRUCT_CLEAN, /**< Structure needs cleaning. */
+    NERROR_NOT_TYPE_FILE, /**< Not a XENIX named type file. */
+    NERROR_NO_SEMAPHORES, /**< No XENIX semaphores available. */
+    NERROR_TYPE_FILE, /**< Is a named type file. */
+    NERROR_REMOTE_IO, /**< Remote I/O error. */
+    NERROR_NO_MEDIUM, /**< No medium found. */
+    NERROR_INV_MEDIUM_TYPE, /**< Wrong medium type. */
+    NERROR_NO_KEY, /**< Required key not available. */
+    NERROR_KEY_EXPIRED, /**< Key has expired. */
+    NERROR_KEY_REVOKED, /**< Key has been revoked. */
+    NERROR_KEY_REJECTED, /**< Key was rejected by service. */
+    NERROR_RF_KILL, /**< Operation not possible due to RF-kill. */
+    NERROR_MEM_HARDWARE, /**< Memory page has hardware error. */
     
     NERROR_MAX /**< The maximum error number. */
 };
