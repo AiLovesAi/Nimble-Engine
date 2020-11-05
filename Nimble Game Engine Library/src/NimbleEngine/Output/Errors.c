@@ -106,6 +106,7 @@ const char nErrWouldBlockStr[]      = "NERROR_WOULD_BLOCK";
 const char nErrInProgressStr[]      = "NERROR_IN_PROGRESS";
 const char nErrAlresdyStr[]         = "EALREADY";
 const char nErrNotSocketStr[]       = "NERROR_NOT_SOCKET";
+const char nErrMaxMessageStr[]      = "NERROR_MAX_MESSAGE";
 
 const char nErrMaxStr[]             = "NERROR_MAX";
 
@@ -162,6 +163,7 @@ const char * nErrorStrings[] = {
     nErrInProgressStr,
     nErrAlresdyStr,
     nErrNotSocketStr,
+    nErrMaxMessageStr,
     
     nErrMaxStr
 };
@@ -218,6 +220,7 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrInProgressStr),
     sizeof(nErrAlresdyStr),
     sizeof(nErrNotSocketStr),
+    sizeof(nErrMaxMessageStr),
     
     sizeof(nErrMaxStr)
 };
@@ -364,6 +367,8 @@ const char nErrDescAlresdyStr[]         = "Operation already in progress. An "\
 "selected.";
 const char nErrDescNotSocketStr[]       = "Socket operation on non-socket. A "\
 "file that isn’t a socket was specified when a socket is required.";
+const char nErrDescMaxMessageStr[]      = "Message too long. The size of a "\
+"message sent on a socket was larger than the supported maximum size.";
 
 const char nErrDescMaxStr[]             = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
@@ -421,6 +426,7 @@ const char * nErrorDescriptions[] = {
     nErrDescInProgressStr,
     nErrDescAlresdyStr,
     nErrDescNotSocketStr,
+    nErrDescMaxMessageStr,
     
     nErrDescMaxStr
 };
@@ -476,6 +482,7 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescInProgressStr),
     sizeof(nErrDescAlresdyStr),
     sizeof(nErrDescNotSocketStr),
+    sizeof(nErrDescMaxMessageStr),
     
     sizeof(nErrDescMaxStr)
 };
@@ -1141,7 +1148,7 @@ nint_t nErrorFromErrno(const int error)
         #ifdef ENEEDAUTH
         case ENEEDAUTH:
         {
-            return NERROR_NEED_AUTH;
+            return NERROR_NO_AUTH;
         }
         break;
         #endif
