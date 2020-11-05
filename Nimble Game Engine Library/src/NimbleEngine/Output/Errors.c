@@ -53,12 +53,13 @@
 
 const char nErrMinStr[]             = "NERROR_MIN";
 
+/* NIMBLE */
 const char nErrUnknownStr[]         = "NERROR_UNKNOWN";
 const char nErrInternalFailureStr[] = "NERROR_INTERNAL_FAILURE";
 const char nErrNullStr[]            = "NERROR_NULL";
 const char nErrInvErrorStr[]        = "NERROR_INV_ERROR";
 
-//SIGNUM
+/* SIGNUM */
 const char nErrSigAbrtStr[]         = "NERROR_SIGABRT";
 const char nErrSigFpeStr[]          = "NERROR_SIGFPE";
 const char nErrSigIllStr[]          = "NERROR_SIGILL";
@@ -66,7 +67,7 @@ const char nErrSigIntStr[]          = "NERROR_SIGINT";
 const char nErrSigSegvStr[]         = "NERROR_SIGSEGV";
 const char nErrSigTermStr[]         = "NERROR_SIGTERM";
 
-//ERRNO
+/* ERRNO */
 const char nErrNoPermStr[]          = "NERROR_NO_PERM";
 const char nErrNoFileStr[]          = "NERROR_NO_FILE";
 const char nErrNoProcessStr[]       = "NERROR_NO_PROCESS";
