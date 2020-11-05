@@ -112,6 +112,22 @@ enum nErrors {
     NERROR_RESULT_TOO_BIG, /**< Numerical result out of range. */
     NERROR_WOULD_BLOCK, /**< Resource temporarily unavailable; Operation would block. */
     NERROR_IN_PROGRESS, /**< Operation now in progress. */
+    NERROR_WOULD_BLOCK, /**< Operation already in progress. */
+    NERROR_NOT_SOCKET, /**< Socket operation on non-socket. */
+    NERROR_MAX_MESSAGE, /**< Message too long. */
+    NERROR_INV_PROTO_TYPE, /**< Protocol wrong type for socket. */
+    NERROR_INV_PROTO_OPT, /**< Protocol not available. */
+    NERROR_INV_PROTOCOL, /**< Protocol not supported. */
+    NERROR_INV_SOCK_TYPE, /**< Socket type not supported. */
+    NERROR_INV_SOCK_OPR, /**< Operation not supported. */
+    NERROR_INV_PROTO_FAM, /**< Protocol family not supported. */
+    NERROR_INV_ADDR_FAM, /**< Address family not supported by protocol. */
+    NERROR_ADDR_IN_USE, /**< Address already in use. */
+    NERROR_ADDR_NOT_AVAILABLE, /**< Cannot assign requested address. */
+    NERROR_NET_DOWN, /**< Network is down. */
+    NERROR_NET_UNREACHABLE, /**< Network is unreachable. */
+    NERROR_NET_RESET, /**< Network dropped connection on reset. */
+    NERROR_CONN_ABORTED, /**< Software caused connection abort. */
     
     NERROR_MAX /**< The maximum error number. */
 };
