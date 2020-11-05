@@ -624,6 +624,83 @@ nint_t nErrorFromErrno(const int error)
         }
         break;
         #endif
+        #ifdef EALREADY
+        case EALREADY:
+        {
+            return NERROR_ALREADY;
+        }
+        break;
+        #endif
+        #ifdef ENOTSOCK
+        case ENOTSOCK:
+        {
+            return NERROR_NOT_SOCKET;
+        }
+        break;
+        #endif
+        #ifdef EMSGSIZE
+        case EMSGSIZE:
+        {
+            return NERROR_MAX_MESSAGE;
+        }
+        break;
+        #endif
+        #ifdef EPROTOTYPE
+        case EPROTOTYPE:
+        {
+            return NERROR_INV_PROTO_TYPE;
+        }
+        break;
+        #endif
+        #ifdef ENOPROTOOPT
+        case ENOPROTOOPT:
+        {
+            return NERROR_INV_PROTO_OPT;
+        }
+        break;
+        #endif
+        #ifdef EPROTONOSUPPORT
+        case EPROTONOSUPPORT:
+        {
+            return NERROR_INV_PROTOCOL;
+        }
+        break;
+        #endif
+        #ifdef ESOCKTNOSUPPORT
+        case ESOCKTNOSUPPORT:
+        {
+            return NERROR_INV_SOCK_TYPE;
+        }
+        break;
+        #endif
+        #ifdef EOPNOTSUPP
+        case EOPNOTSUPP:
+        {
+            return NERROR_INV_SOCK_OPR;
+        }
+        break;
+        #endif
+        #ifdef EPFNOSUPPORT
+        case EPFNOSUPPORT:
+        {
+            return NERROR_INV_ADDR_FAM;
+        }
+        break;
+        #endif
+        #ifdef EADDRINUSE
+        case EADDRINUSE:
+        {
+            return NERROR_ADDR_IN_USE;
+        }
+        break;
+        #endif
+        #ifdef EADDRNOTAVAIL
+        case EADDRNOTAVAIL:
+        {
+            return NERROR_ADDR_NOT_AVAILABLE;
+        }
+        break;
+        #endif
         /// @todo Continue with errnos from https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html
         default:
         {
