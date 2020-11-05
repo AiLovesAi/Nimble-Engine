@@ -701,6 +701,437 @@ nint_t nErrorFromErrno(const int error)
         }
         break;
         #endif
+        #ifdef ENETDOWN
+        case ENETDOWN:
+        {
+            return NERROR_NET_DOWN;
+        }
+        break;
+        #endif
+        #ifdef ENETUNREACH:
+        case ENETUNREACH:
+        {
+            return NERROR_NET_UNREACHABLE;
+        }
+        break;
+        #endif
+        #ifdef ENETRESET
+        case ENETRESET:
+        {
+            return NERROR_NET_RESET;
+        }
+        break;
+        #endif
+        #ifdef ECONNABORTED
+        case ECONNABORTED:
+        {
+            return NERROR_CONN_ABORTED;
+        }
+        break;
+        #endif
+        #ifdef ECONNRESET
+        case ECONNRESET:
+        {
+            return NERROR_CONN_RESET;
+        }
+        break;
+        #endif
+        #ifdef ENOBUFS
+        case ENOBUFS:
+        {
+            return NERROR_NO_BUFFER_SPACE;
+        }
+        break;
+        #endif
+        #ifdef EISCONN
+        case EISCONN:
+        {
+            return NERROR_ALREADY_CONN;
+        }
+        break;
+        #endif
+        #ifdef ENOTCONN
+        case ENOTCONN:
+        {
+            return NERROR_NOT_CONN;
+        }
+        break;
+        #endif
+        #ifdef EDESTADDRREQ
+        case EDESTADDRREQ:
+        {
+            return NERROR_NO_ADDR;
+        }
+        break;
+        #endif
+        #ifdef ESHUTDOWN
+        case ESHUTDOWN:
+        {
+            return NERROR_SOCK_SHUTDOWN;
+        }
+        break;
+        #endif
+        #ifdef ETOOMANYREFS
+        case ETOOMANYREFS:
+        {
+            return NERROR_MAX_REFS;
+        }
+        break;
+        #endif
+        #ifdef ETIMEDOUT
+        case ETIMEDOUT:
+        {
+            return NERROR_CONN_TIMEOUT;
+        }
+        break;
+        #endif
+        #ifdef ECONNREFUSED
+        case ECONNREFUSED:
+        {
+            return NERROR_CONN_REFUSED;
+        }
+        break;
+        #endif
+        #ifdef ELOOP
+        case ELOOP:
+        {
+            return NERROR_LINK_LOOP;
+        }
+        break;
+        #endif
+        #ifdef ENAMETOOLONG
+        case ENAMETOOLONG:
+        {
+            return NERROR_MAX_FILENAME;
+        }
+        break;
+        #endif
+        #ifdef EHOSTDOWN
+        case EHOSTDOWN:
+        {
+            return NERROR_HOST_DOWN;
+        }
+        break;
+        #endif
+        #ifdef EHOSTUNREACH
+        case EHOSTUNREACH:
+        {
+            return NERROR_HOST_UNREACHABLE;
+        }
+        break;
+        #endif
+        #ifdef ENOTEMPTY
+        case ENOTEMPTY:
+        {
+            return NERROR_DIR_NOT_EMPTY;
+        }
+        break;
+        #endif
+        #ifdef EPROCLIM
+        case EPROCLIM:
+        {
+            return NERROR_MAX_PROCESS;
+        }
+        break;
+        #endif
+        #ifdef EUSERS
+        case EUSERS:
+        {
+            return NERROR_MAX_USERS;
+        }
+        break;
+        #endif
+        #ifdef EDQUOT
+        case EDQUOT:
+        {
+            return NERROR_MAX_DISK_QUOTA;
+        }
+        break;
+        #endif
+        #ifdef ESTALE
+        case ESTALE:
+        {
+            return NERROR_STALE;
+        }
+        break;
+        #endif
+        #ifdef EREMOTE
+        case EREMOTE:
+        {
+            return NERROR_REMOTE;
+        }
+        break;
+        #endif
+        #ifdef EBADRPC
+        case EBADRPC:
+        {
+            return NERROR_INV_RPC;
+        }
+        break;
+        #endif
+        #ifdef ERPCMISMATCH
+        case ERPCMISMATCH:
+        {
+            return NERROR_INV_RPC_VERSION;
+        }
+        break;
+        #endif
+        #ifdef EPROGUNAVAIL
+        case EPROGUNAVAIL:
+        {
+            return NERROR_INV_RPC_PROG;
+        }
+        break;
+        #endif
+        #ifdef EPROGMISMATCH
+        case EPROGMISMATCH:
+        {
+            return NERROR_INV_RPC_PROG_VERSION;
+        }
+        break;
+        #endif
+        #ifdef EPROCUNAVAIL
+        case EPROCUNAVAIL:
+        {
+            return NERROR_INV_RPC_PROC;
+        }
+        break;
+        #endif
+        #ifdef ENOLOCK
+        case ENOLOCK:
+        {
+            return NERROR_NO_FILE_LOCK;
+        }
+        break;
+        #endif
+        #ifdef EFTYPE
+        case EFTYPE:
+        {
+            return NERROR_INV_FILE_TYPE;
+        }
+        break;
+        #endif
+        #ifdef EAUTH
+        case EAUTH:
+        {
+            return NERROR_AUTH;
+        }
+        break;
+        #endif
+        #ifdef ENEEDAUTH
+        case ENEEDAUTH:
+        {
+            return NERROR_NEED_AUTH;
+        }
+        break;
+        #endif
+        #ifdef ENOSYS
+        case ENOSYS:
+        {
+            return NERROR_FUNC_NOT_SUPPORTED;
+        }
+        break;
+        #endif
+        #ifdef ENOTSUP
+        case ENOTSUP:
+        {
+            return NERROR_NOT_SUPPORTED;
+        }
+        break;
+        #endif
+        #ifdef EILSEQ
+        case EILSEQ:
+        {
+            return NERROR_INV_MULTIBYTE;
+        }
+        break;
+        #endif
+        #ifdef EBACKGROUND
+        case EBACKGROUND:
+        {
+            return NERROR_INV_BACKGROUND;
+        }
+        break;
+        #endif
+        #ifdef EDIED
+        case EDIED:
+        {
+            return NERROR_TRANSLATOR_DIED;
+        }
+        break;
+        #endif
+        #if defined(ED) || defined(EGREGIOUS) || defined(EIEIO) || defined(EGRATUITOUS)
+        #ifdef ED
+        case ED:
+        #endif
+        #ifdef EGREGIOUS
+        case EGREGIOUS:
+        #endif
+        #ifdef EIEIO:
+        case EIEIO:
+        #endif
+        #ifdef EGRATUITOUS
+        case EGRATUITOUS:
+        #endif
+        {
+            return NERROR_JOKE;
+        }
+        break;
+        #endif
+        #ifdef EBADMSG
+        case EBADMSG:
+        {
+            return NERROR_INV_MESSAGE;
+        }
+        break;
+        #endif
+        #ifdef EIDRM
+        case EIDRM:
+        {
+            return NERROR_NO_IDENTIFIER;
+        }
+        break;
+        #endif
+        #ifdef EMULTIHOP
+        case EMULTIHOP:
+        {
+            return NERROR_MULTIHOP;
+        }
+        break;
+        #endif
+        #ifdef ENODATA
+        case ENODATA:
+        {
+            return NERROR_NO_DATA;
+        }
+        break;
+        #endif
+        #ifdef ENOLINK
+        case ENOLINK:
+        {
+            return NERROR_NO_LINK;
+        }
+        break;
+        #endif
+        #ifdef ENOMSG
+        case ENOMSG:
+        {
+            return NERROR_NO_MESSAGE;
+        }
+        break;
+        #endif
+        #ifdef ENOSR
+        case ENOSR:
+        {
+            return NERROR_NO_STREAM_RESOURCES;
+        }
+        break;
+        #endif
+        #ifdef ENOSTR
+        case ENOSTR:
+        {
+            return NERROR_DEVICE_NOT_STREAM;
+        }
+        break;
+        #endif
+        #ifdef EOVERFLOW
+        case EOVERFLOW:
+        {
+            return NERROR_OVERFLOW;
+        }
+        break;
+        #endif
+        #ifdef EPROTO
+        case EPROTO:
+        {
+            return NERROR_PROTOCOL;
+        }
+        break;
+        #endif
+        #ifdef ETIME
+        case ETIME:
+        {
+            return NERROR_TIMER;
+        }
+        break;
+        #endif
+        #ifdef ECANCELED
+        case ECANCELED:
+        {
+            return NERROR_ASYNC_CANCEL;
+        }
+        break;
+        #endif
+        #ifdef EOWNERDEAD
+        case EOWNERDEAD:
+        {
+            return NERROR_OWNED_DIED;
+        }
+        break;
+        #endif
+        #ifdef ENOTRECOVERABLE
+        case ENOTRECOVERABLE:
+        {
+            return NERROR_NOT_RECOVERABLE;
+        }
+        break;
+        #endif
+        #ifdef ERESTART
+        case ERESTART:
+        {
+            return NERROR_SYSCALL_RESTART;
+        }
+        break;
+        #endif
+        #ifdef ECHRNG
+        case ECHRNG:
+        {
+            return NERROR_CHANNEL_RANGE;
+        }
+        break;
+        #endif
+        #ifdef EL2NSYNC
+        case EL2NSYNC:
+        {
+            return NERROR_LVL2_NOT_SYNC;
+        }
+        break;
+        #endif
+        #ifdef EL3HLT
+        case EL3HLT:
+        {
+            return NERROR_LVL3_HAULT;
+        }
+        break;
+        #endif
+        #ifdef EL3RST
+        case EL3RST:
+        {
+            return NERROR_LVL3_RESET;
+        }
+        break;
+        #endif
+        #ifdef ELNRNG
+        case ELNRNG:
+        {
+            return NERROR_LINK_RANGE;
+        }
+        break;
+        #endif
+        #ifdef EUNATCH
+        case EUNATCH:
+        {
+            return NERROR_PROTO_UNATTACHED;
+        }
+        break;
+        #endif
+        #ifdef ENOCSI
+        case ENOCSI:
+        {
+            return NERROR_NO_CSI;
+        }
+        break;
+        #endif
         /// @todo Continue with errnos from https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html
         default:
         {
