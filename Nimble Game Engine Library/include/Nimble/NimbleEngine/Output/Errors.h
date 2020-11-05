@@ -86,8 +86,32 @@ enum nErrors {
     NERROR_INV_EXEC_FORMAT, /**< Exec format error. */
     NERROR_INV_FP, /**< Bad file descriptor. */
     NERROR_NO_CHILD, /**< No child process. */
-    
+    NERROR_DEADLOCK, /**< Resource deadlock avoided. */
+    NERROR_NO_MEMORY, /**< Cannot allocate memory. */
+    NERROR_NO_FILE_PERM, /**< Permission denied. */
+    NERROR_FAULT, /**< Bad address. */
+    NERROR_NOT_BLOCK, /**< Block device required. */
+    NERROR_DEVICE_BUSY, /**< Device or resource busy. */
+    NERROR_FILE_EXISTS, /**< File exists. */
+    NERROR_INV_CROSSLINK, /**< Invalid cross-device link. */
+    NERROR_INV_DEVICE, /**< No such device. */
+    NERROR_NOT_DIR, /**< Not a directory. */
+    NERROR_IS_DIR, /**< Is a directory. */
+    NERROR_INV_ARG, /**< Invalid argument. */
+    NERROR_MAX_FILE, /**< Too many open files. */
+    NERROR_MAX_FILE_SYS, /**< Too many open files in system. */
+    NERROR_INV_IOCTL, /**< Inappropriate ioctl for device. */
+    NERROR_TEXT_BUSY, /**< Text file busy. */
+    NERROR_FILE_TOO_BIG, /**< File too large. */
+    NERROR_NO_SPACE, /**< No space left on device. */
+    NERROR_INV_SEEK, /**< Illegal seek. */
+    NERROR_READ_ONLY, /**< Read-only file system. */
+    NERROR_MAX_LINKS, /**< Too many links. */
+    NERROR_INV_PIPE, /**< Broken pipe. */
+    NERROR_DOMAIN, /**< Numerical argument out of domain. */
+    NERROR_RESULT_TOO_BIG, /**< Numerical result out of range. */
     NERROR_WOULD_BLOCK, /**< Resource temporarily unavailable; Operation would block. */
+    NERROR_IN_PROGRESS, /**< Operation now in progress. */
     
     NERROR_MAX /**< The maximum error number. */
 };
