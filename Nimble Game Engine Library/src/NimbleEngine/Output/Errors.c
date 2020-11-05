@@ -107,6 +107,7 @@ const char nErrInProgressStr[]      = "NERROR_IN_PROGRESS";
 const char nErrAlresdyStr[]         = "EALREADY";
 const char nErrNotSocketStr[]       = "NERROR_NOT_SOCKET";
 const char nErrMaxMessageStr[]      = "NERROR_MAX_MESSAGE";
+const char nErrInvProtoTypeStr[]    = "NERROR_INV_PROTO_TYPE";
 
 const char nErrMaxStr[]             = "NERROR_MAX";
 
@@ -164,6 +165,7 @@ const char * nErrorStrings[] = {
     nErrAlresdyStr,
     nErrNotSocketStr,
     nErrMaxMessageStr,
+    nErrInvProtoTypeStr,
     
     nErrMaxStr
 };
@@ -221,6 +223,7 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrAlresdyStr),
     sizeof(nErrNotSocketStr),
     sizeof(nErrMaxMessageStr),
+    sizeof(nErrInvProtoTypeStr),
     
     sizeof(nErrMaxStr)
 };
@@ -369,6 +372,8 @@ const char nErrDescNotSocketStr[]       = "Socket operation on non-socket. A "\
 "file that isn’t a socket was specified when a socket is required.";
 const char nErrDescMaxMessageStr[]      = "Message too long. The size of a "\
 "message sent on a socket was larger than the supported maximum size.";
+const char nErrDescInvProtoTypeStr[]    = "Protocol wrong type for socket. The "\
+"socket type does not support the requested communications protocol.";
 
 const char nErrDescMaxStr[]             = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
@@ -427,6 +432,7 @@ const char * nErrorDescriptions[] = {
     nErrDescAlresdyStr,
     nErrDescNotSocketStr,
     nErrDescMaxMessageStr,
+    nErrDescInvProtoTypeStr,
     
     nErrDescMaxStr
 };
@@ -483,6 +489,7 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescAlresdyStr),
     sizeof(nErrDescNotSocketStr),
     sizeof(nErrDescMaxMessageStr),
+    sizeof(nErrDescInvProtoTypeStr),
     
     sizeof(nErrDescMaxStr)
 };
