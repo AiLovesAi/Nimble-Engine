@@ -437,8 +437,13 @@ nint_t nErrorFromErrno(const int error)
         }
         break;
         #endif
+        #if defined(EDEADLK) || defined(EDEADLOCK)
         #ifdef EDEADLK
         case EDEAKLK:
+        #endif
+        #ifdef EDEADLOCK
+        case EDEADLOCK:
+        #endif
         {
             return NERROR_DEADLOCK;
         }
@@ -1132,7 +1137,258 @@ nint_t nErrorFromErrno(const int error)
         }
         break;
         #endif
-        /// @todo Continue with errnos from https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html
+        #ifdef EL2HLT
+        case EL2HLT:
+        {
+            return NERROR_LVL2_HAULT;
+        }
+        break;
+        #endif
+        #ifdef EBADE
+        case EBADE:
+        {
+            return NERROR_INV_EXCHANGE;
+        }
+        break;
+        #endif
+        #ifdef EBADR
+        case EBADR:
+        {
+            return NERROR_INV_REQUEST_DESCRIPTOR;
+        }
+        break;
+        #endif
+        #ifdef EXFULL
+        case EXFULL:
+        {
+            return NERROR_EXCHANGE_FULL;
+        }
+        break;
+        #endif
+        #ifdef ENOANO
+        case ENOANO:
+        {
+            return NERROR_NO_ANODE;
+        }
+        break;
+        #endif
+        #ifdef EBADRQC
+        case EBADRQC:
+        {
+            return NERROR_INV_REQUEST_CODE;
+        }
+        break;
+        #endif
+        #ifdef EBADSLT
+        case EBADSLT:
+        {
+            return NERROR_INV_SLOT;
+        }
+        break;
+        #endif
+        #ifdef EBFONT
+        case EBFONT:
+        {
+            return NERROR_INV_FONT_FORMAT;
+        }
+        break;
+        #endif
+        #ifdef ENONET
+        case ENONET:
+        {
+            return NERROR_NO_NET;
+        }
+        break;
+        #endif
+        #ifdef ENOPKG
+        case ENOPKG:
+        {
+            return NERROR_NO_PACKAGE;
+        }
+        break;
+        #endif
+        #ifdef EADV
+        case EADV:
+        {
+            return NERROR_ADVERTISE;
+        }
+        break;
+        #endif
+        #ifdef ESRMNT
+        case ESRMNT:
+        {
+            return NERROR_SRMOUNT;
+        }
+        break;
+        #endif
+        #ifdef ECOMM
+        case ECOMM:
+        {
+            return NERROR_COMM;
+        }
+        break;
+        #endif
+        #ifdef EDOTDOT
+        case EDOTDOT:
+        {
+            return NERROR_RFS_DOTDOT;
+        }
+        break;
+        #endif
+        #ifdef ENOTUNIQ
+        case ENOTUNIQ:
+        {
+            return NERROR_NAME_NOT_UNIQUE;
+        }
+        break;
+        #endif
+        #ifdef EBADFD
+        case EBADFD:
+        {
+            return NERROR_INV_FILE_DESCRIPTOR;
+        }
+        break;
+        #endif
+        #ifdef EREMCHG
+        case EREMCHG:
+        {
+            return NERROR_REMOTE_ADDR_CHANGED;
+        }
+        break;
+        #endif
+        #ifdef ELIBACC
+        case ELIBACC:
+        {
+            return NERROR_NO_LIB_ACCESS;
+        }
+        break;
+        #endif
+        #ifdef ELIBBAD
+        case ELIBBAD:
+        {
+            return NERROR_INV_LIB;
+        }
+        break;
+        #endif
+        #ifdef ELIBSCN
+        case ELIBSCN:
+        {
+            return NERROR_INV_LIB_SECTION;
+        }
+        break;
+        #endif
+        #ifdef ELIBMAX
+        case ELIBMAX:
+        {
+            return NERROR_MAX_LIB;
+        }
+        break;
+        #endif
+        #ifdef ELIBEXEC
+        case ELIBEXEC:
+        {
+            return NERROR_EXEC_LIB;
+        }
+        break;
+        #endif
+        #ifdef ESTRPIPE
+        case ESTRPIPE:
+        {
+            return NERROR_STREAM_PIPE;
+        }
+        break;
+        #endif
+        #ifdef EUCLEAN
+        case EUCLEAN:
+        {
+            return NERROR_STRUCT_CLEAN;
+        }
+        break;
+        #endif
+        #ifdef ENOTNAM
+        case ENOTNAM:
+        {
+            return NERROR_NOT_TYPE_FILE;
+        }
+        break;
+        #endif
+        #ifdef ENAVAIL
+        case ENAVAIL:
+        {
+            return NERROR_NO_SEMAPHORES;
+        }
+        break;
+        #endif
+        #ifdef EISNAM
+        case EISNAM:
+        {
+            return NERROR_TYPE_FILE;
+        }
+        break;
+        #endif
+        #ifdef EREMOTEIO
+        case EREMOTEIO:
+        {
+            return NERROR_REMOTE_IO;
+        }
+        break;
+        #endif
+        #ifdef ENOMEDIUM
+        case ENOMEDIUM:
+        {
+            return NERROR_NO_MEDIUM;
+        }
+        break;
+        #endif
+        #ifdef EMEDIUMTYPE
+        case EMEDIUMTYPE:
+        {
+            return NERROR_INV_MEDIUM_TYPE;
+        }
+        break;
+        #endif
+        #ifdef ENOKEY
+        case ENOKEY:
+        {
+            return NERROR_NO_KEY;
+        }
+        break;
+        #endif
+        #ifdef EKEYEXPIRED
+        case EKEYEXPIRED:
+        {
+            return NERROR_KEY_EXPIRED;
+        }
+        break;
+        #endif
+        #ifdef EKEYREVOKED
+        case EKEYREVOKED:
+        {
+            return NERROR_KEY_REVOKED;
+        }
+        break;
+        #endif
+        #ifdef EKEYREJECTED
+        case EKEYREJECTED:
+        {
+            return NERROR_KEY_REJECTED;
+        }
+        break;
+        #endif
+        #ifdef ERFKILL
+        case ERFKILL:
+        {
+            return NERROR_RF_KILL;
+        }
+        break;
+        #endif
+        #ifdef EHWPOISON
+        case EHWPOISON:
+        {
+            return NERROR_MEM_HARDWARE;
+        }
+        break;
+        #endif
         default:
         {
             return NERROR_INV_ERROR;
