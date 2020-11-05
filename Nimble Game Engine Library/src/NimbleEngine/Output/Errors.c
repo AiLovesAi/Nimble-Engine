@@ -77,6 +77,20 @@ const char nErrMaxArgsStr[]         = "NERROR_MAX_ARGS";
 const char nErrInvExecFormatStr[]   = "NERROR_INV_EXEC_FORMAT";
 const char nErrInvFPStr[]           = "NERROR_INV_FP";
 const char nErrNoChildStr[]         = "NERROR_NO_CHILD";
+const char nErrDeadlockStr[]        = "NERROR_DEADLOCK";
+const char nErrNoMemoryStr[]        = "NERROR_NO_MEMORY";
+const char nErrNoFilePermStr[]      = "NERROR_NO_FILE_PERM";
+const char nErrFaultStr[]           = "NERROR_FAULT";
+const char nErrNotBlockStr[]        = "NERROR_NOT_BLOCK";
+const char nErrDeviceBusyStr[]      = "NERROR_DEVICE_BUSY";
+const char nErrFileExistsStr[]      = "NERROR_FILE_EXISTS";
+const char nErrInvCrosslinkStr[]    = "NERROR_INV_CROSSLINK";
+const char nErrInvDeviceStr[]       = "NERROR_INV_DEVICE";
+const char nErrNotDirStr[]          = "NERROR_NOT_DIR";
+const char nErrIsDirStr[]           = "NERROR_IS_DIR";
+const char nErrInvArgStr[]          = "NERROR_INV_ARG";
+const char nErrMaxFileStr[]         = "NERROR_MAX_FILE";
+const char nErrMaxFileSysStr[]      = "NERROR_MAX_FILE_SYS";
 
 const char nErrWouldBlockStr[]      = "NERROR_WOULD_BLOCK";
 
@@ -107,6 +121,20 @@ const char * nErrorStrings[] = {
     nErrMaxArgsStr,
     nErrInvExecFormatStr,
     nErrNoChildStr,
+    nErrDeadlockStr,
+    nErrNoMemoryStr,
+    nErrNoFilePermStr,
+    nErrFaultStr,
+    nErrNotBlockStr,
+    nErrDeviceBusyStr,
+    nErrFileExistsStr,
+    nErrInvCrosslinkStr,
+    nErrInvDeviceStr,
+    nErrNotDirStr,
+    nErrIsDirStr,
+    nErrInvArgStr,
+    nErrMaxFileStr,
+    nErrMaxFileSysStr,
     
     nErrWouldBlockStr,
     
@@ -137,6 +165,20 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrInvExecFormatStr),
     sizeof(nErrInvFPStr),
     sizeof(nErrNoChildStr),
+    sizeof(nErrDeadlockStr),
+    sizeof(nErrNoMemoryStr),
+    sizeof(nErrNoFilePermStr),
+    sizeof(nErrFaultStr),
+    sizeof(nErrNotBlockStr),
+    sizeof(nErrDeviceBusyStr),
+    sizeof(nErrFileExistsStr),
+    sizeof(nErrInvCrosslinkStr),
+    sizeof(nErrInvDeviceStr),
+    sizeof(nErrNotDirStr),
+    sizeof(nErrIsDirStr),
+    sizeof(nErrInvArgStr),
+    sizeof(nErrMaxFileStr),
+    sizeof(nErrMaxFileSysStr),
     
     sizeof(nErrWouldBlockStr),
     
@@ -193,6 +235,44 @@ const char nErrDescInvFPStr[]           = "Bad file descriptor. For example, "\
 const char nErrDescNoChildStr[]         = "No child process. This error "\
 "happens on operations that are supposed to manipulate child processes, when "\
 "there aren’t any processes to manipulate.";
+const char nErrDescDeadlockStr[]        = "Resource deadlock avoided. This "\
+"error happens on operations that are supposed to manipulate child "\
+"processes, when there aren’t any processes to manipulate.";
+const char nErrDescNoMemoryStr[]        = "Cannot allocate memory. The system "\
+"cannot allocate more virtual memory because its capacity is full.";
+const char nErrDescNoFilePermStr[]      = "Permission denied. The file "\
+"permissions do not allow the attempted operation.";
+const char nErrDescFaultStr[]           = "Bad address. An invalid pointer was "\
+"detected.";
+const char nErrDescNotBlockStr[]        = "Block device required. A file that "\
+"isn’t a block special file was given in a situation that requires one. For "\
+"example, trying to mount an ordinary file as a file system in Unix gives "\
+"this error.";
+const char nErrDescDeviceBusyStr[]      = "Device or resource busy. A system "\
+"resource that can’t be shared is already in use. For example, if you try to "\
+"delete a file that is the root of a currently mounted filesystem, you get "\
+"this error.";
+const char nErrDescFileExistsStr[]      = "File exists. An existing file was "\
+"specified in a context where it only makes sense to specify a new file.";
+const char nErrDescInvCrosslinkStr[]    = "Invalid cross-device link. An "\
+"attempt to make an improper link across file systems was detected. This "\
+"happens not only when you use link(), but also when you rename a file with "\
+"rename().";
+const char nErrDescInvDeviceStr[]       = "No such device. The wrong type of "\
+"device was given to a function that expects a particular sort of device.";
+const char nErrDescNotDirStr[]          = "Not a directory. A file that isn’t "\
+"a directory was specified when a directory is required.";
+const char nErrDescIsDirStr[]           = "Is a directory. You cannot open a "\
+"directory for writing, or create or remove hard links to it.";
+const char nErrDescInvArgStr[]          = "Invalid argument. This is used to "\
+"indicate various kinds of problems with passing the wrong argument to a "\
+"library function.";
+const char nErrDescMaxFileStr[]         = "Too many open files. The current "\
+"process has too many files open and can’t open any more. Duplicate "\
+"descriptors do count toward this limit.";
+const char nErrDescMaxFileSysStr[]      = "Too many open files in system. "\
+"There are too many distinct file openings in the entire system. Note that any "\
+"number of linked channels count as just one file opening.";
 
 const char nErrDescWouldBlockStr[]      = "Resource temporarily unavailable; "\
 "Operation would block. The call might work if you try again later. This error "\
@@ -238,6 +318,20 @@ const char * nErrorDescriptions[] = {
     nErrDescInvExecFormatStr,
     nErrDescInvFPStr,
     nErrDescNoChildStr,
+    nErrDescDeadlockStr,
+    nErrDescNoMemoryStr,
+    nErrDescNoFilePermStr,
+    nErrDescFaultStr,
+    nErrDescNotBlockStr,
+    nErrDescDeviceBusyStr,
+    nErrDescFileExistsStr,
+    nErrDescInvCrosslinkStr,
+    nErrDescInvDeviceStr,
+    nErrDescNotDirStr,
+    nErrDescIsDirStr,
+    nErrDescInvArgStr,
+    nErrDescMaxFileStr,
+    nErrDescMaxFileSysStr,
     
     nErrDescWouldBlockStr,
     
@@ -267,6 +361,21 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescInvExecFormatStr),
     sizeof(nErrDescInvFPStr),
     sizeof(nErrDescNoChildStr),
+    sizeof(nErrDescDeadlockStr),
+    sizeof(nErrDescNoMemoryStr),
+    sizeof(nErrDescNoFilePermStr),
+    sizeof(nErrDescFaultStr),
+    sizeof(nErrDescNotBlockStr),
+    sizeof(nErrDescDeviceBusyStr),
+    sizeof(nErrDescFileExistsStr),
+    sizeof(nErrDescInvCrosslinkStr),
+    sizeof(nErrDescInvDeviceStr),
+    sizeof(nErrDescNotDirStr),
+    sizeof(nErrDescIsDirStr),
+    sizeof(nErrDescInvArgStr),
+    sizeof(nErrDescMaxFileStr),
+    sizeof(nErrDescMaxFileSysStr),
+    
     sizeof(nErrDescWouldBlockStr),
     
     sizeof(nErrDescMaxStr)
