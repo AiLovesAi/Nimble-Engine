@@ -92,9 +92,9 @@ def main():
             shutil.copy(file, originalDirectory + "/lib/Nimble/" + fileNoVersion)
         else:
             if (not path.exists(originalDirectory + "/products/")):
-                os.mkdir(originalDirectory + "/lib/Nimble/")
+                os.mkdir(originalDirectory + "/products/")
                 if (not path.exists(originalDirectory + "/products/")):
-                    print("Could not make directory lib/Nimble/. You will need to organize the output files yourself.")
+                    print("Could not make directory products/. You will need to organize the output files yourself.")
                     exit(1)
             
             fileNoVersion = file[len("build/"):]

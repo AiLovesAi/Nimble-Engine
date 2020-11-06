@@ -661,7 +661,7 @@ nint_t nErrorFromErrno(const int error)
         #endif
         #if defined(EDEADLK) || defined(EDEADLOCK)
         #ifdef EDEADLK
-        case EDEAKLK:
+        case EDEADLK:
         #endif
         #ifdef EDEADLOCK
         case EDEADLOCK:
@@ -836,7 +836,7 @@ nint_t nErrorFromErrno(const int error)
         #ifdef EAGAIN
         case EAGAIN:
         #endif
-        #ifdef EWOULDBLOCK
+        #if defined(EWOULDBLOCK) && (EWOULDBLOCK != EAGAIN)
         case EWOULDBLOCK:
         #endif
         {
@@ -942,7 +942,7 @@ nint_t nErrorFromErrno(const int error)
         }
         break;
         #endif
-        #ifdef ENETUNREACH:
+        #ifdef ENETUNREACH
         case ENETUNREACH:
         {
             return NERROR_NET_UNREACHABLE;

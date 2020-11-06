@@ -83,6 +83,19 @@ extern "C" {
 #include <inttypes.h>
 #include <stdlib.h>
 
+#ifdef _WIN32
+#define NIMBLE_WINDOWS
+#endif
+#if defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
+#define NIMBLE_UNIX
+#endif
+#if (defined(__APPLE__) && defined(__MACH__))
+#define NIMBLE_MACOS
+#endif
+#ifdef __linux__
+#define NIMBLE_LINUX
+#endif
+
 #if UINTPTR_MAX == 0xffffffff
 #define NIMBLE_32BIT
 #elif UINTPTR_MAX == 0xffffffffffffffff

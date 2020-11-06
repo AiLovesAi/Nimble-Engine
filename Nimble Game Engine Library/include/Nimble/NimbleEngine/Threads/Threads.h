@@ -48,14 +48,14 @@ extern "C" {
 
 #include "../../NimbleEngine.h"
 
-#ifdef _WIN32
+#ifdef NIMBLE_WINDOWS
 #include <windows.h>
 #define NTHREAD_WINAPI
 
 typedef HANDLE nThread_t;
 typedef HANDLE nMutex_t;
 
-#elif defined(__unix__)
+#elif defined(NIMBLE_UNIX)
 #define NTHREAD_PTHREAD
 #include <pthread.h>
 
