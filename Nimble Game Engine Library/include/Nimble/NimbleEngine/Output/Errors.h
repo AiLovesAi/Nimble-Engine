@@ -79,7 +79,7 @@ enum nErrors {
     NERROR_SIGNAL_END, /**< The end of the signal section. */
     
     NERROR_ERRNO_START, /**< The start of the errno section. */
-    #ifdef NIMBLE_WINDOWS
+    #if 0 /* Possible values */
     NERROR_NO_PERM, /**< Operation not permitted. */
     NERROR_NO_FILE, /**< No such file or directory. */
     NERROR_NO_PROCESS, /**< No such process. */
@@ -224,11 +224,13 @@ enum nErrors {
     NERROR_KEY_REJECTED, /**< Key was rejected by service. */
     NERROR_RF_KILL, /**< Operation not possible due to RF-kill. */
     NERROR_MEM_HARDWARE, /**< Memory page has hardware error. */
-    #elif defined(NIMBLE_MACOS)
-    #elif defined(NIMBLE_LINUX)
-    #elif defined(NIMBLE_XBOX)
-    #elif defined(NIMBLE_PLAY_STATION)
-    #endif /** @todo Continue for other operating systems and change this one to reflect Window's errno.h */
+    #endif
+    #if NIMBLE_OS == NIMBLE_WINDOWS
+    #elif NIMBLE_OS == NIMBLE_MACOS
+    #elif NIMBLE_OS == NIMBLE_LINUX
+    #elif NIMBLE_OS == NIMBLE_ANDROID
+    #elif defined(NIMBLE_POSIX)
+    #endif /** @todo NERROR_CODE = ECODE when they are portable across all systems, string pointers are repeated for missing spaces :O */
     NERROR_ERRNO_END, /**< The end of the errno section. */
     
     NERROR_MAX /**< The maximum error number. */
