@@ -104,10 +104,80 @@ const char nErrDomainStr[]          = "NERROR_DOMAIN";
 const char nErrResultTooBigStr[]    = "NERROR_RESULT_TOO_BIG";
 const char nErrWouldBlockStr[]      = "NERROR_WOULD_BLOCK";
 const char nErrInProgressStr[]      = "NERROR_IN_PROGRESS";
-const char nErrAlresdyStr[]         = "EALREADY";
+const char nErrAlresdyStr[]         = "NERROR_ALREADY";
 const char nErrNotSocketStr[]       = "NERROR_NOT_SOCKET";
 const char nErrMaxMessageStr[]      = "NERROR_MAX_MESSAGE";
 const char nErrInvProtoTypeStr[]    = "NERROR_INV_PROTO_TYPE";
+const char nErrInvProtoOptStr[]     = "NERROR_INV_PROTO_OPT";
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
+const char nErr
 
 const char nErrMaxStr[]             = "NERROR_MAX";
 
@@ -166,6 +236,7 @@ const char * nErrorStrings[] = {
     nErrNotSocketStr,
     nErrMaxMessageStr,
     nErrInvProtoTypeStr,
+    nErrInvProtoOptStr,
     
     nErrMaxStr
 };
@@ -224,6 +295,7 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrNotSocketStr),
     sizeof(nErrMaxMessageStr),
     sizeof(nErrInvProtoTypeStr),
+    sizeof(nErrInvProtoOptStr),
     
     sizeof(nErrMaxStr)
 };
@@ -374,6 +446,9 @@ const char nErrDescMaxMessageStr[]      = "Message too long. The size of a "\
 "message sent on a socket was larger than the supported maximum size.";
 const char nErrDescInvProtoTypeStr[]    = "Protocol wrong type for socket. The "\
 "socket type does not support the requested communications protocol.";
+const char nErrDescInvProtoOptStr[]     = "Protocol not available. You "\
+"specified a socket option that doesn’t make sense for the particular protocol "\
+"being used by the socket.";
 
 const char nErrDescMaxStr[]             = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
@@ -433,6 +508,7 @@ const char * nErrorDescriptions[] = {
     nErrDescNotSocketStr,
     nErrDescMaxMessageStr,
     nErrDescInvProtoTypeStr,
+    nErrDescInvProtoOptStr,
     
     nErrDescMaxStr
 };
@@ -490,6 +566,7 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescNotSocketStr),
     sizeof(nErrDescMaxMessageStr),
     sizeof(nErrDescInvProtoTypeStr),
+    sizeof(nErrDescInvProtoOptStr),
     
     sizeof(nErrDescMaxStr)
 };
