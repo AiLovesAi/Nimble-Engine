@@ -62,20 +62,24 @@ extern "C" {
  * Errors.c (#nErrorDescriptions).
  */
 enum nErrors {
-    NERROR_MIN = INT_MIN, /**< The mininum error number. */
+    NERROR_MIN = 0, /**< The mininum error number. */
     
     NERROR_UNKNOWN, /**< An nknown error occurred. */
     NERROR_INTERNAL_FAILURE, /**< An internal error occurred. */
     NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
     NERROR_INV_ERROR, /**< An error passed to a function was not valid. */
     
+    NERROR_SIGNAL_START, /**< The start of the signal section. */
     NERROR_SIGABRT, /**< Caught abort signal. */
     NERROR_SIGFPE, /**< Caught floating point exception signal. */
     NERROR_SIGILL, /**< Caught illegal expression signal. */
     NERROR_SIGINT, /**< Caught interrupt signal. */
     NERROR_SIGSEGV, /**< Caught memory address violation signal. */
     NERROR_SIGTERM, /**< Caught termination signal. */
+    NERROR_SIGNAL_END, /**< The end of the signal section. */
     
+    NERROR_ERRNO_START, /**< The start of the errno section. */
+    #ifdef NIMBLE_WINDOWS
     NERROR_NO_PERM, /**< Operation not permitted. */
     NERROR_NO_FILE, /**< No such file or directory. */
     NERROR_NO_PROCESS, /**< No such process. */
@@ -220,6 +224,12 @@ enum nErrors {
     NERROR_KEY_REJECTED, /**< Key was rejected by service. */
     NERROR_RF_KILL, /**< Operation not possible due to RF-kill. */
     NERROR_MEM_HARDWARE, /**< Memory page has hardware error. */
+    #elif defined(NIMBLE_MACOS)
+    #elif defined(NIMBLE_LINUX)
+    #elif defined(NIMBLE_XBOX)
+    #elif defined(NIMBLE_PLAY_STATION)
+    #endif /** @todo Continue for other operating systems and change this one to reflect Window's errno.h */
+    NERROR_ERRNO_END, /**< The end of the errno section. */
     
     NERROR_MAX /**< The maximum error number. */
 };
@@ -240,9 +250,8 @@ const char * nErrorStrings[];
  * means that one should not allocate or free the pointer. If editing is needed,
  * copy the result to dynamically allocated memory.
  */
-#define nErrorStr(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
-                        nErrorStrings[err - NERROR_MIN] :\
-                        nErrorStrings[NERROR_UNKNOWN - NERROR_MIN])
+#define nErrorStr(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
+                        nErrorStrings[err] : nErrorStrings[NERROR_UNKNOWN])
 
 /*
  * @brief Gets the length of the error code @p err from #nErrorStringLengths.
@@ -250,9 +259,9 @@ const char * nErrorStrings[];
  * @param[in] err The error code to determine the length of.
  * @return@p erorr's string translation length
  */
-#define nErrorStrLen(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
-                           nErrorStringLengths[err - NERROR_MIN] :\
-                           nErrorStringLengths[NERROR_UNKNOWN - NERROR_MIN])
+#define nErrorStrLen(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
+                           nErrorStringLengths[err] :\
+                           nErrorStringLengths[NERROR_UNKNOWN])
 
 /**
  * @brief The descriptions of error codes defined by #nErrors.
@@ -269,39 +278,41 @@ const char * nErrorDescriptions[];
  * means that one should not allocate or free the pointer. If editing is needed,
  * copy the result to dynamically allocated memory.
  */
-#define nErrorDesc(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
-                         nErrorDescriptions[err - NERROR_MIN] :\
-                         nErrorDescriptions[NERROR_UNKNOWN - NERROR_MIN])
+#define nErrorDesc(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
+                         nErrorDescriptions[err] :\
+                         nErrorDescriptions[NERROR_UNKNOWN])
 /*
  * @brief Gets the length of the error code @p err from #nErrorDescLengths.
  *
  * @param[in] err The error code to determine the length of.
  * @return @p erorr's string translation length
  */
-#define nErrorDescLen(err) (((err >= NERROR_MIN) && err <= (NERROR_MAX)) ?\
-                            nErrorDescLengths[err - NERROR_MIN] :\
-                            nErrorDescLengths[NERROR_UNKNOWN - NERROR_MIN])
-
+#define nErrorDescLen(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
+                            nErrorDescLengths[err] :\
+                            nErrorDescLengths[NERROR_UNKNOWN])
 
 /*
  * @brief Gets the error code of the signal value @p error.
  *
  * @param[in] error The signal value.
- * @return The NERROR version of @p error.
+ * @return The NERROR version of @p error, or #NERROR_UNKNOWN if out of range.
  */
-NIMBLE_EXTERN
-nint_t
-nErrorFromSignal(const int error);
+#define nErrorFromSignal(err) (((err > NERROR_SIGNAL_START) && \
+                               (err < NERROR_SIGNAL_END)) ?\
+                               (NERROR_SIGNAL_START + err) :\
+                               NERROR_UNKNOWN)
 
 /*
  * @brief Gets the error code of the errno value @p err.
  *
  * @param[in] err The errno value.
- * @return An NERROR version of @p err.
+ * @return An NERROR version of @p err, or #NERROR_UNKNOWN if out of range.
  */
-NIMBLE_EXTERN
-nint_t
-nErrorFromErrno(const int err);
+#define nErrorFromErrno(err) (((err > NERROR_ERRNO_START) && \
+                               (err < NERROR_ERRNO_END)) ?\
+                               (NERROR_ERRNO_START + err) :\
+                               NERROR_UNKNOWN)
+
 
 /**
  * @brief Sends an error to the error callback.

@@ -76,7 +76,7 @@ def main():
             exit(1)
     
     for file in glob.glob("build/*Nimble*"):
-        fileIsLibrary = (file.endswith(".dll") or file.endswith(".lib") or file.endswith(".so") or file.endswith(".a"))
+        fileIsLibrary = (file.endswith(".dll") or file.endswith(".lib") or file.endswith(".so") or file.endswith(".a") or file.endswith(".dylib"))
         # If library, move
         if (fileIsLibrary):
             if (not path.exists(originalDirectory + "/lib/Nimble/")):
