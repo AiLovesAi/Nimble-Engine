@@ -60,7 +60,7 @@ def main():
 /**\n\
  * @brief The license that gets compiled into the binaries.\n\
  */\n\
-const char LICENSE_md[] = \"\\n\"\\\n\""
+const char LICENSE_md[] = \"\\nNimble Game Engine License:\"\\\n\""
     with open("LICENSE.md", 'r') as fp:
         if (not fp):
             print("Could not open LICENSE.md")
