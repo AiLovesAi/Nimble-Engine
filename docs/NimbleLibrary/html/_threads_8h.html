@@ -81,7 +81,7 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_nimble_license_8h_source.html">../../NimbleLicense.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_nimble_engine_8h_source.html">../../NimbleEngine.h</a>&quot;</code><br />
-<code>#include &lt;threads.h&gt;</code><br />
+<code>#include &lt;windows.h&gt;</code><br />
 </div>
 <p><a href="_threads_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -90,37 +90,37 @@ Macros</h2></td></tr>
 <tr class="memitem:a527a6ee398b98d87de436e29228a4747"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a527a6ee398b98d87de436e29228a4747">NIMBLE_ENGINE_THREADS_H</a></td></tr>
 <tr class="memdesc:a527a6ee398b98d87de436e29228a4747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Header definition.  <a href="_threads_8h.html#a527a6ee398b98d87de436e29228a4747">More...</a><br /></td></tr>
 <tr class="separator:a527a6ee398b98d87de436e29228a4747"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f38d7507d41c57a1d7b60a6adf3e6d6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a6f38d7507d41c57a1d7b60a6adf3e6d6">NTHREAD_C11</a></td></tr>
-<tr class="separator:a6f38d7507d41c57a1d7b60a6adf3e6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84bba6cba12eedd6aafd581405017754"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a84bba6cba12eedd6aafd581405017754">NTHREAD_WINAPI</a></td></tr>
+<tr class="separator:a84bba6cba12eedd6aafd581405017754"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a24cc6d228c1c5e77e8bf4ba454e75f87"><td class="memItemLeft" align="right" valign="top">typedef thrd_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a></td></tr>
-<tr class="separator:a24cc6d228c1c5e77e8bf4ba454e75f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf8e53aef7ecfc328eec93f6e35b7746"><td class="memItemLeft" align="right" valign="top">typedef mtx_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a></td></tr>
-<tr class="separator:adf8e53aef7ecfc328eec93f6e35b7746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78fcb112f74429f3150d75db80d4c89a"><td class="memItemLeft" align="right" valign="top">typedef HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a></td></tr>
+<tr class="separator:a78fcb112f74429f3150d75db80d4c89a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac554ec4db6e1f7265a7a4b52ae998fc7"><td class="memItemLeft" align="right" valign="top">typedef HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a></td></tr>
+<tr class="separator:ac554ec4db6e1f7265a7a4b52ae998fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa72599a1bdf5c80c544c955a1da6a001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#aa72599a1bdf5c80c544c955a1da6a001">nThreadCreate</a> (<a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> *thread, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> attributes, void *(*start)(void *), void *data)</td></tr>
+<tr class="memitem:aa72599a1bdf5c80c544c955a1da6a001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#aa72599a1bdf5c80c544c955a1da6a001">nThreadCreate</a> (<a class="el" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> *thread, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> attributes, void *(*start)(void *), void *data)</td></tr>
 <tr class="memdesc:aa72599a1bdf5c80c544c955a1da6a001"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a thread.  <a href="_threads_8h.html#aa72599a1bdf5c80c544c955a1da6a001">More...</a><br /></td></tr>
 <tr class="separator:aa72599a1bdf5c80c544c955a1da6a001"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac017ce1324f5f573707a925e391391f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#ac017ce1324f5f573707a925e391391f5">nThreadSelf</a> (void)</td></tr>
+<tr class="memitem:ac017ce1324f5f573707a925e391391f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#ac017ce1324f5f573707a925e391391f5">nThreadSelf</a> (void)</td></tr>
 <tr class="memdesc:ac017ce1324f5f573707a925e391391f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joins (or waits for) a thread until its completion.  <a href="_threads_8h.html#ac017ce1324f5f573707a925e391391f5">More...</a><br /></td></tr>
 <tr class="separator:ac017ce1324f5f573707a925e391391f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b062a9976f360109409cdf03664e3eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a2b062a9976f360109409cdf03664e3eb">nThreadJoin</a> (<a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread, void *ret)</td></tr>
+<tr class="memitem:a2b062a9976f360109409cdf03664e3eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a2b062a9976f360109409cdf03664e3eb">nThreadJoin</a> (<a class="el" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread, void *ret)</td></tr>
 <tr class="memdesc:a2b062a9976f360109409cdf03664e3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joins (or waits for) a thread until its completion.  <a href="_threads_8h.html#a2b062a9976f360109409cdf03664e3eb">More...</a><br /></td></tr>
 <tr class="separator:a2b062a9976f360109409cdf03664e3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad671abc494307c1448840e42696f4bbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#ad671abc494307c1448840e42696f4bbd">nThreadMutexCreate</a> (<a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</td></tr>
+<tr class="memitem:ad671abc494307c1448840e42696f4bbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#ad671abc494307c1448840e42696f4bbd">nThreadMutexCreate</a> (<a class="el" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a> mutex)</td></tr>
 <tr class="memdesc:ad671abc494307c1448840e42696f4bbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> mutex.  <a href="_threads_8h.html#ad671abc494307c1448840e42696f4bbd">More...</a><br /></td></tr>
 <tr class="separator:ad671abc494307c1448840e42696f4bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36d2699463a15164f3f694345a093154"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a36d2699463a15164f3f694345a093154">nThreadMutexLock</a> (<a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</td></tr>
+<tr class="memitem:a36d2699463a15164f3f694345a093154"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a36d2699463a15164f3f694345a093154">nThreadMutexLock</a> (<a class="el" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a> mutex)</td></tr>
 <tr class="memdesc:a36d2699463a15164f3f694345a093154"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks a mutex, or waits or the already locked mutex to unlock.  <a href="_threads_8h.html#a36d2699463a15164f3f694345a093154">More...</a><br /></td></tr>
 <tr class="separator:a36d2699463a15164f3f694345a093154"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0754b811c83c281b4d2a82ddeeeab4bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a0754b811c83c281b4d2a82ddeeeab4bc">nThreadMutexUnlock</a> (<a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</td></tr>
+<tr class="memitem:a0754b811c83c281b4d2a82ddeeeab4bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a0754b811c83c281b4d2a82ddeeeab4bc">nThreadMutexUnlock</a> (<a class="el" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a> mutex)</td></tr>
 <tr class="memdesc:a0754b811c83c281b4d2a82ddeeeab4bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlocks a mutex.  <a href="_threads_8h.html#a0754b811c83c281b4d2a82ddeeeab4bc">More...</a><br /></td></tr>
 <tr class="separator:a0754b811c83c281b4d2a82ddeeeab4bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a125d44c71b77ea3579d707787c9a262b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a125d44c71b77ea3579d707787c9a262b">nThreadMutexDestroy</a> (<a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</td></tr>
+<tr class="memitem:a125d44c71b77ea3579d707787c9a262b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_threads_8h.html#a125d44c71b77ea3579d707787c9a262b">nThreadMutexDestroy</a> (<a class="el" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a> mutex)</td></tr>
 <tr class="memdesc:a125d44c71b77ea3579d707787c9a262b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a mutex to prevent memory leaks.  <a href="_threads_8h.html#a125d44c71b77ea3579d707787c9a262b">More...</a><br /></td></tr>
 <tr class="separator:a125d44c71b77ea3579d707787c9a262b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -154,52 +154,52 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6f38d7507d41c57a1d7b60a6adf3e6d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f38d7507d41c57a1d7b60a6adf3e6d6">&#9670;&nbsp;</a></span>NTHREAD_C11</h2>
+<a id="a84bba6cba12eedd6aafd581405017754"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84bba6cba12eedd6aafd581405017754">&#9670;&nbsp;</a></span>NTHREAD_WINAPI</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define NTHREAD_C11</td>
+          <td class="memname">#define NTHREAD_WINAPI</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_threads_8h_source.html#l00066">66</a> of file <a class="el" href="_threads_8h_source.html">Threads.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_threads_8h_source.html#l00053">53</a> of file <a class="el" href="_threads_8h_source.html">Threads.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="adf8e53aef7ecfc328eec93f6e35b7746"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf8e53aef7ecfc328eec93f6e35b7746">&#9670;&nbsp;</a></span>nMutex_t</h2>
+<a id="ac554ec4db6e1f7265a7a4b52ae998fc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac554ec4db6e1f7265a7a4b52ae998fc7">&#9670;&nbsp;</a></span>nMutex_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef mtx_t* <a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a></td>
+          <td class="memname">typedef HANDLE <a class="el" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_threads_8h_source.html#l00070">70</a> of file <a class="el" href="_threads_8h_source.html">Threads.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_threads_8h_source.html#l00056">56</a> of file <a class="el" href="_threads_8h_source.html">Threads.h</a>.</p>
 
 </div>
 </div>
-<a id="a24cc6d228c1c5e77e8bf4ba454e75f87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24cc6d228c1c5e77e8bf4ba454e75f87">&#9670;&nbsp;</a></span>nThread_t</h2>
+<a id="a78fcb112f74429f3150d75db80d4c89a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78fcb112f74429f3150d75db80d4c89a">&#9670;&nbsp;</a></span>nThread_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef thrd_t* <a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a></td>
+          <td class="memname">typedef HANDLE <a class="el" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_threads_8h_source.html#l00069">69</a> of file <a class="el" href="_threads_8h_source.html">Threads.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_threads_8h_source.html#l00055">55</a> of file <a class="el" href="_threads_8h_source.html">Threads.h</a>.</p>
 
 </div>
 </div>
@@ -213,7 +213,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadCreate </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> *&#160;</td>
           <td class="paramname"><em>thread</em>, </td>
         </tr>
         <tr>
@@ -257,7 +257,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
 <div class="line">    <span class="keywordtype">int</span> arg = 10;</div>
 <div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;thread, 0, func, (<span class="keywordtype">void</span> *) &amp;arg) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">    {</div>
@@ -300,7 +300,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadJoin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a>&#160;</td>
           <td class="paramname"><em>thread</em>, </td>
         </tr>
         <tr>
@@ -324,7 +324,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
 <div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
 <div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
 <div class="line">    <span class="keywordflow">return</span> &amp;ret;</div>
@@ -332,7 +332,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
 <div class="line">    <span class="keywordtype">int</span> arg = 10;</div>
 <div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;thread, 0, func, (<span class="keywordtype">void</span> *) &amp;arg) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">    {</div>
@@ -374,7 +374,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadMutexCreate </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a>&#160;</td>
           <td class="paramname"><em>mutex</em></td><td>)</td>
           <td></td>
         </tr>
@@ -386,14 +386,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a class="code" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
 <div class="line">{</div>
 <div class="line">    <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(mutex);</div>
 <div class="line">    puts(<span class="stringliteral">&quot;Mutex locked.\n&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
 <div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
 <div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
 <div class="line"> </div>
@@ -410,9 +410,9 @@ Functions</h2></td></tr>
 <div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
 <div class="line">    <span class="keywordtype">char</span> success[] = <span class="stringliteral">&quot;Successfully created thread #0.\n&quot;</span>;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a>)); i++)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;threads[i], 0, func, (<span class="keywordtype">void</span> *) &amp;i) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">        {</div>
@@ -424,7 +424,7 @@ Functions</h2></td></tr>
 <div class="line">     }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">int</span> ret;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a>)); i++)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(thread, (<span class="keywordtype">void</span> *) &amp;ret) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">        {</div>
@@ -459,7 +459,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadMutexDestroy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a>&#160;</td>
           <td class="paramname"><em>mutex</em></td><td>)</td>
           <td></td>
         </tr>
@@ -471,14 +471,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a class="code" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
 <div class="line">{</div>
 <div class="line">    <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(mutex);</div>
 <div class="line">    puts(<span class="stringliteral">&quot;Mutex locked.\n&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
 <div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
 <div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
 <div class="line"> </div>
@@ -495,9 +495,9 @@ Functions</h2></td></tr>
 <div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
 <div class="line">    <span class="keywordtype">char</span> success[] = <span class="stringliteral">&quot;Successfully created thread #0.\n&quot;</span>;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a>)); i++)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;threads[i], 0, func, (<span class="keywordtype">void</span> *) &amp;i) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">        {</div>
@@ -509,7 +509,7 @@ Functions</h2></td></tr>
 <div class="line">     }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">int</span> ret;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a>)); i++)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(thread, (<span class="keywordtype">void</span> *) &amp;ret) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">        {</div>
@@ -544,7 +544,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadMutexLock </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a>&#160;</td>
           <td class="paramname"><em>mutex</em></td><td>)</td>
           <td></td>
         </tr>
@@ -556,14 +556,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a class="code" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
 <div class="line">{</div>
 <div class="line">    <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(mutex);</div>
 <div class="line">    puts(<span class="stringliteral">&quot;Mutex locked.\n&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
 <div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
 <div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
 <div class="line"> </div>
@@ -580,9 +580,9 @@ Functions</h2></td></tr>
 <div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
 <div class="line">    <span class="keywordtype">char</span> success[] = <span class="stringliteral">&quot;Successfully created thread #0.\n&quot;</span>;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a>)); i++)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;threads[i], 0, func, (<span class="keywordtype">void</span> *) &amp;i) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">        {</div>
@@ -594,7 +594,7 @@ Functions</h2></td></tr>
 <div class="line">     }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">int</span> ret;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a>)); i++)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(thread, (<span class="keywordtype">void</span> *) &amp;ret) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">        {</div>
@@ -630,7 +630,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nThreadMutexUnlock </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a>&#160;</td>
           <td class="paramname"><em>mutex</em></td><td>)</td>
           <td></td>
         </tr>
@@ -642,14 +642,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a class="code" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a> mutex = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
 <div class="line">{</div>
 <div class="line">    <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(mutex);</div>
 <div class="line">    puts(<span class="stringliteral">&quot;Mutex locked.\n&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
 <div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
 <div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
 <div class="line"> </div>
@@ -666,9 +666,9 @@ Functions</h2></td></tr>
 <div class="line">        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> threads[3] = {<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>};</div>
 <div class="line">    <span class="keywordtype">char</span> success[] = <span class="stringliteral">&quot;Successfully created thread #0.\n&quot;</span>;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a>)); i++)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;threads[i], 0, func, (<span class="keywordtype">void</span> *) &amp;i) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">        {</div>
@@ -680,7 +680,7 @@ Functions</h2></td></tr>
 <div class="line">     }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">int</span> ret;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a>)); i++)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (<span class="keyword">sizeof</span>(threads) / <span class="keyword">sizeof</span>(<a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a>)); i++)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(thread, (<span class="keywordtype">void</span> *) &amp;ret) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">        {</div>
@@ -714,7 +714,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> nThreadSelf </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> nThreadSelf </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -731,14 +731,14 @@ Functions</h2></td></tr>
 <div class="line"><span class="keywordtype">void</span> * func(<span class="keywordtype">void</span> * data)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordtype">int</span> ret = *((<span class="keywordtype">int</span> *) data);</div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
 <div class="line">    printf(<span class="stringliteral">&quot;New thread ID: %x\n&quot;</span>, ret);</div>
 <div class="line">    <span class="keywordflow">return</span> &amp;ret;</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
 <div class="line">    <span class="keywordtype">int</span> arg = 10;</div>
 <div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(&amp;thread, 0, func, (<span class="keywordtype">void</span> *) &amp;arg) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">    {</div>
@@ -747,7 +747,7 @@ Functions</h2></td></tr>
 <div class="line">    }</div>
 <div class="line">    printf(<span class="stringliteral">&quot;Successfully created thread.\n&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
+<div class="line">    <a class="code" href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a> thread = <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>();</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
 <div class="line">}</div>
@@ -763,13 +763,13 @@ Functions</h2></td></tr>
 <div class="ttc" id="a_threads_8c_html_ac4236971be3d509df3739252af6acf61"><div class="ttname"><a href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a></div><div class="ttdeci">nint_t nThreadMutexDestroy(nMutex_t mutex)</div><div class="ttdoc">Destroys a mutex to prevent memory leaks.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00140">Threads.c:140</a></div></div>
 <div class="ttc" id="a_threads_8c_html_a8818f090f3a604edfb4d2750581213c9"><div class="ttname"><a href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a></div><div class="ttdeci">nint_t nThreadMutexLock(nMutex_t mutex)</div><div class="ttdoc">Locks a mutex, or waits or the already locked mutex to unlock.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00128">Threads.c:128</a></div></div>
 <div class="ttc" id="a_threads_8c_html_abc2562bfb4e069fcf08b93043fa770d5"><div class="ttname"><a href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a></div><div class="ttdeci">nThread_t nThreadSelf(void)</div><div class="ttdoc">Joins (or waits for) a thread until its completion.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00110">Threads.c:110</a></div></div>
+<div class="ttc" id="a_threads_8h_html_ac554ec4db6e1f7265a7a4b52ae998fc7"><div class="ttname"><a href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a></div><div class="ttdeci">HANDLE nMutex_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00056">Threads.h:56</a></div></div>
 <div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00140">Nimble.h:140</a></div></div>
-<div class="ttc" id="a_threads_8h_html_adf8e53aef7ecfc328eec93f6e35b7746"><div class="ttname"><a href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a></div><div class="ttdeci">mtx_t * nMutex_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00070">Threads.h:70</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00153">Nimble.h:153</a></div></div>
+<div class="ttc" id="a_threads_8h_html_a78fcb112f74429f3150d75db80d4c89a"><div class="ttname"><a href="_threads_8h.html#a78fcb112f74429f3150d75db80d4c89a">nThread_t</a></div><div class="ttdeci">HANDLE nThread_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00055">Threads.h:55</a></div></div>
 <div class="ttc" id="a_threads_8c_html_aff7b47e959d06126af654dffbe0f349a"><div class="ttname"><a href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a></div><div class="ttdeci">nint_t nThreadCreate(nThread_t *thread, nint_t attributes, void *(*start)(void *), void *data)</div><div class="ttdoc">Creates a thread.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00055">Threads.c:55</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
 <div class="ttc" id="a_threads_8c_html_a3b89d83d7adac17362b8a30c1c76d7d0"><div class="ttname"><a href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a></div><div class="ttdeci">nint_t nThreadMutexUnlock(nMutex_t mutex)</div><div class="ttdoc">Unlocks a mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00134">Threads.c:134</a></div></div>
-<div class="ttc" id="a_threads_8h_html_a24cc6d228c1c5e77e8bf4ba454e75f87"><div class="ttname"><a href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a></div><div class="ttdeci">thrd_t * nThread_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00069">Threads.h:69</a></div></div>
 <div class="ttc" id="a_threads_8c_html_a0c0440efdfb2dc726e0a7f542c93b383"><div class="ttname"><a href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a></div><div class="ttdeci">nint_t nThreadMutexCreate(nMutex_t mutex)</div><div class="ttdoc">Initializes a NULL mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00122">Threads.c:122</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

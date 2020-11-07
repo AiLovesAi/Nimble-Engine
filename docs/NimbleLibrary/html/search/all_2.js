@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['errorcallback_11',['errorCallback',['../_errors_8c.html#ab46836b186757a790d96bbcc1cb240f9',1,'Errors.c']]],
-  ['errors_2ec_12',['Errors.c',['../_errors_8c.html',1,'']]],
-  ['errors_2eh_13',['Errors.h',['../_errors_8h.html',1,'']]]
+  ['defined_11',['defined',['../_nimble_8h.html#ab62d88bc9fcdbc6c30e7672b673637b8',1,'Nimble.h']]]
 ];

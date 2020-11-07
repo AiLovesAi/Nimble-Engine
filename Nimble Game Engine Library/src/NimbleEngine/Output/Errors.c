@@ -68,6 +68,7 @@ const char nErrSigSegvStr[]           = "NERROR_SIGSEGV";
 const char nErrSigTermStr[]           = "NERROR_SIGTERM";
 
 /* ERRNO */
+#if 0
 const char nErrNoPermStr[]            = "NERROR_NO_PERM";
 const char nErrNoFileStr[]            = "NERROR_NO_FILE";
 const char nErrNoProcessStr[]         = "NERROR_NO_PROCESS";
@@ -168,6 +169,13 @@ const char nErrTimerStr[]             = "NERROR_TIMER";
 const char nErrAsyncCancelStr[]       = "NERROR_ASYNC_CANCEL";
 const char nErrOwnerDiedStr[]         = "NERROR_OWNER_DIED";
 const char nErrNotRecoverableStr[]    = "NERROR_NOT_RECOVERABLE";
+#endif
+#if NIMBLE_OS == NIMBLE_WINDOWS
+#elif NIMBLE_OS == NIMBLE_MACOS
+#elif NIMBLE_OS == NIMBLE_LINUX
+#elif NIMBLE_OS == NIMBLE_ANDROID
+#elif defined(NIMBLE_POSIX)
+#endif
 
 const char nErrMaxStr[]             = "NERROR_MAX";
 
@@ -187,6 +195,7 @@ const char * nErrorStrings[] = {
     nErrSigSegvStr,
     nErrSigTermStr,
     
+    #if 0
     nErrNoPermStr,
     nErrNoFileStr,
     nErrNoProcessStr,
@@ -286,6 +295,13 @@ const char * nErrorStrings[] = {
     nErrAsyncCancelStr,
     nErrOwnerDiedStr,
     nErrNotRecoverableStr,
+    #endif
+    #if NIMBLE_OS == NIMBLE_WINDOWS
+    #elif NIMBLE_OS == NIMBLE_MACOS
+    #elif NIMBLE_OS == NIMBLE_LINUX
+    #elif NIMBLE_OS == NIMBLE_ANDROID
+    #elif defined(NIMBLE_POSIX)
+    #endif
     
     nErrMaxStr
 };
@@ -304,6 +320,7 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrSigSegvStr),
     sizeof(nErrSigTermStr),
     
+    #if 0
     sizeof(nErrNoPermStr),
     sizeof(nErrNoFileStr),
     sizeof(nErrNoProcessStr),
@@ -404,6 +421,13 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrAsyncCancelStr),
     sizeof(nErrOwnerDiedStr),
     sizeof(nErrNotRecoverableStr),
+    #endif
+    #if NIMBLE_OS == NIMBLE_WINDOWS
+    #elif NIMBLE_OS == NIMBLE_MACOS
+    #elif NIMBLE_OS == NIMBLE_LINUX
+    #elif NIMBLE_OS == NIMBLE_ANDROID
+    #elif defined(NIMBLE_POSIX)
+    #endif
     
     sizeof(nErrMaxStr)
 };
@@ -429,6 +453,7 @@ const char nErrDescSigSegvStr[]           = "Caught a memory address violation "
 "signal.";
 const char nErrDescSigTermStr[]           = "Caught a termination signal.";
 
+#if 0
 const char nErrDescNoPermStr[]            = "Operation not permitted. Only the "\
 "owner of the file (or other resource) or processes with special privileges "\
 "can perform the operation.";
@@ -699,6 +724,13 @@ const char nErrDescTimerStr[]             = "Timer expired.";
 const char nErrDescAsyncCancelStr[]       = "Operation canceled.";
 const char nErrDescOwnerDiedStr[]         = "Owner died.";
 const char nErrDescNotRecoverableStr[]    = "State not recoverable.";
+#endif
+#if NIMBLE_OS == NIMBLE_WINDOWS
+#elif NIMBLE_OS == NIMBLE_MACOS
+#elif NIMBLE_OS == NIMBLE_LINUX
+#elif NIMBLE_OS == NIMBLE_ANDROID
+#elif defined(NIMBLE_POSIX)
+#endif
 
 const char nErrDescMaxStr[]               = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
@@ -719,6 +751,7 @@ const char * nErrorDescriptions[] = {
     nErrDescSigSegvStr,
     nErrDescSigTermStr,
     
+    #if 0
     nErrDescNoPermStr,
     nErrDescNoFileStr,
     nErrDescNoProcessStr,
@@ -818,6 +851,13 @@ const char * nErrorDescriptions[] = {
     nErrDescAsyncCancelStr,
     nErrDescOwnerDiedStr,
     nErrDescNotRecoverableStr,
+    #endif
+    #if NIMBLE_OS == NIMBLE_WINDOWS
+    #elif NIMBLE_OS == NIMBLE_MACOS
+    #elif NIMBLE_OS == NIMBLE_LINUX
+    #elif NIMBLE_OS == NIMBLE_ANDROID
+    #elif defined(NIMBLE_POSIX)
+    #endif
     
     nErrDescMaxStr
 };
@@ -836,6 +876,7 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescSigSegvStr),
     sizeof(nErrDescSigTermStr),
     
+    #if 0
     sizeof(nErrDescNoPermStr),
     sizeof(nErrDescNoFileStr),
     sizeof(nErrDescNoProcessStr),
@@ -935,6 +976,13 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescAsyncCancelStr),
     sizeof(nErrDescOwnerDiedStr),
     sizeof(nErrDescNotRecoverableStr),
+    #endif
+    #if NIMBLE_OS == NIMBLE_WINDOWS
+    #elif NIMBLE_OS == NIMBLE_MACOS
+    #elif NIMBLE_OS == NIMBLE_LINUX
+    #elif NIMBLE_OS == NIMBLE_ANDROID
+    #elif defined(NIMBLE_POSIX)
+    #endif
     
     sizeof(nErrDescMaxStr)
 };

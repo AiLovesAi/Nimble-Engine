@@ -83,39 +83,27 @@ extern "C" {
 #include <inttypes.h>
 #include <stdlib.h>
 
-#ifdef _WIN32
 #define NIMBLE_WINDOWS 1
-#endif
-#if (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh)
 #define NIMBLE_MACOS 2
-#endif
-#if defined(__unix__) || defined(__unix) || defined(NIMBLE_MACOS)
 #define NIMBLE_UNIX 3
-#endif
-#if defined(__linux__) || defined(__linux) || defined(linux)
 #define NIMBLE_LINUX 4
-#endif
+#define NIMBLE_BSD 5
+
 #if defined(_POSIX_SOURCE)
 #define NIMBLE_POSIX 5
 #endif
-#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
-#define NIMBLE_BSD 6
-#endif
-#ifdef __ANDROID__
-#define NIMBLE_ANDROID 7
-#endif
 
-#ifdef NIMBLE_WINDOWS
+#ifdef _WIN32
 #define NIMBLE_OS NIMBLE_WINDOWS
-#elif defined(NIMBLE_MACOSX)
+#elif (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh)
 #define NIMBLE_OS NIMBLE_MACOSX
-#elif defined(NIMBLE_ANDROID)
+#elif __ANDROID__
 #define NIMBLE_OS NIMBLE_ANDROID
 #elif defined(NIMBLE_BSD)
-#define NIMBLE_OS NIMBLE_BSD
-#elif defined(NIMBLE_LINUX)
+#define defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
+#elif defined(__linux__) || defined(__linux) || defined(linux)
 #define NIMBLE_OS NIMBLE_LINUX
-#elif defined(NIMBLE_UNIX)
+#elif defined(__unix__) || defined(__unix)
 #define NIMBLE_OS NIMBLE_UNIX
 #else
 #error OS not supported.
