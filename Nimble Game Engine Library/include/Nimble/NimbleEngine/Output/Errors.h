@@ -204,7 +204,7 @@ enum nErrors {
     NERROR_WOULD_BLOCK, /**< Resource temporarily unavailable; Operation would block. */
     NERROR_NO_MEMORY, /**< Cannot allocate memory. */
     NERROR_NO_FILE_PERM, /**< Permission denied. */
-    NERROR_FAULT, /**< Bad address. */\
+    NERROR_FAULT, /**< Bad address. */
     /* 15 */
     NERROR_DEVICE_BUSY, /**< Device or resource busy. */
     NERROR_FILE_EXISTS, /**< File exists. */

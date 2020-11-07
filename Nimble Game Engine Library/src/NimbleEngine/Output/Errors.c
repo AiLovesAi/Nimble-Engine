@@ -68,7 +68,6 @@ const char nErrSigSegvStr[]           = "NERROR_SIGSEGV";
 const char nErrSigTermStr[]           = "NERROR_SIGTERM";
 
 /* ERRNO */
-#if 0
 const char nErrNoPermStr[]            = "NERROR_NO_PERM";
 const char nErrNoFileStr[]            = "NERROR_NO_FILE";
 const char nErrNoProcessStr[]         = "NERROR_NO_PROCESS";
@@ -105,7 +104,7 @@ const char nErrDomainStr[]            = "NERROR_DOMAIN";
 const char nErrResultTooBigStr[]      = "NERROR_RESULT_TOO_BIG";
 const char nErrWouldBlockStr[]        = "NERROR_WOULD_BLOCK";
 const char nErrInProgressStr[]        = "NERROR_IN_PROGRESS";
-const char nErrAlresdyStr[]           = "NERROR_ALREADY";
+const char nErrAlreadyStr[]           = "NERROR_ALREADY";
 const char nErrNotSocketStr[]         = "NERROR_NOT_SOCKET";
 const char nErrMaxMessageStr[]        = "NERROR_MAX_MESSAGE";
 const char nErrInvProtoTypeStr[]      = "NERROR_INV_PROTO_TYPE";
@@ -178,15 +177,8 @@ const char nErrInvMachoStr[]          = "NERROR_INV_MACHO";
 const char nErrNoAttributeStr[]       = "NERROR_NO_ATTRIBUTE";
 const char nErrNoPolicyStr[]          = "NERROR_NO_POLICY";
 const char nErrMaxQueueStr[]          = "NERROR_MAX_QUEUE";
-#endif
-#if NIMBLE_OS == NIMBLE_WINDOWS
-#elif NIMBLE_OS == NIMBLE_MACOS
-#elif NIMBLE_OS == NIMBLE_LINUX
-#elif NIMBLE_OS == NIMBLE_ANDROID
-#elif defined(NIMBLE_POSIX)
-#endif
 
-const char nErrMaxStr[]             = "NERROR_MAX";
+const char nErrMaxStr[]               = "NERROR_MAX";
 
 
 const char * nErrorStrings[] = {
@@ -240,7 +232,7 @@ const char * nErrorStrings[] = {
     nErrResultTooBigStr,
     nErrWouldBlockStr,
     nErrInProgressStr,
-    nErrAlresdyStr,
+    nErrAlreadyStr,
     nErrNotSocketStr,
     nErrMaxMessageStr,
     nErrInvProtoTypeStr,
@@ -314,7 +306,77 @@ const char * nErrorStrings[] = {
     nErrMaxQueueStr,
     #endif
     #if NIMBLE_OS == NIMBLE_WINDOWS
+    nErrNoPermStr,
+    nErrNoFileStr,
+    nErrNoProcessStr,
+    nErrInterruptStr,
+    nErrIOStr,
+    nErrNoDeviceStr,
+    nErrMaxArgsStr,
+    nErrInvExecFormatStr,
+    nErrNoChildStr,
+    nErrWouldBlockStr,
+    nErrNoMemoryStr,
+    nErrNoFilePermStr,
+    nErrFaultStr,
+    nErrDeviceBusyStr,
+    nErrFileExistsStr,
+    nErrInvCrosslinkStr,
+    nErrInvDeviceStr,
+    nErrNotDirStr,
+    nErrIsDirStr,
+    nErrInvArgStr,
+    nErrMaxFileSysStr,
+    nErrMaxFileStr,
+    nErrInvIOCtlStr,
+    nErrFileTooBigStr,
+    nErrNoSpaceStr,
+    nErrInvSeekStr,
+    nErrReadOnlyStr,
+    nErrMaxLinksStr,
+    nErrInvPipeStr,
+    nErrDomainStr,
+    nErrResultTooBigStr,
+    nErrDeadlockStr,
     #elif NIMBLE_OS == NIMBLE_MACOS
+    nErrNoPermStr,
+    nErrNoFileStr,
+    nErrNoProcessStr,
+    nErrInterruptStr,
+    nErrIOStr,
+    nErrNoDeviceStr,
+    nErrMaxArgsStr,
+    nErrInvExecFormatStr,
+    nErrInvFPStr,
+    nErrNoChildStr,
+    nErrDeadlockStr,
+    nErrNoMemoryStr,
+    nErrNoFilePermStr,
+    nErrFaultStr,
+    nErrNotBlockStr,
+    nErrDeviceBusyStr,
+    nErrFileExistsStr,
+    nErrInvCrosslinkStr,
+    nErrInvDeviceStr,
+    nErrNotDirStr,
+    nErrIsDirStr,
+    nErrInvArgStr,
+    nErrMaxFileStr,
+    nErrMaxFileSysStr,
+    nErrInvIOCtlStr,
+    nErrTextBusyStr,
+    nErrFileTooBigStr,
+    nErrNoSpaceStr,
+    nErrInvSeekStr,
+    nErrReadOnlyStr,
+    nErrMaxLinksStr,
+    nErrInvPipeStr,
+    nErrDomainStr,
+    nErrResultTooBigStr,
+    nErrWouldBlockStr,
+    nErrInProgressStr,
+    nErrAlreadyStr,
+    nErrNotSocketStr,
     #elif NIMBLE_OS == NIMBLE_LINUX
     #elif NIMBLE_OS == NIMBLE_ANDROID
     #elif defined(NIMBLE_POSIX)
@@ -374,7 +436,7 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrResultTooBigStr),
     sizeof(nErrWouldBlockStr),
     sizeof(nErrInProgressStr),
-    sizeof(nErrAlresdyStr),
+    sizeof(nErrAlreadyStr),
     sizeof(nErrNotSocketStr),
     sizeof(nErrMaxMessageStr),
     sizeof(nErrInvProtoTypeStr),
@@ -448,7 +510,78 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrMaxQueueStr),
     #endif
     #if NIMBLE_OS == NIMBLE_WINDOWS
+    sizeof(nErrNoPermStr),
+    sizeof(nErrNoFileStr),
+    sizeof(nErrNoProcessStr),
+    sizeof(nErrInterruptStr),
+    sizeof(nErrIOStr),
+    sizeof(nErrNoDeviceStr),
+    sizeof(nErrMaxArgsStr),
+    sizeof(nErrInvExecFormatStr),
+    sizeof(nErrInvFPStr),
+    sizeof(nErrNoChildStr),
+    sizeof(nErrWouldBlockStr),
+    sizeof(nErrNoMemoryStr),
+    sizeof(nErrNoFilePermStr),
+    sizeof(nErrFaultStr),
+    sizeof(nErrDeviceBusyStr),
+    sizeof(nErrFileExistsStr),
+    sizeof(nErrInvCrosslinkStr),
+    sizeof(nErrInvDeviceStr),
+    sizeof(nErrNotDirStr),
+    sizeof(nErrIsDirStr),
+    sizeof(nErrInvArgStr),
+    sizeof(nErrMaxFileSysStr),
+    sizeof(nErrMaxFileStr),
+    sizeof(nErrInvIOCtlStr),
+    sizeof(nErrFileTooBigStr),
+    sizeof(nErrNoSpaceStr),
+    sizeof(nErrInvSeekStr),
+    sizeof(nErrReadOnlyStr),
+    sizeof(nErrMaxLinksStr),
+    sizeof(nErrInvPipeStr),
+    sizeof(nErrDomainStr),
+    sizeof(nErrResultTooBigStr),
+    sizeof(nErrDeadlockStr),
     #elif NIMBLE_OS == NIMBLE_MACOS
+    sizeof(nErrNoPermStr),
+    sizeof(nErrNoFileStr),
+    sizeof(nErrNoProcessStr),
+    sizeof(nErrInterruptStr),
+    sizeof(nErrIOStr),
+    sizeof(nErrNoDeviceStr),
+    sizeof(nErrMaxArgsStr),
+    sizeof(nErrInvExecFormatStr),
+    sizeof(nErrInvFPStr),
+    sizeof(nErrNoChildStr),
+    sizeof(nErrDeadlockStr),
+    sizeof(nErrNoMemoryStr),
+    sizeof(nErrNoFilePermStr),
+    sizeof(nErrFaultStr),
+    sizeof(nErrNotBlockStr),
+    sizeof(nErrDeviceBusyStr),
+    sizeof(nErrFileExistsStr),
+    sizeof(nErrInvCrosslinkStr),
+    sizeof(nErrInvDeviceStr),
+    sizeof(nErrNotDirStr),
+    sizeof(nErrIsDirStr),
+    sizeof(nErrInvArgStr),
+    sizeof(nErrMaxFileStr),
+    sizeof(nErrMaxFileSysStr),
+    sizeof(nErrInvIOCtlStr),
+    sizeof(nErrTextBusyStr),
+    sizeof(nErrFileTooBigStr),
+    sizeof(nErrNoSpaceStr),
+    sizeof(nErrInvSeekStr),
+    sizeof(nErrReadOnlyStr),
+    sizeof(nErrMaxLinksStr),
+    sizeof(nErrInvPipeStr),
+    sizeof(nErrDomainStr),
+    sizeof(nErrResultTooBigStr),
+    sizeof(nErrWouldBlockStr),
+    sizeof(nErrInProgressStr),
+    sizeof(nErrAlreadyStr),
+    sizeof(nErrNotSocketStr),
     #elif NIMBLE_OS == NIMBLE_LINUX
     #elif NIMBLE_OS == NIMBLE_ANDROID
     #elif defined(NIMBLE_POSIX)
@@ -480,7 +613,6 @@ const char nErrDescSigSegvStr[]           = "Caught a memory address violation "
 "memory before reading from or writing to it.";
 const char nErrDescSigTermStr[]           = "Caught a termination signal.";
 
-#if 0
 const char nErrDescNoPermStr[]            = "Operation not permitted. Only the "\
 "owner of the file (or other resource) or processes with special privileges "\
 "can perform the operation.";
@@ -597,7 +729,7 @@ const char nErrDescInProgressStr[]        = "Operation now in progress. An "\
 "some time. Attempts to manipulate the object before the call completes return "\
 "NERROR_ALREADY. You can use the select function to find out when the pending "\
 "operation has completed.";
-const char nErrDescAlresdyStr[]           = "Operation already in progress. An "\
+const char nErrDescAlreadyStr[]           = "Operation already in progress. An "\
 "operation is already in progress on an object that has non-blocking mode "\
 "selected.";
 const char nErrDescNotSocketStr[]         = "Socket operation on non-socket. A "\
@@ -781,13 +913,6 @@ const char nErrDescNoAttributeStr[]       = "Attribute not found. The specified 
 "extended attribute does not exist.";
 const char nErrDescNoPolicyStr[]          = "No such policy registered.";
 const char nErrDescMaxQueueStr[]          = "Interface output queue is full.";
-#endif
-#if NIMBLE_OS == NIMBLE_WINDOWS
-#elif NIMBLE_OS == NIMBLE_MACOS
-#elif NIMBLE_OS == NIMBLE_LINUX
-#elif NIMBLE_OS == NIMBLE_ANDROID
-#elif defined(NIMBLE_POSIX)
-#endif
 
 const char nErrDescMaxStr[]               = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
@@ -844,7 +969,7 @@ const char * nErrorDescriptions[] = {
     nErrDescResultTooBigStr,
     nErrDescWouldBlockStr,
     nErrDescInProgressStr,
-    nErrDescAlresdyStr,
+    nErrDescAlreadyStr,
     nErrDescNotSocketStr,
     nErrDescMaxMessageStr,
     nErrDescInvProtoTypeStr,
@@ -919,7 +1044,77 @@ const char * nErrorDescriptions[] = {
     nErrDescMaxQueueStr,
     #endif
     #if NIMBLE_OS == NIMBLE_WINDOWS
+    nErrDescNoPermStr,
+    nErrDescNoFileStr,
+    nErrDescNoProcessStr,
+    nErrDescInterruptStr,
+    nErrDescIOStr,
+    nErrDescMaxArgsStr,
+    nErrDescInvExecFormatStr,
+    nErrDescInvFPStr,
+    nErrDescNoChildStr,
+    nErrDescWouldBlockStr,
+    nErrDescNoMemoryStr,
+    nErrDescNoFilePermStr,
+    nErrDescFaultStr,
+    nErrDescDeviceBusyStr,
+    nErrDescFileExistsStr,
+    nErrDescInvCrosslinkStr,
+    nErrDescInvDeviceStr,
+    nErrDescNotDirStr,
+    nErrDescIsDirStr,
+    nErrDescInvArgStr,
+    nErrDescMaxFileSysStr,
+    nErrDescMaxFileStr,
+    nErrDescInvIOCtlStr,
+    nErrDescFileTooBigStr,
+    nErrDescNoSpaceStr,
+    nErrDescInvSeekStr,
+    nErrDescReadOnlyStr,
+    nErrDescMaxLinksStr,
+    nErrDescInvPipeStr,
+    nErrDescDomainStr,
+    nErrDescResultTooBigStr,
+    nErrDescDeadlockStr,
     #elif NIMBLE_OS == NIMBLE_MACOS
+    nErrDescNoPermStr,
+    nErrDescNoFileStr,
+    nErrDescNoProcessStr,
+    nErrDescInterruptStr,
+    nErrDescIOStr,
+    nErrDescNoDeviceStr,
+    nErrDescMaxArgsStr,
+    nErrDescInvExecFormatStr,
+    nErrDescInvFPStr,
+    nErrDescNoChildStr,
+    nErrDescDeadlockStr,
+    nErrDescNoMemoryStr,
+    nErrDescNoFilePermStr,
+    nErrDescFaultStr,
+    nErrDescNotBlockStr,
+    nErrDescDeviceBusyStr,
+    nErrDescFileExistsStr,
+    nErrDescInvCrosslinkStr,
+    nErrDescInvDeviceStr,
+    nErrDescNotDirStr,
+    nErrDescIsDirStr,
+    nErrDescInvArgStr,
+    nErrDescMaxFileStr,
+    nErrDescMaxFileSysStr,
+    nErrDescInvIOCtlStr,
+    nErrDescTextBusyStr,
+    nErrDescFileTooBigStr,
+    nErrDescNoSpaceStr,
+    nErrDescInvSeekStr,
+    nErrDescReadOnlyStr,
+    nErrDescMaxLinksStr,
+    nErrDescInvPipeStr,
+    nErrDescDomainStr,
+    nErrDescResultTooBigStr,
+    nErrDescWouldBlockStr,
+    nErrDescInProgressStr,
+    nErrDescAlreadyStr,
+    nErrDescNotSocketStr,
     #elif NIMBLE_OS == NIMBLE_LINUX
     #elif NIMBLE_OS == NIMBLE_ANDROID
     #elif defined(NIMBLE_POSIX)
@@ -978,7 +1173,7 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescResultTooBigStr),
     sizeof(nErrDescWouldBlockStr),
     sizeof(nErrDescInProgressStr),
-    sizeof(nErrDescAlresdyStr),
+    sizeof(nErrDescAlreadyStr),
     sizeof(nErrDescNotSocketStr),
     sizeof(nErrDescMaxMessageStr),
     sizeof(nErrDescInvProtoTypeStr),
@@ -1053,7 +1248,77 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescMaxQueueStr),
     #endif
     #if NIMBLE_OS == NIMBLE_WINDOWS
+    sizeof(nErrDescNoPermStr),
+    sizeof(nErrDescNoFileStr),
+    sizeof(nErrDescNoProcessStr),
+    sizeof(nErrDescInterruptStr),
+    sizeof(nErrDescIOStr),
+    sizeof(nErrDescMaxArgsStr),
+    sizeof(nErrDescInvExecFormatStr),
+    sizeof(nErrDescInvFPStr),
+    sizeof(nErrDescNoChildStr),
+    sizeof(nErrDescWouldBlockStr),
+    sizeof(nErrDescNoMemoryStr),
+    sizeof(nErrDescNoFilePermStr),
+    sizeof(nErrDescFaultStr),
+    sizeof(nErrDescDeviceBusyStr),
+    sizeof(nErrDescFileExistsStr),
+    sizeof(nErrDescInvCrosslinkStr),
+    sizeof(nErrDescInvDeviceStr),
+    sizeof(nErrDescNotDirStr),
+    sizeof(nErrDescIsDirStr),
+    sizeof(nErrDescInvArgStr),
+    sizeof(nErrDescMaxFileSysStr),
+    sizeof(nErrDescMaxFileStr),
+    sizeof(nErrDescInvIOCtlStr),
+    sizeof(nErrDescFileTooBigStr),
+    sizeof(nErrDescNoSpaceStr),
+    sizeof(nErrDescInvSeekStr),
+    sizeof(nErrDescReadOnlyStr),
+    sizeof(nErrDescMaxLinksStr),
+    sizeof(nErrDescInvPipeStr),
+    sizeof(nErrDescDomainStr),
+    sizeof(nErrDescResultTooBigStr),
+    sizeof(nErrDescDeadlockStr),
     #elif NIMBLE_OS == NIMBLE_MACOS
+    sizeof(nErrDescNoPermStr),
+    sizeof(nErrDescNoFileStr),
+    sizeof(nErrDescNoProcessStr),
+    sizeof(nErrDescInterruptStr),
+    sizeof(nErrDescIOStr),
+    sizeof(nErrDescNoDeviceStr),
+    sizeof(nErrDescMaxArgsStr),
+    sizeof(nErrDescInvExecFormatStr),
+    sizeof(nErrDescInvFPStr),
+    sizeof(nErrDescNoChildStr),
+    sizeof(nErrDescDeadlockStr),
+    sizeof(nErrDescNoMemoryStr),
+    sizeof(nErrDescNoFilePermStr),
+    sizeof(nErrDescFaultStr),
+    sizeof(nErrDescNotBlockStr),
+    sizeof(nErrDescDeviceBusyStr),
+    sizeof(nErrDescFileExistsStr),
+    sizeof(nErrDescInvCrosslinkStr),
+    sizeof(nErrDescInvDeviceStr),
+    sizeof(nErrDescNotDirStr),
+    sizeof(nErrDescIsDirStr),
+    sizeof(nErrDescInvArgStr),
+    sizeof(nErrDescMaxFileStr),
+    sizeof(nErrDescMaxFileSysStr),
+    sizeof(nErrDescInvIOCtlStr),
+    sizeof(nErrDescTextBusyStr),
+    sizeof(nErrDescFileTooBigStr),
+    sizeof(nErrDescNoSpaceStr),
+    sizeof(nErrDescInvSeekStr),
+    sizeof(nErrDescReadOnlyStr),
+    sizeof(nErrDescMaxLinksStr),
+    sizeof(nErrDescInvPipeStr),
+    sizeof(nErrDescDomainStr),
+    sizeof(nErrDescResultTooBigStr),
+    sizeof(nErrDescWouldBlockStr),
+    sizeof(nErrDescInProgressStr),
+    sizeof(nErrDescAlreadyStr),
+    sizeof(nErrDescNotSocketStr),
     #elif NIMBLE_OS == NIMBLE_LINUX
     #elif NIMBLE_OS == NIMBLE_ANDROID
     #elif defined(NIMBLE_POSIX)
