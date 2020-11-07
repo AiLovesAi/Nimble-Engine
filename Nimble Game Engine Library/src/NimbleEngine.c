@@ -106,25 +106,13 @@ nint_t nEngineInit(void (* errorCallback)(const nint_t error,
         nCrashSafe(NERROR_INTERNAL_FAILURE, errorTime, errorDesc,
          errorDescLen);
     }
-    #ifdef SIGTERM
+
     signal(SIGTERM, nEngineExitSignal);
-    #endif
-    
-    #ifdef SIGABRT
     signal(SIGABRT, nCrashSignal);
-    #endif
-    #ifdef SIGFPE
     signal(SIGFPE, nCrashSignal);
-    #endif
-    #ifdef SIGILL
     signal(SIGILL, nCrashSignal);
-    #endif
-    #ifdef SIGINT
     signal(SIGINT, nCrashSignal);
-    #endif
-    #ifdef SIGSEGV
     signal(SIGSEGV, nCrashSignal);
-    #endif
     
     return NSUCCESS;
 }
