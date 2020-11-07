@@ -1026,6 +1026,55 @@ void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
     /** @todo Make default callback. */
 }
 
+
+nint_t nErrorFromErrno(const nint_t err)
+{
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    if (err < 15)
+    {
+        return NERROR_ERRNO_START + err;
+    }
+    else if ((err > 15) && (err < 26))
+    {
+        return NERROR_ERRNO_START + err - 1;
+    }
+    else if ((err > 26) && (err < 35))
+    {
+        return NERROR_ERRNO_START + err - 2;
+    }
+    else if (err == NERROR_DEADLOCK)
+    {
+        return NERROR_DEADLOCK;
+    }
+    else if ((err > 37) && (err < 43))
+    {
+        return NERROR_ERRNO_START + err - 4;
+    }
+    else if ((err > 99) && (err < 131))
+    {
+        return NERROR_ERRNO_START + err - 57;
+    }
+    else if ((err > 131) && (err < 140))
+    {
+        return NERROR_ERRNO_START + err - 58;
+    }
+    else if (err == 140)
+    {
+        return NERROR_WOULD_BLOCK;
+    }
+    else
+    {
+        return NERROR_UNKNOWN;
+    }
+    #elif NIMBLE_OS == NIMBLE_MACOS
+    #elif NIMBLE_OS == NIMBLE_LINUX
+    #elif NIMBLE_OS == NIMBLE_ANDROID
+    #elif defined(NIMBLE_POSIX)
+    #else
+    #error OS not supported.
+    #endif
+}
+
 void nErrorThrow(const nint_t error, const char * info, nint_t infoLen)
 {
     const time_t errorTime = time(NULL);

@@ -70,9 +70,7 @@ extern "C" {
 
 /**
  * @brief Allocates a pointer.
- * Frees a pointer and returns #NULL to allow the invoker to optionally nullify
- * the pointer. Should the freed pointer location be needed again, no assignment
- * is necessary.
+ * Allocates a pointer and checks if it is successful.
  *
  * Example:
  * @code
@@ -96,12 +94,50 @@ extern "C" {
  * }
  * @endcode
  *
- * @param[in] ptr The pointer to free.
- * @return #NULL is always returned.
+ * @param[in] size The size of the memory block in bytes.
+ * @return The allocated pointer.
  */
 NIMBLE_EXTERN
 void *
 nAlloc(const size_t size);
+
+/**
+ * @brief Reallocates a pointer.
+ * Rellocates a pointer and checks if it is successful.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     char original[] = "Hello world.";
+ *     char * new;
+ *     new = nRealloc(sizeof(original) + 1);
+ *     new[sizeof(original) - 1] = '\n';
+ *     new[sizeof(original)] = '\0';
+ *     puts(new);
+ *     new = nRealloc(sizeof(original) - 1);
+ *     new[sizeof(original) - 2] = '\0';
+ *     puts(new);
+ *     new = nFree(new);
+ *     if (new)
+ *     {
+ *         puts("We will get here only if we use nFree(new) with no assignment!");
+ *     }
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[in,out] ptr The pointer to reallocate.
+ * @param[in] size The size of the new memory block in bytes.
+ * @return The reallocated @p ptr.
+ */
+NIMBLE_EXTERN
+void *
+nRealloc(void* ptr, const size_t size);
 
 /**
  * @brief Frees a pointer.

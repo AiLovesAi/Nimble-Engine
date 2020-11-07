@@ -196,14 +196,76 @@ enum nErrors {
     NERROR_NO_MEMORY, /**< Cannot allocate memory. */
     NERROR_NO_FILE_PERM, /**< Permission denied. */
     NERROR_FAULT, /**< Bad address. */
+    /* 15 */
     NERROR_DEVICE_BUSY, /**< Device or resource busy. */
     NERROR_FILE_EXISTS, /**< File exists. */
     NERROR_INV_CROSSLINK, /**< Invalid cross-device link. */
     NERROR_INV_DEVICE, /**< No such device. */
     NERROR_NOT_DIR, /**< Not a directory. */
     NERROR_IS_DIR, /**< Is a directory. */
+    NERROR_INV_ARG, /**< Invalid argument. */
     NERROR_MAX_FILE_SYS, /**< Too many open files in system. */
     NERROR_MAX_FILE, /**< Too many open files. */
+    NERROR_INV_IOCTL, /**< Inappropriate ioctl for device. */
+    /* 26 */
+    NERROR_FILE_TOO_BIG, /**< File too large. */
+    NERROR_NO_SPACE, /**< No space left on device. */
+    NERROR_INV_SEEK, /**< Illegal seek. */
+    NERROR_READ_ONLY, /**< Read-only file system. */
+    NERROR_MAX_LINKS, /**< Too many links. */
+    NERROR_INV_PIPE, /**< Broken pipe. */
+    NERROR_DOMAIN, /**< Numerical argument out of domain. */
+    NERROR_RESULT_TOO_BIG, /**< Numerical result out of range. */
+    /* 35 */
+    NERROR_DEADLOCK, /**< Resource deadlock avoided. */
+    /* 37 */
+    NERROR_MAX_FILENAME, /**< File name too long. */
+    NERROR_NO_FILE_LOCK, /**< No locks available. */
+    NERROR_FUNC_NOT_SUPPORTED, /**< Function not implemented. */
+    NERROR_DIR_NOT_EMPTY, /**< Directory not empty. */
+    NERROR_INV_MULTIBYTE, /**< Invalid or incomplete multibyte or wide character. */
+    /* 43-99 */
+    NERROR_ADDR_IN_USE, /**< Address already in use. */
+    NERROR_ADDR_NOT_AVAILABLE, /**< Cannot assign requested address. */
+    NERROR_INV_ADDR_FAM, /**< Address family not supported by protocol. */
+    NERROR_ALREADY, /**< Operation already in progress. */
+    NERROR_INV_MESSAGE, /**< Bad message. */
+    NERROR_ASYNC_CANCEL, /**< Operation canceled. */
+    NERROR_CONN_ABORTED, /**< Software caused connection abort. */
+    NERROR_CONN_REFUSED, /**< Connection refused. */
+    NERROR_CONN_RESET, /**< Connection reset by peer. */
+    NERROR_NO_ADDR, /**< Destination address required. */
+    NERROR_HOST_UNREACHABLE, /**< No route to host. */
+    NERROR_NO_IDENTIFIER, /**< Identifier removed. */
+    NERROR_IN_PROGRESS, /**< Operation now in progress. */
+    NERROR_ALREADY_CONN, /**< Transport endpoint is already connected. */
+    NERROR_LINK_LOOP, /**< Too many levels of symbolic links. */
+    NERROR_MAX_MESSAGE, /**< Message too long. */
+    NERROR_NET_DOWN, /**< Network is down. */
+    NERROR_NET_RESET, /**< Network dropped connection on reset. */
+    NERROR_NET_UNREACHABLE, /**< Network is unreachable. */
+    NERROR_NO_BUFFER_SPACE, /**< No buffer space available. */
+    NERROR_NO_DATA, /**< No data available. */
+    NERROR_NO_LINK, /**< Link has been severed. */
+    NERROR_NO_MESSAGE, /**< No message of desired type. */
+    NERROR_INV_PROTO_OPT, /**< Protocol not available. */
+    NERROR_NO_STREAM_RESOURCES, /**< Out of streams resources. */
+    NERROR_DEVICE_NOT_STREAM, /**< Device not a stream. */
+    NERROR_NOT_CONN, /**< Transport endpoint is not connected. */
+    NERROR_NOT_RECOVERABLE, /**< State not recoverable. */
+    NERROR_NOT_SOCKET, /**< Socket operation on non-socket. */
+    NERROR_NOT_SUPPORTED, /**< Not supported. */
+    NERROR_INV_SOCK_OPR, /**< Operation not supported. */
+    /* 131 */
+    NERROR_OVERFLOW, /**< Value too large for defined data type. */
+    NERROR_OWNER_DIED, /**< Owner died. */
+    NERROR_PROTOCOL, /**< Protocol error. */
+    NERROR_INV_PROTOCOL, /**< Protocol not supported. */
+    NERROR_INV_PROTO_TYPE, /**< Protocol wrong type for socket. */
+    NERROR_TIMER, /**< Timer expired. */
+    NERROR_CONN_TIMEOUT, /**< Connection timed out. */
+    NERROR_TEXT_BUSY, /**< Text file busy. */
+
     #elif NIMBLE_OS == NIMBLE_MACOS
     #elif NIMBLE_OS == NIMBLE_LINUX
     #elif NIMBLE_OS == NIMBLE_ANDROID
@@ -222,6 +284,12 @@ enum nErrors {
  */
 NIMBLE_EXTERN
 const char * nErrorStrings[];
+
+/**
+ * @brief The length of the strings of the error codes defined by #nErrors.
+ */
+NIMBLE_EXTERN
+const nint_t nErrorDescLengths[];
 
 /*
  * @brief Gets the error code @p err represented as a string from #nErrorStrings.
@@ -246,10 +314,16 @@ const char * nErrorStrings[];
                            nErrorStringLengths[NERROR_UNKNOWN])
 
 /**
- * @brief The descriptions of error codes defined by #nErrors.
+ * @brief The descriptions of the error codes defined by #nErrors.
  */
 NIMBLE_EXTERN
 const char * nErrorDescriptions[];
+
+/**
+ * @brief The length of the descriptions of the error codes defined by #nErrors.
+ */
+NIMBLE_EXTERN
+const nint_t nErrorDescLengths[];
 
 /*
  * @brief Gets the error description of the error code @p err from #nErrorDescriptions.
@@ -290,10 +364,9 @@ const char * nErrorDescriptions[];
  * @param[in] err The errno value.
  * @return An NERROR version of @p err, or #NERROR_UNKNOWN if out of range.
  */
-#define nErrorFromErrno(err) (((err > NERROR_ERRNO_START) && \
-                               (err < NERROR_ERRNO_END)) ?\
-                               (err) :\
-                               NERROR_UNKNOWN)
+NIMBLE_EXTERN
+nint_t
+nErrorFromErrno(const nint_t err);
 
 
 /**

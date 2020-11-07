@@ -52,11 +52,23 @@
 
 void * nAlloc(const size_t size)
 {
-    void* ptr = malloc(size);
+    void * ptr = malloc(size);
 
     if (!ptr)
     {
-        nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY), nErrorDescLen(NERROR_NO_MEMORY);
+        nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY), nErrorDescLen(NERROR_NO_MEMORY));
+    }
+
+    return ptr;
+}
+
+void * nRealloc(void * ptr, const size_t size)
+{
+    ptr = realloc(ptr, size);
+
+    if (!ptr)
+    {
+        nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY), nErrorDescLen(NERROR_NO_MEMORY));
     }
 
     return ptr;

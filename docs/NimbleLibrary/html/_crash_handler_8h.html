@@ -96,11 +96,11 @@ Functions</h2></td></tr>
 <tr class="memitem:afd075a10f51647ee8449da8119be8b48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8h.html#afd075a10f51647ee8449da8119be8b48">nCrashSetHandler</a> (void(*callback)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, char *errorDesc, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, char *stack, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen))</td></tr>
 <tr class="memdesc:afd075a10f51647ee8449da8119be8b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the crash handler callback function.  <a href="_crash_handler_8h.html#afd075a10f51647ee8449da8119be8b48">More...</a><br /></td></tr>
 <tr class="separator:afd075a10f51647ee8449da8119be8b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80d1ca45f53dd75991f2c015def4d66a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8h.html#a80d1ca45f53dd75991f2c015def4d66a">nCrashSafe</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, time_t errorTime, char *errorDesc, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen) __attribute__((noreturn))</td></tr>
-<tr class="memdesc:a80d1ca45f53dd75991f2c015def4d66a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program safely.  <a href="_crash_handler_8h.html#a80d1ca45f53dd75991f2c015def4d66a">More...</a><br /></td></tr>
-<tr class="separator:a80d1ca45f53dd75991f2c015def4d66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad463026cadf673ec5136ebb73fa07ab0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8h.html#ad463026cadf673ec5136ebb73fa07ab0">nCrashSafe</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, time_t errorTime, const char *errorDesc, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen) __attribute__((noreturn))</td></tr>
+<tr class="memdesc:ad463026cadf673ec5136ebb73fa07ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program safely.  <a href="_crash_handler_8h.html#ad463026cadf673ec5136ebb73fa07ab0">More...</a><br /></td></tr>
+<tr class="separator:ad463026cadf673ec5136ebb73fa07ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa92330f11be0b4cf55128f70d77cc9bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8h.html#aa92330f11be0b4cf55128f70d77cc9bf">nCrashSignal</a> (const int signum) __attribute__((noreturn))</td></tr>
-<tr class="memdesc:aa92330f11be0b4cf55128f70d77cc9bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="_crash_handler_8h.html#a80d1ca45f53dd75991f2c015def4d66a" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal.  <a href="_crash_handler_8h.html#aa92330f11be0b4cf55128f70d77cc9bf">More...</a><br /></td></tr>
+<tr class="memdesc:aa92330f11be0b4cf55128f70d77cc9bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="_crash_handler_8h.html#ad463026cadf673ec5136ebb73fa07ab0" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal.  <a href="_crash_handler_8h.html#aa92330f11be0b4cf55128f70d77cc9bf">More...</a><br /></td></tr>
 <tr class="separator:aa92330f11be0b4cf55128f70d77cc9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab25f89cc3831bfa3eca7182e67a3e02d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_handler_8h.html#ab25f89cc3831bfa3eca7182e67a3e02d">nCrashAbort</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error) __attribute__((noreturn))</td></tr>
 <tr class="memdesc:ab25f89cc3831bfa3eca7182e67a3e02d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program without notifying the callback.  <a href="_crash_handler_8h.html#ab25f89cc3831bfa3eca7182e67a3e02d">More...</a><br /></td></tr>
@@ -168,12 +168,12 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00166">166</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00173">173</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
 
 </div>
 </div>
-<a id="a80d1ca45f53dd75991f2c015def4d66a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80d1ca45f53dd75991f2c015def4d66a">&#9670;&nbsp;</a></span>nCrashSafe()</h2>
+<a id="ad463026cadf673ec5136ebb73fa07ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad463026cadf673ec5136ebb73fa07ab0">&#9670;&nbsp;</a></span>nCrashSafe()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,7 +193,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>errorDesc</em>, </td>
         </tr>
         <tr>
@@ -228,7 +228,7 @@ Functions</h2></td></tr>
 <div class="line">        <span class="keywordflow">return</span>(EXIT_FAILURE);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="_crash_handler_8c.html#a8f66542a4a6a2d5e7c981b407af4647a">nCrashSafe</a>(error, errorDesc, errorDescLen, errorTime);</div>
+<div class="line">    <a class="code" href="_crash_handler_8c.html#ac4db99facdf4845017158a5370a6b4e5">nCrashSafe</a>(error, errorDesc, errorDescLen, errorTime);</div>
 <div class="line">}</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -292,7 +292,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calls <a class="el" href="_crash_handler_8h.html#a80d1ca45f53dd75991f2c015def4d66a" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal. </p>
+<p>Calls <a class="el" href="_crash_handler_8h.html#ad463026cadf673ec5136ebb73fa07ab0" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">signum</td><td>The signal caught.</td></tr>
@@ -301,18 +301,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used by the game engine and is not expected to be used by developers, but is optional. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00153">153</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_handler_8c_source.html#l00160">160</a> of file <a class="el" href="_crash_handler_8c_source.html">CrashHandler.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00153">Nimble.h:153</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a1ea33a06254b37a5f515c5f24a38ea15"><div class="ttname"><a href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, nint_t *errorLen, const nint_t error, const char *info, nint_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l01117">Errors.c:1117</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a1ea33a06254b37a5f515c5f24a38ea15"><div class="ttname"><a href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, nint_t *errorLen, const nint_t error, const char *info, nint_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l01166">Errors.c:1166</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_ac4db99facdf4845017158a5370a6b4e5"><div class="ttname"><a href="_crash_handler_8c.html#ac4db99facdf4845017158a5370a6b4e5">nCrashSafe</a></div><div class="ttdeci">void nCrashSafe(const nint_t error, time_t errorTime, const char *errorDesc, nint_t errorDescLen)</div><div class="ttdoc">Crashes the program safely.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00102">CrashHandler.c:102</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
 <div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00161">Nimble.h:161</a></div></div>
 <div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00069">Errors.h:69</a></div></div>
-<div class="ttc" id="a_crash_handler_8c_html_a3fb9bb5325dff919f25659d0098ff8f7"><div class="ttname"><a href="_crash_handler_8c.html#a3fb9bb5325dff919f25659d0098ff8f7">nCrashAbort</a></div><div class="ttdeci">void nCrashAbort(const nint_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00166">CrashHandler.c:166</a></div></div>
-<div class="ttc" id="a_crash_handler_8c_html_a8f66542a4a6a2d5e7c981b407af4647a"><div class="ttname"><a href="_crash_handler_8c.html#a8f66542a4a6a2d5e7c981b407af4647a">nCrashSafe</a></div><div class="ttdeci">void nCrashSafe(const nint_t error, time_t errorTime, char *errorDesc, nint_t errorDescLen)</div><div class="ttdoc">Crashes the program safely.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00102">CrashHandler.c:102</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_a3fb9bb5325dff919f25659d0098ff8f7"><div class="ttname"><a href="_crash_handler_8c.html#a3fb9bb5325dff919f25659d0098ff8f7">nCrashAbort</a></div><div class="ttdeci">void nCrashAbort(const nint_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00173">CrashHandler.c:173</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

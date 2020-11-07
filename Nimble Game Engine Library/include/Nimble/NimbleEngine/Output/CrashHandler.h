@@ -122,7 +122,7 @@ NIMBLE_EXTERN
 void
 nCrashSafe(const nint_t error,
            time_t errorTime,
-           char * errorDesc,
+           const char * errorDesc,
            nint_t errorDescLen
            )
 __attribute__((noreturn));

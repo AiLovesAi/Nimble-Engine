@@ -99,7 +99,7 @@ nint_t nCrashSetCallback(void (* callback)(const nint_t error,
     return NSUCCESS;
 }
 
-void nCrashSafe(const nint_t error, time_t errorTime, char * errorDesc,
+void nCrashSafe(const nint_t error, time_t errorTime,  const char * errorDesc,
                 nint_t errorDescLen)
 {
     nThreadMutexCreate(crashMutex);
@@ -118,33 +118,40 @@ void nCrashSafe(const nint_t error, time_t errorTime, char * errorDesc,
         errorTime = time(NULL);
     }
     
+    char * errorDescPtr;
+
+    if ((errorDescLen <= 0) && (errorDesc != NULL))
+    {
+        errorDescLen = strlen(errorDesc) + 1;
+    }
+
     if (errorDesc == NULL)
     {
         
-        if (nErrorToStringLocal(errorDesc, &errorDescLen, error, NULL, 0) !=
+        if (nErrorToStringLocal(errorDescPtr, &errorDescLen, error, NULL, 0) !=
             NSUCCESS)
         {
             const char defaultErrorStr[] = "NERROR_ERROR_NOT_FOUND: An error "\
 "passed to a function was not valid: nErrorToStringLocal() failed while "\
 "crashing with nCrashSafe().";
             errorDescLen = sizeof(defaultErrorStr);
-            errorDesc = realloc(errorDesc, errorDescLen);
-            memcpy(errorDesc, defaultErrorStr, errorDescLen);
+            errorDescPtr = nRealloc(errorDescPtr, errorDescLen);
+            memcpy(errorDescPtr, defaultErrorStr, errorDescLen);
         }
         
     }
-    
-    if ((errorDescLen <= 0) && (errorDesc != NULL))
+    else
     {
-        errorDescLen = strlen(errorDesc) + 1;
+        errorDescPtr = nAlloc(errorDescLen);
+        memcpy(errorDescPtr, errorDesc, errorDescLen);
     }
     
     char * stack;
     nint_t stackLen;
     nErrorGetStacktrace(stack, &stackLen, NULL);
-    crashCallback(error, errorTime, errorDesc, errorDescLen, stack, stackLen);
+    crashCallback(error, errorTime, errorDescPtr, errorDescLen, stack, stackLen);
     
-    errorDesc = nFree(errorDesc);
+    errorDescPtr = nFree(errorDescPtr);
 
     exit(error);
     /* NO RETURN */
