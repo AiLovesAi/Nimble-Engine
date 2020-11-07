@@ -448,9 +448,11 @@ const char nErrDescSigFpeStr[]            = "Caught a floating point exception "
 "signal.";
 const char nErrDescSigIllStr[]            = "Caught an illegal instruction "\
 "signal.";
-const char nErrDescSigIntStr[]            = "Caught an interrupt signal";
+const char nErrDescSigIntStr[]            = "Caught an interrupt signal.";
 const char nErrDescSigSegvStr[]           = "Caught a memory address violation "\
-"signal.";
+"signal. A pointer accessed memory that it had no access to. This is often "\
+"caused when freeing a pointer and using it again, or not allocating enough"\
+"memory before reading from or writing to it.";
 const char nErrDescSigTermStr[]           = "Caught a termination signal.";
 
 #if 0

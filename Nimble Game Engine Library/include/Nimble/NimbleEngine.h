@@ -64,7 +64,83 @@ extern "C" {
 #include "NimbleEngine/Threads/ThreadManager.h"
 
 #include <inttypes.h>
+#include <time.h>
 
+
+
+/**
+ * @brief Allocates a pointer.
+ * Frees a pointer and returns #NULL to allow the invoker to optionally nullify
+ * the pointer. Should the freed pointer location be needed again, no assignment
+ * is necessary.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     char original[] = "Hello world.";
+ *     char * new = nAlloc(sizeof(original) + 1);
+ *     new[sizeof(original) - 1] = '\n';
+ *     new[sizeof(original)] = '\0';
+ *     puts(new);
+ *     new = nFree(new);
+ *     if (new)
+ *     {
+ *         puts("We will get here only if we use nFree(new) with no assignment!");
+ *     }
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[in] ptr The pointer to free.
+ * @return #NULL is always returned.
+ */
+NIMBLE_EXTERN
+void *
+nAlloc(const size_t size);
+
+/**
+ * @brief Frees a pointer.
+ * Frees a pointer and returns #NULL to allow the invoker to optionally nullify
+ * the pointer. Should the freed pointer location be needed again, no assignment
+ * is necessary.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char ** argv)
+ * {
+ *     char original[] = "Hello world.";
+ *     char * new = nAlloc(sizeof(original) + 1);
+ *     new[sizeof(original) - 1] = '\n';
+ *     new[sizeof(original)] = '\0';
+ *     puts(new);
+ *     new = nFree(new);
+ *     if (new)
+ *     {
+ *         puts("We will get here only if we use nFree(new) with no assignment!");
+ *     }
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[in] ptr The pointer to free.
+ * @return #NULL is always returned.
+ */
+NIMBLE_INLINE
+void * 
+nFree(void * ptr)
+{
+	free(ptr);
+	return NULL;
+}
 
 /**
  * @brief Exits the game engine.

@@ -50,6 +50,18 @@
 
 #include "../include/Nimble/NimbleEngine/Output/CrashHandler.h"
 
+void * nAlloc(const size_t size)
+{
+    void* ptr = malloc(size);
+
+    if (!ptr)
+    {
+        nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY), nErrorDescLen(NERROR_NO_MEMORY);
+    }
+
+    return ptr;
+}
+
 void nEngineExit(void)
 {
     /** @todo Make safe exit function */

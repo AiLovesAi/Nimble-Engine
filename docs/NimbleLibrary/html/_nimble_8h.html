@@ -116,9 +116,6 @@ Macros</h2></td></tr>
 <tr class="memitem:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>&#160;&#160;&#160;((void *) 0)</td></tr>
 <tr class="memdesc:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Null pointer.  <a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">More...</a><br /></td></tr>
 <tr class="separator:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a26e97861a00f16172cc85dc5b9b041"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a>(ptr)&#160;&#160;&#160;({free(ptr);<a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;})</td></tr>
-<tr class="memdesc:a8a26e97861a00f16172cc85dc5b9b041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a pointer.  <a href="_nimble_8h.html#a8a26e97861a00f16172cc85dc5b9b041">More...</a><br /></td></tr>
-<tr class="separator:a8a26e97861a00f16172cc85dc5b9b041"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -169,54 +166,6 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00103">103</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
-
-</div>
-</div>
-<a id="a8a26e97861a00f16172cc85dc5b9b041"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a26e97861a00f16172cc85dc5b9b041">&#9670;&nbsp;</a></span>nFree</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define nFree</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">ptr</td><td>)</td>
-          <td>&#160;&#160;&#160;({free(ptr);<a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;})</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Frees a pointer. </p>
-<p>Frees a pointer and returns <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> to allow the invoker to optionally nullify the pointer. Should the freed pointer location be needed again, no assignment is necessary.</p>
-<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ** argv)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">char</span> original[] = <span class="stringliteral">&quot;Hello world.&quot;</span>;</div>
-<div class="line">    <span class="keywordtype">char</span> * <span class="keyword">new</span> = malloc(<span class="keyword">sizeof</span>(original) + 1);</div>
-<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original) - 1] = <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original)] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line">    puts(<span class="keyword">new</span>);</div>
-<div class="line">    <span class="keyword">new</span> = <a class="code" href="_nimble_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a>(<span class="keyword">new</span>);</div>
-<div class="line">    <span class="keywordflow">if</span> (<span class="keyword">new</span>)</div>
-<div class="line">    {</div>
-<div class="line">        puts(<span class="stringliteral">&quot;We will get here only if we use nFree(new) with no assignment!&quot;</span>);</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line">}</div>
-</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>The pointer to free. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> is always returned. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_nimble_8h_source.html#l00203">203</a> of file <a class="el" href="_nimble_8h_source.html">Nimble.h</a>.</p>
 
 </div>
 </div>
@@ -538,8 +487,6 @@ Typedefs</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_nimble_8h_html_a8a26e97861a00f16172cc85dc5b9b041"><div class="ttname"><a href="_nimble_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a></div><div class="ttdeci">#define nFree(ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00203">Nimble.h:203</a></div></div>
-<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19
