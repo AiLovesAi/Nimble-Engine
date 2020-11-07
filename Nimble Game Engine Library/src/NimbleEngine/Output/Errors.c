@@ -169,6 +169,15 @@ const char nErrTimerStr[]             = "NERROR_TIMER";
 const char nErrAsyncCancelStr[]       = "NERROR_ASYNC_CANCEL";
 const char nErrOwnerDiedStr[]         = "NERROR_OWNER_DIED";
 const char nErrNotRecoverableStr[]    = "NERROR_NOT_RECOVERABLE";
+const char nErrDeviceOffStr[]         = "NERROR_DEVICE_OFF";
+const char nErrDeviceErrorStr[]       = "NERROR_DEVICE_ERROR";
+const char nErrBadExecutableStr[]     = "NERROR_INV_EXECUTABLE";
+const char nErrInvArchitectureStr[]   = "NERROR_INV_ARCHITECTURE";
+const char nErrInvLibVersionStr[]     = "NERROR_INV_LIB_VERSION";
+const char nErrInvMachoStr[]          = "NERROR_INV_MACHO";
+const char nErrNoAttributeStr[]       = "NERROR_NO_ATTRIBUTE";
+const char nErrNoPolicyStr[]          = "NERROR_NO_POLICY";
+const char nErrMaxQueueStr[]          = "NERROR_MAX_QUEUE";
 #endif
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #elif NIMBLE_OS == NIMBLE_MACOS
@@ -295,6 +304,14 @@ const char * nErrorStrings[] = {
     nErrAsyncCancelStr,
     nErrOwnerDiedStr,
     nErrNotRecoverableStr,
+    nErrDeviceOffStr,
+    nErrDeviceErrorStr,
+    nErrInvArchitectureStr,
+    nErrInvLibVersionStr,
+    nErrInvMachoStr,
+    nErrNoAttributeStr,
+    nErrNoPolicyStr,
+    nErrMaxQueueStr,
     #endif
     #if NIMBLE_OS == NIMBLE_WINDOWS
     #elif NIMBLE_OS == NIMBLE_MACOS
@@ -421,6 +438,14 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrAsyncCancelStr),
     sizeof(nErrOwnerDiedStr),
     sizeof(nErrNotRecoverableStr),
+    sizeof(nErrDeviceOffStr),
+    sizeof(nErrDeviceErrorStr),
+    sizeof(nErrInvArchitectureStr),
+    sizeof(nErrInvLibVersionStr),
+    sizeof(nErrInvMachoStr),
+    sizeof(nErrNoAttributeStr),
+    sizeof(nErrNoPolicyStr),
+    sizeof(nErrMaxQueueStr),
     #endif
     #if NIMBLE_OS == NIMBLE_WINDOWS
     #elif NIMBLE_OS == NIMBLE_MACOS
@@ -668,11 +693,17 @@ const char nErrDescStaleStr[]             = "Stale file handle. This indicates "
 const char nErrDescRemoteStr[]            = "Object is remote. An attempt was "\
 "made to NFS-mount a remote file system with a file name that already "\
 "specifies an NFS-mounted file.";
-const char nErrDescInvRPCStr[]            = "RPC struct is bad.";
-const char nErrDescInvRPCVersionStr[]     = "RPC version wrong.";
-const char nErrDescInvRPCProgStr[]        = "RPC program not available.";
-const char nErrDescInvRPCProgVersionStr[] = "RPC program version wrong.";
-const char nErrDescInvRPCProcStr[]        = "RPC bad procedure for program.";
+const char nErrDescInvRPCStr[]            = "RPC struct is bad. Exchange of "\
+"RPC information was unsuccessful.";
+const char nErrDescInvRPCVersionStr[]     = "RPC version wrong. The version "\
+"of RPC on the remote peer is not compatible with the local version.";
+const char nErrDescInvRPCProgStr[]        = "RPC program not available. The "\
+"requested program is not registered on the remote host.";
+const char nErrDescInvRPCProgVersionStr[] = "RPC program version wrong. The "\
+"requested version of the program is not available on the remote host(RPC).";
+const char nErrDescInvRPCProcStr[]        = "RPC bad procedure for program. "\
+"An RPC call was attempted for a procedure which doesn't exist in the remote "\
+"program.";
 const char nErrDescNoFileLockStr[]        = "No locks available. This is "\
 "used by the file locking facilities. This can result from an operation to "\
 "an NFS server running another operating system.";
@@ -680,8 +711,12 @@ const char nErrDescInvFileTypeStr[]       = "Inappropriate file type or "\
 "format. The file was the wrong type for the operation, or a data file had "\
 "the wrong format. On some systems chmod() returns this error if you try to "\
 "set the sticky bit on a non - directory file";
-const char nErrDescAuthStr[]              = "Authentication error.";
-const char nErrDescNoAuthStr[]            = "Need authenticator.";
+const char nErrDescAuthStr[]              = "Authentication error. Attempted "\
+"to use an invalid authentica-tion authentication ticket to mount an NFS file "\
+"system.";
+const char nErrDescNoAuthStr[]            = "Need authenticator. An "\
+"authentication ticket must be obtained before the given NFS file system may "\
+"be mounted.";
 const char nErrDescFuncNotSupportedStr[]  = "Function not implemented. This "\
 "indicates that the function called is not implemented at all, either in the "\
 "C library itself or in the operating system. When you get this error, you can "\
@@ -715,9 +750,12 @@ const char nErrDescInvMessageStr[]        = "Bad message. During a read(), "\
 const char nErrDescNoIdentifierStr[]      = "Identifier removed. The message "\
 "queue was removed for msgrcv(), msgget(), or msgsnd().";
 const char nErrDescMultihopStr[]          = "Multihop attempted.";
-const char nErrDescNoDataStr[]            = "No data available.";
+const char nErrDescNoDataStr[]            = "No data available. No message was "\
+"available to be received by the requested operation.";
 const char nErrDescNoLinkStr[]            = "Link has been severed.";
-const char nErrDescNoMessageStr[]         = "No message of desired type.";
+const char nErrDescNoMessageStr[]         = "No message of desired type. An IPC "\
+"message queue does not contain a message of the desired type, or a message "\
+"catalog does not contain the requested message.";
 const char nErrDescNoStreamResourcesStr[] = "Out of streams resources.";
 const char nErrDescDeviceNotStreamStr[]   = "Device not a stream.";
 const char nErrDescOverflowStr[]          = "Value too large for defined data type.";
@@ -726,6 +764,23 @@ const char nErrDescTimerStr[]             = "Timer expired.";
 const char nErrDescAsyncCancelStr[]       = "Operation canceled.";
 const char nErrDescOwnerDiedStr[]         = "Owner died.";
 const char nErrDescNotRecoverableStr[]    = "State not recoverable.";
+const char nErrDescDeviceOffStr[]         = "Device power is off. Cannot operate "\
+"on a powered off device, such as a printer.";
+const char nErrDescDeviceErrorStr[]       = "Device error. A device error has "\
+"occurred, e.g. a printer running out of paper.";
+const char nErrDescBadExecutableStr[]     = "Bad executable. The executable or "\
+"shared library being referenced was malformed.";
+const char nErrDescInvArchitectureStr[]   = "Bad CPU type in executable. The "\
+"executable in question does not support the current CPU.";
+const char nErrDescInvLibVersionStr[]     = "Shared library version mismatch. "\
+"The version of the shared library on the system does not match the version "\
+"which was expected.";
+const char nErrDescInvMachoStr[]          = "Malformed Macho file. The Mach "\
+"object file is malformed.";
+const char nErrDescNoAttributeStr[]       = "Attribute not found. The specified "\
+"extended attribute does not exist.";
+const char nErrDescNoPolicyStr[]          = "No such policy registered.";
+const char nErrDescMaxQueueStr[]          = "Interface output queue is full.";
 #endif
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #elif NIMBLE_OS == NIMBLE_MACOS
@@ -853,6 +908,15 @@ const char * nErrorDescriptions[] = {
     nErrDescAsyncCancelStr,
     nErrDescOwnerDiedStr,
     nErrDescNotRecoverableStr,
+    nErrDescDeviceOffStr,
+    nErrDescDeviceErrorStr,
+    nErrDescBadExecutableStr,
+    nErrDescInvArchitectureStr,
+    nErrDescInvLibVersionStr,
+    nErrDescInvMachoStr,
+    nErrDescNoAttributeStr,
+    nerrDescNoPolicyStr,
+    nErrDescMaxQueueStr,
     #endif
     #if NIMBLE_OS == NIMBLE_WINDOWS
     #elif NIMBLE_OS == NIMBLE_MACOS
@@ -978,6 +1042,15 @@ const nint_t nErrorDescLengths[] = {
     sizeof(nErrDescAsyncCancelStr),
     sizeof(nErrDescOwnerDiedStr),
     sizeof(nErrDescNotRecoverableStr),
+    sizeof(nErrDescDeviceOffStr),
+    sizeof(nErrDescDeviceErrorStr),
+    sizeof(nErrDescBadExecutableStr),
+    sizeof(nErrDescInvArchitectureStr),
+    sizeof(nErrDescInvLibVersionStr),
+    sizeof(nErrDescInvMachoStr),
+    sizeof(nErrDescNoAttributeStr),
+    sizeof(nErrDescNoPolicyStr),
+    sizeof(nErrDescMaxQueueStr),
     #endif
     #if NIMBLE_OS == NIMBLE_WINDOWS
     #elif NIMBLE_OS == NIMBLE_MACOS
@@ -1067,6 +1140,7 @@ nint_t nErrorFromErrno(const nint_t err)
         return NERROR_UNKNOWN;
     }
     #elif NIMBLE_OS == NIMBLE_MACOS
+    return NERROR_ERRNO_START + err;
     #elif NIMBLE_OS == NIMBLE_LINUX
     #elif NIMBLE_OS == NIMBLE_ANDROID
     #elif defined(NIMBLE_POSIX)
