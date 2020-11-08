@@ -80,6 +80,11 @@ enum nErrors {
     
     NERROR_ERRNO_START, /**< The start of the errno section. */
     #if 0 /* Possible values */
+    /* (IEEE and POSIX, please standardize the error values for goodness
+     * sake, OS devs please follow said standard. It has taken me 20+ hours
+     * to make a 2,000 line portable equivalent of:
+     * return (NERROR_ERRNO_START + error);
+     */
     NERROR_NO_PERM = EPERM, /**< Operation not permitted. */
     NERROR_NO_FILE = ENOENT, /**< No such file or directory. */
     NERROR_NO_PROCESS = ESRCH, /**< No such process. */

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['nerrors_329',['nErrors',['../_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6',1,'Errors.h']]],
-  ['nwindowflags_330',['nWindowFlags',['../_open_g_l_2_window_8h.html#ac0c6cf62312e3543f0c0493676e8e864',1,'Window.h']]],
-  ['nwindowmonitor_331',['nWindowMonitor',['../_open_g_l_2_window_8h.html#a117394808edf37c326ca2ee536dd0e26',1,'Window.h']]]
+  ['nerrors_765',['nErrors',['../_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6',1,'Errors.h']]],
+  ['nwindowflags_766',['nWindowFlags',['../_open_g_l_2_window_8h.html#ac0c6cf62312e3543f0c0493676e8e864',1,'Window.h']]],
+  ['nwindowmonitor_767',['nWindowMonitor',['../_open_g_l_2_window_8h.html#a117394808edf37c326ca2ee536dd0e26',1,'Window.h']]]
 ];
