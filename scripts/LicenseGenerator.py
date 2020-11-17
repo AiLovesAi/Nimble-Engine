@@ -19,6 +19,12 @@ from datetime import datetime
 def main():
     print("Generating license file from LICENSE.md...")
     date = str(datetime.date(datetime.now()))
+    directory = os.getcwd()
+    if (directory.endswith("scripts")):
+        directory = directory[:len(directory) - len("scripts")]
+    if ((not directory.endswith("/")) or (not directory.endswith("\\"))):
+        directory += "/"
+    print(directory)
     licenseData = "/*\n\
  * NimbleLicense.c\n\
  * Nimble Game Engine\n\
@@ -61,7 +67,7 @@ def main():
  * @brief The license that gets compiled into the binaries.\n\
  */\n\
 const char LICENSE_md[] = \"\\nNimble Game Engine License:\"\\\n\""
-    with open("LICENSE.md", 'r') as fp:
+    with open(directory + "LICENSE.md", 'r') as fp:
         if (not fp):
             print("Could not open LICENSE.md")
             exit(1)
@@ -72,13 +78,13 @@ const char LICENSE_md[] = \"\\nNimble Game Engine License:\"\\\n\""
     
     licenseData += "\";\n\n\n// NimbleLicense.c\n"
     
-    if (not path.exists("Nimble Game Engine Library/src/")):
-        os.mkdir("Nimble Game Engine Library/src/")
-        if (not path.exists("Nimble Game Engine Library/src/")):
+    if (not path.exists(directory + "Nimble Game Engine Library/src/")):
+        os.mkdir(directory + "Nimble Game Engine Library/src/")
+        if (not path.exists(directory + "Nimble Game Engine Library/src/")):
             print("Could not create directory Nimble Game Engine Library/src/")
             exit(1)
     
-    with open("Nimble Game Engine Library/src/NimbleLicense.c", 'w') as fp:
+    with open(directory + "Nimble Game Engine Library/src/NimbleLicense.c", 'w') as fp:
         if (not fp):
             print("Could not open Nimble Game Engine Library/src/NimbleLicense.c")
             exit(1)
