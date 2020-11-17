@@ -95,7 +95,7 @@ extern "C" {
 
 #ifdef _WIN32
 #define NIMBLE_OS NIMBLE_WINDOWS
-#elif (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh)
+#elif (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh) /// @todo Figure out why this isn't working
 #define NIMBLE_OS NIMBLE_MACOSX
 #elif __ANDROID__
 #define NIMBLE_OS NIMBLE_ANDROID

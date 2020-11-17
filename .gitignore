@@ -49,6 +49,7 @@ DerivedData/
 */build/
 */Makefile
 */products/
+Products/
 */lib/
 lib/*
 */out/

@@ -48,22 +48,26 @@ extern "C" {
 
 #include "../../NimbleEngine.h"
 
-#ifdef NIMBLE_WINDOWS
+#define NIMBLE_THREADS_WINAPI  1
+#define NIMBLE_THREADS_PTHREAD 2
+#define NIMBLE_THREADS_C11     3
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
 #include <windows.h>
-#define NTHREAD_WINAPI
+#define NIMBLE_THREADS NIMBLE_THREADS_WINAPI
 
 typedef HANDLE nThread_t;
 typedef HANDLE nMutex_t;
 
-#elif defined(NIMBLE_UNIX)
-#define NTHREAD_PTHREAD
+#elif NIMBLE_OS == NIMBLE_UNIX
+#define NIMBLE_THREADS NIMBLE_THREADS_PTHREAD
 #include <pthread.h>
 
 typedef pthread_t * nThread_t;
 typedef pthread_mutex_t * nMutex_t;
 
 #elif !defined(__STDC_NO_THREADS__)
-#define NTHREAD_C11
+#define NIMBLE_THREADS NIMBLE_THREADS_C11
 #include <threads.h>
 
 typedef thrd_t * nThread_t;

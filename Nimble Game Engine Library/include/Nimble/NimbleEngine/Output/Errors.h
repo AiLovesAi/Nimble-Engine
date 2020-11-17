@@ -394,7 +394,7 @@ enum nErrors {
     #elif defined(NIMBLE_POSIX)
     #else
     #error OS not supported.
-    #endif /** @todo NERROR_CODE = ECODE when they are portable across all systems, string pointers are repeated for missing spaces :O */
+    #endif /** @todo CONTINUE; Also figure out what to do with __FILE__ and __LINE__ etc. they will be useful  */
     NERROR_ERRNO_END, /**< The end of the errno section. */
     
     NERROR_MAX /**< The maximum error number. */
