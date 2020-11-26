@@ -51,134 +51,134 @@
 
 #include "../../../include/Nimble/NimbleEngine/Output/CrashHandler.h"
 
-const char nErrMinStr[]             = "NERROR_MIN";
+NCONST_STR nErrMinStr[]             = "NERROR_MIN";
 
 /* NIMBLE */
-const char nErrUnknownStr[]           = "NERROR_UNKNOWN";
-const char nErrInternalFailureStr[]   = "NERROR_INTERNAL_FAILURE";
-const char nErrNullStr[]              = "NERROR_NULL";
-const char nErrInvErrorStr[]          = "NERROR_INV_ERROR";
+NCONST_STR nErrUnknownStr[]           = "NERROR_UNKNOWN";
+NCONST_STR nErrInternalFailureStr[]   = "NERROR_INTERNAL_FAILURE";
+NCONST_STR nErrNullStr[]              = "NERROR_NULL";
+NCONST_STR nErrInvErrorStr[]          = "NERROR_INV_ERROR";
 
 /* SIGNUM */
-const char nErrSigAbrtStr[]           = "NERROR_SIGABRT";
-const char nErrSigFpeStr[]            = "NERROR_SIGFPE";
-const char nErrSigIllStr[]            = "NERROR_SIGILL";
-const char nErrSigIntStr[]            = "NERROR_SIGINT";
-const char nErrSigSegvStr[]           = "NERROR_SIGSEGV";
-const char nErrSigTermStr[]           = "NERROR_SIGTERM";
+NCONST_STR nErrSigAbrtStr[]           = "NERROR_SIGABRT";
+NCONST_STR nErrSigFpeStr[]            = "NERROR_SIGFPE";
+NCONST_STR nErrSigIllStr[]            = "NERROR_SIGILL";
+NCONST_STR nErrSigIntStr[]            = "NERROR_SIGINT";
+NCONST_STR nErrSigSegvStr[]           = "NERROR_SIGSEGV";
+NCONST_STR nErrSigTermStr[]           = "NERROR_SIGTERM";
 
 /* ERRNO */
-const char nErrNoPermStr[]            = "NERROR_NO_PERM";
-const char nErrNoFileStr[]            = "NERROR_NO_FILE";
-const char nErrNoProcessStr[]         = "NERROR_NO_PROCESS";
-const char nErrInterruptStr[]         = "NERROR_INTERRUPT";
-const char nErrIOStr[]                = "NERROR_IO";
-const char nErrNoDeviceStr[]          = "NERROR_NO_DEVICE";
-const char nErrMaxArgsStr[]           = "NERROR_MAX_ARGS";
-const char nErrInvExecFormatStr[]     = "NERROR_INV_EXEC_FORMAT";
-const char nErrInvFPStr[]             = "NERROR_INV_FP";
-const char nErrNoChildStr[]           = "NERROR_NO_CHILD";
-const char nErrDeadlockStr[]          = "NERROR_DEADLOCK";
-const char nErrNoMemoryStr[]          = "NERROR_NO_MEMORY";
-const char nErrNoFilePermStr[]        = "NERROR_NO_FILE_PERM";
-const char nErrFaultStr[]             = "NERROR_FAULT";
-const char nErrNotBlockStr[]          = "NERROR_NOT_BLOCK";
-const char nErrDeviceBusyStr[]        = "NERROR_DEVICE_BUSY";
-const char nErrFileExistsStr[]        = "NERROR_FILE_EXISTS";
-const char nErrInvCrosslinkStr[]      = "NERROR_INV_CROSSLINK";
-const char nErrInvDeviceStr[]         = "NERROR_INV_DEVICE";
-const char nErrNotDirStr[]            = "NERROR_NOT_DIR";
-const char nErrIsDirStr[]             = "NERROR_IS_DIR";
-const char nErrInvArgStr[]            = "NERROR_INV_ARG";
-const char nErrMaxFileStr[]           = "NERROR_MAX_FILE";
-const char nErrMaxFileSysStr[]        = "NERROR_MAX_FILE_SYS";
-const char nErrInvIOCtlStr[]          = "NERROR_INV_IOCTL";
-const char nErrTextBusyStr[]          = "NERROR_TEXT_BUSY";
-const char nErrFileTooBigStr[]        = "NERROR_FILE_TOO_BIG";
-const char nErrNoSpaceStr[]           = "NERROR_NO_SPACE";
-const char nErrInvSeekStr[]           = "NERROR_INV_SEEK";
-const char nErrReadOnlyStr[]          = "NERROR_READ_ONLY";
-const char nErrMaxLinksStr[]          = "NERROR_MAX_LINKS";
-const char nErrInvPipeStr[]           = "NERROR_INV_PIPE";
-const char nErrDomainStr[]            = "NERROR_DOMAIN";
-const char nErrResultTooBigStr[]      = "NERROR_RESULT_TOO_BIG";
-const char nErrWouldBlockStr[]        = "NERROR_WOULD_BLOCK";
-const char nErrInProgressStr[]        = "NERROR_IN_PROGRESS";
-const char nErrAlreadyStr[]           = "NERROR_ALREADY";
-const char nErrNotSocketStr[]         = "NERROR_NOT_SOCKET";
-const char nErrMaxMessageStr[]        = "NERROR_MAX_MESSAGE";
-const char nErrInvProtoTypeStr[]      = "NERROR_INV_PROTO_TYPE";
-const char nErrInvProtoOptStr[]       = "NERROR_INV_PROTO_OPT";
-const char nErrInvPortocolStr[]       = "NERROR_INV_PROTOCOL";
-const char nErrInvSockTypeStr[]       = "NERROR_INV_SOCK_TYPE";
-const char nErrInvSockOptStr[]        = "NERROR_INV_SOCK_OPR";
-const char nErrInvProtoFamStr[]       = "NERROR_INV_PROTO_FAM";
-const char nErrInvAddrFamStr[]        = "NERROR_INV_ADDR_FAM";
-const char nErrAddrInUseStr[]         = "NERROR_ADDR_IN_USE";
-const char nErrAddrNotAvailableStr[]  = "NERROR_ADDR_NOT_AVAILABLE";
-const char nErrNetDownStr[]           = "NERROR_NET_DOWN";
-const char nErrNetUnreachableStr[]    = "NERROR_NET_UNREACHABLE";
-const char nErrNetResetStr[]          = "NERROR_NET_RESET";
-const char nErrConnAbortedStr[]       = "NERROR_CONN_ABORTED";
-const char nErrConnResetStr[]         = "NERROR_CONN_RESET";
-const char nErrNoBufferSpaceStr[]     = "NERROR_NO_BUFFER_SPACE";
-const char nErrAlreadyConnStr[]       = "NERROR_ALREADY_CONN";
-const char nErrNotConnStr[]           = "NERROR_NOT_CONN";
-const char nErrNoAddrStr[]            = "NERROR_NO_ADDR";
-const char nErrSockShutdownStr[]      = "NERROR_SOCK_SHUTDOWN";
-const char nErrMaxRefsStr[]           = "NERROR_MAX_REFS";
-const char nErrConnTimeoutStr[]       = "NERROR_CONN_TIMEOUT";
-const char nErrConnRefusedStr[]       = "NERROR_CONN_REFUSED";
-const char nErrLinkLoopStr[]          = "NERROR_LINK_LOOP";
-const char nErrMaxFileNameStr[]       = "NERROR_MAX_FILENAME";
-const char nErrHostDownStr[]          = "NERROR_HOST_DOWN";
-const char nErrHostUnreachableStr[]   = "NERROR_HOST_UNREACHABLE";
-const char nErrDirNotEmptyStr[]       = "NERROR_DIR_NOT_EMPTY";
-const char nErrMaxProcessStr[]        = "NERROR_MAX_PROCESS";
-const char nErrMaxUsersStr[]          = "NERROR_MAX_USERS";
-const char nErrMaxDiskQuotaStr[]      = "NERROR_MAX_DISK_QUOTA";
-const char nErrStaleStr[]             = "NERROR_STALE";
-const char nErrRemoteStr[]            = "NERROR_REMOTE";
-const char nErrInvRPCStr[]            = "NERROR_INV_RPC";
-const char nErrInvRPCVersionStr[]     = "NERROR_INV_RPC_VERSION";
-const char nErrInvRPCProgStr[]        = "NERROR_INV_RPC_PROG";
-const char nErrInvRPCProgVersionStr[] = "NERROR_INV_RPC_PROG_VERSION";
-const char nErrInvRPCProcStr[]        = "NERROR_INV_RPC_PROC";
-const char nErrNoFileLockStr[]        = "NERROR_NO_FILE_LOCK";
-const char nErrInvFileTypeStr[]       = "NERROR_INV_FILE_TYPE";
-const char nErrAuthStr[]              = "NERROR_AUTH";
-const char nErrNoAuthStr[]            = "NERROR_NO_AUTH";
-const char nErrFuncNotSupportedStr[]  = "NERROR_FUNC_NOT_SUPPORTED";
-const char nErrNotSupportStr[]        = "NERROR_NOT_SUPPORTED";
-const char nErrInvMultibyteStr[]      = "NERROR_INV_MULTIBYTE";
-const char nErrInvBackgroundStr[]     = "NERROR_INV_BACKGROUND";
-const char nErrTranslatorDiedStr[]    = "NERROR_TRANSLATOR_DIED";
-const char nErrJokeStr[]              = "NERROR_JOKE";
-const char nErrInvMessageStr[]        = "NERROR_INV_MESSAGE";
-const char nErrNoIdentifierStr[]      = "NERROR_NO_IDENTIFIER";
-const char nErrMultihopStr[]          = "NERROR_MULTIHOP";
-const char nErrNoDataStr[]            = "NERROR_NO_DATA";
-const char nErrNoLinkStr[]            = "NERROR_NO_LINK";
-const char nErrNoMessageStr[]         = "NERROR_NO_MESSAGE";
-const char nErrNoStreamResourcesStr[] = "NERROR_NO_STREAM_RESOURCES";
-const char nErrDeviceNotStreamStr[]   = "NERROR_DEVICE_NOT_STREAM";
-const char nErrOverflowStr[]          = "NERROR_OVERFLOW";
-const char nErrProtocolStr[]          = "NERROR_PROTOCOL";
-const char nErrTimerStr[]             = "NERROR_TIMER";
-const char nErrAsyncCancelStr[]       = "NERROR_ASYNC_CANCEL";
-const char nErrOwnerDiedStr[]         = "NERROR_OWNER_DIED";
-const char nErrNotRecoverableStr[]    = "NERROR_NOT_RECOVERABLE";
-const char nErrDeviceOffStr[]         = "NERROR_DEVICE_OFF";
-const char nErrDeviceErrorStr[]       = "NERROR_DEVICE_ERROR";
-const char nErrBadExecutableStr[]     = "NERROR_INV_EXECUTABLE";
-const char nErrInvArchitectureStr[]   = "NERROR_INV_ARCHITECTURE";
-const char nErrInvLibVersionStr[]     = "NERROR_INV_LIB_VERSION";
-const char nErrInvMachoStr[]          = "NERROR_INV_MACHO";
-const char nErrNoAttributeStr[]       = "NERROR_NO_ATTRIBUTE";
-const char nErrNoPolicyStr[]          = "NERROR_NO_POLICY";
-const char nErrMaxQueueStr[]          = "NERROR_MAX_QUEUE";
+NCONST_STR nErrNoPermStr[]            = "NERROR_NO_PERM";
+NCONST_STR nErrNoFileStr[]            = "NERROR_NO_FILE";
+NCONST_STR nErrNoProcessStr[]         = "NERROR_NO_PROCESS";
+NCONST_STR nErrInterruptStr[]         = "NERROR_INTERRUPT";
+NCONST_STR nErrIOStr[]                = "NERROR_IO";
+NCONST_STR nErrNoDeviceStr[]          = "NERROR_NO_DEVICE";
+NCONST_STR nErrMaxArgsStr[]           = "NERROR_MAX_ARGS";
+NCONST_STR nErrInvExecFormatStr[]     = "NERROR_INV_EXEC_FORMAT";
+NCONST_STR nErrInvFPStr[]             = "NERROR_INV_FP";
+NCONST_STR nErrNoChildStr[]           = "NERROR_NO_CHILD";
+NCONST_STR nErrDeadlockStr[]          = "NERROR_DEADLOCK";
+NCONST_STR nErrNoMemoryStr[]          = "NERROR_NO_MEMORY";
+NCONST_STR nErrNoFilePermStr[]        = "NERROR_NO_FILE_PERM";
+NCONST_STR nErrFaultStr[]             = "NERROR_FAULT";
+NCONST_STR nErrNotBlockStr[]          = "NERROR_NOT_BLOCK";
+NCONST_STR nErrDeviceBusyStr[]        = "NERROR_DEVICE_BUSY";
+NCONST_STR nErrFileExistsStr[]        = "NERROR_FILE_EXISTS";
+NCONST_STR nErrInvCrosslinkStr[]      = "NERROR_INV_CROSSLINK";
+NCONST_STR nErrInvDeviceStr[]         = "NERROR_INV_DEVICE";
+NCONST_STR nErrNotDirStr[]            = "NERROR_NOT_DIR";
+NCONST_STR nErrIsDirStr[]             = "NERROR_IS_DIR";
+NCONST_STR nErrInvArgStr[]            = "NERROR_INV_ARG";
+NCONST_STR nErrMaxFileStr[]           = "NERROR_MAX_FILE";
+NCONST_STR nErrMaxFileSysStr[]        = "NERROR_MAX_FILE_SYS";
+NCONST_STR nErrInvIOCtlStr[]          = "NERROR_INV_IOCTL";
+NCONST_STR nErrTextBusyStr[]          = "NERROR_TEXT_BUSY";
+NCONST_STR nErrFileTooBigStr[]        = "NERROR_FILE_TOO_BIG";
+NCONST_STR nErrNoSpaceStr[]           = "NERROR_NO_SPACE";
+NCONST_STR nErrInvSeekStr[]           = "NERROR_INV_SEEK";
+NCONST_STR nErrReadOnlyStr[]          = "NERROR_READ_ONLY";
+NCONST_STR nErrMaxLinksStr[]          = "NERROR_MAX_LINKS";
+NCONST_STR nErrInvPipeStr[]           = "NERROR_INV_PIPE";
+NCONST_STR nErrDomainStr[]            = "NERROR_DOMAIN";
+NCONST_STR nErrResultTooBigStr[]      = "NERROR_RESULT_TOO_BIG";
+NCONST_STR nErrWouldBlockStr[]        = "NERROR_WOULD_BLOCK";
+NCONST_STR nErrInProgressStr[]        = "NERROR_IN_PROGRESS";
+NCONST_STR nErrAlreadyStr[]           = "NERROR_ALREADY";
+NCONST_STR nErrNotSocketStr[]         = "NERROR_NOT_SOCKET";
+NCONST_STR nErrMaxMessageStr[]        = "NERROR_MAX_MESSAGE";
+NCONST_STR nErrInvProtoTypeStr[]      = "NERROR_INV_PROTO_TYPE";
+NCONST_STR nErrInvProtoOptStr[]       = "NERROR_INV_PROTO_OPT";
+NCONST_STR nErrInvPortocolStr[]       = "NERROR_INV_PROTOCOL";
+NCONST_STR nErrInvSockTypeStr[]       = "NERROR_INV_SOCK_TYPE";
+NCONST_STR nErrInvSockOptStr[]        = "NERROR_INV_SOCK_OPR";
+NCONST_STR nErrInvProtoFamStr[]       = "NERROR_INV_PROTO_FAM";
+NCONST_STR nErrInvAddrFamStr[]        = "NERROR_INV_ADDR_FAM";
+NCONST_STR nErrAddrInUseStr[]         = "NERROR_ADDR_IN_USE";
+NCONST_STR nErrAddrNotAvailableStr[]  = "NERROR_ADDR_NOT_AVAILABLE";
+NCONST_STR nErrNetDownStr[]           = "NERROR_NET_DOWN";
+NCONST_STR nErrNetUnreachableStr[]    = "NERROR_NET_UNREACHABLE";
+NCONST_STR nErrNetResetStr[]          = "NERROR_NET_RESET";
+NCONST_STR nErrConnAbortedStr[]       = "NERROR_CONN_ABORTED";
+NCONST_STR nErrConnResetStr[]         = "NERROR_CONN_RESET";
+NCONST_STR nErrNoBufferSpaceStr[]     = "NERROR_NO_BUFFER_SPACE";
+NCONST_STR nErrAlreadyConnStr[]       = "NERROR_ALREADY_CONN";
+NCONST_STR nErrNotConnStr[]           = "NERROR_NOT_CONN";
+NCONST_STR nErrNoAddrStr[]            = "NERROR_NO_ADDR";
+NCONST_STR nErrSockShutdownStr[]      = "NERROR_SOCK_SHUTDOWN";
+NCONST_STR nErrMaxRefsStr[]           = "NERROR_MAX_REFS";
+NCONST_STR nErrConnTimeoutStr[]       = "NERROR_CONN_TIMEOUT";
+NCONST_STR nErrConnRefusedStr[]       = "NERROR_CONN_REFUSED";
+NCONST_STR nErrLinkLoopStr[]          = "NERROR_LINK_LOOP";
+NCONST_STR nErrMaxFileNameStr[]       = "NERROR_MAX_FILENAME";
+NCONST_STR nErrHostDownStr[]          = "NERROR_HOST_DOWN";
+NCONST_STR nErrHostUnreachableStr[]   = "NERROR_HOST_UNREACHABLE";
+NCONST_STR nErrDirNotEmptyStr[]       = "NERROR_DIR_NOT_EMPTY";
+NCONST_STR nErrMaxProcessStr[]        = "NERROR_MAX_PROCESS";
+NCONST_STR nErrMaxUsersStr[]          = "NERROR_MAX_USERS";
+NCONST_STR nErrMaxDiskQuotaStr[]      = "NERROR_MAX_DISK_QUOTA";
+NCONST_STR nErrStaleStr[]             = "NERROR_STALE";
+NCONST_STR nErrRemoteStr[]            = "NERROR_REMOTE";
+NCONST_STR nErrInvRPCStr[]            = "NERROR_INV_RPC";
+NCONST_STR nErrInvRPCVersionStr[]     = "NERROR_INV_RPC_VERSION";
+NCONST_STR nErrInvRPCProgStr[]        = "NERROR_INV_RPC_PROG";
+NCONST_STR nErrInvRPCProgVersionStr[] = "NERROR_INV_RPC_PROG_VERSION";
+NCONST_STR nErrInvRPCProcStr[]        = "NERROR_INV_RPC_PROC";
+NCONST_STR nErrNoFileLockStr[]        = "NERROR_NO_FILE_LOCK";
+NCONST_STR nErrInvFileTypeStr[]       = "NERROR_INV_FILE_TYPE";
+NCONST_STR nErrAuthStr[]              = "NERROR_AUTH";
+NCONST_STR nErrNoAuthStr[]            = "NERROR_NO_AUTH";
+NCONST_STR nErrFuncNotSupportedStr[]  = "NERROR_FUNC_NOT_SUPPORTED";
+NCONST_STR nErrNotSupportStr[]        = "NERROR_NOT_SUPPORTED";
+NCONST_STR nErrInvMultibyteStr[]      = "NERROR_INV_MULTIBYTE";
+NCONST_STR nErrInvBackgroundStr[]     = "NERROR_INV_BACKGROUND";
+NCONST_STR nErrTranslatorDiedStr[]    = "NERROR_TRANSLATOR_DIED";
+NCONST_STR nErrJokeStr[]              = "NERROR_JOKE";
+NCONST_STR nErrInvMessageStr[]        = "NERROR_INV_MESSAGE";
+NCONST_STR nErrNoIdentifierStr[]      = "NERROR_NO_IDENTIFIER";
+NCONST_STR nErrMultihopStr[]          = "NERROR_MULTIHOP";
+NCONST_STR nErrNoDataStr[]            = "NERROR_NO_DATA";
+NCONST_STR nErrNoLinkStr[]            = "NERROR_NO_LINK";
+NCONST_STR nErrNoMessageStr[]         = "NERROR_NO_MESSAGE";
+NCONST_STR nErrNoStreamResourcesStr[] = "NERROR_NO_STREAM_RESOURCES";
+NCONST_STR nErrDeviceNotStreamStr[]   = "NERROR_DEVICE_NOT_STREAM";
+NCONST_STR nErrOverflowStr[]          = "NERROR_OVERFLOW";
+NCONST_STR nErrProtocolStr[]          = "NERROR_PROTOCOL";
+NCONST_STR nErrTimerStr[]             = "NERROR_TIMER";
+NCONST_STR nErrAsyncCancelStr[]       = "NERROR_ASYNC_CANCEL";
+NCONST_STR nErrOwnerDiedStr[]         = "NERROR_OWNER_DIED";
+NCONST_STR nErrNotRecoverableStr[]    = "NERROR_NOT_RECOVERABLE";
+NCONST_STR nErrDeviceOffStr[]         = "NERROR_DEVICE_OFF";
+NCONST_STR nErrDeviceErrorStr[]       = "NERROR_DEVICE_ERROR";
+NCONST_STR nErrBadExecutableStr[]     = "NERROR_INV_EXECUTABLE";
+NCONST_STR nErrInvArchitectureStr[]   = "NERROR_INV_ARCHITECTURE";
+NCONST_STR nErrInvLibVersionStr[]     = "NERROR_INV_LIB_VERSION";
+NCONST_STR nErrInvMachoStr[]          = "NERROR_INV_MACHO";
+NCONST_STR nErrNoAttributeStr[]       = "NERROR_NO_ATTRIBUTE";
+NCONST_STR nErrNoPolicyStr[]          = "NERROR_NO_POLICY";
+NCONST_STR nErrMaxQueueStr[]          = "NERROR_MAX_QUEUE";
 
-const char nErrMaxStr[]               = "NERROR_MAX";
+NCONST_STR nErrMaxStr[]               = "NERROR_MAX";
 
 
 const char * nErrorStrings[] = {
@@ -505,319 +505,319 @@ const char * nErrorStrings[] = {
     nErrMaxStr
 };
 const nint_t nErrorStringLengths[] = {
-    sizeof(nErrMinStr),
+    sizeof(nErrMinStr - 1),
     
-    sizeof(nErrUnknownStr),
-    sizeof(nErrInternalFailureStr),
-    sizeof(nErrNullStr),
-    sizeof(nErrInvErrorStr),
+    sizeof(nErrUnknownStr - 1),
+    sizeof(nErrInternalFailureStr - 1),
+    sizeof(nErrNullStr - 1),
+    sizeof(nErrInvErrorStr - 1),
     
-    sizeof(nErrSigAbrtStr),
-    sizeof(nErrSigFpeStr),
-    sizeof(nErrSigIllStr),
-    sizeof(nErrSigIntStr),
-    sizeof(nErrSigSegvStr),
-    sizeof(nErrSigTermStr),
+    sizeof(nErrSigAbrtStr - 1),
+    sizeof(nErrSigFpeStr - 1),
+    sizeof(nErrSigIllStr - 1),
+    sizeof(nErrSigIntStr - 1),
+    sizeof(nErrSigSegvStr - 1),
+    sizeof(nErrSigTermStr - 1),
     
     #if 0
-    sizeof(nErrNoPermStr),
-    sizeof(nErrNoFileStr),
-    sizeof(nErrNoProcessStr),
-    sizeof(nErrInterruptStr),
-    sizeof(nErrIOStr),
-    sizeof(nErrNoDeviceStr),
-    sizeof(nErrMaxArgsStr),
-    sizeof(nErrInvExecFormatStr),
-    sizeof(nErrInvFPStr),
-    sizeof(nErrNoChildStr),
-    sizeof(nErrDeadlockStr),
-    sizeof(nErrNoMemoryStr),
-    sizeof(nErrNoFilePermStr),
-    sizeof(nErrFaultStr),
-    sizeof(nErrNotBlockStr),
-    sizeof(nErrDeviceBusyStr),
-    sizeof(nErrFileExistsStr),
-    sizeof(nErrInvCrosslinkStr),
-    sizeof(nErrInvDeviceStr),
-    sizeof(nErrNotDirStr),
-    sizeof(nErrIsDirStr),
-    sizeof(nErrInvArgStr),
-    sizeof(nErrMaxFileStr),
-    sizeof(nErrMaxFileSysStr),
-    sizeof(nErrInvIOCtlStr),
-    sizeof(nErrTextBusyStr),
-    sizeof(nErrFileTooBigStr),
-    sizeof(nErrNoSpaceStr),
-    sizeof(nErrInvSeekStr),
-    sizeof(nErrReadOnlyStr),
-    sizeof(nErrMaxLinksStr),
-    sizeof(nErrInvPipeStr),
-    sizeof(nErrDomainStr),
-    sizeof(nErrResultTooBigStr),
-    sizeof(nErrWouldBlockStr),
-    sizeof(nErrInProgressStr),
-    sizeof(nErrAlreadyStr),
-    sizeof(nErrNotSocketStr),
-    sizeof(nErrMaxMessageStr),
-    sizeof(nErrInvProtoTypeStr),
-    sizeof(nErrInvProtoOptStr),
-    sizeof(nErrInvPortocolStr),
-    sizeof(nErrInvSockTypeStr),
-    sizeof(nErrInvSockOptStr),
-    sizeof(nErrInvProtoFamStr),
-    sizeof(nErrInvAddrFamStr),
-    sizeof(nErrAddrInUseStr),
-    sizeof(nErrAddrNotAvailableStr),
-    sizeof(nErrNetDownStr),
-    sizeof(nErrNetUnreachableStr),
-    sizeof(nErrNetResetStr),
-    sizeof(nErrConnAbortedStr),
-    sizeof(nErrConnResetStr),
-    sizeof(nErrNoBufferSpaceStr),
-    sizeof(nErrAlreadyConnStr),
-    sizeof(nErrNotConnStr),
-    sizeof(nErrNoAddrStr),
-    sizeof(nErrSockShutdownStr),
-    sizeof(nErrMaxRefsStr),
-    sizeof(nErrConnTimeoutStr),
-    sizeof(nErrConnRefusedStr),
-    sizeof(nErrLinkLoopStr),
-    sizeof(nErrMaxFileNameStr),
-    sizeof(nErrHostDownStr),
-    sizeof(nErrHostUnreachableStr),
-    sizeof(nErrDirNotEmptyStr),
-    sizeof(nErrMaxProcessStr),
-    sizeof(nErrMaxUsersStr),
-    sizeof(nErrMaxDiskQuotaStr),
-    sizeof(nErrStaleStr),
-    sizeof(nErrRemoteStr),
-    sizeof(nErrInvRPCStr),
-    sizeof(nErrInvRPCVersionStr),
-    sizeof(nErrInvRPCProgStr),
-    sizeof(nErrInvRPCProgVersionStr),
-    sizeof(nErrInvRPCProcStr),
-    sizeof(nErrNoFileLockStr),
-    sizeof(nErrInvFileTypeStr),
-    sizeof(nErrAuthStr),
-    sizeof(nErrNoAuthStr),
-    sizeof(nErrFuncNotSupportedStr),
-    sizeof(nErrNotSupportStr),
-    sizeof(nErrInvMultibyteStr),
-    sizeof(nErrInvBackgroundStr),
-    sizeof(nErrTranslatorDiedStr),
-    sizeof(nErrJokeStr),
-    sizeof(nErrInvMessageStr),
-    sizeof(nErrNoIdentifierStr),
-    sizeof(nErrMultihopStr),
-    sizeof(nErrNoDataStr),
-    sizeof(nErrNoLinkStr),
-    sizeof(nErrNoMessageStr),
-    sizeof(nErrNoStreamResourcesStr),
-    sizeof(nErrDeviceNotStreamStr),
-    sizeof(nErrOverflowStr),
-    sizeof(nErrProtocolStr),
-    sizeof(nErrTimerStr),
-    sizeof(nErrAsyncCancelStr),
-    sizeof(nErrOwnerDiedStr),
-    sizeof(nErrNotRecoverableStr),
-    sizeof(nErrDeviceOffStr),
-    sizeof(nErrDeviceErrorStr),
-    sizeof(nErrBadExecutableStr),
-    sizeof(nErrInvArchitectureStr),
-    sizeof(nErrInvLibVersionStr),
-    sizeof(nErrInvMachoStr),
-    sizeof(nErrNoAttributeStr),
-    sizeof(nErrNoPolicyStr),
-    sizeof(nErrMaxQueueStr),
+    sizeof(nErrNoPermStr - 1),
+    sizeof(nErrNoFileStr - 1),
+    sizeof(nErrNoProcessStr - 1),
+    sizeof(nErrInterruptStr - 1),
+    sizeof(nErrIOStr - 1),
+    sizeof(nErrNoDeviceStr - 1),
+    sizeof(nErrMaxArgsStr - 1),
+    sizeof(nErrInvExecFormatStr - 1),
+    sizeof(nErrInvFPStr - 1),
+    sizeof(nErrNoChildStr - 1),
+    sizeof(nErrDeadlockStr - 1),
+    sizeof(nErrNoMemoryStr - 1),
+    sizeof(nErrNoFilePermStr - 1),
+    sizeof(nErrFaultStr - 1),
+    sizeof(nErrNotBlockStr - 1),
+    sizeof(nErrDeviceBusyStr - 1),
+    sizeof(nErrFileExistsStr - 1),
+    sizeof(nErrInvCrosslinkStr - 1),
+    sizeof(nErrInvDeviceStr - 1),
+    sizeof(nErrNotDirStr - 1),
+    sizeof(nErrIsDirStr - 1),
+    sizeof(nErrInvArgStr - 1),
+    sizeof(nErrMaxFileStr - 1),
+    sizeof(nErrMaxFileSysStr - 1),
+    sizeof(nErrInvIOCtlStr - 1),
+    sizeof(nErrTextBusyStr - 1),
+    sizeof(nErrFileTooBigStr - 1),
+    sizeof(nErrNoSpaceStr - 1),
+    sizeof(nErrInvSeekStr - 1),
+    sizeof(nErrReadOnlyStr - 1),
+    sizeof(nErrMaxLinksStr - 1),
+    sizeof(nErrInvPipeStr - 1),
+    sizeof(nErrDomainStr - 1),
+    sizeof(nErrResultTooBigStr - 1),
+    sizeof(nErrWouldBlockStr - 1),
+    sizeof(nErrInProgressStr - 1),
+    sizeof(nErrAlreadyStr - 1),
+    sizeof(nErrNotSocketStr - 1),
+    sizeof(nErrMaxMessageStr - 1),
+    sizeof(nErrInvProtoTypeStr - 1),
+    sizeof(nErrInvProtoOptStr - 1),
+    sizeof(nErrInvPortocolStr - 1),
+    sizeof(nErrInvSockTypeStr - 1),
+    sizeof(nErrInvSockOptStr - 1),
+    sizeof(nErrInvProtoFamStr - 1),
+    sizeof(nErrInvAddrFamStr - 1),
+    sizeof(nErrAddrInUseStr - 1),
+    sizeof(nErrAddrNotAvailableStr - 1),
+    sizeof(nErrNetDownStr - 1),
+    sizeof(nErrNetUnreachableStr - 1),
+    sizeof(nErrNetResetStr - 1),
+    sizeof(nErrConnAbortedStr - 1),
+    sizeof(nErrConnResetStr - 1),
+    sizeof(nErrNoBufferSpaceStr - 1),
+    sizeof(nErrAlreadyConnStr - 1),
+    sizeof(nErrNotConnStr - 1),
+    sizeof(nErrNoAddrStr - 1),
+    sizeof(nErrSockShutdownStr - 1),
+    sizeof(nErrMaxRefsStr - 1),
+    sizeof(nErrConnTimeoutStr - 1),
+    sizeof(nErrConnRefusedStr - 1),
+    sizeof(nErrLinkLoopStr - 1),
+    sizeof(nErrMaxFileNameStr - 1),
+    sizeof(nErrHostDownStr - 1),
+    sizeof(nErrHostUnreachableStr - 1),
+    sizeof(nErrDirNotEmptyStr - 1),
+    sizeof(nErrMaxProcessStr - 1),
+    sizeof(nErrMaxUsersStr - 1),
+    sizeof(nErrMaxDiskQuotaStr - 1),
+    sizeof(nErrStaleStr - 1),
+    sizeof(nErrRemoteStr - 1),
+    sizeof(nErrInvRPCStr - 1),
+    sizeof(nErrInvRPCVersionStr - 1),
+    sizeof(nErrInvRPCProgStr - 1),
+    sizeof(nErrInvRPCProgVersionStr - 1),
+    sizeof(nErrInvRPCProcStr - 1),
+    sizeof(nErrNoFileLockStr - 1),
+    sizeof(nErrInvFileTypeStr - 1),
+    sizeof(nErrAuthStr - 1),
+    sizeof(nErrNoAuthStr - 1),
+    sizeof(nErrFuncNotSupportedStr - 1),
+    sizeof(nErrNotSupportStr - 1),
+    sizeof(nErrInvMultibyteStr - 1),
+    sizeof(nErrInvBackgroundStr - 1),
+    sizeof(nErrTranslatorDiedStr - 1),
+    sizeof(nErrJokeStr - 1),
+    sizeof(nErrInvMessageStr - 1),
+    sizeof(nErrNoIdentifierStr - 1),
+    sizeof(nErrMultihopStr - 1),
+    sizeof(nErrNoDataStr - 1),
+    sizeof(nErrNoLinkStr - 1),
+    sizeof(nErrNoMessageStr - 1),
+    sizeof(nErrNoStreamResourcesStr - 1),
+    sizeof(nErrDeviceNotStreamStr - 1),
+    sizeof(nErrOverflowStr - 1),
+    sizeof(nErrProtocolStr - 1),
+    sizeof(nErrTimerStr - 1),
+    sizeof(nErrAsyncCancelStr - 1),
+    sizeof(nErrOwnerDiedStr - 1),
+    sizeof(nErrNotRecoverableStr - 1),
+    sizeof(nErrDeviceOffStr - 1),
+    sizeof(nErrDeviceErrorStr - 1),
+    sizeof(nErrBadExecutableStr - 1),
+    sizeof(nErrInvArchitectureStr - 1),
+    sizeof(nErrInvLibVersionStr - 1),
+    sizeof(nErrInvMachoStr - 1),
+    sizeof(nErrNoAttributeStr - 1),
+    sizeof(nErrNoPolicyStr - 1),
+    sizeof(nErrMaxQueueStr - 1),
     #endif
 
     #if NIMBLE_OS == NIMBLE_WINDOWS
-    sizeof(nErrNoPermStr),
-    sizeof(nErrNoFileStr),
-    sizeof(nErrNoProcessStr),
-    sizeof(nErrInterruptStr),
-    sizeof(nErrIOStr),
-    sizeof(nErrNoDeviceStr),
-    sizeof(nErrMaxArgsStr),
-    sizeof(nErrInvExecFormatStr),
-    sizeof(nErrInvFPStr),
-    sizeof(nErrNoChildStr),
-    sizeof(nErrWouldBlockStr),
-    sizeof(nErrNoMemoryStr),
-    sizeof(nErrNoFilePermStr),
-    sizeof(nErrFaultStr),
-    sizeof(nErrDeviceBusyStr),
-    sizeof(nErrFileExistsStr),
-    sizeof(nErrInvCrosslinkStr),
-    sizeof(nErrInvDeviceStr),
-    sizeof(nErrNotDirStr),
-    sizeof(nErrIsDirStr),
-    sizeof(nErrInvArgStr),
-    sizeof(nErrMaxFileSysStr),
-    sizeof(nErrMaxFileStr),
-    sizeof(nErrInvIOCtlStr),
-    sizeof(nErrFileTooBigStr),
-    sizeof(nErrNoSpaceStr),
-    sizeof(nErrInvSeekStr),
-    sizeof(nErrReadOnlyStr),
-    sizeof(nErrMaxLinksStr),
-    sizeof(nErrInvPipeStr),
-    sizeof(nErrDomainStr),
-    sizeof(nErrResultTooBigStr),
-    sizeof(nErrDeadlockStr),
-    sizeof(nErrMaxFileNameStr),
-    sizeof(nErrNoFileLockStr),
-    sizeof(nErrFuncNotSupportedStr),
-    sizeof(nErrDirNotEmptyStr),
-    sizeof(nErrInvMultibyteStr),
-    sizeof(nErrAddrInUseStr),
-    sizeof(nErrAddrNotAvailableStr),
-    sizeof(nErrInvAddrFamStr),
-    sizeof(nErrAlreadyStr),
-    sizeof(nErrInvMessageStr),
-    sizeof(nErrAsyncCancelStr),
-    sizeof(nErrConnAbortedStr),
-    sizeof(nErrConnRefusedStr),
-    sizeof(nErrConnResetStr),
-    sizeof(nErrNoAddrStr),
-    sizeof(nErrHostUnreachableStr),
-    sizeof(nErrNoIdentifierStr),
-    sizeof(nErrInProgressStr),
-    sizeof(nErrAlreadyConnStr),
-    sizeof(nErrLinkLoopStr),
-    sizeof(nErrMaxMessageStr),
-    sizeof(nErrNetDownStr),
-    sizeof(nErrNetResetStr),
-    sizeof(nErrNetUnreachableStr),
-    sizeof(nErrNoBufferSpaceStr),
-    sizeof(nErrNoDataStr),
-    sizeof(nErrNoLinkStr),
-    sizeof(nErrNoMessageStr),
-    sizeof(nErrInvProtoOptStr),
-    sizeof(nErrNoStreamResourcesStr),
-    sizeof(nErrDeviceNotStreamStr),
-    sizeof(nErrNotConnStr),
-    sizeof(nErrNotRecoverableStr),
-    sizeof(nErrNotSocketStr),
-    sizeof(nErrNotSupportStr),
-    sizeof(nErrInvSockOptStr),
-    sizeof(nErrOverflowStr),
-    sizeof(nErrOwnerDiedStr),
-    sizeof(nErrProtocolStr),
-    sizeof(nErrInvPortocolStr),
-    sizeof(nErrInvProtoTypeStr),
-    sizeof(nErrTimerStr),
-    sizeof(nErrConnTimeoutStr),
-    sizeof(nErrTextBusyStr),
+    sizeof(nErrNoPermStr - 1),
+    sizeof(nErrNoFileStr - 1),
+    sizeof(nErrNoProcessStr - 1),
+    sizeof(nErrInterruptStr - 1),
+    sizeof(nErrIOStr - 1),
+    sizeof(nErrNoDeviceStr - 1),
+    sizeof(nErrMaxArgsStr - 1),
+    sizeof(nErrInvExecFormatStr - 1),
+    sizeof(nErrInvFPStr - 1),
+    sizeof(nErrNoChildStr - 1),
+    sizeof(nErrWouldBlockStr - 1),
+    sizeof(nErrNoMemoryStr - 1),
+    sizeof(nErrNoFilePermStr - 1),
+    sizeof(nErrFaultStr - 1),
+    sizeof(nErrDeviceBusyStr - 1),
+    sizeof(nErrFileExistsStr - 1),
+    sizeof(nErrInvCrosslinkStr - 1),
+    sizeof(nErrInvDeviceStr - 1),
+    sizeof(nErrNotDirStr - 1),
+    sizeof(nErrIsDirStr - 1),
+    sizeof(nErrInvArgStr - 1),
+    sizeof(nErrMaxFileSysStr - 1),
+    sizeof(nErrMaxFileStr - 1),
+    sizeof(nErrInvIOCtlStr - 1),
+    sizeof(nErrFileTooBigStr - 1),
+    sizeof(nErrNoSpaceStr - 1),
+    sizeof(nErrInvSeekStr - 1),
+    sizeof(nErrReadOnlyStr - 1),
+    sizeof(nErrMaxLinksStr - 1),
+    sizeof(nErrInvPipeStr - 1),
+    sizeof(nErrDomainStr - 1),
+    sizeof(nErrResultTooBigStr - 1),
+    sizeof(nErrDeadlockStr - 1),
+    sizeof(nErrMaxFileNameStr - 1),
+    sizeof(nErrNoFileLockStr - 1),
+    sizeof(nErrFuncNotSupportedStr - 1),
+    sizeof(nErrDirNotEmptyStr - 1),
+    sizeof(nErrInvMultibyteStr - 1),
+    sizeof(nErrAddrInUseStr - 1),
+    sizeof(nErrAddrNotAvailableStr - 1),
+    sizeof(nErrInvAddrFamStr - 1),
+    sizeof(nErrAlreadyStr - 1),
+    sizeof(nErrInvMessageStr - 1),
+    sizeof(nErrAsyncCancelStr - 1),
+    sizeof(nErrConnAbortedStr - 1),
+    sizeof(nErrConnRefusedStr - 1),
+    sizeof(nErrConnResetStr - 1),
+    sizeof(nErrNoAddrStr - 1),
+    sizeof(nErrHostUnreachableStr - 1),
+    sizeof(nErrNoIdentifierStr - 1),
+    sizeof(nErrInProgressStr - 1),
+    sizeof(nErrAlreadyConnStr - 1),
+    sizeof(nErrLinkLoopStr - 1),
+    sizeof(nErrMaxMessageStr - 1),
+    sizeof(nErrNetDownStr - 1),
+    sizeof(nErrNetResetStr - 1),
+    sizeof(nErrNetUnreachableStr - 1),
+    sizeof(nErrNoBufferSpaceStr - 1),
+    sizeof(nErrNoDataStr - 1),
+    sizeof(nErrNoLinkStr - 1),
+    sizeof(nErrNoMessageStr - 1),
+    sizeof(nErrInvProtoOptStr - 1),
+    sizeof(nErrNoStreamResourcesStr - 1),
+    sizeof(nErrDeviceNotStreamStr - 1),
+    sizeof(nErrNotConnStr - 1),
+    sizeof(nErrNotRecoverableStr - 1),
+    sizeof(nErrNotSocketStr - 1),
+    sizeof(nErrNotSupportStr - 1),
+    sizeof(nErrInvSockOptStr - 1),
+    sizeof(nErrOverflowStr - 1),
+    sizeof(nErrOwnerDiedStr - 1),
+    sizeof(nErrProtocolStr - 1),
+    sizeof(nErrInvPortocolStr - 1),
+    sizeof(nErrInvProtoTypeStr - 1),
+    sizeof(nErrTimerStr - 1),
+    sizeof(nErrConnTimeoutStr - 1),
+    sizeof(nErrTextBusyStr - 1),
 
     #elif NIMBLE_OS == NIMBLE_MACOS
-    sizeof(nErrNoPermStr),
-    sizeof(nErrNoFileStr),
-    sizeof(nErrNoProcessStr),
-    sizeof(nErrInterruptStr),
-    sizeof(nErrIOStr),
-    sizeof(nErrNoDeviceStr),
-    sizeof(nErrMaxArgsStr),
-    sizeof(nErrInvExecFormatStr),
-    sizeof(nErrInvFPStr),
-    sizeof(nErrNoChildStr),
-    sizeof(nErrDeadlockStr),
-    sizeof(nErrNoMemoryStr),
-    sizeof(nErrNoFilePermStr),
-    sizeof(nErrFaultStr),
-    sizeof(nErrNotBlockStr),
-    sizeof(nErrDeviceBusyStr),
-    sizeof(nErrFileExistsStr),
-    sizeof(nErrInvCrosslinkStr),
-    sizeof(nErrInvDeviceStr),
-    sizeof(nErrNotDirStr),
-    sizeof(nErrIsDirStr),
-    sizeof(nErrInvArgStr),
-    sizeof(nErrMaxFileStr),
-    sizeof(nErrMaxFileSysStr),
-    sizeof(nErrInvIOCtlStr),
-    sizeof(nErrTextBusyStr),
-    sizeof(nErrFileTooBigStr),
-    sizeof(nErrNoSpaceStr),
-    sizeof(nErrInvSeekStr),
-    sizeof(nErrReadOnlyStr),
-    sizeof(nErrMaxLinksStr),
-    sizeof(nErrInvPipeStr),
-    sizeof(nErrDomainStr),
-    sizeof(nErrResultTooBigStr),
-    sizeof(nErrWouldBlockStr),
-    sizeof(nErrInProgressStr),
-    sizeof(nErrAlreadyStr),
-    sizeof(nErrNotSocketStr),
-    sizeof(nErrNoAddrStr),
-    sizeof(nErrMaxMessageStr),
-    sizeof(nErrInvProtoTypeStr),
-    sizeof(nErrInvProtoOptStr),
-    sizeof(nErrInvPortocolStr),
-    sizeof(nErrInvSockTypeStr),
-    sizeof(nErrNotSupportStr),
-    sizeof(nErrInvSockOptStr),
-    sizeof(nErrInvProtoFamStr),
-    sizeof(nErrInvAddrFamStr),
-    sizeof(nErrAddrInUseStr),
-    sizeof(nErrAddrNotAvailableStr),
-    sizeof(nErrNetDownStr),
-    sizeof(nErrNetUnreachableStr),
-    sizeof(nErrNetResetStr),
-    sizeof(nErrConnAbortedStr),
-    sizeof(nErrConnResetStr),
-    sizeof(nErrNoBufferSpaceStr),
-    sizeof(nErrAlreadyConnStr),
-    sizeof(nErrNotConnStr),
-    sizeof(nErrSockShutdownStr),
-    sizeof(nErrMaxRefsStr),
-    sizeof(nErrConnTimeoutStr),
-    sizeof(nErrConnRefusedStr),
-    sizeof(nErrLinkLoopStr),
-    sizeof(nErrMaxFileNameStr),
-    sizeof(nErrHostDownStr),
-    sizeof(nErrHostUnreachableStr),
-    sizeof(nErrDirNotEmptyStr),
-    sizeof(nErrMaxProcessStr),
-    sizeof(nErrMaxUsersStr),
-    sizeof(nErrMaxDiskQuotaStr),
-    sizeof(nErrStaleStr),
-    sizeof(nErrRemoteStr),
-    sizeof(nErrInvRPCStr),
-    sizeof(nErrInvRPCVersionStr),
-    sizeof(nErrInvRPCProgStr),
-    sizeof(nErrInvRPCProgVersionStr),
-    sizeof(nErrInvRPCProcStr),
-    sizeof(nErrNoFileLockStr),
-    sizeof(nErrFuncNotSupportedStr),
-    sizeof(nErrInvFileTypeStr),
-    sizeof(nErrAuthStr),
-    sizeof(nErrNoAuthStr),
-    sizeof(nErrDeviceOffStr),
-    sizeof(nErrDeviceErrorStr),
-    sizeof(nErrOverflowStr),
-    sizeof(nErrBadExecutableStr),
-    sizeof(nErrInvArchitectureStr),
-    sizeof(nErrInvLibVersionStr),
-    sizeof(nErrInvMachoStr),
-    sizeof(nErrAsyncCancelStr),
-    sizeof(nErrNoIdentifierStr),
-    sizeof(nErrNoMessageStr),
-    sizeof(nErrInvMultibyteStr),
-    sizeof(nErrNoAttributeStr),
-    sizeof(nErrInvMessageStr),
-    sizeof(nErrMultihopStr),
-    sizeof(nErrNoDataStr),
-    sizeof(nErrNoLinkStr),
-    sizeof(nErrNoStreamResourcesStr),
-    sizeof(nErrDeviceNotStreamStr),
-    sizeof(nErrProtocolStr),
-    sizeof(nErrTimerStr),
-    sizeof(nErrInvSockOptStr),
-    sizeof(nErrNoPolicyStr),
-    sizeof(nErrNotRecoverableStr),
-    sizeof(nErrOwnerDiedStr),
-    sizeof(nErrMaxQueueStr),
+    sizeof(nErrNoPermStr - 1),
+    sizeof(nErrNoFileStr - 1),
+    sizeof(nErrNoProcessStr - 1),
+    sizeof(nErrInterruptStr - 1),
+    sizeof(nErrIOStr - 1),
+    sizeof(nErrNoDeviceStr - 1),
+    sizeof(nErrMaxArgsStr - 1),
+    sizeof(nErrInvExecFormatStr - 1),
+    sizeof(nErrInvFPStr - 1),
+    sizeof(nErrNoChildStr - 1),
+    sizeof(nErrDeadlockStr - 1),
+    sizeof(nErrNoMemoryStr - 1),
+    sizeof(nErrNoFilePermStr - 1),
+    sizeof(nErrFaultStr - 1),
+    sizeof(nErrNotBlockStr - 1),
+    sizeof(nErrDeviceBusyStr - 1),
+    sizeof(nErrFileExistsStr - 1),
+    sizeof(nErrInvCrosslinkStr - 1),
+    sizeof(nErrInvDeviceStr - 1),
+    sizeof(nErrNotDirStr - 1),
+    sizeof(nErrIsDirStr - 1),
+    sizeof(nErrInvArgStr - 1),
+    sizeof(nErrMaxFileStr - 1),
+    sizeof(nErrMaxFileSysStr - 1),
+    sizeof(nErrInvIOCtlStr - 1),
+    sizeof(nErrTextBusyStr - 1),
+    sizeof(nErrFileTooBigStr - 1),
+    sizeof(nErrNoSpaceStr - 1),
+    sizeof(nErrInvSeekStr - 1),
+    sizeof(nErrReadOnlyStr - 1),
+    sizeof(nErrMaxLinksStr - 1),
+    sizeof(nErrInvPipeStr - 1),
+    sizeof(nErrDomainStr - 1),
+    sizeof(nErrResultTooBigStr - 1),
+    sizeof(nErrWouldBlockStr - 1),
+    sizeof(nErrInProgressStr - 1),
+    sizeof(nErrAlreadyStr - 1),
+    sizeof(nErrNotSocketStr - 1),
+    sizeof(nErrNoAddrStr - 1),
+    sizeof(nErrMaxMessageStr - 1),
+    sizeof(nErrInvProtoTypeStr - 1),
+    sizeof(nErrInvProtoOptStr - 1),
+    sizeof(nErrInvPortocolStr - 1),
+    sizeof(nErrInvSockTypeStr - 1),
+    sizeof(nErrNotSupportStr - 1),
+    sizeof(nErrInvSockOptStr - 1),
+    sizeof(nErrInvProtoFamStr - 1),
+    sizeof(nErrInvAddrFamStr - 1),
+    sizeof(nErrAddrInUseStr - 1),
+    sizeof(nErrAddrNotAvailableStr - 1),
+    sizeof(nErrNetDownStr - 1),
+    sizeof(nErrNetUnreachableStr - 1),
+    sizeof(nErrNetResetStr - 1),
+    sizeof(nErrConnAbortedStr - 1),
+    sizeof(nErrConnResetStr - 1),
+    sizeof(nErrNoBufferSpaceStr - 1),
+    sizeof(nErrAlreadyConnStr - 1),
+    sizeof(nErrNotConnStr - 1),
+    sizeof(nErrSockShutdownStr - 1),
+    sizeof(nErrMaxRefsStr - 1),
+    sizeof(nErrConnTimeoutStr - 1),
+    sizeof(nErrConnRefusedStr - 1),
+    sizeof(nErrLinkLoopStr - 1),
+    sizeof(nErrMaxFileNameStr - 1),
+    sizeof(nErrHostDownStr - 1),
+    sizeof(nErrHostUnreachableStr - 1),
+    sizeof(nErrDirNotEmptyStr - 1),
+    sizeof(nErrMaxProcessStr - 1),
+    sizeof(nErrMaxUsersStr - 1),
+    sizeof(nErrMaxDiskQuotaStr - 1),
+    sizeof(nErrStaleStr - 1),
+    sizeof(nErrRemoteStr - 1),
+    sizeof(nErrInvRPCStr - 1),
+    sizeof(nErrInvRPCVersionStr - 1),
+    sizeof(nErrInvRPCProgStr - 1),
+    sizeof(nErrInvRPCProgVersionStr - 1),
+    sizeof(nErrInvRPCProcStr - 1),
+    sizeof(nErrNoFileLockStr - 1),
+    sizeof(nErrFuncNotSupportedStr - 1),
+    sizeof(nErrInvFileTypeStr - 1),
+    sizeof(nErrAuthStr - 1),
+    sizeof(nErrNoAuthStr - 1),
+    sizeof(nErrDeviceOffStr - 1),
+    sizeof(nErrDeviceErrorStr - 1),
+    sizeof(nErrOverflowStr - 1),
+    sizeof(nErrBadExecutableStr - 1),
+    sizeof(nErrInvArchitectureStr - 1),
+    sizeof(nErrInvLibVersionStr - 1),
+    sizeof(nErrInvMachoStr - 1),
+    sizeof(nErrAsyncCancelStr - 1),
+    sizeof(nErrNoIdentifierStr - 1),
+    sizeof(nErrNoMessageStr - 1),
+    sizeof(nErrInvMultibyteStr - 1),
+    sizeof(nErrNoAttributeStr - 1),
+    sizeof(nErrInvMessageStr - 1),
+    sizeof(nErrMultihopStr - 1),
+    sizeof(nErrNoDataStr - 1),
+    sizeof(nErrNoLinkStr - 1),
+    sizeof(nErrNoStreamResourcesStr - 1),
+    sizeof(nErrDeviceNotStreamStr - 1),
+    sizeof(nErrProtocolStr - 1),
+    sizeof(nErrTimerStr - 1),
+    sizeof(nErrInvSockOptStr - 1),
+    sizeof(nErrNoPolicyStr - 1),
+    sizeof(nErrNotRecoverableStr - 1),
+    sizeof(nErrOwnerDiedStr - 1),
+    sizeof(nErrMaxQueueStr - 1),
 
     #elif NIMBLE_OS == NIMBLE_LINUX
 
@@ -830,127 +830,127 @@ const nint_t nErrorStringLengths[] = {
     sizeof(nErrMaxStr)
 };
 
-const char nErrDescMinStr[]               = "The minimum error value, likely "\
+NCONST_STR nErrDescMinStr[]               = "The minimum error value, likely "\
 "caused by programmer error or a corruption issue.";
 
-const char nErrDescUnknownStr[]           = "An unknown error occurred.";
-const char nErrDescInternalFailureStr[]   = "An internal error occurred within "\
+NCONST_STR nErrDescUnknownStr[]           = "An unknown error occurred.";
+NCONST_STR nErrDescInternalFailureStr[]   = "An internal error occurred within "\
 "the Nimble game engine.";
-const char nErrDescNullStr[]              = "A pointer was null when a nonnull "\
+NCONST_STR nErrDescNullStr[]              = "A pointer was null when a nonnull "\
 "pointer was expected.";
-const char nErrDescInvErrorStr[]          = "An error passed to a function was "\
+NCONST_STR nErrDescInvErrorStr[]          = "An error passed to a function was "\
 "not valid.";
 
-const char nErrDescSigAbrtStr[]           = "Abort. Abnormal termination, such "\
+NCONST_STR nErrDescSigAbrtStr[]           = "Abort. Abnormal termination, such "\
 "as is initiated by the function.";
-const char nErrDescSigFpeStr[]            = "Floating point exception. "\
+NCONST_STR nErrDescSigFpeStr[]            = "Floating point exception. "\
 "Erroneous arithmetic operation, such as zero divide or an operation resulting "\
 "in overflow (not necessarily with a floating-point operation).";
-const char nErrDescSigIllStr[]            = "Illegal instruction. Invalid "\
+NCONST_STR nErrDescSigIllStr[]            = "Illegal instruction. Invalid "\
 "function image, such as an illegal instruction. This is generally due to a "\
 "corruption in the code or to an attempt to execute data.";
-const char nErrDescSigIntStr[]            = "System interrupt. Interactive "\
+NCONST_STR nErrDescSigIntStr[]            = "System interrupt. Interactive "\
 "attention signal. Generally generated by the application user.";
-const char nErrDescSigSegvStr[]           = "Segmentation violation. Invalid "\
+NCONST_STR nErrDescSigSegvStr[]           = "Segmentation violation. Invalid "\
 "access to memory storage. The program tried to read or write outside the "\
 "memory it is allocated for it.";
-const char nErrDescSigTermStr[]           = "System termination. Termination "\
+NCONST_STR nErrDescSigTermStr[]           = "System termination. Termination "\
 "request sent to program.";
 
-const char nErrDescNoPermStr[]            = "Operation not permitted. Only the "\
+NCONST_STR nErrDescNoPermStr[]            = "Operation not permitted. Only the "\
 "owner of the file (or other resource) or processes with special privileges "\
 "can perform the operation.";
-const char nErrDescNoFileStr[]            = "No such file or directory. This is "\
+NCONST_STR nErrDescNoFileStr[]            = "No such file or directory. This is "\
 "a \"file doesn't exist\" error for ordinary files that are referenced in "\
 "contexts where they are expected to already exist.";
-const char nErrDescNoProcessStr[]         = "No such process. No process matches "\
+NCONST_STR nErrDescNoProcessStr[]         = "No such process. No process matches "\
 "the specified process ID.";
-const char nErrDescInterruptStr[]         = "Interrupted system call. An "\
+NCONST_STR nErrDescInterruptStr[]         = "Interrupted system call. An "\
 "asynchronous signal occurred and prevented completion of the call. When this "\
 "happens, you should try the call again.";
-const char nErrDescIOStr[]                = "Input/output error. Usually used "\
+NCONST_STR nErrDescIOStr[]                = "Input/output error. Usually used "\
 "for physical read or write errors.";
-const char nErrDescNoDeviceStr[]          = "No such device or address. The "\
+NCONST_STR nErrDescNoDeviceStr[]          = "No such device or address. The "\
 "system tried to use the device represented by a file you specified, and it "\
 "couldn't find the device. This can mean that the device file was installed "\
 "incorrectly, or that the physical device is missing or not correctly attached "\
 "to the computer.";
-const char nErrDescMaxArgsStr[]           = "Argument list too long. Used when "\
+NCONST_STR nErrDescMaxArgsStr[]           = "Argument list too long. Used when "\
 "the arguments passed to a new program being executed with one of the exec "\
 "functions occupy too much memory space.";
-const char nErrDescInvExecFormatStr[]     = "Exec format error. Invalid "\
+NCONST_STR nErrDescInvExecFormatStr[]     = "Exec format error. Invalid "\
 "executable file format. This condition is detected by the exec functions.";
-const char nErrDescInvFPStr[]            = "Bad file descriptor. For example, "\
+NCONST_STR nErrDescInvFPStr[]            = "Bad file descriptor. For example, "\
 "I/O on a descriptor that has been closed or reading from a descriptor open "\
 "only for writing (or vice versa).";
-const char nErrDescNoChildStr[]           = "No child process. This error "\
+NCONST_STR nErrDescNoChildStr[]           = "No child process. This error "\
 "happens on operations that are supposed to manipulate child processes, when "\
 "there aren’t any processes to manipulate.";
-const char nErrDescDeadlockStr[]          = "Resource deadlock avoided. This "\
+NCONST_STR nErrDescDeadlockStr[]          = "Resource deadlock avoided. This "\
 "error happens on operations that are supposed to manipulate child "\
 "processes, when there aren’t any processes to manipulate.";
-const char nErrDescNoMemoryStr[]          = "Cannot allocate memory. The system "\
+NCONST_STR nErrDescNoMemoryStr[]          = "Cannot allocate memory. The system "\
 "cannot allocate more virtual memory because its capacity is full.";
-const char nErrDescNoFilePermStr[]        = "Permission denied. The file "\
+NCONST_STR nErrDescNoFilePermStr[]        = "Permission denied. The file "\
 "permissions do not allow the attempted operation.";
-const char nErrDescFaultStr[]             = "Bad address. An invalid pointer was "\
+NCONST_STR nErrDescFaultStr[]             = "Bad address. An invalid pointer was "\
 "detected.";
-const char nErrDescNotBlockStr[]          = "Block device required. A file that "\
+NCONST_STR nErrDescNotBlockStr[]          = "Block device required. A file that "\
 "isn’t a block special file was given in a situation that requires one. For "\
 "example, trying to mount an ordinary file as a file system in Unix gives "\
 "this error.";
-const char nErrDescDeviceBusyStr[]        = "Device or resource busy. A system "\
+NCONST_STR nErrDescDeviceBusyStr[]        = "Device or resource busy. A system "\
 "resource that can’t be shared is already in use. For example, if you try to "\
 "delete a file that is the root of a currently mounted filesystem, you get "\
 "this error.";
-const char nErrDescFileExistsStr[]        = "File exists. An existing file was "\
+NCONST_STR nErrDescFileExistsStr[]        = "File exists. An existing file was "\
 "specified in a context where it only makes sense to specify a new file.";
-const char nErrDescInvCrosslinkStr[]      = "Invalid cross-device link. An "\
+NCONST_STR nErrDescInvCrosslinkStr[]      = "Invalid cross-device link. An "\
 "attempt to make an improper link across file systems was detected. This "\
 "happens not only when you use link(), but also when you rename a file with "\
 "rename().";
-const char nErrDescInvDeviceStr[]         = "No such device. The wrong type of "\
+NCONST_STR nErrDescInvDeviceStr[]         = "No such device. The wrong type of "\
 "device was given to a function that expects a particular sort of device.";
-const char nErrDescNotDirStr[]            = "Not a directory. A file that isn’t "\
+NCONST_STR nErrDescNotDirStr[]            = "Not a directory. A file that isn’t "\
 "a directory was specified when a directory is required.";
-const char nErrDescIsDirStr[]             = "Is a directory. You cannot open a "\
+NCONST_STR nErrDescIsDirStr[]             = "Is a directory. You cannot open a "\
 "directory for writing, or create or remove hard links to it.";
-const char nErrDescInvArgStr[]            = "Invalid argument. This is used to "\
+NCONST_STR nErrDescInvArgStr[]            = "Invalid argument. This is used to "\
 "indicate various kinds of problems with passing the wrong argument to a "\
 "library function.";
-const char nErrDescMaxFileStr[]           = "Too many open files. The current "\
+NCONST_STR nErrDescMaxFileStr[]           = "Too many open files. The current "\
 "process has too many files open and can’t open any more. Duplicate "\
 "descriptors do count toward this limit.";
-const char nErrDescMaxFileSysStr[]        = "Too many open files in system. "\
+NCONST_STR nErrDescMaxFileSysStr[]        = "Too many open files in system. "\
 "There are too many distinct file openings in the entire system. Note that any "\
 "number of linked channels count as just one file opening.";
-const char nErrDescInvIOCtlStr[]          = "Inappropriate ioctl for device. "\
+NCONST_STR nErrDescInvIOCtlStr[]          = "Inappropriate ioctl for device. "\
 "Inappropriate I/O control operation, such as trying to set terminal modes on "\
 "an ordinary file.";
-const char nErrDescTextBusyStr[]          = "Text file busy. An attempt to "\
+NCONST_STR nErrDescTextBusyStr[]          = "Text file busy. An attempt to "\
 "execute a file that is currently open for writing, or write to a file that is "\
 "currently being executed. Often using a debugger to run a program is "\
 "considered having it open for writing and will cause this error.";
-const char nErrDescFileTooBigStr[]        = "File too large. The size of a file "\
+NCONST_STR nErrDescFileTooBigStr[]        = "File too large. The size of a file "\
 "would be larger than allowed by the system.";
-const char nErrDescNoSpaceStr[]           = "No space left on device. Write "\
+NCONST_STR nErrDescNoSpaceStr[]           = "No space left on device. Write "\
 "operation on a file failed because the disk is full.";
-const char nErrDescInvSeekStr[]           = "Illegal seek. Invalid seek "\
+NCONST_STR nErrDescInvSeekStr[]           = "Illegal seek. Invalid seek "\
 "operation (such as on a pipe).";
-const char nErrDescReadOnlyStr[]          = "Read-only file system. An attempt "\
+NCONST_STR nErrDescReadOnlyStr[]          = "Read-only file system. An attempt "\
 "was made to modify something on a read-only file system.";
-const char nErrDescMaxLinksStr[]          = "Too many links. The link count of a "\
+NCONST_STR nErrDescMaxLinksStr[]          = "Too many links. The link count of a "\
 "single file would become too large. rename() can cause this error if the file "\
 "being renamed already has as many links as it can take";
-const char nErrDescInvPipeStr[]           = "Broken pipe. There is no process "\
+NCONST_STR nErrDescInvPipeStr[]           = "Broken pipe. There is no process "\
 "reading from the other end of a pipe.";
-const char nErrDescDomainStr[]            = "Numerical argument out of domain. "\
+NCONST_STR nErrDescDomainStr[]            = "Numerical argument out of domain. "\
 "Used by mathematical functions when an argument value does not fall into the "\
 "domain over which the function is defined.";
-const char nErrDescResultTooBigStr[]      = "Numerical result out of range. Used "\
+NCONST_STR nErrDescResultTooBigStr[]      = "Numerical result out of range. Used "\
 "by mathematical functions when the result value is not representable because "\
 "of overflow or underflow.";
-const char nErrDescWouldBlockStr[]        = "Resource temporarily unavailable; "\
+NCONST_STR nErrDescWouldBlockStr[]        = "Resource temporarily unavailable; "\
 "Operation would block. The call might work if you try again later. This error "\
 "can happen in a few different situations:\n"\
 "1) An operation that would block was attempted on an object that has "\
@@ -965,7 +965,7 @@ const char nErrDescWouldBlockStr[]        = "Resource temporarily unavailable; "
 "for other processes to release scarce resources. Such shortages are usually "\
 "fairly serious and affect the whole system, so usually an interactive program "\
 "should report the error to the user and return to its command loop.";
-const char nErrDescInProgressStr[]        = "Operation now in progress. An "\
+NCONST_STR nErrDescInProgressStr[]        = "Operation now in progress. An "\
 "operation that cannot complete immediately was initiated on an object that "\
 "has non-blocking mode selected. Some functions that must always block (such "\
 "as connect()) never return NERROR_WOULD_BLOCK. Instead, they return "\
@@ -973,132 +973,132 @@ const char nErrDescInProgressStr[]        = "Operation now in progress. An "\
 "some time. Attempts to manipulate the object before the call completes return "\
 "NERROR_ALREADY. You can use the select function to find out when the pending "\
 "operation has completed.";
-const char nErrDescAlreadyStr[]           = "Operation already in progress. An "\
+NCONST_STR nErrDescAlreadyStr[]           = "Operation already in progress. An "\
 "operation is already in progress on an object that has non-blocking mode "\
 "selected.";
-const char nErrDescNotSocketStr[]         = "Socket operation on non-socket. A "\
+NCONST_STR nErrDescNotSocketStr[]         = "Socket operation on non-socket. A "\
 "file that isn’t a socket was specified when a socket is required.";
-const char nErrDescMaxMessageStr[]        = "Message too long. The size of a "\
+NCONST_STR nErrDescMaxMessageStr[]        = "Message too long. The size of a "\
 "message sent on a socket was larger than the supported maximum size.";
-const char nErrDescInvProtoTypeStr[]      = "Protocol wrong type for socket. The "\
+NCONST_STR nErrDescInvProtoTypeStr[]      = "Protocol wrong type for socket. The "\
 "socket type does not support the requested communications protocol.";
-const char nErrDescInvProtoOptStr[]       = "Protocol not available. You "\
+NCONST_STR nErrDescInvProtoOptStr[]       = "Protocol not available. You "\
 "specified a socket option that doesn’t make sense for the particular protocol "\
 "being used by the socket.";
-const char nErrDescInvPortocolStr[]       = "Protocol not supported. The socket "\
+NCONST_STR nErrDescInvPortocolStr[]       = "Protocol not supported. The socket "\
 "domain does not support the requested communications protocol (perhaps because "\
 "the requested protocol is completely invalid).";
-const char nErrDescInvSockTypeStr[]       = "Socket type not supported. The "\
+NCONST_STR nErrDescInvSockTypeStr[]       = "Socket type not supported. The "\
 "socket type is not supported for this operation.";
-const char nErrDescInvSockOptStr[]        = "Operation not supported. The "\
+NCONST_STR nErrDescInvSockOptStr[]        = "Operation not supported. The "\
 "operation you requested is not supported. Some socket functions don’t make "\
 "sense for all types of sockets, and others may not be implemented for all "\
 "communications protocols.";
-const char nErrDescInvProtoFamStr[]       = "Protocol family not supported. The "\
+NCONST_STR nErrDescInvProtoFamStr[]       = "Protocol family not supported. The "\
 "socket communications protocol family you requested is not supported.";
-const char nErrDescInvAddrFamStr[]        = "Address family not supported by "\
+NCONST_STR nErrDescInvAddrFamStr[]        = "Address family not supported by "\
 "protocol. The address family specified for a socket is not supported; it is "\
 "inconsistent with the protocol being used on the socket.";
-const char nErrDescAddrInUseStr[]         = "The requested socket address is "\
+NCONST_STR nErrDescAddrInUseStr[]         = "The requested socket address is "\
 "already in use.";
-const char nErrDescAddrNotAvailableStr[]  = "Cannot assign requested address. "\
+NCONST_STR nErrDescAddrNotAvailableStr[]  = "Cannot assign requested address. "\
 "The requested socket address is not available; for example, you tried to "\
 "give a socket a name that doesn’t match the local host name.";
-const char nErrDescNetDownStr[]           = "Network is down. A socket operation "\
+NCONST_STR nErrDescNetDownStr[]           = "Network is down. A socket operation "\
 "failed because the network was down.";
-const char nErrDescNetUnreachableStr[]    = "Network is unreachable. A socket "\
+NCONST_STR nErrDescNetUnreachableStr[]    = "Network is unreachable. A socket "\
 "operation failed because the subnet containing the remote host was unreachable.";
-const char nErrDescNetResetStr[]          = "Network dropped connection on "\
+NCONST_STR nErrDescNetResetStr[]          = "Network dropped connection on "\
 "reset. A network connection was reset because the remote host crashed.";
-const char nErrDescConnAbortedStr[]       = "Software caused connection abort. A "\
+NCONST_STR nErrDescConnAbortedStr[]       = "Software caused connection abort. A "\
 "network connection was aborted locally.";
-const char nErrDescConnResetStr[]         = "Connection reset by peer. A network "\
+NCONST_STR nErrDescConnResetStr[]         = "Connection reset by peer. A network "\
 "connection was closed for reasons outside the control of the local host, such "\
 "as by the remote machine rebooting or an unrecoverable protocol violation.";
-const char nErrDescNoBufferSpaceStr[]     = "No buffer space available. The "\
+NCONST_STR nErrDescNoBufferSpaceStr[]     = "No buffer space available. The "\
 "kernel’s buffers for I/O operations are all in use.";
-const char nErrDescAlreadyConnStr[]       = "Transport endpoint is already "\
+NCONST_STR nErrDescAlreadyConnStr[]       = "Transport endpoint is already "\
 "connected. You tried to connect a socket that is already connected.";
-const char nErrDescNotConnStr[]           = "Transport endpoint is not "\
+NCONST_STR nErrDescNotConnStr[]           = "Transport endpoint is not "\
 "connected. The socket is not connected to anything. You get this error when "\
 "you try to transmit data over a socket, without first specifying a destination "\
 "for the data. For a connectionless socket (for datagram protocols, such as "\
 "UDP), you get NERROR_NO_ADDR instead.";
-const char nErrDescNoAddrStr[]            = "Destination address required. No "\
+NCONST_STR nErrDescNoAddrStr[]            = "Destination address required. No "\
 "default destination address was set for the socket. You get this error when "\
 "you try to transmit data over a connectionless socket, without first specifying "\
 "a destination for the data with connect().";
-const char nErrDescSockShutdownStr[]      = "Cannot send after transport endpoint "\
+NCONST_STR nErrDescSockShutdownStr[]      = "Cannot send after transport endpoint "\
 "shutdown. The socket has already been shut down.";
-const char nErrDescMaxRefsStr[]           = "Too many references: cannot splice. "\
+NCONST_STR nErrDescMaxRefsStr[]           = "Too many references: cannot splice. "\
 "The number of \"in-flight\" file descriptors exceeds the file resource limit "\
 "and the caller does not have the CAP_SYS_RESOURCE capability. An in-flight "\
 "file descriptor is one that has been sent using sendmsg() but has not yet been "\
 "accepted in the recipient process using recvmsg().";
-const char nErrDescConnTimeoutStr[]       = "Connection timed out. A socket "\
+NCONST_STR nErrDescConnTimeoutStr[]       = "Connection timed out. A socket "\
 "operation with a specified timeout received no response during the timeout "\
 "period.";
-const char nErrDescConnRefusedStr[]       = "Connection refused. A remote host "\
+NCONST_STR nErrDescConnRefusedStr[]       = "Connection refused. A remote host "\
 "refused to allow the network connection (typically because it is not running "\
 "the requested service).";
-const char nErrDescLinkLoopStr[]          = "Too many levels of symbolic links. "\
+NCONST_STR nErrDescLinkLoopStr[]          = "Too many levels of symbolic links. "\
 "Too many levels of symbolic links were encountered in looking up a file name. "\
 "This often indicates a cycle of symbolic links.";
-const char nErrDescMaxFileNameStr[]       = "File name too long. Filename too "\
+NCONST_STR nErrDescMaxFileNameStr[]       = "File name too long. Filename too "\
 "long (longer than PATH_MAX) or host name too long (in gethostname() or "\
 "sethostname()).";
-const char nErrDescHostDownStr[]          = "Host is down. The remote host for "\
+NCONST_STR nErrDescHostDownStr[]          = "Host is down. The remote host for "\
 "a requested network connection is down.";
-const char nErrDescHostUnreachableStr[]   = "No route to host. The remote host "\
+NCONST_STR nErrDescHostUnreachableStr[]   = "No route to host. The remote host "\
 "for a requested network connection is not reachable.";
-const char nErrDescDirNotEmptyStr[]       = "Directory not empty. Directory not "\
+NCONST_STR nErrDescDirNotEmptyStr[]       = "Directory not empty. Directory not "\
 "empty, where an empty directory was expected. Typically, this error occurs "\
 "when you are trying to delete a directory.";
-const char nErrDescMaxProcessStr[]        = "Too many processes. This means "\
+NCONST_STR nErrDescMaxProcessStr[]        = "Too many processes. This means "\
 "that the per-user limit on new process would be exceeded by an attempted "\
 "fork().";
-const char nErrDescMaxUsersStr[]          = "Too many users. The file quota "\
+NCONST_STR nErrDescMaxUsersStr[]          = "Too many users. The file quota "\
 "system is confused because there are too many users.";
-const char nErrDescMaxDiskQuotaStr[]      = "Disk quota exceeded. The user’s "\
+NCONST_STR nErrDescMaxDiskQuotaStr[]      = "Disk quota exceeded. The user’s "\
 "disk quota was exceeded.";
-const char nErrDescStaleStr[]             = "Stale file handle. This indicates "\
+NCONST_STR nErrDescStaleStr[]             = "Stale file handle. This indicates "\
 "an internal confusion in the file system which is due to file system "\
 "rearrangements on the server host for NFS file systems or corruption in other "\
 "file systems. Repairing this condition usually requires unmounting, possibly "\
 "repairing and remounting the file system.";
-const char nErrDescRemoteStr[]            = "Object is remote. An attempt was "\
+NCONST_STR nErrDescRemoteStr[]            = "Object is remote. An attempt was "\
 "made to NFS-mount a remote file system with a file name that already "\
 "specifies an NFS-mounted file.";
-const char nErrDescInvRPCStr[]            = "RPC struct is bad. Exchange of "\
+NCONST_STR nErrDescInvRPCStr[]            = "RPC struct is bad. Exchange of "\
 "RPC information was unsuccessful.";
-const char nErrDescInvRPCVersionStr[]     = "RPC version wrong. The version "\
+NCONST_STR nErrDescInvRPCVersionStr[]     = "RPC version wrong. The version "\
 "of RPC on the remote peer is not compatible with the local version.";
-const char nErrDescInvRPCProgStr[]        = "RPC program not available. The "\
+NCONST_STR nErrDescInvRPCProgStr[]        = "RPC program not available. The "\
 "requested program is not registered on the remote host.";
-const char nErrDescInvRPCProgVersionStr[] = "RPC program version wrong. The "\
+NCONST_STR nErrDescInvRPCProgVersionStr[] = "RPC program version wrong. The "\
 "requested version of the program is not available on the remote host(RPC).";
-const char nErrDescInvRPCProcStr[]        = "RPC bad procedure for program. "\
+NCONST_STR nErrDescInvRPCProcStr[]        = "RPC bad procedure for program. "\
 "An RPC call was attempted for a procedure which doesn't exist in the remote "\
 "program.";
-const char nErrDescNoFileLockStr[]        = "No locks available. This is "\
+NCONST_STR nErrDescNoFileLockStr[]        = "No locks available. This is "\
 "used by the file locking facilities. This can result from an operation to "\
 "an NFS server running another operating system.";
-const char nErrDescInvFileTypeStr[]       = "Inappropriate file type or "\
+NCONST_STR nErrDescInvFileTypeStr[]       = "Inappropriate file type or "\
 "format. The file was the wrong type for the operation, or a data file had "\
 "the wrong format. On some systems chmod() returns this error if you try to "\
 "set the sticky bit on a non - directory file";
-const char nErrDescAuthStr[]              = "Authentication error. Attempted "\
+NCONST_STR nErrDescAuthStr[]              = "Authentication error. Attempted "\
 "to use an invalid authentica-tion authentication ticket to mount an NFS file "\
 "system.";
-const char nErrDescNoAuthStr[]            = "Need authenticator. An "\
+NCONST_STR nErrDescNoAuthStr[]            = "Need authenticator. An "\
 "authentication ticket must be obtained before the given NFS file system may "\
 "be mounted.";
-const char nErrDescFuncNotSupportedStr[]  = "Function not implemented. This "\
+NCONST_STR nErrDescFuncNotSupportedStr[]  = "Function not implemented. This "\
 "indicates that the function called is not implemented at all, either in the "\
 "C library itself or in the operating system. When you get this error, you can "\
 "be sure that this particular function will always fail with ENOSYS unless you "\
 "install a new version of the C library or the operating system.";
-const char nErrDescNotSupportStr[]        = "Not supported. A function returns "\
+NCONST_STR nErrDescNotSupportStr[]        = "Not supported. A function returns "\
 "this error when certain parameter values are valid, but the functionality "\
 "they request is not available. This can mean that the function does not "\
 "implement a particular command or option value or flag bit at all. For "\
@@ -1108,57 +1108,57 @@ const char nErrDescNotSupportStr[]        = "Not supported. A function returns "
 "given; different file descriptors might support different ranges of parameter "\
 "values. If the entire function is not available at all in the implementation, "\
 "it returns NERROR_FUNC_NOT_SUPPORTED instead.";
-const char nErrDescInvMultibyteStr[]      = "Invalid or incomplete multibyte "\
+NCONST_STR nErrDescInvMultibyteStr[]      = "Invalid or incomplete multibyte "\
 "or wide character. While decoding a multibyte character the function came "\
 "along an invalid or an incomplete sequence of bytes or the given wide "\
 "character is invalid.";
-const char nErrDescInvBackgroundStr[]     = "Inappropriate operation for "\
+NCONST_STR nErrDescInvBackgroundStr[]     = "Inappropriate operation for "\
 "background process.";
-const char nErrDescTranslatorDiedStr[]    = "Translator died. A file returns "\
+NCONST_STR nErrDescTranslatorDiedStr[]    = "Translator died. A file returns "\
 "this error when the file is translated by a program and the translator "\
 "program dies while starting up, before it has connected to the file.";
-const char nErrDescJokeStr[]              = "You really blew it this time...";
-const char nErrDescInvMessageStr[]        = "Bad message. During a read(), "\
+NCONST_STR nErrDescJokeStr[]              = "You really blew it this time...";
+NCONST_STR nErrDescInvMessageStr[]        = "Bad message. During a read(), "\
 "getmsg(), getpmsg(), or ioctl() I_RECVFD request to a STREAMS device, a "\
 "message arrived at the head of the STREAM that is inappropriate for the "\
 "function receiving the message. Message waiting to be read on a STREAM is "\
 "not a data message.";
-const char nErrDescNoIdentifierStr[]      = "Identifier removed. The message "\
+NCONST_STR nErrDescNoIdentifierStr[]      = "Identifier removed. The message "\
 "queue was removed for msgrcv(), msgget(), or msgsnd().";
-const char nErrDescMultihopStr[]          = "Multihop attempted.";
-const char nErrDescNoDataStr[]            = "No data available. No message was "\
+NCONST_STR nErrDescMultihopStr[]          = "Multihop attempted.";
+NCONST_STR nErrDescNoDataStr[]            = "No data available. No message was "\
 "available to be received by the requested operation.";
-const char nErrDescNoLinkStr[]            = "Link has been severed.";
-const char nErrDescNoMessageStr[]         = "No message of desired type. An IPC "\
+NCONST_STR nErrDescNoLinkStr[]            = "Link has been severed.";
+NCONST_STR nErrDescNoMessageStr[]         = "No message of desired type. An IPC "\
 "message queue does not contain a message of the desired type, or a message "\
 "catalog does not contain the requested message.";
-const char nErrDescNoStreamResourcesStr[] = "Out of streams resources.";
-const char nErrDescDeviceNotStreamStr[]   = "Device not a stream.";
-const char nErrDescOverflowStr[]          = "Value too large for defined data type.";
-const char nErrDescProtocolStr[]          = "Protocol error.";
-const char nErrDescTimerStr[]             = "Timer expired.";
-const char nErrDescAsyncCancelStr[]       = "Operation canceled.";
-const char nErrDescOwnerDiedStr[]         = "Owner died.";
-const char nErrDescNotRecoverableStr[]    = "State not recoverable.";
-const char nErrDescDeviceOffStr[]         = "Device power is off. Cannot operate "\
+NCONST_STR nErrDescNoStreamResourcesStr[] = "Out of streams resources.";
+NCONST_STR nErrDescDeviceNotStreamStr[]   = "Device not a stream.";
+NCONST_STR nErrDescOverflowStr[]          = "Value too large for defined data type.";
+NCONST_STR nErrDescProtocolStr[]          = "Protocol error.";
+NCONST_STR nErrDescTimerStr[]             = "Timer expired.";
+NCONST_STR nErrDescAsyncCancelStr[]       = "Operation canceled.";
+NCONST_STR nErrDescOwnerDiedStr[]         = "Owner died.";
+NCONST_STR nErrDescNotRecoverableStr[]    = "State not recoverable.";
+NCONST_STR nErrDescDeviceOffStr[]         = "Device power is off. Cannot operate "\
 "on a powered off device, such as a printer.";
-const char nErrDescDeviceErrorStr[]       = "Device error. A device error has "\
+NCONST_STR nErrDescDeviceErrorStr[]       = "Device error. A device error has "\
 "occurred, e.g. a printer running out of paper.";
-const char nErrDescBadExecutableStr[]     = "Bad executable. The executable or "\
+NCONST_STR nErrDescBadExecutableStr[]     = "Bad executable. The executable or "\
 "shared library being referenced was malformed.";
-const char nErrDescInvArchitectureStr[]   = "Bad CPU type in executable. The "\
+NCONST_STR nErrDescInvArchitectureStr[]   = "Bad CPU type in executable. The "\
 "executable in question does not support the current CPU.";
-const char nErrDescInvLibVersionStr[]     = "Shared library version mismatch. "\
+NCONST_STR nErrDescInvLibVersionStr[]     = "Shared library version mismatch. "\
 "The version of the shared library on the system does not match the version "\
 "which was expected.";
-const char nErrDescInvMachoStr[]          = "Malformed Macho file. The Mach "\
+NCONST_STR nErrDescInvMachoStr[]          = "Malformed Macho file. The Mach "\
 "object file is malformed.";
-const char nErrDescNoAttributeStr[]       = "Attribute not found. The specified "\
+NCONST_STR nErrDescNoAttributeStr[]       = "Attribute not found. The specified "\
 "extended attribute does not exist.";
-const char nErrDescNoPolicyStr[]          = "No such policy registered.";
-const char nErrDescMaxQueueStr[]          = "Interface output queue is full.";
+NCONST_STR nErrDescNoPolicyStr[]          = "No such policy registered.";
+NCONST_STR nErrDescMaxQueueStr[]          = "Interface output queue is full.";
 
-const char nErrDescMaxStr[]               = "The maximum error value, likely "\
+NCONST_STR nErrDescMaxStr[]               = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
 
 
@@ -1486,317 +1486,317 @@ const char * nErrorDescriptions[] = {
     nErrDescMaxStr
 };
 const nint_t nErrorDescLengths[] = {
-    sizeof(nErrDescMinStr),
+    sizeof(nErrDescMinStr - 1),
     
-    sizeof(nErrDescUnknownStr),
-    sizeof(nErrDescInternalFailureStr),
-    sizeof(nErrDescNullStr),
-    sizeof(nErrDescInvErrorStr),
+    sizeof(nErrDescUnknownStr - 1),
+    sizeof(nErrDescInternalFailureStr - 1),
+    sizeof(nErrDescNullStr - 1),
+    sizeof(nErrDescInvErrorStr - 1),
     
-    sizeof(nErrDescSigAbrtStr),
-    sizeof(nErrDescSigFpeStr),
-    sizeof(nErrDescSigIllStr),
-    sizeof(nErrDescSigIntStr),
-    sizeof(nErrDescSigSegvStr),
-    sizeof(nErrDescSigTermStr),
+    sizeof(nErrDescSigAbrtStr - 1),
+    sizeof(nErrDescSigFpeStr - 1),
+    sizeof(nErrDescSigIllStr - 1),
+    sizeof(nErrDescSigIntStr - 1),
+    sizeof(nErrDescSigSegvStr - 1),
+    sizeof(nErrDescSigTermStr - 1),
     
     #if 0
-    sizeof(nErrDescNoPermStr),
-    sizeof(nErrDescNoFileStr),
-    sizeof(nErrDescNoProcessStr),
-    sizeof(nErrDescInterruptStr),
-    sizeof(nErrDescIOStr),
-    sizeof(nErrDescMaxArgsStr),
-    sizeof(nErrDescInvExecFormatStr),
-    sizeof(nErrDescInvFPStr),
-    sizeof(nErrDescNoChildStr),
-    sizeof(nErrDescDeadlockStr),
-    sizeof(nErrDescNoMemoryStr),
-    sizeof(nErrDescNoFilePermStr),
-    sizeof(nErrDescFaultStr),
-    sizeof(nErrDescNotBlockStr),
-    sizeof(nErrDescDeviceBusyStr),
-    sizeof(nErrDescFileExistsStr),
-    sizeof(nErrDescInvCrosslinkStr),
-    sizeof(nErrDescInvDeviceStr),
-    sizeof(nErrDescNotDirStr),
-    sizeof(nErrDescIsDirStr),
-    sizeof(nErrDescInvArgStr),
-    sizeof(nErrDescMaxFileStr),
-    sizeof(nErrDescMaxFileSysStr),
-    sizeof(nErrDescInvIOCtlStr),
-    sizeof(nErrDescTextBusyStr),
-    sizeof(nErrDescFileTooBigStr),
-    sizeof(nErrDescNoSpaceStr),
-    sizeof(nErrDescInvSeekStr),
-    sizeof(nErrDescReadOnlyStr),
-    sizeof(nErrDescMaxLinksStr),
-    sizeof(nErrDescInvPipeStr),
-    sizeof(nErrDescDomainStr),
-    sizeof(nErrDescResultTooBigStr),
-    sizeof(nErrDescWouldBlockStr),
-    sizeof(nErrDescInProgressStr),
-    sizeof(nErrDescAlreadyStr),
-    sizeof(nErrDescNotSocketStr),
-    sizeof(nErrDescMaxMessageStr),
-    sizeof(nErrDescInvProtoTypeStr),
-    sizeof(nErrDescInvProtoOptStr),
-    sizeof(nErrDescInvPortocolStr),
-    sizeof(nErrDescInvSockTypeStr),
-    sizeof(nErrDescInvSockOptStr),
-    sizeof(nErrDescInvProtoFamStr),
-    sizeof(nErrDescInvAddrFamStr),
-    sizeof(nErrDescAddrInUseStr),
-    sizeof(nErrDescAddrNotAvailableStr),
-    sizeof(nErrDescNetDownStr),
-    sizeof(nErrDescNetUnreachableStr),
-    sizeof(nErrDescNetResetStr),
-    sizeof(nErrDescConnAbortedStr),
-    sizeof(nErrDescConnResetStr),
-    sizeof(nErrDescNoBufferSpaceStr),
-    sizeof(nErrDescAlreadyConnStr),
-    sizeof(nErrDescNotConnStr),
-    sizeof(nErrDescNoAddrStr),
-    sizeof(nErrDescSockShutdownStr),
-    sizeof(nErrDescMaxRefsStr),
-    sizeof(nErrDescConnTimeoutStr),
-    sizeof(nErrDescConnRefusedStr),
-    sizeof(nErrDescLinkLoopStr),
-    sizeof(nErrDescMaxFileNameStr),
-    sizeof(nErrDescHostDownStr),
-    sizeof(nErrDescHostUnreachableStr),
-    sizeof(nErrDescDirNotEmptyStr),
-    sizeof(nErrDescMaxProcessStr),
-    sizeof(nErrDescMaxUsersStr),
-    sizeof(nErrDescMaxDiskQuotaStr),
-    sizeof(nErrDescStaleStr),
-    sizeof(nErrDescRemoteStr),
-    sizeof(nErrDescInvRPCStr),
-    sizeof(nErrDescInvRPCVersionStr),
-    sizeof(nErrDescInvRPCProgStr),
-    sizeof(nErrDescInvRPCProgVersionStr),
-    sizeof(nErrDescInvRPCProcStr),
-    sizeof(nErrDescNoFileLockStr),
-    sizeof(nErrDescInvFileTypeStr),
-    sizeof(nErrDescAuthStr),
-    sizeof(nErrDescNoAuthStr),
-    sizeof(nErrDescFuncNotSupportedStr),
-    sizeof(nErrDescNotSupportStr),
-    sizeof(nErrDescInvMultibyteStr),
-    sizeof(nErrDescInvBackgroundStr),
-    sizeof(nErrDescTranslatorDiedStr),
-    sizeof(nErrDescJokeStr),
-    sizeof(nErrDescInvMessageStr),
-    sizeof(nErrDescNoIdentifierStr),
-    sizeof(nErrDescMultihopStr),
-    sizeof(nErrDescNoDataStr),
-    sizeof(nErrDescNoLinkStr),
-    sizeof(nErrDescNoMessageStr),
-    sizeof(nErrDescNoStreamResourcesStr),
-    sizeof(nErrDescDeviceNotStreamStr),
-    sizeof(nErrDescOverflowStr),
-    sizeof(nErrDescProtocolStr),
-    sizeof(nErrDescTimerStr),
-    sizeof(nErrDescAsyncCancelStr),
-    sizeof(nErrDescOwnerDiedStr),
-    sizeof(nErrDescNotRecoverableStr),
-    sizeof(nErrDescDeviceOffStr),
-    sizeof(nErrDescDeviceErrorStr),
-    sizeof(nErrDescBadExecutableStr),
-    sizeof(nErrDescInvArchitectureStr),
-    sizeof(nErrDescInvLibVersionStr),
-    sizeof(nErrDescInvMachoStr),
-    sizeof(nErrDescNoAttributeStr),
-    sizeof(nErrDescNoPolicyStr),
-    sizeof(nErrDescMaxQueueStr),
+    sizeof(nErrDescNoPermStr - 1),
+    sizeof(nErrDescNoFileStr - 1),
+    sizeof(nErrDescNoProcessStr - 1),
+    sizeof(nErrDescInterruptStr - 1),
+    sizeof(nErrDescIOStr - 1),
+    sizeof(nErrDescMaxArgsStr - 1),
+    sizeof(nErrDescInvExecFormatStr - 1),
+    sizeof(nErrDescInvFPStr - 1),
+    sizeof(nErrDescNoChildStr - 1),
+    sizeof(nErrDescDeadlockStr - 1),
+    sizeof(nErrDescNoMemoryStr - 1),
+    sizeof(nErrDescNoFilePermStr - 1),
+    sizeof(nErrDescFaultStr - 1),
+    sizeof(nErrDescNotBlockStr - 1),
+    sizeof(nErrDescDeviceBusyStr - 1),
+    sizeof(nErrDescFileExistsStr - 1),
+    sizeof(nErrDescInvCrosslinkStr - 1),
+    sizeof(nErrDescInvDeviceStr - 1),
+    sizeof(nErrDescNotDirStr - 1),
+    sizeof(nErrDescIsDirStr - 1),
+    sizeof(nErrDescInvArgStr - 1),
+    sizeof(nErrDescMaxFileStr - 1),
+    sizeof(nErrDescMaxFileSysStr - 1),
+    sizeof(nErrDescInvIOCtlStr - 1),
+    sizeof(nErrDescTextBusyStr - 1),
+    sizeof(nErrDescFileTooBigStr - 1),
+    sizeof(nErrDescNoSpaceStr - 1),
+    sizeof(nErrDescInvSeekStr - 1),
+    sizeof(nErrDescReadOnlyStr - 1),
+    sizeof(nErrDescMaxLinksStr - 1),
+    sizeof(nErrDescInvPipeStr - 1),
+    sizeof(nErrDescDomainStr - 1),
+    sizeof(nErrDescResultTooBigStr - 1),
+    sizeof(nErrDescWouldBlockStr - 1),
+    sizeof(nErrDescInProgressStr - 1),
+    sizeof(nErrDescAlreadyStr - 1),
+    sizeof(nErrDescNotSocketStr - 1),
+    sizeof(nErrDescMaxMessageStr - 1),
+    sizeof(nErrDescInvProtoTypeStr - 1),
+    sizeof(nErrDescInvProtoOptStr - 1),
+    sizeof(nErrDescInvPortocolStr - 1),
+    sizeof(nErrDescInvSockTypeStr - 1),
+    sizeof(nErrDescInvSockOptStr - 1),
+    sizeof(nErrDescInvProtoFamStr - 1),
+    sizeof(nErrDescInvAddrFamStr - 1),
+    sizeof(nErrDescAddrInUseStr - 1),
+    sizeof(nErrDescAddrNotAvailableStr - 1),
+    sizeof(nErrDescNetDownStr - 1),
+    sizeof(nErrDescNetUnreachableStr - 1),
+    sizeof(nErrDescNetResetStr - 1),
+    sizeof(nErrDescConnAbortedStr - 1),
+    sizeof(nErrDescConnResetStr - 1),
+    sizeof(nErrDescNoBufferSpaceStr - 1),
+    sizeof(nErrDescAlreadyConnStr - 1),
+    sizeof(nErrDescNotConnStr - 1),
+    sizeof(nErrDescNoAddrStr - 1),
+    sizeof(nErrDescSockShutdownStr - 1),
+    sizeof(nErrDescMaxRefsStr - 1),
+    sizeof(nErrDescConnTimeoutStr - 1),
+    sizeof(nErrDescConnRefusedStr - 1),
+    sizeof(nErrDescLinkLoopStr - 1),
+    sizeof(nErrDescMaxFileNameStr - 1),
+    sizeof(nErrDescHostDownStr - 1),
+    sizeof(nErrDescHostUnreachableStr - 1),
+    sizeof(nErrDescDirNotEmptyStr - 1),
+    sizeof(nErrDescMaxProcessStr - 1),
+    sizeof(nErrDescMaxUsersStr - 1),
+    sizeof(nErrDescMaxDiskQuotaStr - 1),
+    sizeof(nErrDescStaleStr - 1),
+    sizeof(nErrDescRemoteStr - 1),
+    sizeof(nErrDescInvRPCStr - 1),
+    sizeof(nErrDescInvRPCVersionStr - 1),
+    sizeof(nErrDescInvRPCProgStr - 1),
+    sizeof(nErrDescInvRPCProgVersionStr - 1),
+    sizeof(nErrDescInvRPCProcStr - 1),
+    sizeof(nErrDescNoFileLockStr - 1),
+    sizeof(nErrDescInvFileTypeStr - 1),
+    sizeof(nErrDescAuthStr - 1),
+    sizeof(nErrDescNoAuthStr - 1),
+    sizeof(nErrDescFuncNotSupportedStr - 1),
+    sizeof(nErrDescNotSupportStr - 1),
+    sizeof(nErrDescInvMultibyteStr - 1),
+    sizeof(nErrDescInvBackgroundStr - 1),
+    sizeof(nErrDescTranslatorDiedStr - 1),
+    sizeof(nErrDescJokeStr - 1),
+    sizeof(nErrDescInvMessageStr - 1),
+    sizeof(nErrDescNoIdentifierStr - 1),
+    sizeof(nErrDescMultihopStr - 1),
+    sizeof(nErrDescNoDataStr - 1),
+    sizeof(nErrDescNoLinkStr - 1),
+    sizeof(nErrDescNoMessageStr - 1),
+    sizeof(nErrDescNoStreamResourcesStr - 1),
+    sizeof(nErrDescDeviceNotStreamStr - 1),
+    sizeof(nErrDescOverflowStr - 1),
+    sizeof(nErrDescProtocolStr - 1),
+    sizeof(nErrDescTimerStr - 1),
+    sizeof(nErrDescAsyncCancelStr - 1),
+    sizeof(nErrDescOwnerDiedStr - 1),
+    sizeof(nErrDescNotRecoverableStr - 1),
+    sizeof(nErrDescDeviceOffStr - 1),
+    sizeof(nErrDescDeviceErrorStr - 1),
+    sizeof(nErrDescBadExecutableStr - 1),
+    sizeof(nErrDescInvArchitectureStr - 1),
+    sizeof(nErrDescInvLibVersionStr - 1),
+    sizeof(nErrDescInvMachoStr - 1),
+    sizeof(nErrDescNoAttributeStr - 1),
+    sizeof(nErrDescNoPolicyStr - 1),
+    sizeof(nErrDescMaxQueueStr - 1),
     #endif
 
     #if NIMBLE_OS == NIMBLE_WINDOWS
-    sizeof(nErrDescNoPermStr),
-    sizeof(nErrDescNoFileStr),
-    sizeof(nErrDescNoProcessStr),
-    sizeof(nErrDescInterruptStr),
-    sizeof(nErrDescIOStr),
-    sizeof(nErrDescMaxArgsStr),
-    sizeof(nErrDescInvExecFormatStr),
-    sizeof(nErrDescInvFPStr),
-    sizeof(nErrDescNoChildStr),
-    sizeof(nErrDescWouldBlockStr),
-    sizeof(nErrDescNoMemoryStr),
-    sizeof(nErrDescNoFilePermStr),
-    sizeof(nErrDescFaultStr),
-    sizeof(nErrDescDeviceBusyStr),
-    sizeof(nErrDescFileExistsStr),
-    sizeof(nErrDescInvCrosslinkStr),
-    sizeof(nErrDescInvDeviceStr),
-    sizeof(nErrDescNotDirStr),
-    sizeof(nErrDescIsDirStr),
-    sizeof(nErrDescInvArgStr),
-    sizeof(nErrDescMaxFileSysStr),
-    sizeof(nErrDescMaxFileStr),
-    sizeof(nErrDescInvIOCtlStr),
-    sizeof(nErrDescFileTooBigStr),
-    sizeof(nErrDescNoSpaceStr),
-    sizeof(nErrDescInvSeekStr),
-    sizeof(nErrDescReadOnlyStr),
-    sizeof(nErrDescMaxLinksStr),
-    sizeof(nErrDescInvPipeStr),
-    sizeof(nErrDescDomainStr),
-    sizeof(nErrDescResultTooBigStr),
-    sizeof(nErrDescDeadlockStr),
-    sizeof(nErrDescMaxFileNameStr),
-    sizeof(nErrDescNoFileLockStr),
-    sizeof(nErrDescFuncNotSupportedStr),
-    sizeof(nErrDescDirNotEmptyStr),
-    sizeof(nErrDescInvMultibyteStr),
-    sizeof(nErrDescAddrInUseStr),
-    sizeof(nErrDescAddrNotAvailableStr),
-    sizeof(nErrDescInvAddrFamStr),
-    sizeof(nErrDescAlreadyStr),
-    sizeof(nErrDescInvMessageStr),
-    sizeof(nErrDescAsyncCancelStr),
-    sizeof(nErrDescConnAbortedStr),
-    sizeof(nErrDescConnRefusedStr),
-    sizeof(nErrDescConnResetStr),
-    sizeof(nErrDescNoAddrStr),
-    sizeof(nErrDescHostUnreachableStr),
-    sizeof(nErrDescNoIdentifierStr),
-    sizeof(nErrDescInProgressStr),
-    sizeof(nErrDescAlreadyConnStr),
-    sizeof(nErrDescLinkLoopStr),
-    sizeof(nErrDescMaxMessageStr),
-    sizeof(nErrDescNetDownStr),
-    sizeof(nErrDescNetResetStr),
-    sizeof(nErrDescNetUnreachableStr),
-    sizeof(nErrDescNoBufferSpaceStr),
-    sizeof(nErrDescNoDataStr),
-    sizeof(nErrDescNoLinkStr),
-    sizeof(nErrDescNoMessageStr),
-    sizeof(nErrDescInvProtoOptStr),
-    sizeof(nErrDescNoStreamResourcesStr),
-    sizeof(nErrDescDeviceNotStreamStr),
-    sizeof(nErrDescNotConnStr),
-    sizeof(nErrDescNotRecoverableStr),
-    sizeof(nErrDescNotSocketStr),
-    sizeof(nErrDescNotSupportStr),
-    sizeof(nErrDescInvSockOptStr),
-    sizeof(nErrDescOverflowStr),
-    sizeof(nErrDescOwnerDiedStr),
-    sizeof(nErrDescProtocolStr),
-    sizeof(nErrDescInvPortocolStr),
-    sizeof(nErrDescInvProtoTypeStr),
-    sizeof(nErrDescTimerStr),
-    sizeof(nErrDescConnTimeoutStr),
-    sizeof(nErrDescTextBusyStr),
+    sizeof(nErrDescNoPermStr - 1),
+    sizeof(nErrDescNoFileStr - 1),
+    sizeof(nErrDescNoProcessStr - 1),
+    sizeof(nErrDescInterruptStr - 1),
+    sizeof(nErrDescIOStr - 1),
+    sizeof(nErrDescMaxArgsStr - 1),
+    sizeof(nErrDescInvExecFormatStr - 1),
+    sizeof(nErrDescInvFPStr - 1),
+    sizeof(nErrDescNoChildStr - 1),
+    sizeof(nErrDescWouldBlockStr - 1),
+    sizeof(nErrDescNoMemoryStr - 1),
+    sizeof(nErrDescNoFilePermStr - 1),
+    sizeof(nErrDescFaultStr - 1),
+    sizeof(nErrDescDeviceBusyStr - 1),
+    sizeof(nErrDescFileExistsStr - 1),
+    sizeof(nErrDescInvCrosslinkStr - 1),
+    sizeof(nErrDescInvDeviceStr - 1),
+    sizeof(nErrDescNotDirStr - 1),
+    sizeof(nErrDescIsDirStr - 1),
+    sizeof(nErrDescInvArgStr - 1),
+    sizeof(nErrDescMaxFileSysStr - 1),
+    sizeof(nErrDescMaxFileStr - 1),
+    sizeof(nErrDescInvIOCtlStr - 1),
+    sizeof(nErrDescFileTooBigStr - 1),
+    sizeof(nErrDescNoSpaceStr - 1),
+    sizeof(nErrDescInvSeekStr - 1),
+    sizeof(nErrDescReadOnlyStr - 1),
+    sizeof(nErrDescMaxLinksStr - 1),
+    sizeof(nErrDescInvPipeStr - 1),
+    sizeof(nErrDescDomainStr - 1),
+    sizeof(nErrDescResultTooBigStr - 1),
+    sizeof(nErrDescDeadlockStr - 1),
+    sizeof(nErrDescMaxFileNameStr - 1),
+    sizeof(nErrDescNoFileLockStr - 1),
+    sizeof(nErrDescFuncNotSupportedStr - 1),
+    sizeof(nErrDescDirNotEmptyStr - 1),
+    sizeof(nErrDescInvMultibyteStr - 1),
+    sizeof(nErrDescAddrInUseStr - 1),
+    sizeof(nErrDescAddrNotAvailableStr - 1),
+    sizeof(nErrDescInvAddrFamStr - 1),
+    sizeof(nErrDescAlreadyStr - 1),
+    sizeof(nErrDescInvMessageStr - 1),
+    sizeof(nErrDescAsyncCancelStr - 1),
+    sizeof(nErrDescConnAbortedStr - 1),
+    sizeof(nErrDescConnRefusedStr - 1),
+    sizeof(nErrDescConnResetStr - 1),
+    sizeof(nErrDescNoAddrStr - 1),
+    sizeof(nErrDescHostUnreachableStr - 1),
+    sizeof(nErrDescNoIdentifierStr - 1),
+    sizeof(nErrDescInProgressStr - 1),
+    sizeof(nErrDescAlreadyConnStr - 1),
+    sizeof(nErrDescLinkLoopStr - 1),
+    sizeof(nErrDescMaxMessageStr - 1),
+    sizeof(nErrDescNetDownStr - 1),
+    sizeof(nErrDescNetResetStr - 1),
+    sizeof(nErrDescNetUnreachableStr - 1),
+    sizeof(nErrDescNoBufferSpaceStr - 1),
+    sizeof(nErrDescNoDataStr - 1),
+    sizeof(nErrDescNoLinkStr - 1),
+    sizeof(nErrDescNoMessageStr - 1),
+    sizeof(nErrDescInvProtoOptStr - 1),
+    sizeof(nErrDescNoStreamResourcesStr - 1),
+    sizeof(nErrDescDeviceNotStreamStr - 1),
+    sizeof(nErrDescNotConnStr - 1),
+    sizeof(nErrDescNotRecoverableStr - 1),
+    sizeof(nErrDescNotSocketStr - 1),
+    sizeof(nErrDescNotSupportStr - 1),
+    sizeof(nErrDescInvSockOptStr - 1),
+    sizeof(nErrDescOverflowStr - 1),
+    sizeof(nErrDescOwnerDiedStr - 1),
+    sizeof(nErrDescProtocolStr - 1),
+    sizeof(nErrDescInvPortocolStr - 1),
+    sizeof(nErrDescInvProtoTypeStr - 1),
+    sizeof(nErrDescTimerStr - 1),
+    sizeof(nErrDescConnTimeoutStr - 1),
+    sizeof(nErrDescTextBusyStr - 1),
 
     #elif NIMBLE_OS == NIMBLE_MACOS
-    sizeof(nErrDescNoPermStr),
-    sizeof(nErrDescNoFileStr),
-    sizeof(nErrDescNoProcessStr),
-    sizeof(nErrDescInterruptStr),
-    sizeof(nErrDescIOStr),
-    sizeof(nErrDescNoDeviceStr),
-    sizeof(nErrDescMaxArgsStr),
-    sizeof(nErrDescInvExecFormatStr),
-    sizeof(nErrDescInvFPStr),
-    sizeof(nErrDescNoChildStr),
-    sizeof(nErrDescDeadlockStr),
-    sizeof(nErrDescNoMemoryStr),
-    sizeof(nErrDescNoFilePermStr),
-    sizeof(nErrDescFaultStr),
-    sizeof(nErrDescNotBlockStr),
-    sizeof(nErrDescDeviceBusyStr),
-    sizeof(nErrDescFileExistsStr),
-    sizeof(nErrDescInvCrosslinkStr),
-    sizeof(nErrDescInvDeviceStr),
-    sizeof(nErrDescNotDirStr),
-    sizeof(nErrDescIsDirStr),
-    sizeof(nErrDescInvArgStr),
-    sizeof(nErrDescMaxFileStr),
-    sizeof(nErrDescMaxFileSysStr),
-    sizeof(nErrDescInvIOCtlStr),
-    sizeof(nErrDescTextBusyStr),
-    sizeof(nErrDescFileTooBigStr),
-    sizeof(nErrDescNoSpaceStr),
-    sizeof(nErrDescInvSeekStr),
-    sizeof(nErrDescReadOnlyStr),
-    sizeof(nErrDescMaxLinksStr),
-    sizeof(nErrDescInvPipeStr),
-    sizeof(nErrDescDomainStr),
-    sizeof(nErrDescResultTooBigStr),
-    sizeof(nErrDescWouldBlockStr),
-    sizeof(nErrDescInProgressStr),
-    sizeof(nErrDescAlreadyStr),
-    sizeof(nErrDescNotSocketStr),
-    sizeof(nErrDescNoAddrStr),
-    sizeof(nErrDescMaxMessageStr),
-    sizeof(nErrDescInvProtoTypeStr),
-    sizeof(nErrDescInvProtoOptStr),
-    sizeof(nErrDescInvPortocolStr),
-    sizeof(nErrDescInvSockTypeStr),
-    sizeof(nErrDescNotSupportStr),
-    sizeof(nErrDescInvSockOptStr),
-    sizeof(nErrDescInvProtoFamStr),
-    sizeof(nErrDescInvAddrFamStr),
-    sizeof(nErrDescAddrInUseStr),
-    sizeof(nErrDescAddrNotAvailableStr),
-    sizeof(nErrDescNetDownStr),
-    sizeof(nErrDescNetUnreachableStr),
-    sizeof(nErrDescNetResetStr),
-    sizeof(nErrDescConnAbortedStr),
-    sizeof(nErrDescConnResetStr),
-    sizeof(nErrDescNoBufferSpaceStr),
-    sizeof(nErrDescAlreadyConnStr),
-    sizeof(nErrDescNotConnStr),
-    sizeof(nErrDescSockShutdownStr),
-    sizeof(nErrDescMaxRefsStr),
-    sizeof(nErrDescConnTimeoutStr),
-    sizeof(nErrDescConnRefusedStr),
-    sizeof(nErrDescLinkLoopStr),
-    sizeof(nErrDescMaxFileNameStr),
-    sizeof(nErrDescHostDownStr),
-    sizeof(nErrDescHostUnreachableStr),
-    sizeof(nErrDescDirNotEmptyStr),
-    sizeof(nErrDescMaxProcessStr),
-    sizeof(nErrDescMaxUsersStr),
-    sizeof(nErrDescMaxDiskQuotaStr),
-    sizeof(nErrDescStaleStr),
-    sizeof(nErrDescRemoteStr),
-    sizeof(nErrDescInvRPCStr),
-    sizeof(nErrDescInvRPCVersionStr),
-    sizeof(nErrDescInvRPCProgStr),
-    sizeof(nErrDescInvRPCProgVersionStr),
-    sizeof(nErrDescInvRPCProcStr),
-    sizeof(nErrDescNoFileLockStr),
-    sizeof(nErrDescFuncNotSupportedStr),
-    sizeof(nErrDescInvFileTypeStr),
-    sizeof(nErrDescAuthStr),
-    sizeof(nErrDescNoAuthStr),
-    sizeof(nErrDescDeviceOffStr),
-    sizeof(nErrDescDeviceErrorStr),
-    sizeof(nErrDescOverflowStr),
-    sizeof(nErrDescBadExecutableStr),
-    sizeof(nErrDescInvArchitectureStr),
-    sizeof(nErrDescInvLibVersionStr),
-    sizeof(nErrDescInvMachoStr),
-    sizeof(nErrDescAsyncCancelStr),
-    sizeof(nErrDescNoIdentifierStr),
-    sizeof(nErrDescNoMessageStr),
-    sizeof(nErrDescInvMultibyteStr),
-    sizeof(nErrDescNoAttributeStr),
-    sizeof(nErrDescInvMessageStr),
-    sizeof(nErrDescMultihopStr),
-    sizeof(nErrDescNoDataStr),
-    sizeof(nErrDescNoLinkStr),
-    sizeof(nErrDescNoStreamResourcesStr),
-    sizeof(nErrDescDeviceNotStreamStr),
-    sizeof(nErrDescProtocolStr),
-    sizeof(nErrDescTimerStr),
-    sizeof(nErrDescInvSockOptStr),
-    sizeof(nErrDescNoPolicyStr),
-    sizeof(nErrDescNotRecoverableStr),
-    sizeof(nErrDescOwnerDiedStr),
-    sizeof(nErrDescMaxQueueStr),
+    sizeof(nErrDescNoPermStr - 1),
+    sizeof(nErrDescNoFileStr - 1),
+    sizeof(nErrDescNoProcessStr - 1),
+    sizeof(nErrDescInterruptStr - 1),
+    sizeof(nErrDescIOStr - 1),
+    sizeof(nErrDescNoDeviceStr - 1),
+    sizeof(nErrDescMaxArgsStr - 1),
+    sizeof(nErrDescInvExecFormatStr - 1),
+    sizeof(nErrDescInvFPStr - 1),
+    sizeof(nErrDescNoChildStr - 1),
+    sizeof(nErrDescDeadlockStr - 1),
+    sizeof(nErrDescNoMemoryStr - 1),
+    sizeof(nErrDescNoFilePermStr - 1),
+    sizeof(nErrDescFaultStr - 1),
+    sizeof(nErrDescNotBlockStr - 1),
+    sizeof(nErrDescDeviceBusyStr - 1),
+    sizeof(nErrDescFileExistsStr - 1),
+    sizeof(nErrDescInvCrosslinkStr - 1),
+    sizeof(nErrDescInvDeviceStr - 1),
+    sizeof(nErrDescNotDirStr - 1),
+    sizeof(nErrDescIsDirStr - 1),
+    sizeof(nErrDescInvArgStr - 1),
+    sizeof(nErrDescMaxFileStr - 1),
+    sizeof(nErrDescMaxFileSysStr - 1),
+    sizeof(nErrDescInvIOCtlStr - 1),
+    sizeof(nErrDescTextBusyStr - 1),
+    sizeof(nErrDescFileTooBigStr - 1),
+    sizeof(nErrDescNoSpaceStr - 1),
+    sizeof(nErrDescInvSeekStr - 1),
+    sizeof(nErrDescReadOnlyStr - 1),
+    sizeof(nErrDescMaxLinksStr - 1),
+    sizeof(nErrDescInvPipeStr - 1),
+    sizeof(nErrDescDomainStr - 1),
+    sizeof(nErrDescResultTooBigStr - 1),
+    sizeof(nErrDescWouldBlockStr - 1),
+    sizeof(nErrDescInProgressStr - 1),
+    sizeof(nErrDescAlreadyStr - 1),
+    sizeof(nErrDescNotSocketStr - 1),
+    sizeof(nErrDescNoAddrStr - 1),
+    sizeof(nErrDescMaxMessageStr - 1),
+    sizeof(nErrDescInvProtoTypeStr - 1),
+    sizeof(nErrDescInvProtoOptStr - 1),
+    sizeof(nErrDescInvPortocolStr - 1),
+    sizeof(nErrDescInvSockTypeStr - 1),
+    sizeof(nErrDescNotSupportStr - 1),
+    sizeof(nErrDescInvSockOptStr - 1),
+    sizeof(nErrDescInvProtoFamStr - 1),
+    sizeof(nErrDescInvAddrFamStr - 1),
+    sizeof(nErrDescAddrInUseStr - 1),
+    sizeof(nErrDescAddrNotAvailableStr - 1),
+    sizeof(nErrDescNetDownStr - 1),
+    sizeof(nErrDescNetUnreachableStr - 1),
+    sizeof(nErrDescNetResetStr - 1),
+    sizeof(nErrDescConnAbortedStr - 1),
+    sizeof(nErrDescConnResetStr - 1),
+    sizeof(nErrDescNoBufferSpaceStr - 1),
+    sizeof(nErrDescAlreadyConnStr - 1),
+    sizeof(nErrDescNotConnStr - 1),
+    sizeof(nErrDescSockShutdownStr - 1),
+    sizeof(nErrDescMaxRefsStr - 1),
+    sizeof(nErrDescConnTimeoutStr - 1),
+    sizeof(nErrDescConnRefusedStr - 1),
+    sizeof(nErrDescLinkLoopStr - 1),
+    sizeof(nErrDescMaxFileNameStr - 1),
+    sizeof(nErrDescHostDownStr - 1),
+    sizeof(nErrDescHostUnreachableStr - 1),
+    sizeof(nErrDescDirNotEmptyStr - 1),
+    sizeof(nErrDescMaxProcessStr - 1),
+    sizeof(nErrDescMaxUsersStr - 1),
+    sizeof(nErrDescMaxDiskQuotaStr - 1),
+    sizeof(nErrDescStaleStr - 1),
+    sizeof(nErrDescRemoteStr - 1),
+    sizeof(nErrDescInvRPCStr - 1),
+    sizeof(nErrDescInvRPCVersionStr - 1),
+    sizeof(nErrDescInvRPCProgStr - 1),
+    sizeof(nErrDescInvRPCProgVersionStr - 1),
+    sizeof(nErrDescInvRPCProcStr - 1),
+    sizeof(nErrDescNoFileLockStr - 1),
+    sizeof(nErrDescFuncNotSupportedStr - 1),
+    sizeof(nErrDescInvFileTypeStr - 1),
+    sizeof(nErrDescAuthStr - 1),
+    sizeof(nErrDescNoAuthStr - 1),
+    sizeof(nErrDescDeviceOffStr - 1),
+    sizeof(nErrDescDeviceErrorStr - 1),
+    sizeof(nErrDescOverflowStr - 1),
+    sizeof(nErrDescBadExecutableStr - 1),
+    sizeof(nErrDescInvArchitectureStr - 1),
+    sizeof(nErrDescInvLibVersionStr - 1),
+    sizeof(nErrDescInvMachoStr - 1),
+    sizeof(nErrDescAsyncCancelStr - 1),
+    sizeof(nErrDescNoIdentifierStr - 1),
+    sizeof(nErrDescNoMessageStr - 1),
+    sizeof(nErrDescInvMultibyteStr - 1),
+    sizeof(nErrDescNoAttributeStr - 1),
+    sizeof(nErrDescInvMessageStr - 1),
+    sizeof(nErrDescMultihopStr - 1),
+    sizeof(nErrDescNoDataStr - 1),
+    sizeof(nErrDescNoLinkStr - 1),
+    sizeof(nErrDescNoStreamResourcesStr - 1),
+    sizeof(nErrDescDeviceNotStreamStr - 1),
+    sizeof(nErrDescProtocolStr - 1),
+    sizeof(nErrDescTimerStr - 1),
+    sizeof(nErrDescInvSockOptStr - 1),
+    sizeof(nErrDescNoPolicyStr - 1),
+    sizeof(nErrDescNotRecoverableStr - 1),
+    sizeof(nErrDescOwnerDiedStr - 1),
+    sizeof(nErrDescMaxQueueStr - 1),
 
     #elif NIMBLE_OS == NIMBLE_LINUX
 
@@ -1810,18 +1810,18 @@ const nint_t nErrorDescLengths[] = {
 };
 
 
-const char noInfoStr[] = "No info.";
+NCONST_STR noInfoStr[] = "No info.";
 
 /**
  * @brief The default error handler callback.
  * @param[in] error The error number.
  * @param[in] errorDesc The description of @p error.
- * @param[in] errorDescLen The length of the @p errorDesc argument, including the
- * null character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] errorDescLen The length of the @p errorDesc argument. A length of
+ * zero (0) uses strlen() to determine length.
  * @param[in] errorTime The time the error was thrown.
  * @param[in] stack The stacktrace of the thread that caused the crash.
- * @param[in] stackLen The length of the @p stack argument, including the null
- * character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] stackLen The length of the @p stack argument. A length of zero (0)
+ * uses strlen() to determine length.
  */
 void nErrorHandlerDefault(const nint_t error,
                           const time_t errorTime,
@@ -1896,84 +1896,71 @@ nint_t nErrorFromErrno(const nint_t err)
     #endif
 }
 
-void nErrorThrow(const nint_t error, const char * info, nint_t infoLen)
+void nErrorThrow(const nint_t error, const char *info, nint_t infoLen)
 {
     const time_t errorTime = time(NULL);
     
     if (errorCallback == NULL)
     {
         const time_t crashErrorTime = time(NULL);
-        const char callbackStr[] = "Callback argument NULL in nErrorThrow().";
-        char * crashErrorDesc;
+        NCONST_STR einfoCallbackStr[] = "Callback argument NULL in nErrorThrow().";
+        char *crashErrorDesc;
         nint_t crashErrorDescLen;
         
         nErrorToString(crashErrorDesc, &crashErrorDescLen, NERROR_NULL,
-         callbackStr, sizeof(callbackStr));
+         einfoCallbackStr, (sizeof(einfoCallbackStr) - 1));
         nCrashSafe(NERROR_NULL, crashErrorTime, crashErrorDesc,
          crashErrorDescLen);
-        /* NO RETURN */
+        /*NO RETURN */
     }
     
-    char * errorDesc;
+    char *errorDesc;
     nint_t errorDescLen;
     if (nErrorToString(errorDesc, &errorDescLen, error, info, infoLen) == NULL)
     {
         const time_t crashErrorTime = time(NULL);
-        const char parseStr[] = "Error not found in nErrorThrow().";
-        char * crashErrorDesc;
+        NCONST_STR einfoParseStr[] = "Error not found in nErrorThrow().";
+        char *crashErrorDesc;
         nint_t crashErrorDescLen;
         
         nErrorToString(crashErrorDesc, &crashErrorDescLen,
-         NERROR_INV_ERROR, parseStr, sizeof(parseStr));
+         NERROR_INV_ERROR, einfoParseStr, (sizeof(einfoParseStr) - 1));
         nCrashSafe(NERROR_INV_ERROR, crashErrorTime, crashErrorDesc,
          crashErrorDescLen);
         /* NO RETURN */
     }
     
-    char * stack;
+    char *stack;
     nint_t stackLen, stackLevels;
     nErrorGetStacktrace(stack, &stackLen, &stackLevels);
     
     errorCallback(error, errorTime, errorDesc, errorDescLen, stack, stackLen);
 }
 
-nint_t nErrorToStringLocal(char * dst, nint_t * errorLen,
-         const nint_t error, const char * info, nint_t infoLen)
+nint_t nErrorToStringLocal(char *dst, nint_t *errorLen,
+         const nint_t error, const char *info, nint_t infoLen)
 {
     if ((info != NULL) && (infoLen == 0))
     {
-        infoLen = strlen(info) + 1;
+        infoLen = strlen(info);
     }
     
-    const char * errorDesc = nErrorDesc(error);
-    
-    if (errorDesc == NULL)
-    {
-        
-        if (errorLen != NULL)
-        {
-            *errorLen = 0;
-        }
-        
-        dst = nFree(dst);
-        return NERROR_INV_ERROR;
-    }
-    
+    const char *errorDesc = nErrorDesc(error);
     const nint_t descLen = nErrorDescLen(error);
     nint_t errLen;
     if (info == NULL)
     {
-        errLen = descLen + sizeof(noInfoStr) - 1;
-        dst = nRealloc(dst, errLen);
-        memcpy(dst, errorDesc, descLen);
-        memcpy(dst + descLen - 1, noInfoStr, sizeof(noInfoStr));
+        errLen = descLen + (sizeof(noInfoStr) - 1);
+        dst = nRealloc(dst, errLen + 1);
+        nStringCopy(dst, errorDesc, descLen);
+        nStringCopy(dst + descLen, noInfoStr, (sizeof(noInfoStr) - 1));
     }
     else
     {
-        errLen = descLen + infoLen - 1;
+        errLen = descLen + infoLen;
         dst = nRealloc(dst, errLen);
-        memcpy(dst, errorDesc, descLen);
-        memcpy(dst + descLen - 1, info, infoLen);
+        nStringCopy(dst, errorDesc, descLen);
+        nStringCopy(dst + descLen, info, infoLen);
     }
     
     if (errorLen != NULL)
@@ -1984,14 +1971,14 @@ nint_t nErrorToStringLocal(char * dst, nint_t * errorLen,
     return NSUCCESS;
 }
 
-char * nErrorToString(char * dst, nint_t * errorLen, const nint_t error,
-        const char * info, nint_t infoLen)
+char *nErrorToString(char *dst, nint_t *errorLen, const nint_t error,
+        const char *info, nint_t infoLen)
 {
     nint_t result = nErrorToStringLocal(dst, errorLen, error, info, infoLen);
     if (result != NSUCCESS)
     {
         nint_t errorNumLen = snprintf(NULL, 0, "%d", error) + 1;
-        char * errorNumStr = nAlloc(errorNumLen);
+        char *errorNumStr = nAlloc(errorNumLen);
         snprintf(errorNumStr, errorNumLen, "%d", error);
         
         nErrorThrow(NERROR_INV_ERROR, errorNumStr, errorNumLen);
@@ -2002,15 +1989,15 @@ char * nErrorToString(char * dst, nint_t * errorLen, const nint_t error,
     return dst;
 }
 
-nint_t nErrorSetCallback(void (* callback)(const nint_t error,
-         const time_t errorTime, const char * errorDesc,
-         const nint_t errorDescLen, const char * stack, const nint_t stackLen))
+nint_t nErrorSetCallback(void (*callback)(const nint_t error,
+         const time_t errorTime, const char *errorDesc,
+         const nint_t errorDescLen, const char *stack, const nint_t stackLen))
 {
     if (callback == NULL)
     {
-        const char callbackStr[] = "Callback argument NULL in "\
-                                      "nErrorSetCallback().";
-        nErrorThrow(NERROR_NULL, callbackStr, sizeof(callbackStr));
+        NCONST_STR einfoCallbackStr[] = "Callback argument NULL in "\
+         "nErrorSetCallback().";
+        nErrorThrow(NERROR_NULL, einfoCallbackStr, sizeof(einfoCallbackStr) - 1);
         return NERROR;
     }
     
@@ -2018,7 +2005,7 @@ nint_t nErrorSetCallback(void (* callback)(const nint_t error,
     return NSUCCESS;
 }
 
-char * nErrorGetStacktrace(char * dst, nint_t * stackLen, nint_t * stackLevels)
+char *nErrorGetStacktrace(char *dst, nint_t *stackLen, nint_t *stackLevels)
 {
     /** @todo Get stack trace. Remember *stackLevels is max levels */
     return dst;

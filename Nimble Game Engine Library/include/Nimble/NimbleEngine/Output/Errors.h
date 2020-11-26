@@ -405,7 +405,7 @@ enum nErrors {
  * @brief The strings used to represent error codes defined by #nErrors.
  */
 NIMBLE_EXTERN
-const char * nErrorStrings[];
+const char *nErrorStrings[];
 
 /**
  * @brief The length of the strings of the error codes defined by #nErrors.
@@ -429,7 +429,7 @@ const nint_t nErrorDescLengths[];
  * @brief Gets the length of the error code @p err from #nErrorStringLengths.
  *
  * @param[in] err The error code to determine the length of.
- * @return@p erorr's string translation length
+ * @return @p erorr's string translation length.
  */
 #define nErrorStrLen(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
                            nErrorStringLengths[err] :\
@@ -439,7 +439,7 @@ const nint_t nErrorDescLengths[];
  * @brief The descriptions of the error codes defined by #nErrors.
  */
 NIMBLE_EXTERN
-const char * nErrorDescriptions[];
+const char *nErrorDescriptions[];
 
 /**
  * @brief The length of the descriptions of the error codes defined by #nErrors.
@@ -463,7 +463,7 @@ const nint_t nErrorDescLengths[];
  * @brief Gets the length of the error code @p err from #nErrorDescLengths.
  *
  * @param[in] err The error code to determine the length of.
- * @return @p erorr's string translation length
+ * @return @p erorr's string translation length.
  */
 #define nErrorDescLen(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
                             nErrorDescLengths[err] :\
@@ -503,7 +503,7 @@ nErrorFromErrno(const nint_t err);
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     char exampleFilePath[] = "example.txt";
  *     if (nErrorThrow(NERROR_FILE_NOT_FOUND, exampleFilePath,
@@ -519,8 +519,8 @@ nErrorFromErrno(const nint_t err);
  *
  * @param[in] error The error to throw.
  * @param[in] info Relevant information, such as a file location, that could help
- * @param[in] infoLen The length of the @p info argument, including the null
- * character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] infoLen The length of the @p info argument. A length of zero (0)
+ * uses strlen() to determine length.
  * diagnose the error. This can be @c #NULL.
  *
  * @note The program will crash if this is unsuccessful.
@@ -528,7 +528,7 @@ nErrorFromErrno(const nint_t err);
 NIMBLE_EXTERN
 void
 nErrorThrow(const nint_t error,
-            const char * info,
+            const char *info,
             nint_t infoLen
             );
 
@@ -542,9 +542,9 @@ nErrorThrow(const nint_t error,
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
- *     char * errorStr;
+ *     char *errorStr;
  *     nint_t errorLen;
  *     char exampleFilePath[] = "example.txt";
  *     if (nErrorToStringLocal(errorStr, &errorLen, NERROR_FILE_NOT_FOUND,
@@ -560,13 +560,12 @@ nErrorThrow(const nint_t error,
  *
  * @param[out] dst The destination to store the string describing @p error. This
  * can be @c #NULL.
- * @param[out] errorLen The length of the string returned, including the null
- * character. This can be @c #NULL.
+ * @param[out] errorLen The length of the string returned. This can be @c #NULL.
  * @param[in] error The error to get described.
  * @param[in] info Relevant information, such as a file location, that could help
  * diagnose the error. This can be @c #NULL.
- * @param[in] infoLen The length of the @p info argument, including the null
- * character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] infoLen The length of the @p info argument. A length of zero (0)
+ * uses strlen() to determine length.
  * @return @p dst is returned if successful; otherwise @c #NULL is returned.
  *
  * @note This function is used by the game engine and is not expected to be used
@@ -574,10 +573,10 @@ nErrorThrow(const nint_t error,
  */
 NIMBLE_EXTERN
 nint_t
-nErrorToStringLocal(char * dst,
-                    nint_t * errorLen,
+nErrorToStringLocal(char *dst,
+                    nint_t *errorLen,
                     const nint_t error,
-                    const char * info,
+                    const char *info,
                     nint_t infoLen
                     );
 
@@ -590,9 +589,9 @@ nErrorToStringLocal(char * dst,
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
- *     char * errorStr;
+ *     char *errorStr;
  *     nint_t errorLen;
  *     char exampleFilePath[] = "example.txt";
  *     if (nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND,
@@ -608,21 +607,20 @@ nErrorToStringLocal(char * dst,
  *
  * @param[out] dst The destination to store the string describing @p error. This
  * can be @c #NULL.
- * @param[out] errorLen The length of the string returned, including the null
- * character. This can be @c #NULL.
+ * @param[out] errorLen The length of the string returned. This can be @c #NULL.
  * @param[in] error The error to get described.
  * @param[in] info Relevant information, such as a file location, that could help
  * diagnose the error. This can be @c #NULL.
- * @param[in] infoLen The length of the @p info argument, including the null
- * character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] infoLen The length of the @p info argument. A length of zero (0)
+ * uses strlen() to determine length.
  * @return @p dst is returned if successful; otherwise @c #NULL is returned.
  */
 NIMBLE_EXTERN
 char *
-nErrorToString(char * dst,
-               nint_t * errorLen,
+nErrorToString(char *dst,
+               nint_t *errorLen,
                const nint_t error,
-               const char * info,
+               const char *info,
                nint_t infoLen
                );
 
@@ -642,10 +640,10 @@ nErrorToString(char * dst,
  *       const nint_t errorDescLen, const time_t errorTime, const char * stack,
  *       const nint_t stackLen)
  * {
- *     struct tm * timeInfo = localtime(&errorTime);
+ *     struct tm *timeInfo = localtime(&errorTime);
  *     const char format[] = "%x %X %Z";
  *     const char example = "01/01/2020 16:30:45 GMT"
- *     char * timeString = malloc(sizeof(void *) + sizeof(example));
+ *     char *timeString = nAlloc(sizeof(example));
  *     if (timeString == NULL)
  *     {
  *         fprintf(stderr, "Failed to allocate to timeString.\n");
@@ -657,7 +655,7 @@ nErrorToString(char * dst,
  *      "%s\nStack trace: %s\n\n", timeString, errorDesc, stack);
  * }
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     if (nErrorHandlerSetErrorCallback(errorHandler) != NSUCCESS)
  *     {
@@ -677,12 +675,12 @@ nErrorToString(char * dst,
  */
 NIMBLE_EXTERN
 nint_t
-nErrorSetCallback(void (* callback)(
+nErrorSetCallback(void (*callback)(
                                     const nint_t error,
                                     const time_t errorTime,
-                                    const char * errorDesc,
+                                    const char *errorDesc,
                                     const nint_t errorDescLen,
-                                    const char * stack,
+                                    const char *stack,
                                     const nint_t stackLen
                                     )
                   );
@@ -698,10 +696,10 @@ nErrorSetCallback(void (* callback)(
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     nint_t stackLen, stackLevels;
- *     char * stack;
+ *     char *stack;
  *     nErrorGetStacktrace(stack, &stackLen, &stackLevels);
  *     if (stack == NULL)
  *     {
@@ -715,8 +713,7 @@ nErrorSetCallback(void (* callback)(
  *
  * @param[out] dst The destination to store the stacktrace string. This can be
  * @c #NULL.
- * @param[out] stackLen The length of the string returned, including the null
- * character. This can be @c #NULL.
+ * @param[out] stackLen The length of the string returned. This can be @c #NULL.
  * @param[in,out] stackLevels The number of levels found on the stack. If the
  * value of this is nonzero when passed, it will act as the maximum number of
  * stack levels to be returned in @p dst. This can be @c #NULL.
@@ -727,9 +724,9 @@ nErrorSetCallback(void (* callback)(
  */
 NIMBLE_EXTERN
 char *
-nErrorGetStacktrace(char * dst,
-                    nint_t * stackLen,
-                    nint_t * stackLevels
+nErrorGetStacktrace(char *dst,
+                    nint_t *stackLen,
+                    nint_t *stackLevels
                     );
 
 #endif // NIMBLE_ENGINE_ERRORS_H

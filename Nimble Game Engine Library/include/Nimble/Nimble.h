@@ -150,8 +150,10 @@ extern "C" {
 #define NIMBLE_EXTERN extern /**< Extern alias. */
 
 #ifndef NULL
-#define NULL ((void *) 0) /**< Null pointer */
+#define NULL ((void *) 0) /**< Null pointer. */
 #endif
+
+#define NCONST_STR static const char /**< Used for static constant character arrays. */
 
 
 typedef int_fast8_t   nbyte_t;

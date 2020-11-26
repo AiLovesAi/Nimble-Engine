@@ -51,47 +51,47 @@
 #include "../../../include/Nimble/NimbleEngine/Output/Errors.h"
 
 
-volatile _Bool crashtest = 0;
+static _Bool crashtest = 0;
 nMutex_t crashMutex = NULL;
 
 /**
  * @brief The default crash handler callback.
  * @param[in] error The error that caused the crash.
  * @param[in] errorDesc The description of @p error.
- * @param[in] errorDescLen The length of the @p errorDesc argument, including the
- * null character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] errorDescLen The length of the @p errorDesc argument. A length of
+ * zero (0) uses strlen() to determine length.
  * @param[in] errorTime The time the error was thrown.
  * @param[in] stack The stack as a string.
  * @param[in] stackLen The length of the stack string.
  */
 void nCrashHandlerDefault(const nint_t error,
                           const time_t errorTime,
-                          char * errorDesc,
+                          char *errorDesc,
                           nint_t errorDescLen,
-                          char * stack,
+                          char *stack,
                           nint_t stackLen
                           );
 
-void (* crashCallback) (const nint_t error, const time_t errorTime,
-                        char * errorDesc, nint_t errorDescLen, char * stack,
+void (*crashCallback) (const nint_t error, const time_t errorTime,
+                        char *errorDesc, nint_t errorDescLen, char *stack,
                         nint_t stackLen) = nCrashHandlerDefault;
 
 
 void nCrashHandlerDefault(const nint_t error, const time_t errorTime,
-                          char * errorDesc, nint_t errorDescLen, char * stack,
+                          char *errorDesc, nint_t errorDescLen, char *stack,
                           nint_t stackLen)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
 }
 
-nint_t nCrashSetCallback(void (* callback)(const nint_t error,
-        const time_t errorTime, char * errorDesc, nint_t errorDescLen,
-        char * stack, nint_t stackLen))
+nint_t nCrashSetCallback(void (*callback)(const nint_t error,
+        const time_t errorTime, char *errorDesc, nint_t errorDescLen,
+        char *stack, nint_t stackLen))
 {
     if (callback == NULL)
     {
         char callbackErrStr[] = "Callback parameter null in nCrashSetCallback().";
-        nErrorThrow(NERROR_NULL, callbackErrStr, sizeof(callbackErrStr));
+        nErrorThrow(NERROR_NULL, callbackErrStr, (sizeof(callbackErrStr) - 1));
         return NERROR;
     }
     
@@ -99,7 +99,7 @@ nint_t nCrashSetCallback(void (* callback)(const nint_t error,
     return NSUCCESS;
 }
 
-void nCrashSafe(const nint_t error, time_t errorTime,  const char * errorDesc,
+void nCrashSafe(const nint_t error, time_t errorTime,  const char *errorDesc,
                 nint_t errorDescLen)
 {
     nThreadMutexCreate(crashMutex);
@@ -118,11 +118,11 @@ void nCrashSafe(const nint_t error, time_t errorTime,  const char * errorDesc,
         errorTime = time(NULL);
     }
     
-    char * errorDescPtr;
+    char *errorDescPtr;
 
     if ((errorDescLen <= 0) && (errorDesc != NULL))
     {
-        errorDescLen = strlen(errorDesc) + 1;
+        errorDescLen = strlen(errorDesc);
     }
 
     if (errorDesc == NULL)
@@ -131,22 +131,22 @@ void nCrashSafe(const nint_t error, time_t errorTime,  const char * errorDesc,
         if (nErrorToStringLocal(errorDescPtr, &errorDescLen, error, NULL, 0) !=
             NSUCCESS)
         {
-            const char defaultErrorStr[] = "NERROR_ERROR_NOT_FOUND: An error "\
+            NCONST_STR defaultErrorStr[] = "NERROR_ERROR_NOT_FOUND: An error "\
 "passed to a function was not valid: nErrorToStringLocal() failed while "\
 "crashing with nCrashSafe().";
-            errorDescLen = sizeof(defaultErrorStr);
-            errorDescPtr = nRealloc(errorDescPtr, errorDescLen);
-            memcpy(errorDescPtr, defaultErrorStr, errorDescLen);
+            errorDescLen = sizeof(defaultErrorStr) - 1;
+            errorDescPtr = nRealloc(errorDescPtr, errorDescLen + 1);
+            nStringCopy(errorDescPtr, defaultErrorStr, errorDescLen);
         }
         
     }
     else
     {
         errorDescPtr = nAlloc(errorDescLen);
-        memcpy(errorDescPtr, errorDesc, errorDescLen);
+        nStringCopy(errorDescPtr, errorDesc, errorDescLen);
     }
     
-    char * stack;
+    char *stack;
     nint_t stackLen;
     nErrorGetStacktrace(stack, &stackLen, NULL);
     crashCallback(error, errorTime, errorDescPtr, errorDescLen, stack, stackLen);
@@ -161,7 +161,7 @@ void nCrashSignal(const int signum)
 {
     const nint_t error = nErrorFromSignal(signum);
     const time_t errorTime = time(NULL);
-    char * errorDesc;
+    char *errorDesc;
     nint_t errorDescLen;
     
     signal(signum, SIG_DFL);

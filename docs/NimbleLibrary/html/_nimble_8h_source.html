@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Game Engine Library: C:/Users/Avery/source/repos/Nimble-Game-Engine/Nimble Game Engine Library/include/Nimble/Nimble.h Source File</title>
+<title>Nimble Game Engine Library: C:/Users/Avery/Documents/GitHub/Nimble-Game-Engine/Nimble Game Engine Library/include/Nimble/Nimble.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -103,7 +103,7 @@ $(function() {
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#ifdef _WIN32</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#define NIMBLE_OS NIMBLE_WINDOWS</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#elif (defined(__APPLE__) &amp;&amp; defined(__MACH__)) || defined(macintosh)</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#elif (defined(__APPLE__) &amp;&amp; defined(__MACH__)) || defined(macintosh) </span></div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#define NIMBLE_OS NIMBLE_MACOSX</span></div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#elif __ANDROID__</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#define NIMBLE_OS NIMBLE_ANDROID</span></div>
@@ -160,38 +160,37 @@ $(function() {
 <div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">  153</a></span>&#160;<span class="preprocessor">#define NULL ((void *) 0) </span></div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="_nimble_8h.html#ab018ac8f36b4dec177a16fa18c168cdd">  157</a></span>&#160;<span class="keyword">typedef</span> int_fast8_t   <a class="code" href="_nimble_8h.html#ab018ac8f36b4dec177a16fa18c168cdd">nbyte_t</a>;</div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a9971e2754d9d28c84a2bdb18fd13abd8">  158</a></span>&#160;<span class="keyword">typedef</span> uint_fast8_t  <a class="code" href="_nimble_8h.html#a9971e2754d9d28c84a2bdb18fd13abd8">nubyte_t</a>;</div>
-<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a07c7840c48ff44655d8ab1531037775e">  159</a></span>&#160;<span class="keyword">typedef</span> int_fast16_t  <a class="code" href="_nimble_8h.html#a07c7840c48ff44655d8ab1531037775e">nshort_t</a>;</div>
-<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a1543b62ee8ace527b78d8e63ce9f69e0">  160</a></span>&#160;<span class="keyword">typedef</span> uint_fast16_t <a class="code" href="_nimble_8h.html#a1543b62ee8ace527b78d8e63ce9f69e0">nushort_t</a>;</div>
-<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">  161</a></span>&#160;<span class="keyword">typedef</span> int_fast32_t  <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>;</div>
-<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a8b550e9b53a564a8bb9009f77ae7cfe3">  162</a></span>&#160;<span class="keyword">typedef</span> uint_fast32_t <a class="code" href="_nimble_8h.html#a8b550e9b53a564a8bb9009f77ae7cfe3">nuint_t</a>;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#ifdef NIMBLE_64BIT</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keyword">typedef</span> int_fast64_t  <a class="code" href="_nimble_8h.html#ab98723b54366ad2cc7b911b277fd5e48">nlong_t</a>;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="keyword">typedef</span> uint_fast64_t <a class="code" href="_nimble_8h.html#afdb3781e72f7880798ef74cb89c9996d">nulong_t</a>;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="_nimble_8h.html#ab98723b54366ad2cc7b911b277fd5e48">  167</a></span>&#160;<span class="keyword">typedef</span> intmax_t      <a class="code" href="_nimble_8h.html#ab98723b54366ad2cc7b911b277fd5e48">nlong_t</a>;</div>
-<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="_nimble_8h.html#afdb3781e72f7880798ef74cb89c9996d">  168</a></span>&#160;<span class="keyword">typedef</span> uintmax_t     <a class="code" href="_nimble_8h.html#afdb3781e72f7880798ef74cb89c9996d">nulong_t</a>;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor">#endif // NIMBLE_H</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="_nimble_8h.html#acb8f97aade4bc091634dcbf51943c426">  156</a></span>&#160;<span class="preprocessor">#define NCONST_STR static const char </span></div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="_nimble_8h.html#ab018ac8f36b4dec177a16fa18c168cdd">  159</a></span>&#160;<span class="preprocessor">typedef int_fast8_t   nbyte_t;</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a9971e2754d9d28c84a2bdb18fd13abd8">  160</a></span>&#160;<span class="keyword">typedef</span> uint_fast8_t  <a class="code" href="_nimble_8h.html#a9971e2754d9d28c84a2bdb18fd13abd8">nubyte_t</a>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a07c7840c48ff44655d8ab1531037775e">  161</a></span>&#160;<span class="keyword">typedef</span> int_fast16_t  <a class="code" href="_nimble_8h.html#a07c7840c48ff44655d8ab1531037775e">nshort_t</a>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a1543b62ee8ace527b78d8e63ce9f69e0">  162</a></span>&#160;<span class="keyword">typedef</span> uint_fast16_t <a class="code" href="_nimble_8h.html#a1543b62ee8ace527b78d8e63ce9f69e0">nushort_t</a>;</div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">  163</a></span>&#160;<span class="keyword">typedef</span> int_fast32_t  <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a8b550e9b53a564a8bb9009f77ae7cfe3">  164</a></span>&#160;<span class="keyword">typedef</span> uint_fast32_t <a class="code" href="_nimble_8h.html#a8b550e9b53a564a8bb9009f77ae7cfe3">nuint_t</a>;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#ifdef NIMBLE_64BIT</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="keyword">typedef</span> int_fast64_t  <a class="code" href="_nimble_8h.html#ab98723b54366ad2cc7b911b277fd5e48">nlong_t</a>;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="keyword">typedef</span> uint_fast64_t <a class="code" href="_nimble_8h.html#afdb3781e72f7880798ef74cb89c9996d">nulong_t</a>;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="_nimble_8h.html#ab98723b54366ad2cc7b911b277fd5e48">  169</a></span>&#160;<span class="keyword">typedef</span> intmax_t      <a class="code" href="_nimble_8h.html#ab98723b54366ad2cc7b911b277fd5e48">nlong_t</a>;</div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="_nimble_8h.html#afdb3781e72f7880798ef74cb89c9996d">  170</a></span>&#160;<span class="keyword">typedef</span> uintmax_t     <a class="code" href="_nimble_8h.html#afdb3781e72f7880798ef74cb89c9996d">nulong_t</a>;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;}</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">// Nimble.h</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#endif // NIMBLE_H</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">// Nimble.h</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="a_nimble_8h_html_ab98723b54366ad2cc7b911b277fd5e48"><div class="ttname"><a href="_nimble_8h.html#ab98723b54366ad2cc7b911b277fd5e48">nlong_t</a></div><div class="ttdeci">intmax_t nlong_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00167">Nimble.h:167</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a1543b62ee8ace527b78d8e63ce9f69e0"><div class="ttname"><a href="_nimble_8h.html#a1543b62ee8ace527b78d8e63ce9f69e0">nushort_t</a></div><div class="ttdeci">uint_fast16_t nushort_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00160">Nimble.h:160</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a07c7840c48ff44655d8ab1531037775e"><div class="ttname"><a href="_nimble_8h.html#a07c7840c48ff44655d8ab1531037775e">nshort_t</a></div><div class="ttdeci">int_fast16_t nshort_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00159">Nimble.h:159</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00161">Nimble.h:161</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a8b550e9b53a564a8bb9009f77ae7cfe3"><div class="ttname"><a href="_nimble_8h.html#a8b550e9b53a564a8bb9009f77ae7cfe3">nuint_t</a></div><div class="ttdeci">uint_fast32_t nuint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00162">Nimble.h:162</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_ab018ac8f36b4dec177a16fa18c168cdd"><div class="ttname"><a href="_nimble_8h.html#ab018ac8f36b4dec177a16fa18c168cdd">nbyte_t</a></div><div class="ttdeci">int_fast8_t nbyte_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00157">Nimble.h:157</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_ab98723b54366ad2cc7b911b277fd5e48"><div class="ttname"><a href="_nimble_8h.html#ab98723b54366ad2cc7b911b277fd5e48">nlong_t</a></div><div class="ttdeci">intmax_t nlong_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00169">Nimble.h:169</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a1543b62ee8ace527b78d8e63ce9f69e0"><div class="ttname"><a href="_nimble_8h.html#a1543b62ee8ace527b78d8e63ce9f69e0">nushort_t</a></div><div class="ttdeci">uint_fast16_t nushort_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00162">Nimble.h:162</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a07c7840c48ff44655d8ab1531037775e"><div class="ttname"><a href="_nimble_8h.html#a07c7840c48ff44655d8ab1531037775e">nshort_t</a></div><div class="ttdeci">int_fast16_t nshort_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00161">Nimble.h:161</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00163">Nimble.h:163</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a8b550e9b53a564a8bb9009f77ae7cfe3"><div class="ttname"><a href="_nimble_8h.html#a8b550e9b53a564a8bb9009f77ae7cfe3">nuint_t</a></div><div class="ttdeci">uint_fast32_t nuint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00164">Nimble.h:164</a></div></div>
 <div class="ttc" id="a_nimble_license_8h_html"><div class="ttname"><a href="_nimble_license_8h.html">NimbleLicense.h</a></div><div class="ttdoc">This class defines LICENSE_md, which gets compiled into the binaries.</div></div>
-<div class="ttc" id="a_nimble_8h_html_afdb3781e72f7880798ef74cb89c9996d"><div class="ttname"><a href="_nimble_8h.html#afdb3781e72f7880798ef74cb89c9996d">nulong_t</a></div><div class="ttdeci">uintmax_t nulong_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00168">Nimble.h:168</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a9971e2754d9d28c84a2bdb18fd13abd8"><div class="ttname"><a href="_nimble_8h.html#a9971e2754d9d28c84a2bdb18fd13abd8">nubyte_t</a></div><div class="ttdeci">uint_fast8_t nubyte_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00158">Nimble.h:158</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_afdb3781e72f7880798ef74cb89c9996d"><div class="ttname"><a href="_nimble_8h.html#afdb3781e72f7880798ef74cb89c9996d">nulong_t</a></div><div class="ttdeci">uintmax_t nulong_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00170">Nimble.h:170</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a9971e2754d9d28c84a2bdb18fd13abd8"><div class="ttname"><a href="_nimble_8h.html#a9971e2754d9d28c84a2bdb18fd13abd8">nubyte_t</a></div><div class="ttdeci">uint_fast8_t nubyte_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00160">Nimble.h:160</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

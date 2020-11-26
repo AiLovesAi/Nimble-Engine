@@ -78,10 +78,10 @@ extern "C" {
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     char original[] = "Hello world.";
- *     char * new = nAlloc(sizeof(original) + 1);
+ *     char *new = nAlloc(sizeof(original) + 1);
  *     new[sizeof(original) - 1] = '\n';
  *     new[sizeof(original)] = '\0';
  *     puts(new);
@@ -111,10 +111,10 @@ nAlloc(const size_t size);
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     char original[] = "Hello world.";
- *     char * new;
+ *     char *new;
  *     new = nRealloc(sizeof(original) + 1);
  *     new[sizeof(original) - 1] = '\n';
  *     new[sizeof(original)] = '\0';
@@ -137,7 +137,7 @@ nAlloc(const size_t size);
  */
 NIMBLE_EXTERN
 void *
-nRealloc(void* ptr, const size_t size);
+nRealloc(void*ptr, const size_t size);
 
 /**
  * @brief Frees a pointer.
@@ -151,10 +151,10 @@ nRealloc(void* ptr, const size_t size);
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     char original[] = "Hello world.";
- *     char * new = nAlloc(sizeof(original) + 1);
+ *     char *new = nAlloc(sizeof(original) + 1);
  *     new[sizeof(original) - 1] = '\n';
  *     new[sizeof(original)] = '\0';
  *     puts(new);
@@ -171,12 +171,47 @@ nRealloc(void* ptr, const size_t size);
  * @return #NULL is always returned.
  */
 NIMBLE_INLINE
-void * 
-nFree(void * ptr)
+void *
+nFree(void *ptr)
 {
 	free(ptr);
 	return NULL;
 }
+
+/**
+ * @brief Copies @p len characters from @p src to @p dst.
+ * Copies @p len characters from @p src to @p dst. The string is always null
+ * terminated. If there is already a null terminator, no more characters are
+ * copied.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char **argv)
+ * {
+ *     char original[] = "Hello world.";
+ *     char *new = nAlloc(sizeof(original));
+ *     nStringCopy(original, new, sizeof(original) - 1);
+ *     printf("New string: %s\n", new);
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[out] dst The pointer to the destination.
+ * @param[in] src The pointer to free.
+ * @param[in] len The number of characters to copy. This must not include the
+ * null terminator.
+ * @return @p dst is always returned.
+ */
+NIMBLE_EXTERN
+char *
+nStringCopy(char *dst,
+            const char *src,
+            const size_t len
+            );
 
 /**
  * @brief Exits the game engine.
@@ -187,7 +222,7 @@ nFree(void * ptr)
  * #include <inttypes.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     if (nEngineInit() == NSUCCESS)
  *     {
@@ -217,7 +252,7 @@ __attribute__((noreturn));
  * #include <inttypes.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     if (nEngineInit() != NSUCCESS)
  *     {
@@ -235,21 +270,21 @@ __attribute__((noreturn));
  */
 NIMBLE_EXTERN
 nint_t
-nEngineInit(void (* errorCallback)(
-                                   const nint_t error,
+nEngineInit(void (*errorCallback)(
+                                  const nint_t error,
+                                  const time_t errorTime,
+                                  char *errorDesc,
+                                  nint_t errorDescLen,
+                                  char *stack,
+                                  nint_t stackLen
+                                  ),
+            void (*crashCallback) (const nint_t error,
                                    const time_t errorTime,
-                                   char * errorDesc,
+                                   char *errorDesc,
                                    nint_t errorDescLen,
-                                   char * stack,
+                                   char *stack,
                                    nint_t stackLen
-                                   ),
-            void (* crashCallback) (const nint_t error,
-                                    const time_t errorTime,
-                                    char * errorDesc,
-                                    nint_t errorDescLen,
-                                    char * stack,
-                                    nint_t stackLen
-                                    )
+                                   )
             ); /** @todo Make these callback functions the same through each file. */
 
 #endif // NIMBLE_ENGINE_H

@@ -71,13 +71,13 @@ extern "C" {
  */
 NIMBLE_EXTERN
 nint_t
-nCrashSetHandler(void (* callback) (const nint_t error,
-                                    const time_t errorTime,
-                                    char * errorDesc,
-                                    nint_t errorDescLen,
-                                    char * stack,
-                                    nint_t stackLen
-                                    )
+nCrashSetHandler(void (*callback) (const nint_t error,
+                                   const time_t errorTime,
+                                   char *errorDesc,
+                                   nint_t errorDescLen,
+                                   char *stack,
+                                   nint_t stackLen
+                                   )
                  );
 
 /**
@@ -91,11 +91,11 @@ nCrashSetHandler(void (* callback) (const nint_t error,
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     const time_t errorTime = time(NULL);
  *     const nint_t error = NERROR_NULL;
- *     char * errorDesc;
+ *     char *errorDesc;
  *     nint_t errorDescLen;
  *     if (nErrorToString(errorDesc, &errorDescLen, error, NULL, 0) == NULL)
  *     {
@@ -109,8 +109,8 @@ nCrashSetHandler(void (* callback) (const nint_t error,
  *
  * @param[in] error The error that caused the crash.
  * @param[in] errorDesc The description of @p error.
- * @param[in] errorDescLen The length of the @p errorDesc argument, including the
- * null character. A length of zero (0) uses strlen() to determine length.
+ * @param[in] errorDescLen The length of the @p errorDesc argument. A length of
+ * zero (0) uses strlen() to determine length.
  * @param[in] errorTime The time the error was thrown.
  *
  * @note This function does not return, and exits the program. If an error occurs,
@@ -122,7 +122,7 @@ NIMBLE_EXTERN
 void
 nCrashSafe(const nint_t error,
            time_t errorTime,
-           const char * errorDesc,
+           const char *errorDesc,
            nint_t errorDescLen
            )
 __attribute__((noreturn));
@@ -148,7 +148,7 @@ __attribute__((noreturn));
  * @code
  * #include <Nimble/NimbleEngine.h>
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     nCrashAbort(NERROR_NULL);
  * }

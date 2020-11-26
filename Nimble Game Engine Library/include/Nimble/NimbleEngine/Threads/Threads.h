@@ -63,15 +63,15 @@ typedef HANDLE nMutex_t;
 #define NIMBLE_THREADS NIMBLE_THREADS_PTHREAD
 #include <pthread.h>
 
-typedef pthread_t * nThread_t;
-typedef pthread_mutex_t * nMutex_t;
+typedef pthread_t *nThread_t;
+typedef pthread_mutex_t *nMutex_t;
 
 #elif !defined(__STDC_NO_THREADS__)
 #define NIMBLE_THREADS NIMBLE_THREADS_C11
 #include <threads.h>
 
-typedef thrd_t * nThread_t;
-typedef mtx_t * nMutex_t;
+typedef thrd_t *nThread_t;
+typedef mtx_t *nMutex_t;
 
 #else
 #error Compiler or OS does not support Windows, C11, or Pthread threads.
@@ -88,14 +88,14 @@ typedef mtx_t * nMutex_t;
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * void * func(void * data)
+ * void *func(void *data)
  * {
  *     int ret = *((int *) data);
  *     printf("%x\n", ret);
  *     return &ret;
  * }
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     nThread_t thread = NULL;
  *     int arg = 10;
@@ -123,10 +123,10 @@ typedef mtx_t * nMutex_t;
  */
 NIMBLE_EXTERN
 nint_t
-nThreadCreate(nThread_t * thread,
+nThreadCreate(nThread_t *thread,
               nint_t attributes,
-              void * (*start)(void *),
-              void * data
+              void *(*start)(void *),
+              void *data
               );
 
 /**
@@ -138,7 +138,7 @@ nThreadCreate(nThread_t * thread,
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * void * func(void * data)
+ * void *func(void *data)
  * {
  *     int ret = *((int *) data);
  *     nThread_t thread = nThreadSelf();
@@ -146,7 +146,7 @@ nThreadCreate(nThread_t * thread,
  *     return &ret;
  * }
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     nThread_t thread = NULL;
  *     int arg = 10;
@@ -181,7 +181,7 @@ nThreadSelf(void
  * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
- * void * func(void * data)
+ * void *func(void *data)
  * {
  *     nThread_t thread = nThreadSelf();
  *     int ret = *((int *) data);
@@ -189,7 +189,7 @@ nThreadSelf(void
  *     return &ret;
  * }
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     nThread_t thread = NULL;
  *     int arg = 10;
@@ -221,7 +221,7 @@ nThreadSelf(void
 NIMBLE_EXTERN
 nint_t
 nThreadJoin(nThread_t thread,
-            void * ret
+            void *ret
             );
 
 /**
@@ -235,7 +235,7 @@ nThreadJoin(nThread_t thread,
  *
  * nMutex_t mutex = NULL;
  *
- * void * func(void * data)
+ * void *func(void *data)
  * {
  *     nThreadMutexLock(mutex);
  *     puts("Mutex locked.\n");
@@ -249,7 +249,7 @@ nThreadJoin(nThread_t thread,
  *     return &ret;
  * }
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     if (nThreadMutexCreate(mutex) != NSUCCESS)
  *     {
@@ -306,7 +306,7 @@ nThreadMutexCreate(nMutex_t mutex
  *
  * nMutex_t mutex = NULL;
  *
- * void * func(void * data)
+ * void *func(void *data)
  * {
  *     nThreadMutexLock(mutex);
  *     puts("Mutex locked.\n");
@@ -320,7 +320,7 @@ nThreadMutexCreate(nMutex_t mutex
  *     return &ret;
  * }
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     if (nThreadMutexCreate(mutex) != NSUCCESS)
  *     {
@@ -379,7 +379,7 @@ nThreadMutexLock(nMutex_t mutex
  *
  * nMutex_t mutex = NULL;
  *
- * void * func(void * data)
+ * void *func(void *data)
  * {
  *     nThreadMutexLock(mutex);
  *     puts("Mutex locked.\n");
@@ -393,7 +393,7 @@ nThreadMutexLock(nMutex_t mutex
  *     return &ret;
  * }
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     if (nThreadMutexCreate(mutex) != NSUCCESS)
  *     {
@@ -452,7 +452,7 @@ nThreadMutexUnlock(nMutex_t mutex
  *
  * nMutex_t mutex = NULL;
  *
- * void * func(void * data)
+ * void *func(void *data)
  * {
  *     nThreadMutexLock(mutex);
  *     puts("Mutex locked.\n");
@@ -466,7 +466,7 @@ nThreadMutexUnlock(nMutex_t mutex
  *     return &ret;
  * }
  *
- * int main(int argc, char ** argv)
+ * int main(int argc, char **argv)
  * {
  *     if (nThreadMutexCreate(mutex) != NSUCCESS)
  *     {

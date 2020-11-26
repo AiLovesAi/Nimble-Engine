@@ -44,15 +44,16 @@
  * used in game development, and defines the functions used in initialization.
  */
 
+#include <errno.h>
 #include <inttypes.h>
 #include <signal.h>
 #include <stdlib.h>
 
 #include "../include/Nimble/NimbleEngine/Output/CrashHandler.h"
 
-void * nAlloc(const size_t size)
+void *nAlloc(const size_t size)
 {
-    void * ptr = malloc(size);
+    void *ptr = malloc(size);
 
     if (!ptr)
     {
@@ -62,7 +63,7 @@ void * nAlloc(const size_t size)
     return ptr;
 }
 
-void * nRealloc(void * ptr, const size_t size)
+void *nRealloc(void *ptr, const size_t size)
 {
     ptr = realloc(ptr, size);
 
@@ -73,6 +74,34 @@ void * nRealloc(void * ptr, const size_t size)
 
     return ptr;
 }
+
+char *nStringCopy(char *dst, const char *src, const size_t len)
+{
+    if (!src)
+    {
+        NCONST_STR einfoNullStr[] = "Source string NULL in nStringCopy().";
+        nErrorThrow(NERROR_NULL, einfoNullStr, (sizeof(einfoNullStr) - 1)); /// @todo Use einfo prefix, sizeof(str) - 1, and NCONST_STR for these functions.
+    }
+
+    if (!dst)
+    {
+        dst = nAlloc(len + 1);
+    }
+
+    char *d = dst;
+    const char *s = src;
+    size_t l = len;
+
+    while (l-- && (*s != '\0'))
+    {
+        *d++ = *s++;
+    }
+    
+    dst[len] = '\0';
+
+    return dst;
+}
+
 
 void nEngineExit(void)
 {
@@ -85,26 +114,23 @@ void nEngineExitSignal(int signum)
     nEngineExit();
 }
 
-nint_t nEngineInit(void (* errorCallback)(const nint_t error,
-         const time_t errorTime, char * errorDesc, nint_t errorDescLen,
-         char * stack, nint_t stackLen),
-         void (* crashCallback)(const nint_t error, const time_t errorTime,
-         char * errorDesc, nint_t errorDescLen, char * stack,
+nint_t nEngineInit(void (*errorCallback)(const nint_t error,
+         const time_t errorTime, char *errorDesc, nint_t errorDescLen,
+         char *stack, nint_t stackLen),
+         void (*crashCallback)(const nint_t error, const time_t errorTime,
+         char *errorDesc, nint_t errorDescLen, char *stack,
          nint_t stackLen))
 {
     /** @todo Make init function */
     if (atexit(nEngineExit) != NSUCCESS)
     {
         const time_t errorTime = time(NULL);
-        char * errorDesc;
-        nint_t errorDescLen;
-        char * info;
-        nint_t infoLen;
+        char *errorDesc, *info;
+        nint_t errorDescLen, infoLen;
+        const nint_t err = nErrorFromErrno(errno);
         
-        nErrorToString(errorDesc, &errorDescLen, NERROR_INTERNAL_FAILURE,
-         info, infoLen);
-        nCrashSafe(NERROR_INTERNAL_FAILURE, errorTime, errorDesc,
-         errorDescLen);
+        nErrorToString(errorDesc, &errorDescLen, err, info, infoLen);
+        nCrashSafe(err, errorTime, errorDesc, errorDescLen);
     }
 
     signal(SIGTERM, nEngineExitSignal);

@@ -52,25 +52,25 @@
 #include <threads.h>
 #endif
 
-nint_t nThreadCreate(nThread_t * thread, nint_t attributes,
-                      void * (*start)(void *), void * data)
+nint_t nThreadCreate(nThread_t *thread, nint_t attributes,
+                      void *(*start)(void *), void *data)
 {
     /// @todo Attributes, pointer conversion for some arguments
-#ifdef NTHREAD_WINAPI
+#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
     *thread = CreateThread(NULL, 0, start, data, 0, NULL);
     if (*thread == NULL)
     {
         /// @todo nErrorThrow();
         return NERROR;
     }
-#elif defined(NTHREAD_PTHREAD)
+#elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
     nint_t err = pthread_create(*thread, NULL, start, data);
     if (err)
     {
         /// @todo nErrorThrow();
         return NERROR;
     }
-#else
+#elif NIMBLE_THREADS == NIMBLE_THREADS_C11
     nint_t err = thrd_create(thread, start, data);
     if (err)
     {
@@ -113,7 +113,7 @@ nThread_t nThreadSelf(void)
     return NSUCCESS;
 }
 
-nint_t nThreadJoin(nThread_t thread, void * ret)
+nint_t nThreadJoin(nThread_t thread, void *ret)
 {
     /// @todo
     return NSUCCESS;
