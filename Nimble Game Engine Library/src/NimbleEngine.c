@@ -69,18 +69,20 @@ void *nRealloc(void *ptr, const size_t size)
 
     if (!ptr)
     {
-        nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY), nErrorDescLen(NERROR_NO_MEMORY));
+        nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY),
+         nErrorDescLen(NERROR_NO_MEMORY));
     }
 
     return ptr;
 }
 
-char *nStringCopy(char *dst, const char *src, const size_t len)
+char *nStringCopy(char *restrict dst, const char *restrict src,
+       const size_t len)
 {
     if (!src)
     {
         NCONST_STR einfoNullStr[] = "Source string NULL in nStringCopy().";
-        nErrorThrow(NERROR_NULL, einfoNullStr, (sizeof(einfoNullStr) - 1)); /// @todo Use einfo prefix, sizeof(str) - 1, and NCONST_STR for these functions.
+        nErrorThrow(NERROR_NULL, einfoNullStr, sizeof(einfoNullStr) - 1);
     }
 
     if (!dst)

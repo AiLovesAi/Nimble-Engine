@@ -59,9 +59,7 @@ extern "C" {
 #include "NimbleEngine/Output/Logging.h"
 
 #include "NimbleEngine/System/Hardware.h"
-
-#include "NimbleEngine/Threads/Threads.h"
-#include "NimbleEngine/Threads/ThreadManager.h"
+#include "NimbleEngine/System/Threads.h"
 
 #include <inttypes.h>
 #include <time.h>
@@ -208,8 +206,8 @@ nFree(void *ptr)
  */
 NIMBLE_EXTERN
 char *
-nStringCopy(char *dst,
-            const char *src,
+nStringCopy(char *restrict dst,
+            const char *restrict src,
             const size_t len
             );
 

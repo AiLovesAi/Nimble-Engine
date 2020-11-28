@@ -51,7 +51,7 @@
 
 #include "../../../include/Nimble/NimbleEngine/Output/CrashHandler.h"
 
-NCONST_STR nErrMinStr[]             = "NERROR_MIN";
+NCONST_STR nErrMinStr[]               = "NERROR_MIN";
 
 /* NIMBLE */
 NCONST_STR nErrUnknownStr[]           = "NERROR_UNKNOWN";
@@ -181,7 +181,7 @@ NCONST_STR nErrMaxQueueStr[]          = "NERROR_MAX_QUEUE";
 NCONST_STR nErrMaxStr[]               = "NERROR_MAX";
 
 
-const char * nErrorStrings[] = {
+NCONST_STR *const nErrorStrings[] = {
     nErrMinStr,
     
     nErrUnknownStr,
@@ -1162,7 +1162,7 @@ NCONST_STR nErrDescMaxStr[]               = "The maximum error value, likely "\
 "caused by programmer error or a corruption issue.";
 
 
-const char * nErrorDescriptions[] = {
+NCONST_STR *const nErrorDescriptions[] = {
     nErrDescMinStr,
     
     nErrDescUnknownStr,

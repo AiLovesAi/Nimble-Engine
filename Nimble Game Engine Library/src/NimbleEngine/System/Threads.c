@@ -57,7 +57,7 @@ nint_t nThreadCreate(nThread_t *thread, nint_t attributes,
 {
     /// @todo Attributes, pointer conversion for some arguments
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
-    *thread = CreateThread(NULL, 0, start, data, 0, NULL);
+    *thread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE) start, data, 0, NULL);
     if (*thread == NULL)
     {
         /// @todo nErrorThrow();

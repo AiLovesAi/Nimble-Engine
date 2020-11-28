@@ -90,8 +90,8 @@ nint_t nCrashSetCallback(void (*callback)(const nint_t error,
 {
     if (callback == NULL)
     {
-        char callbackErrStr[] = "Callback parameter null in nCrashSetCallback().";
-        nErrorThrow(NERROR_NULL, callbackErrStr, (sizeof(callbackErrStr) - 1));
+        NCONST_STR einfoCallbackStr[] = "Callback parameter null in nCrashSetCallback().";
+        nErrorThrow(NERROR_NULL, einfoCallbackStr, sizeof(einfoCallbackStr) - 1);
         return NERROR;
     }
     

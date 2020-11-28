@@ -405,7 +405,7 @@ enum nErrors {
  * @brief The strings used to represent error codes defined by #nErrors.
  */
 NIMBLE_EXTERN
-const char *nErrorStrings[];
+NCONST_STR *const nErrorStrings[];
 
 /**
  * @brief The length of the strings of the error codes defined by #nErrors.
@@ -439,7 +439,7 @@ const nint_t nErrorDescLengths[];
  * @brief The descriptions of the error codes defined by #nErrors.
  */
 NIMBLE_EXTERN
-const char *nErrorDescriptions[];
+NCONST_STR *const nErrorDescriptions[];
 
 /**
  * @brief The length of the descriptions of the error codes defined by #nErrors.

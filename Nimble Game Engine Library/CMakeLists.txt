@@ -1,5 +1,5 @@
 #
-# NimbleInstaller.nsi
+# CmakeLists.txt
 # Nimble Game Engine
 #
 # Created by Avery Aaron on 2020-08-09.
@@ -25,7 +25,6 @@ include_directories("include/Nimble/"
                     "include/Nimble/NimbleEngine/Network/"
                     "include/Nimble/NimbleEngine/Output/"
                     "include/Nimble/NimbleEngine/System/"
-                    "include/Nimble/NimbleEngine/Threads/"
                     )
 
 # Graphics libraries
@@ -94,8 +93,6 @@ file(GLOB engine
      "include/Nimble/NimbleEngine/Output/*.h"
      "src/NimbleEngine/System/*.c"
      "include/Nimble/NimbleEngine/System/*.h"
-     "src/NimbleEngine/Threads/*.c"
-     "include/Nimble/NimbleEngine/Threads/*.h"
      )
 
 add_library(NimbleEngine_${ver} SHARED ${engine})

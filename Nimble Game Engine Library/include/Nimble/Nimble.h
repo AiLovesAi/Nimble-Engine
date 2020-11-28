@@ -153,7 +153,7 @@ extern "C" {
 #define NULL ((void *) 0) /**< Null pointer. */
 #endif
 
-#define NCONST_STR static const char /**< Used for static constant character arrays. */
+#define NCONST_STR const char /**< Used for static constant character arrays. */
 
 
 typedef int_fast8_t   nbyte_t;
