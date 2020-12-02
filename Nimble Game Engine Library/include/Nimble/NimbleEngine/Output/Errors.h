@@ -86,157 +86,161 @@ enum nErrors {
      * to make a 2,000 line portable equivalent of:
      * return (NERROR_ERRNO_START + error);
      */
-    NERROR_NO_PERM = EPERM, /**< Operation not permitted. */
-    NERROR_NO_FILE = ENOENT, /**< No such file or directory. */
-    NERROR_NO_PROCESS = ESRCH, /**< No such process. */
-    NERROR_INTERRUPT = EINTR, /**< Interrupted system call. */
-    NERROR_IO = EIO, /**< Input/output error. */
-    NERROR_NO_DEVICE = ENXIO, /**< No such device or address. */
-    NERROR_MAX_ARGS = E2BIG, /**< Argument list too long. */
-    NERROR_INV_EXEC_FORMAT = ENOEXEC, /**< Exec format error. */
-    NERROR_INV_FP = EBADF, /**< Bad file descriptor. */
-    NERROR_NO_CHILD = ECHILD, /**< No child process. */
-    NERROR_DEADLOCK = EDEADLK, /**< Resource deadlock avoided. */
-    NERROR_NO_MEMORY = ENOMEM, /**< Cannot allocate memory. */
-    NERROR_NO_FILE_PERM = EACCES, /**< Permission denied. */
-    NERROR_FAULT = EFAULT, /**< Bad address. */
-    NERROR_NOT_BLOCK = ENOTBLK, /**< Block device required. */
-    NERROR_DEVICE_BUSY = EBUSY, /**< Device or resource busy. */
-    NERROR_FILE_EXISTS = EEXIST, /**< File exists. */
-    NERROR_INV_CROSSLINK = EXDEV, /**< Invalid cross-device link. */
-    NERROR_INV_DEVICE = ENODEV, /**< No such device. */
-    NERROR_NOT_DIR = ENOTDIR, /**< Not a directory. */
-    NERROR_IS_DIR = EISDIR, /**< Is a directory. */
-    NERROR_INV_ARG = EINVAL, /**< Invalid argument. */
-    NERROR_MAX_FILE = EMFILE, /**< Too many open files. */
-    NERROR_MAX_FILE_SYS = ENFILE, /**< Too many open files in system. */
-    NERROR_INV_IOCTL = ENOTTY, /**< Inappropriate ioctl for device. */
-    NERROR_TEXT_BUSY = ETXTBSY, /**< Text file busy. */
-    NERROR_FILE_TOO_BIG = EFBIG, /**< File too large. */
-    NERROR_NO_SPACE = ENOSPC, /**< No space left on device. */
-    NERROR_INV_SEEK = ESPIPE, /**< Illegal seek. */
-    NERROR_READ_ONLY = EROFS, /**< Read-only file system. */
-    NERROR_MAX_LINKS = EMLINK, /**< Too many links. */
-    NERROR_INV_PIPE = EPIPE, /**< Broken pipe. */
-    NERROR_DOMAIN = EDOM, /**< Numerical argument out of domain. */
-    NERROR_RESULT_TOO_BIG = ERANGE, /**< Numerical result out of range. */
-    NERROR_WOULD_BLOCK = (EAGAIN & EWOULDBLOCK), /**< Resource temporarily unavailable; Operation would block. */
-    NERROR_IN_PROGRESS = EINPROGRESS, /**< Operation now in progress. */
-    NERROR_ALREADY = EALREADY, /**< Operation already in progress. */
-    NERROR_NOT_SOCKET = ENOTSOCK, /**< Socket operation on non-socket. */
-    NERROR_MAX_MESSAGE = EMSGSIZE, /**< Message too long. */
-    NERROR_INV_PROTO_TYPE = EPROTOTYPE, /**< Protocol wrong type for socket. */
-    NERROR_INV_PROTO_OPT = ENOPROTOOPT, /**< Protocol not available. */
-    NERROR_INV_PROTOCOL = EPROTONOSUPPORT, /**< Protocol not supported. */
-    NERROR_INV_SOCK_TYPE = ESOCKTNOSUPPORT, /**< Socket type not supported. */
-    NERROR_INV_SOCK_OPR = EOPNOTSUPP, /**< Operation not supported. */
-    NERROR_INV_PROTO_FAM = EPFNOSUPPORT, /**< Protocol family not supported. */
-    NERROR_INV_ADDR_FAM = EAFNOSUPPORT, /**< Address family not supported by protocol. */
-    NERROR_ADDR_IN_USE = EADDRINUSE, /**< Address already in use. */
-    NERROR_ADDR_NOT_AVAILABLE = EADDRNOTAVAIL, /**< Cannot assign requested address. */
-    NERROR_NET_DOWN = ENETDOWN, /**< Network is down. */
-    NERROR_NET_UNREACHABLE = ENETUNREACH, /**< Network is unreachable. */
-    NERROR_NET_RESET = ENETRESET, /**< Network dropped connection on reset. */
-    NERROR_CONN_ABORTED = ECONNABORTED, /**< Software caused connection abort. */
-    NERROR_CONN_RESET = ECONNRESET, /**< Connection reset by peer. */
-    NERROR_NO_BUFFER_SPACE = ENOBUFS, /**< No buffer space available. */
-    NERROR_ALREADY_CONN = EISCONN, /**< Transport endpoint is already connected. */
-    NERROR_NOT_CONN = ENOTCONN, /**< Transport endpoint is not connected. */
-    NERROR_NO_ADDR = EDESTADDRREQ, /**< Destination address required. */
-    NERROR_SOCK_SHUTDOWN = ESHUTDOWN, /**< Cannot send after transport endpoint shutdown. */
-    NERROR_MAX_REFS = ETOOMANYREFS, /**< Too many references: cannot splice. */
-    NERROR_CONN_TIMEOUT = ETIMEDOUT, /**< Connection timed out. */
-    NERROR_CONN_REFUSED = ECONNREFUSED, /**< Connection refused. */
-    NERROR_LINK_LOOP = ELOOP, /**< Too many levels of symbolic links. */
-    NERROR_MAX_FILENAME = ENAMETOOLONG, /**< File name too long. */
-    NERROR_HOST_DOWN = EHOSTDOWN, /**< Host is down. */
-    NERROR_HOST_UNREACHABLE = EHOSTUNREACH, /**< No route to host. */
-    NERROR_DIR_NOT_EMPTY = ENOTEMPTY, /**< Directory not empty. */
-    NERROR_MAX_PROCESS = EPROCLIM, /**< Too many processes. */
-    NERROR_MAX_USERS = EUSERS, /**< Too many users. */
-    NERROR_MAX_DISK_QUOTA = EDQUOT, /**< Disk quota exceeded. */
-    NERROR_STALE = ESTALE, /**< Stale file handle. */
-    NERROR_REMOTE = EREMOTE, /**< Object is remote. */
-    NERROR_INV_RPC = EBADRPC, /**< RPC struct is bad. */
-    NERROR_INV_RPC_VERSION = ERPCMISMATCH, /**< RPC version wrong. */
-    NERROR_INV_RPC_PROG = EPROGUNAVAIL, /**< RPC program not available. */
-    NERROR_INV_RPC_PROG_VERSION = EPROGMISMATCH, /**< RPC program version wrong. */
-    NERROR_INV_RPC_PROC = EPROCUNAVAIL, /**< RPC bad procedure for program. */
-    NERROR_NO_FILE_LOCK = ENOLCK, /**< No locks available. */
-    NERROR_INV_FILE_TYPE = EFTYPE, /**< Inappropriate file type or format. */
-    NERROR_AUTH = EAUTH, /**< Authentication error. */
-    NERROR_NO_AUTH = ENEEDAUTH, /**< Need authenticator. */
-    NERROR_FUNC_NOT_SUPPORTED = ENOSYS, /**< Function not implemented. */
-    NERROR_NOT_SUPPORTED = ENOTSUP, /**< Not supported. */
-    NERROR_INV_MULTIBYTE = EILSEQ, /**< Invalid or incomplete multibyte or wide character. */
-    NERROR_INV_BACKGROUND = EBACKGROUND, /**< Inappropriate operation for background process. */
-    NERROR_TRANSLATOR_DIED = EDIED, /**< Translator died. */
-    NERROR_JOKE = (ED & EGREGIOUS & EIEIO & EGRATUITOUS), /**< You really blew it this time. */
-    NERROR_INV_MESSAGE = EBADMSG, /**< Bad message. */
-    NERROR_NO_IDENTIFIER = EIDRM, /**< Identifier removed. */
-    NERROR_MULTIHOP = EMULTIHOP, /**< Multihop attempted. */
-    NERROR_NO_DATA = ENODATA, /**< No data available. */
-    NERROR_NO_LINK = ENOLINK, /**< Link has been severed. */
-    NERROR_NO_MESSAGE = ENOMSG, /**< No message of desired type. */
-    NERROR_NO_STREAM_RESOURCES = ENOSR, /**< Out of streams resources. */
-    NERROR_DEVICE_NOT_STREAM = ENOSTR, /**< Device not a stream. */
-    NERROR_OVERFLOW = EOVERFLOW, /**< Value too large for defined data type. */
-    NERROR_PROTOCOL = EPROTO, /**< Protocol error. */
-    NERROR_TIMER = ETIME, /**< Timer expired. */
-    NERROR_ASYNC_CANCEL = ECANCELED, /**< Operation canceled. */
-    NERROR_OWNER_DIED = EOWNERDEAD, /**< Owner died. */
-    NERROR_NOT_RECOVERABLE = ENOTRECOVERABLE, /**< State not recoverable. */
-    NERROR_DEVICE_OFF = EPWROFF, /**< Device power is off. */
-    NERROR_DEVICE_ERROR = EDEVERR, /**< Device error, e.g. paper out. */
-    NERROR_INV_EXECUTABLE = EBADEXEC, /**< Bad executable. */
-    NERROR_INV_ARCHITECTURE = EBADARCH, /**< Bad CPU type in executable. */
-    NERROR_INV_LIB_VERSION = ESHLIBVERS, /**< Shared library version mismatch. */
-    NERROR_INV_MACHO = EBADMACHO, /**< Malformed Macho file. */
-    NERROR_NO_ATTRIBUTE = ENOATTR, /**< Attribute not found. */
-    NERROR_NO_POLICY = ENOPOLICY, /**< No such policy registered. */
-    NERROR_MAX_QUEUE = EQFULL, /**< Interface output queue is full. */
-    NERROR_MAX_CHANNEL = ECHRNG, /**< Channel number out of range. */
-    NERROR_LVL2_NO_SYNC = EL2NSYNC, /**< Level 2 not synchronized. */
-    NERROR_LVL3_HAULT = EL3HLT, /**< Level 3 halted. */
-    NERROR_LVL3_RESET = EL3RST, /**< Level 3 reset. */
-    NERROR_LINK_NUM = ELNRNG, /**< Link number out of range. */
-    NERROR_PROTO_UNATTACHED = EUNATCH, /**< Protocol driver not attached. */
-    NERROR_NO_CSI = ENOCSI, /**< No CSI structure available. */
-    NERROR_LVL2_HAULT = EL2HLT, /**< Level 2 haulted. */
-    NERROR_INV_EXCHANGE = EBADE, /**< Invalid exchange. */
-    NERROR_INV_REQUEST_DESC = EBADR, /**< Invalid request descriptor. */
-    NERROR_EXCHANGE_FULL = EXFULL, /**< Exchange full. */
-    NERROR_NO_ANODE = ENOANO, /**< No anode. */
-    NERROR_INV_REQUEST_CODE = EBADRQC, /**< Invalid request code. */
-    NERROR_INV_SLOT = EBADSLT, /**< Invalid slot. */
-    NERROR_INV_FONT = EBFONT, /**< Bad font file format. */
-    NERROR_NO_NETWORK = ENONET, /**< Machine is not on the network. */
-    NERROR_NO_PACKAGE = ENOPKG, /**< Package not installed. */
-    NERROR_ADVERTISE = EADV, /**< Advertise error. */
-    NERROR_SRMOUNT = ESRMNT, /**< Srmount error. */
-    NERROR_COMMUNICATION = ECOMM, /**< Communication error on send. */
-    NERROR_DOTDOT = EDOTDOT, /**< RFS specific error. */
-    NERROR_NOT_UNIQUE = ENOTUNIQ, /**< Name not unique on network. */
-    NERROR_INV_FD = EBADFD, /**< File descriptor in bad state. */
-    NERROR_REMOTE_CHANGE = EREMCHG, /**< Remote address changed. */
-    NERROR_NO_LIB = ELIBACC, /**< Can not access a needed shared library. */
-    NERROR_INV_LIB = ELIBBAD, /**< Accessing a corrupted shared library. */
-    NERROR_INV_LIB_SCAN = ELIBSCN, /**< .lib section in a.out corrupted. */
-    NERROR_MAX_LIB = ELIBMAX, /**< Attempting to link in too many shared libraries. */
-    NERROR_EXEC_LIB = ELIBEXEC, /**< Cannot exec a shared library directly. */
-    NERROR_RESTART_CALL = ERESTART, /**< Interrupted system call should be restarted. */
-    NERROR_STR_PIPE = ESTRPIPE, /**< Streams pipe error. */
-    NERROR_CLEAN_STRUCT = EUCLEAN, /**< Structure needs cleaning. */
-    NERROR_NOT_XENIX = ENOTNAM, /**< Not a XENIX named type file. */
-    NERROR_NO_XENIX_SEM = ENAVAIL, /**< No XENIX semaphores available. */
-    NERROR_NAMED = EISNAM, /**< Is a named type file. */
-    NERROR_REMOTE_IO = EREMOTEIO, /**< Remote I/O error. */
-    NERROR_NO_MEDIUM = ENOMEDIUM, /**< No medium found. */
-    NERROR_INV_MEDIUM = EMEDIUMTYPE, /**< Wrong medium type. */
-    NERROR_PROGRAMMER = EDOOFUS, /**< Programming error. */
-    NERROR_FD_INCAPABLE = ENOTCAPABLE, /**< Capabilities insufficient. */
-    NERROR_CAPABILITY_MODE = ECAPMODE, /**< Not permitted in capability mode. */
-    NERROR_INTEGRITY = EINTEGRITY, /**< Integrity check failed. */
+    NERROR_NO_PERM = NERROR_ERRNO_START + EPERM, /**< Operation not permitted. */
+    NERROR_NO_FILE = NERROR_ERRNO_START + ENOENT, /**< No such file or directory. */
+    NERROR_NO_PROCESS = NERROR_ERRNO_START + ESRCH, /**< No such process. */
+    NERROR_INTERRUPT = NERROR_ERRNO_START + EINTR, /**< Interrupted system call. */
+    NERROR_IO = NERROR_ERRNO_START + EIO, /**< Input/output error. */
+    NERROR_NO_DEVICE = NERROR_ERRNO_START + ENXIO, /**< No such device or address. */
+    NERROR_MAX_ARGS = NERROR_ERRNO_START + E2BIG, /**< Argument list too long. */
+    NERROR_INV_EXEC_FORMAT = NERROR_ERRNO_START + ENOEXEC, /**< Exec format error. */
+    NERROR_INV_FP = NERROR_ERRNO_START + EBADF, /**< Bad file descriptor. */
+    NERROR_NO_CHILD = NERROR_ERRNO_START + ECHILD, /**< No child process. */
+    NERROR_DEADLOCK = NERROR_ERRNO_START + EDEADLK, /**< Resource deadlock avoided. */
+    NERROR_NO_MEMORY = NERROR_ERRNO_START + ENOMEM, /**< Cannot allocate memory. */
+    NERROR_NO_FILE_PERM = NERROR_ERRNO_START + EACCES, /**< Permission denied. */
+    NERROR_FAULT = NERROR_ERRNO_START + EFAULT, /**< Bad address. */
+    NERROR_NOT_BLOCK = NERROR_ERRNO_START + ENOTBLK, /**< Block device required. */
+    NERROR_DEVICE_BUSY = NERROR_ERRNO_START + EBUSY, /**< Device or resource busy. */
+    NERROR_FILE_EXISTS = NERROR_ERRNO_START + EEXIST, /**< File exists. */
+    NERROR_INV_CROSSLINK = NERROR_ERRNO_START + EXDEV, /**< Invalid cross-device link. */
+    NERROR_INV_DEVICE = NERROR_ERRNO_START + ENODEV, /**< No such device. */
+    NERROR_NOT_DIR = NERROR_ERRNO_START + ENOTDIR, /**< Not a directory. */
+    NERROR_IS_DIR = NERROR_ERRNO_START + EISDIR, /**< Is a directory. */
+    NERROR_INV_ARG = NERROR_ERRNO_START + EINVAL, /**< Invalid argument. */
+    NERROR_MAX_FILE = NERROR_ERRNO_START + EMFILE, /**< Too many open files. */
+    NERROR_MAX_FILE_SYS = NERROR_ERRNO_START + ENFILE, /**< Too many open files in system. */
+    NERROR_INV_IOCTL = NERROR_ERRNO_START + ENOTTY, /**< Inappropriate ioctl for device. */
+    NERROR_TEXT_BUSY = NERROR_ERRNO_START + ETXTBSY, /**< Text file busy. */
+    NERROR_FILE_TOO_BIG = NERROR_ERRNO_START + EFBIG, /**< File too large. */
+    NERROR_NO_SPACE = NERROR_ERRNO_START + ENOSPC, /**< No space left on device. */
+    NERROR_INV_SEEK = NERROR_ERRNO_START + ESPIPE, /**< Illegal seek. */
+    NERROR_READ_ONLY = NERROR_ERRNO_START + EROFS, /**< Read-only file system. */
+    NERROR_MAX_LINKS = NERROR_ERRNO_START + EMLINK, /**< Too many links. */
+    NERROR_INV_PIPE = NERROR_ERRNO_START + EPIPE, /**< Broken pipe. */
+    NERROR_DOMAIN = NERROR_ERRNO_START + EDOM, /**< Numerical argument out of domain. */
+    NERROR_RESULT_TOO_BIG = NERROR_ERRNO_START + ERANGE, /**< Numerical result out of range. */
+    NERROR_WOULD_BLOCK = NERROR_ERRNO_START + (EAGAIN & EWOULDBLOCK), /**< Resource temporarily unavailable; Operation would block. */
+    NERROR_IN_PROGRESS = NERROR_ERRNO_START + EINPROGRESS, /**< Operation now in progress. */
+    NERROR_ALREADY = NERROR_ERRNO_START + EALREADY, /**< Operation already in progress. */
+    NERROR_NOT_SOCKET = NERROR_ERRNO_START + ENOTSOCK, /**< Socket operation on non-socket. */
+    NERROR_MAX_MESSAGE = NERROR_ERRNO_START + EMSGSIZE, /**< Message too long. */
+    NERROR_INV_PROTO_TYPE = NERROR_ERRNO_START + EPROTOTYPE, /**< Protocol wrong type for socket. */
+    NERROR_INV_PROTO_OPT = NERROR_ERRNO_START + ENOPROTOOPT, /**< Protocol not available. */
+    NERROR_INV_PROTOCOL = NERROR_ERRNO_START + EPROTONOSUPPORT, /**< Protocol not supported. */
+    NERROR_INV_SOCK_TYPE = NERROR_ERRNO_START + ESOCKTNOSUPPORT, /**< Socket type not supported. */
+    NERROR_INV_SOCK_OPR = NERROR_ERRNO_START + EOPNOTSUPP, /**< Operation not supported. */
+    NERROR_INV_PROTO_FAM = NERROR_ERRNO_START + EPFNOSUPPORT, /**< Protocol family not supported. */
+    NERROR_INV_ADDR_FAM = NERROR_ERRNO_START + EAFNOSUPPORT, /**< Address family not supported by protocol. */
+    NERROR_ADDR_IN_USE = NERROR_ERRNO_START + EADDRINUSE, /**< Address already in use. */
+    NERROR_ADDR_NOT_AVAILABLE = NERROR_ERRNO_START + EADDRNOTAVAIL, /**< Cannot assign requested address. */
+    NERROR_NET_DOWN = NERROR_ERRNO_START + ENETDOWN, /**< Network is down. */
+    NERROR_NET_UNREACHABLE = NERROR_ERRNO_START + ENETUNREACH, /**< Network is unreachable. */
+    NERROR_NET_RESET = NERROR_ERRNO_START + ENETRESET, /**< Network dropped connection on reset. */
+    NERROR_CONN_ABORTED = NERROR_ERRNO_START + ECONNABORTED, /**< Software caused connection abort. */
+    NERROR_CONN_RESET = NERROR_ERRNO_START + ECONNRESET, /**< Connection reset by peer. */
+    NERROR_NO_BUFFER_SPACE = NERROR_ERRNO_START + ENOBUFS, /**< No buffer space available. */
+    NERROR_ALREADY_CONN = NERROR_ERRNO_START + EISCONN, /**< Transport endpoint is already connected. */
+    NERROR_NOT_CONN = NERROR_ERRNO_START + ENOTCONN, /**< Transport endpoint is not connected. */
+    NERROR_NO_ADDR = NERROR_ERRNO_START + EDESTADDRREQ, /**< Destination address required. */
+    NERROR_SOCK_SHUTDOWN = NERROR_ERRNO_START + ESHUTDOWN, /**< Cannot send after transport endpoint shutdown. */
+    NERROR_MAX_REFS = NERROR_ERRNO_START + ETOOMANYREFS, /**< Too many references: cannot splice. */
+    NERROR_CONN_TIMEOUT = NERROR_ERRNO_START + ETIMEDOUT, /**< Connection timed out. */
+    NERROR_CONN_REFUSED = NERROR_ERRNO_START + ECONNREFUSED, /**< Connection refused. */
+    NERROR_LINK_LOOP = NERROR_ERRNO_START + ELOOP, /**< Too many levels of symbolic links. */
+    NERROR_MAX_FILENAME = NERROR_ERRNO_START + ENAMETOOLONG, /**< File name too long. */
+    NERROR_HOST_DOWN = NERROR_ERRNO_START + EHOSTDOWN, /**< Host is down. */
+    NERROR_HOST_UNREACHABLE = NERROR_ERRNO_START + EHOSTUNREACH, /**< No route to host. */
+    NERROR_DIR_NOT_EMPTY = NERROR_ERRNO_START + ENOTEMPTY, /**< Directory not empty. */
+    NERROR_MAX_PROCESS = NERROR_ERRNO_START + EPROCLIM, /**< Too many processes. */
+    NERROR_MAX_USERS = NERROR_ERRNO_START + EUSERS, /**< Too many users. */
+    NERROR_MAX_DISK_QUOTA = NERROR_ERRNO_START + EDQUOT, /**< Disk quota exceeded. */
+    NERROR_STALE = NERROR_ERRNO_START + ESTALE, /**< Stale file handle. */
+    NERROR_REMOTE = NERROR_ERRNO_START + EREMOTE, /**< Object is remote. */
+    NERROR_INV_RPC = NERROR_ERRNO_START + EBADRPC, /**< RPC struct is bad. */
+    NERROR_INV_RPC_VERSION = NERROR_ERRNO_START + ERPCMISMATCH, /**< RPC version wrong. */
+    NERROR_INV_RPC_PROG = NERROR_ERRNO_START + EPROGUNAVAIL, /**< RPC program not available. */
+    NERROR_INV_RPC_PROG_VERSION = NERROR_ERRNO_START + EPROGMISMATCH, /**< RPC program version wrong. */
+    NERROR_INV_RPC_PROC = NERROR_ERRNO_START + EPROCUNAVAIL, /**< RPC bad procedure for program. */
+    NERROR_NO_FILE_LOCK = NERROR_ERRNO_START + ENOLCK, /**< No locks available. */
+    NERROR_INV_FILE_TYPE = NERROR_ERRNO_START + EFTYPE, /**< Inappropriate file type or format. */
+    NERROR_AUTH = NERROR_ERRNO_START + EAUTH, /**< Authentication error. */
+    NERROR_NO_AUTH = NERROR_ERRNO_START + ENEEDAUTH, /**< Need authenticator. */
+    NERROR_FUNC_NOT_SUPPORTED = NERROR_ERRNO_START + ENOSYS, /**< Function not implemented. */
+    NERROR_NOT_SUPPORTED = NERROR_ERRNO_START + ENOTSUP, /**< Not supported. */
+    NERROR_INV_MULTIBYTE = NERROR_ERRNO_START + EILSEQ, /**< Invalid or incomplete multibyte or wide character. */
+    NERROR_INV_BACKGROUND = NERROR_ERRNO_START + EBACKGROUND, /**< Inappropriate operation for background process. */
+    NERROR_TRANSLATOR_DIED = NERROR_ERRNO_START + EDIED, /**< Translator died. */
+    NERROR_JOKE = NERROR_ERRNO_START + (ED & EGREGIOUS & EIEIO & EGRATUITOUS), /**< You really blew it this time. */
+    NERROR_INV_MESSAGE = NERROR_ERRNO_START + EBADMSG, /**< Bad message. */
+    NERROR_NO_IDENTIFIER = NERROR_ERRNO_START + EIDRM, /**< Identifier removed. */
+    NERROR_MULTIHOP = NERROR_ERRNO_START + EMULTIHOP, /**< Multihop attempted. */
+    NERROR_NO_DATA = NERROR_ERRNO_START + ENODATA, /**< No data available. */
+    NERROR_NO_LINK = NERROR_ERRNO_START + ENOLINK, /**< Link has been severed. */
+    NERROR_NO_MESSAGE = NERROR_ERRNO_START + ENOMSG, /**< No message of desired type. */
+    NERROR_NO_STREAM_RESOURCES = NERROR_ERRNO_START + ENOSR, /**< Out of streams resources. */
+    NERROR_DEVICE_NOT_STREAM = NERROR_ERRNO_START + ENOSTR, /**< Device not a stream. */
+    NERROR_OVERFLOW = NERROR_ERRNO_START + EOVERFLOW, /**< Value too large for defined data type. */
+    NERROR_PROTOCOL = NERROR_ERRNO_START + EPROTO, /**< Protocol error. */
+    NERROR_TIMER = NERROR_ERRNO_START + ETIME, /**< Timer expired. */
+    NERROR_ASYNC_CANCEL = NERROR_ERRNO_START + ECANCELED, /**< Operation canceled. */
+    NERROR_OWNER_DIED = NERROR_ERRNO_START + EOWNERDEAD, /**< Owner died. */
+    NERROR_NOT_RECOVERABLE = NERROR_ERRNO_START + ENOTRECOVERABLE, /**< State not recoverable. */
+    NERROR_DEVICE_OFF = NERROR_ERRNO_START + EPWROFF, /**< Device power is off. */
+    NERROR_DEVICE_ERROR = NERROR_ERRNO_START + EDEVERR, /**< Device error, e.g. paper out. */
+    NERROR_INV_EXECUTABLE = NERROR_ERRNO_START + EBADEXEC, /**< Bad executable. */
+    NERROR_INV_ARCHITECTURE = NERROR_ERRNO_START + EBADARCH, /**< Bad CPU type in executable. */
+    NERROR_INV_LIB_VERSION = NERROR_ERRNO_START + ESHLIBVERS, /**< Shared library version mismatch. */
+    NERROR_INV_MACHO = NERROR_ERRNO_START + EBADMACHO, /**< Malformed Macho file. */
+    NERROR_NO_ATTRIBUTE = NERROR_ERRNO_START + ENOATTR, /**< Attribute not found. */
+    NERROR_NO_POLICY = NERROR_ERRNO_START + ENOPOLICY, /**< No such policy registered. */
+    NERROR_MAX_QUEUE = NERROR_ERRNO_START + EQFULL, /**< Interface output queue is full. */
+    NERROR_MAX_CHANNEL = NERROR_ERRNO_START + ECHRNG, /**< Channel number out of range. */
+    NERROR_LVL2_NO_SYNC = NERROR_ERRNO_START + EL2NSYNC, /**< Level 2 not synchronized. */
+    NERROR_LVL3_HAULT = NERROR_ERRNO_START + EL3HLT, /**< Level 3 halted. */
+    NERROR_LVL3_RESET = NERROR_ERRNO_START + EL3RST, /**< Level 3 reset. */
+    NERROR_LINK_NUM = NERROR_ERRNO_START + ELNRNG, /**< Link number out of range. */
+    NERROR_PROTO_UNATTACHED = NERROR_ERRNO_START + EUNATCH, /**< Protocol driver not attached. */
+    NERROR_NO_CSI = NERROR_ERRNO_START + ENOCSI, /**< No CSI structure available. */
+    NERROR_LVL2_HAULT = NERROR_ERRNO_START + EL2HLT, /**< Level 2 haulted. */
+    NERROR_INV_EXCHANGE = NERROR_ERRNO_START + EBADE, /**< Invalid exchange. */
+    NERROR_INV_REQUEST_DESC = NERROR_ERRNO_START + EBADR, /**< Invalid request descriptor. */
+    NERROR_EXCHANGE_FULL = NERROR_ERRNO_START + EXFULL, /**< Exchange full. */
+    NERROR_NO_ANODE = NERROR_ERRNO_START + ENOANO, /**< No anode. */
+    NERROR_INV_REQUEST_CODE = NERROR_ERRNO_START + EBADRQC, /**< Invalid request code. */
+    NERROR_INV_SLOT = NERROR_ERRNO_START + EBADSLT, /**< Invalid slot. */
+    NERROR_INV_FONT = NERROR_ERRNO_START + EBFONT, /**< Bad font file format. */
+    NERROR_NO_NETWORK = NERROR_ERRNO_START + ENONET, /**< Machine is not on the network. */
+    NERROR_NO_PACKAGE = NERROR_ERRNO_START + ENOPKG, /**< Package not installed. */
+    NERROR_ADVERTISE = NERROR_ERRNO_START + EADV, /**< Advertise error. */
+    NERROR_SRMOUNT = NERROR_ERRNO_START + ESRMNT, /**< Srmount error. */
+    NERROR_COMMUNICATION = NERROR_ERRNO_START + ECOMM, /**< Communication error on send. */
+    NERROR_DOTDOT = NERROR_ERRNO_START + EDOTDOT, /**< RFS specific error. */
+    NERROR_NOT_UNIQUE = NERROR_ERRNO_START + ENOTUNIQ, /**< Name not unique on network. */
+    NERROR_INV_FD = NERROR_ERRNO_START + EBADFD, /**< File descriptor in bad state. */
+    NERROR_REMOTE_CHANGE = NERROR_ERRNO_START + EREMCHG, /**< Remote address changed. */
+    NERROR_NO_LIB = NERROR_ERRNO_START + ELIBACC, /**< Can not access a needed shared library. */
+    NERROR_INV_LIB = NERROR_ERRNO_START + ELIBBAD, /**< Accessing a corrupted shared library. */
+    NERROR_INV_LIB_SCAN = NERROR_ERRNO_START + ELIBSCN, /**< .lib section in a.out corrupted. */
+    NERROR_MAX_LIB = NERROR_ERRNO_START + ELIBMAX, /**< Attempting to link in too many shared libraries. */
+    NERROR_EXEC_LIB = NERROR_ERRNO_START + ELIBEXEC, /**< Cannot exec a shared library directly. */
+    NERROR_RESTART_CALL = NERROR_ERRNO_START + ERESTART, /**< Interrupted system call should be restarted. */
+    NERROR_STR_PIPE = NERROR_ERRNO_START + ESTRPIPE, /**< Streams pipe error. */
+    NERROR_CLEAN_STRUCT = NERROR_ERRNO_START + EUCLEAN, /**< Structure needs cleaning. */
+    NERROR_NOT_XENIX = NERROR_ERRNO_START + ENOTNAM, /**< Not a XENIX named type file. */
+    NERROR_NO_XENIX_SEM = NERROR_ERRNO_START + ENAVAIL, /**< No XENIX semaphores available. */
+    NERROR_NAMED = NERROR_ERRNO_START + EISNAM, /**< Is a named type file. */
+    NERROR_REMOTE_IO = NERROR_ERRNO_START + EREMOTEIO, /**< Remote I/O error. */
+    NERROR_NO_MEDIUM = NERROR_ERRNO_START + ENOMEDIUM, /**< No medium found. */
+    NERROR_INV_MEDIUM = NERROR_ERRNO_START + EMEDIUMTYPE, /**< Wrong medium type. */
+    NERROR_PROGRAMMER = NERROR_ERRNO_START + EDOOFUS, /**< Programming error. */
+    NERROR_FD_INCAPABLE = NERROR_ERRNO_START + ENOTCAPABLE, /**< Capabilities insufficient. */
+    NERROR_CAPABILITY_MODE = NERROR_ERRNO_START + ECAPMODE, /**< Not permitted in capability mode. */
+    NERROR_INTEGRITY = NERROR_ERRNO_START + EINTEGRITY, /**< Integrity check failed. */
+    NERROR_INODE_REMOTE = NERROR_ERRNO_START + ELBIN, /**< Inode is remote. */
+    NERROR_NO_MORE_FILES = NERROR_ERRNO_START + ENMFILE, /**< No more files. */
+    NERROR_NO_NET_PATH = NERROR_ERRNO_START + ENOSHARE, /**< No such host or network path. */
+    NERROR_FILE_CASE = NNERROR_ERRNO_START + ECASECLASH, /**< Filename exists with different case. */
 #endif
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
@@ -434,6 +438,126 @@ enum nErrors {
     NERROR_MAX_QUEUE, /**< Interface output queue is full. */
     
 #elif NIMBLE_OS == NIMBLE_ANDROID
+    NERROR_NO_PERM, /**< Operation not permitted. */
+    NERROR_NO_FILE, /**< No such file or directory. */
+    NERROR_NO_PROCESS, /**< No such process. */
+    NERROR_INTERRUPT, /**< Interrupted system call. */
+    NERROR_IO, /**< Input/output error. */
+    NERROR_NO_DEVICE, /**< No such device or address. */
+    NERROR_MAX_ARGS, /**< Argument list too long. */
+    NERROR_INV_EXEC_FORMAT, /**< Exec format error. */
+    NERROR_INV_FP, /**< Bad file descriptor. */
+    NERROR_WOULD_BLOCK, /**< Resource temporarily unavailable; Operation would block. */
+    NERROR_NO_MEMORY, /**< Cannot allocate memory. */
+    NERROR_NO_FILE_PERM, /**< Permission denied. */
+    NERROR_FAULT, /**< Bad address. */
+    NERROR_NOT_BLOCK, /**< Block device required. */
+    NERROR_DEVICE_BUSY, /**< Device or resource busy. */
+    NERROR_FILE_EXISTS, /**< File exists. */
+    NERROR_INV_CROSSLINK, /**< Invalid cross-device link. */
+    NERROR_INV_DEVICE, /**< No such device. */
+    NERROR_NOT_DIR, /**< Not a directory. */
+    NERROR_IS_DIR, /**< Is a directory. */
+    NERROR_INV_ARG, /**< Invalid argument. */
+    NERROR_MAX_FILE_SYS, /**< Too many open files in system. */
+    NERROR_MAX_FILE, /**< Too many open files. */
+    NERROR_INV_IOCTL, /**< Inappropriate ioctl for device. */
+    NERROR_TEXT_BUSY, /**< Text file busy. */
+    NERROR_FILE_TOO_BIG, /**< File too large. */
+    NERROR_NO_SPACE, /**< No space left on device. */
+    NERROR_INV_SEEK, /**< Illegal seek. */
+    NERROR_READ_ONLY, /**< Read-only file system. */
+    NERROR_MAX_LINKS, /**< Too many links. */
+    NERROR_INV_PIPE, /**< Broken pipe. */
+    NERROR_DOMAIN, /**< Numerical argument out of domain. */
+    NERROR_RESULT_TOO_BIG, /**< Numerical result out of range. */
+    NERROR_NO_MESSAGE, /**< No message of desired type. */
+    NERROR_NO_IDENTIFIER, /**< Identifier removed. */
+    NERROR_MAX_CHANNEL, /**< Channel number out of range. */
+    NERROR_LVL2_NO_SYNC, /**< Level 2 not synchronized. */
+    NERROR_LVL3_HAULT, /**< Level 3 halted. */
+    NERROR_LVL3_RESET, /**< Level 3 reset. */
+    NERROR_LINK_NUM, /**< Link number out of range. */
+    NERROR_PROTO_UNATTACHED, /**< Protocol driver not attached. */
+    NERROR_NO_CSI, /**< No CSI structure available. */
+    NERROR_LVL2_HAULT, /**< Level 2 haulted. */
+    NERROR_DEADLOCK, /**< Resource deadlock avoided. */
+    NERROR_NO_FILE_LOCK, /**< No locks available. */
+    NERROR_INV_EXCHANGE, /**< Invalid exchange. */
+    NERROR_INV_REQUEST_DESC, /**< Invalid request descriptor. */
+    NERROR_EXCHANGE_FULL, /**< Exchange full. */
+    NERROR_NO_ANODE, /**< No anode. */
+    NERROR_INV_REQUEST_CODE, /**< Invalid request code. */
+    NERROR_INV_SLOT, /**< Invalid slot. */
+    NERROR_INV_FONT, /**< Bad font file format. */
+    NERROR_DEVICE_NOT_STREAM, /**< Device not a stream. */
+    NERROR_NO_DATA, /**< No data available. */
+    NERROR_TIMER, /**< Timer expired. */
+    NERROR_NO_STREAM_RESOURCES, /**< Out of streams resources. */
+    NERROR_NO_NETWORK, /**< Machine is not on the network. */
+    NERROR_NO_PACKAGE, /**< Package not installed. */
+    NERROR_REMOTE, /**< Object is remote. */
+    NERROR_NO_LINK, /**< Link has been severed. */
+    NERROR_ADVERTISE, /**< Advertise error. */
+    NERROR_SRMOUNT, /**< Srmount error. */
+    NERROR_COMMUNICATION, /**< Communication error on send. */
+    NERROR_PROTOCOL, /**< Protocol error. */
+    NERROR_MULTIHOP, /**< Multihop attempted. */
+    NERROR_INODE_REMOTE, /**< Inode is remote. */
+    NERROR_DOTDOT, /**< RFS specific error. */
+    NERROR_INV_MESSAGE, /**< Bad message. */
+    NERROR_INV_FILE_TYPE, /**< Inappropriate file type or format. */
+    NERROR_NOT_UNIQUE, /**< Name not unique on network. */
+    NERROR_INV_FD, /**< File descriptor in bad state. */
+    NERROR_REMOTE_CHANGE, /**< Remote address changed. */
+    NERROR_NO_LIB, /**< Can not access a needed shared library. */
+    NERROR_INV_LIB, /**< Accessing a corrupted shared library. */
+    NERROR_INV_LIB_SCAN, /**< .lib section in a.out corrupted. */
+    NERROR_MAX_LIB, /**< Attempting to link in too many shared libraries. */
+    NERROR_EXEC_LIB, /**< Cannot exec a shared library directly. */
+    NERROR_FUNC_NOT_SUPPORTED, /**< Function not implemented. */
+    NERROR_NO_MORE_FILES, /**< No more files. */
+    NERROR_DIR_NOT_EMPTY, /**< Directory not empty. */
+    NERROR_MAX_FILENAME, /**< File name too long. */
+    NERROR_LINK_LOOP, /**< Too many levels of symbolic links. */
+    NERROR_INV_SOCK_OPR, /**< Operation not supported. */
+    NERROR_INV_PROTO_FAM, /**< Protocol family not supported. */
+    NERROR_CONN_RESET, /**< Connection reset by peer. */
+    NERROR_NO_BUFFER_SPACE, /**< No buffer space available. */
+    NERROR_INV_ADDR_FAM, /**< Address family not supported by protocol. */
+    NERROR_INV_PROTO_TYPE, /**< Protocol wrong type for socket. */
+    NERROR_NOT_SOCKET, /**< Socket operation on non-socket. */
+    NERROR_INV_PROTO_OPT, /**< Protocol not available. */
+    NERROR_SOCK_SHUTDOWN, /**< Cannot send after transport endpoint shutdown. */
+    NERROR_CONN_REFUSED, /**< Connection refused. */
+    NERROR_ADDR_IN_USE, /**< Address already in use. */
+    NERROR_CONN_ABORTED, /**< Software caused connection abort. */
+    NERROR_NET_UNREACHABLE, /**< Network is unreachable. */
+    NERROR_NET_DOWN, /**< Network is down. */
+    NERROR_CONN_TIMEOUT, /**< Connection timed out. */
+    NERROR_HOST_DOWN, /**< Host is down. */
+    NERROR_HOST_UNREACHABLE, /**< No route to host. */
+    NERROR_IN_PROGRESS, /**< Operation now in progress. */
+    NERROR_ALREADY, /**< Operation already in progress. */
+    NERROR_NO_ADDR, /**< Destination address required. */
+    NERROR_MAX_MESSAGE, /**< Message too long. */
+    NERROR_INV_PROTOCOL, /**< Protocol not supported. */
+    NERROR_INV_SOCK_TYPE, /**< Socket type not supported. */
+    NERROR_ADDR_NOT_AVAILABLE, /**< Cannot assign requested address. */
+    NERROR_NET_RESET, /**< Network dropped connection on reset. */
+    NERROR_ALREADY_CONN, /**< Transport endpoint is already connected. */
+    NERROR_NOT_CONN, /**< Transport endpoint is not connected. */
+    NERROR_MAX_REFS, /**< Too many references: cannot splice. */
+    NERROR_MAX_PROCESS, /**< Too many processes. */
+    NERROR_MAX_USERS, /**< Too many users. */
+    NERROR_MAX_DISK_QUOTA, /**< Disk quota exceeded. */
+    NERROR_STALE, /**< Stale file handle. */
+    NERROR_NOT_SUPPORTED, /**< Not supported. */
+    NERROR_NO_MEDIUM, /**< No medium found. */
+    NERROR_NO_NET_PATH, /**< No such host or network path. */
+    NERROR_FILE_CASE, /**< Filename exists with different case. */
+    NERROR_INV_MULTIBYTE, /**< Invalid or incomplete multibyte or wide character. */
+    NERROR_OVERFLOW, /**< Value too large for defined data type. */
 
 #elif NIMBLE_OS == NIMBLE_BSD
     NERROR_NO_PERM, /**< Operation not permitted. */
@@ -591,7 +715,7 @@ enum nErrors {
     NERROR_INV_FONT, /**< Bad font file format. */
     NERROR_DEVICE_NOT_STREAM, /**< Device not a stream. */
     NERROR_NO_DATA, /**< No data available. */
-    NERROR_CONN_TIMEOUT, /**< Connection timed out. */
+    NERROR_TIMER, /**< Timer expired. */
     NERROR_NO_STREAM_RESOURCES, /**< Out of streams resources. */
     NERROR_NO_NETWORK, /**< Machine is not on the network. */
     NERROR_NO_PACKAGE, /**< Package not installed. */

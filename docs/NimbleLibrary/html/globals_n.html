@@ -241,6 +241,9 @@ $(function() {
 <li>nErrDescFDIncapableStr
 : <a class="el" href="_errors_8c.html#a62f44abf44934499b2a9c3efac76b4a0">Errors.c</a>
 </li>
+<li>nErrDescFileCaseStr
+: <a class="el" href="_errors_8c.html#a9f5e7a85cbaab3592e43db37a0aee9be">Errors.c</a>
+</li>
 <li>nErrDescFileExistsStr
 : <a class="el" href="_errors_8c.html#a7a20d2ae98d4066695f98debb54519f4">Errors.c</a>
 </li>
@@ -255,6 +258,9 @@ $(function() {
 </li>
 <li>nErrDescHostUnreachableStr
 : <a class="el" href="_errors_8c.html#a739cda4c3986b794a313811f15720e52">Errors.c</a>
+</li>
+<li>nErrDescInodeRemoteStr
+: <a class="el" href="_errors_8c.html#afe1b01d5613bb9056ad1ab80707bbaa6">Errors.c</a>
 </li>
 <li>nErrDescInProgressStr
 : <a class="el" href="_errors_8c.html#afda01045a2bfbc731be6a014937cf15b">Errors.c</a>
@@ -520,6 +526,12 @@ $(function() {
 <li>nErrDescNoMessageStr
 : <a class="el" href="_errors_8c.html#a18da0b024d6542e9c814669fcd8945a6">Errors.c</a>
 </li>
+<li>nErrDescNoMoreFilesStr
+: <a class="el" href="_errors_8c.html#a29cde705368f81dda4a5a0edb92cda20">Errors.c</a>
+</li>
+<li>nErrDescNoNetPathStr
+: <a class="el" href="_errors_8c.html#a3f9cd7b6c3f8ec559b9ba83f498d9994">Errors.c</a>
+</li>
 <li>nErrDescNoNetworkStr
 : <a class="el" href="_errors_8c.html#a404bddcccd1d85984bdf778a32d748bc">Errors.c</a>
 </li>
@@ -556,8 +568,8 @@ $(function() {
 <li>nErrDescNotSocketStr
 : <a class="el" href="_errors_8c.html#a86a1a5d04933a3f5917687c6978aca15">Errors.c</a>
 </li>
-<li>nErrDescNotSupportStr
-: <a class="el" href="_errors_8c.html#ab7f69041e8a63d5ed0b6892e8f25123c">Errors.c</a>
+<li>nErrDescNotSupportedStr
+: <a class="el" href="_errors_8c.html#a3542276eed9b0b3525f0df0f195ac576">Errors.c</a>
 </li>
 <li>nErrDescNotUniqueStr
 : <a class="el" href="_errors_8c.html#ab2b41b49fa8b37d4805216a7c861ed3b">Errors.c</a>
@@ -682,6 +694,9 @@ $(function() {
 <li>nErrFDIncapableStr
 : <a class="el" href="_errors_8c.html#aa5c99ca2ea0fc95b2f1befba78e3e491">Errors.c</a>
 </li>
+<li>nErrFileCaseStr
+: <a class="el" href="_errors_8c.html#ad6962352293f576f98dc2bbd287fa0ea">Errors.c</a>
+</li>
 <li>nErrFileExistsStr
 : <a class="el" href="_errors_8c.html#ab196072a028e92ae12f0610334dd2238">Errors.c</a>
 </li>
@@ -696,6 +711,9 @@ $(function() {
 </li>
 <li>nErrHostUnreachableStr
 : <a class="el" href="_errors_8c.html#a016545ff11b00da8d01e7df382a4003c">Errors.c</a>
+</li>
+<li>nErrInodeRemoteStr
+: <a class="el" href="_errors_8c.html#a99186bf0eb100117a24445ab99280e4e">Errors.c</a>
 </li>
 <li>nErrInProgressStr
 : <a class="el" href="_errors_8c.html#a378ba207e3df0634b65076bf853a2103">Errors.c</a>
@@ -961,6 +979,12 @@ $(function() {
 <li>nErrNoMessageStr
 : <a class="el" href="_errors_8c.html#acdac1af5ee03f36545eb7393cf708a23">Errors.c</a>
 </li>
+<li>nErrNoMoreFilesStr
+: <a class="el" href="_errors_8c.html#a29438b5b5f6f18f23e577fad2865a2ee">Errors.c</a>
+</li>
+<li>nErrNoNetPathStr
+: <a class="el" href="_errors_8c.html#afb0c2a82d358c8908b28358f5a77d9d5">Errors.c</a>
+</li>
 <li>nErrNoNetworkStr
 : <a class="el" href="_errors_8c.html#a6fae99303592d587e9b22f7bf7e180b3">Errors.c</a>
 </li>
@@ -997,8 +1021,8 @@ $(function() {
 <li>nErrNotSocketStr
 : <a class="el" href="_errors_8c.html#a8dd25e6d604ca1a999b3f5d1311db592">Errors.c</a>
 </li>
-<li>nErrNotSupportStr
-: <a class="el" href="_errors_8c.html#abb8c75f7d7d29bf34f893da6ff572d8c">Errors.c</a>
+<li>nErrNotSupportedStr
+: <a class="el" href="_errors_8c.html#a3e7a0b830e98ec1a7a3c41a51ccc01af">Errors.c</a>
 </li>
 <li>nErrNotUniqueStr
 : <a class="el" href="_errors_8c.html#ac210549bfc70138d2be1f2b084630360">Errors.c</a>
@@ -1015,26 +1039,368 @@ $(function() {
 <li>NERROR
 : <a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">Errors.h</a>
 </li>
+<li>NERROR_ADDR_IN_USE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8adb3e152ac53985acd5417e098179b4">Errors.h</a>
+</li>
+<li>NERROR_ADDR_NOT_AVAILABLE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a87dcc7a315733ad84976832eef8954f8">Errors.h</a>
+</li>
+<li>NERROR_ADVERTISE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5e3d548dd56654bb75abd9b24ca0998c">Errors.h</a>
+</li>
+<li>NERROR_ALREADY
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a280b47fb30a19c30fe5a3cef2344d24e">Errors.h</a>
+</li>
+<li>NERROR_ALREADY_CONN
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5e05d2a955fd5b343cc152e0c2c31dec">Errors.h</a>
+</li>
+<li>NERROR_COMMUNICATION
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a2b445a7418370ce1c2d8b13b880e7af5">Errors.h</a>
+</li>
+<li>NERROR_CONN_ABORTED
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5f279bd46c24fd807307f478b4748aa9">Errors.h</a>
+</li>
+<li>NERROR_CONN_REFUSED
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8d2ae0496423041f7e190c0cfaaab30e">Errors.h</a>
+</li>
+<li>NERROR_CONN_RESET
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6addcd517db1eee381473f8781d024db42">Errors.h</a>
+</li>
+<li>NERROR_CONN_TIMEOUT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8dea776febd2a284129b8b18accd76c8">Errors.h</a>
+</li>
+<li>NERROR_DEADLOCK
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ad89b4f882ea1f108751c0e82108913a5">Errors.h</a>
+</li>
+<li>NERROR_DEVICE_BUSY
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a797f66efddf3e666d2a4a2023fffc303">Errors.h</a>
+</li>
+<li>NERROR_DEVICE_NOT_STREAM
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a658f100d0dbcd7c2d5d52acdb727e1df">Errors.h</a>
+</li>
+<li>NERROR_DIR_NOT_EMPTY
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ad0a9006e5aec5368d80084ef3a6f6307">Errors.h</a>
+</li>
+<li>NERROR_DOMAIN
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae4e94529a598c129fcc88079480ea184">Errors.h</a>
+</li>
+<li>NERROR_DOTDOT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a4bbbc5fa8c3ff007da02fca7104af2de">Errors.h</a>
+</li>
 <li>NERROR_ERRNO_END
 : <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a0008468da250aea11ffab813a05b1350">Errors.h</a>
 </li>
 <li>NERROR_ERRNO_START
 : <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a7573686b21e6300b422f179c25f29d0f">Errors.h</a>
 </li>
+<li>NERROR_EXCHANGE_FULL
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a97cf30fbad2d11848e7042caf22855e5">Errors.h</a>
+</li>
+<li>NERROR_EXEC_LIB
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a049bd0a661c4d2df11dab30b828d4d39">Errors.h</a>
+</li>
+<li>NERROR_FAULT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a9f02c53fbda43548db8a7ad0e1a95679">Errors.h</a>
+</li>
+<li>NERROR_FILE_CASE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a24f78bab8fd5deb3cbdf5f4058c5de41">Errors.h</a>
+</li>
+<li>NERROR_FILE_EXISTS
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aa50178df2dda971845091b9ff61becbb">Errors.h</a>
+</li>
+<li>NERROR_FILE_TOO_BIG
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a1f305d2ac99d08d053f1330ae080c5d7">Errors.h</a>
+</li>
+<li>NERROR_FUNC_NOT_SUPPORTED
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aafd323d6c72e04c56ad6b044f524d11a">Errors.h</a>
+</li>
+<li>NERROR_HOST_DOWN
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a64ea31e5500ed89f35a7011d476666a5">Errors.h</a>
+</li>
+<li>NERROR_HOST_UNREACHABLE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ab370f0daf9ff75c9426305cdbdc6f64d">Errors.h</a>
+</li>
+<li>NERROR_IN_PROGRESS
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aef6b2d531a5255e7af1d708135d904f5">Errors.h</a>
+</li>
+<li>NERROR_INODE_REMOTE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a66a05f80e9fb1eca6effe4375ebd98b5">Errors.h</a>
+</li>
 <li>NERROR_INTERNAL_FAILURE
 : <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">Errors.h</a>
+</li>
+<li>NERROR_INTERRUPT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a373d17b5d4951d76a831be52a0218947">Errors.h</a>
+</li>
+<li>NERROR_INV_ADDR_FAM
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aa17498999892c39c419499a661f3e1b7">Errors.h</a>
+</li>
+<li>NERROR_INV_ARG
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a7c6d61ecac5c4ad61308dd8b12ac48c5">Errors.h</a>
+</li>
+<li>NERROR_INV_CROSSLINK
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a776dc2a535e5b4551bcd09011c2c3d9f">Errors.h</a>
+</li>
+<li>NERROR_INV_DEVICE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae506b28deaa062514a6ebf8913bee0e4">Errors.h</a>
 </li>
 <li>NERROR_INV_ERROR
 : <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a284ee208a3789fddafee326b2e45b38c">Errors.h</a>
 </li>
+<li>NERROR_INV_EXCHANGE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a372b432f448fed133d960da5ca5cdecd">Errors.h</a>
+</li>
+<li>NERROR_INV_EXEC_FORMAT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5b19df972c749c0a47fb1967946a3a17">Errors.h</a>
+</li>
+<li>NERROR_INV_FD
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8f97524cadc5f6e8c990ee328b8bdac4">Errors.h</a>
+</li>
+<li>NERROR_INV_FILE_TYPE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6acfd9617334e6178ab98d8644e152a535">Errors.h</a>
+</li>
+<li>NERROR_INV_FONT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a11fdba0423af4d4a4021d475a34cc1a9">Errors.h</a>
+</li>
+<li>NERROR_INV_FP
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5ed53963c59714fb761aae01336c1d4d">Errors.h</a>
+</li>
+<li>NERROR_INV_IOCTL
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a9a2bbce75e51c4bcfb99b885bd54f9c9">Errors.h</a>
+</li>
+<li>NERROR_INV_LIB
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aa31d634ea4a8f7ff04b1d6744da8ab02">Errors.h</a>
+</li>
+<li>NERROR_INV_LIB_SCAN
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ac442513c2dc78a8e9efaa2232d19ce31">Errors.h</a>
+</li>
+<li>NERROR_INV_MESSAGE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a520a001d15024637d54da9c83444aba7">Errors.h</a>
+</li>
+<li>NERROR_INV_MULTIBYTE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a7eba56b8e086afa470a02e54e7d43c2c">Errors.h</a>
+</li>
+<li>NERROR_INV_PIPE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6abac2822865022ccf430f71ab2721d478">Errors.h</a>
+</li>
+<li>NERROR_INV_PROTO_FAM
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae2a1af99ad03fa03f3eb000ddb2e6cb3">Errors.h</a>
+</li>
+<li>NERROR_INV_PROTO_OPT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ad6ac8d52fe0633029576b51ab59f87b8">Errors.h</a>
+</li>
+<li>NERROR_INV_PROTO_TYPE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ad9eae61ad2248e2cb2e6f46a02be76a0">Errors.h</a>
+</li>
+<li>NERROR_INV_PROTOCOL
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a06ff1df038c57b4c046ae2d8df3c385e">Errors.h</a>
+</li>
+<li>NERROR_INV_REQUEST_CODE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ad4fde65bf79d179fc78ef249985028ab">Errors.h</a>
+</li>
+<li>NERROR_INV_REQUEST_DESC
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8fcf49393229836e01661328b11b93f6">Errors.h</a>
+</li>
+<li>NERROR_INV_SEEK
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8628db4b67e3574b78f5013d25584e82">Errors.h</a>
+</li>
+<li>NERROR_INV_SLOT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8c00794f378192d21c165e9547eaa638">Errors.h</a>
+</li>
+<li>NERROR_INV_SOCK_OPR
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a3f932694e9f1d59203bc1144f1342d0c">Errors.h</a>
+</li>
+<li>NERROR_INV_SOCK_TYPE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a7d45db54c1165655d06bbb5a3c9fbed4">Errors.h</a>
+</li>
+<li>NERROR_IO
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aec66f0740e60185d152c7f078420f561">Errors.h</a>
+</li>
+<li>NERROR_IS_DIR
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ad2a31aba02628da8510491aad2c39efb">Errors.h</a>
+</li>
+<li>NERROR_LINK_LOOP
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a09e054bad198cc481db7b678cfb9fa72">Errors.h</a>
+</li>
+<li>NERROR_LINK_NUM
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a216545bb9d2df3211af1a1171b278f66">Errors.h</a>
+</li>
+<li>NERROR_LVL2_HAULT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a569f2d9e9e96c7be525bf047c9b86817">Errors.h</a>
+</li>
+<li>NERROR_LVL2_NO_SYNC
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a935c6456cd6217d39e4b9254063b7365">Errors.h</a>
+</li>
+<li>NERROR_LVL3_HAULT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aba38e87cd2fcf2b9fa5085242f9740bc">Errors.h</a>
+</li>
+<li>NERROR_LVL3_RESET
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a4adf10f9108839165aeb964849892d9d">Errors.h</a>
+</li>
 <li>NERROR_MAX
 : <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66">Errors.h</a>
+</li>
+<li>NERROR_MAX_ARGS
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a7891602f0b672394803d4f1a2928e30b">Errors.h</a>
+</li>
+<li>NERROR_MAX_CHANNEL
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6e4416f7075ad6cb3e146bb387a40261">Errors.h</a>
+</li>
+<li>NERROR_MAX_DISK_QUOTA
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a4f8c17945683c2216f26fe463278f054">Errors.h</a>
+</li>
+<li>NERROR_MAX_FILE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a517601be3182714b2396c2d708bc70d9">Errors.h</a>
+</li>
+<li>NERROR_MAX_FILE_SYS
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6d63af8221957dab3847569c77bc91c6">Errors.h</a>
+</li>
+<li>NERROR_MAX_FILENAME
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a7fe90b3c4783a16954cbc9ead9fbd08b">Errors.h</a>
+</li>
+<li>NERROR_MAX_LIB
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af2464d819aeb412635edb8eaaab7d882">Errors.h</a>
+</li>
+<li>NERROR_MAX_LINKS
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5ad1ab0bfb1971e9742a0c1df90c233f">Errors.h</a>
+</li>
+<li>NERROR_MAX_MESSAGE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a58794afbd89e4a81aeec96bba65b3027">Errors.h</a>
+</li>
+<li>NERROR_MAX_PROCESS
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a32d5c4c91b8f5d0a16d03ae9e71da70d">Errors.h</a>
+</li>
+<li>NERROR_MAX_REFS
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a84f152ea93728f727028f7f7e8ddc453">Errors.h</a>
+</li>
+<li>NERROR_MAX_USERS
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af8c157db7dda9ae1bfcbf90e80e14722">Errors.h</a>
 </li>
 <li>NERROR_MIN
 : <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aaeab255ad67230ef2c173137fcf2d2e6">Errors.h</a>
 </li>
+<li>NERROR_MULTIHOP
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae828952f42356a5e4ac3788cc774a833">Errors.h</a>
+</li>
+<li>NERROR_NET_DOWN
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a899c8a10e5e304afadf902ab0f4d52f0">Errors.h</a>
+</li>
+<li>NERROR_NET_RESET
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aa0aa1d4bca28a03088a8dc4f67c3aabe">Errors.h</a>
+</li>
+<li>NERROR_NET_UNREACHABLE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a154aedec6dccaab97c3f9ae4f3da901e">Errors.h</a>
+</li>
+<li>NERROR_NO_ADDR
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5d16724ee72ee359829df5cc6b30c832">Errors.h</a>
+</li>
+<li>NERROR_NO_ANODE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a887c8322b32e0a05ffda0ff6ddff9589">Errors.h</a>
+</li>
+<li>NERROR_NO_BUFFER_SPACE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aaf8a2dd8332534c086866f24ff6b44b7">Errors.h</a>
+</li>
+<li>NERROR_NO_CSI
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a365107f9c6ae41735c82e92ae3f5fe83">Errors.h</a>
+</li>
+<li>NERROR_NO_DATA
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5ecb01fce4a33244b91ea6d44e143d7b">Errors.h</a>
+</li>
+<li>NERROR_NO_DEVICE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ade8c9e7d37e6dbd741f21a5cdc47e511">Errors.h</a>
+</li>
+<li>NERROR_NO_FILE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a38c2290cc3bbb74a505899a8edbe9550">Errors.h</a>
+</li>
+<li>NERROR_NO_FILE_LOCK
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ad0945569fa8df156f1f0dab5b4cdf09e">Errors.h</a>
+</li>
+<li>NERROR_NO_FILE_PERM
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a7db1034874745f836354eb11dc3fdcc2">Errors.h</a>
+</li>
+<li>NERROR_NO_IDENTIFIER
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6accc444c538ec968c14ec401c20952972">Errors.h</a>
+</li>
+<li>NERROR_NO_LIB
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a3f8963335dcd20e28df7ba472f7aac18">Errors.h</a>
+</li>
+<li>NERROR_NO_LINK
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a976da00888550133e7cbcde6c5390b98">Errors.h</a>
+</li>
+<li>NERROR_NO_MEDIUM
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae60c0736830815f47b8b2314cd677d28">Errors.h</a>
+</li>
+<li>NERROR_NO_MEMORY
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ab7169dba8dbbf61509c44264a657f280">Errors.h</a>
+</li>
+<li>NERROR_NO_MESSAGE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a62b97c2bc543a15c4a9cb843187bfeb8">Errors.h</a>
+</li>
+<li>NERROR_NO_MORE_FILES
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7396de46d884c5ab990a791bfacbd4f">Errors.h</a>
+</li>
+<li>NERROR_NO_NET_PATH
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ada166d85596a5ba4bc8f24a359928c41">Errors.h</a>
+</li>
+<li>NERROR_NO_NETWORK
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a731dfea748450a0cf6461117af7b0237">Errors.h</a>
+</li>
+<li>NERROR_NO_PACKAGE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ac422aaaacb7046ee5c492474161db364">Errors.h</a>
+</li>
+<li>NERROR_NO_PERM
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a3036bdabbabf2af09da3085e78707397">Errors.h</a>
+</li>
+<li>NERROR_NO_PROCESS
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8bf2d086d5b491d7b37869097e6705d1">Errors.h</a>
+</li>
+<li>NERROR_NO_SPACE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a3e13d31750c3808bc65b5d7b35dd8697">Errors.h</a>
+</li>
+<li>NERROR_NO_STREAM_RESOURCES
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a0c744fb03a278959fb4da305d29362c9">Errors.h</a>
+</li>
+<li>NERROR_NOT_BLOCK
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a617cd897ebfd6bdd794686ddf6ef3c44">Errors.h</a>
+</li>
+<li>NERROR_NOT_CONN
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a7a9493cd45dc8c5a7f77f4187d656b4e">Errors.h</a>
+</li>
+<li>NERROR_NOT_DIR
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a68c24902a07c238e81a2e0f340a3233a">Errors.h</a>
+</li>
+<li>NERROR_NOT_SOCKET
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aaf35a14e385e527cc1900fa062df0057">Errors.h</a>
+</li>
+<li>NERROR_NOT_SUPPORTED
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5c0eab1a4954d160651ea368d6c6cd9f">Errors.h</a>
+</li>
+<li>NERROR_NOT_UNIQUE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af85ea4af9ab5054339010887108b44a5">Errors.h</a>
+</li>
 <li>NERROR_NULL
 : <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">Errors.h</a>
+</li>
+<li>NERROR_OVERFLOW
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7330efd0ac09fdf4d7879e41c3522fe">Errors.h</a>
+</li>
+<li>NERROR_PROTO_UNATTACHED
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a419c7f8695d6ff72195b068fc2513c44">Errors.h</a>
+</li>
+<li>NERROR_PROTOCOL
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6aabec9a9306d573c3ec045235798936">Errors.h</a>
+</li>
+<li>NERROR_READ_ONLY
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ad9335b09025fc806db651ec94a30c56d">Errors.h</a>
+</li>
+<li>NERROR_REMOTE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a9d1ee056219a36004fe0121c2fb9c223">Errors.h</a>
+</li>
+<li>NERROR_REMOTE_CHANGE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ac9aa87f136f8a794713957436be8abfd">Errors.h</a>
+</li>
+<li>NERROR_RESULT_TOO_BIG
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6adc2d62a6f35dbcb7084e925225150eac">Errors.h</a>
 </li>
 <li>NERROR_SIGABRT
 : <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a140fb183264c59ff1ef4b269e5b2d0c6">Errors.h</a>
@@ -1060,8 +1426,26 @@ $(function() {
 <li>NERROR_SIGTERM
 : <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae60212303d486928264f2ced626a6f80">Errors.h</a>
 </li>
+<li>NERROR_SOCK_SHUTDOWN
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6aa70fb7287d2ba9df464a64aae19a7e08">Errors.h</a>
+</li>
+<li>NERROR_SRMOUNT
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a92ee1a231d8d265aa5494087adeba5d1">Errors.h</a>
+</li>
+<li>NERROR_STALE
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a44b8329388bb8f40549116386e5ce052">Errors.h</a>
+</li>
+<li>NERROR_TEXT_BUSY
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8e82573dfa52325e9de141d14eb2d987">Errors.h</a>
+</li>
+<li>NERROR_TIMER
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae6eb659c3798f0aa187d438cf5a1c9b9">Errors.h</a>
+</li>
 <li>NERROR_UNKNOWN
 : <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">Errors.h</a>
+</li>
+<li>NERROR_WOULD_BLOCK
+: <a class="el" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a34641dec157772ffb48595962305470a">Errors.h</a>
 </li>
 <li>nErrorDesc
 : <a class="el" href="_errors_8h.html#a20dbb99b6949bc8e08729a0e29a05c4d">Errors.h</a>
@@ -1070,23 +1454,23 @@ $(function() {
 : <a class="el" href="_errors_8h.html#aa984c4b880cbb3ef68abb61dcbe39b85">Errors.h</a>
 </li>
 <li>nErrorDescLengths
-: <a class="el" href="_errors_8h.html#aa1f40dd1159106456cfc64541001192d">Errors.h</a>
-, <a class="el" href="_errors_8c.html#a56eb50941183f018672699b7c945579c">Errors.c</a>
+: <a class="el" href="_errors_8c.html#a56eb50941183f018672699b7c945579c">Errors.c</a>
+, <a class="el" href="_errors_8h.html#aa1f40dd1159106456cfc64541001192d">Errors.h</a>
 </li>
 <li>nErrorDescriptions
-: <a class="el" href="_errors_8h.html#a0991aa1bdcffe96b1f7562a55ce919f6">Errors.h</a>
-, <a class="el" href="_errors_8c.html#a8ebc061ec98f75ce70af9cc313eff0ad">Errors.c</a>
+: <a class="el" href="_errors_8c.html#a8ebc061ec98f75ce70af9cc313eff0ad">Errors.c</a>
+, <a class="el" href="_errors_8h.html#a0991aa1bdcffe96b1f7562a55ce919f6">Errors.h</a>
 </li>
 <li>nErrorFromErrno()
-: <a class="el" href="_errors_8h.html#aa0d6bf92efd29ba27bebc79867f18a7d">Errors.h</a>
-, <a class="el" href="_errors_8c.html#a9fd9fbbf06b57d0b43aa6a18eabafac3">Errors.c</a>
+: <a class="el" href="_errors_8c.html#a9fd9fbbf06b57d0b43aa6a18eabafac3">Errors.c</a>
+, <a class="el" href="_errors_8h.html#aa0d6bf92efd29ba27bebc79867f18a7d">Errors.h</a>
 </li>
 <li>nErrorFromSignal
 : <a class="el" href="_errors_8h.html#a0c8cba09ac1e34a9782c81c75e4bb258">Errors.h</a>
 </li>
 <li>nErrorGetStacktrace()
-: <a class="el" href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">Errors.c</a>
-, <a class="el" href="_errors_8h.html#a2ba72542faf7edb9a6e0ed6fdcfd6918">Errors.h</a>
+: <a class="el" href="_errors_8h.html#a2ba72542faf7edb9a6e0ed6fdcfd6918">Errors.h</a>
+, <a class="el" href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">Errors.c</a>
 </li>
 <li>nErrorHandlerDefault()
 : <a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">Errors.c</a>
@@ -1102,8 +1486,8 @@ $(function() {
 : <a class="el" href="_errors_8h.html#a5c75a733273f53a047f2e47ed9f93c62">Errors.h</a>
 </li>
 <li>nErrorStrings
-: <a class="el" href="_errors_8c.html#adeeba1c556486a77448f37e9a899183f">Errors.c</a>
-, <a class="el" href="_errors_8h.html#aa546882d9f5ea54b29cdc4c9ef4253a0">Errors.h</a>
+: <a class="el" href="_errors_8h.html#aa546882d9f5ea54b29cdc4c9ef4253a0">Errors.h</a>
+, <a class="el" href="_errors_8c.html#adeeba1c556486a77448f37e9a899183f">Errors.c</a>
 </li>
 <li>nErrorStrLen
 : <a class="el" href="_errors_8h.html#a1b922d3df2d02d0011c1b4944d6c24bb">Errors.h</a>
@@ -1117,8 +1501,8 @@ $(function() {
 , <a class="el" href="_errors_8h.html#a039b6916edf6bc1a28be6066d92b3705">Errors.h</a>
 </li>
 <li>nErrorToString()
-: <a class="el" href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">Errors.c</a>
-, <a class="el" href="_errors_8h.html#ae7c5eb562ee9cc6fdff3f3131f617cae">Errors.h</a>
+: <a class="el" href="_errors_8h.html#ae7c5eb562ee9cc6fdff3f3131f617cae">Errors.h</a>
+, <a class="el" href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">Errors.c</a>
 </li>
 <li>nErrorToStringLocal()
 : <a class="el" href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">Errors.c</a>
@@ -1227,25 +1611,25 @@ $(function() {
 : <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">Nimble.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_H
-: <a class="el" href="_nimble_direct_x11_8h.html#ade121945333573ff8ad548f814364b39">NimbleDirectX11.h</a>
-, <a class="el" href="_nimble_direct_x12_8h.html#ade121945333573ff8ad548f814364b39">NimbleDirectX12.h</a>
+: <a class="el" href="_nimble_direct_x12_8h.html#ade121945333573ff8ad548f814364b39">NimbleDirectX12.h</a>
 , <a class="el" href="_nimble_vulkan_8h.html#ade121945333573ff8ad548f814364b39">NimbleVulkan.h</a>
 , <a class="el" href="_nimble_open_g_l_8h.html#ade121945333573ff8ad548f814364b39">NimbleOpenGL.h</a>
+, <a class="el" href="_nimble_direct_x11_8h.html#ade121945333573ff8ad548f814364b39">NimbleDirectX11.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_HARDWARE_H
-: <a class="el" href="_nimble_graphics_2_direct_x12_2_hardware_8h.html#ab36f29049a26debd9e63fafc5f5ded3b">Hardware.h</a>
+: <a class="el" href="_nimble_graphics_2_direct_x11_2_hardware_8h.html#ab36f29049a26debd9e63fafc5f5ded3b">Hardware.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_OVERLAY_H
-: <a class="el" href="_open_g_l_2_overlay_8h.html#ab2f64241f7949edf137af0f572ec7b4e">Overlay.h</a>
+: <a class="el" href="_vulkan_2_overlay_8h.html#ab2f64241f7949edf137af0f572ec7b4e">Overlay.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_RENDER_H
-: <a class="el" href="_open_g_l_2_render_8h.html#a2ae624f78253db664eacd8a4ed1b81ad">Render.h</a>
+: <a class="el" href="_vulkan_2_render_8h.html#a2ae624f78253db664eacd8a4ed1b81ad">Render.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_SHADERS_H
-: <a class="el" href="_vulkan_2_shaders_8h.html#aadabb52581929283ea157e415a27b62a">Shaders.h</a>
+: <a class="el" href="_direct_x12_2_shaders_8h.html#aadabb52581929283ea157e415a27b62a">Shaders.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_WINDOW_EVENTS_H
-: <a class="el" href="_direct_x11_2_window_events_8h.html#ad6f757dfb348c5742a1becfcb930360a">WindowEvents.h</a>
+: <a class="el" href="_open_g_l_2_window_events_8h.html#ad6f757dfb348c5742a1becfcb930360a">WindowEvents.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_WINDOW_H
 : <a class="el" href="_vulkan_2_window_8h.html#abf97e5b3a4efabb7fefb14a5cffca2e8">Window.h</a>
@@ -1316,24 +1700,24 @@ $(function() {
 : <a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">Threads.h</a>
 </li>
 <li>nThreadCreate()
-: <a class="el" href="_threads_8h.html#aa72599a1bdf5c80c544c955a1da6a001">Threads.h</a>
-, <a class="el" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">Threads.c</a>
+: <a class="el" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">Threads.c</a>
+, <a class="el" href="_threads_8h.html#aa72599a1bdf5c80c544c955a1da6a001">Threads.h</a>
 </li>
 <li>nThreadJoin()
 : <a class="el" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">Threads.c</a>
 , <a class="el" href="_threads_8h.html#a2b062a9976f360109409cdf03664e3eb">Threads.h</a>
 </li>
 <li>nThreadMutexCreate()
-: <a class="el" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">Threads.c</a>
-, <a class="el" href="_threads_8h.html#ad671abc494307c1448840e42696f4bbd">Threads.h</a>
+: <a class="el" href="_threads_8h.html#ad671abc494307c1448840e42696f4bbd">Threads.h</a>
+, <a class="el" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">Threads.c</a>
 </li>
 <li>nThreadMutexDestroy()
 : <a class="el" href="_threads_8h.html#a125d44c71b77ea3579d707787c9a262b">Threads.h</a>
 , <a class="el" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">Threads.c</a>
 </li>
 <li>nThreadMutexLock()
-: <a class="el" href="_threads_8h.html#a36d2699463a15164f3f694345a093154">Threads.h</a>
-, <a class="el" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">Threads.c</a>
+: <a class="el" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">Threads.c</a>
+, <a class="el" href="_threads_8h.html#a36d2699463a15164f3f694345a093154">Threads.h</a>
 </li>
 <li>nThreadMutexUnlock()
 : <a class="el" href="_threads_8h.html#a0754b811c83c281b4d2a82ddeeeab4bc">Threads.h</a>
