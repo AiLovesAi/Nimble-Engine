@@ -233,6 +233,10 @@ enum nErrors {
     NERROR_REMOTE_IO = EREMOTEIO, /**< Remote I/O error. */
     NERROR_NO_MEDIUM = ENOMEDIUM, /**< No medium found. */
     NERROR_INV_MEDIUM = EMEDIUMTYPE, /**< Wrong medium type. */
+    NERROR_PROGRAMMER = EDOOFUS, /**< Programming error. */
+    NERROR_FD_INCAPABLE = ENOTCAPABLE, /**< Capabilities insufficient. */
+    NERROR_CAPABILITY_MODE = ECAPMODE, /**< Not permitted in capability mode. */
+    NERROR_INTEGRITY = EINTEGRITY, /**< Integrity check failed. */
 #endif
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
@@ -430,6 +434,102 @@ enum nErrors {
     NERROR_MAX_QUEUE, /**< Interface output queue is full. */
     
 #elif NIMBLE_OS == NIMBLE_ANDROID
+
+#elif NIMBLE_OS == NIMBLE_BSD
+    NERROR_NO_PERM, /**< Operation not permitted. */
+    NERROR_NO_FILE, /**< No such file or directory. */
+    NERROR_NO_PROCESS, /**< No such process. */
+    NERROR_INTERRUPT, /**< Interrupted system call. */
+    NERROR_IO, /**< Input/output error. */
+    NERROR_NO_DEVICE, /**< No such device or address. */
+    NERROR_MAX_ARGS, /**< Argument list too long. */
+    NERROR_INV_EXEC_FORMAT, /**< Exec format error. */
+    NERROR_INV_FP, /**< Bad file descriptor. */
+    NERROR_NO_CHILD, /**< No child process. */
+    NERROR_DEADLOCK, /**< Resource deadlock avoided. */
+    NERROR_NO_MEMORY, /**< Cannot allocate memory. */
+    NERROR_NO_FILE_PERM, /**< Permission denied. */
+    NERROR_FAULT, /**< Bad address. */
+    NERROR_NOT_BLOCK, /**< Block device required. */
+    NERROR_DEVICE_BUSY, /**< Device or resource busy. */
+    NERROR_FILE_EXISTS, /**< File exists. */
+    NERROR_INV_CROSSLINK, /**< Invalid cross-device link. */
+    NERROR_INV_DEVICE, /**< No such device. */
+    NERROR_NOT_DIR, /**< Not a directory. */
+    NERROR_IS_DIR, /**< Is a directory. */
+    NERROR_INV_ARG, /**< Invalid argument. */
+    NERROR_MAX_FILE_SYS, /**< Too many open files in system. */
+    NERROR_MAX_FILE, /**< Too many open files. */
+    NERROR_INV_IOCTL, /**< Inappropriate ioctl for device. */
+    NERROR_TEXT_BUSY, /**< Text file busy. */
+    NERROR_FILE_TOO_BIG, /**< File too large. */
+    NERROR_NO_SPACE, /**< No space left on device. */
+    NERROR_INV_SEEK, /**< Illegal seek. */
+    NERROR_READ_ONLY, /**< Read-only file system. */
+    NERROR_MAX_LINKS, /**< Too many links. */
+    NERROR_INV_PIPE, /**< Broken pipe. */
+    NERROR_DOMAIN, /**< Numerical argument out of domain. */
+    NERROR_RESULT_TOO_BIG, /**< Numerical result out of range. */
+    NERROR_WOULD_BLOCK, /**< Resource temporarily unavailable; Operation would block. */
+    NERROR_IN_PROGRESS, /**< Operation now in progress. */
+    NERROR_ALREADY, /**< Operation already in progress. */
+    NERROR_NOT_SOCKET, /**< Socket operation on non-socket. */
+    NERROR_NO_ADDR, /**< Destination address required. */
+    NERROR_MAX_MESSAGE, /**< Message too long. */
+    NERROR_INV_PROTO_TYPE, /**< Protocol wrong type for socket. */
+    NERROR_INV_PROTO_OPT, /**< Protocol not available. */
+    NERROR_INV_PROTOCOL, /**< Protocol not supported. */
+    NERROR_INV_SOCK_TYPE, /**< Socket type not supported. */
+    NERROR_INV_SOCK_OPR, /**< Operation not supported. */
+    NERROR_INV_PROTO_FAM, /**< Protocol family not supported. */
+    NERROR_INV_ADDR_FAM, /**< Address family not supported by protocol. */
+    NERROR_ADDR_IN_USE, /**< Address already in use. */
+    NERROR_ADDR_NOT_AVAILABLE, /**< Cannot assign requested address. */
+    NERROR_NET_DOWN, /**< Network is down. */
+    NERROR_NET_UNREACHABLE, /**< Network is unreachable. */
+    NERROR_NET_RESET, /**< Network dropped connection on reset. */
+    NERROR_CONN_ABORTED, /**< Software caused connection abort. */
+    NERROR_CONN_RESET, /**< Connection reset by peer. */
+    NERROR_NO_BUFFER_SPACE, /**< No buffer space available. */
+    NERROR_ALREADY_CONN, /**< Transport endpoint is already connected. */
+    NERROR_NOT_CONN, /**< Transport endpoint is not connected. */
+    NERROR_SOCK_SHUTDOWN, /**< Cannot send after transport endpoint shutdown. */
+    NERROR_CONN_TIMEOUT, /**< Connection timed out. */
+    NERROR_CONN_REFUSED, /**< Connection refused. */
+    NERROR_LINK_LOOP, /**< Too many levels of symbolic links. */
+    NERROR_MAX_FILENAME, /**< File name too long. */
+    NERROR_HOST_DOWN, /**< Host is down. */
+    NERROR_HOST_UNREACHABLE, /**< No route to host. */
+    NERROR_DIR_NOT_EMPTY, /**< Directory not empty. */
+    NERROR_MAX_PROCESS, /**< Too many processes. */
+    NERROR_MAX_USERS, /**< Too many users. */
+    NERROR_MAX_DISK_QUOTA, /**< Disk quota exceeded. */
+    NERROR_STALE, /**< Stale file handle. */
+    NERROR_INV_RPC, /**< RPC struct is bad. */
+    NERROR_INV_RPC_VERSION, /**< RPC version wrong. */
+    NERROR_INV_RPC_PROG, /**< RPC program not available. */
+    NERROR_INV_RPC_PROG_VERSION, /**< RPC program version wrong. */
+    NERROR_INV_RPC_PROC, /**< RPC bad procedure for program. */
+    NERROR_NO_FILE_LOCK, /**< No locks available. */
+    NERROR_FUNC_NOT_SUPPORTED, /**< Function not implemented. */
+    NERROR_INV_FILE_TYPE, /**< Inappropriate file type or format. */
+    NERROR_AUTH, /**< Authentication error. */
+    NERROR_NO_AUTH, /**< Need authenticator. */
+    NERROR_NO_IDENTIFIER, /**< Identifier removed. */
+    NERROR_NO_MESSAGE, /**< No message of desired type. */
+    NERROR_OVERFLOW, /**< Value too large for defined data type. */
+    NERROR_ASYNC_CANCEL, /**< Operation canceled. */
+    NERROR_INV_MULTIBYTE, /**< Invalid or incomplete multibyte or wide character. */
+    NERROR_NO_ATTRIBUTE, /**< Attribute not found. */
+    NERROR_INV_MESSAGE, /**< Bad message. */
+    NERROR_MULTIHOP, /**< Multihop attempted. */
+    NERROR_NO_LINK, /**< Link has been severed. */
+    NERROR_PROTOCOL, /**< Protocol error. */
+    NERROR_FD_INCAPABLE, /**< Capabilities insufficient. */
+    NERROR_CAPABILITY_MODE, /**< Not permitted in capability mode. */
+    NERROR_NOT_RECOVERABLE, /**< State not recoverable. */
+    NERROR_OWNER_DIED, /**< Owner died. */
+    NERROR_INTEGRITY, /**< Integrity check failed. */
 
 #elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
     NERROR_NO_PERM, /**< Operation not permitted. */

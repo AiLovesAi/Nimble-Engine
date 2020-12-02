@@ -98,31 +98,31 @@ $(function() {
 <div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="_nimble_8h.html#abb004b884b56b22aded50beac6e199c0">   90</a></span>&#160;<span class="preprocessor">#define NIMBLE_BSD 5</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#if defined(_POSIX_SOURCE)</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#define NIMBLE_POSIX 1</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#  define NIMBLE_POSIX 1</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#ifdef _WIN32</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#define NIMBLE_OS NIMBLE_WINDOWS</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#  define NIMBLE_OS NIMBLE_WINDOWS</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#elif (defined(__APPLE__) &amp;&amp; defined(__MACH__)) || defined(macintosh) </span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#define NIMBLE_OS NIMBLE_MACOSX</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#  define NIMBLE_OS NIMBLE_MACOSX</span></div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#elif __ANDROID__</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#define NIMBLE_OS NIMBLE_ANDROID</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#  define NIMBLE_OS NIMBLE_ANDROID</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#elif defined(NIMBLE_BSD)</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="_nimble_8h.html#ab62d88bc9fcdbc6c30e7672b673637b8">  103</a></span>&#160;<span class="preprocessor">#define defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="_nimble_8h.html#ab62d88bc9fcdbc6c30e7672b673637b8">  103</a></span>&#160;<span class="preprocessor">#  define defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#elif defined(__linux__) || defined(__linux) || defined(linux)</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#define NIMBLE_OS NIMBLE_LINUX</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#  define NIMBLE_OS NIMBLE_LINUX</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#elif defined(__unix__) || defined(__unix)</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#define NIMBLE_OS NIMBLE_UNIX</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#  define NIMBLE_OS NIMBLE_UNIX</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#error OS not supported.</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#  error OS not supported.</span></div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#if UINTPTR_MAX == 0xffffffff</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#define NIMBLE_32BIT</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#  define NIMBLE_32BIT</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#elif UINTPTR_MAX == 0xffffffffffffffff</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#define NIMBLE_64BIT</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#  define NIMBLE_64BIT</span></div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#error Only 32-bit and 64-bit hardware is supported.</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#  error Only 32-bit and 64-bit hardware is supported.</span></div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#if defined(_WIN32) || defined(__CYGWIN__)</span></div>
@@ -157,7 +157,7 @@ $(function() {
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
 <div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">  150</a></span>&#160;<span class="preprocessor">#define NIMBLE_EXTERN extern </span></div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">#ifndef NULL</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">  153</a></span>&#160;<span class="preprocessor">#define NULL ((void *) 0) </span></div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">  153</a></span>&#160;<span class="preprocessor">#  define NULL ((void *) 0) </span></div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
 <div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="_nimble_8h.html#acb8f97aade4bc091634dcbf51943c426">  156</a></span>&#160;<span class="preprocessor">#define NCONST_STR const char </span></div>

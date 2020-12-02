@@ -215,6 +215,10 @@
 #define nErrRemoteIOStr          "NERROR_REMOTE_IO"
 #define nErrNoMediumStr          "NERROR_NO_MEDIUM"
 #define nErrInvMediumStr         "NERROR_INV_MEDIUM"
+#define nErrProgrammerStr        "NERROR_PROGRAMMER"
+#define nErrFDIncapableStr       "NERROR_FD_INCAPABLE"
+#define nErrCapabilityModeStr    "NERROR_CAPABILITY_MODE"
+#define nErrIntegrityStr         "NERROR_INTEGRITY"
 
 #define nErrMaxStr               "NERROR_MAX"
 
@@ -234,7 +238,7 @@ NCONST_STR * const nErrorStrings[] = {
     nErrSigSegvStr,
     nErrSigTermStr,
     
-    #if 0
+#if 0
     nErrNoPermStr,
     nErrNoFileStr,
     nErrNoProcessStr,
@@ -381,9 +385,13 @@ NCONST_STR * const nErrorStrings[] = {
     nErrRemoteIOStr,
     nErrNoMediumStr,
     nErrInvMediumStr,
-    #endif
+    nErrProgrammerStr,
+    nErrFDIncapableStr,
+    nErrCapabilityModeStr,
+    nErrIntegrityStr,
+#endif
 
-    #if NIMBLE_OS == NIMBLE_WINDOWS
+#if NIMBLE_OS == NIMBLE_WINDOWS
     nErrNoPermStr,
     nErrNoFileStr,
     nErrNoProcessStr,
@@ -461,7 +469,7 @@ NCONST_STR * const nErrorStrings[] = {
     nErrConnTimeoutStr,
     nErrTextBusyStr,
 
-    #elif NIMBLE_OS == NIMBLE_MACOS
+#elif NIMBLE_OS == NIMBLE_MACOS
     nErrNoPermStr,
     nErrNoFileStr,
     nErrNoProcessStr,
@@ -570,9 +578,105 @@ NCONST_STR * const nErrorStrings[] = {
     nErrOwnerDiedStr,
     nErrMaxQueueStr,
     
-    #elif NIMBLE_OS == NIMBLE_ANDROID
+#elif NIMBLE_OS == NIMBLE_ANDROID
 
-    #elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
+#elif NIMBLE_OS == NIMBLE_BSD
+    nErrNoPermStr,
+    nErrNoFileStr,
+    nErrNoProcessStr,
+    nErrInterruptStr,
+    nErrIOStr,
+    nErrNoDeviceStr,
+    nErrMaxArgsStr,
+    nErrInvExecFormatStr,
+    nErrInvFPStr,
+    nErrNoChildStr,
+    nErrDeadlockStr,
+    nErrNoMemoryStr,
+    nErrNoFilePermStr,
+    nErrFaultStr,
+    nErrNotBlockStr,
+    nErrDeviceBusyStr,
+    nErrFileExistsStr,
+    nErrInvCrosslinkStr,
+    nErrInvDeviceStr,
+    nErrNotDirStr,
+    nErrIsDirStr,
+    nErrInvArgStr,
+    nErrMaxFileStr,
+    nErrMaxFileSysStr,
+    nErrInvIOCtlStr,
+    nErrTextBusyStr,
+    nErrFileTooBigStr,
+    nErrNoSpaceStr,
+    nErrInvSeekStr,
+    nErrReadOnlyStr,
+    nErrMaxLinksStr,
+    nErrInvPipeStr,
+    nErrDomainStr,
+    nErrResultTooBigStr,
+    nErrWouldBlockStr,
+    nErrInProgressStr,
+    nErrAlreadyStr,
+    nErrNotSocketStr,
+    nErrNoAddrStr,
+    nErrMaxMessageStr,
+    nErrInvProtoTypeStr,
+    nErrInvProtoOptStr,
+    nErrInvProtocolStr,
+    nErrInvSockTypeStr,
+    nErrInvSockOptStr,
+    nErrInvProtoFamStr,
+    nErrInvAddrFamStr,
+    nErrAddrInUseStr,
+    nErrAddrNotAvailableStr,
+    nErrNetDownStr,
+    nErrNetUnreachableStr,
+    nErrNetResetStr,
+    nErrConnAbortedStr,
+    nErrConnResetStr,
+    nErrNoBufferSpaceStr,
+    nErrAlreadyConnStr,
+    nErrNotConnStr,
+    nErrSockShutdownStr,
+    nErrConnTimeoutStr,
+    nErrConnRefusedStr,
+    nErrLinkLoopStr,
+    nErrMaxFileNameStr,
+    nErrHostDownStr,
+    nErrHostUnreachableStr,
+    nErrDirNotEmptyStr,
+    nErrMaxProcessStr,
+    nErrMaxUsersStr,
+    nErrMaxDiskQuotaStr,
+    nErrStaleStr,
+    nErrInvRPCStr,
+    nErrInvRPCVersionStr,
+    nErrInvRPCProgStr,
+    nErrInvRPCProgVersionStr,
+    nErrInvRPCProcStr,
+    nErrNoFileLockStr,
+    nErrFuncNotSupportedStr,
+    nErrInvFileTypeStr,
+    nErrAuthStr,
+    nErrNoAuthStr,
+    nErrNoIdentifierStr,
+    nErrNoMessageStr,
+    nErrOverflowStr,
+    nErrAsyncCancelStr,
+    nErrInvMultibyteStr,
+    nErrNoAttributeStr,
+    nErrInvMessageStr,
+    nErrMultihopStr,
+    nErrNoLinkStr,
+    nErrProtocolStr,
+    nErrFDIncapableStr,
+    nErrCapabilityModeStr,
+    nErrNotRecoverableStr,
+    nErrOwnerDiedStr,
+    nErrIntegrityStr,
+
+#elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
     nErrNoPermStr,
     nErrNoFileStr,
     nErrNoProcessStr,
@@ -696,7 +800,7 @@ NCONST_STR * const nErrorStrings[] = {
     nErrNoMediumStr,
     nErrInvMediumStr,
 
-    #endif
+#endif
     
     nErrMaxStr
 };
@@ -716,7 +820,7 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN(nErrSigSegvStr),
     NCONST_STR_LEN(nErrSigTermStr),
     
-    #if 0
+#if 0
     NCONST_STR_LEN(nErrNoPermStr),
     NCONST_STR_LEN(nErrNoFileStr),
     NCONST_STR_LEN(nErrNoProcessStr),
@@ -863,9 +967,13 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN(nErrRemoteIOStr),
     NCONST_STR_LEN(nErrNoMediumStr),
     NCONST_STR_LEN(nErrInvMediumStr),
-    #endif
+    NCONST_STR_LEN(nErrProgrammerStr),
+    NCONST_STR_LEN(nErrFDIncapableStr),
+    NCONST_STR_LEN(nErrCapabilityModeStr),
+    NCONST_STR_LEN(nErrIntegrityStr),
+#endif
 
-    #if NIMBLE_OS == NIMBLE_WINDOWS
+#if NIMBLE_OS == NIMBLE_WINDOWS
     NCONST_STR_LEN(nErrNoPermStr),
     NCONST_STR_LEN(nErrNoFileStr),
     NCONST_STR_LEN(nErrNoProcessStr),
@@ -943,7 +1051,7 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN(nErrConnTimeoutStr),
     NCONST_STR_LEN(nErrTextBusyStr),
 
-    #elif NIMBLE_OS == NIMBLE_MACOS
+#elif NIMBLE_OS == NIMBLE_MACOS
     NCONST_STR_LEN(nErrNoPermStr),
     NCONST_STR_LEN(nErrNoFileStr),
     NCONST_STR_LEN(nErrNoProcessStr),
@@ -1052,9 +1160,105 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN(nErrOwnerDiedStr),
     NCONST_STR_LEN(nErrMaxQueueStr),
     
-    #elif NIMBLE_OS == NIMBLE_ANDROID
+#elif NIMBLE_OS == NIMBLE_ANDROID
 
-    #elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
+#elif NIMBLE_OS == NIMBLE_BSD
+     NCONST_STR_LEN(nErrNoPermStr),
+     NCONST_STR_LEN(nErrNoFileStr),
+     NCONST_STR_LEN(nErrNoProcessStr),
+     NCONST_STR_LEN(nErrInterruptStr),
+     NCONST_STR_LEN(nErrIOStr),
+     NCONST_STR_LEN(nErrNoDeviceStr),
+     NCONST_STR_LEN(nErrMaxArgsStr),
+     NCONST_STR_LEN(nErrInvExecFormatStr),
+     NCONST_STR_LEN(nErrInvFPStr),
+     NCONST_STR_LEN(nErrNoChildStr),
+     NCONST_STR_LEN(nErrDeadlockStr),
+     NCONST_STR_LEN(nErrNoMemoryStr),
+     NCONST_STR_LEN(nErrNoFilePermStr),
+     NCONST_STR_LEN(nErrFaultStr),
+     NCONST_STR_LEN(nErrNotBlockStr),
+     NCONST_STR_LEN(nErrDeviceBusyStr),
+     NCONST_STR_LEN(nErrFileExistsStr),
+     NCONST_STR_LEN(nErrInvCrosslinkStr),
+     NCONST_STR_LEN(nErrInvDeviceStr),
+     NCONST_STR_LEN(nErrNotDirStr),
+     NCONST_STR_LEN(nErrIsDirStr),
+     NCONST_STR_LEN(nErrInvArgStr),
+     NCONST_STR_LEN(nErrMaxFileStr),
+     NCONST_STR_LEN(nErrMaxFileSysStr),
+     NCONST_STR_LEN(nErrInvIOCtlStr),
+     NCONST_STR_LEN(nErrTextBusyStr),
+     NCONST_STR_LEN(nErrFileTooBigStr),
+     NCONST_STR_LEN(nErrNoSpaceStr),
+     NCONST_STR_LEN(nErrInvSeekStr),
+     NCONST_STR_LEN(nErrReadOnlyStr),
+     NCONST_STR_LEN(nErrMaxLinksStr),
+     NCONST_STR_LEN(nErrInvPipeStr),
+     NCONST_STR_LEN(nErrDomainStr),
+     NCONST_STR_LEN(nErrResultTooBigStr),
+     NCONST_STR_LEN(nErrWouldBlockStr),
+     NCONST_STR_LEN(nErrInProgressStr),
+     NCONST_STR_LEN(nErrAlreadyStr),
+     NCONST_STR_LEN(nErrNotSocketStr),
+     NCONST_STR_LEN(nErrNoAddrStr),
+     NCONST_STR_LEN(nErrMaxMessageStr),
+     NCONST_STR_LEN(nErrInvProtoTypeStr),
+     NCONST_STR_LEN(nErrInvProtoOptStr),
+     NCONST_STR_LEN(nErrInvProtocolStr),
+     NCONST_STR_LEN(nErrInvSockTypeStr),
+     NCONST_STR_LEN(nErrInvSockOptStr),
+     NCONST_STR_LEN(nErrInvProtoFamStr),
+     NCONST_STR_LEN(nErrInvAddrFamStr),
+     NCONST_STR_LEN(nErrAddrInUseStr),
+     NCONST_STR_LEN(nErrAddrNotAvailableStr),
+     NCONST_STR_LEN(nErrNetDownStr),
+     NCONST_STR_LEN(nErrNetUnreachableStr),
+     NCONST_STR_LEN(nErrNetResetStr),
+     NCONST_STR_LEN(nErrConnAbortedStr),
+     NCONST_STR_LEN(nErrConnResetStr),
+     NCONST_STR_LEN(nErrNoBufferSpaceStr),
+     NCONST_STR_LEN(nErrAlreadyConnStr),
+     NCONST_STR_LEN(nErrNotConnStr),
+     NCONST_STR_LEN(nErrSockShutdownStr),
+     NCONST_STR_LEN(nErrConnTimeoutStr),
+     NCONST_STR_LEN(nErrConnRefusedStr),
+     NCONST_STR_LEN(nErrLinkLoopStr),
+     NCONST_STR_LEN(nErrMaxFileNameStr),
+     NCONST_STR_LEN(nErrHostDownStr),
+     NCONST_STR_LEN(nErrHostUnreachableStr),
+     NCONST_STR_LEN(nErrDirNotEmptyStr),
+     NCONST_STR_LEN(nErrMaxProcessStr),
+     NCONST_STR_LEN(nErrMaxUsersStr),
+     NCONST_STR_LEN(nErrMaxDiskQuotaStr),
+     NCONST_STR_LEN(nErrStaleStr),
+     NCONST_STR_LEN(nErrInvRPCStr),
+     NCONST_STR_LEN(nErrInvRPCVersionStr),
+     NCONST_STR_LEN(nErrInvRPCProgStr),
+     NCONST_STR_LEN(nErrInvRPCProgVersionStr),
+     NCONST_STR_LEN(nErrInvRPCProcStr),
+     NCONST_STR_LEN(nErrNoFileLockStr),
+     NCONST_STR_LEN(nErrFuncNotSupportedStr),
+     NCONST_STR_LEN(nErrInvFileTypeStr),
+     NCONST_STR_LEN(nErrAuthStr),
+     NCONST_STR_LEN(nErrNoAuthStr),
+     NCONST_STR_LEN(nErrNoIdentifierStr),
+     NCONST_STR_LEN(nErrNoMessageStr),
+     NCONST_STR_LEN(nErrOverflowStr),
+     NCONST_STR_LEN(nErrAsyncCancelStr),
+     NCONST_STR_LEN(nErrInvMultibyteStr),
+     NCONST_STR_LEN(nErrNoAttributeStr),
+     NCONST_STR_LEN(nErrInvMessageStr),
+     NCONST_STR_LEN(nErrMultihopStr),
+     NCONST_STR_LEN(nErrNoLinkStr),
+     NCONST_STR_LEN(nErrProtocolStr),
+     NCONST_STR_LEN(nErrFDIncapableStr),
+     NCONST_STR_LEN(nErrCapabilityModeStr),
+     NCONST_STR_LEN(nErrNotRecoverableStr),
+     NCONST_STR_LEN(nErrOwnerDiedStr),
+     NCONST_STR_LEN(nErrIntegrityStr),
+
+#elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
     NCONST_STR_LEN(nErrNoPermStr),
     NCONST_STR_LEN(nErrNoFileStr),
     NCONST_STR_LEN(nErrNoProcessStr),
@@ -1178,7 +1382,7 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN(nErrNoMediumStr),
     NCONST_STR_LEN(nErrInvMediumStr),
 
-    #endif
+#endif
     
     NCONST_STR_LEN(nErrMaxStr)
 };
@@ -1550,6 +1754,21 @@ const size_t nErrorStrLengths[] = {
 #define nErrDescRemoteIOStr          "Remote I/O error."
 #define nErrDescNoMediumStr          "No medium found."
 #define nErrDescInvMediumStr         "Wrong medium type."
+#define nErrDescProgrammerStr        "Programming error. A function or API "\
+"is being abused in a way which could only be detected at run-time."
+#define nErrDescFDIncapableStr       "Capabilities insufficient. An "\
+"operation on a capability file descriptor requires greater privilege than "\
+"the capability allows."
+#define nErrDescCapabilityModeStr    "Not permitted in capability mode. The "\
+"system call or operation is not permitted for capability mode processes."
+#define nErrDescIntegrityStr         "Integrity check failed. An integrity "\
+"check such as a check-hash or a cross-correlation failed. The integrity "\
+"error falls between NERROR_INV_ARG that identifies errors in parameters to "\
+"a system call and NERROR_IO that identifies errors with the underlying "\
+"storage media. It is typically raised by intermediate kernel layers such as "\
+"a filesystem or an in-kernel GEOM subsystem when they detect "\
+"inconsistencies. Uses include allowing the mount() command to return a "\
+"different exit value to automate the running of fsck() during a system boot."
 
 #define nErrDescMaxStr               "The maximum error value, likely "\
 "caused by programmer error or a corruption issue."
@@ -1570,7 +1789,7 @@ NCONST_STR * const nErrorDescriptions[] = {
     nErrDescSigSegvStr,
     nErrDescSigTermStr,
     
-    #if 0
+#if 0
     nErrDescNoPermStr,
     nErrDescNoFileStr,
     nErrDescNoProcessStr,
@@ -1717,9 +1936,13 @@ NCONST_STR * const nErrorDescriptions[] = {
     nErrDescRemoteIOStr,
     nErrDescNoMediumStr,
     nErrDescInvMediumStr,
-    #endif
+    nErrDescProgrammerStr,
+    nErrDescFDIncapableStr,
+    nErrDescCapabilityModeStr,
+    nErrDescIntegrityStr,
+#endif
 
-    #if NIMBLE_OS == NIMBLE_WINDOWS
+#if NIMBLE_OS == NIMBLE_WINDOWS
     nErrDescNoPermStr,
     nErrDescNoFileStr,
     nErrDescNoProcessStr,
@@ -1797,7 +2020,7 @@ NCONST_STR * const nErrorDescriptions[] = {
     nErrDescConnTimeoutStr,
     nErrDescTextBusyStr,
 
-    #elif NIMBLE_OS == NIMBLE_MACOS
+#elif NIMBLE_OS == NIMBLE_MACOS
     nErrDescNoPermStr,
     nErrDescNoFileStr,
     nErrDescNoProcessStr,
@@ -1906,9 +2129,105 @@ NCONST_STR * const nErrorDescriptions[] = {
     nErrDescOwnerDiedStr,
     nErrDescMaxQueueStr,
     
-    #elif NIMBLE_OS == NIMBLE_ANDROID
+#elif NIMBLE_OS == NIMBLE_ANDROID
 
-    #elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
+#elif NIMBLE_OS == NIMBLE_BSD
+    nErrDescNoPermStr,
+    nErrDescNoFileStr,
+    nErrDescNoProcessStr,
+    nErrDescInterruptStr,
+    nErrDescIOStr,
+    nErrDescNoDeviceStr,
+    nErrDescMaxArgsStr,
+    nErrDescInvExecFormatStr,
+    nErrDescInvFPStr,
+    nErrDescNoChildStr,
+    nErrDescDeadlockStr,
+    nErrDescNoMemoryStr,
+    nErrDescNoFilePermStr,
+    nErrDescFaultStr,
+    nErrDescNotBlockStr,
+    nErrDescDeviceBusyStr,
+    nErrDescFileExistsStr,
+    nErrDescInvCrosslinkStr,
+    nErrDescInvDeviceStr,
+    nErrDescNotDirStr,
+    nErrDescIsDirStr,
+    nErrDescInvArgStr,
+    nErrDescMaxFileStr,
+    nErrDescMaxFileSysStr,
+    nErrDescInvIOCtlStr,
+    nErrDescTextBusyStr,
+    nErrDescFileTooBigStr,
+    nErrDescNoSpaceStr,
+    nErrDescInvSeekStr,
+    nErrDescReadOnlyStr,
+    nErrDescMaxLinksStr,
+    nErrDescInvPipeStr,
+    nErrDescDomainStr,
+    nErrDescResultTooBigStr,
+    nErrDescWouldBlockStr,
+    nErrDescInProgressStr,
+    nErrDescAlreadyStr,
+    nErrDescNotSocketStr,
+    nErrDescNoAddrStr,
+    nErrDescMaxMessageStr,
+    nErrDescInvProtoTypeStr,
+    nErrDescInvProtoOptStr,
+    nErrDescInvProtocolStr,
+    nErrDescInvSockTypeStr,
+    nErrDescInvSockOptStr,
+    nErrDescInvProtoFamStr,
+    nErrDescInvAddrFamStr,
+    nErrDescAddrInUseStr,
+    nErrDescAddrNotAvailableStr,
+    nErrDescNetDownStr,
+    nErrDescNetUnreachableStr,
+    nErrDescNetResetStr,
+    nErrDescConnAbortedStr,
+    nErrDescConnResetStr,
+    nErrDescNoBufferSpaceStr,
+    nErrDescAlreadyConnStr,
+    nErrDescNotConnStr,
+    nErrDescSockShutdownStr,
+    nErrDescConnTimeoutStr,
+    nErrDescConnRefusedStr,
+    nErrDescLinkLoopStr,
+    nErrDescMaxFileNameStr,
+    nErrDescHostDownStr,
+    nErrDescHostUnreachableStr,
+    nErrDescDirNotEmptyStr,
+    nErrDescMaxProcessStr,
+    nErrDescMaxUsersStr,
+    nErrDescMaxDiskQuotaStr,
+    nErrDescStaleStr,
+    nErrDescInvRPCStr,
+    nErrDescInvRPCVersionStr,
+    nErrDescInvRPCProgStr,
+    nErrDescInvRPCProgVersionStr,
+    nErrDescInvRPCProcStr,
+    nErrDescNoFileLockStr,
+    nErrDescFuncNotSupportedStr,
+    nErrDescInvFileTypeStr,
+    nErrDescAuthStr,
+    nErrDescNoAuthStr,
+    nErrDescNoIdentifierStr,
+    nErrDescNoMessageStr,
+    nErrDescOverflowStr,
+    nErrDescAsyncCancelStr,
+    nErrDescInvMultibyteStr,
+    nErrDescNoAttributeStr,
+    nErrDescInvMessageStr,
+    nErrDescMultihopStr,
+    nErrDescNoLinkStr,
+    nErrDescProtocolStr,
+    nErrDescFDIncapableStr,
+    nErrDescCapabilityModeStr,
+    nErrDescNotRecoverableStr,
+    nErrDescOwnerDiedStr,
+    nErrDescIntegrityStr,
+
+#elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
     nErrDescNoPermStr,
     nErrDescNoFileStr,
     nErrDescNoProcessStr,
@@ -2032,7 +2351,7 @@ NCONST_STR * const nErrorDescriptions[] = {
     nErrDescNoMediumStr,
     nErrDescInvMediumStr,
     
-    #endif
+#endif
     
     nErrDescMaxStr
 };
@@ -2052,7 +2371,7 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescSigSegvStr),
     NCONST_STR_LEN(nErrDescSigTermStr),
     
-    #if 0
+#if 0
     NCONST_STR_LEN(nErrDescNoPermStr),
     NCONST_STR_LEN(nErrDescNoFileStr),
     NCONST_STR_LEN(nErrDescNoProcessStr),
@@ -2199,9 +2518,13 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescRemoteIOStr),
     NCONST_STR_LEN(nErrDescNoMediumStr),
     NCONST_STR_LEN(nErrDescInvMediumStr),
-    #endif
+    NCONST_STR_LEN(nErrDescProgrammerStr),
+    NCONST_STR_LEN(nErrDescFDIncapableStr),
+    NCONST_STR_LEN(nErrDescCapabilityModeStr),
+    NCONST_STR_LEN(nErrDescIntegrityStr),
+#endif
 
-    #if NIMBLE_OS == NIMBLE_WINDOWS
+#if NIMBLE_OS == NIMBLE_WINDOWS
     NCONST_STR_LEN(nErrDescNoPermStr),
     NCONST_STR_LEN(nErrDescNoFileStr),
     NCONST_STR_LEN(nErrDescNoProcessStr),
@@ -2279,7 +2602,7 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescConnTimeoutStr),
     NCONST_STR_LEN(nErrDescTextBusyStr),
 
-    #elif NIMBLE_OS == NIMBLE_MACOS
+#elif NIMBLE_OS == NIMBLE_MACOS
     NCONST_STR_LEN(nErrDescNoPermStr),
     NCONST_STR_LEN(nErrDescNoFileStr),
     NCONST_STR_LEN(nErrDescNoProcessStr),
@@ -2388,9 +2711,104 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescOwnerDiedStr),
     NCONST_STR_LEN(nErrDescMaxQueueStr),
     
-    #elif NIMBLE_OS == NIMBLE_ANDROID
+#elif NIMBLE_OS == NIMBLE_ANDROID
 
-    #elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
+#elif NIMBLE_OS == NIMBLE_BSDnErrDescNoPermStr,
+    NCONST_STR_LEN(nErrDescNoFileStr),
+    NCONST_STR_LEN(nErrDescNoProcessStr),
+    NCONST_STR_LEN(nErrDescInterruptStr),
+    NCONST_STR_LEN(nErrDescIOStr),
+    NCONST_STR_LEN(nErrDescNoDeviceStr),
+    NCONST_STR_LEN(nErrDescMaxArgsStr),
+    NCONST_STR_LEN(nErrDescInvExecFormatStr),
+    NCONST_STR_LEN(nErrDescInvFPStr),
+    NCONST_STR_LEN(nErrDescNoChildStr),
+    NCONST_STR_LEN(nErrDescDeadlockStr),
+    NCONST_STR_LEN(nErrDescNoMemoryStr),
+    NCONST_STR_LEN(nErrDescNoFilePermStr),
+    NCONST_STR_LEN(nErrDescFaultStr),
+    NCONST_STR_LEN(nErrDescNotBlockStr),
+    NCONST_STR_LEN(nErrDescDeviceBusyStr),
+    NCONST_STR_LEN(nErrDescFileExistsStr),
+    NCONST_STR_LEN(nErrDescInvCrosslinkStr),
+    NCONST_STR_LEN(nErrDescInvDeviceStr),
+    NCONST_STR_LEN(nErrDescNotDirStr),
+    NCONST_STR_LEN(nErrDescIsDirStr),
+    NCONST_STR_LEN(nErrDescInvArgStr),
+    NCONST_STR_LEN(nErrDescMaxFileStr),
+    NCONST_STR_LEN(nErrDescMaxFileSysStr),
+    NCONST_STR_LEN(nErrDescInvIOCtlStr),
+    NCONST_STR_LEN(nErrDescTextBusyStr),
+    NCONST_STR_LEN(nErrDescFileTooBigStr),
+    NCONST_STR_LEN(nErrDescNoSpaceStr),
+    NCONST_STR_LEN(nErrDescInvSeekStr),
+    NCONST_STR_LEN(nErrDescReadOnlyStr),
+    NCONST_STR_LEN(nErrDescMaxLinksStr),
+    NCONST_STR_LEN(nErrDescInvPipeStr),
+    NCONST_STR_LEN(nErrDescDomainStr),
+    NCONST_STR_LEN(nErrDescResultTooBigStr),
+    NCONST_STR_LEN(nErrDescWouldBlockStr),
+    NCONST_STR_LEN(nErrDescInProgressStr),
+    NCONST_STR_LEN(nErrDescAlreadyStr),
+    NCONST_STR_LEN(nErrDescNotSocketStr),
+    NCONST_STR_LEN(nErrDescNoAddrStr),
+    NCONST_STR_LEN(nErrDescMaxMessageStr),
+    NCONST_STR_LEN(nErrDescInvProtoTypeStr),
+    NCONST_STR_LEN(nErrDescInvProtoOptStr),
+    NCONST_STR_LEN(nErrDescInvProtocolStr),
+    NCONST_STR_LEN(nErrDescInvSockTypeStr),
+    NCONST_STR_LEN(nErrDescInvSockOptStr),
+    NCONST_STR_LEN(nErrDescInvProtoFamStr),
+    NCONST_STR_LEN(nErrDescInvAddrFamStr),
+    NCONST_STR_LEN(nErrDescAddrInUseStr),
+    NCONST_STR_LEN(nErrDescAddrNotAvailableStr),
+    NCONST_STR_LEN(nErrDescNetDownStr),
+    NCONST_STR_LEN(nErrDescNetUnreachableStr),
+    NCONST_STR_LEN(nErrDescNetResetStr),
+    NCONST_STR_LEN(nErrDescConnAbortedStr),
+    NCONST_STR_LEN(nErrDescConnResetStr),
+    NCONST_STR_LEN(nErrDescNoBufferSpaceStr),
+    NCONST_STR_LEN(nErrDescAlreadyConnStr),
+    NCONST_STR_LEN(nErrDescNotConnStr),
+    NCONST_STR_LEN(nErrDescSockShutdownStr),
+    NCONST_STR_LEN(nErrDescConnTimeoutStr),
+    NCONST_STR_LEN(nErrDescConnRefusedStr),
+    NCONST_STR_LEN(nErrDescLinkLoopStr),
+    NCONST_STR_LEN(nErrDescMaxFileNameStr),
+    NCONST_STR_LEN(nErrDescHostDownStr),
+    NCONST_STR_LEN(nErrDescHostUnreachableStr),
+    NCONST_STR_LEN(nErrDescDirNotEmptyStr),
+    NCONST_STR_LEN(nErrDescMaxProcessStr),
+    NCONST_STR_LEN(nErrDescMaxUsersStr),
+    NCONST_STR_LEN(nErrDescMaxDiskQuotaStr),
+    NCONST_STR_LEN(nErrDescStaleStr),
+    NCONST_STR_LEN(nErrDescInvRPCStr),
+    NCONST_STR_LEN(nErrDescInvRPCVersionStr),
+    NCONST_STR_LEN(nErrDescInvRPCProgStr),
+    NCONST_STR_LEN(nErrDescInvRPCProgVersionStr),
+    NCONST_STR_LEN(nErrDescInvRPCProcStr),
+    NCONST_STR_LEN(nErrDescNoFileLockStr),
+    NCONST_STR_LEN(nErrDescFuncNotSupportedStr),
+    NCONST_STR_LEN(nErrDescInvFileTypeStr),
+    NCONST_STR_LEN(nErrDescAuthStr),
+    NCONST_STR_LEN(nErrDescNoAuthStr),
+    NCONST_STR_LEN(nErrDescNoIdentifierStr),
+    NCONST_STR_LEN(nErrDescNoMessageStr),
+    NCONST_STR_LEN(nErrDescOverflowStr),
+    NCONST_STR_LEN(nErrDescAsyncCancelStr),
+    NCONST_STR_LEN(nErrDescInvMultibyteStr),
+    NCONST_STR_LEN(nErrDescNoAttributeStr),
+    NCONST_STR_LEN(nErrDescInvMessageStr),
+    NCONST_STR_LEN(nErrDescMultihopStr),
+    NCONST_STR_LEN(nErrDescNoLinkStr),
+    NCONST_STR_LEN(nErrDescProtocolStr),
+    NCONST_STR_LEN(nErrDescFDIncapableStr),
+    NCONST_STR_LEN(nErrDescCapabilityModeStr),
+    NCONST_STR_LEN(nErrDescNotRecoverableStr),
+    NCONST_STR_LEN(nErrDescOwnerDiedStr),
+    NCONST_STR_LEN(nErrDescIntegrityStr),
+
+#elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
     NCONST_STR_LEN(nErrDescNoPermStr),
     NCONST_STR_LEN(nErrDescNoFileStr),
     NCONST_STR_LEN(nErrDescNoProcessStr),
@@ -2514,7 +2932,7 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescNoMediumStr),
     NCONST_STR_LEN(nErrDescInvMediumStr),
 
-    #endif
+#endif
     
     NCONST_STR_LEN(nErrDescMaxStr)
 };
@@ -2602,6 +3020,13 @@ nint_t nErrorFromErrno(const nint_t err)
     return NERROR_UNKNOWN;
 
 #elif NIMBLE_OS == NIMBLE_ANDROID
+
+#elif NIMBLE_OS == NIMBLE_BSD
+    if (err > (NERROR_ERRNO_END - NERROR_ERRNO_START - 1))
+    {
+        return NERROR_ERRNO_START + err;
+    }
+    return NERROR_UNKNOWN;
 
 #elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
     if (err < 41)

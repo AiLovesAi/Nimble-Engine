@@ -90,31 +90,31 @@ extern "C" {
 #define NIMBLE_BSD 5
 
 #if defined(_POSIX_SOURCE)
-#define NIMBLE_POSIX 1
+#  define NIMBLE_POSIX 1
 #endif
 
 #ifdef _WIN32
-#define NIMBLE_OS NIMBLE_WINDOWS
+#  define NIMBLE_OS NIMBLE_WINDOWS
 #elif (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh) /// @todo Figure out why this isn't working
-#define NIMBLE_OS NIMBLE_MACOSX
+#  define NIMBLE_OS NIMBLE_MACOSX
 #elif __ANDROID__
-#define NIMBLE_OS NIMBLE_ANDROID
+#  define NIMBLE_OS NIMBLE_ANDROID
 #elif defined(NIMBLE_BSD)
-#define defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
+#  define defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
 #elif defined(__linux__) || defined(__linux) || defined(linux)
-#define NIMBLE_OS NIMBLE_LINUX
+#  define NIMBLE_OS NIMBLE_LINUX
 #elif defined(__unix__) || defined(__unix)
-#define NIMBLE_OS NIMBLE_UNIX
+#  define NIMBLE_OS NIMBLE_UNIX
 #else
-#error OS not supported.
+#  error OS not supported.
 #endif
 
 #if UINTPTR_MAX == 0xffffffff
-#define NIMBLE_32BIT
+#  define NIMBLE_32BIT
 #elif UINTPTR_MAX == 0xffffffffffffffff
-#define NIMBLE_64BIT
+#  define NIMBLE_64BIT
 #else
-#error Only 32-bit and 64-bit hardware is supported.
+#  error Only 32-bit and 64-bit hardware is supported.
 #endif
 
 #if defined(_WIN32) || defined(__CYGWIN__)
@@ -150,7 +150,7 @@ extern "C" {
 #define NIMBLE_EXTERN extern /**< Extern alias. */
 
 #ifndef NULL
-#define NULL ((void *) 0) /**< Null pointer. */
+#  define NULL ((void *) 0) /**< Null pointer. */
 #endif
 
 #define NCONST_STR const char /**< Used for static constant character arrays. */
