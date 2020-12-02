@@ -153,7 +153,7 @@ extern "C" {
 #define NULL ((void *) 0) /**< Null pointer. */
 #endif
 
-#define NCONST_STR const char * const /**< Used for static constant character arrays. */
+#define NCONST_STR const char /**< Used for static constant character arrays. */
 
 #define NCONST_STR_LEN(str) sizeof(str) - 1
 

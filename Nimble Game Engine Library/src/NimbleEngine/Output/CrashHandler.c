@@ -90,7 +90,7 @@ nint_t nCrashSetCallback(void (*callback)(const nint_t error,
 {
     if (callback == NULL)
     {
-        NCONST_STR einfoCallbackStr = "Callback parameter null in nCrashSetCallback().";
+        NCONST_STR einfoCallbackStr[] = "Callback parameter null in nCrashSetCallback().";
         nErrorThrow(NERROR_NULL, einfoCallbackStr, NCONST_STR_LEN(einfoCallbackStr));
         return NERROR;
     }
@@ -131,7 +131,7 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,  const char *err
         if (nErrorToStringLocal(errorDescPtr, &errorDescLen, error, NULL, 0) !=
             NSUCCESS)
         {
-            NCONST_STR defaultErrorStr = "NERROR_ERROR_NOT_FOUND: An error "\
+            NCONST_STR defaultErrorStr[] = "NERROR_ERROR_NOT_FOUND: An error "\
 "passed to a function was not valid: nErrorToStringLocal() failed while "\
 "crashing with nCrashSafe().";
             errorDescLen = NCONST_STR_LEN(defaultErrorStr);

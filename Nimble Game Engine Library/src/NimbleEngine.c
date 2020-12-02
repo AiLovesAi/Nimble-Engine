@@ -81,7 +81,7 @@ char *nStringCopy(char *restrict dst, const char *restrict src,
 {
     if (!src)
     {
-        NCONST_STR einfoNullStr = "Source string NULL in nStringCopy().";
+        NCONST_STR einfoNullStr[] = "Source string NULL in nStringCopy().";
         nErrorThrow(NERROR_NULL, einfoNullStr, NCONST_STR_LEN(einfoNullStr));
     }
 
