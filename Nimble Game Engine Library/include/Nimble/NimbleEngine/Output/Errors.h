@@ -79,7 +79,8 @@ enum nErrors {
     NERROR_SIGNAL_END, /**< The end of the signal section. */
     
     NERROR_ERRNO_START, /**< The start of the errno section. */
-    #if 0 /* Possible values */
+    
+#if 0 /* Possible values */
     /* (IEEE and POSIX, please standardize the error values for goodness
      * sake, OS devs please follow said standard. It has taken me 20+ hours
      * to make a 2,000 line portable equivalent of:
@@ -194,8 +195,47 @@ enum nErrors {
     NERROR_NO_ATTRIBUTE = ENOATTR, /**< Attribute not found. */
     NERROR_NO_POLICY = ENOPOLICY, /**< No such policy registered. */
     NERROR_MAX_QUEUE = EQFULL, /**< Interface output queue is full. */
-    #endif
-    #if NIMBLE_OS == NIMBLE_WINDOWS
+    NERROR_MAX_CHANNEL = ECHRNG, /**< Channel number out of range. */
+    NERROR_LVL2_NO_SYNC = EL2NSYNC, /**< Level 2 not synchronized. */
+    NERROR_LVL3_HAULT = EL3HLT, /**< Level 3 halted. */
+    NERROR_LVL3_RESET = EL3RST, /**< Level 3 reset. */
+    NERROR_LINK_NUM = ELNRNG, /**< Link number out of range. */
+    NERROR_PROTO_UNATTACHED = EUNATCH, /**< Protocol driver not attached. */
+    NERROR_NO_CSI = ENOCSI, /**< No CSI structure available. */
+    NERROR_LVL2_HAULT = EL2HLT, /**< Level 2 haulted. */
+    NERROR_INV_EXCHANGE = EBADE, /**< Invalid exchange. */
+    NERROR_INV_REQUEST_DESC = EBADR, /**< Invalid request descriptor. */
+    NERROR_EXCHANGE_FULL = EXFULL, /**< Exchange full. */
+    NERROR_NO_ANODE = ENOANO, /**< No anode. */
+    NERROR_INV_REQUEST_CODE = EBADRQC, /**< Invalid request code. */
+    NERROR_INV_SLOT = EBADSLT, /**< Invalid slot. */
+    NERROR_INV_FONT = EBFONT, /**< Bad font file format. */
+    NERROR_NO_NETWORK = ENONET, /**< Machine is not on the network. */
+    NERROR_NO_PACKAGE = ENOPKG, /**< Package not installed. */
+    NERROR_ADVERTISE = EADV, /**< Advertise error. */
+    NERROR_SRMOUNT = ESRMNT, /**< Srmount error. */
+    NERROR_COMMUNICATION = ECOMM, /**< Communication error on send. */
+    NERROR_DOTDOT = EDOTDOT, /**< RFS specific error. */
+    NERROR_NOT_UNIQUE = ENOTUNIQ, /**< Name not unique on network. */
+    NERROR_INV_FD = EBADFD, /**< File descriptor in bad state. */
+    NERROR_REMOTE_CHANGE = EREMCHG, /**< Remote address changed. */
+    NERROR_NO_LIB = ELIBACC, /**< Can not access a needed shared library. */
+    NERROR_INV_LIB = ELIBBAD, /**< Accessing a corrupted shared library. */
+    NERROR_INV_LIB_SCAN = ELIBSCN, /**< .lib section in a.out corrupted. */
+    NERROR_MAX_LIB = ELIBMAX, /**< Attempting to link in too many shared libraries. */
+    NERROR_EXEC_LIB = ELIBEXEC, /**< Cannot exec a shared library directly. */
+    NERROR_RESTART_CALL = ERESTART, /**< Interrupted system call should be restarted. */
+    NERROR_STR_PIPE = ESTRPIPE, /**< Streams pipe error. */
+    NERROR_CLEAN_STRUCT = EUCLEAN, /**< Structure needs cleaning. */
+    NERROR_NOT_XENIX = ENOTNAM, /**< Not a XENIX named type file. */
+    NERROR_NO_XENIX_SEM = ENAVAIL, /**< No XENIX semaphores available. */
+    NERROR_NAMED = EISNAM, /**< Is a named type file. */
+    NERROR_REMOTE_IO = EREMOTEIO, /**< Remote I/O error. */
+    NERROR_NO_MEDIUM = ENOMEDIUM, /**< No medium found. */
+    NERROR_INV_MEDIUM = EMEDIUMTYPE, /**< Wrong medium type. */
+#endif
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
     NERROR_NO_PERM, /**< Operation not permitted. */
     NERROR_NO_FILE, /**< No such file or directory. */
     NERROR_NO_PROCESS, /**< No such process. */
@@ -280,7 +320,7 @@ enum nErrors {
     NERROR_CONN_TIMEOUT, /**< Connection timed out. */
     NERROR_TEXT_BUSY, /**< Text file busy. */
 
-    #elif NIMBLE_OS == NIMBLE_MACOS
+#elif NIMBLE_OS == NIMBLE_MACOS
     NERROR_NO_PERM, /**< Operation not permitted. */
     NERROR_NO_FILE, /**< No such file or directory. */
     NERROR_NO_PROCESS, /**< No such process. */
@@ -389,12 +429,134 @@ enum nErrors {
     NERROR_OWNER_DIED, /**< Owner died. */
     NERROR_MAX_QUEUE, /**< Interface output queue is full. */
     
-    #elif NIMBLE_OS == NIMBLE_LINUX
-    #elif NIMBLE_OS == NIMBLE_ANDROID
-    #elif NIMBLE_OS == NIMBLE_POSIX
-    #else
-    #error OS not supported.
-    #endif /** @todo CONTINUE; Also figure out what to do with __FILE__ and __LINE__ etc. they will be useful  */
+#elif NIMBLE_OS == NIMBLE_ANDROID
+
+#elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
+    NERROR_NO_PERM, /**< Operation not permitted. */
+    NERROR_NO_FILE, /**< No such file or directory. */
+    NERROR_NO_PROCESS, /**< No such process. */
+    NERROR_INTERRUPT, /**< Interrupted system call. */
+    NERROR_IO, /**< Input/output error. */
+    NERROR_NO_DEVICE, /**< No such device or address. */
+    NERROR_MAX_ARGS, /**< Argument list too long. */
+    NERROR_INV_EXEC_FORMAT, /**< Exec format error. */
+    NERROR_INV_FP, /**< Bad file descriptor. */
+    NERROR_NO_CHILD, /**< No child process. */
+    NERROR_WOULD_BLOCK, /**< Resource temporarily unavailable; Operation would block. */
+    NERROR_NO_MEMORY, /**< Cannot allocate memory. */
+    NERROR_NO_FILE_PERM, /**< Permission denied. */
+    NERROR_FAULT, /**< Bad address. */
+    NERROR_NOT_BLOCK, /**< Block device required. */
+    NERROR_DEVICE_BUSY, /**< Device or resource busy. */
+    NERROR_FILE_EXISTS, /**< File exists. */
+    NERROR_INV_CROSSLINK, /**< Invalid cross-device link. */
+    NERROR_INV_DEVICE, /**< No such device. */
+    NERROR_NOT_DIR, /**< Not a directory. */
+    NERROR_IS_DIR, /**< Is a directory. */
+    NERROR_INV_ARG, /**< Invalid argument. */
+    NERROR_MAX_FILE_SYS, /**< Too many open files in system. */
+    NERROR_MAX_FILE, /**< Too many open files. */
+    NERROR_INV_IOCTL, /**< Inappropriate ioctl for device. */
+    NERROR_TEXT_BUSY, /**< Text file busy. */
+    NERROR_FILE_TOO_BIG, /**< File too large. */
+    NERROR_NO_SPACE, /**< No space left on device. */
+    NERROR_INV_SEEK, /**< Illegal seek. */
+    NERROR_READ_ONLY, /**< Read-only file system. */
+    NERROR_MAX_LINKS, /**< Too many links. */
+    NERROR_INV_PIPE, /**< Broken pipe. */
+    NERROR_DOMAIN, /**< Numerical argument out of domain. */
+    NERROR_RESULT_TOO_BIG, /**< Numerical result out of range. */
+    NERROR_DEADLOCK, /**< Resource deadlock avoided. */
+    NERROR_MAX_FILENAME, /**< File name too long. */
+    NERROR_NO_FILE_LOCK, /**< No locks available. */
+    NERROR_FUNC_NOT_SUPPORTED, /**< Function not implemented. */
+    NERROR_DIR_NOT_EMPTY, /**< Directory not empty. */
+    NERROR_LINK_LOOP, /**< Too many levels of symbolic links. */
+    NERROR_NO_MESSAGE, /**< No message of desired type. */
+    NERROR_NO_IDENTIFIER, /**< Identifier removed. */
+    NERROR_MAX_CHANNEL, /**< Channel number out of range. */
+    NERROR_LVL2_NO_SYNC, /**< Level 2 not synchronized. */
+    NERROR_LVL3_HAULT, /**< Level 3 halted. */
+    NERROR_LVL3_RESET, /**< Level 3 reset. */
+    NERROR_LINK_NUM, /**< Link number out of range. */
+    NERROR_PROTO_UNATTACHED, /**< Protocol driver not attached. */
+    NERROR_NO_CSI, /**< No CSI structure available. */
+    NERROR_LVL2_HAULT, /**< Level 2 haulted. */
+    NERROR_INV_EXCHANGE, /**< Invalid exchange. */
+    NERROR_INV_REQUEST_DESC, /**< Invalid request descriptor. */
+    NERROR_EXCHANGE_FULL, /**< Exchange full. */
+    NERROR_NO_ANODE, /**< No anode. */
+    NERROR_INV_REQUEST_CODE, /**< Invalid request code. */
+    NERROR_INV_SLOT, /**< Invalid slot. */
+    NERROR_INV_FONT, /**< Bad font file format. */
+    NERROR_DEVICE_NOT_STREAM, /**< Device not a stream. */
+    NERROR_NO_DATA, /**< No data available. */
+    NERROR_CONN_TIMEOUT, /**< Connection timed out. */
+    NERROR_NO_STREAM_RESOURCES, /**< Out of streams resources. */
+    NERROR_NO_NETWORK, /**< Machine is not on the network. */
+    NERROR_NO_PACKAGE, /**< Package not installed. */
+    NERROR_REMOTE, /**< Object is remote. */
+    NERROR_NO_LINK, /**< Link has been severed. */
+    NERROR_ADVERTISE, /**< Advertise error. */
+    NERROR_SRMOUNT, /**< Srmount error. */
+    NERROR_COMMUNICATION, /**< Communication error on send. */
+    NERROR_PROTOCOL, /**< Protocol error. */
+    NERROR_MULTIHOP, /**< Multihop attempted. */
+    NERROR_DOTDOT, /**< RFS specific error. */
+    NERROR_INV_MESSAGE, /**< Bad message. */
+    NERROR_OVERFLOW, /**< Value too large for defined data type. */
+    NERROR_NOT_UNIQUE, /**< Name not unique on network. */
+    NERROR_INV_FD, /**< File descriptor in bad state. */
+    NERROR_REMOTE_CHANGE, /**< Remote address changed. */
+    NERROR_NO_LIB, /**< Can not access a needed shared library. */
+    NERROR_INV_LIB, /**< Accessing a corrupted shared library. */
+    NERROR_INV_LIB_SCAN, /**< .lib section in a.out corrupted. */
+    NERROR_MAX_LIB, /**< Attempting to link in too many shared libraries. */
+    NERROR_EXEC_LIB, /**< Cannot exec a shared library directly. */
+    NERROR_INV_MULTIBYTE, /**< Invalid or incomplete multibyte or wide character. */
+    NERROR_RESTART_CALL, /**< Interrupted system call should be restarted. */
+    NERROR_STR_PIPE, /**< Streams pipe error. */
+    NERROR_MAX_USERS, /**< Too many users. */
+    NERROR_NOT_SOCKET, /**< Socket operation on non-socket. */
+    NERROR_NO_ADDR, /**< Destination address required. */
+    NERROR_MAX_MESSAGE, /**< Message too long. */
+    NERROR_INV_PROTO_TYPE, /**< Protocol wrong type for socket. */
+    NERROR_INV_PROTO_OPT, /**< Protocol not available. */
+    NERROR_INV_PROTOCOL, /**< Protocol not supported. */
+    NERROR_INV_SOCK_TYPE, /**< Socket type not supported. */
+    NERROR_INV_SOCK_OPR, /**< Operation not supported. */
+    NERROR_INV_PROTO_FAM, /**< Protocol family not supported. */
+    NERROR_INV_ADDR_FAM, /**< Address family not supported by protocol. */
+    NERROR_ADDR_IN_USE, /**< Address already in use. */
+    NERROR_ADDR_NOT_AVAILABLE, /**< Cannot assign requested address. */
+    NERROR_NET_DOWN, /**< Network is down. */
+    NERROR_NET_UNREACHABLE, /**< Network is unreachable. */
+    NERROR_NET_RESET, /**< Network dropped connection on reset. */
+    NERROR_CONN_ABORTED, /**< Software caused connection abort. */
+    NERROR_CONN_RESET, /**< Connection reset by peer. */
+    NERROR_NO_BUFFER_SPACE, /**< No buffer space available. */
+    NERROR_ALREADY_CONN, /**< Transport endpoint is already connected. */
+    NERROR_NOT_CONN, /**< Transport endpoint is not connected. */
+    NERROR_SOCK_SHUTDOWN, /**< Cannot send after transport endpoint shutdown. */
+    NERROR_MAX_REFS, /**< Too many references: cannot splice. */
+    NERROR_CONN_TIMEOUT, /**< Connection timed out. */
+    NERROR_CONN_REFUSED, /**< Connection refused. */
+    NERROR_HOST_DOWN, /**< Host is down. */
+    NERROR_HOST_UNREACHABLE, /**< No route to host. */
+    NERROR_ALREADY, /**< Operation already in progress. */
+    NERROR_IN_PROGRESS, /**< Operation now in progress. */
+    NERROR_STALE, /**< Stale file handle. */
+    NERROR_CLEAN_STRUCT, /**< Structure needs cleaning. */
+    NERROR_NOT_XENIX, /**< Not a XENIX named type file. */
+    NERROR_NO_XENIX_SEM, /**< No XENIX semaphores available. */
+    NERROR_NAMED, /**< Is a named type file. */
+    NERROR_REMOTE_IO, /**< Remote I/O error. */
+    NERROR_MAX_DISK_QUOTA, /**< Disk quota exceeded. */
+    NERROR_NO_MEDIUM, /**< No medium found. */
+    NERROR_INV_MEDIUM, /**< Wrong medium type. */
+#else
+#error OS not supported.
+#endif /** @todo CONTINUE; Also figure out what to do with __FILE__ and __LINE__ etc. they will be useful  */
     NERROR_ERRNO_END, /**< The end of the errno section. */
     
     NERROR_MAX /**< The maximum error number. */

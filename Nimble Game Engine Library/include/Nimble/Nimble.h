@@ -90,7 +90,7 @@ extern "C" {
 #define NIMBLE_BSD 5
 
 #if defined(_POSIX_SOURCE)
-#define NIMBLE_POSIX 5
+#define NIMBLE_POSIX 1
 #endif
 
 #ifdef _WIN32
