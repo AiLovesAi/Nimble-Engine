@@ -1,10 +1,5 @@
 The Nimble Game Engine and all of its software fall under the MIT license.
 
-The Nimble Game Engine logos are not to be redistributed by anyone without explicit permission by: its creator, Candace Aaron; and Avery Aaron.
-
-By continuing, you agree that you have read the license and are aware that the libraries Nimble Game Engine uses may have differing licenses, which are included in the LICENSE.md file in the installation directory, and at https://github.com/a3ology/Nimble-Game-Engine/blob/master/LICENSE.md.
-
-
 The MIT License (MIT)
 
 Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>

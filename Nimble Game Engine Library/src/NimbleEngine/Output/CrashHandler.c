@@ -90,8 +90,8 @@ nint_t nCrashSetCallback(void (*callback)(const nint_t error,
 {
     if (callback == NULL)
     {
-        NCONST_STR einfoCallbackStr[] = "Callback parameter null in nCrashSetCallback().";
-        nErrorThrow(NERROR_NULL, einfoCallbackStr, sizeof(einfoCallbackStr) - 1);
+        NCONST_STR einfoCallbackStr = "Callback parameter null in nCrashSetCallback().";
+        nErrorThrow(NERROR_NULL, einfoCallbackStr, strlen(einfoCallbackStr));
         return NERROR;
     }
     
@@ -99,7 +99,7 @@ nint_t nCrashSetCallback(void (*callback)(const nint_t error,
     return NSUCCESS;
 }
 
-void nCrashSafe(const nint_t error, time_t errorTime,  const char *errorDesc,
+_Noreturn void nCrashSafe(const nint_t error, time_t errorTime,  const char *errorDesc,
                 nint_t errorDescLen)
 {
     nThreadMutexCreate(crashMutex);
@@ -131,10 +131,10 @@ void nCrashSafe(const nint_t error, time_t errorTime,  const char *errorDesc,
         if (nErrorToStringLocal(errorDescPtr, &errorDescLen, error, NULL, 0) !=
             NSUCCESS)
         {
-            NCONST_STR defaultErrorStr[] = "NERROR_ERROR_NOT_FOUND: An error "\
+            NCONST_STR defaultErrorStr = "NERROR_ERROR_NOT_FOUND: An error "\
 "passed to a function was not valid: nErrorToStringLocal() failed while "\
 "crashing with nCrashSafe().";
-            errorDescLen = sizeof(defaultErrorStr) - 1;
+            errorDescLen = strlen(defaultErrorStr);
             errorDescPtr = nRealloc(errorDescPtr, errorDescLen + 1);
             nStringCopy(errorDescPtr, defaultErrorStr, errorDescLen);
         }
@@ -157,7 +157,7 @@ void nCrashSafe(const nint_t error, time_t errorTime,  const char *errorDesc,
     /* NO RETURN */
 }
 
-void nCrashSignal(const int signum)
+_Noreturn void nCrashSignal(const int signum)
 {
     const nint_t error = nErrorFromSignal(signum);
     const time_t errorTime = time(NULL);
@@ -170,7 +170,7 @@ void nCrashSignal(const int signum)
     /* NO RETURN */
 }
 
-void nCrashAbort(const nint_t error)
+_Noreturn void nCrashAbort(const nint_t error)
 {
     fprintf(stderr, "The program failed to crash safely and is aborting. "\
      "Error: %s (%x/%d) - %s", nErrorStr(error), error, error,

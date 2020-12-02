@@ -119,13 +119,13 @@ nCrashSetHandler(void (*callback) (const nint_t error,
  * needed and may cause more errors, though checking them is acceptable.
  */
 NIMBLE_EXTERN
+_Noreturn
 void
 nCrashSafe(const nint_t error,
            time_t errorTime,
            const char *errorDesc,
            nint_t errorDescLen
-           )
-__attribute__((noreturn));
+           );
 
 /**
  * @brief Calls nCrashSafe() to handle a caught signal.
@@ -136,10 +136,10 @@ __attribute__((noreturn));
  * by developers, but is optional.
  */
 NIMBLE_EXTERN
+_Noreturn
 void
 nCrashSignal(const int signum
-             )
-__attribute__((noreturn));
+             );
 
 /**
  * @brief Crashes the program without notifying the callback.
@@ -159,10 +159,10 @@ __attribute__((noreturn));
  * @note This function does not return, and exits the program.
  */
 NIMBLE_EXTERN
+_Noreturn
 void
 nCrashAbort(const nint_t error
-            )
-__attribute__((noreturn));
+            );
 
 #endif // NIMBLE_ENGINE_CRASH_HANDLER_H
 

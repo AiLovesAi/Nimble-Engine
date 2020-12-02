@@ -236,9 +236,9 @@ nStringCopy(char *restrict dst,
  * nErrorHandlerSetErrorCallback().
  */
 NIMBLE_EXTERN
+_Noreturn
 void
-nEngineExit(void)
-__attribute__((noreturn));
+nEngineExit(void);
 
 /**
  * @brief Initialized the game engine.

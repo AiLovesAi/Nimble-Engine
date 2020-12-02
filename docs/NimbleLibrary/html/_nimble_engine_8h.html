@@ -112,9 +112,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ad61e840c85e1af788b37cfaade9923b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_engine_8h.html#ad61e840c85e1af788b37cfaade9923b0">nStringCopy</a> (char *restrict dst, const char *restrict src, const size_t len)</td></tr>
 <tr class="memdesc:ad61e840c85e1af788b37cfaade9923b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies <code>len</code> characters from <code>src</code> to <code>dst</code>.  <a href="_nimble_engine_8h.html#ad61e840c85e1af788b37cfaade9923b0">More...</a><br /></td></tr>
 <tr class="separator:ad61e840c85e1af788b37cfaade9923b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaca2e068de89949f92e1df34db595f82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_engine_8h.html#aaca2e068de89949f92e1df34db595f82">nEngineExit</a> (void) __attribute__((noreturn))</td></tr>
-<tr class="memdesc:aaca2e068de89949f92e1df34db595f82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exits the game engine.  <a href="_nimble_engine_8h.html#aaca2e068de89949f92e1df34db595f82">More...</a><br /></td></tr>
-<tr class="separator:aaca2e068de89949f92e1df34db595f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefb38bb113f315c12bc5b6d25fb07cca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> _Noreturn void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_engine_8h.html#aefb38bb113f315c12bc5b6d25fb07cca">nEngineExit</a> (void)</td></tr>
+<tr class="memdesc:aefb38bb113f315c12bc5b6d25fb07cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exits the game engine.  <a href="_nimble_engine_8h.html#aefb38bb113f315c12bc5b6d25fb07cca">More...</a><br /></td></tr>
+<tr class="separator:aefb38bb113f315c12bc5b6d25fb07cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a871ce7906aa3e260c8d62b916ed199c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_engine_8h.html#a871ce7906aa3e260c8d62b916ed199c2">nEngineInit</a> (void(*<a class="el" href="_errors_8c.html#ab46836b186757a790d96bbcc1cb240f9">errorCallback</a>)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, char *errorDesc, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, char *stack, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen), void(*<a class="el" href="_crash_handler_8c.html#ade2cb6de40c4551c99164769edf3f2fb">crashCallback</a>)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, char *errorDesc, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, char *stack, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen))</td></tr>
 <tr class="memdesc:a871ce7906aa3e260c8d62b916ed199c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialized the game engine.  <a href="_nimble_engine_8h.html#a871ce7906aa3e260c8d62b916ed199c2">More...</a><br /></td></tr>
 <tr class="separator:a871ce7906aa3e260c8d62b916ed199c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,14 +199,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aaca2e068de89949f92e1df34db595f82"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaca2e068de89949f92e1df34db595f82">&#9670;&nbsp;</a></span>nEngineExit()</h2>
+<a id="aefb38bb113f315c12bc5b6d25fb07cca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefb38bb113f315c12bc5b6d25fb07cca">&#9670;&nbsp;</a></span>nEngineExit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void nEngineExit </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> _Noreturn void nEngineExit </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -224,7 +224,7 @@ Functions</h2></td></tr>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_nimble_engine_8c.html#aeb160911f12c65f5af5e37643a16f4a1">nEngineInit</a>() == <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">    {</div>
-<div class="line">        <a class="code" href="_nimble_engine_8c.html#ab8c7bd56f1a182aae20bfe4b83efc9b6">nEngineExit</a>();</div>
+<div class="line">        <a class="code" href="_nimble_engine_8c.html#aa9db3737f71f61028f4d18ef9c765189">nEngineExit</a>();</div>
 <div class="line">    }</div>
 <div class="line">    fprintf(stderr, <span class="stringliteral">&quot;Failed to initialize Nimble.&quot;</span>);</div>
 <div class="line">    exit(EXIT_SUCCESS);</div>
@@ -459,7 +459,7 @@ Functions</h2></td></tr>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="a_nimble_engine_8c_html_aeb160911f12c65f5af5e37643a16f4a1"><div class="ttname"><a href="_nimble_engine_8c.html#aeb160911f12c65f5af5e37643a16f4a1">nEngineInit</a></div><div class="ttdeci">nint_t nEngineInit(void(*errorCallback)(const nint_t error, const time_t errorTime, char *errorDesc, nint_t errorDescLen, char *stack, nint_t stackLen), void(*crashCallback)(const nint_t error, const time_t errorTime, char *errorDesc, nint_t errorDescLen, char *stack, nint_t stackLen))</div><div class="ttdoc">Initialized the game engine.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00119">NimbleEngine.c:119</a></div></div>
-<div class="ttc" id="a_nimble_engine_8c_html_ab8c7bd56f1a182aae20bfe4b83efc9b6"><div class="ttname"><a href="_nimble_engine_8c.html#ab8c7bd56f1a182aae20bfe4b83efc9b6">nEngineExit</a></div><div class="ttdeci">void nEngineExit(void)</div><div class="ttdoc">Exits the game engine.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00108">NimbleEngine.c:108</a></div></div>
+<div class="ttc" id="a_nimble_engine_8c_html_aa9db3737f71f61028f4d18ef9c765189"><div class="ttname"><a href="_nimble_engine_8c.html#aa9db3737f71f61028f4d18ef9c765189">nEngineExit</a></div><div class="ttdeci">_Noreturn void nEngineExit(void)</div><div class="ttdoc">Exits the game engine.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00108">NimbleEngine.c:108</a></div></div>
 <div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
 <div class="ttc" id="a_nimble_engine_8c_html_aafc14ef2a060e7b49b4ae4a1bdbdc989"><div class="ttname"><a href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a></div><div class="ttdeci">void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00054">NimbleEngine.c:54</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>

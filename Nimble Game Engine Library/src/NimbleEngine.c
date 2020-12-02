@@ -81,8 +81,8 @@ char *nStringCopy(char *restrict dst, const char *restrict src,
 {
     if (!src)
     {
-        NCONST_STR einfoNullStr[] = "Source string NULL in nStringCopy().";
-        nErrorThrow(NERROR_NULL, einfoNullStr, sizeof(einfoNullStr) - 1);
+        NCONST_STR einfoNullStr = "Source string NULL in nStringCopy().";
+        nErrorThrow(NERROR_NULL, einfoNullStr, strlen(einfoNullStr));
     }
 
     if (!dst)
@@ -105,7 +105,7 @@ char *nStringCopy(char *restrict dst, const char *restrict src,
 }
 
 
-void nEngineExit(void)
+_Noreturn void nEngineExit(void)
 {
     /** @todo Make safe exit function */
     exit(EXIT_SUCCESS);
