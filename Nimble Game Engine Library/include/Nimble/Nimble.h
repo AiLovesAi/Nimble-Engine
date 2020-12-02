@@ -155,6 +155,8 @@ extern "C" {
 
 #define NCONST_STR const char * const /**< Used for static constant character arrays. */
 
+#define NCONST_STR_LEN(str) sizeof(str) - 1
+
 
 typedef int_fast8_t   nbyte_t;
 typedef uint_fast8_t  nubyte_t;
