@@ -96,8 +96,13 @@ extern "C" {
  * @return The allocated pointer.
  */
 NIMBLE_EXTERN
+NIMBLE_FREEME
 void *
-nAlloc(const size_t size);
+nAlloc(const size_t size)
+#ifdef __GNUC__
+__attribute__((warn_unused_result))
+#endif
+;
 
 /**
  * @brief Reallocates a pointer.
@@ -134,8 +139,13 @@ nAlloc(const size_t size);
  * @return The reallocated @p ptr.
  */
 NIMBLE_EXTERN
+NIMBLE_FREEME
 void *
-nRealloc(void*ptr, const size_t size);
+nRealloc(void*ptr, const size_t size)
+#ifdef __GNUC__
+__attribute__((warn_unused_result))
+#endif
+;
 
 /**
  * @brief Frees a pointer.
@@ -205,6 +215,7 @@ nFree(void *ptr)
  * @return @p dst is always returned.
  */
 NIMBLE_EXTERN
+NIMBLE_FREEME
 char *
 nStringCopy(char *restrict dst,
             const char *restrict src,

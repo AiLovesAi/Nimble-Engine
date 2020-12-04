@@ -69,15 +69,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt>Global <a class="el" href="_crash_handler_8c.html#af5c3239ed0279c3c08553d3e0210aee1">nCrashHandlerDefault</a>  (const nint_t error, const time_t errorTime, char *errorDesc, nint_t errorDescLen, char *stack, nint_t stackLen)</dt>
+<dt>Global <a class="el" href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">nCrashHandlerDefault</a>  (const nint_t error, const time_t errorTime, char *errorDesc, size_t errorDescLen, char *stack, size_t stackLen)</dt>
 <dd><a class="anchor" id="_todo000001"></a>Make default callback (threads, engine, logs, etc.).  </dd>
-<dt>Global <a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">nErrorHandlerDefault</a>  (const nint_t error, const time_t errorTime, const char *errorDesc, const nint_t errorDescLen, const char *stack, const nint_t stackLen)</dt>
+<dt>Global <a class="el" href="_errors_8c.html#ac6af5b7966acb87bc5de274aec3e302d">nErrorHandlerDefault</a>  (const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)</dt>
 <dd><a class="anchor" id="_todo000002"></a>Make default callback.  </dd>
-<dt>Global <a class="el" href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">nErrorGetStacktrace</a>  (char *dst, nint_t *stackLen, nint_t *stackLevels)</dt>
+<dt>Global <a class="el" href="_errors_8c.html#a9b6f95d66f769cdae3927cb4005eac9d">nErrorGetStacktrace</a>  (char *dst, size_t *stackLen, size_t *stackLevels)</dt>
 <dd><a class="anchor" id="_todo000003"></a>Get stack trace. Remember *stackLevels is max levels  </dd>
 <dt>Global <a class="el" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>  (nThread_t *thread, nint_t attributes, void *(*start)(void *), void *data)</dt>
 <dd><p class="startdd"><a class="anchor" id="_todo000004"></a>Attributes, pointer conversion for some arguments </p>
-<p class="enddd"><a class="anchor" id="_todo000005"></a><a class="el" href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1" title="Sends an error to the error callback.">nErrorThrow()</a>;  </p>
+<p class="enddd"><a class="anchor" id="_todo000005"></a><a class="el" href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187" title="Sends an error to the error callback.">nErrorThrow()</a>;  </p>
 </dd>
 <dt>Global <a class="el" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>  (void)</dt>
 <dd><a class="anchor" id="_todo000006"></a>  </dd>
@@ -101,10 +101,8 @@ $(function() {
 </dd>
 <dt>Global <a class="el" href="_nimble_8h.html#ab62d88bc9fcdbc6c30e7672b673637b8">defined</a>  (__FreeBSD__)</dt>
 <dd><a class="anchor" id="_todo000016"></a>Figure out why this isn't working  </dd>
-<dt>Global <a class="el" href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">nErrorToStringLocal</a>  (char *dst, nint_t *errorLen, const nint_t error, const char *info, nint_t infoLen)</dt>
-<dd><a class="anchor" id="_todo000017"></a>Do this  </dd>
 <dt>Global <a class="el" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>  (nThread_t *thread, nint_t attributes, void *(*start)(void *), void *data)</dt>
-<dd><a class="anchor" id="_todo000018"></a>Figure out the attributes for this! </dd>
+<dd><a class="anchor" id="_todo000017"></a>Figure out the attributes for this! </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

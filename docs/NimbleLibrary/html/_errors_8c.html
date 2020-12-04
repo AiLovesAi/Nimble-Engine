@@ -781,42 +781,39 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:acb0b9e8cec4e120d781a875a49eb0d7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">nErrorHandlerDefault</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, const char *stack, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen)</td></tr>
-<tr class="memdesc:acb0b9e8cec4e120d781a875a49eb0d7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default error handler callback.  <a href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">More...</a><br /></td></tr>
-<tr class="separator:acb0b9e8cec4e120d781a875a49eb0d7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6af5b7966acb87bc5de274aec3e302d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ac6af5b7966acb87bc5de274aec3e302d">nErrorHandlerDefault</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)</td></tr>
+<tr class="memdesc:ac6af5b7966acb87bc5de274aec3e302d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default error handler callback.  <a href="_errors_8c.html#ac6af5b7966acb87bc5de274aec3e302d">More...</a><br /></td></tr>
+<tr class="separator:ac6af5b7966acb87bc5de274aec3e302d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fd9fbbf06b57d0b43aa6a18eabafac3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a9fd9fbbf06b57d0b43aa6a18eabafac3">nErrorFromErrno</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> err)</td></tr>
 <tr class="separator:a9fd9fbbf06b57d0b43aa6a18eabafac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47d62aea349025651404d67b5e87bbb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1">nErrorThrow</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> infoLen)</td></tr>
-<tr class="memdesc:a47d62aea349025651404d67b5e87bbb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an error to the error callback.  <a href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1">More...</a><br /></td></tr>
-<tr class="separator:a47d62aea349025651404d67b5e87bbb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a986223a1bd08833af99d7193fbb633ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">nErrorToStringLocal</a> (char *dst, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *errorLen, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> infoLen)</td></tr>
-<tr class="memdesc:a986223a1bd08833af99d7193fbb633ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string with no error handling.  <a href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">More...</a><br /></td></tr>
-<tr class="separator:a986223a1bd08833af99d7193fbb633ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ea33a06254b37a5f515c5f24a38ea15"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">nErrorToString</a> (char *dst, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *errorLen, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> infoLen)</td></tr>
-<tr class="memdesc:a1ea33a06254b37a5f515c5f24a38ea15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string.  <a href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">More...</a><br /></td></tr>
-<tr class="separator:a1ea33a06254b37a5f515c5f24a38ea15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3cf33d6f2850edcf77840464f0e9350"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ab3cf33d6f2850edcf77840464f0e9350">nErrorSetCallback</a> (void(*callback)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, const char *stack, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen))</td></tr>
-<tr class="memdesc:ab3cf33d6f2850edcf77840464f0e9350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function to handle errors.  <a href="_errors_8c.html#ab3cf33d6f2850edcf77840464f0e9350">More...</a><br /></td></tr>
-<tr class="separator:ab3cf33d6f2850edcf77840464f0e9350"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f3681cae40fc7f7bbb0d839d4a80986"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">nErrorGetStacktrace</a> (char *dst, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *stackLen, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *stackLevels)</td></tr>
-<tr class="memdesc:a2f3681cae40fc7f7bbb0d839d4a80986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current stack trace as a string.  <a href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">More...</a><br /></td></tr>
-<tr class="separator:a2f3681cae40fc7f7bbb0d839d4a80986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12be5e8e92cdd139422dd1bde5b8a187"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, size_t infoLen)</td></tr>
+<tr class="memdesc:a12be5e8e92cdd139422dd1bde5b8a187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an error to the error callback.  <a href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">More...</a><br /></td></tr>
+<tr class="separator:a12be5e8e92cdd139422dd1bde5b8a187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a055477c0aa8af2a58f8da7c4621c7b3a"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a> (size_t *errorLen, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, size_t infoLen)</td></tr>
+<tr class="memdesc:a055477c0aa8af2a58f8da7c4621c7b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string.  <a href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">More...</a><br /></td></tr>
+<tr class="separator:a055477c0aa8af2a58f8da7c4621c7b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67e277d46978d41820d183ec95839c9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a67e277d46978d41820d183ec95839c9b">nErrorSetCallback</a> (void(*callback)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen))</td></tr>
+<tr class="memdesc:a67e277d46978d41820d183ec95839c9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function to handle errors.  <a href="_errors_8c.html#a67e277d46978d41820d183ec95839c9b">More...</a><br /></td></tr>
+<tr class="separator:a67e277d46978d41820d183ec95839c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b6f95d66f769cdae3927cb4005eac9d"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a9b6f95d66f769cdae3927cb4005eac9d">nErrorGetStacktrace</a> (char *dst, size_t *stackLen, size_t *stackLevels)</td></tr>
+<tr class="memdesc:a9b6f95d66f769cdae3927cb4005eac9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current stack trace as a string.  <a href="_errors_8c.html#a9b6f95d66f769cdae3927cb4005eac9d">More...</a><br /></td></tr>
+<tr class="separator:a9b6f95d66f769cdae3927cb4005eac9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:adeeba1c556486a77448f37e9a899183f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#acb8f97aade4bc091634dcbf51943c426">NCONST_STR</a> *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#adeeba1c556486a77448f37e9a899183f">nErrorStrings</a> []</td></tr>
-<tr class="separator:adeeba1c556486a77448f37e9a899183f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af28c6cab03896f3819c65b8091d1f5cc"><td class="memItemLeft" align="right" valign="top">const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#af28c6cab03896f3819c65b8091d1f5cc">nErrorStrings</a> []</td></tr>
+<tr class="separator:af28c6cab03896f3819c65b8091d1f5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39b971bb04c55cc071ae2492bd66497e"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a39b971bb04c55cc071ae2492bd66497e">nErrorStrLengths</a> []</td></tr>
 <tr class="separator:a39b971bb04c55cc071ae2492bd66497e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ebc061ec98f75ce70af9cc313eff0ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#acb8f97aade4bc091634dcbf51943c426">NCONST_STR</a> *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a8ebc061ec98f75ce70af9cc313eff0ad">nErrorDescriptions</a> []</td></tr>
-<tr class="separator:a8ebc061ec98f75ce70af9cc313eff0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dab722e1932f02e6afa8d3483d54ad5"><td class="memItemLeft" align="right" valign="top">const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a8dab722e1932f02e6afa8d3483d54ad5">nErrorDescriptions</a> []</td></tr>
+<tr class="separator:a8dab722e1932f02e6afa8d3483d54ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56eb50941183f018672699b7c945579c"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a56eb50941183f018672699b7c945579c">nErrorDescLengths</a> []</td></tr>
 <tr class="separator:a56eb50941183f018672699b7c945579c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c82c47d09c35a7ccec969a1fd1f2f67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#acb8f97aade4bc091634dcbf51943c426">NCONST_STR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a4c82c47d09c35a7ccec969a1fd1f2f67">noInfoStr</a> [] = &quot;No info.&quot;</td></tr>
-<tr class="separator:a4c82c47d09c35a7ccec969a1fd1f2f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51389dd2fc9049426ea794dbe2594f8d"><td class="memItemLeft" align="right" valign="top">void(*volatile&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a51389dd2fc9049426ea794dbe2594f8d">errorCallback</a> )(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, const char *stack, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen) = <a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">nErrorHandlerDefault</a></td></tr>
-<tr class="memdesc:a51389dd2fc9049426ea794dbe2594f8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error callback function that gets defined by <a class="el" href="_errors_8c.html#ab3cf33d6f2850edcf77840464f0e9350" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>.  <a href="_errors_8c.html#a51389dd2fc9049426ea794dbe2594f8d">More...</a><br /></td></tr>
-<tr class="separator:a51389dd2fc9049426ea794dbe2594f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43fb2a7f109395609e691d13dd603297"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a43fb2a7f109395609e691d13dd603297">noInfoStr</a> [] = &quot;No info.&quot;</td></tr>
+<tr class="separator:a43fb2a7f109395609e691d13dd603297"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fe8dfa6f1bf51f882604d24bd8e1fe5"><td class="memItemLeft" align="right" valign="top">void(*volatile&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a2fe8dfa6f1bf51f882604d24bd8e1fe5">errorCallback</a> )(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen) = &amp;<a class="el" href="_errors_8c.html#ac6af5b7966acb87bc5de274aec3e302d">nErrorHandlerDefault</a></td></tr>
+<tr class="memdesc:a2fe8dfa6f1bf51f882604d24bd8e1fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error callback function that gets defined by <a class="el" href="_errors_8c.html#a67e277d46978d41820d183ec95839c9b" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>.  <a href="_errors_8c.html#a2fe8dfa6f1bf51f882604d24bd8e1fe5">More...</a><br /></td></tr>
+<tr class="separator:a2fe8dfa6f1bf51f882604d24bd8e1fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines error values and error handling functions. </p>
@@ -1097,8 +1094,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;The requested socket address is &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;already in use.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;The requested socket address is &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;already in use.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01833">1833</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1115,9 +1112,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Cannot assign requested address. &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;The requested socket address is not available; for example, you tried to &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;give a socket a name that doesn&#39;t match the local host name.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Cannot assign requested address. &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;The requested socket address is not available; for example, you tried to &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;give a socket a name that doesn&#39;t match the local host name.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01835">1835</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1150,8 +1147,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Transport endpoint is already &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;connected. You tried to connect a socket that is already connected.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Transport endpoint is already &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;connected. You tried to connect a socket that is already connected.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01851">1851</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1168,9 +1165,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Operation already in progress. An &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;operation is already in progress on an object that has non-blocking mode &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;selected.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Operation already in progress. An &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;operation is already in progress on an object that has non-blocking mode &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;selected.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01807">1807</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1203,9 +1200,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Authentication error. Attempted &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;to use an invalid authentica-tion authentication ticket to mount an NFS file &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;system.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Authentication error. Attempted &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;to use an invalid authentica-tion authentication ticket to mount an NFS file &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;system.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01921">1921</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1222,8 +1219,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Bad executable. The executable or &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;shared library being referenced was malformed.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Bad executable. The executable or &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;shared library being referenced was malformed.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01978">1978</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1240,8 +1237,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Not permitted in capability mode. The &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;system call or operation is not permitted for capability mode processes.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Not permitted in capability mode. The &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;system call or operation is not permitted for capability mode processes.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l02036">2036</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1290,8 +1287,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Software caused connection abort. A &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;network connection was aborted locally.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Software caused connection abort. A &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;network connection was aborted locally.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01844">1844</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1308,9 +1305,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Connection refused. A remote host &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;refused to allow the network connection (typically because it is not running &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;the requested service).&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Connection refused. A remote host &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;refused to allow the network connection (typically because it is not running &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;the requested service).&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01872">1872</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1327,9 +1324,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Connection reset by peer. A network &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;connection was closed for reasons outside the control of the local host, such &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;as by the remote machine rebooting or an unrecoverable protocol violation.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Connection reset by peer. A network &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;connection was closed for reasons outside the control of the local host, such &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;as by the remote machine rebooting or an unrecoverable protocol violation.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01846">1846</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1346,9 +1343,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Connection timed out. A socket &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;operation with a specified timeout received no response during the timeout &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;period.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Connection timed out. A socket &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;operation with a specified timeout received no response during the timeout &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;period.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01869">1869</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1365,9 +1362,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Resource deadlock avoided. This &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;error happens on operations that are supposed to manipulate child &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;processes, when there aren&#39;t any processes to manipulate.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Resource deadlock avoided. This &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;error happens on operations that are supposed to manipulate child &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;processes, when there aren&#39;t any processes to manipulate.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01720">1720</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1384,10 +1381,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Device or resource busy. A system &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;resource that can&#39;t be shared is already in use. For example, if you try to &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;delete a file that is the root of a currently mounted filesystem, you get &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;this error.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Device or resource busy. A system &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;resource that can&#39;t be shared is already in use. For example, if you try to &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;delete a file that is the root of a currently mounted filesystem, you get &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;this error.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01733">1733</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1404,8 +1401,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Device error. A device error has &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;occurred, e.g. a printer running out of paper.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Device error. A device error has &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;occurred, e.g. a printer running out of paper.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01976">1976</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1438,8 +1435,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Device power is off. Cannot operate &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;on a powered off device, such as a printer.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Device power is off. Cannot operate &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;on a powered off device, such as a printer.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01974">1974</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1456,9 +1453,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Directory not empty. Directory not &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;empty, where an empty directory was expected. Typically, this error occurs &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;when you are trying to delete a directory.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Directory not empty. Directory not &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;empty, where an empty directory was expected. Typically, this error occurs &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;when you are trying to delete a directory.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01885">1885</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1475,9 +1472,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Numerical argument out of domain. &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;Used by mathematical functions when an argument value does not fall into the &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;domain over which the function is defined.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Numerical argument out of domain. &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;Used by mathematical functions when an argument value does not fall into the &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;domain over which the function is defined.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01778">1778</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1510,8 +1507,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;The end of the errno error section; &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;likely caused by programmer error or a memory corruption issue.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;The end of the errno error section; &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;likely caused by programmer error or a memory corruption issue.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l02050">2050</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1528,8 +1525,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;The start of the signal error section; &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;likely caused by programmer error or a memory corruption issue.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;The start of the signal error section; &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;likely caused by programmer error or a memory corruption issue.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01689">1689</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1578,8 +1575,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Bad address. An invalid pointer was &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;detected.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Bad address. An invalid pointer was &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;detected.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01727">1727</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1596,9 +1593,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Capabilities insufficient. An &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;operation on a capability file descriptor requires greater privilege than &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;the capability allows.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Capabilities insufficient. An &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;operation on a capability file descriptor requires greater privilege than &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;the capability allows.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l02033">2033</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1631,8 +1628,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;File exists. An existing file was &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;specified in a context where it only makes sense to specify a new file.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;File exists. An existing file was &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;specified in a context where it only makes sense to specify a new file.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01737">1737</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1649,8 +1646,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;File too large. The size of a file &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;would be larger than allowed by the system.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;File too large. The size of a file &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;would be larger than allowed by the system.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01765">1765</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1667,11 +1664,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Function not implemented. This &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;indicates that the function called is not implemented at all, either in the &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;C library itself or in the operating system. When you get this error, you can &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;be sure that this particular function will always fail with ENOSYS unless you &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;install a new version of the C library or the operating system.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Function not implemented. This &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;indicates that the function called is not implemented at all, either in the &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;C library itself or in the operating system. When you get this error, you can &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;be sure that this particular function will always fail with ENOSYS unless you &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;install a new version of the C library or the operating system.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01927">1927</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1688,8 +1685,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Host is down. The remote host for &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;a requested network connection is down.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Host is down. The remote host for &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;a requested network connection is down.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01881">1881</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1706,8 +1703,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No route to host. The remote host &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;for a requested network connection is not reachable.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No route to host. The remote host &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;for a requested network connection is not reachable.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01883">1883</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1740,14 +1737,14 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Operation now in progress. An &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;operation that cannot complete immediately was initiated on an object that &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;has non-blocking mode selected. Some functions that must always block (such &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;as connect()) never return NERROR_WOULD_BLOCK. Instead, they return &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;NERROR_IN_PROGRESS to indicate that the operation has begun and will take &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;some time. Attempts to manipulate the object before the call completes return &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;NERROR_ALREADY. You can use the select function to find out when the pending &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;operation has completed.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Operation now in progress. An &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;operation that cannot complete immediately was initiated on an object that &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;has non-blocking mode selected. Some functions that must always block (such &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;as connect()) never return NERROR_WOULD_BLOCK. Instead, they return &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;NERROR_IN_PROGRESS to indicate that the operation has begun and will take &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;some time. Attempts to manipulate the object before the call completes return &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;NERROR_ALREADY. You can use the select function to find out when the pending &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;operation has completed.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01799">1799</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1764,14 +1761,14 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Integrity check failed. An integrity &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;check such as a check-hash or a cross-correlation failed. The integrity &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;error falls between NERROR_INV_ARG that identifies errors in parameters to &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;a system call and NERROR_IO that identifies errors with the underlying &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;storage media. It is typically raised by intermediate kernel layers such as &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;a filesystem or an in-kernel GEOM subsystem when they detect &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;inconsistencies. Uses include allowing the mount() command to return a &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;different exit value to automate the running of fsck() during a system boot.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Integrity check failed. An integrity &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;check such as a check-hash or a cross-correlation failed. The integrity &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;error falls between NERROR_INV_ARG that identifies errors in parameters to &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;a system call and NERROR_IO that identifies errors with the underlying &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;storage media. It is typically raised by intermediate kernel layers such as &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;a filesystem or an in-kernel GEOM subsystem when they detect &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;inconsistencies. Uses include allowing the mount() command to return a &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;different exit value to automate the running of fsck() during a system boot.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l02038">2038</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1788,8 +1785,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;An internal error occurred within &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;the Nimble game engine.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;An internal error occurred within &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;the Nimble game engine.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01662">1662</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1806,9 +1803,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Interrupted system call. An &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;asynchronous signal occurred and prevented completion of the call. When this &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;happens, you should try the call again.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Interrupted system call. An &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;asynchronous signal occurred and prevented completion of the call. When this &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;happens, you should try the call again.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01699">1699</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1825,9 +1822,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Address family not supported by &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;protocol. The address family specified for a socket is not supported; it is &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;inconsistent with the protocol being used on the socket.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Address family not supported by &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;protocol. The address family specified for a socket is not supported; it is &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;inconsistent with the protocol being used on the socket.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01830">1830</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1844,8 +1841,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Bad CPU type in executable. The &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;executable in question does not support the current CPU.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Bad CPU type in executable. The &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;executable in question does not support the current CPU.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01980">1980</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1862,9 +1859,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Invalid argument. This is used to &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;indicate various kinds of problems with passing the wrong argument to a &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;library function.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Invalid argument. This is used to &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;indicate various kinds of problems with passing the wrong argument to a &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;library function.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01749">1749</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1881,8 +1878,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Inappropriate operation for &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;background process.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Inappropriate operation for &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;background process.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01946">1946</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1899,10 +1896,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Invalid cross-device link. An &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;attempt to make an improper link across file systems was detected. This &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;happens not only when you use link(), but also when you rename a file with &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;rename().&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Invalid cross-device link. An &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;attempt to make an improper link across file systems was detected. This &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;happens not only when you use link(), but also when you rename a file with &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;rename().&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01739">1739</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1919,8 +1916,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No such device. The wrong type of &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;device was given to a function that expects a particular sort of device.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No such device. The wrong type of &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;device was given to a function that expects a particular sort of device.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01743">1743</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1937,8 +1934,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;An error passed to a function was &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;not valid.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;An error passed to a function was &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;not valid.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01666">1666</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -1971,8 +1968,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Exec format error. Invalid &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;executable file format. This condition is detected by the exec functions.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Exec format error. Invalid &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;executable file format. This condition is detected by the exec functions.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01712">1712</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2005,10 +2002,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Inappropriate file type or &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;format. The file was the wrong type for the operation, or a data file had &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;the wrong format. On some systems chmod() returns this error if you try to &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;set the sticky bit on a non - directory file&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Inappropriate file type or &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;format. The file was the wrong type for the operation, or a data file had &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;the wrong format. On some systems chmod() returns this error if you try to &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;set the sticky bit on a non - directory file&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01917">1917</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2041,9 +2038,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Bad file descriptor. For example, &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;I/O on a descriptor that has been closed or reading from a descriptor open &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;only for writing (or vice versa).&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Bad file descriptor. For example, &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;I/O on a descriptor that has been closed or reading from a descriptor open &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;only for writing (or vice versa).&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01714">1714</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2060,9 +2057,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Inappropriate ioctl for device. &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;Inappropriate I/O control operation, such as trying to set terminal modes on &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;an ordinary file.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Inappropriate ioctl for device. &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;Inappropriate I/O control operation, such as trying to set terminal modes on &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;an ordinary file.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01758">1758</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2111,9 +2108,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Shared library version mismatch. &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;The version of the shared library on the system does not match the version &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;which was expected.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Shared library version mismatch. &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;The version of the shared library on the system does not match the version &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;which was expected.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01982">1982</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2130,8 +2127,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Malformed Macho file. The Mach &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;object file is malformed.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Malformed Macho file. The Mach &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;object file is malformed.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01985">1985</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2164,11 +2161,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Bad message. During a read(), &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;getmsg(), getpmsg(), or ioctl() I_RECVFD request to a STREAMS device, a &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;message arrived at the head of the STREAM that is inappropriate for the &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;function receiving the message. Message waiting to be read on a STREAM is &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;not a data message.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Bad message. During a read(), &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;getmsg(), getpmsg(), or ioctl() I_RECVFD request to a STREAMS device, a &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;message arrived at the head of the STREAM that is inappropriate for the &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;function receiving the message. Message waiting to be read on a STREAM is &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;not a data message.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01952">1952</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2185,10 +2182,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Invalid or incomplete multibyte &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;or wide character. While decoding a multibyte character the function came &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;along an invalid or an incomplete sequence of bytes or the given wide &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;character is invalid.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Invalid or incomplete multibyte &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;or wide character. While decoding a multibyte character the function came &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;along an invalid or an incomplete sequence of bytes or the given wide &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;character is invalid.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01942">1942</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2205,8 +2202,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Broken pipe. There is no process &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;reading from the other end of a pipe.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Broken pipe. There is no process &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;reading from the other end of a pipe.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01776">1776</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2223,9 +2220,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Protocol not supported. The socket &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;domain does not support the requested communications protocol (perhaps because &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;the requested protocol is completely invalid).&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Protocol not supported. The socket &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;domain does not support the requested communications protocol (perhaps because &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;the requested protocol is completely invalid).&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01819">1819</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2242,8 +2239,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Protocol family not supported. The &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;socket communications protocol family you requested is not supported.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Protocol family not supported. The &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;socket communications protocol family you requested is not supported.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01828">1828</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2260,9 +2257,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Protocol not available. You &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;specified a socket option that doesn&#39;t make sense for the particular protocol &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;being used by the socket.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Protocol not available. You &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;specified a socket option that doesn&#39;t make sense for the particular protocol &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;being used by the socket.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01816">1816</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2279,8 +2276,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Protocol wrong type for socket. The &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;socket type does not support the requested communications protocol.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Protocol wrong type for socket. The &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;socket type does not support the requested communications protocol.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01814">1814</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2329,9 +2326,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;RPC bad procedure for program. &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;An RPC call was attempted for a procedure which doesn&#39;t exist in the remote &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;program.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;RPC bad procedure for program. &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;An RPC call was attempted for a procedure which doesn&#39;t exist in the remote &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;program.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01911">1911</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2348,8 +2345,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;RPC program not available. The &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;requested program is not registered on the remote host.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;RPC program not available. The &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;requested program is not registered on the remote host.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01907">1907</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2366,8 +2363,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;RPC program version wrong. The &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;requested version of the program is not available on the remote host(RPC).&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;RPC program version wrong. The &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;requested version of the program is not available on the remote host(RPC).&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01909">1909</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2384,8 +2381,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;RPC struct is bad. Exchange of &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;RPC information was unsuccessful.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;RPC struct is bad. Exchange of &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;RPC information was unsuccessful.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01903">1903</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2402,8 +2399,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;RPC version wrong. The version &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;of RPC on the remote peer is not compatible with the local version.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;RPC version wrong. The version &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;of RPC on the remote peer is not compatible with the local version.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01905">1905</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2420,8 +2417,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Illegal seek. Invalid seek &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;operation (such as on a pipe).&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Illegal seek. Invalid seek &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;operation (such as on a pipe).&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01769">1769</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2454,10 +2451,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Operation not supported. The &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;operation you requested is not supported. Some socket functions don&#39;t make &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;sense for all types of sockets, and others may not be implemented for all &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;communications protocols.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Operation not supported. The &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;operation you requested is not supported. Some socket functions don&#39;t make &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;sense for all types of sockets, and others may not be implemented for all &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;communications protocols.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01824">1824</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2474,8 +2471,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Socket type not supported. The &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;socket type is not supported for this operation.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Socket type not supported. The &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;socket type is not supported for this operation.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01822">1822</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2492,8 +2489,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Input/output error. Usually used &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;for physical read or write errors.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Input/output error. Usually used &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;for physical read or write errors.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01702">1702</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2510,8 +2507,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Is a directory. You cannot open a &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;directory for writing, or create or remove hard links to it.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Is a directory. You cannot open a &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;directory for writing, or create or remove hard links to it.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01747">1747</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2544,9 +2541,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Too many levels of symbolic links. &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;Too many levels of symbolic links were encountered in looking up a file name. &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;This often indicates a cycle of symbolic links.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Too many levels of symbolic links. &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;Too many levels of symbolic links were encountered in looking up a file name. &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;This often indicates a cycle of symbolic links.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01875">1875</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2643,9 +2640,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Argument list too long. Used when &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;the arguments passed to a new program being executed with one of the exec &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;functions occupy too much memory space.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Argument list too long. Used when &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;the arguments passed to a new program being executed with one of the exec &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;functions occupy too much memory space.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01709">1709</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2678,8 +2675,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Disk quota exceeded. The user&#39;s &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;disk quota was exceeded.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Disk quota exceeded. The user&#39;s &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;disk quota was exceeded.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01893">1893</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2696,9 +2693,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;File name too long. Filename too &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;long (longer than PATH_MAX) or host name too long (in gethostname() or &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;sethostname()).&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;File name too long. Filename too &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;long (longer than PATH_MAX) or host name too long (in gethostname() or &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;sethostname()).&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01878">1878</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2715,9 +2712,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Too many open files. The current &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;process has too many files open and can&#39;t open any more. Duplicate &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;descriptors do count toward this limit.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Too many open files. The current &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;process has too many files open and can&#39;t open any more. Duplicate &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;descriptors do count toward this limit.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01752">1752</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2734,9 +2731,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Too many open files in system. &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;There are too many distinct file openings in the entire system. Note that any &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;number of linked channels count as just one file opening.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Too many open files in system. &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;There are too many distinct file openings in the entire system. Note that any &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;number of linked channels count as just one file opening.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01755">1755</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2753,8 +2750,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Attempting to link in too many shared &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;libraries.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Attempting to link in too many shared &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;libraries.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l02018">2018</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2771,9 +2768,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Too many links. The link count of a &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;single file would become too large. rename() can cause this error if the file &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;being renamed already has as many links as it can take&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Too many links. The link count of a &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;single file would become too large. rename() can cause this error if the file &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;being renamed already has as many links as it can take&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01773">1773</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2790,8 +2787,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Message too long. The size of a &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;message sent on a socket was larger than the supported maximum size.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Message too long. The size of a &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;message sent on a socket was larger than the supported maximum size.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01812">1812</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2808,9 +2805,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Too many processes. This means &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;that the per-user limit on new process would be exceeded by an attempted &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;fork().&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Too many processes. This means &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;that the per-user limit on new process would be exceeded by an attempted &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;fork().&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01888">1888</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2843,11 +2840,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Too many references: cannot splice. &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;The number of \&quot;in-flight\&quot; file descriptors exceeds the file resource limit &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;and the caller does not have the CAP_SYS_RESOURCE capability. An in-flight &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;file descriptor is one that has been sent using sendmsg() but has not yet been &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;accepted in the recipient process using recvmsg().&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Too many references: cannot splice. &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;The number of \&quot;in-flight\&quot; file descriptors exceeds the file resource limit &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;and the caller does not have the CAP_SYS_RESOURCE capability. An in-flight &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;file descriptor is one that has been sent using sendmsg() but has not yet been &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;accepted in the recipient process using recvmsg().&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01864">1864</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2864,8 +2861,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;The maximum error value; likely &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;caused by programmer error or a memory corruption issue.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;The maximum error value; likely &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;caused by programmer error or a memory corruption issue.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l02053">2053</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2882,8 +2879,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Too many users. The file quota &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;system is confused because there are too many users.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Too many users. The file quota &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;system is confused because there are too many users.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01891">1891</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2900,8 +2897,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;The minimum error value; likely &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;caused by programmer error or a memory corruption issue.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;The minimum error value; likely &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;caused by programmer error or a memory corruption issue.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01658">1658</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2950,8 +2947,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Network is down. A socket operation &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;failed because the network was down.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Network is down. A socket operation &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;failed because the network was down.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01838">1838</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2968,8 +2965,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Network dropped connection on &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;reset. A network connection was reset because the remote host crashed.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Network dropped connection on &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;reset. A network connection was reset because the remote host crashed.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01842">1842</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -2986,8 +2983,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Network is unreachable. A socket &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;operation failed because the subnet containing the remote host was unreachable.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Network is unreachable. A socket &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;operation failed because the subnet containing the remote host was unreachable.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01840">1840</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3004,10 +3001,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Destination address required. No &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;default destination address was set for the socket. You get this error when &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;you try to transmit data over a connectionless socket, without first specifying &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;a destination for the data with connect().&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Destination address required. No &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;default destination address was set for the socket. You get this error when &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;you try to transmit data over a connectionless socket, without first specifying &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;a destination for the data with connect().&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01858">1858</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3040,8 +3037,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Attribute not found. The specified &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;extended attribute does not exist.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Attribute not found. The specified &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;extended attribute does not exist.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01987">1987</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3058,9 +3055,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Need authenticator. An &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;authentication ticket must be obtained before the given NFS file system may &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;be mounted.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Need authenticator. An &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;authentication ticket must be obtained before the given NFS file system may &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;be mounted.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01924">1924</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3077,8 +3074,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No buffer space available. The &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;kernel&#39;s buffers for I/O operations are all in use.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No buffer space available. The &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;kernel&#39;s buffers for I/O operations are all in use.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01849">1849</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3095,9 +3092,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No child process. This error &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;happens on operations that are supposed to manipulate child processes, when &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;there aren&#39;t any processes to manipulate.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No child process. This error &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;happens on operations that are supposed to manipulate child processes, when &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;there aren&#39;t any processes to manipulate.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01717">1717</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3130,8 +3127,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No data available. No message was &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;available to be received by the requested operation.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No data available. No message was &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;available to be received by the requested operation.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01960">1960</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3148,11 +3145,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No such device or address. The &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;system tried to use the device represented by a file you specified, and it &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;couldn&#39;t find the device. This can mean that the device file was installed &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;incorrectly, or that the physical device is missing or not correctly attached &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;to the computer.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No such device or address. The &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;system tried to use the device represented by a file you specified, and it &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;couldn&#39;t find the device. This can mean that the device file was installed &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;incorrectly, or that the physical device is missing or not correctly attached &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;to the computer.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01704">1704</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3169,9 +3166,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No locks available. This is &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;used by the file locking facilities. This can result from an operation to &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;an NFS server running another operating system.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No locks available. This is &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;used by the file locking facilities. This can result from an operation to &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;an NFS server running another operating system.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01914">1914</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3188,8 +3185,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Permission denied. The file &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;permissions do not allow the attempted operation.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Permission denied. The file &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;permissions do not allow the attempted operation.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01725">1725</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3206,9 +3203,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No such file or directory. This is &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;a \&quot;file doesn&#39;t exist\&quot; error for ordinary files that are referenced in &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;contexts where they are expected to already exist.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No such file or directory. This is &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;a \&quot;file doesn&#39;t exist\&quot; error for ordinary files that are referenced in &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;contexts where they are expected to already exist.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01694">1694</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3225,8 +3222,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Identifier removed. The message &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;queue was removed for msgrcv(), msgget(), or msgsnd().&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Identifier removed. The message &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;queue was removed for msgrcv(), msgget(), or msgsnd().&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01957">1957</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3291,8 +3288,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Cannot allocate memory. The system &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;cannot allocate more virtual memory because its capacity is full.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Cannot allocate memory. The system &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;cannot allocate more virtual memory because its capacity is full.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01723">1723</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3309,9 +3306,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No message of desired type. An IPC &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;message queue does not contain a message of the desired type, or a message &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;catalog does not contain the requested message.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No message of desired type. An IPC &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;message queue does not contain a message of the desired type, or a message &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;catalog does not contain the requested message.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01963">1963</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3392,9 +3389,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Operation not permitted. Only the &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;owner of the file (or other resource) or processes with special privileges &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;can perform the operation.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Operation not permitted. Only the &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;owner of the file (or other resource) or processes with special privileges &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;can perform the operation.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01691">1691</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3427,8 +3424,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No such process. No process matches &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;the specified process ID.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No such process. No process matches &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;the specified process ID.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01697">1697</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3445,8 +3442,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;No space left on device. Write &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;operation on a file failed because the disk is full.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No space left on device. Write &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;operation on a file failed because the disk is full.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01767">1767</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3479,10 +3476,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Block device required. A file that &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;isn&#39;t a block special file was given in a situation that requires one. For &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;example, trying to mount an ordinary file as a file system in Unix gives &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;this error.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Block device required. A file that &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;isn&#39;t a block special file was given in a situation that requires one. For &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;example, trying to mount an ordinary file as a file system in Unix gives &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;this error.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01729">1729</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3499,11 +3496,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Transport endpoint is not &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;connected. The socket is not connected to anything. You get this error when &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;you try to transmit data over a socket, without first specifying a destination &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;for the data. For a connectionless socket (for datagram protocols, such as &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;UDP), you get NERROR_NO_ADDR instead.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Transport endpoint is not &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;connected. The socket is not connected to anything. You get this error when &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;you try to transmit data over a socket, without first specifying a destination &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;for the data. For a connectionless socket (for datagram protocols, such as &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;UDP), you get NERROR_NO_ADDR instead.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01853">1853</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3520,8 +3517,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Not a directory. A file that isn&#39;t &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;a directory was specified when a directory is required.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Not a directory. A file that isn&#39;t &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;a directory was specified when a directory is required.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01745">1745</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3554,8 +3551,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Socket operation on non-socket. A &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;file that isn&#39;t a socket was specified when a socket is required.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Socket operation on non-socket. A &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;file that isn&#39;t a socket was specified when a socket is required.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01810">1810</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3572,16 +3569,16 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Not supported. A function returns &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;this error when certain parameter values are valid, but the functionality &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;they request is not available. This can mean that the function does not &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;implement a particular command or option value or flag bit at all. For &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;functions that operate on some object given in a parameter, such as a file &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;descriptor or a port, it might instead mean that only that specific object &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;(file descriptor, port, etc.) is unable to support the other parameters &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;given; different file descriptors might support different ranges of parameter &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;values. If the entire function is not available at all in the implementation, &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;it returns NERROR_FUNC_NOT_SUPPORTED instead.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Not supported. A function returns &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;this error when certain parameter values are valid, but the functionality &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;they request is not available. This can mean that the function does not &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;implement a particular command or option value or flag bit at all. For &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;functions that operate on some object given in a parameter, such as a file &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;descriptor or a port, it might instead mean that only that specific object &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;(file descriptor, port, etc.) is unable to support the other parameters &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;given; different file descriptors might support different ranges of parameter &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;values. If the entire function is not available at all in the implementation, &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;it returns NERROR_FUNC_NOT_SUPPORTED instead.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01932">1932</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3646,8 +3643,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;A pointer was null when a nonnull &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;pointer was expected.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;A pointer was null when a nonnull &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;pointer was expected.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01664">1664</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3696,8 +3693,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Programming error. A function or API &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;is being abused in a way which could only be detected at run-time.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Programming error. A function or API &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;is being abused in a way which could only be detected at run-time.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l02031">2031</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3746,8 +3743,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Read-only file system. An attempt &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;was made to modify something on a read-only file system.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Read-only file system. An attempt &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;was made to modify something on a read-only file system.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01771">1771</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3796,9 +3793,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Object is remote. An attempt was &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;made to NFS-mount a remote file system with a file name that already &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;specifies an NFS-mounted file.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Object is remote. An attempt was &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;made to NFS-mount a remote file system with a file name that already &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;specifies an NFS-mounted file.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01900">1900</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3815,8 +3812,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Interrupted system call should be &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;restarted.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Interrupted system call should be &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;restarted.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l02021">2021</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3833,9 +3830,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Numerical result out of range. Used &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;by mathematical functions when the result value is not representable because &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;of overflow or underflow.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Numerical result out of range. Used &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;by mathematical functions when the result value is not representable because &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;of overflow or underflow.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01781">1781</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3852,8 +3849,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Abort. Abnormal termination, such &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;as is initiated by the function.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Abort. Abnormal termination, such &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;as is initiated by the function.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01671">1671</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3870,9 +3867,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Floating point exception. &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;Erroneous arithmetic operation, such as zero divide or an operation &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;resulting in overflow (not necessarily with a floating-point operation).&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Floating point exception. &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;Erroneous arithmetic operation, such as zero divide or an operation &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;resulting in overflow (not necessarily with a floating-point operation).&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01673">1673</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3889,9 +3886,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Illegal instruction. Invalid &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;function image, such as an illegal instruction. This is generally due to a &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;corruption in the code or to an attempt to execute data.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Illegal instruction. Invalid &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;function image, such as an illegal instruction. This is generally due to a &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;corruption in the code or to an attempt to execute data.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01676">1676</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3908,8 +3905,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;System interrupt. Interactive &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;attention signal. Generally generated by the application user.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;System interrupt. Interactive &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;attention signal. Generally generated by the application user.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01679">1679</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3926,8 +3923,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;The end of the signal error section; &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;likely caused by programmer error or a memory corruption issue.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;The end of the signal error section; &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;likely caused by programmer error or a memory corruption issue.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01686">1686</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3944,8 +3941,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;The start of the signal error section; &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;likely caused by programmer error or a memory corruption issue.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;The start of the signal error section; &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;likely caused by programmer error or a memory corruption issue.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01669">1669</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3962,9 +3959,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Segmentation violation. Invalid &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;access to memory storage. The program tried to read or write outside the &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;memory it is allocated for it.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Segmentation violation. Invalid &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;access to memory storage. The program tried to read or write outside the &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;memory it is allocated for it.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01681">1681</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3981,8 +3978,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;System termination. Termination &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;request sent to program.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;System termination. Termination &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;request sent to program.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01684">1684</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -3999,8 +3996,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Cannot send after transport endpoint &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;shutdown. The socket has already been shut down.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Cannot send after transport endpoint &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;shutdown. The socket has already been shut down.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01862">1862</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -4033,11 +4030,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Stale file handle. This indicates &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;an internal confusion in the file system which is due to file system &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;rearrangements on the server host for NFS file systems or corruption in other &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;file systems. Repairing this condition usually requires unmounting, possibly &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;repairing and remounting the file system.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Stale file handle. This indicates &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;an internal confusion in the file system which is due to file system &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;rearrangements on the server host for NFS file systems or corruption in other &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;file systems. Repairing this condition usually requires unmounting, possibly &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;repairing and remounting the file system.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01895">1895</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -4070,10 +4067,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Text file busy. An attempt to &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;execute a file that is currently open for writing, or write to a file that is &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;currently being executed. Often using a debugger to run a program is &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;considered having it open for writing and will cause this error.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Text file busy. An attempt to &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;execute a file that is currently open for writing, or write to a file that is &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;currently being executed. Often using a debugger to run a program is &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;considered having it open for writing and will cause this error.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01761">1761</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -4106,9 +4103,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Translator died. A file returns &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;this error when the file is translated by a program and the translator &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;program dies while starting up, before it has connected to the file.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Translator died. A file returns &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;this error when the file is translated by a program and the translator &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;program dies while starting up, before it has connected to the file.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01948">1948</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -4141,21 +4138,21 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="stringliteral">&quot;Resource temporarily unavailable; &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;Operation would block. The call might work if you try again later. This error &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;can happen in a few different situations:\n&quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;1) An operation that would block was attempted on an object that has &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;non-blocking mode selected. Trying the same operation again will block until &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;some external condition makes it possible to read, write, or connect &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;(whatever the operation). You can use select() to find out when the operation &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;will be possible.\n&quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;2) A temporary resource shortage made an operation impossible. fork() can &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;return this error. It indicates that the shortage is expected to pass, so &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;your program can try the call again later and it may succeed. It is probably &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;a good idea to delay for a few seconds before trying it again, to allow time &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;for other processes to release scarce resources. Such shortages are usually &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;fairly serious and affect the whole system, so usually an interactive program &quot;</span>\</div>
-<div class="line"><span class="stringliteral">&quot;should report the error to the user and return to its command loop.&quot;</span></div>
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Resource temporarily unavailable; &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;Operation would block. The call might work if you try again later. This error &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;can happen in a few different situations:\n&quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;1) An operation that would block was attempted on an object that has &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;non-blocking mode selected. Trying the same operation again will block until &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;some external condition makes it possible to read, write, or connect &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;(whatever the operation). You can use select() to find out when the operation &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;will be possible.\n&quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;2) A temporary resource shortage made an operation impossible. fork() can &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;return this error. It indicates that the shortage is expected to pass, so &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;your program can try the call again later and it may succeed. It is probably &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;a good idea to delay for a few seconds before trying it again, to allow time &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;for other processes to release scarce resources. Such shortages are usually &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;fairly serious and affect the whole system, so usually an interactive program &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;should report the error to the user and return to its command loop.&quot;</span></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l01784">1784</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -6662,8 +6659,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a2f3681cae40fc7f7bbb0d839d4a80986"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f3681cae40fc7f7bbb0d839d4a80986">&#9670;&nbsp;</a></span>nErrorGetStacktrace()</h2>
+<a id="a9b6f95d66f769cdae3927cb4005eac9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b6f95d66f769cdae3927cb4005eac9d">&#9670;&nbsp;</a></span>nErrorGetStacktrace()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6677,13 +6674,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *&#160;</td>
+          <td class="paramtype">size_t *&#160;</td>
           <td class="paramname"><em>stackLen</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *&#160;</td>
+          <td class="paramtype">size_t *&#160;</td>
           <td class="paramname"><em>stackLevels</em>&#160;</td>
         </tr>
         <tr>
@@ -6702,9 +6699,9 @@ Variables</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen, stackLevels;</div>
+<div class="line">    <span class="keywordtype">size_t</span> stackLen, stackLevels;</div>
 <div class="line">    <span class="keywordtype">char</span> *stack;</div>
-<div class="line">    <a class="code" href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">nErrorGetStacktrace</a>(stack, &amp;stackLen, &amp;stackLevels);</div>
+<div class="line">    <a class="code" href="_errors_8c.html#a9b6f95d66f769cdae3927cb4005eac9d">nErrorGetStacktrace</a>(stack, &amp;stackLen, &amp;stackLevels);</div>
 <div class="line">    <span class="keywordflow">if</span> (stack == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
 <div class="line">    {</div>
 <div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to get stack trace.\n&quot;</span>);</div>
@@ -6725,12 +6722,12 @@ Variables</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Get stack trace. Remember *stackLevels is max levels </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l03716">3716</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l03705">3705</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="acb0b9e8cec4e120d781a875a49eb0d7a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb0b9e8cec4e120d781a875a49eb0d7a">&#9670;&nbsp;</a></span>nErrorHandlerDefault()</h2>
+<a id="ac6af5b7966acb87bc5de274aec3e302d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6af5b7966acb87bc5de274aec3e302d">&#9670;&nbsp;</a></span>nErrorHandlerDefault()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6756,7 +6753,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">const size_t&#160;</td>
           <td class="paramname"><em>errorDescLen</em>, </td>
         </tr>
         <tr>
@@ -6768,7 +6765,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">const size_t&#160;</td>
           <td class="paramname"><em>stackLen</em>&#160;</td>
         </tr>
         <tr>
@@ -6797,8 +6794,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ab3cf33d6f2850edcf77840464f0e9350"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3cf33d6f2850edcf77840464f0e9350">&#9670;&nbsp;</a></span>nErrorSetCallback()</h2>
+<a id="a67e277d46978d41820d183ec95839c9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67e277d46978d41820d183ec95839c9b">&#9670;&nbsp;</a></span>nErrorSetCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6806,7 +6803,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorSetCallback </td>
           <td>(</td>
-          <td class="paramtype">void(*)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, const char *stack, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen)&#160;</td>
+          <td class="paramtype">void(*)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)&#160;</td>
           <td class="paramname"><em>callback</em></td><td>)</td>
           <td></td>
         </tr>
@@ -6821,8 +6818,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> errorHandler(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, <span class="keyword">const</span> <span class="keywordtype">char</span> * errorDesc,</div>
-<div class="line">      <span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, <span class="keyword">const</span> time_t errorTime, <span class="keyword">const</span> <span class="keywordtype">char</span> * stack,</div>
-<div class="line">      <span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen)</div>
+<div class="line"> <span class="keyword">const</span> <span class="keywordtype">size_t</span> errorDescLen, <span class="keyword">const</span> time_t errorTime, <span class="keyword">const</span> <span class="keywordtype">char</span> * stack,</div>
+<div class="line"> <span class="keyword">const</span> <span class="keywordtype">size_t</span> stackLen)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keyword">struct </span>tm *timeInfo = localtime(&amp;errorTime);</div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span> format[] = <span class="stringliteral">&quot;%x %X %Z&quot;</span>;</div>
@@ -6857,14 +6854,14 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful; otherwise <code><a class="el" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a></code> is returned.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Check <a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a" title="The default error handler callback.">nErrorHandlerDefault()</a> for parameter information. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Check <a class="el" href="_errors_8c.html#ac6af5b7966acb87bc5de274aec3e302d" title="The default error handler callback.">nErrorHandlerDefault()</a> for parameter information. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l03700">3700</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l03688">3688</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a47d62aea349025651404d67b5e87bbb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47d62aea349025651404d67b5e87bbb1">&#9670;&nbsp;</a></span>nErrorThrow()</h2>
+<a id="a12be5e8e92cdd139422dd1bde5b8a187"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12be5e8e92cdd139422dd1bde5b8a187">&#9670;&nbsp;</a></span>nErrorThrow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6884,7 +6881,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>infoLen</em>&#160;</td>
         </tr>
         <tr>
@@ -6904,7 +6901,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordtype">char</span> exampleFilePath[] = <span class="stringliteral">&quot;example.txt&quot;</span>;</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1">nErrorThrow</a>(NERROR_FILE_NOT_FOUND, exampleFilePath,</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a>(NERROR_FILE_NOT_FOUND, exampleFilePath,</div>
 <div class="line">         <span class="keyword">sizeof</span>(exampleFilePath)) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
 <div class="line">    {</div>
 <div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to throw error.\n&quot;</span>);</div>
@@ -6927,8 +6924,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a1ea33a06254b37a5f515c5f24a38ea15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ea33a06254b37a5f515c5f24a38ea15">&#9670;&nbsp;</a></span>nErrorToString()</h2>
+<a id="a055477c0aa8af2a58f8da7c4621c7b3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a055477c0aa8af2a58f8da7c4621c7b3a">&#9670;&nbsp;</a></span>nErrorToString()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6936,13 +6933,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">char* nErrorToString </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>dst</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *&#160;</td>
+          <td class="paramtype">size_t *&#160;</td>
           <td class="paramname"><em>errorLen</em>, </td>
         </tr>
         <tr>
@@ -6960,7 +6951,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>infoLen</em>&#160;</td>
         </tr>
         <tr>
@@ -6979,10 +6970,11 @@ Variables</h2></td></tr>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordtype">char</span> *errorStr;</div>
-<div class="line">    <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorLen;</div>
+<div class="line">    <span class="keywordtype">size_t</span> errorLen;</div>
 <div class="line">    <span class="keywordtype">char</span> exampleFilePath[] = <span class="stringliteral">&quot;example.txt&quot;</span>;</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">nErrorToString</a>(errorStr, &amp;errorLen, NERROR_FILE_NOT_FOUND,</div>
-<div class="line">         exampleFilePath, <span class="keyword">sizeof</span>(exampleFilePath)) == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line">    errorStr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorLen, NERROR_FILE_NOT_FOUND,</div>
+<div class="line">     exampleFilePath, <span class="keyword">sizeof</span>(exampleFilePath))</div>
+<div class="line">    <span class="keywordflow">if</span> (errorStr == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
 <div class="line">    {</div>
 <div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to get error string.\n&quot;</span>);</div>
 <div class="line">        exit(EXIT_FAILURE);</div>
@@ -6992,7 +6984,6 @@ Variables</h2></td></tr>
 <div class="line">}</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>The destination to store the string describing <code>error</code>. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">errorLen</td><td>The length of the string returned. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The error to get described. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>Relevant information, such as a file location, that could help diagnose the error. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
@@ -7002,105 +6993,24 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code> is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l03682">3682</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
-
-</div>
-</div>
-<a id="a986223a1bd08833af99d7193fbb633ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a986223a1bd08833af99d7193fbb633ae">&#9670;&nbsp;</a></span>nErrorToStringLocal()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorToStringLocal </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>dst</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *&#160;</td>
-          <td class="paramname"><em>errorLen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
-          <td class="paramname"><em>error</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>info</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
-          <td class="paramname"><em>infoLen</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Describes an error and returns a string with no error handling. </p>
-<p>Example: </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Do this </dd></dl>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">char</span> *errorStr;</div>
-<div class="line">    <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorLen;</div>
-<div class="line">    <span class="keywordtype">char</span> exampleFilePath[] = <span class="stringliteral">&quot;example.txt&quot;</span>;</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">nErrorToStringLocal</a>(errorStr, &amp;errorLen, NERROR_FILE_NOT_FOUND,</div>
-<div class="line">         exampleFilePath, <span class="keyword">sizeof</span>(exampleFilePath)) != <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
-<div class="line">    {</div>
-<div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to get error string.\n&quot;</span>);</div>
-<div class="line">        exit(EXIT_FAILURE);</div>
-<div class="line">    }</div>
-<div class="line">    printf(<span class="stringliteral">&quot;NERROR_FILE_NOT_FOUND as string: %s\n&quot;</span>, errorStr);</div>
-<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line">}</div>
-</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>The destination to store the string describing <code>error</code>. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">errorLen</td><td>The length of the string returned. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The error to get described. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>Relevant information, such as a file location, that could help diagnose the error. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">infoLen</td><td>The length of the <code>info</code> argument. A length of zero (0) uses strlen() to determine length. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code> is returned.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>This function is used by the game engine and is not expected to be used by developers, but is optional. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l03648">3648</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l03650">3650</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a51389dd2fc9049426ea794dbe2594f8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51389dd2fc9049426ea794dbe2594f8d">&#9670;&nbsp;</a></span>errorCallback</h2>
+<a id="a2fe8dfa6f1bf51f882604d24bd8e1fe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fe8dfa6f1bf51f882604d24bd8e1fe5">&#9670;&nbsp;</a></span>errorCallback</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(*volatile errorCallback) (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, const char *stack, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> stackLen) = <a class="el" href="_errors_8c.html#acb0b9e8cec4e120d781a875a49eb0d7a">nErrorHandlerDefault</a></td>
+          <td class="memname">void(*volatile errorCallback) (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen) = &amp;<a class="el" href="_errors_8c.html#ac6af5b7966acb87bc5de274aec3e302d">nErrorHandlerDefault</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>The error callback function that gets defined by <a class="el" href="_errors_8c.html#ab3cf33d6f2850edcf77840464f0e9350" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>. </p>
+<p>The error callback function that gets defined by <a class="el" href="_errors_8c.html#a67e277d46978d41820d183ec95839c9b" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l03503">3503</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -7122,14 +7032,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a8ebc061ec98f75ce70af9cc313eff0ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ebc061ec98f75ce70af9cc313eff0ad">&#9670;&nbsp;</a></span>nErrorDescriptions</h2>
+<a id="a8dab722e1932f02e6afa8d3483d54ad5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dab722e1932f02e6afa8d3483d54ad5">&#9670;&nbsp;</a></span>nErrorDescriptions</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#acb8f97aade4bc091634dcbf51943c426">NCONST_STR</a>* const nErrorDescriptions[]</td>
+          <td class="memname">const char* const nErrorDescriptions[]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -7138,14 +7048,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="adeeba1c556486a77448f37e9a899183f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adeeba1c556486a77448f37e9a899183f">&#9670;&nbsp;</a></span>nErrorStrings</h2>
+<a id="af28c6cab03896f3819c65b8091d1f5cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af28c6cab03896f3819c65b8091d1f5cc">&#9670;&nbsp;</a></span>nErrorStrings</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#acb8f97aade4bc091634dcbf51943c426">NCONST_STR</a>* const nErrorStrings[]</td>
+          <td class="memname">const char* const nErrorStrings[]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -7170,14 +7080,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a4c82c47d09c35a7ccec969a1fd1f2f67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c82c47d09c35a7ccec969a1fd1f2f67">&#9670;&nbsp;</a></span>noInfoStr</h2>
+<a id="a43fb2a7f109395609e691d13dd603297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43fb2a7f109395609e691d13dd603297">&#9670;&nbsp;</a></span>noInfoStr</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#acb8f97aade4bc091634dcbf51943c426">NCONST_STR</a> noInfoStr[] = &quot;No info.&quot;</td>
+          <td class="memname">const char noInfoStr[] = &quot;No info.&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -7187,15 +7097,14 @@ Variables</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_errors_8c_html_a47d62aea349025651404d67b5e87bbb1"><div class="ttname"><a href="_errors_8c.html#a47d62aea349025651404d67b5e87bbb1">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const nint_t error, const char *info, nint_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03607">Errors.c:3607</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a12be5e8e92cdd139422dd1bde5b8a187"><div class="ttname"><a href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03607">Errors.c:3607</a></div></div>
 <div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00153">Nimble.h:153</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a2f3681cae40fc7f7bbb0d839d4a80986"><div class="ttname"><a href="_errors_8c.html#a2f3681cae40fc7f7bbb0d839d4a80986">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(char *dst, nint_t *stackLen, nint_t *stackLevels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03716">Errors.c:3716</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a986223a1bd08833af99d7193fbb633ae"><div class="ttname"><a href="_errors_8c.html#a986223a1bd08833af99d7193fbb633ae">nErrorToStringLocal</a></div><div class="ttdeci">nint_t nErrorToStringLocal(char *dst, nint_t *errorLen, const nint_t error, const char *info, nint_t infoLen)</div><div class="ttdoc">Describes an error and returns a string with no error handling.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03648">Errors.c:3648</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00155">Nimble.h:155</a></div></div>
 <div class="ttc" id="a_nimble_engine_8c_html_aafc14ef2a060e7b49b4ae4a1bdbdc989"><div class="ttname"><a href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a></div><div class="ttdeci">void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00054">NimbleEngine.c:54</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a1ea33a06254b37a5f515c5f24a38ea15"><div class="ttname"><a href="_errors_8c.html#a1ea33a06254b37a5f515c5f24a38ea15">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(char *dst, nint_t *errorLen, const nint_t error, const char *info, nint_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03682">Errors.c:3682</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a9b6f95d66f769cdae3927cb4005eac9d"><div class="ttname"><a href="_errors_8c.html#a9b6f95d66f769cdae3927cb4005eac9d">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(char *dst, size_t *stackLen, size_t *stackLevels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03705">Errors.c:3705</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a055477c0aa8af2a58f8da7c4621c7b3a"><div class="ttname"><a href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(size_t *errorLen, const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03650">Errors.c:3650</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
-<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00165">Nimble.h:165</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00168">Nimble.h:168</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

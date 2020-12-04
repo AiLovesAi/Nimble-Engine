@@ -791,7 +791,7 @@ enum nErrors {
  * @brief The strings used to represent error codes defined by #nErrors.
  */
 NIMBLE_EXTERN
-NCONST_STR * const nErrorStrings[];
+const char * const nErrorStrings[];
 
 /**
  * @brief The lengths of the strings used to represent error codes defined by #nErrors.
@@ -824,7 +824,7 @@ const size_t nErrorStrLengths[];
  * @brief The descriptions of the error codes defined by #nErrors.
  */
 NIMBLE_EXTERN
-NCONST_STR * const nErrorDescriptions[];
+const char * const nErrorDescriptions[];
 
 /**
  * @brief The length of descriptions of the error codes defined by #nErrors.
@@ -911,56 +911,8 @@ NIMBLE_EXTERN
 void
 nErrorThrow(const nint_t error,
             const char *info,
-            nint_t infoLen
+            size_t infoLen
             );
-
-/**
- * @brief Describes an error and returns a string with no error handling.
- *
- * Example:
- * @todo Do this
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     char *errorStr;
- *     nint_t errorLen;
- *     char exampleFilePath[] = "example.txt";
- *     if (nErrorToStringLocal(errorStr, &errorLen, NERROR_FILE_NOT_FOUND,
- *          exampleFilePath, sizeof(exampleFilePath)) != NSUCCESS)
- *     {
- *         fprintf(stderr, "Failed to get error string.\n");
- *         exit(EXIT_FAILURE);
- *     }
- *     printf("NERROR_FILE_NOT_FOUND as string: %s\n", errorStr);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
- * @param[out] dst The destination to store the string describing @p error. This
- * can be @c #NULL.
- * @param[out] errorLen The length of the string returned. This can be @c #NULL.
- * @param[in] error The error to get described.
- * @param[in] info Relevant information, such as a file location, that could help
- * diagnose the error. This can be @c #NULL.
- * @param[in] infoLen The length of the @p info argument. A length of zero (0)
- * uses strlen() to determine length.
- * @return @p dst is returned if successful; otherwise @c #NULL is returned.
- *
- * @note This function is used by the game engine and is not expected to be used
- * by developers, but is optional.
- */
-NIMBLE_EXTERN
-nint_t
-nErrorToStringLocal(char *dst,
-                    nint_t *errorLen,
-                    const nint_t error,
-                    const char *info,
-                    nint_t infoLen
-                    );
 
 /**
  * @brief Describes an error and returns a string.
@@ -974,10 +926,11 @@ nErrorToStringLocal(char *dst,
  * int main(int argc, char **argv)
  * {
  *     char *errorStr;
- *     nint_t errorLen;
+ *     size_t errorLen;
  *     char exampleFilePath[] = "example.txt";
- *     if (nErrorToString(errorStr, &errorLen, NERROR_FILE_NOT_FOUND,
- *          exampleFilePath, sizeof(exampleFilePath)) == NULL)
+ *     errorStr = nErrorToString(&errorLen, NERROR_FILE_NOT_FOUND,
+ *      exampleFilePath, sizeof(exampleFilePath))
+ *     if (errorStr == NULL)
  *     {
  *         fprintf(stderr, "Failed to get error string.\n");
  *         exit(EXIT_FAILURE);
@@ -987,8 +940,6 @@ nErrorToStringLocal(char *dst,
  * }
  * @endcode
  *
- * @param[out] dst The destination to store the string describing @p error. This
- * can be @c #NULL.
  * @param[out] errorLen The length of the string returned. This can be @c #NULL.
  * @param[in] error The error to get described.
  * @param[in] info Relevant information, such as a file location, that could help
@@ -998,13 +949,17 @@ nErrorToStringLocal(char *dst,
  * @return @p dst is returned if successful; otherwise @c #NULL is returned.
  */
 NIMBLE_EXTERN
+NIMBLE_FREEME
 char *
-nErrorToString(char *dst,
-               nint_t *errorLen,
+nErrorToString(size_t *errorLen,
                const nint_t error,
                const char *info,
-               nint_t infoLen
-               );
+               size_t infoLen
+               )
+#ifdef __GNUC__
+__attribute__((warn_unused_result))
+#endif
+;
 
 /**
  * @brief Sets the callback function to handle errors.
@@ -1019,8 +974,8 @@ nErrorToString(char *dst,
  * #include <Nimble/NimbleEngine.h>
  *
  * void errorHandler(const nint_t error, const char * errorDesc,
- *       const nint_t errorDescLen, const time_t errorTime, const char * stack,
- *       const nint_t stackLen)
+ *  const size_t errorDescLen, const time_t errorTime, const char * stack,
+ *  const size_t stackLen)
  * {
  *     struct tm *timeInfo = localtime(&errorTime);
  *     const char format[] = "%x %X %Z";
@@ -1061,9 +1016,9 @@ nErrorSetCallback(void (*callback)(
                                     const nint_t error,
                                     const time_t errorTime,
                                     const char *errorDesc,
-                                    const nint_t errorDescLen,
+                                    const size_t errorDescLen,
                                     const char *stack,
-                                    const nint_t stackLen
+                                    const size_t stackLen
                                     )
                   );
 
@@ -1080,7 +1035,7 @@ nErrorSetCallback(void (*callback)(
  *
  * int main(int argc, char **argv)
  * {
- *     nint_t stackLen, stackLevels;
+ *     size_t stackLen, stackLevels;
  *     char *stack;
  *     nErrorGetStacktrace(stack, &stackLen, &stackLevels);
  *     if (stack == NULL)
@@ -1105,10 +1060,11 @@ nErrorSetCallback(void (*callback)(
  * function returns, it is removed from the stack.
  */
 NIMBLE_EXTERN
+NIMBLE_FREEME
 char *
 nErrorGetStacktrace(char *dst,
-                    nint_t *stackLen,
-                    nint_t *stackLevels
+                    size_t *stackLen,
+                    size_t *stackLevels
                     );
 
 #endif // NIMBLE_ENGINE_ERRORS_H

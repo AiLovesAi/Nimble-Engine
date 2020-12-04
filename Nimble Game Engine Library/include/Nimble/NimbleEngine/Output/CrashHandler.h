@@ -74,9 +74,9 @@ nint_t
 nCrashSetHandler(void (*callback) (const nint_t error,
                                    const time_t errorTime,
                                    char *errorDesc,
-                                   nint_t errorDescLen,
+                                   size_t errorDescLen,
                                    char *stack,
-                                   nint_t stackLen
+                                   size_t stackLen
                                    )
                  );
 
@@ -96,7 +96,7 @@ nCrashSetHandler(void (*callback) (const nint_t error,
  *     const time_t errorTime = time(NULL);
  *     const nint_t error = NERROR_NULL;
  *     char *errorDesc;
- *     nint_t errorDescLen;
+ *     size_t errorDescLen;
  *     if (nErrorToString(errorDesc, &errorDescLen, error, NULL, 0) == NULL)
  *     {
  *         fprintf(stderr, "Failed to get error description.\n");
@@ -124,7 +124,7 @@ void
 nCrashSafe(const nint_t error,
            time_t errorTime,
            const char *errorDesc,
-           nint_t errorDescLen
+           size_t errorDescLen
            );
 
 /**

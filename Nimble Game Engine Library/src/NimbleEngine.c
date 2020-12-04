@@ -58,6 +58,7 @@ void *nAlloc(const size_t size)
     if (!ptr)
     {
         nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY), nErrorDescLen(NERROR_NO_MEMORY));
+        /* NO RETURN */
     }
 
     return ptr;
@@ -81,8 +82,9 @@ char *nStringCopy(char *restrict dst, const char *restrict src,
 {
     if (!src)
     {
-        NCONST_STR einfoNullStr[] = "Source string NULL in nStringCopy().";
+        const char einfoNullStr[] = "Source string NULL in nStringCopy().";
         nErrorThrow(NERROR_NULL, einfoNullStr, NCONST_STR_LEN(einfoNullStr));
+        return NULL;
     }
 
     if (!dst)
@@ -131,12 +133,12 @@ nint_t nEngineInit(void (*errorCallback)
     if (atexit(nEngineExit) != NSUCCESS)
     {
         const time_t errorTime = time(NULL);
-        char *errorDesc, *info;
+        char *errorDescStr, *info;
         nint_t errorDescLen, infoLen;
         const nint_t err = nErrorFromErrno(errno);
         
-        nErrorToString(errorDesc, &errorDescLen, err, info, infoLen);
-        nCrashSafe(err, errorTime, errorDesc, errorDescLen);
+        errorDescStr = nErrorToString(&errorDescLen, err, info, infoLen);
+        nCrashSafe(err, errorTime, errorDescStr, errorDescLen);
     }
 
     signal(SIGTERM, nEngineExitSignal);

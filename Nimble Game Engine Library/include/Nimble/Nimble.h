@@ -149,13 +149,15 @@ extern "C" {
 
 #define NIMBLE_EXTERN extern /**< Extern alias. */
 
+#define NIMBLE_FREEME /**< Denotes that a function may allocate memory that should later be freed. */
+
 #ifndef NULL
 #  define NULL ((void *) 0) /**< Null pointer. */
 #endif
 
-#define NCONST_STR const char /**< Used for static constant character arrays. */
-
-#define NCONST_STR_LEN(str) sizeof(str) - 1
+#define NCONST_STR_LEN(str) sizeof(str) - 1 /**< Gets the length of a const char * as strlen() would, but at compile time. */
+#define NCONST_STR_FORMAT_LEN(str, spec1, spec2, spec3, spec4) \
+NCONST_STR_LEN(str) - (2 * spec1) - (3 * spec2) - (4 * spec3) - (5 * spec4) /**< Gets the length of a formatted string without the format characters. */
 
 
 typedef int_fast8_t   nbyte_t;
