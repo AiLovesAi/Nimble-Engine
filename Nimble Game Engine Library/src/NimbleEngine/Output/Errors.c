@@ -60,14 +60,17 @@
 #define nErrInvErrorStr          "NERROR_INV_ERROR"
 
 /* SIGNUM */
+#define nErrSignalStartStr       "NERROR_SIGNAL_START"
 #define nErrSigAbrtStr           "NERROR_SIGABRT"
 #define nErrSigFpeStr            "NERROR_SIGFPE"
 #define nErrSigIllStr            "NERROR_SIGILL"
 #define nErrSigIntStr            "NERROR_SIGINT"
 #define nErrSigSegvStr           "NERROR_SIGSEGV"
 #define nErrSigTermStr           "NERROR_SIGTERM"
+#define nErrSignalEndStr         "NERROR_SIGNAL_END"
 
 /* ERRNO */
+#define nErrErrnoStartStr        "NERROR_ERRNO_START"
 #define nErrNoPermStr            "NERROR_NO_PERM"
 #define nErrNoFileStr            "NERROR_NO_FILE"
 #define nErrNoProcessStr         "NERROR_NO_PROCESS"
@@ -223,6 +226,7 @@
 #define nErrNoMoreFilesStr       "NERROR_NO_MORE_FILES"
 #define nErrNoNetPathStr         "NERROR_NO_NET_PATH"
 #define nErrFileCaseStr          "NERROR_FILE_CASE"
+#define nErrErrnoEndStr          "NERROR_ERRNO_END"
 
 #define nErrMaxStr               "NERROR_MAX"
 
@@ -235,13 +239,16 @@ NCONST_STR * const nErrorStrings[] = {
     nErrNullStr,
     nErrInvErrorStr,
     
+    nErrSignalStartStr,
     nErrSigAbrtStr,
     nErrSigFpeStr,
     nErrSigIllStr,
     nErrSigIntStr,
     nErrSigSegvStr,
     nErrSigTermStr,
+    nErrSignalEndStr,
     
+    nErrErrnoStartStr,
 #if 0
     nErrNoPermStr,
     nErrNoFileStr,
@@ -408,6 +415,7 @@ NCONST_STR * const nErrorStrings[] = {
     nErrNoDeviceStr,
     nErrMaxArgsStr,
     nErrInvExecFormatStr,
+    nErrInvFPStr,
     nErrNoChildStr,
     nErrWouldBlockStr,
     nErrNoMemoryStr,
@@ -930,6 +938,7 @@ NCONST_STR * const nErrorStrings[] = {
     nErrInvMediumStr,
 
 #endif
+    nErrErrnoEndStr,
     
     nErrMaxStr
 };
@@ -942,13 +951,16 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN(nErrNullStr),
     NCONST_STR_LEN(nErrInvErrorStr),
     
+    NCONST_STR_LEN(nErrSignalStartStr),
     NCONST_STR_LEN(nErrSigAbrtStr),
     NCONST_STR_LEN(nErrSigFpeStr),
     NCONST_STR_LEN(nErrSigIllStr),
     NCONST_STR_LEN(nErrSigIntStr),
     NCONST_STR_LEN(nErrSigSegvStr),
     NCONST_STR_LEN(nErrSigTermStr),
+    NCONST_STR_LEN(nErrSignalEndStr),
     
+    NCONST_STR_LEN(nErrErrnoStartStr),
 #if 0
     NCONST_STR_LEN(nErrNoPermStr),
     NCONST_STR_LEN(nErrNoFileStr),
@@ -1115,6 +1127,7 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN(nErrNoDeviceStr),
     NCONST_STR_LEN(nErrMaxArgsStr),
     NCONST_STR_LEN(nErrInvExecFormatStr),
+    NCONST_STR_LEN(nErrInvFPStr),
     NCONST_STR_LEN(nErrNoChildStr),
     NCONST_STR_LEN(nErrWouldBlockStr),
     NCONST_STR_LEN(nErrNoMemoryStr),
@@ -1637,12 +1650,13 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN(nErrInvMediumStr),
 
 #endif
+    NCONST_STR_LEN(nErrErrnoEndStr),
     
     NCONST_STR_LEN(nErrMaxStr)
 };
 
-#define nErrDescMinStr               "The minimum error value, likely "\
-"caused by programmer error or a corruption issue."
+#define nErrDescMinStr               "The minimum error value; likely "\
+"caused by programmer error or a memory corruption issue."
 
 #define nErrDescUnknownStr           "An unknown error occurred."
 #define nErrDescInternalFailureStr   "An internal error occurred within "\
@@ -1652,11 +1666,13 @@ const size_t nErrorStrLengths[] = {
 #define nErrDescInvErrorStr          "An error passed to a function was "\
 "not valid."
 
+#define nErrDescSignalStartStr       "The start of the signal error section; "\
+"likely caused by programmer error or a memory corruption issue."
 #define nErrDescSigAbrtStr           "Abort. Abnormal termination, such "\
 "as is initiated by the function."
 #define nErrDescSigFpeStr            "Floating point exception. "\
-"Erroneous arithmetic operation, such as zero divide or an operation resulting "\
-"in overflow (not necessarily with a floating-point operation)."
+"Erroneous arithmetic operation, such as zero divide or an operation "\
+"resulting in overflow (not necessarily with a floating-point operation)."
 #define nErrDescSigIllStr            "Illegal instruction. Invalid "\
 "function image, such as an illegal instruction. This is generally due to a "\
 "corruption in the code or to an attempt to execute data."
@@ -1667,7 +1683,11 @@ const size_t nErrorStrLengths[] = {
 "memory it is allocated for it."
 #define nErrDescSigTermStr           "System termination. Termination "\
 "request sent to program."
+#define nErrDescSignalEndStr          "The end of the signal error section; "\
+"likely caused by programmer error or a memory corruption issue."
 
+#define nErrDescErrnoStartStr          "The start of the signal error section; "\
+"likely caused by programmer error or a memory corruption issue."
 #define nErrDescNoPermStr            "Operation not permitted. Only the "\
 "owner of the file (or other resource) or processes with special privileges "\
 "can perform the operation."
@@ -1696,10 +1716,10 @@ const size_t nErrorStrLengths[] = {
 "only for writing (or vice versa)."
 #define nErrDescNoChildStr           "No child process. This error "\
 "happens on operations that are supposed to manipulate child processes, when "\
-"there aren’t any processes to manipulate."
+"there aren't any processes to manipulate."
 #define nErrDescDeadlockStr          "Resource deadlock avoided. This "\
 "error happens on operations that are supposed to manipulate child "\
-"processes, when there aren’t any processes to manipulate."
+"processes, when there aren't any processes to manipulate."
 #define nErrDescNoMemoryStr          "Cannot allocate memory. The system "\
 "cannot allocate more virtual memory because its capacity is full."
 #define nErrDescNoFilePermStr        "Permission denied. The file "\
@@ -1707,11 +1727,11 @@ const size_t nErrorStrLengths[] = {
 #define nErrDescFaultStr             "Bad address. An invalid pointer was "\
 "detected."
 #define nErrDescNotBlockStr          "Block device required. A file that "\
-"isn’t a block special file was given in a situation that requires one. For "\
+"isn't a block special file was given in a situation that requires one. For "\
 "example, trying to mount an ordinary file as a file system in Unix gives "\
 "this error."
 #define nErrDescDeviceBusyStr        "Device or resource busy. A system "\
-"resource that can’t be shared is already in use. For example, if you try to "\
+"resource that can't be shared is already in use. For example, if you try to "\
 "delete a file that is the root of a currently mounted filesystem, you get "\
 "this error."
 #define nErrDescFileExistsStr        "File exists. An existing file was "\
@@ -1722,7 +1742,7 @@ const size_t nErrorStrLengths[] = {
 "rename()."
 #define nErrDescInvDeviceStr         "No such device. The wrong type of "\
 "device was given to a function that expects a particular sort of device."
-#define nErrDescNotDirStr            "Not a directory. A file that isn’t "\
+#define nErrDescNotDirStr            "Not a directory. A file that isn't "\
 "a directory was specified when a directory is required."
 #define nErrDescIsDirStr             "Is a directory. You cannot open a "\
 "directory for writing, or create or remove hard links to it."
@@ -1730,7 +1750,7 @@ const size_t nErrorStrLengths[] = {
 "indicate various kinds of problems with passing the wrong argument to a "\
 "library function."
 #define nErrDescMaxFileStr           "Too many open files. The current "\
-"process has too many files open and can’t open any more. Duplicate "\
+"process has too many files open and can't open any more. Duplicate "\
 "descriptors do count toward this limit."
 #define nErrDescMaxFileSysStr        "Too many open files in system. "\
 "There are too many distinct file openings in the entire system. Note that any "\
@@ -1788,13 +1808,13 @@ const size_t nErrorStrLengths[] = {
 "operation is already in progress on an object that has non-blocking mode "\
 "selected."
 #define nErrDescNotSocketStr         "Socket operation on non-socket. A "\
-"file that isn’t a socket was specified when a socket is required."
+"file that isn't a socket was specified when a socket is required."
 #define nErrDescMaxMessageStr        "Message too long. The size of a "\
 "message sent on a socket was larger than the supported maximum size."
 #define nErrDescInvProtoTypeStr      "Protocol wrong type for socket. The "\
 "socket type does not support the requested communications protocol."
 #define nErrDescInvProtoOptStr       "Protocol not available. You "\
-"specified a socket option that doesn’t make sense for the particular protocol "\
+"specified a socket option that doesn't make sense for the particular protocol "\
 "being used by the socket."
 #define nErrDescInvProtocolStr       "Protocol not supported. The socket "\
 "domain does not support the requested communications protocol (perhaps because "\
@@ -1802,7 +1822,7 @@ const size_t nErrorStrLengths[] = {
 #define nErrDescInvSockTypeStr       "Socket type not supported. The "\
 "socket type is not supported for this operation."
 #define nErrDescInvSockOptStr        "Operation not supported. The "\
-"operation you requested is not supported. Some socket functions don’t make "\
+"operation you requested is not supported. Some socket functions don't make "\
 "sense for all types of sockets, and others may not be implemented for all "\
 "communications protocols."
 #define nErrDescInvProtoFamStr       "Protocol family not supported. The "\
@@ -1814,7 +1834,7 @@ const size_t nErrorStrLengths[] = {
 "already in use."
 #define nErrDescAddrNotAvailableStr  "Cannot assign requested address. "\
 "The requested socket address is not available; for example, you tried to "\
-"give a socket a name that doesn’t match the local host name."
+"give a socket a name that doesn't match the local host name."
 #define nErrDescNetDownStr           "Network is down. A socket operation "\
 "failed because the network was down."
 #define nErrDescNetUnreachableStr    "Network is unreachable. A socket "\
@@ -1827,7 +1847,7 @@ const size_t nErrorStrLengths[] = {
 "connection was closed for reasons outside the control of the local host, such "\
 "as by the remote machine rebooting or an unrecoverable protocol violation."
 #define nErrDescNoBufferSpaceStr     "No buffer space available. The "\
-"kernel’s buffers for I/O operations are all in use."
+"kernel's buffers for I/O operations are all in use."
 #define nErrDescAlreadyConnStr       "Transport endpoint is already "\
 "connected. You tried to connect a socket that is already connected."
 #define nErrDescNotConnStr           "Transport endpoint is not "\
@@ -1870,7 +1890,7 @@ const size_t nErrorStrLengths[] = {
 "fork()."
 #define nErrDescMaxUsersStr          "Too many users. The file quota "\
 "system is confused because there are too many users."
-#define nErrDescMaxDiskQuotaStr      "Disk quota exceeded. The user’s "\
+#define nErrDescMaxDiskQuotaStr      "Disk quota exceeded. The user's "\
 "disk quota was exceeded."
 #define nErrDescStaleStr             "Stale file handle. This indicates "\
 "an internal confusion in the file system which is due to file system "\
@@ -2027,9 +2047,11 @@ const size_t nErrorStrLengths[] = {
 #define nErrDescNoMoreFilesStr       "No more files."
 #define nErrDescNoNetPathStr         "No such host or network path."
 #define nErrDescFileCaseStr          "Filename exists with different case."
+#define nErrDescErrnoEndStr          "The end of the errno error section; "\
+"likely caused by programmer error or a memory corruption issue."
 
-#define nErrDescMaxStr               "The maximum error value, likely "\
-"caused by programmer error or a corruption issue."
+#define nErrDescMaxStr               "The maximum error value; likely "\
+"caused by programmer error or a memory corruption issue."
 
 
 NCONST_STR * const nErrorDescriptions[] = {
@@ -2040,13 +2062,16 @@ NCONST_STR * const nErrorDescriptions[] = {
     nErrDescNullStr,
     nErrDescInvErrorStr,
     
+    nErrDescSignalStartStr,
     nErrDescSigAbrtStr,
     nErrDescSigFpeStr,
     nErrDescSigIllStr,
     nErrDescSigIntStr,
     nErrDescSigSegvStr,
     nErrDescSigTermStr,
+    nErrDescSignalEndStr,
     
+    nErrDescErrnoStartStr,
 #if 0
     nErrDescNoPermStr,
     nErrDescNoFileStr,
@@ -2212,6 +2237,7 @@ NCONST_STR * const nErrorDescriptions[] = {
     nErrDescIOStr,
     nErrDescMaxArgsStr,
     nErrDescInvExecFormatStr,
+    nErrDescInvFPStr,
     nErrDescInvFPStr,
     nErrDescNoChildStr,
     nErrDescWouldBlockStr,
@@ -2733,8 +2759,8 @@ NCONST_STR * const nErrorDescriptions[] = {
     nErrDescMaxDiskQuotaStr,
     nErrDescNoMediumStr,
     nErrDescInvMediumStr,
-    
 #endif
+    nErrDescErrnoEndStr,
     
     nErrDescMaxStr
 };
@@ -2747,13 +2773,16 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescNullStr),
     NCONST_STR_LEN(nErrDescInvErrorStr),
     
+    NCONST_STR_LEN(nErrDescSignalStartStr),
     NCONST_STR_LEN(nErrDescSigAbrtStr),
     NCONST_STR_LEN(nErrDescSigFpeStr),
     NCONST_STR_LEN(nErrDescSigIllStr),
     NCONST_STR_LEN(nErrDescSigIntStr),
     NCONST_STR_LEN(nErrDescSigSegvStr),
     NCONST_STR_LEN(nErrDescSigTermStr),
+    NCONST_STR_LEN(nErrDescSignalEndStr),
     
+    NCONST_STR_LEN(nErrDescErrnoStartStr),
 #if 0
     NCONST_STR_LEN(nErrDescNoPermStr),
     NCONST_STR_LEN(nErrDescNoFileStr),
@@ -2919,6 +2948,7 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescIOStr),
     NCONST_STR_LEN(nErrDescMaxArgsStr),
     NCONST_STR_LEN(nErrDescInvExecFormatStr),
+    NCONST_STR_LEN(nErrDescInvFPStr),
     NCONST_STR_LEN(nErrDescInvFPStr),
     NCONST_STR_LEN(nErrDescNoChildStr),
     NCONST_STR_LEN(nErrDescWouldBlockStr),
@@ -3439,8 +3469,8 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescMaxDiskQuotaStr),
     NCONST_STR_LEN(nErrDescNoMediumStr),
     NCONST_STR_LEN(nErrDescInvMediumStr),
-
 #endif
+    NCONST_STR_LEN(nErrDescErrnoEndStr),
     
     NCONST_STR_LEN(nErrDescMaxStr)
 };
@@ -3470,14 +3500,14 @@ void nErrorHandlerDefault(const nint_t error,
 /**
  * @brief The error callback function that gets defined by nErrorSetCallback().
  */
-void (* errorCallback) (const nint_t error, const time_t errorTime,
-         const char * errorDesc, const nint_t errorDescLen, const char * stack,
-         const nint_t stackLen) = nErrorHandlerDefault;
+volatile void (* errorCallback) (const nint_t error, const time_t errorTime,
+          const char * errorDesc, const nint_t errorDescLen, const char * stack,
+          const nint_t stackLen) = nErrorHandlerDefault;
 
 
 void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
-      const char * errorDesc, const nint_t errorDescLen, const char * stack,
-      const nint_t stackLen)
+ const char * errorDesc, const nint_t errorDescLen, const char * stack,
+ const nint_t stackLen)
 {
     /** @todo Make default callback. */
 }
@@ -3486,7 +3516,7 @@ void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
 nint_t nErrorFromErrno(const nint_t err)
 {
 #if NIMBLE_OS == NIMBLE_WINDOWS
-    if (err < 15)
+    if ((err > 0) && (err < 15))
     {
         return NERROR_ERRNO_START + err;
     }
@@ -3508,11 +3538,11 @@ nint_t nErrorFromErrno(const nint_t err)
     }
     else if ((err > 99) && (err < 131))
     {
-        return NERROR_ERRNO_START + err - 57;
+        return NERROR_ERRNO_START + err - 61;
     }
-    else if ((err > 131) && (err < (NERROR_ERRNO_END - NERROR_ERRNO_START - 1)))
+    else if ((err > 131) && (err < 140))
     {
-        return NERROR_ERRNO_START + err - 58;
+        return NERROR_ERRNO_START + err - 62;
     }
     else if (err == 140)
     {
@@ -3520,7 +3550,7 @@ nint_t nErrorFromErrno(const nint_t err)
     }
     return NERROR_UNKNOWN;
 
-#elif NIMBLE_OS == NIMBLE_MACOS
+#elif (NIMBLE_OS == NIMBLE_MACOS) || (NIMBLE_OS == BSD)
     if (err > (NERROR_ERRNO_END - NERROR_ERRNO_START - 1))
     {
         return NERROR_ERRNO_START + err;
@@ -3528,7 +3558,7 @@ nint_t nErrorFromErrno(const nint_t err)
     return NERROR_UNKNOWN;
 
 #elif NIMBLE_OS == NIMBLE_ANDROID
-    if (err < 56)
+    if ((err > 0) && (err < 56))
     {
         return NERROR_ERRNO_START + err;
     }
@@ -3536,7 +3566,7 @@ nint_t nErrorFromErrno(const nint_t err)
     {
         return NERROR_DEADLOCK;
     }
-    else if ((err > 56) && (err < (NERROR_ERRNO_END - NERROR_ERRNO_START - 1)))
+    else if ((err > 56) && (err < 140))
     {
         return NERROR_ERRNO_START + err - 2;
     }
@@ -3546,15 +3576,8 @@ nint_t nErrorFromErrno(const nint_t err)
     }
     return NERROR_UNKNOWN;
 
-#elif NIMBLE_OS == NIMBLE_BSD
-    if (err > (NERROR_ERRNO_END - NERROR_ERRNO_START - 1))
-    {
-        return NERROR_ERRNO_START + err;
-    }
-    return NERROR_UNKNOWN;
-
 #elif (NIMBLE_OS == NIMBLE_LINUX) || (NIMBLE_OS == NIMBLE_UNIX)
-    if (err < 41)
+    if ((err > 0) && (err < 41))
     {
         return NERROR_ERRNO_START + err;
     }
@@ -3570,7 +3593,7 @@ nint_t nErrorFromErrno(const nint_t err)
     {
         return NERROR_DEADLOCK;
     }
-    else if ((err > 58) && (err < (NERROR_ERRNO_END - NERROR_ERRNO_START - 1)))
+    else if ((err > 58) && (err <= 124))
     {
         return NERROR_ERRNO_START + err - 2;
     }
@@ -3623,7 +3646,7 @@ void nErrorThrow(const nint_t error, const char *info, nint_t infoLen)
 }
 
 nint_t nErrorToStringLocal(char *dst, nint_t *errorLen,
-         const nint_t error, const char *info, nint_t infoLen)
+ const nint_t error, const char *info, nint_t infoLen)
 {
     if ((info != NULL) && (infoLen == 0))
     {
@@ -3657,7 +3680,7 @@ nint_t nErrorToStringLocal(char *dst, nint_t *errorLen,
 }
 
 char *nErrorToString(char *dst, nint_t *errorLen, const nint_t error,
-        const char *info, nint_t infoLen)
+ const char *info, nint_t infoLen)
 {
     nint_t result = nErrorToStringLocal(dst, errorLen, error, info, infoLen);
     if (result != NSUCCESS)

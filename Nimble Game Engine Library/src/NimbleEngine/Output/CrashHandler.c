@@ -72,21 +72,20 @@ void nCrashHandlerDefault(const nint_t error,
                           nint_t stackLen
                           );
 
-void (*crashCallback) (const nint_t error, const time_t errorTime,
-                        char *errorDesc, nint_t errorDescLen, char *stack,
-                        nint_t stackLen) = nCrashHandlerDefault;
+volatile void (*crashCallback) (const nint_t error, const time_t errorTime,
+ char *errorDesc, nint_t errorDescLen, char *stack,
+ nint_t stackLen) = nCrashHandlerDefault;
 
 
 void nCrashHandlerDefault(const nint_t error, const time_t errorTime,
-                          char *errorDesc, nint_t errorDescLen, char *stack,
-                          nint_t stackLen)
+ char *errorDesc, nint_t errorDescLen, char *stack, nint_t stackLen)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
 }
 
 nint_t nCrashSetCallback(void (*callback)(const nint_t error,
-        const time_t errorTime, char *errorDesc, nint_t errorDescLen,
-        char *stack, nint_t stackLen))
+ const time_t errorTime, char *errorDesc, nint_t errorDescLen, char *stack,
+ nint_t stackLen))
 {
     if (callback == NULL)
     {
@@ -99,8 +98,8 @@ nint_t nCrashSetCallback(void (*callback)(const nint_t error,
     return NSUCCESS;
 }
 
-_Noreturn void nCrashSafe(const nint_t error, time_t errorTime,  const char *errorDesc,
-                nint_t errorDescLen)
+_Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
+ const char *errorDesc, nint_t errorDescLen)
 {
     nThreadMutexCreate(crashMutex);
     nThreadMutexLock(crashMutex);

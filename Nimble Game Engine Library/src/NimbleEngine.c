@@ -77,7 +77,7 @@ void *nRealloc(void *ptr, const size_t size)
 }
 
 char *nStringCopy(char *restrict dst, const char *restrict src,
-       const size_t len)
+ const size_t len)
 {
     if (!src)
     {
@@ -116,14 +116,18 @@ void nEngineExitSignal(int signum)
     nEngineExit();
 }
 
-nint_t nEngineInit(void (*errorCallback)(const nint_t error,
-         const time_t errorTime, char *errorDesc, nint_t errorDescLen,
-         char *stack, nint_t stackLen),
-         void (*crashCallback)(const nint_t error, const time_t errorTime,
-         char *errorDesc, nint_t errorDescLen, char *stack,
-         nint_t stackLen))
+nint_t nEngineInit(void (*errorCallback)
+ (const nint_t error,
+ const time_t errorTime, char *errorDesc, nint_t errorDescLen,
+ char *stack, nint_t stackLen),
+
+ void (*crashCallback)(const nint_t error, const time_t errorTime,
+ char *errorDesc, nint_t errorDescLen, char *stack,
+ nint_t stackLen)
+
+ )
 {
-    /** @todo Make init function */
+    /** @todo Make init function, use errno */
     if (atexit(nEngineExit) != NSUCCESS)
     {
         const time_t errorTime = time(NULL);

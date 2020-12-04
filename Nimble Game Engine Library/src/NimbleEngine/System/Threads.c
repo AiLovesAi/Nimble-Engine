@@ -53,7 +53,7 @@
 #endif
 
 nint_t nThreadCreate(nThread_t *thread, nint_t attributes,
-                      void *(*start)(void *), void *data)
+ void *(*start)(void *), void *data)
 {
     /// @todo Attributes, pointer conversion for some arguments
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
@@ -76,31 +76,22 @@ nint_t nThreadCreate(nThread_t *thread, nint_t attributes,
     {
         switch (err)
         {
+            case 1:
             case thrd_timedout:
-            {
                 /// @todo nErrorThrow();
-            }
-            break;
+                break;
             case thrd_busy:
-            {
                 //
-            }
-            break;
+                break;
             case thrd_nomem:
-            {
                 //
-            }
-            break;
+                break;
             case thrd_error:
-            {
                 //
-            }
-            break;
+                break;
             default:
-            {
                 //
-            }
-            break;
+                break;
         }
         return NERROR;
     }

@@ -779,8 +779,8 @@ enum nErrors {
     NERROR_NO_MEDIUM, /**< No medium found. */
     NERROR_INV_MEDIUM, /**< Wrong medium type. */
 #else
-#error OS not supported.
-#endif /** @todo CONTINUE; Also figure out what to do with __FILE__ and __LINE__ etc. they will be useful  */
+#  error OS not supported.
+#endif
     NERROR_ERRNO_END, /**< The end of the errno section. */
     
     NERROR_MAX /**< The maximum error number. */
@@ -809,7 +809,7 @@ const size_t nErrorStrLengths[];
  * copy the result to dynamically allocated memory.
  */
 #define nErrorStr(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
-                        nErrorStrings[err] : nErrorStrings[NERROR_UNKNOWN])
+ nErrorStrings[err] : nErrorStrings[NERROR_UNKNOWN])
 
 /*
  * @brief Gets the length of the error code @p err from #nErrorStrings.
@@ -818,8 +818,7 @@ const size_t nErrorStrLengths[];
  * @return @p err's string translation length.
  */
 #define nErrorStrLen(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
-                           nErrorStrLengths[err] :\
-                           nErrorStrLengths[NERROR_UNKNOWN])
+ nErrorStrLengths[err] : nErrorStrLengths[NERROR_UNKNOWN])
 
 /**
  * @brief The descriptions of the error codes defined by #nErrors.
@@ -843,8 +842,7 @@ const size_t nErrorDescLengths[];
  * copy the result to dynamically allocated memory.
  */
 #define nErrorDesc(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
-                         nErrorDescriptions[err] :\
-                         nErrorDescriptions[NERROR_UNKNOWN])
+ nErrorDescriptions[err] : nErrorDescriptions[NERROR_UNKNOWN])
 
 /*
  * @brief Gets the length of the error description @p err from #nErrorDescriptions.
@@ -853,8 +851,7 @@ const size_t nErrorDescLengths[];
  * @return @p err's string translation length.
  */
 #define nErrorDescLen(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
-                           nErrorDescLengths[err] :\
-                           nErrorDescLengths[NERROR_UNKNOWN])
+ nErrorDescLengths[err] : nErrorDescLengths[NERROR_UNKNOWN])
 
 /*
  * @brief Gets the error code of the signal value @p error.
@@ -863,9 +860,7 @@ const size_t nErrorDescLengths[];
  * @return The NERROR version of @p error, or #NERROR_UNKNOWN if out of range.
  */
 #define nErrorFromSignal(err) (((err > NERROR_SIGNAL_START) && \
-                               (err < NERROR_SIGNAL_END)) ?\
-                               (NERROR_SIGNAL_START + err) :\
-                               NERROR_UNKNOWN)
+ (err < NERROR_SIGNAL_END)) ? (NERROR_SIGNAL_START + err) : NERROR_UNKNOWN)
 
 /*
  * @brief Gets the error code of the errno value @p err.
