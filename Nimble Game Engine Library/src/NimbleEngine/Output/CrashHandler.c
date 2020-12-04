@@ -72,7 +72,7 @@ void nCrashHandlerDefault(const nint_t error,
                           nint_t stackLen
                           );
 
-volatile void (*crashCallback) (const nint_t error, const time_t errorTime,
+void (*volatile crashCallback) (const nint_t error, const time_t errorTime,
  char *errorDesc, nint_t errorDescLen, char *stack,
  nint_t stackLen) = nCrashHandlerDefault;
 

@@ -96,7 +96,7 @@ $(function() {
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="_threads_8h.html#aa72599a1bdf5c80c544c955a1da6a001">   55</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> *thread, <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> attributes,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                      <span class="keywordtype">void</span> *(*start)(<span class="keywordtype">void</span> *), <span class="keywordtype">void</span> *data)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; <span class="keywordtype">void</span> *(*start)(<span class="keywordtype">void</span> *), <span class="keywordtype">void</span> *data)</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    *thread = CreateThread(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, 0, (LPTHREAD_START_ROUTINE) start, data, 0, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
@@ -116,81 +116,72 @@ $(function() {
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    {</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">switch</span> (err)</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">case</span> thrd_timedout:</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">case</span> thrd_busy:</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="comment">//</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">case</span> thrd_nomem:</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="comment">//</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            }</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">case</span> thrd_error:</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="comment">//</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                <span class="comment">//</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="_threads_8h.html#ac017ce1324f5f573707a925e391391f5">  110</a></span>&#160;<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;{</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="_threads_8h.html#a2b062a9976f360109409cdf03664e3eb">  116</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread, <span class="keywordtype">void</span> *ret)</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="_threads_8h.html#ad671abc494307c1448840e42696f4bbd">  122</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;{</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="_threads_8h.html#a36d2699463a15164f3f694345a093154">  128</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;}</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="_threads_8h.html#a0754b811c83c281b4d2a82ddeeeab4bc">  134</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;{</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
-<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="_threads_8h.html#a125d44c71b77ea3579d707787c9a262b">  140</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;{</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;}</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">// Threads.c</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">case</span> thrd_timedout:</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">case</span> thrd_busy:</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <span class="comment">//</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">case</span> thrd_nomem:</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="comment">//</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">case</span> thrd_error:</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="comment">//</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="comment">//</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="_threads_8h.html#ac017ce1324f5f573707a925e391391f5">  101</a></span>&#160;<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> <a class="code" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="_threads_8h.html#a2b062a9976f360109409cdf03664e3eb">  107</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread, <span class="keywordtype">void</span> *ret)</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="_threads_8h.html#ad671abc494307c1448840e42696f4bbd">  113</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;{</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="_threads_8h.html#a36d2699463a15164f3f694345a093154">  119</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;{</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="_threads_8h.html#a0754b811c83c281b4d2a82ddeeeab4bc">  125</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;{</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="_threads_8h.html#a125d44c71b77ea3579d707787c9a262b">  131</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> mutex)</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;{</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">// Threads.c</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="a_threads_8c_html_af5e752c9fec5f1e4d0596509ab72016f"><div class="ttname"><a href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a></div><div class="ttdeci">nint_t nThreadJoin(nThread_t thread, void *ret)</div><div class="ttdoc">Joins (or waits for) a thread until its completion.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00116">Threads.c:116</a></div></div>
-<div class="ttc" id="a_threads_8c_html_ac4236971be3d509df3739252af6acf61"><div class="ttname"><a href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a></div><div class="ttdeci">nint_t nThreadMutexDestroy(nMutex_t mutex)</div><div class="ttdoc">Destroys a mutex to prevent memory leaks.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00140">Threads.c:140</a></div></div>
-<div class="ttc" id="a_threads_8c_html_a8818f090f3a604edfb4d2750581213c9"><div class="ttname"><a href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a></div><div class="ttdeci">nint_t nThreadMutexLock(nMutex_t mutex)</div><div class="ttdoc">Locks a mutex, or waits or the already locked mutex to unlock.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00128">Threads.c:128</a></div></div>
-<div class="ttc" id="a_threads_8c_html_abc2562bfb4e069fcf08b93043fa770d5"><div class="ttname"><a href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a></div><div class="ttdeci">nThread_t nThreadSelf(void)</div><div class="ttdoc">Joins (or waits for) a thread until its completion.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00110">Threads.c:110</a></div></div>
+<div class="ttc" id="a_threads_8c_html_af5e752c9fec5f1e4d0596509ab72016f"><div class="ttname"><a href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a></div><div class="ttdeci">nint_t nThreadJoin(nThread_t thread, void *ret)</div><div class="ttdoc">Joins (or waits for) a thread until its completion.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00107">Threads.c:107</a></div></div>
+<div class="ttc" id="a_threads_8c_html_ac4236971be3d509df3739252af6acf61"><div class="ttname"><a href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a></div><div class="ttdeci">nint_t nThreadMutexDestroy(nMutex_t mutex)</div><div class="ttdoc">Destroys a mutex to prevent memory leaks.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00131">Threads.c:131</a></div></div>
+<div class="ttc" id="a_threads_8c_html_a8818f090f3a604edfb4d2750581213c9"><div class="ttname"><a href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a></div><div class="ttdeci">nint_t nThreadMutexLock(nMutex_t mutex)</div><div class="ttdoc">Locks a mutex, or waits or the already locked mutex to unlock.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00119">Threads.c:119</a></div></div>
+<div class="ttc" id="a_threads_8c_html_abc2562bfb4e069fcf08b93043fa770d5"><div class="ttname"><a href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a></div><div class="ttdeci">nThread_t nThreadSelf(void)</div><div class="ttdoc">Joins (or waits for) a thread until its completion.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00101">Threads.c:101</a></div></div>
 <div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00153">Nimble.h:153</a></div></div>
 <div class="ttc" id="a_threads_8h_html_adf8e53aef7ecfc328eec93f6e35b7746"><div class="ttname"><a href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a></div><div class="ttdeci">mtx_t * nMutex_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00074">Threads.h:74</a></div></div>
 <div class="ttc" id="a_threads_8c_html_aff7b47e959d06126af654dffbe0f349a"><div class="ttname"><a href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a></div><div class="ttdeci">nint_t nThreadCreate(nThread_t *thread, nint_t attributes, void *(*start)(void *), void *data)</div><div class="ttdoc">Creates a thread.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00055">Threads.c:55</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00165">Nimble.h:165</a></div></div>
 <div class="ttc" id="a_errors_8h_html_abc17e6456e8237f1fec82260310055b1"><div class="ttname"><a href="_errors_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a></div><div class="ttdeci">#define NERROR</div><div class="ttdoc">Returned when a function encounters an error.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00056">Errors.h:56</a></div></div>
-<div class="ttc" id="a_threads_8c_html_a3b89d83d7adac17362b8a30c1c76d7d0"><div class="ttname"><a href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a></div><div class="ttdeci">nint_t nThreadMutexUnlock(nMutex_t mutex)</div><div class="ttdoc">Unlocks a mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00134">Threads.c:134</a></div></div>
+<div class="ttc" id="a_threads_8c_html_a3b89d83d7adac17362b8a30c1c76d7d0"><div class="ttname"><a href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a></div><div class="ttdeci">nint_t nThreadMutexUnlock(nMutex_t mutex)</div><div class="ttdoc">Unlocks a mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00125">Threads.c:125</a></div></div>
 <div class="ttc" id="a_threads_8h_html_a24cc6d228c1c5e77e8bf4ba454e75f87"><div class="ttname"><a href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a></div><div class="ttdeci">thrd_t * nThread_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00073">Threads.h:73</a></div></div>
-<div class="ttc" id="a_threads_8c_html_a0c0440efdfb2dc726e0a7f542c93b383"><div class="ttname"><a href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a></div><div class="ttdeci">nint_t nThreadMutexCreate(nMutex_t mutex)</div><div class="ttdoc">Initializes a NULL mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00122">Threads.c:122</a></div></div>
+<div class="ttc" id="a_threads_8c_html_a0c0440efdfb2dc726e0a7f542c93b383"><div class="ttname"><a href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a></div><div class="ttdeci">nint_t nThreadMutexCreate(nMutex_t mutex)</div><div class="ttdoc">Initializes a NULL mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00113">Threads.c:113</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

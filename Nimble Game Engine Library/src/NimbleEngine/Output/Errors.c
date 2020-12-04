@@ -3500,9 +3500,9 @@ void nErrorHandlerDefault(const nint_t error,
 /**
  * @brief The error callback function that gets defined by nErrorSetCallback().
  */
-volatile void (* errorCallback) (const nint_t error, const time_t errorTime,
-          const char * errorDesc, const nint_t errorDescLen, const char * stack,
-          const nint_t stackLen) = nErrorHandlerDefault;
+void (*volatile errorCallback) (const nint_t error, const time_t errorTime,
+ const char * errorDesc, const nint_t errorDescLen, const char * stack,
+ const nint_t stackLen) = nErrorHandlerDefault;
 
 
 void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
@@ -3551,7 +3551,7 @@ nint_t nErrorFromErrno(const nint_t err)
     return NERROR_UNKNOWN;
 
 #elif (NIMBLE_OS == NIMBLE_MACOS) || (NIMBLE_OS == BSD)
-    if (err > (NERROR_ERRNO_END - NERROR_ERRNO_START - 1))
+    if ((err > 0) && (err < (NERROR_ERRNO_END - NERROR_ERRNO_START - 1)))
     {
         return NERROR_ERRNO_START + err;
     }
