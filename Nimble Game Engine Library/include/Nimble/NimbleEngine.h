@@ -51,15 +51,15 @@ extern "C" {
 
 #include "Nimble.h"
 
-#include "NimbleEngine/Network/Network.h"
+#include "Network/Network.h"
 
-#include "NimbleEngine/Output/CrashHandler.h"
-#include "NimbleEngine/Output/Errors.h"
-#include "NimbleEngine/Output/Files.h"
-#include "NimbleEngine/Output/Logging.h"
+#include "Output/CrashHandler.h"
+#include "Output/Errors.h"
+#include "Output/Files.h"
+#include "Output/Logging.h"
 
-#include "NimbleEngine/System/Hardware.h"
-#include "NimbleEngine/System/Threads.h"
+#include "System/Hardware.h"
+#include "System/Threads.h"
 
 #include <inttypes.h>
 #include <time.h>

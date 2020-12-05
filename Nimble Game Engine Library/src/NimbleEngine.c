@@ -45,11 +45,8 @@
  */
 
 #include <errno.h>
-#include <inttypes.h>
 #include <signal.h>
 #include <stdlib.h>
-
-#include "../include/Nimble/NimbleEngine/Output/CrashHandler.h"
 
 void *nAlloc(const size_t size)
 {
@@ -133,11 +130,11 @@ nint_t nEngineInit(void (*errorCallback)
     if (atexit(nEngineExit) != NSUCCESS)
     {
         const time_t errorTime = time(NULL);
-        char *errorDescStr, *info;
+        char *info;
         nint_t errorDescLen, infoLen;
         const nint_t err = nErrorFromErrno(errno);
         
-        errorDescStr = nErrorToString(&errorDescLen, err, info, infoLen);
+        char *errorDescStr = nErrorToString(&errorDescLen, err, info, infoLen);
         nCrashSafe(err, errorTime, errorDescStr, errorDescLen);
     }
 

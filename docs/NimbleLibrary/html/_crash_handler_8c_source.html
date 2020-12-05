@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Game Engine Library: C:/Users/Avery/Documents/GitHub/Nimble-Game-Engine/Nimble Game Engine Library/src/NimbleEngine/Output/CrashHandler.c Source File</title>
+<title>Nimble Game Engine Library: C:/Users/Avery/Documents/GitHub/Nimble-Game-Engine/Nimble Game Engine Library/src/Output/CrashHandler.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e3c38eff13c376c7f66f0c4e07c35714.html">Nimble Game Engine Library</a></li><li class="navelem"><a class="el" href="dir_7395f07fb3c29ef24ee7765bb1d43ba3.html">src</a></li><li class="navelem"><a class="el" href="dir_c608a99cd7156f282a3132abba540a50.html">NimbleEngine</a></li><li class="navelem"><a class="el" href="dir_96b96642152291afe099129975a6a9bf.html">Output</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_e3c38eff13c376c7f66f0c4e07c35714.html">Nimble Game Engine Library</a></li><li class="navelem"><a class="el" href="dir_7395f07fb3c29ef24ee7765bb1d43ba3.html">src</a></li><li class="navelem"><a class="el" href="dir_539381db0bd99d0237570e891932b7f5.html">Output</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -72,7 +72,7 @@ $(function() {
 <div class="title">CrashHandler.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_crash_handler_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../../../include/Nimble/NimbleLicense.h&quot;</span></div>
+<a href="_crash_handler_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../../include/Nimble/NimbleLicense.h&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * CrashHandler.c</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Nimble Game Engine</span></div>
@@ -82,47 +82,47 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../../../include/Nimble/NimbleEngine/Output/CrashHandler.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../../include/Nimble/Output/CrashHandler.h&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &lt;signal.h&gt;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &lt;signal.h&gt;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;../../../include/Nimble/Output/Errors.h&quot;</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#include &quot;../../../include/Nimble/NimbleEngine/Output/Errors.h&quot;</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">static</span> _Bool crashtest = 0;</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3">   55</a></span>&#160;<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> <a class="code" href="_crash_handler_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3">crashMutex</a> = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">nCrashHandlerDefault</a>(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                          <span class="keyword">const</span> time_t errorTime,</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                          <span class="keywordtype">char</span> *errorDesc,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                          <span class="keywordtype">size_t</span> errorDescLen,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                          <span class="keywordtype">char</span> *stack,</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                          <span class="keywordtype">size_t</span> stackLen</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                          );</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#a48e8b9b3ebb135b0fbac3f312ac5f09a">   75</a></span>&#160;void (*<span class="keyword">volatile</span> <a class="code" href="_crash_handler_8c.html#a48e8b9b3ebb135b0fbac3f312ac5f09a">crashCallback</a>) (<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, <span class="keyword">const</span> time_t errorTime,</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; <span class="keywordtype">char</span> *errorDesc, <span class="keywordtype">size_t</span> errorDescLen, <span class="keywordtype">char</span> *stack,</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; <span class="keywordtype">size_t</span> stackLen) = &amp;<a class="code" href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">nCrashHandlerDefault</a>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">   80</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">nCrashHandlerDefault</a>(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, <span class="keyword">const</span> time_t errorTime,</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; <span class="keywordtype">char</span> *errorDesc, <span class="keywordtype">size_t</span> errorDescLen, <span class="keywordtype">char</span> *stack, <span class="keywordtype">size_t</span> stackLen)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#ac80480cdd19c5a8f5b4152db8dca35ac">   86</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_crash_handler_8c.html#ac80480cdd19c5a8f5b4152db8dca35ac">nCrashSetCallback</a>(<span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error,</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; <span class="keyword">const</span> time_t errorTime, <span class="keywordtype">char</span> *errorDesc, <span class="keywordtype">size_t</span> errorDescLen, <span class="keywordtype">char</span> *stack,</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; <span class="keywordtype">size_t</span> stackLen))</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">if</span> (callback == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoCallbackStr[] = <span class="stringliteral">&quot;Callback parameter null in nCrashSetCallback().&quot;</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <a class="code" href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a>(<a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, einfoCallbackStr, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoCallbackStr));</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">static</span> _Bool crashtest = 0;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3">   53</a></span>&#160;<a class="code" href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a> <a class="code" href="_crash_handler_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3">crashMutex</a> = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">nCrashHandlerDefault</a>(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                          <span class="keyword">const</span> time_t errorTime,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                          <span class="keywordtype">char</span> *errorDesc,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                          <span class="keywordtype">size_t</span> errorDescLen,</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                          <span class="keywordtype">char</span> *stack,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                          <span class="keywordtype">size_t</span> stackLen</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                          );</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#a48e8b9b3ebb135b0fbac3f312ac5f09a">   73</a></span>&#160;void (*<span class="keyword">volatile</span> <a class="code" href="_crash_handler_8c.html#a48e8b9b3ebb135b0fbac3f312ac5f09a">crashCallback</a>) (<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, <span class="keyword">const</span> time_t errorTime,</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; <span class="keywordtype">char</span> *errorDesc, <span class="keywordtype">size_t</span> errorDescLen, <span class="keywordtype">char</span> *stack,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; <span class="keywordtype">size_t</span> stackLen) = &amp;<a class="code" href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">nCrashHandlerDefault</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">   78</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">nCrashHandlerDefault</a>(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, <span class="keyword">const</span> time_t errorTime,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; <span class="keywordtype">char</span> *errorDesc, <span class="keywordtype">size_t</span> errorDescLen, <span class="keywordtype">char</span> *stack, <span class="keywordtype">size_t</span> stackLen)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="_crash_handler_8c.html#ac80480cdd19c5a8f5b4152db8dca35ac">   84</a></span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> <a class="code" href="_crash_handler_8c.html#ac80480cdd19c5a8f5b4152db8dca35ac">nCrashSetCallback</a>(<span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error,</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; <span class="keyword">const</span> time_t errorTime, <span class="keywordtype">char</span> *errorDesc, <span class="keywordtype">size_t</span> errorDescLen, <span class="keywordtype">char</span> *stack,</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; <span class="keywordtype">size_t</span> stackLen))</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;{</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">if</span> (callback == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoCallbackStr[] = <span class="stringliteral">&quot;Callback parameter null in &quot;</span>\</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="stringliteral">&quot;nCrashSetCallback().&quot;</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a>(<a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, einfoCallbackStr,</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;         <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoCallbackStr));</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    </div>
@@ -135,53 +135,53 @@ $(function() {
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a>(<a class="code" href="_crash_handler_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3">crashMutex</a>);</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>(<a class="code" href="_crash_handler_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3">crashMutex</a>);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">if</span> (crashtest || (<a class="code" href="_crash_handler_8c.html#a48e8b9b3ebb135b0fbac3f312ac5f09a">crashCallback</a> == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>))</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <a class="code" href="_crash_handler_8c.html#a499458e899f416fd65911318a940bb45">nCrashAbort</a>(error);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="comment">/* NO RETURN */</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> (crashtest || (<a class="code" href="_crash_handler_8c.html#a48e8b9b3ebb135b0fbac3f312ac5f09a">crashCallback</a> == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>))</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="_crash_handler_8c.html#a499458e899f416fd65911318a940bb45">nCrashAbort</a>(error);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="comment">/* NO RETURN */</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    crashtest = 1;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">if</span> (errorTime == 0)</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        errorTime = time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">char</span> *errorDescPtr;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">if</span> ((errorDescLen &lt;= 0) &amp;&amp; (errorDesc != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>))</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    {</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        errorDescLen = strlen(errorDesc);</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordflow">if</span> (errorDesc == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        errorDescPtr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorDescLen, error, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, 0);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">if</span> (errorDescPtr == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">char</span> defaultErrorStr[] = <span class="stringliteral">&quot;NERROR_ERROR_NOT_FOUND: An error &quot;</span>\</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="stringliteral">&quot;passed to a function was not valid: nErrorToString() failed while &quot;</span>\</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="stringliteral">&quot;crashing with nCrashSafe().&quot;</span>;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            errorDescLen = <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(defaultErrorStr);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            errorDescPtr = <a class="code" href="_nimble_engine_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a>(errorDescPtr, errorDescLen + 1);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <a class="code" href="_nimble_engine_8c.html#aad8a07158d98ca69095634437e3570e5">nStringCopy</a>(errorDescPtr, defaultErrorStr, errorDescLen);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        }</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        </div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    }</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        errorDescPtr = <a class="code" href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a>(errorDescLen);</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <a class="code" href="_nimble_engine_8c.html#aad8a07158d98ca69095634437e3570e5">nStringCopy</a>(errorDescPtr, errorDesc, errorDescLen);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordtype">char</span> *stack;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">size_t</span> stackLen;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="_errors_8c.html#a9b6f95d66f769cdae3927cb4005eac9d">nErrorGetStacktrace</a>(stack, &amp;stackLen, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <a class="code" href="_crash_handler_8c.html#a48e8b9b3ebb135b0fbac3f312ac5f09a">crashCallback</a>(error, errorTime, errorDescPtr, errorDescLen, stack, stackLen);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    </div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    errorDescPtr = <a class="code" href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a>(errorDescPtr);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">if</span> (errorTime == 0)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        errorTime = time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">if</span> ((errorDescLen &lt;= 0) &amp;&amp; (errorDesc != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>))</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        errorDescLen = strlen(errorDesc);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">char</span> *errorDescStr;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordflow">if</span> (errorDesc == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        errorDescStr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorDescLen, error, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, 0);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">if</span> (errorDescStr == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">char</span> defaultErrorStr[] = <span class="stringliteral">&quot;NERROR_ERROR_NOT_FOUND: An error &quot;</span>\</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; <span class="stringliteral">&quot;passed to a function was not valid: nErrorToString() failed while &quot;</span>\</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; <span class="stringliteral">&quot;crashing with nCrashSafe().&quot;</span>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            errorDescLen = <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(defaultErrorStr);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            errorDescStr = <a class="code" href="_nimble_engine_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a>(errorDescStr, errorDescLen + 1);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            <a class="code" href="_nimble_engine_8c.html#aad8a07158d98ca69095634437e3570e5">nStringCopy</a>(errorDescStr, defaultErrorStr, errorDescLen);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        errorDescStr = <a class="code" href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a>(errorDescLen);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <a class="code" href="_nimble_engine_8c.html#aad8a07158d98ca69095634437e3570e5">nStringCopy</a>(errorDescStr, errorDesc, errorDescLen);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    }</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordtype">size_t</span> stackLen;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordtype">char</span> *stackStr = <a class="code" href="_errors_8c.html#acebf5908ffdc939acb0a309cbd1e0434">nErrorGetStacktrace</a>(&amp;stackLen, <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <a class="code" href="_crash_handler_8c.html#a48e8b9b3ebb135b0fbac3f312ac5f09a">crashCallback</a>(error, errorTime, errorDescStr, errorDescLen, stackStr,</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;     stackLen);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    stackStr = <a class="code" href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a>(stackStr);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    errorDescStr = <a class="code" href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a>(errorDescStr);</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    exit(error);</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="comment">/* NO RETURN */</span></div>
@@ -201,37 +201,38 @@ $(function() {
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;{</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    fprintf(stderr, <span class="stringliteral">&quot;The program failed to crash safely and is aborting. &quot;</span>\</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;     <span class="stringliteral">&quot;Error: %s - %s&quot;</span>, <a class="code" href="_errors_8h.html#a5c75a733273f53a047f2e47ed9f93c62">nErrorStr</a>(error), <a class="code" href="_errors_8h.html#a20dbb99b6949bc8e08729a0e29a05c4d">nErrorDesc</a>(error));</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    abort();</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="comment">/* NO RETURN */</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;}</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">// CrashHandler.c</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    signal(SIGABRT, SIG_DFL);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    abort();</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="comment">/* NO RETURN */</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;}</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">// CrashHandler.c</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="a_errors_8c_html_a12be5e8e92cdd139422dd1bde5b8a187"><div class="ttname"><a href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03607">Errors.c:3607</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a12be5e8e92cdd139422dd1bde5b8a187"><div class="ttname"><a href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03605">Errors.c:3605</a></div></div>
 <div class="ttc" id="a_crash_handler_8c_html_a27dd0441443b6798dc03a804bcfd3075"><div class="ttname"><a href="_crash_handler_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a></div><div class="ttdeci">_Noreturn void nCrashSafe(const nint_t error, time_t errorTime, const char *errorDesc, size_t errorDescLen)</div><div class="ttdoc">Crashes the program safely.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00101">CrashHandler.c:101</a></div></div>
 <div class="ttc" id="a_threads_8c_html_a8818f090f3a604edfb4d2750581213c9"><div class="ttname"><a href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a></div><div class="ttdeci">nint_t nThreadMutexLock(nMutex_t mutex)</div><div class="ttdoc">Locks a mutex, or waits or the already locked mutex to unlock.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00119">Threads.c:119</a></div></div>
-<div class="ttc" id="a_crash_handler_8c_html_a3d9985708d6212cb2e344abb6c7eaf2e"><div class="ttname"><a href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">nCrashHandlerDefault</a></div><div class="ttdeci">void nCrashHandlerDefault(const nint_t error, const time_t errorTime, char *errorDesc, size_t errorDescLen, char *stack, size_t stackLen)</div><div class="ttdoc">The default crash handler callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00080">CrashHandler.c:80</a></div></div>
-<div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00055">Errors.h:55</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_a3d9985708d6212cb2e344abb6c7eaf2e"><div class="ttname"><a href="_crash_handler_8c.html#a3d9985708d6212cb2e344abb6c7eaf2e">nCrashHandlerDefault</a></div><div class="ttdeci">void nCrashHandlerDefault(const nint_t error, const time_t errorTime, char *errorDesc, size_t errorDescLen, char *stack, size_t stackLen)</div><div class="ttdoc">The default crash handler callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00078">CrashHandler.c:78</a></div></div>
+<div class="ttc" id="a_threads_8h_html_ac554ec4db6e1f7265a7a4b52ae998fc7"><div class="ttname"><a href="_threads_8h.html#ac554ec4db6e1f7265a7a4b52ae998fc7">nMutex_t</a></div><div class="ttdeci">HANDLE nMutex_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00060">Threads.h:60</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_errors_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00053">Errors.h:53</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00155">Nimble.h:155</a></div></div>
-<div class="ttc" id="a_crash_handler_8c_html_ac80480cdd19c5a8f5b4152db8dca35ac"><div class="ttname"><a href="_crash_handler_8c.html#ac80480cdd19c5a8f5b4152db8dca35ac">nCrashSetCallback</a></div><div class="ttdeci">nint_t nCrashSetCallback(void(*callback)(const nint_t error, const time_t errorTime, char *errorDesc, size_t errorDescLen, char *stack, size_t stackLen))</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00086">CrashHandler.c:86</a></div></div>
-<div class="ttc" id="a_threads_8h_html_adf8e53aef7ecfc328eec93f6e35b7746"><div class="ttname"><a href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a></div><div class="ttdeci">mtx_t * nMutex_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00074">Threads.h:74</a></div></div>
-<div class="ttc" id="a_errors_8h_html_a20dbb99b6949bc8e08729a0e29a05c4d"><div class="ttname"><a href="_errors_8h.html#a20dbb99b6949bc8e08729a0e29a05c4d">nErrorDesc</a></div><div class="ttdeci">#define nErrorDesc(err)</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00844">Errors.h:844</a></div></div>
-<div class="ttc" id="a_nimble_engine_8c_html_aafc14ef2a060e7b49b4ae4a1bdbdc989"><div class="ttname"><a href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a></div><div class="ttdeci">void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00054">NimbleEngine.c:54</a></div></div>
-<div class="ttc" id="a_crash_handler_8c_html_a19ae6f4137e01731cbcbcd14a5a575f3"><div class="ttname"><a href="_crash_handler_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3">crashMutex</a></div><div class="ttdeci">nMutex_t crashMutex</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00055">CrashHandler.c:55</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a9b6f95d66f769cdae3927cb4005eac9d"><div class="ttname"><a href="_errors_8c.html#a9b6f95d66f769cdae3927cb4005eac9d">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(char *dst, size_t *stackLen, size_t *stackLevels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03705">Errors.c:3705</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a055477c0aa8af2a58f8da7c4621c7b3a"><div class="ttname"><a href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(size_t *errorLen, const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03650">Errors.c:3650</a></div></div>
-<div class="ttc" id="a_errors_8h_html_a5c75a733273f53a047f2e47ed9f93c62"><div class="ttname"><a href="_errors_8h.html#a5c75a733273f53a047f2e47ed9f93c62">nErrorStr</a></div><div class="ttdeci">#define nErrorStr(err)</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00811">Errors.h:811</a></div></div>
-<div class="ttc" id="a_errors_8h_html_a0c8cba09ac1e34a9782c81c75e4bb258"><div class="ttname"><a href="_errors_8h.html#a0c8cba09ac1e34a9782c81c75e4bb258">nErrorFromSignal</a></div><div class="ttdeci">#define nErrorFromSignal(err)</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00862">Errors.h:862</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_ac80480cdd19c5a8f5b4152db8dca35ac"><div class="ttname"><a href="_crash_handler_8c.html#ac80480cdd19c5a8f5b4152db8dca35ac">nCrashSetCallback</a></div><div class="ttdeci">nint_t nCrashSetCallback(void(*callback)(const nint_t error, const time_t errorTime, char *errorDesc, size_t errorDescLen, char *stack, size_t stackLen))</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00084">CrashHandler.c:84</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a20dbb99b6949bc8e08729a0e29a05c4d"><div class="ttname"><a href="_errors_8h.html#a20dbb99b6949bc8e08729a0e29a05c4d">nErrorDesc</a></div><div class="ttdeci">#define nErrorDesc(err)</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00842">Errors.h:842</a></div></div>
+<div class="ttc" id="a_nimble_engine_8c_html_aafc14ef2a060e7b49b4ae4a1bdbdc989"><div class="ttname"><a href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a></div><div class="ttdeci">void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00051">NimbleEngine.c:51</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_a19ae6f4137e01731cbcbcd14a5a575f3"><div class="ttname"><a href="_crash_handler_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3">crashMutex</a></div><div class="ttdeci">nMutex_t crashMutex</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00053">CrashHandler.c:53</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a055477c0aa8af2a58f8da7c4621c7b3a"><div class="ttname"><a href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(size_t *errorLen, const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03647">Errors.c:3647</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a5c75a733273f53a047f2e47ed9f93c62"><div class="ttname"><a href="_errors_8h.html#a5c75a733273f53a047f2e47ed9f93c62">nErrorStr</a></div><div class="ttdeci">#define nErrorStr(err)</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00809">Errors.h:809</a></div></div>
+<div class="ttc" id="a_errors_8c_html_acebf5908ffdc939acb0a309cbd1e0434"><div class="ttname"><a href="_errors_8c.html#acebf5908ffdc939acb0a309cbd1e0434">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l03702">Errors.c:3702</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a0c8cba09ac1e34a9782c81c75e4bb258"><div class="ttname"><a href="_errors_8h.html#a0c8cba09ac1e34a9782c81c75e4bb258">nErrorFromSignal</a></div><div class="ttdeci">#define nErrorFromSignal(err)</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00860">Errors.h:860</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00168">Nimble.h:168</a></div></div>
-<div class="ttc" id="a_crash_handler_8c_html_a48e8b9b3ebb135b0fbac3f312ac5f09a"><div class="ttname"><a href="_crash_handler_8c.html#a48e8b9b3ebb135b0fbac3f312ac5f09a">crashCallback</a></div><div class="ttdeci">void(*volatile crashCallback)(const nint_t error, const time_t errorTime, char *errorDesc, size_t errorDescLen, char *stack, size_t stackLen)</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00075">CrashHandler.c:75</a></div></div>
+<div class="ttc" id="a_crash_handler_8c_html_a48e8b9b3ebb135b0fbac3f312ac5f09a"><div class="ttname"><a href="_crash_handler_8c.html#a48e8b9b3ebb135b0fbac3f312ac5f09a">crashCallback</a></div><div class="ttdeci">void(*volatile crashCallback)(const nint_t error, const time_t errorTime, char *errorDesc, size_t errorDescLen, char *stack, size_t stackLen)</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00073">CrashHandler.c:73</a></div></div>
 <div class="ttc" id="a_crash_handler_8c_html_a7cd782bc4b8d7db7b91c4a916141f29e"><div class="ttname"><a href="_crash_handler_8c.html#a7cd782bc4b8d7db7b91c4a916141f29e">nCrashSignal</a></div><div class="ttdeci">_Noreturn void nCrashSignal(const int signum)</div><div class="ttdoc">Calls nCrashSafe() to handle a caught signal.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00158">CrashHandler.c:158</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html_ad0e3de817454a22e515193db085d6e97"><div class="ttname"><a href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a></div><div class="ttdeci">NIMBLE_INLINE void * nFree(void *ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8h_source.html#l00183">NimbleEngine.h:183</a></div></div>
-<div class="ttc" id="a_nimble_engine_8c_html_a60dd01813a26af8aaf44098364af7ff4"><div class="ttname"><a href="_nimble_engine_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a></div><div class="ttdeci">void * nRealloc(void *ptr, const size_t size)</div><div class="ttdoc">Reallocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00067">NimbleEngine.c:67</a></div></div>
+<div class="ttc" id="a_nimble_engine_8c_html_a60dd01813a26af8aaf44098364af7ff4"><div class="ttname"><a href="_nimble_engine_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a></div><div class="ttdeci">void * nRealloc(void *ptr, const size_t size)</div><div class="ttdoc">Reallocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00064">NimbleEngine.c:64</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a527cddcc22f04dbed8fe9768a975ab50"><div class="ttname"><a href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a></div><div class="ttdeci">#define NCONST_STR_LEN(str)</div><div class="ttdoc">Gets the length of a const char * as strlen() would, but at compile time.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00158">Nimble.h:158</a></div></div>
 <div class="ttc" id="a_threads_8c_html_a0c0440efdfb2dc726e0a7f542c93b383"><div class="ttname"><a href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a></div><div class="ttdeci">nint_t nThreadMutexCreate(nMutex_t mutex)</div><div class="ttdoc">Initializes a NULL mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00113">Threads.c:113</a></div></div>
-<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00069">Errors.h:69</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_errors_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00067">Errors.h:67</a></div></div>
 <div class="ttc" id="a_crash_handler_8c_html_a499458e899f416fd65911318a940bb45"><div class="ttname"><a href="_crash_handler_8c.html#a499458e899f416fd65911318a940bb45">nCrashAbort</a></div><div class="ttdeci">_Noreturn void nCrashAbort(const nint_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_handler_8c_source.html#l00168">CrashHandler.c:168</a></div></div>
-<div class="ttc" id="a_nimble_engine_8c_html_aad8a07158d98ca69095634437e3570e5"><div class="ttname"><a href="_nimble_engine_8c.html#aad8a07158d98ca69095634437e3570e5">nStringCopy</a></div><div class="ttdeci">char * nStringCopy(char *restrict dst, const char *restrict src, const size_t len)</div><div class="ttdoc">Copies len characters from src to dst.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00080">NimbleEngine.c:80</a></div></div>
+<div class="ttc" id="a_nimble_engine_8c_html_aad8a07158d98ca69095634437e3570e5"><div class="ttname"><a href="_nimble_engine_8c.html#aad8a07158d98ca69095634437e3570e5">nStringCopy</a></div><div class="ttdeci">char * nStringCopy(char *restrict dst, const char *restrict src, const size_t len)</div><div class="ttdoc">Copies len characters from src to dst.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00077">NimbleEngine.c:77</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

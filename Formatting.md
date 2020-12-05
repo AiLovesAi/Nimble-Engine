@@ -39,7 +39,7 @@ Note that if a function only takes one paramater (or void, which must be specifi
 # Files:
 
 * No line shall be more than 80 characters long unless it is clearly unreasonable to do so (a variable cannot be declared following other rules). The only exception is inline comments.
-* Continued lines shall start with at least one space more than the previous line to denote that the line is continued.
+* Continued lines shall start with at least one space more than the previous line, or the start of the line, to denote that the line is continued.
 * The first non-comment or non-space in header files must be a C++ wrapper:
 ```C
 #ifdef __cplusplus
