@@ -8,7 +8,7 @@
  *
  */
 
-#include "../../../include/Nimble/Output/Errors.h"
+#include "../../../include/Nimble/Output/Errors/Errors.h"
 
 /**
  * @file Threads.c

@@ -1,4 +1,4 @@
-#include "../NimbleLicense.h"
+#include "../../NimbleLicense.h"
 /*
  * CrashHandler.h
  * Nimble Game Engine
@@ -46,7 +46,7 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_CRASH_HANDLER_H
 #define NIMBLE_ENGINE_CRASH_HANDLER_H /**< Header definition */
 
-#include "../NimbleEngine.h"
+#include "../../NimbleEngine.h"
 
 #include <time.h>
 

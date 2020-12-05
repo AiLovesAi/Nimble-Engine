@@ -53,15 +53,15 @@ extern "C" {
 
 #include "Network/Network.h"
 
-#include "Output/CrashHandler.h"
-#include "Output/Errors.h"
+#include "Output/Errors/Crash.h"
+#include "Output/Errors/Errors.h"
 #include "Output/Files.h"
 #include "Output/Logging.h"
 
 #include "System/Hardware.h"
 #include "System/Threads.h"
 
-#include <inttypes.h>
+
 #include <time.h>
 
 

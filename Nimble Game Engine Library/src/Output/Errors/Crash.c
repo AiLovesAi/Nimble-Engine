@@ -8,7 +8,7 @@
  *
  */
 
-#include "../../include/Nimble/Output/CrashHandler.h"
+#include "../../../include/Nimble/Output/Errors/Crash.h"
 
 /**
  * @file CrashHandler.c
@@ -46,7 +46,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "../../../include/Nimble/Output/Errors.h"
+#include "../../../include/Nimble/Output/Errors/Errors.h"
 
 
 static _Bool crashtest = 0;

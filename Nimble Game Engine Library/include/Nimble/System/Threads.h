@@ -46,7 +46,7 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_THREADS_H
 #define NIMBLE_ENGINE_THREADS_H /**< Header definition */
 
-#include "../../NimbleEngine.h"
+#include "../NimbleEngine.h"
 
 #define NIMBLE_THREADS_WINAPI  1
 #define NIMBLE_THREADS_PTHREAD 2
