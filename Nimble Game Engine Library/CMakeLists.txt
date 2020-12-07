@@ -8,6 +8,7 @@
 
 cmake_minimum_required(VERSION 3.18)
 set(ver 0.1.0)
+set(GCC_COMPILE_FLAGS, "-Ofast -Os -fno-omit-frame-pointer -Wall")
 
 project(NimbleGameEngineLibrary VERSION ${ver})
 
@@ -65,6 +66,7 @@ file(GLOB dx12
      "include/Nimble/Graphics/DirectX12/*.h"
      )
 
+add_definitions(${GCC_COMPILE_FLAGS})
 add_library(NimbleOGL_${ver} SHARED ${ogl})
 add_library(NimbleVulkan_${ver} SHARED ${vulkan})
 add_library(NimbleDX11_${ver} SHARED ${dx11})

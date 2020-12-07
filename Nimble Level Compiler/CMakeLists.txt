@@ -1,5 +1,16 @@
-cmake_minimum_required(VERSION 3.17)
+#
+# CmakeLists.txt
+# Nimble Game Engine
+#
+# Created by Avery Aaron on 2020-08-09.
+# Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+#
 
-project(NimbleLevelCompiler VERSION 0.1.0)
+cmake_minimum_required(VERSION 3.18)
+set(ver 0.1.0)
+set(GCC_COMPILE_FLAGS, "-Ofast -Os -fno-omit-frame-pointer -Wall")
 
+project(NimbleLevelCompiler VERSION ${ver})
+
+add_definitions(${GCC_COMPILE_FLAGS})
 add_executable(NimbleLevelCompiler main.c)

@@ -205,7 +205,6 @@ char *nSysGetCPUInfo(size_t *len)
     /* CPU is not ARM, but somehow ARM is defined. */
     if (info.cpuidBits.impl != 'A')
     {
-        /** @todo Search for other processors (mainly new Apple ARM processors) */
         const char unknownCPUStr[] = "Unknown";
         cpuInfoStr = nAlloc(sizeof(unknownCPUStr));
         nStringCopy(cpuInfoStr, unknownCPUStr,
