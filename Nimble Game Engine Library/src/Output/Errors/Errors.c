@@ -100,7 +100,7 @@ void nErrorThrow(const nint_t error, const char *info, size_t infoLen)
          einfoCallbackStr, NCONST_STR_LEN(einfoCallbackStr));
         nCrashSafe(NERROR_NULL, crashErrorTime, crashErrorDesc,
          crashErrorDescLen);
-        /*NO RETURN */
+        /* NO RETURN */
     }
     
     size_t errorDescLen;
@@ -121,6 +121,7 @@ void nErrorThrow(const nint_t error, const char *info, size_t infoLen)
     size_t stackLen, stackLevels;
     char *stackStr = nErrorGetStacktrace(&stackLen, &stackLevels);
     
+    /* Call the user-defined error callback function. */
     errorCallback(error, errorTime, errorDescStr, errorDescLen, stackStr, stackLen);
 
     stackStr = nFree(stackStr);
@@ -135,14 +136,17 @@ char *nErrorToString(size_t *errorLen, const nint_t error,
         infoLen = strlen(info);
     }
     
+    /* Get error information. */
     const char *errorStr = nErrorStr(error);
     const size_t errorStrLen = nErrorStrLen(error);
     const char *errorDescStr = nErrorDesc(error);
     const size_t errorDescStrLen = nErrorDescLen(error);
+
     const char formatStr[] = "Info: %s\nError: %s: %s\n";
     const size_t formatStrLen = NCONST_STR_FORMAT_LEN(formatStr, 3, 0, 0, 0);
     size_t errLen;
     char *dst;
+    
     if (info == NULL)
     {
         errLen = formatStrLen + errorStrLen + errorDescStrLen +

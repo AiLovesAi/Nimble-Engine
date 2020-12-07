@@ -145,6 +145,7 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
     
     size_t stackLen;
     char *stackStr = nErrorGetStacktrace(&stackLen, NULL);
+    /* Call the user-defined crash callback function. */
     crashCallback(error, errorTime, errorDescStr, errorDescLen, stackStr,
      stackLen);
     

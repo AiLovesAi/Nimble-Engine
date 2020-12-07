@@ -198,7 +198,7 @@ nFree(void *ptr)
  * {
  *     char original[] = "Hello world.";
  *     char *new = nAlloc(sizeof(original));
- *     nStringCopy(original, new, sizeof(original) - 1);
+ *     nStringCopy(original, new, NCONST_STR_LEN(original));
  *     printf("New string: %s\n", new);
  *     return EXIT_SUCCESS;
  * }
@@ -208,11 +208,11 @@ nFree(void *ptr)
  * @param[in] src The pointer to free.
  * @param[in] len The number of characters to copy. This must not include the
  * null terminator.
- * @return @p dst is always returned.
+ * @return The number of successfully copied bytes is returned.
  */
 NIMBLE_EXTERN
 NIMBLE_FREEME
-char *
+size_t
 nStringCopy(char *restrict dst,
             const char *restrict src,
             const size_t len

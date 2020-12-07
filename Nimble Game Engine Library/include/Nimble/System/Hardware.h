@@ -58,7 +58,8 @@ extern "C" {
  *
  * int main(int argc, char **argv)
  * {
- *     char *cpuInfo = nSysGetCPUInfo();
+ *     size_t len;
+ *     char *cpuInfo = nSysGetCPUInfo(&len);
  *     if (cpuInfo == NULL)
  *     {
  *         fprintf(stderr, "Failed to get error string.\n");
@@ -69,14 +70,14 @@ extern "C" {
  * }
  * @endcode
  *
- * @param[out] errorLen The length of the string returned. This can be @c #NULL.
+ * @param[out] len The length of the string returned. This can be @c #NULL.
  * @return A pointer to the string of the CPU info is returned if successful;
  * otherwise @c #NULL is returned.
  */
 NIMBLE_EXTERN
 NIMBLE_FREEME
 char *
-nSysGetCPUInfo(void)
+nSysGetCPUInfo(size_t *len)
 __attribute__((warn_unused_result))
 ;
 

@@ -54,6 +54,7 @@ void *nAlloc(const size_t size)
 
     if (!ptr)
     {
+        /* Check if successfully allocated. */
         nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY), nErrorDescLen(NERROR_NO_MEMORY));
         /* NO RETURN */
     }
@@ -65,42 +66,42 @@ void *nRealloc(void *ptr, const size_t size)
 {
     ptr = realloc(ptr, size);
 
+    /* Check if successfully allocated. */
     if (!ptr)
     {
         nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY),
          nErrorDescLen(NERROR_NO_MEMORY));
+         /* NO RETURN */
     }
 
     return ptr;
 }
 
-char *nStringCopy(char *restrict dst, const char *restrict src,
+size_t nStringCopy(char *const restrict dst, const char *const restrict src,
  const size_t len)
 {
     if (!src)
     {
         const char einfoNullStr[] = "Source string NULL in nStringCopy().";
         nErrorThrow(NERROR_NULL, einfoNullStr, NCONST_STR_LEN(einfoNullStr));
-        return NULL;
-    }
-
-    if (!dst)
-    {
-        dst = nAlloc(len + 1);
+        return 0;
     }
 
     char *d = dst;
     const char *s = src;
     size_t l = len;
 
+    /* For each character that is not equal to the null terminator,
+     * src char = dst char. */
     while (l-- && (*s != '\0'))
     {
         *d++ = *s++;
     }
     
+    /* Ensure the string is null-terminated. */
     dst[len] = '\0';
 
-    return dst;
+    return len - l;
 }
 
 
@@ -127,6 +128,7 @@ nint_t nEngineInit(void (*errorCallback)
  )
 {
     /** @todo Make init function, use errno */
+    /* Add nEngineExit() to the exit() functions. */
     if (atexit(nEngineExit) != NSUCCESS)
     {
         const time_t errorTime = time(NULL);
@@ -138,6 +140,7 @@ nint_t nEngineInit(void (*errorCallback)
         nCrashSafe(err, errorTime, errorDescStr, errorDescLen);
     }
 
+    /* Set signal callbacks. */
     signal(SIGTERM, nEngineExitSignal);
     signal(SIGABRT, nCrashSignal);
     signal(SIGFPE, nCrashSignal);
