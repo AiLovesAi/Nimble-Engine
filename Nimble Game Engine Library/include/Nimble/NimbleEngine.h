@@ -99,9 +99,7 @@ NIMBLE_EXTERN
 NIMBLE_FREEME
 void *
 nAlloc(const size_t size)
-#ifdef __GNUC__
 __attribute__((warn_unused_result))
-#endif
 ;
 
 /**
@@ -142,9 +140,7 @@ NIMBLE_EXTERN
 NIMBLE_FREEME
 void *
 nRealloc(void*ptr, const size_t size)
-#ifdef __GNUC__
 __attribute__((warn_unused_result))
-#endif
 ;
 
 /**

@@ -84,10 +84,11 @@ extern "C" {
 #include <stdlib.h>
 
 #define NIMBLE_WINDOWS 1
-#define NIMBLE_MACOS 2
-#define NIMBLE_UNIX 3
-#define NIMBLE_LINUX 4
-#define NIMBLE_BSD 5
+#define NIMBLE_MACOS   2
+#define NIMBLE_UNIX    3
+#define NIMBLE_LINUX   4
+#define NIMBLE_BSD     5
+#define NIMBLE_ANDROID 6
 
 #if defined(_POSIX_SOURCE)
 #  define NIMBLE_POSIX 1
@@ -95,18 +96,32 @@ extern "C" {
 
 #ifdef _WIN32
 #  define NIMBLE_OS NIMBLE_WINDOWS
-#elif (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh) /// @todo Figure out why this isn't working
+#elif (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh)
 #  define NIMBLE_OS NIMBLE_MACOSX
-#elif __ANDROID__
+#elif defined(__ANDROID__)
 #  define NIMBLE_OS NIMBLE_ANDROID
-#elif defined(NIMBLE_BSD)
-#  define defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
+#  define NIMBLE_OS NIMBLE_BSD
 #elif defined(__linux__) || defined(__linux) || defined(linux)
 #  define NIMBLE_OS NIMBLE_LINUX
 #elif defined(__unix__) || defined(__unix)
 #  define NIMBLE_OS NIMBLE_UNIX
 #else
 #  error OS not supported.
+#endif
+
+#define NIMBLE_INTEL 1
+#define NIMBLE_AMD   2
+#define NIMBLE_ARM   3
+
+#if defined(__i386__) || defined(__ia64__)
+#  define NIMBLE_ARCH NIMBLE_INTEL
+#elif defined(__amd64__)
+#  define NIMBLE_ARCH NIMBLE_AMD
+#elif defined(__arm__) || defined(__aarch64__)
+#  define NIMBLE_ARCH NIMBLE_ARM
+#else
+#  error CPU architecture not supported.
 #endif
 
 #if UINTPTR_MAX == 0xffffffff
@@ -158,6 +173,9 @@ extern "C" {
 #define NCONST_STR_LEN(str) sizeof(str) - 1 /**< Gets the length of a const char * as strlen() would, but at compile time. */
 #define NCONST_STR_FORMAT_LEN(str, spec1, spec2, spec3, spec4) \
 NCONST_STR_LEN(str) - (2 * spec1) - (3 * spec2) - (4 * spec3) - (5 * spec4) /**< Gets the length of a formatted string without the format characters. */
+
+#define NSTR(str) #str /**< Stringifies the argument. */
+#define NSTR_VAL(str) NSTR(str) /**< Stringifies the argument's constant value. */
 
 
 typedef int_fast8_t   nbyte_t;

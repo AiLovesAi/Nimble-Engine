@@ -184,7 +184,11 @@ nint_t nErrorSetCallback(void (*callback)(const nint_t error,
 
 char *nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)
 {
-    /** @todo Get stack trace. Remember *stackLevels is max levels */
+    /** @todo Get stack trace. Remember stackLevels's value is max levels */
+#if NIMBLE_ARCH == NIMBLE_INTEL
+#elif NIMBLE_ARCH == NIMBLE_AMD
+#elif NIMBLE_ARCH == NIMBLE_ARM
+#endif
     return NULL;
 }
 

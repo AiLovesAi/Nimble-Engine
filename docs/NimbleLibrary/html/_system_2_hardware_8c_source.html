@@ -72,7 +72,111 @@ $(function() {
 <div class="title">Hardware.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_system_2_hardware_8c.html">Go to the documentation of this file.</a><div class="fragment"></div><!-- fragment --></div><!-- contents -->
+<a href="_system_2_hardware_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../../include/Nimble/NimbleLicense.h&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Hardware.c</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Nimble Game Engine</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Created by Avery Aaron on 2020-12-05.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Copyright (C) 2020 Avery Aaron &lt;business.a3ology@gmail.com&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../../include/Nimble/System/Hardware.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#if NIMBLE_ARCH == NIMBLE_ARM</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/* Processor part numbers: */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#  define CORTEX_A53 0xD03</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="_system_2_hardware_8h.html#aaa5c8312559b4faf82a378d07fb399bf">   52</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="_system_2_hardware_8c.html#a926af63606ab8ef1315edf52f878d8aa">nSysGetCPUInfo</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#if (NIMBLE_ARCH == NIMBLE_INTEL) || (NIMBLE_ARCH == NIMBLE_AMD)</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    uint32_t brand[12] = {0};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> eax = 0x80000002;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">for</span> (<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> i = 0; i &lt; 12; eax++)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">asm</span>(</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="stringliteral">&quot;mov %4,%%eax\n&quot;</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="stringliteral">&quot;cpuid\n&quot;</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="stringliteral">&quot;mov %%eax,%0\n&quot;</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="stringliteral">&quot;mov %%ebx,%1\n&quot;</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="stringliteral">&quot;mov %%ecx,%2\n&quot;</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="stringliteral">&quot;mov %%edx,%3\n&quot;</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            : <span class="stringliteral">&quot;=g&quot;</span> (brand[i++]), <span class="stringliteral">&quot;=g&quot;</span> (brand[i++]),</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;              <span class="stringliteral">&quot;=g&quot;</span> (brand[i++]), <span class="stringliteral">&quot;=g&quot;</span> (brand[i++])</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            : <span class="stringliteral">&quot;r&quot;</span> (eax)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            : <span class="stringliteral">&quot;%eax&quot;</span>, <span class="stringliteral">&quot;%ebx&quot;</span>, <span class="stringliteral">&quot;%ecx&quot;</span>, <span class="stringliteral">&quot;%edx&quot;</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        );</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">if</span> (!brand[0])</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoFailureStr[] = <span class="stringliteral">&quot;nSysGetCPUInfo() failed to run the &quot;</span>\</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; <span class="stringliteral">&quot;&#39;cpuid&#39; instruction to get the CPU info (x86).&quot;</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a>(<a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>, einfoFailureStr,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;         <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoFailureStr));</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">char</span> *cpuInfoStr = <a class="code" href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a>(<span class="keyword">sizeof</span>(brand));</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    memcpy(cpuInfoStr, brand, <span class="keyword">sizeof</span>(brand));</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">return</span> cpuInfoStr;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#elif NIMBLE_ARCH == NIMBLE_ARM</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    scruct cpuidBits {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        uint32_t minor : 4, <span class="comment">/* Revision number */</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                 part  : 12, <span class="comment">/* Part number */</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                 arch  : 4, <span class="comment">/* Architecture */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                 major : 4, <span class="comment">/* Variant number */</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                 impl  : 8; <span class="comment">/* Implementer (&#39;A&#39;) */</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    };</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">union </span>{</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keyword">struct </span>cpuidBits bits;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        uint32_t val;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    } info = {0};</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">asm</span>(</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="stringliteral">&quot;mrs %%MIDR_EL1, %0\n&quot;</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        : <span class="stringliteral">&quot;=r&quot;</span> (info.val)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        : <span class="comment">/* No input. */</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        : <span class="comment">/* No clobber. */</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    );</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">if</span> (!info.val)</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoFailureStr[] = <span class="stringliteral">&quot;nSysGetCPUInfo() failed to run the &quot;</span>\</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; <span class="stringliteral">&quot;&#39;mrs&#39; instruction to get the CPU info using the &#39;MIDR_EL1&#39; register &quot;</span>\</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; <span class="stringliteral">&quot;(ARM).&quot;</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a>(<a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>, einfoFailureStr,</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;         <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoFailureStr));</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">switch</span> (info.cpuidBits.part)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">case</span> CORTEX_A53:</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">case</span> 2:</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">char</span> *cpuInfoStr;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">return</span> cpuInfoStr;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">// Hardware.c</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a></div><div class="ttdeci">@ NERROR_INTERNAL_FAILURE</div><div class="ttdoc">An internal error occurred.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00065">ErrorValues.h:65</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a12be5e8e92cdd139422dd1bde5b8a187"><div class="ttname"><a href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00088">Errors.c:88</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00170">Nimble.h:170</a></div></div>
+<div class="ttc" id="a_nimble_engine_8c_html_aafc14ef2a060e7b49b4ae4a1bdbdc989"><div class="ttname"><a href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a></div><div class="ttdeci">void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00051">NimbleEngine.c:51</a></div></div>
+<div class="ttc" id="a_system_2_hardware_8c_html_a926af63606ab8ef1315edf52f878d8aa"><div class="ttname"><a href="_system_2_hardware_8c.html#a926af63606ab8ef1315edf52f878d8aa">nSysGetCPUInfo</a></div><div class="ttdeci">char * nSysGetCPUInfo(void)</div><div class="ttdoc">Gets the CPU info of the system.</div><div class="ttdef"><b>Definition:</b> <a href="_system_2_hardware_8c_source.html#l00052">Hardware.c:52</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00186">Nimble.h:186</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a527cddcc22f04dbed8fe9768a975ab50"><div class="ttname"><a href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a></div><div class="ttdeci">#define NCONST_STR_LEN(str)</div><div class="ttdoc">Gets the length of a const char * as strlen() would, but at compile time.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00173">Nimble.h:173</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

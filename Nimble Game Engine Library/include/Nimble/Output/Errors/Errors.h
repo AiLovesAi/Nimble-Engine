@@ -61,7 +61,6 @@ extern "C" {
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * int main(int argc, char **argv)
@@ -99,7 +98,6 @@ nErrorThrow(const nint_t error,
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * int main(int argc, char **argv)
@@ -124,7 +122,8 @@ nErrorThrow(const nint_t error,
  * diagnose the error. This can be @c #NULL.
  * @param[in] infoLen The length of the @p info argument. A length of zero (0)
  * uses strlen() to determine length.
- * @return @p dst is returned if successful; otherwise @c #NULL is returned.
+ * @return A pointer to the string describing @p error is returned if successful;
+ * otherwise @c #NULL is returned.
  */
 NIMBLE_EXTERN
 NIMBLE_FREEME
@@ -134,9 +133,7 @@ nErrorToString(size_t *errorLen,
                const char *info,
                size_t infoLen
                )
-#ifdef __GNUC__
 __attribute__((warn_unused_result))
-#endif
 ;
 
 /**
@@ -147,7 +144,6 @@ __attribute__((warn_unused_result))
  * @par Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <time.h>
  * #include <Nimble/NimbleEngine.h>
  *
@@ -208,7 +204,6 @@ nErrorSetCallback(void (*callback)(
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * int main(int argc, char **argv)
@@ -228,8 +223,9 @@ nErrorSetCallback(void (*callback)(
  * @param[out] stackLen The length of the string returned. This can be @c #NULL.
  * @param[in,out] stackLevels The number of levels found on the stack. If the
  * value of this is nonzero when passed, it will act as the maximum number of
- * stack levels to be returned in @p dst. This can be @c #NULL.
- * @return @p dst is returned if successful; otherwise the program crashes.
+ * stack levels to be returned. This can be @c #NULL.
+ * @return A pointer to the string of the stack is returned if successful;
+ * otherwise @c #NULL is returned.
  *
  * @note Each time a function is called, it is added to the stack. When a
  * function returns, it is removed from the stack.
@@ -240,9 +236,7 @@ char *
 nErrorGetStacktrace(size_t *stackLen,
                     size_t *stackLevels
                     )
-#ifdef __GNUC__
 __attribute__((warn_unused_result))
-#endif
 ;
 
 #endif // NIMBLE_ENGINE_ERRORS_H
