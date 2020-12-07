@@ -175,7 +175,7 @@ extern "C" {
 NCONST_STR_LEN(str) - (2 * spec1) - (3 * spec2) - (4 * spec3) - (5 * spec4) /**< Gets the length of a formatted string without the format characters. */
 
 #define NSTR(str) #str /**< Stringifies the argument. */
-#define NSTR_VAL(str) NSTR(str) /**< Stringifies the argument's constant value. */
+#define NSTR_VAL(str) NSTR(str) /**< Stringifies the argument's defined value (for macros only). */
 
 
 typedef int_fast8_t   nbyte_t;

@@ -65,12 +65,43 @@
 #endif
 
 #if NIMBLE_ARCH == NIMBLE_ARM
+/* Architecture definitions */
+#  define ARMv4        0x1
+#  define ARMv4T       0x2
+#  define ARMv5        0x3
+#  define ARMv5T       0x4
+#  define ARMv5TE      0x5
+#  define ARMv5TEJ     0x6
+#  define ARMv6        0x7
+#  define ARMv7        0x8
+#  define ARMv7f       0x9
+#  define ARMv7s       0xa
+#  define ARMv7k       0xb
+#  define ARMv8        0xc
+#  define ARM_EXTENDED 0xf
 
-/* Processor part numbers */
-#  define CORTEX_A53 0xD03
+/* Processor part definitions */
+#  define SWIFT              0x0
+#  define CYCLONE            0x1
+#  define TYPHOON            0x2
+#  define TYPHOON_CAPRI      0x3
+#  define TWISTER            0x4
+#  define TWISTER_ELBA_MALTA 0x5
+#  define HURRICANE          0x6
+#  define HURRICANE_MYST     0x7
+#  define ARM_920T           0x920
+#  define ARM_926EJS         0x926
+#  define ARM_1136JFS        0xB36
+#  define ARM_1176JZFS       0xB76
+#  define CORTEX_A5          0xC05
+#  define CORTEX_A7          0xC07
+#  define CORTEX_A8          0xC08
+#  define CORTEX_A9          0xC09
+#  define CORTEX_A53         0xD03
+#  define CORTEX_A55         0xD05
 
 
-/* Info register functions. */
+/* Info register functions */
 #  ifdef NIMBLE_64BIT
 #    define nGetInfoReg(val) ({\
     asm(\
@@ -130,12 +161,12 @@ char *nSysGetCPUInfo(size_t *len)
     }
 
     /* Copy value to "cpuInfoStr". */
-    const size_t l = strlen((char *) brand);
-    char *cpuInfoStr = nAlloc(l + 1);
-    memcpy(cpuInfoStr, brand, l);
-    cpuInfoStr[l] = '\0';
-    
+    size_t l = strlen((char *) brand);
     *len = l;
+    l++;
+    char *cpuInfoStr = nAlloc(l);
+    memcpy(cpuInfoStr, brand, l);
+    
     return cpuInfoStr;
 #elif NIMBLE_ARCH == NIMBLE_ARM
     /* Use a union to share the data between a uint32_t and a structure defining
@@ -174,6 +205,7 @@ char *nSysGetCPUInfo(size_t *len)
     /* CPU is not ARM, but somehow ARM is defined. */
     if (info.cpuidBits.impl != 'A')
     {
+        /** @todo Search for other processors (mainly new Apple ARM processors) */
         const char unknownCPUStr[] = "Unknown";
         cpuInfoStr = nAlloc(sizeof(unknownCPUStr));
         nStringCopy(cpuInfoStr, unknownCPUStr,
@@ -187,15 +219,104 @@ char *nSysGetCPUInfo(size_t *len)
     size_t l = NCONST_STR_LEN(armStr);
     nStringCopy(cpuInfoStr, armStr, NCONST_STR_LEN(armStr));
 
+    /** @todo Find more part and architecture values for more support. */
     /* Identify CPU part. */
     switch (info.cpuidBits.part)
     {
-        /** @todo More cases here. */
+        case SWIFT:
+            const char partStr[] = "SWIFT";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case CYCLONE:
+            const char partStr[] = "CYCLONE";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case TYPHOON:
+            const char partStr[] = "TYPHOON";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case TYPHOON_CAPRI:
+            const char partStr[] = "TYPHOON-CAPRI";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case TWISTER:
+            const char partStr[] = "TWISTER";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case TWISTER_ELBA_MALTA:
+            const char partStr[] = "TWISTER-ELBA-MALTA";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case HURRICANE:
+            const char partStr[] = "HURRICANE";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case HURRICANE_MYST:
+            const char partStr[] = "HURRICANE-MYST";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case HURRICANE:
+            const char partStr[] = "HURRICANE";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case ARM_920T:
+            const char partStr[] = "920T";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case ARM_926EJS:
+            const char partStr[] = "926EJS";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case ARM_1136JFS:
+            const char partStr[] = "1136JFS";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case ARM_1176JZFS:
+            const char partStr[] = "1176JZFS";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case CORTEX_A5:
+            const char partStr[] = "CORTEX-A5";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case CORTEX_A7:
+            const char partStr[] = "CORTEX_A7";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case CORTEX_A8:
+            const char partStr[] = "CORTEX_A8";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case CORTEX_A9:
+            const char partStr[] = "CORTEX_A9";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
         case CORTEX_A53:
-            const char cortexA53Str[] = "CORTEX-A53";
-            nStringCopy(cpuInfoStr + l, cortexA53Str,
-             NCONST_STR_LEN(cortexA53Str));
-            l += NCONST_STR_LEN(cortexA53Str);
+            const char partStr[] = "CORTEX-A53";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
+            break;
+        case CORTEX_A55:
+            const char partStr[] = "CORTEX-A55";
+            nStringCopy(cpuInfoStr + l, partStr, NCONST_STR_LEN(partStr));
+            l += NCONST_STR_LEN(partStr);
             break;
         default:
             const char unknownCPUStr[] = "Unknown";
@@ -220,10 +341,67 @@ char *nSysGetCPUInfo(size_t *len)
     /* Identify CPU architecture. */
     switch (info.cpuidBits.arch)
     {
-        /** @todo More cases here. */
-        case 0xf:
-            /** @todo "Architectural features are individually identified in the ID_* registers, see 'ID registers'." */
+        case ARMv4:
+            const char archStr[] = "ARMv4";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
             break;
+        case ARMv4T:
+            const char archStr[] = "ARMv4T";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+        case ARMv5:
+            const char archStr[] = "ARMv5";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+        case ARMv5T:
+            const char archStr[] = "ARMv5T";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+        case ARMv5TE:
+            const char archStr[] = "ARMv5TE";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+        case ARMv5TEJ:
+            const char archStr[] = "ARMv5TEJ";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+        case ARMv6:
+            const char archStr[] = "ARMv6";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+        case ARMv7:
+            const char archStr[] = "ARMv7";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+        case ARMv7f:
+            const char archStr[] = "ARMv7f";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+        case ARMv7s:
+            const char archStr[] = "ARMv7s";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+        case ARMv7k:
+            const char archStr[] = "ARMv7k";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+        case ARMv8:
+            const char archStr[] = "ARMv8";
+            nStringCopy(cpuInfoStr + l, archStr, NCONST_STR_LEN(archStr));
+            l += NCONST_STR_LEN(archStr);
+            break;
+
         default:
             const char unknownArchStr[] = "Unknown architecture";
             nStringCopy(cpuInfoStr + l, unknownArchStr,
