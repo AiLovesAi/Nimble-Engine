@@ -228,7 +228,7 @@ char *nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)
     size_t level, len = 0;
     for (level = 0; stack && (level < maxLevels); level++)
     {
-        len += snprintf(stackStr, maxLineLen, formatStr, stack->eip, (char *) &stack->eip); /** @todo Find function name from eip function poiter */
+        len += snprintf(stackStr + len, maxLineLen, formatStr, stack->eip, (char *) &stack->eip); /** @todo Find function name from eip function poiter */
         stack = stack->ebp;
     }
 
