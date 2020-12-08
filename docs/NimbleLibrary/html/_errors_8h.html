@@ -189,7 +189,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the string of the stack is returned if successful; otherwise <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code> is returned.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Get stack trace. Remember stackLevels's value is max levels </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Get stack trace. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00189">189</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
@@ -224,16 +224,17 @@ Functions</h2></td></tr>
 <div class="line">    <span class="keyword">struct </span>tm *timeInfo = localtime(&amp;errorTime);</div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span> format[] = <span class="stringliteral">&quot;%x %X %Z&quot;</span>;</div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span> example = <span class="stringliteral">&quot;01/01/2020 16:30:45 GMT&quot;</span></div>
-<div class="line">    <span class="keywordtype">char</span> *timeString = <a class="code" href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a>(<span class="keyword">sizeof</span>(example));</div>
-<div class="line">    <span class="keywordflow">if</span> (timeString == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line">    <span class="keywordtype">char</span> *timeStr = <a class="code" href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a>(<span class="keyword">sizeof</span>(example));</div>
+<div class="line">    <span class="keywordflow">if</span> (timeStr == <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
 <div class="line">    {</div>
-<div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to allocate to timeString.\n&quot;</span>);</div>
+<div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to allocate to timeStr.\n&quot;</span>);</div>
 <div class="line">        <span class="keywordflow">return</span>;</div>
 <div class="line">    }</div>
-<div class="line">    strftime(timeString, <span class="keyword">sizeof</span>(example), format, timeInfo);</div>
+<div class="line">    strftime(timeStr, <span class="keyword">sizeof</span>(example), format, timeInfo);</div>
 <div class="line"> </div>
 <div class="line">    fprintf(stderr, <span class="stringliteral">&quot;\nAn error occurred at %s:\nError description: &quot;</span>\</div>
-<div class="line">     <span class="stringliteral">&quot;%s\nStack trace: %s\n\n&quot;</span>, timeString, errorDesc, stack);</div>
+<div class="line">     <span class="stringliteral">&quot;%s\nStack trace: %s\n\n&quot;</span>, timeStr, errorDesc, stack);</div>
+<div class="line">    timeStr = <a class="code" href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a>(timeStr);</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
@@ -396,13 +397,14 @@ Functions</h2></td></tr>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="a_errors_8c_html_a12be5e8e92cdd139422dd1bde5b8a187"><div class="ttname"><a href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00088">Errors.c:88</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00170">Nimble.h:170</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00173">Nimble.h:173</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00052">ErrorValues.h:52</a></div></div>
-<div class="ttc" id="a_nimble_engine_8c_html_aafc14ef2a060e7b49b4ae4a1bdbdc989"><div class="ttname"><a href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a></div><div class="ttdeci">void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00051">NimbleEngine.c:51</a></div></div>
+<div class="ttc" id="a_nimble_engine_8c_html_aafc14ef2a060e7b49b4ae4a1bdbdc989"><div class="ttname"><a href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a></div><div class="ttdeci">void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00053">NimbleEngine.c:53</a></div></div>
 <div class="ttc" id="a_errors_8c_html_a055477c0aa8af2a58f8da7c4621c7b3a"><div class="ttname"><a href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(size_t *errorLen, const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00131">Errors.c:131</a></div></div>
 <div class="ttc" id="a_errors_8c_html_acebf5908ffdc939acb0a309cbd1e0434"><div class="ttname"><a href="_errors_8c.html#acebf5908ffdc939acb0a309cbd1e0434">nErrorGetStacktrace</a></div><div class="ttdeci">char * nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00189">Errors.c:189</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
-<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00186">Nimble.h:186</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00189">Nimble.h:189</a></div></div>
+<div class="ttc" id="a_nimble_engine_8h_html_ad0e3de817454a22e515193db085d6e97"><div class="ttname"><a href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a></div><div class="ttdeci">NIMBLE_INLINE void * nFree(void *ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8h_source.html#l00186">NimbleEngine.h:186</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

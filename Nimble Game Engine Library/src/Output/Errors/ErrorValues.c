@@ -45,6 +45,7 @@ const char * const nErrorStrings[] = {
     "NERROR_MIN",
     
     "NERROR_UNKNOWN",
+    "NERROR_WARN",
     "NERROR_INTERNAL_FAILURE",
     "NERROR_NULL",
     "NERROR_INV_ERROR",
@@ -757,6 +758,7 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN("NERROR_MIN"),
     
     NCONST_STR_LEN("NERROR_UNKNOWN"),
+    NCONST_STR_LEN("NERROR_WARN"),
     NCONST_STR_LEN("NERROR_INTERNAL_FAILURE"),
     NCONST_STR_LEN("NERROR_NULL"),
     NCONST_STR_LEN("NERROR_INV_ERROR"),
@@ -1469,8 +1471,10 @@ const size_t nErrorStrLengths[] = {
  "caused by programmer error or a memory corruption issue."
 
 #define nErrDescUnknownStr           "An unknown error occurred."
-#define nErrDescInternalFailureStr   "An internal error occurred within "\
- "the Nimble game engine."
+#define nErrDescWarnStr              "A warning was triggered that requires "\
+ "attention by the user. The info given by this error will describe the issue."
+#define nErrDescInternalFailureStr   "An internal error occurred within the "\
+ "Nimble game engine."
 #define nErrDescNullStr              "A pointer was null when a nonnull "\
  "pointer was expected."
 #define nErrDescInvErrorStr          "An error passed to a function was "\
@@ -1868,6 +1872,7 @@ const char * const nErrorDescriptions[] = {
     nErrDescMinStr,
     
     nErrDescUnknownStr,
+    nErrDescWarnStr,
     nErrDescInternalFailureStr,
     nErrDescNullStr,
     nErrDescInvErrorStr,
@@ -2579,6 +2584,7 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescMinStr),
     
     NCONST_STR_LEN(nErrDescUnknownStr),
+    NCONST_STR_LEN(nErrDescWarnStr),
     NCONST_STR_LEN(nErrDescInternalFailureStr),
     NCONST_STR_LEN(nErrDescNullStr),
     NCONST_STR_LEN(nErrDescInvErrorStr),

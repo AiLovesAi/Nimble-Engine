@@ -188,9 +188,27 @@ nint_t nErrorSetCallback(void (*callback)(const nint_t error,
 
 char *nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)
 {
-    /** @todo Get stack trace. Remember stackLevels's value is max levels */
-#if NIMBLE_ARCH == NIMBLE_INTEL
-#elif NIMBLE_ARCH == NIMBLE_AMD
+    size_t maxLevels = 128;
+    if (*stackLevels > 0)
+    {
+        maxLevels = *stackLevels;
+    }
+
+    /** @todo Get stack trace. */
+#if (NIMBLE_ARCH == NIMBLE_INTEL) | (NIMBLE_ARCH == NIMBLE_AMD)
+    struct frame {
+        struct frame *ebp;
+        uint32_t eip;
+    };
+    struct frame *stack = {0};
+
+    asm("movl %%ebp, %0\n" : "=r" (stack) ::);
+
+    for (size_t level = 0; stack && (level < maxLevels); level++)
+    {
+        printf("%08x, %s\n", stack->eip, (char *) &stack->eip);
+        stack = stack->ebp;
+    }
 #elif NIMBLE_ARCH == NIMBLE_ARM
 #endif
     return NULL;

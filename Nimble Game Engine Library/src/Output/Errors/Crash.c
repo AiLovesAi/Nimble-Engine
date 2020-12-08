@@ -1,6 +1,6 @@
 #include "../../include/Nimble/NimbleLicense.h"
 /*
- * CrashHandler.c
+ * Crash.c
  * Nimble Game Engine
  *
  * Created by Avery Aaron on 2020-08-19.
@@ -11,7 +11,7 @@
 #include "../../../include/Nimble/Output/Errors/Crash.h"
 
 /**
- * @file CrashHandler.c
+ * @file Crash.c
  * @author Avery Aaron
  * @copyright
  * @parblock
@@ -53,7 +53,7 @@ static _Bool crashtest = 0;
 nMutex_t crashMutex = NULL;
 
 /**
- * @brief The default crash handler callback.
+ * @brief The default crash callback.
  * @param[in] error The error that caused the crash.
  * @param[in] errorDesc The description of @p error.
  * @param[in] errorDescLen The length of the @p errorDesc argument. A length of
@@ -62,28 +62,29 @@ nMutex_t crashMutex = NULL;
  * @param[in] stack The stack as a string.
  * @param[in] stackLen The length of the stack string.
  */
-void nCrashHandlerDefault(const nint_t error,
-                          const time_t errorTime,
-                          char *errorDesc,
-                          size_t errorDescLen,
-                          char *stack,
-                          size_t stackLen
-                          );
+void nCrashCallbackDefault(const nint_t error,
+                           const time_t errorTime,
+                           const char *errorDesc,
+                           const size_t errorDescLen,
+                           const char *stack,
+                           const size_t stackLen
+                           );
 
 void (*volatile crashCallback) (const nint_t error, const time_t errorTime,
- char *errorDesc, size_t errorDescLen, char *stack,
- size_t stackLen) = &nCrashHandlerDefault;
+ const char *errorDesc, const size_t errorDescLen, const char *stack,
+ const size_t stackLen) = &nCrashCallbackDefault;
 
 
-void nCrashHandlerDefault(const nint_t error, const time_t errorTime,
- char *errorDesc, size_t errorDescLen, char *stack, size_t stackLen)
+void nCrashCallbackDefault(const nint_t error, const time_t errorTime,
+ const char *errorDesc, const size_t errorDescLen, const char *stack,
+ const size_t stackLen)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
 }
 
 nint_t nCrashSetCallback(void (*callback)(const nint_t error,
- const time_t errorTime, char *errorDesc, size_t errorDescLen, char *stack,
- size_t stackLen))
+ const time_t errorTime, const char *errorDesc, const size_t errorDescLen,
+ const char *stack, const size_t stackLen))
 {
     if (callback == NULL)
     {
@@ -175,4 +176,4 @@ _Noreturn void nCrashAbort(const nint_t error)
     /* NO RETURN */
 }
 
-// CrashHandler.c
+// Crash.c

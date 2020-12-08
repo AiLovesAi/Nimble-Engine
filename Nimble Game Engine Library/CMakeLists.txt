@@ -8,7 +8,7 @@
 
 cmake_minimum_required(VERSION 3.18)
 set(ver 0.1.0)
-set(GCC_COMPILE_FLAGS, "-Ofast -Os -fno-omit-frame-pointer -Wall")
+set(GCC_COMPILE_FLAGS, "-Ofast -Os -fno-omit-frame-pointer -rdynamic -Wall")
 
 project(NimbleGameEngineLibrary VERSION ${ver})
 
@@ -68,8 +68,11 @@ file(GLOB dx12
 
 add_definitions(${GCC_COMPILE_FLAGS})
 add_library(NimbleOGL_${ver} SHARED ${ogl})
+add_definitions(${GCC_COMPILE_FLAGS})
 add_library(NimbleVulkan_${ver} SHARED ${vulkan})
+add_definitions(${GCC_COMPILE_FLAGS})
 add_library(NimbleDX11_${ver} SHARED ${dx11})
+add_definitions(${GCC_COMPILE_FLAGS})
 add_library(NimbleDX12_${ver} SHARED ${dx12})
 
 # Engine libraries
@@ -100,4 +103,5 @@ file(GLOB engine
      "include/Nimble/System/*.h"
      )
 
+add_definitions(${GCC_COMPILE_FLAGS})
 add_library(NimbleEngine_${ver} SHARED ${engine})

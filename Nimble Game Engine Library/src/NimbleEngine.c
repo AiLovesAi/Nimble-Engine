@@ -48,6 +48,8 @@
 #include <signal.h>
 #include <stdlib.h>
 
+char NEXECUTABLE[PATH_MAX] = {0};
+
 void *nAlloc(const size_t size)
 {
     void *ptr = malloc(size);
@@ -116,14 +118,14 @@ void nEngineExitSignal(int signum)
     nEngineExit();
 }
 
-nint_t nEngineInit(void (*errorCallback)
- (const nint_t error,
- const time_t errorTime, char *errorDesc, nint_t errorDescLen,
- char *stack, nint_t stackLen),
+nint_t nEngineInit(const char *exec,
+ void (*errorCallback) (const nint_t error, const time_t errorTime,
+ const char *errorDesc, const size_t errorDescLen, const char *stack,
+ const size_t stackLen),
 
  void (*crashCallback)(const nint_t error, const time_t errorTime,
- char *errorDesc, nint_t errorDescLen, char *stack,
- nint_t stackLen)
+ const char *errorDesc, const size_t errorDescLen, const char *stack,
+ const size_t stackLen)
 
  )
 {
@@ -147,6 +149,13 @@ nint_t nEngineInit(void (*errorCallback)
     signal(SIGILL, nCrashSignal);
     signal(SIGINT, nCrashSignal);
     signal(SIGSEGV, nCrashSignal);
+
+    /* Set Nimble callbacks. */
+    nErrorSetCallback(errorCallback);
+    nCrashSetCallback(crashCallback);
+
+    /* Set executable file name. */
+    nStringCopy(NEXECUTABLE, exec, strlen(exec));
     
     return NSUCCESS;
 }

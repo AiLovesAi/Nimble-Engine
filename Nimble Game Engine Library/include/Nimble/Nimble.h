@@ -83,6 +83,9 @@ extern "C" {
 #include <inttypes.h>
 #include <stdlib.h>
 
+#define NIMBLE_REPO_URL  "https://github.com/a3ology/Nimble-Game-Engine" /**< The url for the Nimble Game Engine repository. */
+#define NIMBLE_ISSUE_URL "https://github.com/a3ology/Nimble-Game-Engine/issues/new/choose" /**< The url for the Nimble Game Engine repository new issue. */
+
 #define NIMBLE_WINDOWS 1
 #define NIMBLE_MACOS   2
 #define NIMBLE_UNIX    3

@@ -1,6 +1,6 @@
 #include "../NimbleLicense.h"
 /*
- * Hardware.h
+ * CPUInfo.h
  * Nimble Game Engine
  *
  * Created by Avery Aaron on 2020-12-05.
@@ -9,7 +9,7 @@
  */
 
 /**
- * @file Hardware.h
+ * @file CPUInfo.h
  * @author Avery Aaron
  * @copyright
  * @parblock
@@ -36,15 +36,15 @@
  * @endparblock
  * @date 2020-12-05
  *
- * @brief This class defines error handling functions.
+ * @brief This class defines CPU info functions.
  */
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#ifndef NIMBLE_ENGINE_HARDWARE_H
-#define NIMBLE_ENGINE_HARDWARE_H /**< Header definition */
+#ifndef NIMBLE_ENGINE_CPUINFO_H
+#define NIMBLE_ENGINE_CPUINFO_H /**< Header definition */
 
 #include "../NimbleEngine.h"
 
@@ -81,10 +81,10 @@ nSysGetCPUInfo(size_t *len)
 __attribute__((warn_unused_result))
 ;
 
-#endif // NIMBLE_ENGINE_HARDWARE_H
+#endif // NIMBLE_ENGINE_CPUINFO_H
 
 #ifdef __cplusplus
 }
 #endif
 
-// Hardware.h
+// CPUInfo.h

@@ -1,6 +1,6 @@
 #include "../../NimbleLicense.h"
 /*
- * CrashHandler.h
+ * Crash.h
  * Nimble Game Engine
  *
  * Created by Avery Aaron on 2020-08-18.
@@ -9,7 +9,7 @@
  */
 
 /**
- * @file CrashHandler.h
+ * @file Crash.h
  * @author Avery Aaron
  * @copyright
  * @parblock
@@ -43,21 +43,33 @@
 extern "C" {
 #endif
 
-#ifndef NIMBLE_ENGINE_CRASH_HANDLER_H
-#define NIMBLE_ENGINE_CRASH_HANDLER_H /**< Header definition */
+#ifndef NIMBLE_ENGINE_CRASH_H
+#define NIMBLE_ENGINE_CRASH_H /**< Header definition */
 
 #include "../../NimbleEngine.h"
 
 #include <time.h>
 
 /**
- * @brief Sets the crash handler callback function.
+ * @brief Sets the crash callback function.
  * Sets the callback function that gets called when the game crashes.
  *
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
+ * #include <Nimble/NimbleEngine.h>
+ * 
+ * void crashCallback(const nint_t error, const time_t errorTime,
+ *  char *errorDesc, size_t errorDescLen, char *stack, size_t stackLen)
+ * {
+ *     print("We crashed!\nError: %s\nStack: %s\n", errorDesc, stack);
+ * }
+ * 
+ * int main(int argc, char **argv)
+ * {
+ *     nCrashSetCallback(&crashCallback);
+ * }
+ * 
  * @endcode
  *
  * @param[in] callback The function that gets called when a crash occurs.
@@ -65,18 +77,18 @@ extern "C" {
  * returned.
  *
  * @note The callback function can only be called once. If an error occurs, the
- * program will abort with nCrashAbort(). Check nCrashHandlerDefault() for
+ * program will abort with nCrashAbort(). Check nCrashDefault() for
  * parameter information.
  */
 NIMBLE_EXTERN
 nint_t
-nCrashSetHandler(void (*callback) (const nint_t error,
-                                   const time_t errorTime,
-                                   char *errorDesc,
-                                   size_t errorDescLen,
-                                   char *stack,
-                                   size_t stackLen
-                                   )
+nCrashSetCallback(void (*callback) (const nint_t error,
+                                    const time_t errorTime,
+                                    const char *errorDesc,
+                                    const size_t errorDescLen,
+                                    const char *stack,
+                                    const size_t stackLen
+                                    )
                  );
 
 /**
@@ -163,10 +175,10 @@ void
 nCrashAbort(const nint_t error
             );
 
-#endif // NIMBLE_ENGINE_CRASH_HANDLER_H
+#endif // NIMBLE_ENGINE_CRASH_H
 
 #ifdef __cplusplus
 }
 #endif
 
-// CrashHandler.h
+// Crash.h

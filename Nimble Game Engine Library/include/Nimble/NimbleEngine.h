@@ -58,12 +58,19 @@ extern "C" {
 #include "Output/Files.h"
 #include "Output/Logging.h"
 
-#include "System/Hardware.h"
+#include "System/CPUInfo.h"
 #include "System/Threads.h"
 
 
 #include <time.h>
+#include <limits.h>
 
+#if !defined(PATH_MAX) && defined(MAX_PATH)
+#  define PATH_MAX MAX_PATH
+#endif
+
+NIMBLE_EXTERN
+char NEXECUTABLE[PATH_MAX];
 
 
 /**
@@ -257,9 +264,21 @@ nEngineExit(void);
  * #include <inttypes.h>
  * #include <Nimble/NimbleEngine.h>
  *
+ * void errorCallback(const nint_t error, const time_t errorTime,
+ *  char *errorDesc, nint_t errorDescLen, char *stack)
+ * {
+ *     ...
+ * }
+ * 
+ * void crashCallback(const nint_t error, const time_t errorTime,
+ *  char *errorDesc, nint_t errorDescLen, char *stack)
+ * {
+ *     ...
+ * }
+ * 
  * int main(int argc, char **argv)
  * {
- *     if (nEngineInit() != NSUCCESS)
+ *     if (nEngineInit(argv[0], &errorCallback, &crashCallback) != NSUCCESS)
  *     {
  *         fprintf(stderr, "Failed to initialize Nimble.");
  *         exit(EXIT_FAILURE);
@@ -269,28 +288,34 @@ nEngineExit(void);
  * }
  * @endcode
  *
+ * @param[in] exec The executable defined by argv[0].
+ * @param[in] errorCallback The error callback function that is called when an
+ * error occurs. This can be #NULL to use the default callback.
+ * @param[in] crashCallback The crash callback function that is called when the
+ * engine crashes. This can be #NULL to use the default callback.
  * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  */
 NIMBLE_EXTERN
 nint_t
-nEngineInit(void (*errorCallback)(
+nEngineInit(const char *exec,
+            void (*errorCallback)(
                                   const nint_t error,
                                   const time_t errorTime,
-                                  char *errorDesc,
-                                  nint_t errorDescLen,
-                                  char *stack,
-                                  nint_t stackLen
+                                  const char *errorDesc,
+                                  const size_t errorDescLen,
+                                  const char *stack,
+                                  const size_t stackLen
                                   ),
             void (*crashCallback) (const nint_t error,
                                    const time_t errorTime,
-                                   char *errorDesc,
-                                   nint_t errorDescLen,
-                                   char *stack,
-                                   nint_t stackLen
+                                   const char *errorDesc,
+                                   const size_t errorDescLen,
+                                   const char *stack,
+                                   const size_t stackLen
                                    )
-            ); /** @todo Make these callback functions the same through each file. */
+            );
 
 #endif // NIMBLE_ENGINE_H
 

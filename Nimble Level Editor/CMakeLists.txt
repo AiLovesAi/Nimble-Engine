@@ -8,7 +8,7 @@
 
 cmake_minimum_required(VERSION 3.18)
 set(ver 0.1.0)
-set(GCC_COMPILE_FLAGS, "-Ofast -Os -fno-omit-frame-pointer -Wall")
+set(GCC_COMPILE_FLAGS, "-Ofast -Os -fno-omit-frame-pointer -rdynamic -Wall")
 
 project(NimbleLevelEditor VERSION ${ver})
 

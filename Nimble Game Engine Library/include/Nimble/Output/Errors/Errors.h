@@ -154,16 +154,17 @@ __attribute__((warn_unused_result))
  *     struct tm *timeInfo = localtime(&errorTime);
  *     const char format[] = "%x %X %Z";
  *     const char example = "01/01/2020 16:30:45 GMT"
- *     char *timeString = nAlloc(sizeof(example));
- *     if (timeString == NULL)
+ *     char *timeStr = nAlloc(sizeof(example));
+ *     if (timeStr == NULL)
  *     {
- *         fprintf(stderr, "Failed to allocate to timeString.\n");
+ *         fprintf(stderr, "Failed to allocate to timeStr.\n");
  *         return;
  *     }
- *     strftime(timeString, sizeof(example), format, timeInfo);
+ *     strftime(timeStr, sizeof(example), format, timeInfo);
  *
  *     fprintf(stderr, "\nAn error occurred at %s:\nError description: "\
- *      "%s\nStack trace: %s\n\n", timeString, errorDesc, stack);
+ *      "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
+ *     timeStr = nFree(timeStr);
  * }
  *
  * int main(int argc, char **argv)
@@ -187,13 +188,13 @@ __attribute__((warn_unused_result))
 NIMBLE_EXTERN
 nint_t
 nErrorSetCallback(void (*callback)(
-                                    const nint_t error,
-                                    const time_t errorTime,
-                                    const char *errorDesc,
-                                    const size_t errorDescLen,
-                                    const char *stack,
-                                    const size_t stackLen
-                                    )
+                                   const nint_t error,
+                                   const time_t errorTime,
+                                   const char *errorDesc,
+                                   const size_t errorDescLen,
+                                   const char *stack,
+                                   const size_t stackLen
+                                   )
                   );
 
 /**

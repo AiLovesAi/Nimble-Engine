@@ -1,6 +1,6 @@
 #include "../../include/Nimble/NimbleLicense.h"
 /*
- * Hardware.c
+ * CPUInfo.c
  * Nimble Game Engine
  *
  * Created by Avery Aaron on 2020-12-05.
@@ -8,10 +8,10 @@
  *
  */
 
-#include "../../include/Nimble/System/Hardware.h"
+#include "../../include/Nimble/System/CPUInfo.h"
 
 /**
- * @file Hardware.c
+ * @file CPUInfo.c
  * @author Avery Aaron
  * @copyright
  * @parblock
@@ -38,7 +38,7 @@
  * @endparblock
  * @date 2020-12-05
  *
- * @brief This class defines error handling functions.
+ * @brief This class defines CPU info functions.
  */
 
 #include <inttypes.h>
@@ -50,12 +50,12 @@
 #if (NIMBLE_ARCH == NIMBLE_INTEL) || (NIMBLE_ARCH == NIMBLE_AMD)
 #define nGetInfoReg(eax, ret1, ret2, ret3, ret4) ({\
     asm volatile(\
-        "mov %4,%%eax\n" /* Set the eax register that cpuid checks. */\
+        "movl %4,%%eax\n" /* Set the eax register that cpuid checks. */\
         "cpuid\n"        /* Run the cpuid instruction. */\
-        "mov %%eax,%0\n" /* Store the new eax-edx values in "brand". */\
-        "mov %%ebx,%1\n"\
-        "mov %%ecx,%2\n"\
-        "mov %%edx,%3\n"\
+        "movl %%eax,%0\n" /* Store the new eax-edx values in "brand". */\
+        "movl %%ebx,%1\n"\
+        "movl %%ecx,%2\n"\
+        "movl %%edx,%3\n"\
         : "=g" (ret1), "=g" (ret2),\
             "=g" (ret3), "=g" (ret4)\
         : "r" (eax)\
@@ -318,6 +318,20 @@ char *nSysGetCPUInfo(size_t *len)
             l += NCONST_STR_LEN(partStr);
             break;
         default:
+            const char formatStr[] = "It appears you are using an ARM "\
+ "processor, but a nSysGetCPUInfo() call failed to identify the part code.\n"\
+ "It would help all others using the same processor if you could go to \""
+ NIMBLE_ISSUE_URL "\" and open a New Processor issue, then entering your "\
+ "CPU's name and architecture and the following code detected to identify "\
+ "your CPU:\n%08x (%d)\nThank you for taking the time to improve the Nimble "\
+ "Game Engine!";
+            char userRequestStr[NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 1, 0)
+                                + 19];
+            snprintf(userRequestStr, sizeof(userRequestStr), formatStr,
+             info.val, info.val);
+            nErrorThrow(NERROR_WARN, userRequestStr,
+             NCONST_STR_LEN(userRequestStr));
+
             const char unknownCPUStr[] = "Unknown";
             cpuInfoStr = nRealloc(cpuInfoStr, l + sizeof(unknownCPUStr));
             nStringCopy(cpuInfoStr + l, unknownCPUStr,
@@ -415,4 +429,4 @@ char *nSysGetCPUInfo(size_t *len)
 #endif
 }
 
-// Hardware.c
+// CPUInfo.c

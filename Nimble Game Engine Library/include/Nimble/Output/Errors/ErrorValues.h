@@ -62,6 +62,7 @@ enum nErrors {
     NERROR_MIN = 0, /**< The mininum error number. */
     
     NERROR_UNKNOWN, /**< An nknown error occurred. */
+    NERROR_WARN, /**< A warning was triggered that requires attention by the user. */
     NERROR_INTERNAL_FAILURE, /**< An internal error occurred. */
     NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
     NERROR_INV_ERROR, /**< An error passed to a function was not valid. */
