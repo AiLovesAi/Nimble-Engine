@@ -102,22 +102,22 @@
 
 
 /* Info register functions */
-#  ifdef NIMBLE_64BIT
-#    define nGetInfoReg(val) ({\
-    asm(\
-        "mrs %%MIDR_EL1, %0\n" /* Store the MIDR_EL1 register in "info.val". */\
-        : "=r" (val)\
-        : /* No input. */\
-        : /* No clobber.*/\
-    );\
-})
-#  else
+#  ifdef NIMBLE_32BIT
 #    define nGetInfoReg(val) ({\
     asm(\
         "mrc %%p15, $0, %0, %%c0, %%c0, $0\n" /* Store the MIDR register in "info.val". */
         : "=r" (val)
         : /* No input. */
         : "%p15", "%c0"
+    );\
+})
+#  else
+#    define nGetInfoReg(val) ({\
+    asm(\
+        "mrs %%MIDR_EL1, %0\n" /* Store the MIDR_EL1 register in "info.val". */\
+        : "=r" (val)\
+        : /* No input. */\
+        : /* No clobber.*/\
     );\
 })
 #  endif
@@ -188,10 +188,10 @@ char *nSysGetCPUInfo(size_t *len)
     if (!info.val)
     {
         const char einfoFailureStr[] = "nSysGetCPUInfo() failed to run the "\
-#  ifdef NIMBLE_64BIT
- "'mrs' instruction to get the CPU info using the 'MIDR_EL1' register "\
-#  else
+#  ifdef NIMBLE_32BIT
   "'mrc' instruction to get the CPU info using the 'MIDR' register "\
+#  else
+ "'mrs' instruction to get the CPU info using the 'MIDR_EL1' register "\
 #  endif
  "(ARM).";
         nErrorThrow(NERROR_INTERNAL_FAILURE, einfoFailureStr,

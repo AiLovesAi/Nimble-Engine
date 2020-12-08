@@ -86,7 +86,7 @@ nint_t nCrashSetCallback(void (*callback)(const nint_t error,
  const time_t errorTime, const char *errorDesc, const size_t errorDescLen,
  const char *stack, const size_t stackLen))
 {
-    if (callback == NULL)
+    if (!callback)
     {
         const char einfoCallbackStr[] = "Callback parameter null in "\
         "nCrashSetCallback().";
@@ -117,17 +117,17 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
         errorTime = time(NULL);
     }
 
-    if ((errorDescLen <= 0) && (errorDesc != NULL))
+    if ((errorDescLen <= 0) && errorDesc)
     {
         errorDescLen = strlen(errorDesc);
     }
 
     char *errorDescStr;
 
-    if (errorDesc == NULL)
+    if (!errorDesc)
     {
         errorDescStr = nErrorToString(&errorDescLen, error, NULL, 0);
-        if (errorDescStr == NULL)
+        if (!errorDescStr)
         {
             const char defaultErrorStr[] = "NERROR_ERROR_NOT_FOUND: An error "\
  "passed to a function was not valid: nErrorToString() failed while "\

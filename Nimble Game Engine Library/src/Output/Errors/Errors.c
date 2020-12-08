@@ -105,7 +105,7 @@ void nErrorThrow(const nint_t error, const char *info, size_t infoLen)
     
     size_t errorDescLen;
     char *errorDescStr = nErrorToString(&errorDescLen, error, info, infoLen);
-    if (errorDescStr == NULL)
+    if (!errorDescStr)
     {
         const time_t crashErrorTime = time(NULL);
         const char einfoParseStr[] = "Error not found in nErrorThrow().";
@@ -131,7 +131,7 @@ void nErrorThrow(const nint_t error, const char *info, size_t infoLen)
 char *nErrorToString(size_t *errorLen, const nint_t error,
  const char *info, size_t infoLen)
 {
-    if ((info != NULL) && (infoLen == 0))
+    if (info && (infoLen == 0))
     {
         infoLen = strlen(info);
     }
@@ -147,7 +147,7 @@ char *nErrorToString(size_t *errorLen, const nint_t error,
     size_t errLen;
     char *dst;
     
-    if (info == NULL)
+    if (!info)
     {
         errLen = formatStrLen + errorStrLen + errorDescStrLen +
          NCONST_STR_LEN(noInfoStr);
@@ -161,7 +161,7 @@ char *nErrorToString(size_t *errorLen, const nint_t error,
         snprintf(dst, errLen + 1, formatStr, info, errorStr, errorDescStr);
     }
     
-    if (errorLen != NULL)
+    if (errorLen)
     {
         *errorLen = errLen;
     }
@@ -173,7 +173,7 @@ nint_t nErrorSetCallback(void (*callback)(const nint_t error,
  const time_t errorTime, const char *errorDesc, const size_t errorDescLen,
  const char *stack, const size_t stackLen))
 {
-    if (callback == NULL)
+    if (!callback)
     {
         const char einfoCallbackStr[] = "Callback argument NULL in "\
          "nErrorSetCallback().";
@@ -188,30 +188,55 @@ nint_t nErrorSetCallback(void (*callback)(const nint_t error,
 
 char *nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)
 {
+    /* Set max levels */
     size_t maxLevels = 128;
-    if (*stackLevels > 0)
+    if (stackLevels && (*stackLevels > 0) && (*stackLevels <= 1024))
     {
         maxLevels = *stackLevels;
     }
 
-    /** @todo Get stack trace. */
-#if (NIMBLE_ARCH == NIMBLE_INTEL) | (NIMBLE_ARCH == NIMBLE_AMD)
     struct frame {
         struct frame *ebp;
         uint32_t eip;
     };
     struct frame *stack = {0};
 
+    /* Get stack frame pointer. */
+#if (NIMBLE_ARCH == NIMBLE_INTEL) | (NIMBLE_ARCH == NIMBLE_AMD)
     asm("movl %%ebp, %0\n" : "=r" (stack) ::);
+#elif NIMBLE_ARCH == NIMBLE_ARM
+#  ifdef __thumb__
+    asm("movl %%r7, %0\n" : "=r" (stack) ::);
+#  else
+    asm("movl %%r11, %0\n" : "=r" (stack) ::);
+#  endif
+#endif
 
-    for (size_t level = 0; stack && (level < maxLevels); level++)
+    /* Prepare stackStr with buffer. */
+    const char formatStr[] = "<%08x> %s\n";
+    const size_t maxLineLen = (NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 1, 0) + NFUNCTION_NAME_MAX + 8);
+    const size_t bufferSize = (maxLevels * maxLineLen) + 1;
+    char *stackStr = nAlloc(bufferSize);
+
+    /* Trace stack. */
+    size_t level, len = 0;
+    for (level = 0; stack && (level < maxLevels); level++)
     {
-        printf("%08x, %s\n", stack->eip, (char *) &stack->eip);
+        len += snprintf(stackStr, maxLineLen, formatStr, stack->eip, (char *) &stack->eip); /** @todo Find function name from eip function poiter */
         stack = stack->ebp;
     }
-#elif NIMBLE_ARCH == NIMBLE_ARM
-#endif
-    return NULL;
+
+    /* Reallocate stackStr to its correct length. */
+    stackStr = nRealloc(stackStr, len + 1);
+    if (stackLen)
+    {
+        *stackLen = len;
+    }
+    if (stackLevels)
+    {
+        *stackLevels = level;
+    }
+    return stackStr;
 }
 
 // Errors.c

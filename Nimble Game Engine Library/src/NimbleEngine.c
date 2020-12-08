@@ -151,8 +151,14 @@ nint_t nEngineInit(const char *exec,
     signal(SIGSEGV, nCrashSignal);
 
     /* Set Nimble callbacks. */
-    nErrorSetCallback(errorCallback);
-    nCrashSetCallback(crashCallback);
+    if (errorCallback)
+    {
+        nErrorSetCallback(errorCallback);
+    }
+    if (crashCallback)
+    {
+        nCrashSetCallback(crashCallback);
+    }
 
     /* Set executable file name. */
     nStringCopy(NEXECUTABLE, exec, strlen(exec));

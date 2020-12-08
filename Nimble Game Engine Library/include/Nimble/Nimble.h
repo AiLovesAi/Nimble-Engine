@@ -83,9 +83,12 @@ extern "C" {
 #include <inttypes.h>
 #include <stdlib.h>
 
+/* URL definitions */
 #define NIMBLE_REPO_URL  "https://github.com/a3ology/Nimble-Game-Engine" /**< The url for the Nimble Game Engine repository. */
 #define NIMBLE_ISSUE_URL "https://github.com/a3ology/Nimble-Game-Engine/issues/new/choose" /**< The url for the Nimble Game Engine repository new issue. */
 
+
+/* OS definitions */
 #define NIMBLE_WINDOWS 1
 #define NIMBLE_MACOS   2
 #define NIMBLE_UNIX    3
@@ -113,6 +116,8 @@ extern "C" {
 #  error OS not supported.
 #endif
 
+
+/* Processor definitions */
 #define NIMBLE_INTEL 1
 #define NIMBLE_AMD   2
 #define NIMBLE_ARM   3
@@ -121,20 +126,26 @@ extern "C" {
 #  define NIMBLE_ARCH NIMBLE_INTEL
 #elif defined(__amd64__)
 #  define NIMBLE_ARCH NIMBLE_AMD
-#elif defined(__arm__) || defined(__aarch64__)
+#elif defined(__arm__) || defined(__aarch64__) || defined(__thumb__)
 #  define NIMBLE_ARCH NIMBLE_ARM
 #else
 #  error CPU architecture not supported.
 #endif
 
+
+/* Bit-width definitions */
 #if UINTPTR_MAX == 0xffffffff
 #  define NIMBLE_32BIT
 #elif UINTPTR_MAX == 0xffffffffffffffff
 #  define NIMBLE_64BIT
+#elif UINTPTR_MAX == 0xffffffffffffffffffffffffffffffff
+#  define NIMBLE_128BIT
 #else
-#  error Only 32-bit and 64-bit hardware is supported.
+#  error Only 32-bit, 64-bit, and 128-bit hardware is supported.
 #endif
 
+
+/* Attribute definitions */
 #if defined(_WIN32) || defined(__CYGWIN__)
 #  ifdef BUILDING_DLL
 #    ifdef __GNUC__
@@ -164,15 +175,18 @@ extern "C" {
 #  endif
 #  define NIMBLE_INLINE static inline __attribute__((always_inline)) /**< Inline alias. */
 #endif
-
 #define NIMBLE_EXTERN extern /**< Extern alias. */
 
 #define NIMBLE_FREEME /**< Denotes that a function may allocate memory that should later be freed. */
 
+
+/* Macro definitions */
 #ifndef NULL
 #  define NULL ((void *) 0) /**< Null pointer. */
 #endif
+#define NFUNCTION_NAME_MAX 63
 
+/* Basic function definitions */
 #define NCONST_STR_LEN(str) sizeof(str) - 1 /**< Gets the length of a const char * as strlen() would, but at compile time. */
 #define NCONST_STR_FORMAT_LEN(str, spec1, spec2, spec3, spec4) \
 NCONST_STR_LEN(str) - (2 * spec1) - (3 * spec2) - (4 * spec3) - (5 * spec4) /**< Gets the length of a formatted string without the format characters. */
@@ -181,6 +195,7 @@ NCONST_STR_LEN(str) - (2 * spec1) - (3 * spec2) - (4 * spec3) - (5 * spec4) /**<
 #define NSTR_VAL(str) NSTR(str) /**< Stringifies the argument's defined value (for macros only). */
 
 
+/* Nimble integer types */
 typedef int_fast8_t   nbyte_t;
 typedef uint_fast8_t  nubyte_t;
 typedef int_fast16_t  nshort_t;
