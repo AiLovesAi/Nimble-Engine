@@ -102,93 +102,88 @@ $(function() {
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#include &lt;limits.h&gt;</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#if !defined(PATH_MAX) &amp;&amp; defined(MAX_PATH)</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#  define PATH_MAX MAX_PATH</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="_nimble_engine_8h.html#ad613e6dab85005ef8afaa7c869205ae5">   73</a></span>&#160;<span class="keywordtype">char</span> <a class="code" href="_nimble_engine_8h.html#ad613e6dab85005ef8afaa7c869205ae5">NEXECUTABLE</a>[PATH_MAX];</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<a class="code" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keywordtype">void</span> *</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<a class="code" href="_nimble_engine_8h.html#a4c71e73a98691165c331dd69e1eb2dbf">nAlloc</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> size)</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;__attribute__((warn_unused_result))</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<a class="code" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="keywordtype">void</span> *</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<a class="code" href="_nimble_engine_8h.html#a0d7b4f1fac570e95ae99285480b54d0a">nRealloc</a>(<span class="keywordtype">void</span>*ptr, <span class="keyword">const</span> <span class="keywordtype">size_t</span> size)</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;__attribute__((warn_unused_result))</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<a class="code" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="keywordtype">void</span> *</div>
-<div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">  186</a></span>&#160;<a class="code" href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a>(<span class="keywordtype">void</span> *ptr)</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;{</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    free(ptr);</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<a class="code" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="keywordtype">size_t</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<a class="code" href="_nimble_engine_8h.html#aaadcaeba55fe76feb23bc461d3f56892">nStringCopy</a>(<span class="keywordtype">char</span> *restrict dst,</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict src,</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">size_t</span> len</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            );</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;_Noreturn</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<a class="code" href="_nimble_engine_8h.html#aefb38bb113f315c12bc5b6d25fb07cca">nEngineExit</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<a class="code" href="_nimble_engine_8h.html#a3efb2438244e97f7dfb073d1c494c344">nEngineInit</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *exec,</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            <span class="keywordtype">void</span> (*<a class="code" href="_errors_8c.html#a2fe8dfa6f1bf51f882604d24bd8e1fe5">errorCallback</a>)(</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                                  <span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error,</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                                  <span class="keyword">const</span> time_t errorTime,</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                                  <span class="keyword">const</span> <span class="keywordtype">char</span> *errorDesc,</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                                  <span class="keyword">const</span> <span class="keywordtype">size_t</span> errorDescLen,</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                                  <span class="keyword">const</span> <span class="keywordtype">char</span> *stack,</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                                  <span class="keyword">const</span> <span class="keywordtype">size_t</span> stackLen</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                                  ),</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <span class="keywordtype">void</span> (*<a class="code" href="_crash_8c.html#a4677da643bade0be47a0146a5e84e948">crashCallback</a>) (<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error,</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                                   <span class="keyword">const</span> time_t errorTime,</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">char</span> *errorDesc,</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">size_t</span> errorDescLen,</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">char</span> *stack,</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">size_t</span> stackLen</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                                   )</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            );</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="_nimble_engine_8h.html#ae6ac05c9efa10f719efc31b0fe7769c6">   71</a></span>&#160;<span class="keyword">volatile</span> _Bool <a class="code" href="_nimble_engine_8h.html#ae6ac05c9efa10f719efc31b0fe7769c6">NIMBLE_INITIALIZED</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<a class="code" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keywordtype">void</span> *</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<a class="code" href="_nimble_engine_8h.html#a4c71e73a98691165c331dd69e1eb2dbf">nAlloc</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;__attribute__((warn_unused_result))</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<a class="code" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keywordtype">void</span> *</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<a class="code" href="_nimble_engine_8h.html#a0d7b4f1fac570e95ae99285480b54d0a">nRealloc</a>(<span class="keywordtype">void</span>*ptr, <span class="keyword">const</span> <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;__attribute__((warn_unused_result))</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<a class="code" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="keywordtype">void</span> *</div>
+<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">  184</a></span>&#160;<a class="code" href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a>(<span class="keywordtype">void</span> *ptr)</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;{</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    free(ptr);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;}</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<a class="code" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="keywordtype">size_t</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<a class="code" href="_nimble_engine_8h.html#aaadcaeba55fe76feb23bc461d3f56892">nStringCopy</a>(<span class="keywordtype">char</span> *restrict dst,</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict src,</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">size_t</span> len</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            );</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;_Noreturn</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<a class="code" href="_nimble_engine_8h.html#aefb38bb113f315c12bc5b6d25fb07cca">nEngineExit</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<a class="code" href="_nimble_engine_8h.html#a3efb2438244e97f7dfb073d1c494c344">nEngineInit</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *exec,</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            <span class="keywordtype">void</span> (*<a class="code" href="_errors_8c.html#a2fe8dfa6f1bf51f882604d24bd8e1fe5">errorCallback</a>)(</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                                  <span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error,</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                                  <span class="keyword">const</span> time_t errorTime,</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                                  <span class="keyword">const</span> <span class="keywordtype">char</span> *errorDesc,</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                                  <span class="keyword">const</span> <span class="keywordtype">size_t</span> errorDescLen,</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                                  <span class="keyword">const</span> <span class="keywordtype">char</span> *stack,</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                                  <span class="keyword">const</span> <span class="keywordtype">size_t</span> stackLen</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                                  ),</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            <span class="keywordtype">void</span> (*<a class="code" href="_crash_8c.html#a4677da643bade0be47a0146a5e84e948">crashCallback</a>) (<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error,</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                                   <span class="keyword">const</span> time_t errorTime,</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">char</span> *errorDesc,</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">size_t</span> errorDescLen,</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">char</span> *stack,</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">size_t</span> stackLen</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                                   )</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            );</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_H</span></div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160; </div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_H</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;}</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment">// NimbleEngine.h</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;}</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="comment">// NimbleEngine.h</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="a_errors_8h_html"><div class="ttname"><a href="_errors_8h.html">Errors.h</a></div><div class="ttdoc">This class defines error handling functions.</div></div>
 <div class="ttc" id="a_nimble_8h_html_aa82aaf62c4b04a2f8899150966feebb2"><div class="ttname"><a href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a></div><div class="ttdeci">#define NIMBLE_INLINE</div><div class="ttdoc">Inline alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00176">Nimble.h:176</a></div></div>
 <div class="ttc" id="a_crash_8h_html"><div class="ttname"><a href="_crash_8h.html">Crash.h</a></div><div class="ttdoc">This class defines crash handling functions.</div></div>
 <div class="ttc" id="a_nimble_8h_html_a99b09cd8c8c999889cf8113c3d281368"><div class="ttname"><a href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div><div class="ttdeci">#define NIMBLE_EXTERN</div><div class="ttdoc">Extern alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00178">Nimble.h:178</a></div></div>
+<div class="ttc" id="a_nimble_engine_8h_html_ae6ac05c9efa10f719efc31b0fe7769c6"><div class="ttname"><a href="_nimble_engine_8h.html#ae6ac05c9efa10f719efc31b0fe7769c6">NIMBLE_INITIALIZED</a></div><div class="ttdeci">NIMBLE_EXTERN volatile _Bool NIMBLE_INITIALIZED</div><div class="ttdoc">The variable that is set after a successful initialization.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8h_source.html#l00071">NimbleEngine.h:71</a></div></div>
 <div class="ttc" id="a_c_p_u_info_8h_html"><div class="ttname"><a href="_c_p_u_info_8h.html">CPUInfo.h</a></div><div class="ttdoc">This class defines CPU info functions.</div></div>
-<div class="ttc" id="a_nimble_engine_8h_html_ad613e6dab85005ef8afaa7c869205ae5"><div class="ttname"><a href="_nimble_engine_8h.html#ad613e6dab85005ef8afaa7c869205ae5">NEXECUTABLE</a></div><div class="ttdeci">NIMBLE_EXTERN char NEXECUTABLE[PATH_MAX]</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8h_source.html#l00073">NimbleEngine.h:73</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a78dc12a9b2532f00e9b116cad9191615"><div class="ttname"><a href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div><div class="ttdeci">#define NIMBLE_FREEME</div><div class="ttdoc">Denotes that a function may allocate memory that should later be freed.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00180">Nimble.h:180</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00185">Nimble.h:185</a></div></div>
-<div class="ttc" id="a_files_8h_html"><div class="ttname"><a href="_files_8h.html">Files.h</a></div></div>
+<div class="ttc" id="a_files_8h_html"><div class="ttname"><a href="_files_8h.html">Files.h</a></div><div class="ttdoc">This class defines file functions.</div></div>
 <div class="ttc" id="a_nimble_engine_8h_html_aaadcaeba55fe76feb23bc461d3f56892"><div class="ttname"><a href="_nimble_engine_8h.html#aaadcaeba55fe76feb23bc461d3f56892">nStringCopy</a></div><div class="ttdeci">NIMBLE_EXTERN NIMBLE_FREEME size_t nStringCopy(char *restrict dst, const char *restrict src, const size_t len)</div><div class="ttdoc">Copies len characters from src to dst.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00082">NimbleEngine.c:82</a></div></div>
 <div class="ttc" id="a_errors_8c_html_a2fe8dfa6f1bf51f882604d24bd8e1fe5"><div class="ttname"><a href="_errors_8c.html#a2fe8dfa6f1bf51f882604d24bd8e1fe5">errorCallback</a></div><div class="ttdeci">void(*volatile errorCallback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)</div><div class="ttdoc">The error callback function that gets defined by nErrorSetCallback().</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00077">Errors.c:77</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00204">Nimble.h:204</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html_a4c71e73a98691165c331dd69e1eb2dbf"><div class="ttname"><a href="_nimble_engine_8h.html#a4c71e73a98691165c331dd69e1eb2dbf">nAlloc</a></div><div class="ttdeci">NIMBLE_EXTERN NIMBLE_FREEME void * nAlloc(const size_t size) __attribute__((warn_unused_result))</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00053">NimbleEngine.c:53</a></div></div>
-<div class="ttc" id="a_nimble_engine_8h_html_ad0e3de817454a22e515193db085d6e97"><div class="ttname"><a href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a></div><div class="ttdeci">NIMBLE_INLINE void * nFree(void *ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8h_source.html#l00186">NimbleEngine.h:186</a></div></div>
+<div class="ttc" id="a_nimble_engine_8h_html_ad0e3de817454a22e515193db085d6e97"><div class="ttname"><a href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a></div><div class="ttdeci">NIMBLE_INLINE void * nFree(void *ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8h_source.html#l00184">NimbleEngine.h:184</a></div></div>
 <div class="ttc" id="a_crash_8c_html_a4677da643bade0be47a0146a5e84e948"><div class="ttname"><a href="_crash_8c.html#a4677da643bade0be47a0146a5e84e948">crashCallback</a></div><div class="ttdeci">void(*volatile crashCallback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00073">Crash.c:73</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html_aefb38bb113f315c12bc5b6d25fb07cca"><div class="ttname"><a href="_nimble_engine_8h.html#aefb38bb113f315c12bc5b6d25fb07cca">nEngineExit</a></div><div class="ttdeci">NIMBLE_EXTERN _Noreturn void nEngineExit(void)</div><div class="ttdoc">Exits the game engine.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00110">NimbleEngine.c:110</a></div></div>
 <div class="ttc" id="a_nimble_license_8h_html"><div class="ttname"><a href="_nimble_license_8h.html">NimbleLicense.h</a></div><div class="ttdoc">This class defines LICENSE_md, which gets compiled into the binaries.</div></div>

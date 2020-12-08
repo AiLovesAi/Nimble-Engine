@@ -48,7 +48,7 @@
 #include <signal.h>
 #include <stdlib.h>
 
-char NEXECUTABLE[PATH_MAX] = {0};
+volatile _Bool NIMBLE_INITIALIZED = 0;
 
 void *nAlloc(const size_t size)
 {
@@ -129,21 +129,26 @@ nint_t nEngineInit(const char *exec,
 
  )
 {
-    /** @todo Make init function, use errno */
+    nint_t err = 0;
+
     /* Add nEngineExit() to the exit() functions. */
     if (atexit(nEngineExit) != NSUCCESS)
     {
+        err = nErrorFromErrno(errno);
+        errno = 0;
         const time_t errorTime = time(NULL);
-        char *info;
-        nint_t errorDescLen, infoLen;
-        const nint_t err = nErrorFromErrno(errno);
+        char einfoAtExitStr[] = "atexit() failed in nEngineInit(), and the "\
+ "exit functions could not be set, causing Nimble to crash.";
+        nint_t errorDescLen;
         
-        char *errorDescStr = nErrorToString(&errorDescLen, err, info, infoLen);
+        char *errorDescStr = nErrorToString(&errorDescLen, err, einfoAtExitStr,
+         NCONST_STR_LEN(einfoAtExitStr));
         nCrashSafe(err, errorTime, errorDescStr, errorDescLen);
+        /* NO RETURN */
     }
 
     /* Set signal callbacks. */
-    signal(SIGTERM, nEngineExitSignal);
+    signal(SIGTERM, nEngineExitSignal); /** @todo errno */
     signal(SIGABRT, nCrashSignal);
     signal(SIGFPE, nCrashSignal);
     signal(SIGILL, nCrashSignal);
@@ -161,8 +166,31 @@ nint_t nEngineInit(const char *exec,
     }
 
     /* Set executable file name. */
-    nStringCopy(NEXECUTABLE, exec, strlen(exec));
     
+    if ((err = nFileExists(exec)) > 0)
+    {
+        nStringCopy(NEXECUTABLE, exec, strlen(exec));
+    }
+    else
+    {
+        char *execStr = nFileGetExecutable();
+        if (!execStr)
+        {
+            const time_t errorTime = time(NULL);
+            char einfoNoExecStr[] = "nEngineInit() failed to find executable "\
+ "file for stack traces using nFileGetExecutable(), causing Nimble to crash.";
+            nint_t errorDescLen;
+            char *errorDescStr = nErrorToString(&errorDescLen,
+             NERROR_INTERNAL_FAILURE, einfoNoExecStr,
+             NCONST_STR_LEN(einfoNoExecStr));
+            nCrashSafe(NERROR_INTERNAL_FAILURE, errorTime, errorDescStr,
+             errorDescLen);
+            /* NO RETURN */
+        }
+    }
+    
+    NIMBLE_INITIALIZED = 1;
+
     return NSUCCESS;
 }
 

@@ -72,35 +72,39 @@ $(function() {
 <dt>Global <a class="el" href="_nimble_engine_8c.html#aa9db3737f71f61028f4d18ef9c765189">nEngineExit</a>  (void)</dt>
 <dd><a class="anchor" id="_todo000001"></a>Make safe exit function  </dd>
 <dt>Global <a class="el" href="_nimble_engine_8c.html#a905f658de423ff91b9792031e30badfa">nEngineInit</a>  (const char *exec, void(*errorCallback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen), void(*crashCallback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen))</dt>
-<dd><a class="anchor" id="_todo000002"></a>Make init function, use errno  </dd>
+<dd><a class="anchor" id="_todo000002"></a>errno  </dd>
 <dt>Global <a class="el" href="_crash_8c.html#a77d01418ab71c7e49ace9080b097aea3">nCrashCallbackDefault</a>  (const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)</dt>
 <dd><a class="anchor" id="_todo000003"></a>Make default callback (threads, engine, logs, etc.).  </dd>
 <dt>Global <a class="el" href="_errors_8c.html#ac6af5b7966acb87bc5de274aec3e302d">nErrorHandlerDefault</a>  (const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)</dt>
 <dd><a class="anchor" id="_todo000004"></a>Make default callback.  </dd>
 <dt>Global <a class="el" href="_errors_8c.html#acebf5908ffdc939acb0a309cbd1e0434">nErrorGetStacktrace</a>  (size_t *stackLen, size_t *stackLevels)</dt>
-<dd><a class="anchor" id="_todo000005"></a>Find function name from eip function poiter  </dd>
+<dd><p class="startdd"><a class="anchor" id="_todo000005"></a>Get executable. </p>
+<p class="enddd"><a class="anchor" id="_todo000006"></a>Find function name from eip function poiter  </p>
+</dd>
+<dt>Global <a class="el" href="_files_8c.html#a6340fafea958da31c2bd2dd31d674ca1">nFileGetExecutable</a>  (void)</dt>
+<dd><a class="anchor" id="_todo000007"></a>Make executable finder function.  </dd>
 <dt>Global <a class="el" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>  (nThread_t *thread, nint_t attributes, void *(*start)(void *), void *data)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000006"></a>Attributes, pointer conversion for some arguments </p>
-<p class="enddd"><a class="anchor" id="_todo000007"></a><a class="el" href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187" title="Sends an error to the error callback.">nErrorThrow()</a>;  </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000008"></a>Attributes, pointer conversion for some arguments </p>
+<p class="enddd"><a class="anchor" id="_todo000009"></a><a class="el" href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187" title="Sends an error to the error callback.">nErrorThrow()</a>;  </p>
 </dd>
 <dt>Global <a class="el" href="_threads_8c.html#abc2562bfb4e069fcf08b93043fa770d5">nThreadSelf</a>  (void)</dt>
-<dd><a class="anchor" id="_todo000008"></a>  </dd>
-<dt>Global <a class="el" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>  (nThread_t thread, void *ret)</dt>
-<dd><a class="anchor" id="_todo000009"></a>  </dd>
-<dt>Global <a class="el" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a>  (nMutex_t mutex)</dt>
 <dd><a class="anchor" id="_todo000010"></a>  </dd>
-<dt>Global <a class="el" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>  (nMutex_t mutex)</dt>
+<dt>Global <a class="el" href="_threads_8c.html#af5e752c9fec5f1e4d0596509ab72016f">nThreadJoin</a>  (nThread_t thread, void *ret)</dt>
 <dd><a class="anchor" id="_todo000011"></a>  </dd>
-<dt>Global <a class="el" href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a>  (nMutex_t mutex)</dt>
+<dt>Global <a class="el" href="_threads_8c.html#a0c0440efdfb2dc726e0a7f542c93b383">nThreadMutexCreate</a>  (nMutex_t mutex)</dt>
 <dd><a class="anchor" id="_todo000012"></a>  </dd>
-<dt>Global <a class="el" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a>  (nMutex_t mutex)</dt>
+<dt>Global <a class="el" href="_threads_8c.html#a8818f090f3a604edfb4d2750581213c9">nThreadMutexLock</a>  (nMutex_t mutex)</dt>
 <dd><a class="anchor" id="_todo000013"></a>  </dd>
+<dt>Global <a class="el" href="_threads_8c.html#a3b89d83d7adac17362b8a30c1c76d7d0">nThreadMutexUnlock</a>  (nMutex_t mutex)</dt>
+<dd><a class="anchor" id="_todo000014"></a>  </dd>
+<dt>Global <a class="el" href="_threads_8c.html#ac4236971be3d509df3739252af6acf61">nThreadMutexDestroy</a>  (nMutex_t mutex)</dt>
+<dd><a class="anchor" id="_todo000015"></a>  </dd>
 <dt>page <a class="el" href="index.html">Nimble Game Engine Library</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000014"></a>Explain how to link the library or use the app to write code </p>
-<p class="enddd"><a class="anchor" id="_todo000015"></a>Explain how to get started, setting up a window and doing basic 2D/3D stuff </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000016"></a>Explain how to link the library or use the app to write code </p>
+<p class="enddd"><a class="anchor" id="_todo000017"></a>Explain how to get started, setting up a window and doing basic 2D/3D stuff </p>
 </dd>
 <dt>Global <a class="el" href="_threads_8c.html#aff7b47e959d06126af654dffbe0f349a">nThreadCreate</a>  (nThread_t *thread, nint_t attributes, void *(*start)(void *), void *data)</dt>
-<dd><a class="anchor" id="_todo000016"></a>Figure out the attributes for this! </dd>
+<dd><a class="anchor" id="_todo000018"></a>Figure out the attributes for this! </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

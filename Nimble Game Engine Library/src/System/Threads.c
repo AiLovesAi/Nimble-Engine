@@ -1,6 +1,6 @@
-#include "../../../include/Nimble/NimbleLicense.h"
+#include "../../include/Nimble/NimbleLicense.h"
 /*
- * Errors.c
+ * Threads.c
  * Nimble Game Engine
  *
  * Created by Avery Aaron on 2020-11-03.
@@ -8,7 +8,7 @@
  *
  */
 
-#include "../../../include/Nimble/Output/Errors/Errors.h"
+#include "../../include/Nimble/System/Threads.h"
 
 /**
  * @file Threads.c
@@ -41,7 +41,6 @@
  * @brief This class defines thread functions.
  */
 
-#include <inttypes.h>
 #include <stdlib.h>
 
 #ifdef NTHREAD_WINAPI

@@ -85,7 +85,6 @@ typedef mtx_t *nMutex_t;
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * void *func(void *data)
@@ -135,7 +134,6 @@ nThreadCreate(nThread_t *thread,
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * void *func(void *data)
@@ -178,7 +176,6 @@ nThreadSelf(void
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * void *func(void *data)
@@ -230,7 +227,6 @@ nThreadJoin(nThread_t thread,
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * nMutex_t mutex = NULL;
@@ -301,7 +297,6 @@ nThreadMutexCreate(nMutex_t mutex
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * nMutex_t mutex = NULL;
@@ -374,7 +369,6 @@ nThreadMutexLock(nMutex_t mutex
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * nMutex_t mutex = NULL;
@@ -447,7 +441,6 @@ nThreadMutexUnlock(nMutex_t mutex
  * Example:
  * @code
  * #include <stdio.h>
- * #include <stdlib.h>
  * #include <Nimble/NimbleEngine.h>
  *
  * nMutex_t mutex = NULL;

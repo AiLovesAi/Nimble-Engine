@@ -218,6 +218,12 @@ char *nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)
     const size_t bufferSize = (maxLevels * maxLineLen) + 1;
     char *stackStr = nAlloc(bufferSize);
 
+    /* Ensure executable variable is set. */
+    if (!NEXECUTABLE[0])
+    {
+        /** @todo Get executable. */
+    }
+
     /* Trace stack. */
     size_t level, len = 0;
     for (level = 0; stack && (level < maxLevels); level++)

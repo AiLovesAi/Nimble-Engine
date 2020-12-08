@@ -246,28 +246,33 @@ $(function() {
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">size_t</span> bufferSize = (maxLevels * maxLineLen) + 1;</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">char</span> *stackStr = <a class="code" href="_nimble_engine_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a>(bufferSize);</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="comment">/* Trace stack. */</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordtype">size_t</span> level, len = 0;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">for</span> (level = 0; stack &amp;&amp; (level &lt; maxLevels); level++)</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        len += snprintf(stackStr, maxLineLen, formatStr, stack-&gt;eip, (<span class="keywordtype">char</span> *) &amp;stack-&gt;eip); </div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        stack = stack-&gt;ebp;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    }</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="comment">/* Reallocate stackStr to its correct length. */</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    stackStr = <a class="code" href="_nimble_engine_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a>(stackStr, len + 1);</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordflow">if</span> (stackLen)</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    {</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        *stackLen = len;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    }</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordflow">if</span> (stackLevels)</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    {</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        *stackLevels = level;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">return</span> stackStr;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;}</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">// Errors.c</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="comment">/* Ensure executable variable is set. */</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="_files_8c.html#af23c30df61dac196f1b5d99a5cf184c9">NEXECUTABLE</a>[0])</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    }</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="comment">/* Trace stack. */</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordtype">size_t</span> level, len = 0;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordflow">for</span> (level = 0; stack &amp;&amp; (level &lt; maxLevels); level++)</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    {</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        len += snprintf(stackStr, maxLineLen, formatStr, stack-&gt;eip, (<span class="keywordtype">char</span> *) &amp;stack-&gt;eip); </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        stack = stack-&gt;ebp;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="comment">/* Reallocate stackStr to its correct length. */</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    stackStr = <a class="code" href="_nimble_engine_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a>(stackStr, len + 1);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordflow">if</span> (stackLen)</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    {</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        *stackLen = len;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    }</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span> (stackLevels)</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        *stackLevels = level;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordflow">return</span> stackStr;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;}</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">// Errors.c</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="a_errors_8c_html_a12be5e8e92cdd139422dd1bde5b8a187"><div class="ttname"><a href="_errors_8c.html#a12be5e8e92cdd139422dd1bde5b8a187">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00088">Errors.c:88</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a5c75a733273f53a047f2e47ed9f93c62"><div class="ttname"><a href="_error_values_8h.html#a5c75a733273f53a047f2e47ed9f93c62">nErrorStr</a></div><div class="ttdeci">#define nErrorStr(err)</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00809">ErrorValues.h:809</a></div></div>
@@ -288,9 +293,10 @@ $(function() {
 <div class="ttc" id="a_crash_8c_html_a27dd0441443b6798dc03a804bcfd3075"><div class="ttname"><a href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a></div><div class="ttdeci">_Noreturn void nCrashSafe(const nint_t error, time_t errorTime, const char *errorDesc, size_t errorDescLen)</div><div class="ttdoc">Crashes the program safely.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00102">Crash.c:102</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00204">Nimble.h:204</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a20dbb99b6949bc8e08729a0e29a05c4d"><div class="ttname"><a href="_error_values_8h.html#a20dbb99b6949bc8e08729a0e29a05c4d">nErrorDesc</a></div><div class="ttdeci">#define nErrorDesc(err)</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00842">ErrorValues.h:842</a></div></div>
-<div class="ttc" id="a_nimble_engine_8h_html_ad0e3de817454a22e515193db085d6e97"><div class="ttname"><a href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a></div><div class="ttdeci">NIMBLE_INLINE void * nFree(void *ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8h_source.html#l00186">NimbleEngine.h:186</a></div></div>
+<div class="ttc" id="a_nimble_engine_8h_html_ad0e3de817454a22e515193db085d6e97"><div class="ttname"><a href="_nimble_engine_8h.html#ad0e3de817454a22e515193db085d6e97">nFree</a></div><div class="ttdeci">NIMBLE_INLINE void * nFree(void *ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8h_source.html#l00184">NimbleEngine.h:184</a></div></div>
 <div class="ttc" id="a_nimble_engine_8c_html_a60dd01813a26af8aaf44098364af7ff4"><div class="ttname"><a href="_nimble_engine_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a></div><div class="ttdeci">void * nRealloc(void *ptr, const size_t size)</div><div class="ttdoc">Reallocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00067">NimbleEngine.c:67</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a527cddcc22f04dbed8fe9768a975ab50"><div class="ttname"><a href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a></div><div class="ttdeci">#define NCONST_STR_LEN(str)</div><div class="ttdoc">Gets the length of a const char * as strlen() would, but at compile time.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00190">Nimble.h:190</a></div></div>
+<div class="ttc" id="a_files_8c_html_af23c30df61dac196f1b5d99a5cf184c9"><div class="ttname"><a href="_files_8c.html#af23c30df61dac196f1b5d99a5cf184c9">NEXECUTABLE</a></div><div class="ttdeci">char NEXECUTABLE[PATH_MAX]</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00126">Files.c:126</a></div></div>
 <div class="ttc" id="a_errors_8c_html_a67e277d46978d41820d183ec95839c9b"><div class="ttname"><a href="_errors_8c.html#a67e277d46978d41820d183ec95839c9b">nErrorSetCallback</a></div><div class="ttdeci">nint_t nErrorSetCallback(void(*callback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen))</div><div class="ttdoc">Sets the callback function to handle errors.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00172">Errors.c:172</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

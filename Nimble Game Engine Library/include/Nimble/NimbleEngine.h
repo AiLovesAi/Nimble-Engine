@@ -63,14 +63,12 @@ extern "C" {
 
 
 #include <time.h>
-#include <limits.h>
 
-#if !defined(PATH_MAX) && defined(MAX_PATH)
-#  define PATH_MAX MAX_PATH
-#endif
-
+/**
+ * @brief The variable that is set after a successful initialization.
+ */
 NIMBLE_EXTERN
-char NEXECUTABLE[PATH_MAX];
+volatile _Bool NIMBLE_INITIALIZED;
 
 
 /**
