@@ -55,10 +55,28 @@ extern "C" {
 #endif
 
 /**
- * @brief The executable file directory.
+ * @brief The executable file path.
  */
 NIMBLE_EXTERN
-char NEXECUTABLE[PATH_MAX];
+char NEXEC[PATH_MAX + 1];
+
+/**
+ * @brief The length of the executable file path.
+ */
+NIMBLE_EXTERN
+size_t NEXEC_LEN;
+
+/**
+ * @brief The current working directory.
+ */
+NIMBLE_EXTERN
+char NCWD[PATH_MAX + 1];
+
+/**
+ * @brief The length of the current working directory.
+ */
+NIMBLE_EXTERN
+size_t NCWD_LEN;
 
 /**
  * @brief Checks if a file exists.
@@ -93,16 +111,16 @@ char NEXECUTABLE[PATH_MAX];
  * }
  * @endcode
  *
- * @param[in] fileName The name of the file to check.
+ * @param[in] path The name of the file to check.
  * @return #NSUCCESS is returned if the file exists; otherwise an error code is
  * returned.
  */
 NIMBLE_EXTERN
 nint_t
-nFileExists(const char *fileName);
+nFileExists(const char *path);
 
 /**
- * @brief Gets the current executable file path.
+ * @brief Checks if the file is an absolute path.
  *
  * Example:
  * @code
@@ -111,23 +129,55 @@ nFileExists(const char *fileName);
  *
  * int main(int argc, char **argv)
  * {
- *     if (nFileGetExecutable() != NSUCCESS)
+ *     
+ *     if (nFilePathIsAbsolute(NEXEC, 0) != NSUCCESS)
  *     {
- *         fputs("Failed to get executable path.", stderr);
- *         return EXIT_FAILURE;
+ *         fputs("Executable path is absolute.", stderr);
  *     }
- *     printf("Got executable path of: %s", NEXECUTABLE);
+ *     else
+ *     {
+ *         fputs("Executable path is not absolute.", stderr);
+ *     }
+ *     printf("Got executable path of: %s", NEXEC);
  *     return EXIT_SUCCESS;
  * }
  * @endcode
  *
- * @return #NEXECUTABLE is returned if successful; otherwise the
+ * @param[in] path The file path to check if absolute.
+ * @param[in] len The length of the path to check. This can be 0
+ * to use strlen().
+ * @return #NEXEC is returned if successful; otherwise the
  * engine crashes.
  */
 NIMBLE_EXTERN
-NIMBLE_FREEME
+nint_t
+nFilePathIsAbsolute(const char *path,
+                   nint_t len);
+
+/**
+ * @brief Gets the current executable file path.
+ * Gets the current executable file path and sets #NEXEC and
+ * #NEXEC_LEN.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char **argv)
+ * {
+ *     nFileGetExecutablePath();
+ *     printf("Got executable path of: %s", NEXEC);
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @return #NEXEC is returned if successful; otherwise the
+ * engine crashes.
+ */
+NIMBLE_EXTERN
 char *
-nFileGetExecutable(void);
+nFileGetExecutablePath(void);
 
 #endif // NIMBLE_ENGINE_FILES_H
 

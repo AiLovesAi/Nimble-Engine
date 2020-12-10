@@ -276,7 +276,7 @@ nEngineExit(void);
  * 
  * int main(int argc, char **argv)
  * {
- *     if (nEngineInit(argv[0], &errorCallback, &crashCallback) != NSUCCESS)
+ *     if (nEngineInit(&errorCallback, &crashCallback) != NSUCCESS)
  *     {
  *         fprintf(stderr, "Failed to initialize Nimble.");
  *         exit(EXIT_FAILURE);
@@ -286,7 +286,6 @@ nEngineExit(void);
  * }
  * @endcode
  *
- * @param[in] exec The executable defined by argv[0].
  * @param[in] errorCallback The error callback function that is called when an
  * error occurs. This can be #NULL to use the default callback.
  * @param[in] crashCallback The crash callback function that is called when the
@@ -297,8 +296,7 @@ nEngineExit(void);
  */
 NIMBLE_EXTERN
 nint_t
-nEngineInit(const char *exec,
-            void (*errorCallback)(
+nEngineInit(void (*errorCallback)(
                                   const nint_t error,
                                   const time_t errorTime,
                                   const char *errorDesc,

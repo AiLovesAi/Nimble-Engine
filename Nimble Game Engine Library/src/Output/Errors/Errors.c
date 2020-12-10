@@ -220,9 +220,9 @@ char *nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)
     char *stackStr = nAlloc(bufferSize);
 
     /* Ensure executable variable is set. */
-    if (!NEXECUTABLE[0])
+    if (!NEXEC_LEN)
     {
-       nFileGetExecutable();
+       nFileGetExecutablePath();
     }
 
     /* Trace stack. */

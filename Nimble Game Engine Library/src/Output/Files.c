@@ -123,12 +123,15 @@
 #include <unistd.h>
 #endif
 
-char NEXECUTABLE[PATH_MAX] = {0};
+char NEXEC[PATH_MAX + 1] = {0};
+size_t NEXEC_LEN = 0;
+char NCWD[PATH_MAX + 1] = {0};
+size_t NCWD_LEN = 0;
 
 
-nint_t nFileExists(const char *fileName)
+nint_t nFileExists(const char *path)
 {
-    if (access(fileName, F_OK))
+    if (access(path, F_OK))
     {
         const nint_t err = nErrorFromErrno(errno);
         errno = 0;
@@ -140,11 +143,36 @@ nint_t nFileExists(const char *fileName)
     }
 }
 
-NIMBLE_FREEME char * nFileGetExecutable(void)
+#if NIMBLE_OS == NIMBLE_WINDOWS
+#  define NFILE_ABSOLUTE_PREFIX 3
+#else
+#  define NFILE_ABSOLUTE_PREFIX 1
+#endif
+nint_t nFilePathIsAbsolute(const char *path, nint_t len)
 {
-    /** @todo Make executable finder function. */
+    if (!len)
+    {
+        len = strlen(path);
+    }
 
-    if (nFileExists(NEXECUTABLE) != NSUCCESS)
+    if (len < (NFILE_ABSOLUTE_PREFIX + 1))
+    {
+        return NERROR;
+    }
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    return (NEXEC[1] == ':') ? NSUCCESS : NERROR;
+#else
+    return (NEXEC[0] == '/') ? NSUCCESS : NERROR;
+#endif
+}
+
+NIMBLE_FREEME char *nFileGetExecutablePath(void)
+{
+    /** @todo Get executable by appending PATH's argv[0] to CWD */
+
+    if ((nFilePathIsAbsolute(NEXEC, NEXEC_LEN) == NSUCCESS) &&
+     (nFileExists(NEXEC) == NSUCCESS))
     {
         const char einfoNoExecutableStr[] = "nFileGetExecutable() failed to "\
  "verify that the set executable path exists.";
@@ -153,7 +181,7 @@ NIMBLE_FREEME char * nFileGetExecutable(void)
         /* NO RETURN */
     }
 
-    return NEXECUTABLE;
+    return NEXEC;
 }
 
 // Files.c

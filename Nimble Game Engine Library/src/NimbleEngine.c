@@ -113,12 +113,12 @@ _Noreturn void nEngineExit(void)
     exit(EXIT_SUCCESS);
 }
 
-void nEngineExitSignal(int signum)
+static void nEngineExitSignal(int signum)
 {
     nEngineExit();
 }
 
-nint_t nEngineInit(const char *exec,
+nint_t nEngineInit(
  void (*errorCallback) (const nint_t error, const time_t errorTime,
  const char *errorDesc, const size_t errorDescLen, const char *stack,
  const size_t stackLen),
@@ -148,7 +148,7 @@ nint_t nEngineInit(const char *exec,
     }
 
     /* Set signal callbacks. */
-    signal(SIGTERM, nEngineExitSignal); /** @todo errno */
+    signal(SIGTERM, nEngineExitSignal);
     signal(SIGABRT, nCrashSignal);
     signal(SIGFPE, nCrashSignal);
     signal(SIGILL, nCrashSignal);
@@ -166,15 +166,7 @@ nint_t nEngineInit(const char *exec,
     }
 
     /* Set executable file name. */
-    
-    if (nFileExists(exec) == NSUCCESS)
-    {
-        nStringCopy(NEXECUTABLE, exec, strlen(exec));
-    }
-    else
-    {
-        nFileGetExecutable();
-    }
+    nFileGetExecutablePath();
     
     NIMBLE_INITIALIZED = 1;
 
