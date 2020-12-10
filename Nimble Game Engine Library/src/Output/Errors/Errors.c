@@ -214,21 +214,23 @@ char *nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)
 
     /* Prepare stackStr with buffer. */
     const char formatStr[] = "<%08x> %s\n";
-    const size_t maxLineLen = (NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 1, 0) + NFUNCTION_NAME_MAX + 8);
+    const size_t maxLineLen = (NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 1, 0)
+     + NFUNCTION_NAME_MAX + 8);
     const size_t bufferSize = (maxLevels * maxLineLen) + 1;
     char *stackStr = nAlloc(bufferSize);
 
     /* Ensure executable variable is set. */
     if (!NEXECUTABLE[0])
     {
-        /** @todo Get executable. */
+       nFileGetExecutable();
     }
 
     /* Trace stack. */
     size_t level, len = 0;
     for (level = 0; stack && (level < maxLevels); level++)
     {
-        len += snprintf(stackStr + len, maxLineLen, formatStr, stack->eip, (char *) &stack->eip); /** @todo Find function name from eip function poiter */
+        len += snprintf(stackStr + len, maxLineLen, formatStr, stack->eip,
+         (char *) &stack->eip); /** @todo Find function name from eip function poiter */
         stack = stack->ebp;
     }
 

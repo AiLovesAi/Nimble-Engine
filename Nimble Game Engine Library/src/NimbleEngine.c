@@ -138,7 +138,7 @@ nint_t nEngineInit(const char *exec,
         errno = 0;
         const time_t errorTime = time(NULL);
         char einfoAtExitStr[] = "atexit() failed in nEngineInit(), and the "\
- "exit functions could not be set, causing Nimble to crash.";
+ "exit functions could not be set.";
         nint_t errorDescLen;
         
         char *errorDescStr = nErrorToString(&errorDescLen, err, einfoAtExitStr,
@@ -167,26 +167,13 @@ nint_t nEngineInit(const char *exec,
 
     /* Set executable file name. */
     
-    if ((err = nFileExists(exec)) > 0)
+    if (nFileExists(exec) == NSUCCESS)
     {
         nStringCopy(NEXECUTABLE, exec, strlen(exec));
     }
     else
     {
-        char *execStr = nFileGetExecutable();
-        if (!execStr)
-        {
-            const time_t errorTime = time(NULL);
-            char einfoNoExecStr[] = "nEngineInit() failed to find executable "\
- "file for stack traces using nFileGetExecutable(), causing Nimble to crash.";
-            nint_t errorDescLen;
-            char *errorDescStr = nErrorToString(&errorDescLen,
-             NERROR_INTERNAL_FAILURE, einfoNoExecStr,
-             NCONST_STR_LEN(einfoNoExecStr));
-            nCrashSafe(NERROR_INTERNAL_FAILURE, errorTime, errorDescStr,
-             errorDescLen);
-            /* NO RETURN */
-        }
+        nFileGetExecutable();
     }
     
     NIMBLE_INITIALIZED = 1;

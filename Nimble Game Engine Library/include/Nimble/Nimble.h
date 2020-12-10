@@ -83,6 +83,15 @@ extern "C" {
 #include <inttypes.h>
 #include <stdlib.h>
 
+/* Compatability checks */
+#if !defined(__GNUC__) || (__GNUC__ < 4)
+#  error GCC 4.0+ required.
+#endif
+
+#if !defined(__STDC_VERSION__) || (__STDC_VERSION__ < 199901L)
+#  error C99+ standard required.
+#endif
+
 /* URL definitions */
 #define NIMBLE_REPO_URL  "https://github.com/a3ology/Nimble-Game-Engine" /**< The url for the Nimble Game Engine repository. */
 #define NIMBLE_ISSUE_URL "https://github.com/a3ology/Nimble-Game-Engine/issues/new/choose" /**< The url for the Nimble Game Engine repository new issue. */
@@ -193,7 +202,6 @@ NCONST_STR_LEN(str) - (2 * spec1) - (3 * spec2) - (4 * spec3) - (5 * spec4) /**<
 
 #define NSTR(str) #str /**< Stringifies the argument. */
 #define NSTR_VAL(str) NSTR(str) /**< Stringifies the argument's defined value (for macros only). */
-
 
 /* Nimble integer types */
 typedef int_fast8_t   nbyte_t;

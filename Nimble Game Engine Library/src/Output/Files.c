@@ -132,18 +132,28 @@ nint_t nFileExists(const char *fileName)
     {
         const nint_t err = nErrorFromErrno(errno);
         errno = 0;
-        return (err == NERROR_NO_FILE) ? 0 : err;
+        return err;
     }
     else
     {
-        return 1;
+        return NSUCCESS;
     }
 }
 
-NIMBLE_FREEME char *nFileGetExecutable(void)
+NIMBLE_FREEME char * nFileGetExecutable(void)
 {
     /** @todo Make executable finder function. */
-    return NULL;
+
+    if (nFileExists(NEXECUTABLE) != NSUCCESS)
+    {
+        const char einfoNoExecutableStr[] = "nFileGetExecutable() failed to "\
+ "verify that the set executable path exists.";
+        nCrashSafe(NERROR_INTERNAL_FAILURE, time(NULL), einfoNoExecutableStr,
+         NCONST_STR_LEN(einfoNoExecutableStr));
+        /* NO RETURN */
+    }
+
+    return NEXECUTABLE;
 }
 
 // Files.c

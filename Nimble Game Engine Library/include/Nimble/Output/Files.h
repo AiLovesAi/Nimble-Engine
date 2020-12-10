@@ -71,18 +71,22 @@ char NEXECUTABLE[PATH_MAX];
  * int main(int argc, char **argv)
  * {
  *     nint_t exists = nFileExists(argv[0]);
- *     switch (exists)
+ *     if (exists == NSUCCESS)
  *     {
- *         case 1:
- *             printf("%s exists!\n", argv[0]);
- *             break;
- *         case 0:
- *             printf("%s does not exist!\n", argv[0]);
- *             break;
- *         case NERROR:
- *             fputs(stderr, "Failed to check if file exists "\
- *              "using nFileExists().\n");
- *             break;
+ *          printf("%s exists!\n", argv[0]);
+ *     }
+ *     else
+ *     {
+ *         switch (exists)
+ *         {
+ *             case NERROR_NO_FILE:
+ *                 printf("%s does not exist!\n", argv[0]);
+ *                 break;
+ *             default:
+ *                 fputs("Failed to check if file exists using "\
+ *                  "nFileExists().\n", stderr);
+ *                 break;
+ *         }
  *     }
  *
  *     return EXIT_SUCCESS;
@@ -90,9 +94,8 @@ char NEXECUTABLE[PATH_MAX];
  * @endcode
  *
  * @param[in] fileName The name of the file to check.
- * @return 1 is returned if the file exists, and 0 otherwise. If unsuccessful,
- * an error value is returned and a corresponding error is sent to the error
- * callback set by nErrorHandlerSetErrorCallback().
+ * @return #NSUCCESS is returned if the file exists; otherwise an error code is
+ * returned.
  */
 NIMBLE_EXTERN
 nint_t
@@ -108,28 +111,18 @@ nFileExists(const char *fileName);
  *
  * int main(int argc, char **argv)
  * {
- *     nint_t exists = nFileExists(argv[0]);
- *     switch (exists)
+ *     if (nFileGetExecutable() != NSUCCESS)
  *     {
- *         case 1:
- *             printf("%s exists!\n", argv[0]);
- *             break;
- *         case 0:
- *             printf("%s does not exist!\n", argv[0]);
- *             break;
- *         case NERROR:
- *             fputs(stderr, "Failed to check if file exists "\
- *              "using nFileExists().\n");
- *             break;
+ *         fputs("Failed to get executable path.", stderr);
+ *         return EXIT_FAILURE;
  *     }
- *
+ *     printf("Got executable path of: %s", NEXECUTABLE);
  *     return EXIT_SUCCESS;
  * }
  * @endcode
  *
- * @return A pointer to the executable file string is returned if successful;
- * otherwize, an #NULL is returned and a corresponding error is sent to the
- * error callback set by nErrorHandlerSetErrorCallback().
+ * @return #NEXECUTABLE is returned if successful; otherwise the
+ * engine crashes.
  */
 NIMBLE_EXTERN
 NIMBLE_FREEME
