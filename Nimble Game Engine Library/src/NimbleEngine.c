@@ -47,78 +47,38 @@
 #include <errno.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <string.h>
 
 volatile _Bool NIMBLE_INITIALIZED = 0;
 
-void *nAlloc(const size_t size)
+static char **NIMBLE_ARGS_LOCAL = NULL;
+static nint_t NIMBLE_ARGC_LOCAL = 0;
+char **NIMBLE_ARGS = NULL;
+nint_t NIMBLE_ARGC = 0;
+
+
+static void nEngineCleanup(void)
 {
-    void *ptr = malloc(size);
-
-    if (!ptr)
+    /* Free NIMBLE_ARGS */
+    for (int i = 0; i < NIMBLE_ARGC_LOCAL; i++)
     {
-        /* Check if successfully allocated. */
-        nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY), nErrorDescLen(NERROR_NO_MEMORY));
-        /* NO RETURN */
+        NIMBLE_ARGS_LOCAL[i] = nFree(NIMBLE_ARGS_LOCAL[i]);
     }
+    NIMBLE_ARGS_LOCAL = nFree(NIMBLE_ARGS_LOCAL);
 
-    return ptr;
-}
-
-void *nRealloc(void *ptr, const size_t size)
-{
-    ptr = realloc(ptr, size);
-
-    /* Check if successfully allocated. */
-    if (!ptr)
+    for (int i = 0; i < NIMBLE_ARGC; i++)
     {
-        nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY),
-         nErrorDescLen(NERROR_NO_MEMORY));
-         /* NO RETURN */
+        NIMBLE_ARGS[i] = nFree(NIMBLE_ARGS[i]);
     }
-
-    return ptr;
-}
-
-size_t nStringCopy(char *const restrict dst, const char *const restrict src,
- const size_t len)
-{
-    if (!src)
-    {
-        const char einfoNullStr[] = "Source string NULL in nStringCopy().";
-        nErrorThrow(NERROR_NULL, einfoNullStr, NCONST_STR_LEN(einfoNullStr));
-        return 0;
-    }
-
-    char *d = dst;
-    const char *s = src;
-    size_t l = len;
-
-    /* For each character that is not equal to the null terminator,
-     * src char = dst char. */
-    while (l-- && (*s != '\0'))
-    {
-        *d++ = *s++;
-    }
-    
-    /* Ensure the string is null-terminated. */
-    dst[len] = '\0';
-
-    return len - l;
-}
-
-
-_Noreturn void nEngineExit(void)
-{
-    /** @todo Make safe exit function */
-    exit(EXIT_SUCCESS);
+    NIMBLE_ARGS = nFree(NIMBLE_ARGS);
 }
 
 static void nEngineExitSignal(int signum)
 {
-    nEngineExit();
+    exit(signum);
 }
 
-nint_t nEngineInit(
+nint_t nEngineInit(const char **args, const nint_t argc,
  void (*errorCallback) (const nint_t error, const time_t errorTime,
  const char *errorDesc, const size_t errorDescLen, const char *stack,
  const size_t stackLen),
@@ -129,10 +89,19 @@ nint_t nEngineInit(
 
  )
 {
+    if (NIMBLE_INITIALIZED)
+    {
+        const char einfoAlreadyInitializedStr[] = "nEngineInit() was called, "\
+ "but Nimble is already initialized.";
+        nErrorThrow(NERROR_WARN, einfoAlreadyInitializedStr,
+         NCONST_STR_LEN(einfoAlreadyInitializedStr));
+        return NERROR;
+    }
+
     nint_t err = 0;
 
     /* Add nEngineExit() to the exit() functions. */
-    if (atexit(nEngineExit) != NSUCCESS)
+    if (atexit(nEngineCleanup) != NSUCCESS)
     {
         err = nErrorFromErrno(errno);
         errno = 0;
@@ -165,8 +134,41 @@ nint_t nEngineInit(
         nCrashSetCallback(crashCallback);
     }
 
+    /* Copy args to NIMBLE_ARGS */
+    if (!args || !argc)
+    {
+        goto noArgsLbl;
+    }
+
+    NIMBLE_ARGS_LOCAL = nAlloc(sizeof(char *) * argc);
+    NIMBLE_ARGS = nAlloc(sizeof(char *) * argc);
+
+    nint_t count = 0;
+    for (size_t len = 0; args[count] && count < argc; count++)
+    {
+        len = strlen(args[count]);
+        NIMBLE_ARGS_LOCAL[count] = nAlloc(len + 1);
+        nStringCopy(NIMBLE_ARGS_LOCAL[count], args[count], len);
+        NIMBLE_ARGS[count] = nAlloc(len + 1);
+        nStringCopy(NIMBLE_ARGS[count], args[count], len);
+    }
+
+    if (!count)
+    {
+noArgsLbl:;
+        const char einfoNoArgsStr[] = "No arguments passed to nEngineInit(). "\
+ "This is necessary even if no arguments are sent, as the first argument is "\
+ "always the executable file, which is needed for stacktraces.";
+        nCrashSafe(NERROR_NULL, time(NULL), einfoNoArgsStr,
+         NCONST_STR_LEN(einfoNoArgsStr));
+        /* NO RETURN */
+    }
+
+    NIMBLE_ARGC = count;
+
+
     /* Set executable file name. */
-    nFileGetExecutablePath();
+    nFileSetExecutablePath();
     
     NIMBLE_INITIALIZED = 1;
 

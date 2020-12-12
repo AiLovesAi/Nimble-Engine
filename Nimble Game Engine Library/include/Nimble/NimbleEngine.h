@@ -59,6 +59,7 @@ extern "C" {
 #include "Output/Logging.h"
 
 #include "System/CPUInfo.h"
+#include "System/Memory.h"
 #include "System/Threads.h"
 
 
@@ -70,187 +71,17 @@ extern "C" {
 NIMBLE_EXTERN
 volatile _Bool NIMBLE_INITIALIZED;
 
-
 /**
- * @brief Allocates a pointer.
- * Allocates a pointer and checks if it is successful.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     char original[] = "Hello world.";
- *     char *new = nAlloc(sizeof(original) + 1);
- *     new[sizeof(original) - 1] = '\n';
- *     new[sizeof(original)] = '\0';
- *     puts(new);
- *     new = nFree(new);
- *     if (new)
- *     {
- *         puts("We will get here only if we use nFree(new) with no assignment!");
- *     }
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
- * @param[in] size The size of the memory block in bytes.
- * @return The allocated pointer.
+ * @brief The arguments passed to the program.
  */
 NIMBLE_EXTERN
-NIMBLE_FREEME
-void *
-nAlloc(const size_t size)
-__attribute__((warn_unused_result))
-;
+char **NIMBLE_ARGS;
 
 /**
- * @brief Reallocates a pointer.
- * Rellocates a pointer and checks if it is successful.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     char original[] = "Hello world.";
- *     char *new;
- *     new = nRealloc(sizeof(original) + 1);
- *     new[sizeof(original) - 1] = '\n';
- *     new[sizeof(original)] = '\0';
- *     puts(new);
- *     new = nRealloc(sizeof(original) - 1);
- *     new[sizeof(original) - 2] = '\0';
- *     puts(new);
- *     new = nFree(new);
- *     if (new)
- *     {
- *         puts("We will get here only if we use nFree(new) with no assignment!");
- *     }
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
- * @param[in,out] ptr The pointer to reallocate.
- * @param[in] size The size of the new memory block in bytes.
- * @return The reallocated @p ptr.
+ * @brief The count of arguments in #NIMBLE_ARGS.
  */
 NIMBLE_EXTERN
-NIMBLE_FREEME
-void *
-nRealloc(void*ptr, const size_t size)
-__attribute__((warn_unused_result))
-;
-
-/**
- * @brief Frees a pointer.
- * Frees a pointer and returns #NULL to allow the invoker to optionally nullify
- * the pointer. Should the freed pointer location be needed again, no assignment
- * is necessary.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     char original[] = "Hello world.";
- *     char *new = nAlloc(sizeof(original) + 1);
- *     new[sizeof(original) - 1] = '\n';
- *     new[sizeof(original)] = '\0';
- *     puts(new);
- *     new = nFree(new);
- *     if (new)
- *     {
- *         puts("We will get here only if we use nFree(new) with no assignment!");
- *     }
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
- * @param[in] ptr The pointer to free.
- * @return #NULL is always returned.
- */
-NIMBLE_INLINE
-void *
-nFree(void *ptr)
-{
-	free(ptr);
-	return NULL;
-}
-
-/**
- * @brief Copies @p len characters from @p src to @p dst.
- * Copies @p len characters from @p src to @p dst. The string is always null
- * terminated. If there is already a null terminator, no more characters are
- * copied.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     char original[] = "Hello world.";
- *     char *new = nAlloc(sizeof(original));
- *     nStringCopy(original, new, NCONST_STR_LEN(original));
- *     printf("New string: %s\n", new);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
- * @param[out] dst The pointer to the destination.
- * @param[in] src The pointer to free.
- * @param[in] len The number of characters to copy. This must not include the
- * null terminator.
- * @return The number of successfully copied bytes is returned.
- */
-NIMBLE_EXTERN
-NIMBLE_FREEME
-size_t
-nStringCopy(char *restrict dst,
-            const char *restrict src,
-            const size_t len
-            );
-
-/**
- * @brief Exits the game engine.
- * Exits the game engine by safely stopping threads
- *
- * @par Example:
- * @code
- * #include <inttypes.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     if (nEngineInit() == NSUCCESS)
- *     {
- *         nEngineExit();
- *     }
- *     fprintf(stderr, "Failed to initialize Nimble.");
- *     exit(EXIT_SUCCESS);
- * }
- * @endcode
- *
- * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
- * a corresponding error is sent to the error callback set by
- * nErrorHandlerSetErrorCallback().
- */
-NIMBLE_EXTERN
-_Noreturn
-void
-nEngineExit(void);
+nint_t NIMBLE_ARGC;
 
 /**
  * @brief Initialized the game engine.
@@ -276,7 +107,7 @@ nEngineExit(void);
  * 
  * int main(int argc, char **argv)
  * {
- *     if (nEngineInit(&errorCallback, &crashCallback) != NSUCCESS)
+ *     if (nEngineInit(argv, argc, &errorCallback, &crashCallback) != NSUCCESS)
  *     {
  *         fprintf(stderr, "Failed to initialize Nimble.");
  *         exit(EXIT_FAILURE);
@@ -286,6 +117,8 @@ nEngineExit(void);
  * }
  * @endcode
  *
+ * @param[in] args The arguments past to main (usually argv).
+ * @param[in] argc The argument count of @p args.
  * @param[in] errorCallback The error callback function that is called when an
  * error occurs. This can be #NULL to use the default callback.
  * @param[in] crashCallback The crash callback function that is called when the
@@ -296,7 +129,9 @@ nEngineExit(void);
  */
 NIMBLE_EXTERN
 nint_t
-nEngineInit(void (*errorCallback)(
+nEngineInit(const char **args,
+            const nint_t argc,
+            void (*errorCallback)(
                                   const nint_t error,
                                   const time_t errorTime,
                                   const char *errorDesc,

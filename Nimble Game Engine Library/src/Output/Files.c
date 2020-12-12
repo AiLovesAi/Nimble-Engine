@@ -44,6 +44,7 @@
 #include <errno.h>
 #include <inttypes.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #include <stdlib.h>
@@ -119,7 +120,8 @@
 #  define STDERR_FILENO 2
 #endif
 
-#elif defined(__unix__) || defined(__unix)
+#include <Windows.h>
+#elif defined(NIMBLE_STD_UNIX)
 #include <unistd.h>
 #endif
 
@@ -167,15 +169,23 @@ nint_t nFilePathIsAbsolute(const char *path, nint_t len)
 #endif
 }
 
-NIMBLE_FREEME char *nFileGetExecutablePath(void)
+char *nFileSetExecutablePath(void)
 {
-    /** @todo Get executable by appending PATH's argv[0] to CWD */
+    if (!NIMBLE_ARGS)
+    {
+        const char einfoNoArgsStr[] = "NIMBLE_ARGS was not set, causing "\
+ "nFileSetExecutablePath() to fail.";
+        nCrashSafe(NERROR_INTERNAL_FAILURE, time(NULL), einfoNoArgsStr,
+         NCONST_STR_LEN(einfoNoArgsStr));
+        /* NO RETURN */
+    }
+    /** @todo Append argv[0] to CWD and find symlinks. */
 
     if ((nFilePathIsAbsolute(NEXEC, NEXEC_LEN) == NSUCCESS) &&
      (nFileExists(NEXEC) == NSUCCESS))
     {
-        const char einfoNoExecutableStr[] = "nFileGetExecutable() failed to "\
- "verify that the set executable path exists.";
+        const char einfoNoExecutableStr[] = "nFileSetExecutablePath() failed "\
+ "to verify that the set executable path exists.";
         nCrashSafe(NERROR_INTERNAL_FAILURE, time(NULL), einfoNoExecutableStr,
          NCONST_STR_LEN(einfoNoExecutableStr));
         /* NO RETURN */

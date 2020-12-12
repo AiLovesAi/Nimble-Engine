@@ -222,7 +222,7 @@ char *nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)
     /* Ensure executable variable is set. */
     if (!NEXEC_LEN)
     {
-       nFileGetExecutablePath();
+       nFileSetExecutablePath();
     }
 
     /* Trace stack. */

@@ -166,7 +166,7 @@ nFilePathIsAbsolute(const char *path,
  *
  * int main(int argc, char **argv)
  * {
- *     nFileGetExecutablePath();
+ *     nFileSetExecutablePath();
  *     printf("Got executable path of: %s", NEXEC);
  *     return EXIT_SUCCESS;
  * }
@@ -177,7 +177,7 @@ nFilePathIsAbsolute(const char *path,
  */
 NIMBLE_EXTERN
 char *
-nFileGetExecutablePath(void);
+nFileSetExecutablePath(void);
 
 #endif // NIMBLE_ENGINE_FILES_H
 
@@ -185,4 +185,4 @@ nFileGetExecutablePath(void);
 }
 #endif
 
-// Errors.h
+// Files.h

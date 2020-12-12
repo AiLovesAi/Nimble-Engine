@@ -85,3 +85,7 @@ extern "C" {
 {Optional:} * @note [Note]
  */
 ```
+
+# Misc:
+
+* Label names must end with "Lbl".

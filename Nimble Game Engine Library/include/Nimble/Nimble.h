@@ -97,16 +97,20 @@ extern "C" {
 #define NIMBLE_ISSUE_URL "https://github.com/a3ology/Nimble-Game-Engine/issues/new/choose" /**< The url for the Nimble Game Engine repository new issue. */
 
 
-/* OS definitions */
+/* OS/Standard definitions */
 #define NIMBLE_WINDOWS 1
 #define NIMBLE_MACOS   2
 #define NIMBLE_UNIX    3
 #define NIMBLE_LINUX   4
 #define NIMBLE_BSD     5
-#define NIMBLE_ANDROID 6
+#define NIMBLE_SOLARIS 6
+#define NIMBLE_ANDROID 7
 
 #if defined(_POSIX_SOURCE)
-#  define NIMBLE_POSIX 1
+#  define NIMBLE_STD_POSIX
+#endif
+#if defined(__unix__) || defined(__unix)
+#  define NIMBLE_STD_UNIX
 #endif
 
 #ifdef _WIN32
@@ -119,6 +123,8 @@ extern "C" {
 #  define NIMBLE_OS NIMBLE_BSD
 #elif defined(__linux__) || defined(__linux) || defined(linux)
 #  define NIMBLE_OS NIMBLE_LINUX
+#elif defined(sun)
+#  define NIMBLE_OS NIMBLE_SOLARIS
 #elif defined(__unix__) || defined(__unix)
 #  define NIMBLE_OS NIMBLE_UNIX
 #else
