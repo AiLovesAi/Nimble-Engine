@@ -140,16 +140,16 @@ nint_t nEngineInit(const char **args, const nint_t argc,
         goto noArgsLbl;
     }
 
-    NIMBLE_ARGS_LOCAL = nAlloc(sizeof(char *) * argc);
-    NIMBLE_ARGS = nAlloc(sizeof(char *) * argc);
+    NIMBLE_ARGS_LOCAL = nRealloc(NIMBLE_ARGS_LOCAL, sizeof(char *) * argc);
+    NIMBLE_ARGS = nRealloc(NIMBLE_ARGS, sizeof(char *) * argc);
 
     nint_t count = 0;
     for (size_t len = 0; args[count] && count < argc; count++)
     {
         len = strlen(args[count]);
-        NIMBLE_ARGS_LOCAL[count] = nAlloc(len + 1);
+        NIMBLE_ARGS_LOCAL[count] = nRealloc(NIMBLE_ARGS_LOCAL, len + 1);
         nStringCopy(NIMBLE_ARGS_LOCAL[count], args[count], len);
-        NIMBLE_ARGS[count] = nAlloc(len + 1);
+        NIMBLE_ARGS[count] = nRealloc(NIMBLE_ARGS, len + 1);
         nStringCopy(NIMBLE_ARGS[count], args[count], len);
     }
 

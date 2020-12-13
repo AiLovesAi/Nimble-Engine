@@ -54,6 +54,12 @@ extern "C" {
 #  define PATH_MAX MAX_PATH
 #endif
 
+#if NIMBLE_OS == NIMBLE_WINDOWS
+#  define NFILE_DIR_SEP '\\'
+#else
+#  define NFILE_DIR_SEP '/'
+#endif
+
 /**
  * @brief The executable file path.
  */
@@ -155,6 +161,33 @@ nFilePathIsAbsolute(const char *path,
                    nint_t len);
 
 /**
+ * @brief Gets the current working directory path.
+ * Gets the current working directory path and sets #NCWD and
+ * #NCWD_LEN.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char **argv)
+ * {
+ *     nFileSetCWD();
+ *     printf("Got current working directory of: %s", NCWD);
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @return #NCWD is returned if successful; otherwise the
+ * engine crashes.
+ * @note This function is not thread safe, as it is called during
+ * initialization.
+ */
+NIMBLE_EXTERN
+char *
+nFileSetCWD(void);
+
+/**
  * @brief Gets the current executable file path.
  * Gets the current executable file path and sets #NEXEC and
  * #NEXEC_LEN.
@@ -174,6 +207,8 @@ nFilePathIsAbsolute(const char *path,
  *
  * @return #NEXEC is returned if successful; otherwise the
  * engine crashes.
+ * @note This function is not thread safe, as it is called during
+ * initialization.
  */
 NIMBLE_EXTERN
 char *

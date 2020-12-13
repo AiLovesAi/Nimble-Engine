@@ -90,6 +90,8 @@ Macros</h2></td></tr>
 <tr class="memitem:a6e0e609858839da1ee70ff5a849c52b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8h.html#a6e0e609858839da1ee70ff5a849c52b9">NIMBLE_ENGINE_FILES_H</a></td></tr>
 <tr class="memdesc:a6e0e609858839da1ee70ff5a849c52b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Header definition.  <a href="_files_8h.html#a6e0e609858839da1ee70ff5a849c52b9">More...</a><br /></td></tr>
 <tr class="separator:a6e0e609858839da1ee70ff5a849c52b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec5584ed6ea5df103712c2eaf303d2d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8h.html#aec5584ed6ea5df103712c2eaf303d2d0">NFILE_DIR_SEP</a>&#160;&#160;&#160;'/'</td></tr>
+<tr class="separator:aec5584ed6ea5df103712c2eaf303d2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -99,6 +101,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa4be5219ad0d64804f1f9618bf6a8569"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8h.html#aa4be5219ad0d64804f1f9618bf6a8569">nFilePathIsAbsolute</a> (const char *path, <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> len)</td></tr>
 <tr class="memdesc:aa4be5219ad0d64804f1f9618bf6a8569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the file is an absolute path.  <a href="_files_8h.html#aa4be5219ad0d64804f1f9618bf6a8569">More...</a><br /></td></tr>
 <tr class="separator:aa4be5219ad0d64804f1f9618bf6a8569"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78197614bbc3fa64a3b5e9e4ca287bd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8h.html#a78197614bbc3fa64a3b5e9e4ca287bd3">nFileSetCWD</a> (void)</td></tr>
+<tr class="memdesc:a78197614bbc3fa64a3b5e9e4ca287bd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current working directory path.  <a href="_files_8h.html#a78197614bbc3fa64a3b5e9e4ca287bd3">More...</a><br /></td></tr>
+<tr class="separator:a78197614bbc3fa64a3b5e9e4ca287bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e5a96cfb7a94ef1ee5cd545649fc727"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8h.html#a9e5a96cfb7a94ef1ee5cd545649fc727">nFileSetExecutablePath</a> (void)</td></tr>
 <tr class="memdesc:a9e5a96cfb7a94ef1ee5cd545649fc727"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current executable file path.  <a href="_files_8h.html#a9e5a96cfb7a94ef1ee5cd545649fc727">More...</a><br /></td></tr>
 <tr class="separator:a9e5a96cfb7a94ef1ee5cd545649fc727"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,6 +135,22 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="aec5584ed6ea5df103712c2eaf303d2d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec5584ed6ea5df103712c2eaf303d2d0">&#9670;&nbsp;</a></span>NFILE_DIR_SEP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NFILE_DIR_SEP&#160;&#160;&#160;'/'</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00060">60</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
+
+</div>
+</div>
 <a id="a6e0e609858839da1ee70ff5a849c52b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6e0e609858839da1ee70ff5a849c52b9">&#9670;&nbsp;</a></span>NIMBLE_ENGINE_FILES_H</h2>
 
@@ -200,7 +221,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if the file exists; otherwise an error code is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00134">134</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00137">137</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -257,7 +278,41 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_files_8h.html#a729f179ab2b16ed68ae92568cd7d620b" title="The executable file path.">NEXEC</a> is returned if successful; otherwise the engine crashes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00153">153</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00156">156</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+
+</div>
+</div>
+<a id="a78197614bbc3fa64a3b5e9e4ca287bd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78197614bbc3fa64a3b5e9e4ca287bd3">&#9670;&nbsp;</a></span>nFileSetCWD()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> char* nFileSetCWD </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the current working directory path. </p>
+<p>Gets the current working directory path and sets <a class="el" href="_files_8h.html#a577fdedd2f2d31fc21f9597001c19a9e" title="The current working directory.">NCWD</a> and <a class="el" href="_files_8h.html#a1f61e75341db938d5860f81df62e649c" title="The length of the current working directory.">NCWD_LEN</a>.</p>
+<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="_files_8c.html#a9e609d4a183611155f3d7d4b836f6e47">nFileSetCWD</a>();</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Got current working directory of: %s&quot;</span>, <a class="code" href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a>);</div>
+<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd><a class="el" href="_files_8h.html#a577fdedd2f2d31fc21f9597001c19a9e" title="The current working directory.">NCWD</a> is returned if successful; otherwise the engine crashes. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This function is not thread safe, as it is called during initialization. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00175">175</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -289,9 +344,9 @@ Variables</h2></td></tr>
 <div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
 <div class="line">}</div>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd><a class="el" href="_files_8h.html#a729f179ab2b16ed68ae92568cd7d620b" title="The executable file path.">NEXEC</a> is returned if successful; otherwise the engine crashes. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Append argv[0] to CWD and find symlinks. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This function is not thread safe, as it is called during initialization. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00172">172</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00214">214</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -310,7 +365,7 @@ Variables</h2></td></tr>
 
 <p>The current working directory. </p>
 
-<p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00073">73</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00079">79</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
 
 </div>
 </div>
@@ -328,7 +383,7 @@ Variables</h2></td></tr>
 
 <p>The length of the current working directory. </p>
 
-<p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00079">79</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00085">85</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +401,7 @@ Variables</h2></td></tr>
 
 <p>The executable file path. </p>
 
-<p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00061">61</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00067">67</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
 
 </div>
 </div>
@@ -364,18 +419,20 @@ Variables</h2></td></tr>
 
 <p>The length of the executable file path. </p>
 
-<p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00067">67</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00073">73</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_files_8c_html_af10fb9b04bf93384063950eda1e45fa3"><div class="ttname"><a href="_files_8c.html#af10fb9b04bf93384063950eda1e45fa3">nFilePathIsAbsolute</a></div><div class="ttdeci">nint_t nFilePathIsAbsolute(const char *path, nint_t len)</div><div class="ttdoc">Checks if the file is an absolute path.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00153">Files.c:153</a></div></div>
-<div class="ttc" id="a_files_8c_html_a0277b92e6e58b346305bfcecccb86458"><div class="ttname"><a href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a></div><div class="ttdeci">char NEXEC[PATH_MAX+1]</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00128">Files.c:128</a></div></div>
+<div class="ttc" id="a_files_8c_html_af10fb9b04bf93384063950eda1e45fa3"><div class="ttname"><a href="_files_8c.html#af10fb9b04bf93384063950eda1e45fa3">nFilePathIsAbsolute</a></div><div class="ttdeci">nint_t nFilePathIsAbsolute(const char *path, nint_t len)</div><div class="ttdoc">Checks if the file is an absolute path.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00156">Files.c:156</a></div></div>
+<div class="ttc" id="a_files_8c_html_a0277b92e6e58b346305bfcecccb86458"><div class="ttname"><a href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a></div><div class="ttdeci">char NEXEC[PATH_MAX+1]</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00131">Files.c:131</a></div></div>
+<div class="ttc" id="a_files_8c_html_afd0197e622e739a3bda6f99d9a32cb36"><div class="ttname"><a href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a></div><div class="ttdeci">char NCWD[PATH_MAX+1]</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00133">Files.c:133</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00052">ErrorValues.h:52</a></div></div>
-<div class="ttc" id="a_files_8c_html_a302eb926061d46fe202582622921d56a"><div class="ttname"><a href="_files_8c.html#a302eb926061d46fe202582622921d56a">nFileSetExecutablePath</a></div><div class="ttdeci">char * nFileSetExecutablePath(void)</div><div class="ttdoc">Gets the current executable file path.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00172">Files.c:172</a></div></div>
-<div class="ttc" id="a_files_8c_html_ad93df0305d03e7f23fd2be9f41172cba"><div class="ttname"><a href="_files_8c.html#ad93df0305d03e7f23fd2be9f41172cba">nFileExists</a></div><div class="ttdeci">nint_t nFileExists(const char *path)</div><div class="ttdoc">Checks if a file exists.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00134">Files.c:134</a></div></div>
+<div class="ttc" id="a_files_8c_html_a302eb926061d46fe202582622921d56a"><div class="ttname"><a href="_files_8c.html#a302eb926061d46fe202582622921d56a">nFileSetExecutablePath</a></div><div class="ttdeci">char * nFileSetExecutablePath(void)</div><div class="ttdoc">Gets the current executable file path.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00214">Files.c:214</a></div></div>
+<div class="ttc" id="a_files_8c_html_ad93df0305d03e7f23fd2be9f41172cba"><div class="ttname"><a href="_files_8c.html#ad93df0305d03e7f23fd2be9f41172cba">nFileExists</a></div><div class="ttdeci">nint_t nFileExists(const char *path)</div><div class="ttdoc">Checks if a file exists.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00137">Files.c:137</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
 <div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00218">Nimble.h:218</a></div></div>
+<div class="ttc" id="a_files_8c_html_a9e609d4a183611155f3d7d4b836f6e47"><div class="ttname"><a href="_files_8c.html#a9e609d4a183611155f3d7d4b836f6e47">nFileSetCWD</a></div><div class="ttdeci">char * nFileSetCWD(void)</div><div class="ttdoc">Gets the current working directory path.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00175">Files.c:175</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19
