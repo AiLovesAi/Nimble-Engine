@@ -93,6 +93,14 @@ nErrorThrow(const nint_t error,
             );
 
 /**
+ * @brief Sets the last errno error to @p err.
+ */
+#  define nErrorLastErrno(err) ({\
+    err = errno;\
+    errno = 0;\
+})
+
+/**
  * @brief Describes an error and returns a string.
  *
  * Example:
@@ -133,8 +141,59 @@ nErrorToString(size_t *errorLen,
                const char *info,
                size_t infoLen
                )
-__attribute__((warn_unused_result))
-;
+__attribute__((warn_unused_result));
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
+/**
+ * @brief Sets the last Windows error to @p err.
+ */
+#  define nErrorLastWindows(err) ({\
+    err = GetLastError();\
+    SetLastError(ERROR_SUCCESS);\
+})
+
+/**
+ * @brief Describes a Windows error and returns a string.
+ *
+ * Example:
+ * @code
+ * #include <stdio.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char **argv)
+ * {
+ *     size_t errorLen;
+ *     char exampleFilePath[] = "example.txt";
+ *     char *errorStr = nErrorToString(&errorLen, GetLastError(),
+ *      exampleFilePath, NCONST_STR_LEN(exampleFilePath))
+ *     if (errorStr == NULL)
+ *     {
+ *         fprintf(stderr, "Failed to get error string.\n");
+ *         exit(EXIT_FAILURE);
+ *     }
+ *     printf("NERROR_FILE_NOT_FOUND as string: %s\n", errorStr);
+ *     return EXIT_SUCCESS;
+ * }
+ * @endcode
+ *
+ * @param[out] errorLen The length of the string returned. This can be @c #NULL.
+ * @param[in] error The error to get described.
+ * @param[in] info Relevant information, such as a file location, that could help
+ * diagnose the error. This can be @c #NULL.
+ * @param[in] infoLen The length of the @p info argument. A length of zero (0)
+ * uses strlen() to determine length.
+ * @return A pointer to the string describing @p error is returned if successful;
+ * otherwise @c #NULL is returned.
+ */
+NIMBLE_EXTERN
+char *
+nErrorToStringWindows(size_t *errorLen,
+                      const nint_t error,
+                      const char *info,
+                      size_t infoLen
+                      )
+__attribute__((warn_unused_result));
+#endif
 
 /**
  * @brief Sets the callback function to handle errors.
@@ -237,8 +296,7 @@ char *
 nErrorGetStacktrace(size_t *stackLen,
                     size_t *stackLevels
                     )
-__attribute__((warn_unused_result))
-;
+__attribute__((warn_unused_result));
 
 #endif // NIMBLE_ENGINE_ERRORS_H
 

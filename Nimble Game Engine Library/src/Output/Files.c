@@ -138,8 +138,9 @@ nint_t nFileExists(const char *path)
 {
     if (access(path, F_OK))
     {
-        const nint_t err = nErrorFromErrno(errno);
-        errno = 0;
+        nint_t err;
+        err = errno ? nErrorFromErrno(nErrorLastErrno(err)) :
+         NERROR_INTERNAL_FAILURE;
         return err;
     }
     else
@@ -180,9 +181,9 @@ char *nFileSetCWD(void)
     {
         const char einfoNoCWDStr[] = "getcwd() failed in "\
  "nFileSetCWD().";
-        const nint_t err = errno ? nErrorFromErrno(errno) :
+        nint_t err;
+        err = errno ? nErrorFromErrno(nErrorLastErrno(err)) :
          NERROR_INTERNAL_FAILURE;
-        errno = 0;
 
         nCrashSafe(err, time(NULL), einfoNoCWDStr,
          NCONST_STR_LEN(einfoNoCWDStr));
@@ -246,9 +247,9 @@ char *nFileSetExecutablePath(void)
     {
         const char einfoNoRealpathStr[] = "realpath() failed in "\
  "nFileSetExecutablePath().";
-        const nint_t err = errno ? nErrorFromErrno(errno) :
+        nint_t err;
+        err = errno ? nErrorFromErrno(nErrorLastErrno(err)) :
          NERROR_INTERNAL_FAILURE;
-        errno = 0;
 
         nCrashSafe(err, time(NULL), einfoNoRealpathStr,
          NCONST_STR_LEN(einfoNoRealpathStr));

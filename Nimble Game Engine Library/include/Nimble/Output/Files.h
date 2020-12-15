@@ -207,6 +207,7 @@ nFileSetCWD(void);
  *
  * @return #NEXEC is returned if successful; otherwise the
  * engine crashes.
+ *
  * @note This function is not thread safe, as it is called during
  * initialization.
  */

@@ -103,8 +103,7 @@ nint_t nEngineInit(const char **args, const nint_t argc,
     /* Add nEngineExit() to the exit() functions. */
     if (atexit(nEngineCleanup) != NSUCCESS)
     {
-        err = nErrorFromErrno(errno);
-        errno = 0;
+        err = nErrorFromErrno(nErrorLastErrno(err));
         const time_t errorTime = time(NULL);
         char einfoAtExitStr[] = "atexit() failed in nEngineInit(), and the "\
  "exit functions could not be set.";

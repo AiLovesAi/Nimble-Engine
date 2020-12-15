@@ -156,13 +156,10 @@ __attribute__((warn_unused_result))
  * @param[in] ptr The pointer to free.
  * @return #NULL is always returned.
  */
-NIMBLE_INLINE
-void *
-nFree(void *ptr)
-{
-	free(ptr);
-	return NULL;
-}
+#define nFree(ptr) ({\
+	free(ptr);\
+	ptr = NULL;\
+})
 
 /**
  * @brief Copies @p len characters from @p src to @p dst.

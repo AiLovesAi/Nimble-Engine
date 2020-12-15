@@ -128,8 +128,8 @@ void nErrorThrow(const nint_t error, const char *info, size_t infoLen)
     errorDescStr = nFree(errorDescStr);
 }
 
-char *nErrorToString(size_t *errorLen, const nint_t error,
- const char *info, size_t infoLen)
+char *nErrorToString(size_t *errorLen, const nint_t error, const char *info,
+ size_t infoLen)
 {
     if (info && (infoLen == 0))
     {
@@ -168,6 +168,41 @@ char *nErrorToString(size_t *errorLen, const nint_t error,
     
     return dst;
 }
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
+char *nErrorToStringWindows(size_t *errorLen, const nint_t error,
+ const char *info, size_t infoLen)
+{
+    if (info && (infoLen == 0))
+    {
+        infoLen = strlen(info);
+    }
+
+    /* Get error information. */
+    char *buffer, *dst;
+    const size_t len = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
+     FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, error,
+     MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPTSTR) &buffer, 0, NULL);
+
+    if (!len)
+    {
+        dst = nErrorToString(errorLen, NERROR_UNKNOWN, info, infoLen);
+        goto retLbl;
+    }
+
+    /* Copy error to heap. */
+    dst = nAlloc(len + 1);
+    nStringCopy(dst, buffer, len);
+    if (errorLen)
+    {
+        *errorLen = len;
+    }
+
+retLbl:;
+    LocalFree(buffer);
+    return dst;
+}
+#endif
 
 nint_t nErrorSetCallback(void (*callback)(const nint_t error,
  const time_t errorTime, const char *errorDesc, const size_t errorDescLen,

@@ -45,19 +45,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ARM_BUFFER_LEN 77
+#define ARM_BUFFER_LEN 64 + 13
 
 #if (NIMBLE_ARCH == NIMBLE_INTEL) || (NIMBLE_ARCH == NIMBLE_AMD)
 #define nGetInfoReg(eax, ret1, ret2, ret3, ret4) ({\
     asm volatile(\
         "movl %4,%%eax\n" /* Set the eax register that cpuid checks. */\
-        "cpuid\n"        /* Run the cpuid instruction. */\
+        "cpuid\n"         /* Run the cpuid instruction. */\
         "movl %%eax,%0\n" /* Store the new eax-edx values in "brand". */\
         "movl %%ebx,%1\n"\
         "movl %%ecx,%2\n"\
         "movl %%edx,%3\n"\
         : "=g" (ret1), "=g" (ret2),\
-            "=g" (ret3), "=g" (ret4)\
+          "=g" (ret3), "=g" (ret4)\
         : "r" (eax)\
         : "%eax", "%ebx", "%ecx", "%edx"\
     );\
