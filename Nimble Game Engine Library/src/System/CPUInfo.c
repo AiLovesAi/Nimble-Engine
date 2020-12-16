@@ -155,8 +155,12 @@ char *nSysGetCPUInfo(size_t *len)
     {
         const char einfoFailureStr[] = "nSysGetCPUInfo() failed to run the "\
  "'cpuid' instruction to get the CPU info (x86).";
-        nErrorThrow(NERROR_INTERNAL_FAILURE, einfoFailureStr,
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen,
+         NERROR_INTERNAL_FAILURE, einfoFailureStr,
          NCONST_STR_LEN(einfoFailureStr));
+        nErrorThrow(NERROR_INTERNAL_FAILURE, errorDescStr, errorDescLen);
+        nFree(errorDescStr);
         return NULL;
     }
 
@@ -194,8 +198,12 @@ char *nSysGetCPUInfo(size_t *len)
  "'mrs' instruction to get the CPU info using the 'MIDR_EL1' register "\
 #  endif
  "(ARM).";
-        nErrorThrow(NERROR_INTERNAL_FAILURE, einfoFailureStr,
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen,
+         NERROR_INTERNAL_FAILURE, einfoFailureStr,
          NCONST_STR_LEN(einfoFailureStr));
+        nErrorThrow(NERROR_INTERNAL_FAILURE, errorDescStr, errorDescLen);
+        nFree(errorDescStr);
         return NULL;
     }
 
@@ -329,8 +337,12 @@ char *nSysGetCPUInfo(size_t *len)
                                 + 19];
             snprintf(userRequestStr, sizeof(userRequestStr), formatStr,
              info.val, info.val);
-            nErrorThrow(NERROR_WARN, userRequestStr,
-             NCONST_STR_LEN(userRequestStr));
+
+            size_t errorDescLen;
+            char *errorDescStr = nErrorToString(&errorDescLen, NERROR_WARN,
+             userRequestStr, NCONST_STR_LEN(userRequestStr));
+            nErrorThrow(NERROR_WARN, errorDescStr, errorDescLen);
+            nFree(errorDescStr);
 
             const char unknownCPUStr[] = "Unknown";
             cpuInfoStr = nRealloc(cpuInfoStr, l + sizeof(unknownCPUStr));

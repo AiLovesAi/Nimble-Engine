@@ -56,42 +56,49 @@ nint_t nThreadCreate(nThread_t *thread, nint_t attributes,
 {
     /// @todo Attributes, pointer conversion for some arguments
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
-    *thread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE) start, data, 0, NULL);
-    if (*thread == NULL)
+    *thread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE) start, data, 0,
+     NULL);
+    if (!(*thread))
     {
-        /// @todo nErrorThrow();
+        const char einfoThreadStr[] = "CreateThread() failed in "\
+ "nThreadCreate().";
+        nint_t err;
+        nErrorLastWindows(err);
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToStringWindows(&errorDescLen,
+         err, einfoThreadStr,
+         NCONST_STR_LEN(einfoThreadStr));
+        nErrorThrow(NERROR_INTERNAL_FAILURE, errorDescStr, errorDescLen);
+        nFree(errorDescStr);
         return NERROR;
     }
 #elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
     nint_t err = pthread_create(*thread, NULL, start, data);
     if (err)
     {
-        /// @todo nErrorThrow();
+        const char einfoThreadStr[] = "pthread_create() failed in "\
+ "nThreadCreate().";
+        nErrorFromErrno(err);
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToStringWindows(&errorDescLen,
+         nErrorFromErrno(err), einfoThreadStr,
+         NCONST_STR_LEN(einfoThreadStr));
+        nErrorThrow(nErrorFromErrno(err), errorDescStr, errorDescLen);
+        nFree(errorDescStr);
         return NERROR;
     }
 #elif NIMBLE_THREADS == NIMBLE_THREADS_C11
     nint_t err = thrd_create(thread, start, data);
     if (err)
     {
-        switch (err)
-        {
-            case 1:
-            case thrd_timedout:
-                /// @todo nErrorThrow();
-                break;
-            case thrd_busy:
-                //
-                break;
-            case thrd_nomem:
-                //
-                break;
-            case thrd_error:
-                //
-                break;
-            default:
-                //
-                break;
-        }
+        const char einfoThreadStr[] = "thrd_create() failed in "\
+ "nThreadCreate().";
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToStringWindows(&errorDescLen,
+         nErrorFromErrno(err), einfoThreadStr,
+         NCONST_STR_LEN(einfoThreadStr));
+        nErrorThrow(NERROR_INTERNAL_FAILURE, errorDescStr, errorDescLen);
+        nFree(errorDescStr);
         return NERROR;
     }
 #endif

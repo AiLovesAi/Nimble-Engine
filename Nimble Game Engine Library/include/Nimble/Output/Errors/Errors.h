@@ -66,30 +66,28 @@ extern "C" {
  * int main(int argc, char **argv)
  * {
  *     char exampleFilePath[] = "example.txt";
- *     if (nErrorThrow(NERROR_FILE_NOT_FOUND, exampleFilePath,
-            sizeof(exampleFilePath)) != NSUCCESS)
- *     {
- *         fprintf(stderr, "Failed to throw error.\n");
- *         exit(EXIT_FAILURE);
- *     }
- *     printf("Successfully threw error.\n");
+ *     size_t errorDescLen;
+ *     char *errorDescStr = nErrorToString(&errorDescLen,
+ *      NERROR_FILE_NOT_FOUND, exampleFilePath,
+ *      NCONST_STR_LEN(exampleFilePath));
+ *     nErrorThrow(NERROR_FILE_NOT_FOUND, errorDescStr, errorDescLen);
  *     return EXIT_SUCCESS;
  * }
  * @endcode
  *
  * @param[in] error The error to throw.
- * @param[in] info Relevant information, such as a file location, that could help
- * @param[in] infoLen The length of the @p info argument. A length of zero (0)
- * uses strlen() to determine length.
- * diagnose the error. This can be @c #NULL.
+ * @param[in] errorDescStr Relevant information, such as a file location, that
+ * could help diagnose the error. This can be @c #NULL.
+ * @param[in] errorDescStrLen The length of the @p info argument. A length of
+ * zero (0) uses strlen() to determine length.
  *
  * @note The program will crash if this is unsuccessful.
  */
 NIMBLE_EXTERN
 void
 nErrorThrow(const nint_t error,
-            const char *info,
-            size_t infoLen
+            const char *errorDescStr,
+            size_t errorDescLen
             );
 
 /**
@@ -130,8 +128,7 @@ nErrorThrow(const nint_t error,
  * diagnose the error. This can be @c #NULL.
  * @param[in] infoLen The length of the @p info argument. A length of zero (0)
  * uses strlen() to determine length.
- * @return A pointer to the string describing @p error is returned if successful;
- * otherwise @c #NULL is returned.
+ * @return A pointer to the string describing @p error is returned.
  */
 NIMBLE_EXTERN
 NIMBLE_FREEME
@@ -223,7 +220,7 @@ __attribute__((warn_unused_result));
  *
  *     fprintf(stderr, "\nAn error occurred at %s:\nError description: "\
  *      "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
- *     timeStr = nFree(timeStr);
+ *     nFree(timeStr);
  * }
  *
  * int main(int argc, char **argv)

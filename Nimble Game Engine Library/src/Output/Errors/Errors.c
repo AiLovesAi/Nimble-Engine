@@ -85,15 +85,16 @@ void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
     /** @todo Make default callback. */
 }
 
-void nErrorThrow(const nint_t error, const char *info, size_t infoLen)
+void nErrorThrow(const nint_t error, const char *errorDescStr,
+ size_t errorDescLen)
 {
     const time_t errorTime = time(NULL);
     
-    if (errorCallback == NULL)
+    if (!errorCallback)
     {
         const time_t crashErrorTime = time(NULL);
         const char einfoCallbackStr[] = "Callback argument NULL in "\
-         "nErrorThrow().";
+ "nErrorThrow().";
         size_t crashErrorDescLen;
         
         char *crashErrorDesc = nErrorToString(&crashErrorDescLen, NERROR_NULL,
@@ -103,19 +104,11 @@ void nErrorThrow(const nint_t error, const char *info, size_t infoLen)
         /* NO RETURN */
     }
     
-    size_t errorDescLen;
-    char *errorDescStr = nErrorToString(&errorDescLen, error, info, infoLen);
+    _Bool funcAllocates = 0;
     if (!errorDescStr)
     {
-        const time_t crashErrorTime = time(NULL);
-        const char einfoParseStr[] = "Error not found in nErrorThrow().";
-        size_t crashErrorDescLen;
-        
-        char *crashErrorDesc = nErrorToString(&crashErrorDescLen,
-         NERROR_INV_ERROR, einfoParseStr, NCONST_STR_LEN(einfoParseStr));
-        nCrashSafe(NERROR_INV_ERROR, crashErrorTime, crashErrorDesc,
-         crashErrorDescLen);
-        /* NO RETURN */
+        funcAllocates = 1;
+        errorDescStr = nErrorToString(&errorDescLen, error, NULL, 0);
     }
     
     size_t stackLen, stackLevels;
@@ -124,14 +117,17 @@ void nErrorThrow(const nint_t error, const char *info, size_t infoLen)
     /* Call the user-defined error callback function. */
     errorCallback(error, errorTime, errorDescStr, errorDescLen, stackStr, stackLen);
 
-    stackStr = nFree(stackStr);
-    errorDescStr = nFree(errorDescStr);
+    nFree(stackStr);
+    if (funcAllocates)
+    {
+        nFree(errorDescStr);
+    }
 }
 
 char *nErrorToString(size_t *errorLen, const nint_t error, const char *info,
  size_t infoLen)
 {
-    if (info && (infoLen == 0))
+    if (info && (infoLen <= 0))
     {
         infoLen = strlen(info);
     }
@@ -173,7 +169,7 @@ char *nErrorToString(size_t *errorLen, const nint_t error, const char *info,
 char *nErrorToStringWindows(size_t *errorLen, const nint_t error,
  const char *info, size_t infoLen)
 {
-    if (info && (infoLen == 0))
+    if (info && (infoLen <= 0))
     {
         infoLen = strlen(info);
     }
@@ -181,8 +177,13 @@ char *nErrorToStringWindows(size_t *errorLen, const nint_t error,
     /* Get error information. */
     char *buffer, *dst;
     const size_t len = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
-     FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, error,
-     MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPTSTR) &buffer, 0, NULL);
+     FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+     NULL,
+     error,
+     MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+     (LPTSTR) &buffer,
+     0,
+     NULL);
 
     if (!len)
     {
@@ -199,7 +200,10 @@ char *nErrorToStringWindows(size_t *errorLen, const nint_t error,
     }
 
 retLbl:;
-    LocalFree(buffer);
+    if (buffer)
+    {
+        LocalFree(buffer);
+    }
     return dst;
 }
 #endif
@@ -211,9 +215,12 @@ nint_t nErrorSetCallback(void (*callback)(const nint_t error,
     if (!callback)
     {
         const char einfoCallbackStr[] = "Callback argument NULL in "\
-         "nErrorSetCallback().";
-        nErrorThrow(NERROR_NULL, einfoCallbackStr, 
-         NCONST_STR_LEN(einfoCallbackStr));
+ "nErrorSetCallback().";
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
+         einfoCallbackStr, NCONST_STR_LEN(einfoCallbackStr));
+        nErrorThrow(NERROR_NULL, errorDescStr, errorDescLen);
+        nFree(errorDescStr);
         return NERROR_NULL;
     }
     

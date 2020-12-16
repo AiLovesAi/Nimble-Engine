@@ -47,10 +47,10 @@ void *nAlloc(const size_t size)
 {
     void *ptr = malloc(size);
 
+    /* Check if successfully allocated. */
     if (!ptr)
     {
-        /* Check if successfully allocated. */
-        nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY), nErrorDescLen(NERROR_NO_MEMORY));
+        nCrashSafe(NERROR_NO_MEMORY, time(NULL), NULL, 0);
         /* NO RETURN */
     }
 
@@ -64,8 +64,7 @@ void *nRealloc(void *ptr, const size_t size)
     /* Check if successfully allocated. */
     if (!ptr)
     {
-        nCrashSafe(NERROR_NO_MEMORY, time(NULL), nErrorDesc(NERROR_NO_MEMORY),
-         nErrorDescLen(NERROR_NO_MEMORY));
+        nCrashSafe(NERROR_NO_MEMORY, time(NULL), NULL, 0);
          /* NO RETURN */
     }
 
@@ -78,14 +77,22 @@ size_t nStringCopy(char *const restrict dst, const char *const restrict src,
     if (!src)
     {
         const char einfoNullStr[] = "Source string NULL in nStringCopy().";
-        nErrorThrow(NERROR_NULL, einfoNullStr, NCONST_STR_LEN(einfoNullStr));
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
+         einfoNullStr, NCONST_STR_LEN(einfoNullStr));
+        nErrorThrow(NERROR_NULL, errorDescStr, errorDescLen);
+        nFree(errorDescStr);
         return 0;
     }
 
     if (!dst)
     {
         const char einfoNullStr[] = "Destination string NULL in nStringCopy().";
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
+         einfoNullStr, NCONST_STR_LEN(einfoNullStr));
         nErrorThrow(NERROR_NULL, einfoNullStr, NCONST_STR_LEN(einfoNullStr));
+        nFree(errorDescStr);
         return 0;
     }
 

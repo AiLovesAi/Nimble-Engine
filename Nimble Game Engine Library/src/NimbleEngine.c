@@ -62,15 +62,15 @@ static void nEngineCleanup(void)
     /* Free NIMBLE_ARGS */
     for (int i = 0; i < NIMBLE_ARGC_LOCAL; i++)
     {
-        NIMBLE_ARGS_LOCAL[i] = nFree(NIMBLE_ARGS_LOCAL[i]);
+        nFree(NIMBLE_ARGS_LOCAL[i]);
     }
-    NIMBLE_ARGS_LOCAL = nFree(NIMBLE_ARGS_LOCAL);
+    nFree(NIMBLE_ARGS_LOCAL);
 
     for (int i = 0; i < NIMBLE_ARGC; i++)
     {
-        NIMBLE_ARGS[i] = nFree(NIMBLE_ARGS[i]);
+        nFree(NIMBLE_ARGS[i]);
     }
-    NIMBLE_ARGS = nFree(NIMBLE_ARGS);
+    nFree(NIMBLE_ARGS);
 }
 
 static void nEngineExitSignal(int signum)
@@ -93,8 +93,12 @@ nint_t nEngineInit(const char **args, const nint_t argc,
     {
         const char einfoAlreadyInitializedStr[] = "nEngineInit() was called, "\
  "but Nimble is already initialized.";
-        nErrorThrow(NERROR_WARN, einfoAlreadyInitializedStr,
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_WARN,
+         einfoAlreadyInitializedStr,
          NCONST_STR_LEN(einfoAlreadyInitializedStr));
+        nErrorThrow(NERROR_WARN, errorDescStr, errorDescLen);
+        nFree(errorDescStr);
         return NERROR;
     }
 
@@ -103,12 +107,13 @@ nint_t nEngineInit(const char **args, const nint_t argc,
     /* Add nEngineExit() to the exit() functions. */
     if (atexit(nEngineCleanup) != NSUCCESS)
     {
-        err = nErrorFromErrno(nErrorLastErrno(err));
+        nErrorLastErrno(err);
+        err = nErrorFromErrno(err);
         const time_t errorTime = time(NULL);
         char einfoAtExitStr[] = "atexit() failed in nEngineInit(), and the "\
  "exit functions could not be set.";
+
         nint_t errorDescLen;
-        
         char *errorDescStr = nErrorToString(&errorDescLen, err, einfoAtExitStr,
          NCONST_STR_LEN(einfoAtExitStr));
         nCrashSafe(err, errorTime, errorDescStr, errorDescLen);
@@ -158,8 +163,10 @@ noArgsLbl:;
         const char einfoNoArgsStr[] = "No arguments passed to nEngineInit(). "\
  "This is necessary even if no arguments are sent, as the first argument is "\
  "always the executable file, which is needed for stacktraces.";
-        nCrashSafe(NERROR_NULL, time(NULL), einfoNoArgsStr,
-         NCONST_STR_LEN(einfoNoArgsStr));
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
+         einfoNoArgsStr, NCONST_STR_LEN(einfoNoArgsStr));
+        nCrashSafe(NERROR_NULL, time(NULL), errorDescStr, errorDescLen);
         /* NO RETURN */
     }
 

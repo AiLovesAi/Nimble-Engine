@@ -139,8 +139,15 @@ nint_t nFileExists(const char *path)
     if (access(path, F_OK))
     {
         nint_t err;
-        err = errno ? nErrorFromErrno(nErrorLastErrno(err)) :
-         NERROR_INTERNAL_FAILURE;
+        if (errno)
+        {
+            nErrorLastErrno(err);
+            err = nErrorFromErrno(err);
+        }
+        else
+        {
+            err = NERROR_INTERNAL_FAILURE;
+        }
         return err;
     }
     else
@@ -182,11 +189,20 @@ char *nFileSetCWD(void)
         const char einfoNoCWDStr[] = "getcwd() failed in "\
  "nFileSetCWD().";
         nint_t err;
-        err = errno ? nErrorFromErrno(nErrorLastErrno(err)) :
-         NERROR_INTERNAL_FAILURE;
+        if (errno)
+        {
+            nErrorLastErrno(err);
+            err = nErrorFromErrno(err);
+        }
+        else
+        {
+            err = NERROR_INTERNAL_FAILURE;
+        }
 
-        nCrashSafe(err, time(NULL), einfoNoCWDStr,
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, err, einfoNoCWDStr,
          NCONST_STR_LEN(einfoNoCWDStr));
+        nCrashSafe(err, time(NULL), errorDescStr, errorDescLen);
         /* NO RETURN */
     }
 
@@ -197,8 +213,12 @@ char *nFileSetCWD(void)
         {
             const char einfoCWDTooLongStr[] = "The current working "\
  "directory length is greater than PATH_MAX in nFileSetCWD().";
-            nCrashSafe(NERROR_MAX_FILENAME, time(NULL), einfoCWDTooLongStr,
+            size_t errorDescLen;
+            char *errorDescStr = nErrorToString(&errorDescLen,
+             NERROR_MAX_FILENAME, einfoCWDTooLongStr,
              NCONST_STR_LEN(einfoCWDTooLongStr));
+            nCrashSafe(NERROR_MAX_FILENAME, time(NULL), errorDescStr,
+             errorDescLen);
             /* NO RETURN */
         }
 
@@ -218,8 +238,10 @@ char *nFileSetExecutablePath(void)
     {
         const char einfoNoArgsStr[] = "NIMBLE_ARGS was not set, causing "\
  "nFileSetExecutablePath() to fail.";
-        nCrashSafe(NERROR_NULL, time(NULL), einfoNoArgsStr,
-         NCONST_STR_LEN(einfoNoArgsStr));
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
+         einfoNoArgsStr, NCONST_STR_LEN(einfoNoArgsStr));
+        nCrashSafe(NERROR_NULL, time(NULL), errorDescStr, errorDescLen);
         /* NO RETURN */
     }
 
@@ -233,8 +255,10 @@ char *nFileSetExecutablePath(void)
     {
         const char einfoExecTooLongStr[] = "The executable file path length is "\
  "greater than PATH_MAX in nFileSetExecutablePath().";
-        nCrashSafe(NERROR_MAX_FILENAME, time(NULL), einfoExecTooLongStr,
-         NCONST_STR_LEN(einfoExecTooLongStr));
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_MAX_FILENAME,
+         einfoExecTooLongStr, NCONST_STR_LEN(einfoExecTooLongStr));
+        nCrashSafe(NERROR_MAX_FILENAME, time(NULL), errorDescStr, errorDescLen);
         /* NO RETURN */
     }
 
@@ -248,11 +272,20 @@ char *nFileSetExecutablePath(void)
         const char einfoNoRealpathStr[] = "realpath() failed in "\
  "nFileSetExecutablePath().";
         nint_t err;
-        err = errno ? nErrorFromErrno(nErrorLastErrno(err)) :
-         NERROR_INTERNAL_FAILURE;
+        if (errno)
+        {
+            nErrorLastErrno(err);
+            err = nErrorFromErrno(err);
+        }
+        else
+        {
+            err = NERROR_INTERNAL_FAILURE;
+        }
 
-        nCrashSafe(err, time(NULL), einfoNoRealpathStr,
-         NCONST_STR_LEN(einfoNoRealpathStr));
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, err,
+         einfoNoRealpathStr, NCONST_STR_LEN(einfoNoRealpathStr));
+        nCrashSafe(err, time(NULL), errorDescStr, errorDescLen);
         /* NO RETURN */
     }
 
@@ -267,8 +300,12 @@ char *nFileSetExecutablePath(void)
     {
         const char einfoNoExecutableStr[] = "nFileSetExecutablePath() failed "\
  "to verify that the set executable path exists.";
-        nCrashSafe(NERROR_INTERNAL_FAILURE, time(NULL), einfoNoExecutableStr,
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen,
+         NERROR_INTERNAL_FAILURE, einfoNoExecutableStr,
          NCONST_STR_LEN(einfoNoExecutableStr));
+        nCrashSafe(NERROR_INTERNAL_FAILURE, time(NULL), errorDescStr,
+         errorDescLen);
         /* NO RETURN */
     }
 

@@ -65,7 +65,7 @@ extern "C" {
  *     new[sizeof(original) - 1] = '\n';
  *     new[sizeof(original)] = '\0';
  *     puts(new);
- *     new = nFree(new);
+ *     nFree(new);
  *     if (new)
  *     {
  *         puts("We will get here only if we use nFree(new) with no assignment!");
@@ -105,7 +105,7 @@ __attribute__((warn_unused_result))
  *     new = nRealloc(sizeof(original) - 1);
  *     new[sizeof(original) - 2] = '\0';
  *     puts(new);
- *     new = nFree(new);
+ *     nFree(new);
  *     if (new)
  *     {
  *         puts("We will get here only if we use nFree(new) with no assignment!");
@@ -144,7 +144,7 @@ __attribute__((warn_unused_result))
  *     new[sizeof(original) - 1] = '\n';
  *     new[sizeof(original)] = '\0';
  *     puts(new);
- *     new = nFree(new);
+ *     nFree(new);
  *     if (new)
  *     {
  *         puts("We will get here only if we use nFree(new) with no assignment!");

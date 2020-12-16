@@ -90,8 +90,11 @@ nint_t nCrashSetCallback(void (*callback)(const nint_t error,
     {
         const char einfoCallbackStr[] = "Callback parameter null in "\
         "nCrashSetCallback().";
-        nErrorThrow(NERROR_NULL, einfoCallbackStr,
-         NCONST_STR_LEN(einfoCallbackStr));
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
+         einfoCallbackStr, NCONST_STR_LEN(einfoCallbackStr));
+        nErrorThrow(NERROR_NULL, errorDescStr, errorDescLen);
+        nFree(errorDescStr);
         return NERROR_NULL;
     }
     
@@ -112,7 +115,7 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
     }
     crashtest = 1;
     
-    if (errorTime == 0)
+    if (!errorTime)
     {
         errorTime = time(NULL);
     }
@@ -124,7 +127,12 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
 
     char *errorDescStr;
 
-    if (!errorDesc)
+    if (errorDesc)
+    {
+        errorDescStr = nAlloc(errorDescLen);
+        nStringCopy(errorDescStr, errorDesc, errorDescLen);
+    }
+    else
     {
         errorDescStr = nErrorToString(&errorDescLen, error, NULL, 0);
         if (!errorDescStr)
@@ -136,12 +144,6 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
             errorDescStr = nRealloc(errorDescStr, errorDescLen + 1);
             nStringCopy(errorDescStr, defaultErrorStr, errorDescLen);
         }
-        
-    }
-    else
-    {
-        errorDescStr = nAlloc(errorDescLen);
-        nStringCopy(errorDescStr, errorDesc, errorDescLen);
     }
     
     size_t stackLen;
@@ -150,8 +152,8 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
     crashCallback(error, errorTime, errorDescStr, errorDescLen, stackStr,
      stackLen);
     
-    stackStr = nFree(stackStr);
-    errorDescStr = nFree(errorDescStr);
+    nFree(stackStr);
+    nFree(errorDescStr);
 
     exit(error);
     /* NO RETURN */
