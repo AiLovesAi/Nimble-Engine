@@ -854,11 +854,13 @@ const size_t nErrorDescLengths[];
 /*
  * @brief Gets the error code of the signal value @p error.
  *
- * @param[in] error The signal value.
+ * @param[in] signum The signal value.
  * @return The NERROR version of @p error, or #NERROR_UNKNOWN if out of range.
+ * @todo Fix this for windows, it uses completely weird values as usual, so it'll have to be a switch/case...
  */
-#define nErrorFromSignal(err) (((err > NERROR_SIGNAL_START) && \
- (err < NERROR_SIGNAL_END)) ? (NERROR_SIGNAL_START + err) : NERROR_UNKNOWN)
+NIMBLE_EXTERN
+nint_t
+nErrorFromSignal(const nint_t signum);
 
 /*
  * @brief Gets the error code of the errno value @p err.

@@ -41,6 +41,8 @@
  * @brief This class defines error values for error handling functions.
  */
 
+#include <signal.h>
+
 const char * const nErrorStrings[] = {
     "NERROR_MIN",
     
@@ -3381,6 +3383,27 @@ nint_t nErrorFromErrno(const nint_t err)
 #else
 #error OS not supported.
 #endif
+}
+
+nint_t nErrorFromSignal(const nint_t signum)
+{
+    switch (signum)
+    {
+        case SIGABRT:
+            return NERROR_SIGABRT;
+        case SIGFPE:
+            return NERROR_SIGFPE;
+        case SIGILL:
+            return NERROR_SIGILL;
+        case SIGINT:
+            return NERROR_SIGINT;
+        case SIGSEGV:
+            return NERROR_SIGSEGV;
+        case SIGTERM:
+            return NERROR_SIGTERM;
+        default:
+            return NERROR_UNKNOWN;
+    }
 }
 
 // Errors.c
