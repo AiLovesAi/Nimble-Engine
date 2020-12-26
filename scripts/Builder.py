@@ -28,7 +28,7 @@ def main():
     # Setup
     sys.argv.pop(0)
     if (not sys.argv):
-        print("Invalid arguments. Please specificy a directory to build")
+        print("Invalid arguments. Please specificy a directory to build.")
         exit(1)
     
     originalDirectory = os.getcwd()
@@ -53,17 +53,10 @@ def main():
         print("Building for Windows to " + directory)
         os.system("cmake -G \"MinGW Makefiles\" ..")
         os.system("mingw32-make.exe")
-    elif (system == "Darwin"):
-        print("Building for Mac OS X to " + directory)
-        os.system("cmake -G \"Unix Makefiles\" ..")
-        os.system("make")
-    elif (system == "Linux"):
+    else:
         print("Building for Linux to " + directory)
         os.system("cmake -G \"Unix Makefiles\" ..")
         os.system("make")
-    else:
-        print("OS not supported.")
-        exit(1)
     
     print("Done building CMake for " + directory)
     os.chdir("..")
