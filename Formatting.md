@@ -62,7 +62,7 @@ extern "C" {
 ```C
 /*
  * [FileName]
- * Nimble Game Engine [Product (Library, Application, etc.)]
+ * Nimble Engine [Product (Library, Application, etc.)]
  *
  * Created by [Author] on [YYYY-MM-DD].
  * Copyright (C) [YYYY] [Author] {Optional:}<[Email]>

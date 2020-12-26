@@ -1,4 +1,4 @@
-The Nimble Game Engine and all of its software fall under the MIT license.
+The Nimble Engine and all of its software fall under the MIT license.
 
 The MIT License (MIT)
 

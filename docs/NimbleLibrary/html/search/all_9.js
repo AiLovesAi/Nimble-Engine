@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['nimble_20game_20engine_20library_35',['Nimble Game Engine Library',['../index.html',1,'']]],
+  ['nimble_20game_20engine_20library_35',['Nimble Engine Library',['../index.html',1,'']]],
   ['nalloc_36',['nAlloc',['../_memory_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989',1,'nAlloc(const size_t size):&#160;Memory.c'],['../_memory_8h.html#a4c71e73a98691165c331dd69e1eb2dbf',1,'nAlloc(const size_t size) __attribute__((warn_unused_result)):&#160;Memory.c']]],
   ['nbyte_5ft_37',['nbyte_t',['../_nimble_8h.html#ab018ac8f36b4dec177a16fa18c168cdd',1,'Nimble.h']]],
   ['nconst_5fstr_5fformat_5flen_38',['NCONST_STR_FORMAT_LEN',['../_nimble_8h.html#ac19e2574e61282467156c47acb12f20a',1,'Nimble.h']]],

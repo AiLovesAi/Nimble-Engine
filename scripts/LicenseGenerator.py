@@ -1,7 +1,7 @@
 """
 
  LicenseGenerator.py
- Nimble Game Engine
+ Nimble Engine
 
  Created by Avery Aaron on 2020-08-08.
  Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
@@ -27,7 +27,7 @@ def main():
     print(directory)
     licenseData = "/*\n\
  * NimbleLicense.c\n\
- * Nimble Game Engine\n\
+ * Nimble Engine\n\
  *\n\
  * Created automatically by LicenseGenerator.py on " + date + ".\n\
  * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>\n\
@@ -66,7 +66,7 @@ def main():
 /**\n\
  * @brief The license that gets compiled into the binaries.\n\
  */\n\
-const char LICENSE_md[] = \"\\nNimble Game Engine License:\"\\\n\""
+const char LICENSE_md[] = \"\\nNimble Engine License:\"\\\n\""
     with open(directory + "LICENSE.md", 'r') as fp:
         if (not fp):
             print("Could not open LICENSE.md")
@@ -78,19 +78,19 @@ const char LICENSE_md[] = \"\\nNimble Game Engine License:\"\\\n\""
     
     licenseData += "\";\n\n\n// NimbleLicense.c\n"
     
-    if (not path.exists(directory + "Nimble Game Engine Library/src/")):
-        os.mkdir(directory + "Nimble Game Engine Library/src/")
-        if (not path.exists(directory + "Nimble Game Engine Library/src/")):
-            print("Could not create directory Nimble Game Engine Library/src/")
+    if (not path.exists(directory + "Nimble Engine Library/src/")):
+        os.mkdir(directory + "Nimble Engine Library/src/")
+        if (not path.exists(directory + "Nimble Engine Library/src/")):
+            print("Could not create directory Nimble Engine Library/src/")
             exit(1)
     
-    with open(directory + "Nimble Game Engine Library/src/NimbleLicense.c", 'w') as fp:
+    with open(directory + "Nimble Engine Library/src/NimbleLicense.c", 'w') as fp:
         if (not fp):
-            print("Could not open Nimble Game Engine Library/src/NimbleLicense.c")
+            print("Could not open Nimble Engine Library/src/NimbleLicense.c")
             exit(1)
         fp.write(licenseData)
     
-    print("Successfully generated Nimble Game Engine Library/src/NimbleLicense.c")
+    print("Successfully generated Nimble Engine Library/src/NimbleLicense.c")
     exit(0)
 
 if __name__ == "__main__":

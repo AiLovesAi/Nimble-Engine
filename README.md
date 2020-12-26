@@ -1,26 +1,26 @@
-# Nimble Game Engine
+# Nimble Engine
 
-Nimble is a cross-platform, light 3D game engine written in C. It is designed to make games that run efficiently and smoothly.
+Nimble is an open source, cross-platform, light game engine written in C. It is designed to make applications that run efficiently and smoothly.
 
 # Products:
 
-* Nimble Game Engine Application:
-    The main application that is used to create games.
+* Nimble Engine Application:
+    The main application for designing games and other programs.
 
-* Nimble Game Engine Library:
-    The internal code that is used by the developer to write game code. Some examples of this are: opening a window, selecting a default collision detection algorithm, and creating objects in space.
+* Nimble Engine Library:
+    The internal code that is used by the developer to write game code. Some examples of this are: opening a window, playing a sound, setting up a client or server, and creating objects in space.
 
-* Nimble Game Builder:
-    The application that compiles the developer's code with the Nimble Game Engine Library and all other libraries.
+* Nimble Compiler:
+    The application that compiles the developer's code with the Nimble Engine Library.
 
 * Nimble Debugger:
     The program that runs a debugging environment for testing code live.
 
 * Nimble Level Editor:
-    A level editor application for games that are not procedurally generated.
+    An optional level editor application for games.
 
 * Nimble Level Compiler:
-    The program that compiles levels into a playable file.
+    The program that compiles levels into a playable level file.
 
-* Nimble Game Engine Installer:
-    The installer for Nimble Game Engine Application.
+* Nimble Engine Installer:
+    The installer for Nimble Engine Application.

@@ -1,7 +1,7 @@
 """
 
  Builder.py
- Nimble Game Engine
+ Nimble Engine
 
  Created by Avery Aaron on 2020-08-11.
  Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
@@ -31,7 +31,7 @@ def main():
         print("Invalid arguments. Please specificy a directory to build.")
         exit(1)
     
-    originalDirectory = os.getcwd()
+    originalDirectory = os.getcwd().replace("\\", "/")
     directory = " ".join(sys.argv).replace('"', '')
     if (not directory.endswith("/")):
         directory += "/"
@@ -69,11 +69,12 @@ def main():
             exit(1)
     
     for file in glob.glob("build/*Nimble*"):
+        file = file.replace("\\", "/")
         fileIsLibrary = (file.endswith(".dll") or file.endswith(".lib") or file.endswith(".so") or file.endswith(".a") or file.endswith(".dylib"))
         # If library, move
         if (fileIsLibrary):
             if (not path.exists(originalDirectory + "/lib/Nimble/")):
-                os.mkdir(originalDirectory + "/lib/Nimble/")
+                os.makedirs(originalDirectory + "/lib/Nimble/", exist_ok=True)
                 if (not path.exists(originalDirectory + "/lib/Nimble/")):
                     print("Could not make directory lib/Nimble/. You will need to organize the output files yourself.")
                     exit(1)
@@ -96,8 +97,28 @@ def main():
                 fileNoVersion = fileNoVersion.replace(version, "")
             shutil.copy(file, originalDirectory + "/products/" + fileNoVersion)
         
-        shutil.move(file, "products/" + file[len("build/"):])
-    print("Moved all output files to " + directory[:-len("build/")] + "products/ and lib/Nimble/")
+        shutil.copy(file, "products/" + file[len("build/"):])
+    print("Copied all output files to " + directory[:-len("build/")] + "products/ and lib/Nimble/")
+
+    # Move include files
+    for file in glob.glob("include/**/*.h", recursive=True):
+        file = file.replace("\\", "/")
+        if (not path.exists(originalDirectory + "/lib/Nimble/include/")):
+            os.makedirs(originalDirectory + "/lib/Nimble/include/", exist_ok=True)
+            if (not path.exists(originalDirectory + "/lib/Nimble/include/")):
+                print("Could not make directory lib/Nimble/include/. You will need to organize the include files yourself.")
+                exit(1)
+        
+        if ("/" in file[len("include/"):]):
+            fileDir = originalDirectory + "/lib/Nimble/include/" + file[len("include/"):-(len(file) - file.rindex("/"))] + "/"
+            if (not path.exists(fileDir)):
+                os.makedirs(fileDir, exist_ok=True)
+                if (not path.exists(fileDir)):
+                    print("Could not make directory " + fileDir + ". You will need to organize the include files yourself.")
+                    exit(1)
+                
+        shutil.copy(file, originalDirectory + "/lib/Nimble/include/" + file[len("include/"):])
+    print("Copied all include files to lib/Nimble/include/")
     
     os.chdir(originalDirectory)
 
