@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Engine Library: C:/Users/Avery/Documents/GitHub/Nimble-Game-Engine/Nimble Engine Library/include/Nimble/Output/Errors/ErrorValues.h Source File</title>
+<title>Nimble Engine Library: C:/Users/Avery/Documents/GitHub/Nimble-Engine/Nimble Engine Library/include/Nimble/Output/Errors/ErrorValues.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e3c38eff13c376c7f66f0c4e07c35714.html">Nimble Engine Library</a></li><li class="navelem"><a class="el" href="dir_bc5d8e10fc53fe3a0c8b2507ab399161.html">include</a></li><li class="navelem"><a class="el" href="dir_7d8071a6e5d31e3b235f236977b67707.html">Nimble</a></li><li class="navelem"><a class="el" href="dir_9cf201ec0f725bc28d38fdcf7048b252.html">Output</a></li><li class="navelem"><a class="el" href="dir_cc92b8fc815ed2a605e48d06ef4160cf.html">Errors</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_1c45fac600dc9ba5587df944a300bfdd.html">Nimble Engine Library</a></li><li class="navelem"><a class="el" href="dir_c94f25ca410439a994640698a366d881.html">include</a></li><li class="navelem"><a class="el" href="dir_e16a31f68843c13a453503c5b38f57db.html">Nimble</a></li><li class="navelem"><a class="el" href="dir_0f10ff5e3d62fd71fd0579705201df63.html">Output</a></li><li class="navelem"><a class="el" href="dir_65116051a86b48e1d6a2a1544938889a.html">Errors</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -868,29 +868,31 @@ $(function() {
 <div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;<span class="comment"> * @brief Gets the error code of the signal value @p error.</span></div>
 <div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;<span class="comment"> * @param[in] error The signal value.</span></div>
+<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;<span class="comment"> * @param[in] signum The signal value.</span></div>
 <div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;<span class="comment"> * @return The NERROR version of @p error, or #NERROR_UNKNOWN if out of range.</span></div>
-<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00860"></a><span class="lineno"><a class="line" href="_error_values_8h.html#a0c8cba09ac1e34a9782c81c75e4bb258">  860</a></span>&#160;<span class="preprocessor">#define nErrorFromSignal(err) (((err &gt; NERROR_SIGNAL_START) &amp;&amp; \</span></div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;<span class="preprocessor"> (err &lt; NERROR_SIGNAL_END)) ? (NERROR_SIGNAL_START + err) : NERROR_UNKNOWN)</span></div>
-<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160; </div>
-<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;<span class="comment"> * @brief Gets the error code of the errno value @p err.</span></div>
-<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;<span class="comment"> * @param[in] err The errno value.</span></div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;<span class="comment"> * @return An NERROR version of @p err, or #NERROR_UNKNOWN if out of range.</span></div>
-<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
-<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;<a class="code" href="_error_values_8h.html#aa0d6bf92efd29ba27bebc79867f18a7d">nErrorFromErrno</a>(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> err);</div>
-<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160; </div>
-<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_ERRORVALUES_H</span></div>
+<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;<span class="comment"> * @todo Fix this for windows, it uses completely weird values as usual, so it&#39;ll have to be a switch/case...</span></div>
+<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
+<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;<a class="code" href="_error_values_8h.html#a0180c7f1fedcd23c10398be973e436f3">nErrorFromSignal</a>(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> signum);</div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160; </div>
+<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;<span class="comment"> * @brief Gets the error code of the errno value @p err.</span></div>
+<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;<span class="comment"> * @param[in] err The errno value.</span></div>
+<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;<span class="comment"> * @return An NERROR version of @p err, or #NERROR_UNKNOWN if out of range.</span></div>
+<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
+<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;<a class="code" href="_error_values_8h.html#aa0d6bf92efd29ba27bebc79867f18a7d">nErrorFromErrno</a>(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> err);</div>
 <div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160; </div>
-<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;}</div>
-<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160; </div>
-<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;<span class="comment">// ErrorValues.h</span></div>
+<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_ERRORVALUES_H</span></div>
+<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160; </div>
+<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;}</div>
+<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160; </div>
+<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;<span class="comment">// ErrorValues.h</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a></div><div class="ttdeci">@ NERROR_INTERNAL_FAILURE</div><div class="ttdoc">An internal error occurred.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00066">ErrorValues.h:66</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6a284ee208a3789fddafee326b2e45b38c"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a284ee208a3789fddafee326b2e45b38c">NERROR_INV_ERROR</a></div><div class="ttdeci">@ NERROR_INV_ERROR</div><div class="ttdoc">An error passed to a function was not valid.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00068">ErrorValues.h:68</a></div></div>
@@ -908,6 +910,7 @@ $(function() {
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6a140fb183264c59ff1ef4b269e5b2d0c6"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a140fb183264c59ff1ef4b269e5b2d0c6">NERROR_SIGABRT</a></div><div class="ttdeci">@ NERROR_SIGABRT</div><div class="ttdoc">Caught abort signal.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00071">ErrorValues.h:71</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6aaeab255ad67230ef2c173137fcf2d2e6"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6aaeab255ad67230ef2c173137fcf2d2e6">NERROR_MIN</a></div><div class="ttdeci">@ NERROR_MIN</div><div class="ttdoc">The mininum error number.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00062">ErrorValues.h:62</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6a8db03f639d76a28032dd7aa957d458da"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8db03f639d76a28032dd7aa957d458da">NERROR_SIGINT</a></div><div class="ttdeci">@ NERROR_SIGINT</div><div class="ttdoc">Caught interrupt signal.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00074">ErrorValues.h:74</a></div></div>
+<div class="ttc" id="a_error_values_8h_html_a0180c7f1fedcd23c10398be973e436f3"><div class="ttname"><a href="_error_values_8h.html#a0180c7f1fedcd23c10398be973e436f3">nErrorFromSignal</a></div><div class="ttdeci">NIMBLE_EXTERN nint_t nErrorFromSignal(const nint_t signum)</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8c_source.html#l03388">ErrorValues.c:3388</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_aa1f40dd1159106456cfc64541001192d"><div class="ttname"><a href="_error_values_8h.html#aa1f40dd1159106456cfc64541001192d">nErrorDescLengths</a></div><div class="ttdeci">NIMBLE_EXTERN const size_t nErrorDescLengths[]</div><div class="ttdoc">The length of descriptions of the error codes defined by nErrors.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00831">ErrorValues.h:831</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6aa900e3d797f12cc867a38e39a246b9af"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6aa900e3d797f12cc867a38e39a246b9af">NERROR_SIGNAL_START</a></div><div class="ttdeci">@ NERROR_SIGNAL_START</div><div class="ttdoc">The start of the signal section.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00070">ErrorValues.h:70</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00218">Nimble.h:218</a></div></div>
@@ -915,7 +918,7 @@ $(function() {
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6a34a5e728cbe553c20e88471cfffc6173"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a34a5e728cbe553c20e88471cfffc6173">NERROR_SIGSEGV</a></div><div class="ttdeci">@ NERROR_SIGSEGV</div><div class="ttdoc">Caught memory address violation signal.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00075">ErrorValues.h:75</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6a7573686b21e6300b422f179c25f29d0f"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a7573686b21e6300b422f179c25f29d0f">NERROR_ERRNO_START</a></div><div class="ttdeci">@ NERROR_ERRNO_START</div><div class="ttdoc">The start of the errno section.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00079">ErrorValues.h:79</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66">NERROR_MAX</a></div><div class="ttdeci">@ NERROR_MAX</div><div class="ttdoc">The maximum error number.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00785">ErrorValues.h:784</a></div></div>
-<div class="ttc" id="a_error_values_8h_html_aa0d6bf92efd29ba27bebc79867f18a7d"><div class="ttname"><a href="_error_values_8h.html#aa0d6bf92efd29ba27bebc79867f18a7d">nErrorFromErrno</a></div><div class="ttdeci">NIMBLE_EXTERN nint_t nErrorFromErrno(const nint_t err)</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8c_source.html#l03295">ErrorValues.c:3295</a></div></div>
+<div class="ttc" id="a_error_values_8h_html_aa0d6bf92efd29ba27bebc79867f18a7d"><div class="ttname"><a href="_error_values_8h.html#aa0d6bf92efd29ba27bebc79867f18a7d">nErrorFromErrno</a></div><div class="ttdeci">NIMBLE_EXTERN nint_t nErrorFromErrno(const nint_t err)</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8c_source.html#l03297">ErrorValues.c:3297</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19
