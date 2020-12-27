@@ -82,461 +82,156 @@ typedef mtx_t *nMutex_t;
 
 
 /**
- * @brief Returns from a thread with no value.
- */
-#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
-#  define nThreadReturn() return 0;
-#else
-#  define nThreadReturn() return NULL;
-#endif
-
-/**
- * @brief Returns from a thread with a value.
- * 
- * @param[in] val The return value of the thread.
- * 
- * @note Use #nThreadReturn() when returning no value.
- */
-#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
-#  define nThreadReturnVal(val) return val;
-#else
-NIMBLE_FREEME
-#  define nThreadReturnVal(val) ({
-    void *n_retData = nAlloc(sizeof(int32_t)); /// @todo Handle this by making a function to get the return value of a thread.
-    *n_retData = val;
-    return n_retData;
-})
-#endif
-
-/**
  * @brief Creates a thread.
+ * 
  * Creates a thread starting at @p start() where @p data is passed, whose
  * identity is stored in @p thread with @p attributes attributes.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * nThreadRoutine_t func(void *data)
- * {
- *     int ret = *((int *) data);
- *     printf("%x\n", ret);
- *     nThreadReturnNil();
- * }
- *
- * int main(int argc, char **argv)
- * {
- *     nThread_t thread = NULL;
- *     int arg = 10;
- *     if (nThreadCreate(&thread, 0, &func, (void *) &arg) != NSUCCESS)
- *     {
- *         printf("Could not create thread.\n");
- *         return EXIT_FAILURE;
- *     }
- *     printf("Successfully created thread.\n");
- *
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
  * @param[out] thread The thread identity of the created thread.
- * @param[in] attributes The attribute flags for the thread creation, or 0 for
- * default attributes. @todo Figure out the attributes for this!
  * @param[in] start The start function for the thread to start in. This function
  * should take a @c void * argument, which @p data is sent to, and should
  * return its return value as a @c void *.
  * @param[in] data A pointer to the argument to pass to @p start.
- * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned and
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  * 
- * @note To be fully portable, threads must return an integer value
+ * @note If a thread is not later joined to check its result, call nThreadDetach().
+ * To be fully portable, threads must return an integer value.
  */
 NIMBLE_EXTERN
 nint_t
 nThreadCreate(nThread_t *thread,
-              nint_t attributes,
               nThreadRoutine_t (*start)(void *),
               void *data
               );
 
 /**
- * @brief Joins (or waits for) a thread until its completion.
+ * @brief Exits from the current thread with @p ret return value.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * void *func(void *data)
- * {
- *     int ret = *((int *) data);
- *     nThread_t thread = nThreadSelf();
- *     printf("New thread ID: %x\n", ret);
- *     return &ret;
- * }
- *
- * int main(int argc, char **argv)
- * {
- *     nThread_t thread = NULL;
- *     int arg = 10;
- *     if (nThreadCreate(&thread, 0, func, (void *) &arg) != NSUCCESS)
- *     {
- *         printf("Could not create thread.\n");
- *         return EXIT_FAILURE;
- *     }
- *     printf("Successfully created thread.\n");
- *
- *     nThread_t thread = nThreadSelf();
- *
- *     return EXIT_SUCCESS;
- * }
- * @endcode
+ * @param[in] ret The return value of the exiting thread.
+ */
+#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
+#  define nThreadExit(ret) ExitThread((DWORD) ret)
+#elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
+#  define nThreadExit(ret) pthread_exit((void *) &ret)
+#elif NIMBLE_THREADS == NIMBLE_THREADS_C11
+#  define nThreadExit(ret) thrd_exit(ret)
+#endif
+
+/**
+ * @brief Gets the current thread.
  *
  * @return The @c nThread_t of the invoking thread if successful; otherwise
- * #NERROR is returned and a corresponding error is sent to the error callback
+ * an error is returned and a corresponding error is sent to the error callback
  * set by nErrorHandlerSetErrorCallback().
  */
-NIMBLE_EXTERN
-nThread_t
-nThreadSelf(void
-            );
+#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
+#  define nThreadSelf GetCurrentThread
+#elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
+#  define nThreadSelf pthread_self
+#elif NIMBLE_THREADS == NIMBLE_THREADS_C11
+#  define nThreadSelf thrd_current
+#endif
+
+/**
+ * @brief Checks if two thread types refer to the same thread.
+ *
+ * @param[in] thread1 The thread to compare to @p thread2.
+ * @param[in] thread2 The thread to compare to @p thread1.
+ * @return Returns 1 if the threads are equal and 0 otherwise.
+ */
+#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
+#  define nThreadEqual(thread1, thread2) CompareObjectHandles(thread1, thread2)
+#elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
+#  define nThreadEqual(thread1, thread2) pthread_self(thread1, thread2)
+#elif NIMBLE_THREADS == NIMBLE_THREADS_C11
+#  define nThreadEqual(thread1, thread2) thrd_current(thread1, thread2)
+#endif
 
 /**
  * @brief Joins (or waits for) a thread until its completion.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * void *func(void *data)
- * {
- *     nThread_t thread = nThreadSelf();
- *     int ret = *((int *) data);
- *     printf("New thread ID: %x\n", ret);
- *     return &ret;
- * }
- *
- * int main(int argc, char **argv)
- * {
- *     nThread_t thread = NULL;
- *     int arg = 10;
- *     if (nThreadCreate(&thread, 0, func, (void *) &arg) != NSUCCESS)
- *     {
- *         printf("Could not create thread.\n");
- *         return EXIT_FAILURE;
- *     }
- *     printf("Successfully created thread.\n");
- *
- *     int ret;
- *     if (nThreadJoin(thread, (void *) &ret) != NSUCCESS)
- *     {
- *         printf("Could not join thread.\n");
- *         return EXIT_FAILURE;
- *     }
- *     printf("Successfully joined thread until its completion: %d\n", ret);
- *
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
  * @param[in] thread The thread identity of the thread to join.
  * @param[out] ret The return value of the thread on its completion.
- * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned and
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  */
 NIMBLE_EXTERN
 nint_t
 nThreadJoin(nThread_t thread,
-            void *ret
+            nint_t *ret
             );
 
 /**
- * @brief Initializes a #NULL mutex.
+ * @brief Detaches a thread.
+ * 
+ * Detaches a thread, freeing its resources when it exits, instead of having to
+ * wait for nThreadJoin() to do so.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * nMutex_t mutex = NULL;
- *
- * void *func(void *data)
- * {
- *     nThreadMutexLock(mutex);
- *     puts("Mutex locked.\n");
- *
- *     nThread_t thread = nThreadSelf();
- *     int ret = *((int *) data);
- *     printf("New thread ID: %x\n", ret);
- *
- *     puts("Unlocking mutex.\n");
- *     nThreadMutexUnlock(mutex);
- *     return &ret;
- * }
- *
- * int main(int argc, char **argv)
- * {
- *     if (nThreadMutexCreate(mutex) != NSUCCESS)
- *     {
- *         printf("Could not create mutex.\n");
- *         return EXIT_FAILURE;
- *     }
- *
- *     nThread_t threads[3] = {NULL, NULL, NULL};
- *     char success[] = "Successfully created thread #0.\n";
- *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
- *     {
- *         if (nThreadCreate(&threads[i], 0, func, (void *) &i) != NSUCCESS)
- *         {
- *             printf("Could not create thread.\n");
- *             return EXIT_FAILURE;
- *         }
- *         success[sizeof(success) - 4]++;
- *         puts(success);
- *      }
- *
- *     int ret;
- *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
- *     {
- *         if (nThreadJoin(thread, (void *) &ret) != NSUCCESS)
- *         {
- *             printf("Could not join thread.\n");
- *             return EXIT_FAILURE;
- *         }
- *         printf("Successfully joined thread #%d until its completion.\n", ret);
- *     }
- *
- *     nThreadMutexDestroy(mutex);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
- * @param[in] mutex The mutex to initialize.
- * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
+ * @param[in] thread The thread identity of the thread to detach.
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned and
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  */
 NIMBLE_EXTERN
 nint_t
-nThreadMutexCreate(nMutex_t mutex
+nThreadDetach(nThread_t thread
+              );
+
+/**
+ * @brief Initializes a #NULL mutex.
+ *
+ * @param[in] mutex The mutex to initialize.
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned and
+ * a corresponding error is sent to the error callback set by
+ * nErrorHandlerSetErrorCallback().
+ */
+NIMBLE_EXTERN
+nint_t
+nThreadMutexCreate(nMutex_t *mutex
                    );
+
 /**
  * @brief Locks a mutex, or waits or the already locked mutex to unlock.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * nMutex_t mutex = NULL;
- *
- * void *func(void *data)
- * {
- *     nThreadMutexLock(mutex);
- *     puts("Mutex locked.\n");
- *
- *     nThread_t thread = nThreadSelf();
- *     int ret = *((int *) data);
- *     printf("New thread ID: %x\n", ret);
- *
- *     puts("Unlocking mutex.\n");
- *     nThreadMutexUnlock(mutex);
- *     return &ret;
- * }
- *
- * int main(int argc, char **argv)
- * {
- *     if (nThreadMutexCreate(mutex) != NSUCCESS)
- *     {
- *         printf("Could not create mutex.\n");
- *         return EXIT_FAILURE;
- *     }
- *
- *     nThread_t threads[3] = {NULL, NULL, NULL};
- *     char success[] = "Successfully created thread #0.\n";
- *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
- *     {
- *         if (nThreadCreate(&threads[i], 0, func, (void *) &i) != NSUCCESS)
- *         {
- *             printf("Could not create thread.\n");
- *             return EXIT_FAILURE;
- *         }
- *         success[sizeof(success) - 4]++;
- *         puts(success);
- *      }
- *
- *     int ret;
- *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
- *     {
- *         if (nThreadJoin(thread, (void *) &ret) != NSUCCESS)
- *         {
- *             printf("Could not join thread.\n");
- *             return EXIT_FAILURE;
- *         }
- *         printf("Successfully joined thread #%d until its completion.\n", ret);
- *     }
- *
- *     nThreadMutexDestroy(mutex);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
  * @param[in] mutex The mutex to lock.
- * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned and
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  * @note The mutex must be initialized by nThreadMutexCreate() prior to use.
  */
 NIMBLE_EXTERN
 nint_t
-nThreadMutexLock(nMutex_t mutex
+nThreadMutexLock(nMutex_t *mutex
                  );
 
 /**
  * @brief Unlocks a mutex.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * nMutex_t mutex = NULL;
- *
- * void *func(void *data)
- * {
- *     nThreadMutexLock(mutex);
- *     puts("Mutex locked.\n");
- *
- *     nThread_t thread = nThreadSelf();
- *     int ret = *((int *) data);
- *     printf("New thread ID: %x\n", ret);
- *
- *     puts("Unlocking mutex.\n");
- *     nThreadMutexUnlock(mutex);
- *     return &ret;
- * }
- *
- * int main(int argc, char **argv)
- * {
- *     if (nThreadMutexCreate(mutex) != NSUCCESS)
- *     {
- *         printf("Could not create mutex.\n");
- *         return EXIT_FAILURE;
- *     }
- *
- *     nThread_t threads[3] = {NULL, NULL, NULL};
- *     char success[] = "Successfully created thread #0.\n";
- *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
- *     {
- *         if (nThreadCreate(&threads[i], 0, func, (void *) &i) != NSUCCESS)
- *         {
- *             printf("Could not create thread.\n");
- *             return EXIT_FAILURE;
- *         }
- *         success[sizeof(success) - 4]++;
- *         puts(success);
- *      }
- *
- *     int ret;
- *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
- *     {
- *         if (nThreadJoin(thread, (void *) &ret) != NSUCCESS)
- *         {
- *             printf("Could not join thread.\n");
- *             return EXIT_FAILURE;
- *         }
- *         printf("Successfully joined thread #%d until its completion.\n", ret);
- *     }
- *
- *     nThreadMutexDestroy(mutex);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
  * @param[in] mutex The mutex to unlock.
- * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned and
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  * @note The mutex must be initialized by nThreadMutexCreate() prior to use.
  */
 NIMBLE_EXTERN
 nint_t
-nThreadMutexUnlock(nMutex_t mutex
+nThreadMutexUnlock(nMutex_t *mutex
                    );
 
 /**
  * @brief Destroys a mutex to prevent memory leaks.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * nMutex_t mutex = NULL;
- *
- * void *func(void *data)
- * {
- *     nThreadMutexLock(mutex);
- *     puts("Mutex locked.\n");
- *
- *     nThread_t thread = nThreadSelf();
- *     int ret = *((int *) data);
- *     printf("New thread ID: %x\n", ret);
- *
- *     puts("Unlocking mutex.\n");
- *     nThreadMutexUnlock(mutex);
- *     return &ret;
- * }
- *
- * int main(int argc, char **argv)
- * {
- *     if (nThreadMutexCreate(mutex) != NSUCCESS)
- *     {
- *         printf("Could not create mutex.\n");
- *         return EXIT_FAILURE;
- *     }
- *
- *     nThread_t threads[3] = {NULL, NULL, NULL};
- *     char success[] = "Successfully created thread #0.\n";
- *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
- *     {
- *         if (nThreadCreate(&threads[i], 0, func, (void *) &i) != NSUCCESS)
- *         {
- *             printf("Could not create thread.\n");
- *             return EXIT_FAILURE;
- *         }
- *         success[sizeof(success) - 4]++;
- *         puts(success);
- *      }
- *
- *     int ret;
- *     for (int i = 0; i < (sizeof(threads) / sizeof(nThread_t)); i++)
- *     {
- *         if (nThreadJoin(thread, (void *) &ret) != NSUCCESS)
- *         {
- *             printf("Could not join thread.\n");
- *             return EXIT_FAILURE;
- *         }
- *         printf("Successfully joined thread #%d until its completion.\n", ret);
- *     }
- *
- *     nThreadMutexDestroy(mutex);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
  * @param[in] mutex The mutex to destroy.
- * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned and
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  */
 NIMBLE_EXTERN
 nint_t
-nThreadMutexDestroy(nMutex_t mutex
+nThreadMutexDestroy(nMutex_t *mutex
                     );
 
 /** @todo Thread and mutex functions */

@@ -103,7 +103,19 @@ void nAssert(const nint_t check, const nint_t error, const char *info,
 {
     if (!check)
     {
-        nint_t err;
+        nint_t err = 0;
+#if NIMBLE_OS == NIMBLE_WINDOWS
+        nErrorLastWindows(err);
+        if (err)
+        {
+            err = error;
+            size_t errorDescLen;
+            char *errorDescStr = nErrorToStringWindows(&errorDescLen, err,
+             info, infoLen);
+            nCrashSafe(err, time(NULL), errorDescStr, errorDescLen);
+            /* NO RETURN */
+        }
+#endif
         if (errno)
         {
             nErrorLastErrno(err);
@@ -116,7 +128,7 @@ void nAssert(const nint_t check, const nint_t error, const char *info,
 
         size_t errorDescLen;
         char *errorDescStr = nErrorToString(&errorDescLen, err,
-            info, infoLen);
+         info, infoLen);
         nCrashSafe(err, time(NULL), errorDescStr, errorDescLen);
         /* NO RETURN */
     }

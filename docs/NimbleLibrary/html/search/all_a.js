@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['objects_2ec_361',['Objects.c',['../_objects_8c.html',1,'']]],
-  ['objects_2eh_362',['Objects.h',['../_objects_8h.html',1,'']]],
-  ['overlay_2ec_363',['Overlay.c',['../_direct_x11_2_overlay_8c.html',1,'(Global Namespace)'],['../_direct_x12_2_overlay_8c.html',1,'(Global Namespace)'],['../_open_g_l_2_overlay_8c.html',1,'(Global Namespace)'],['../_vulkan_2_overlay_8c.html',1,'(Global Namespace)']]],
-  ['overlay_2eh_364',['Overlay.h',['../_direct_x11_2_overlay_8h.html',1,'(Global Namespace)'],['../_direct_x12_2_overlay_8h.html',1,'(Global Namespace)'],['../_open_g_l_2_overlay_8h.html',1,'(Global Namespace)'],['../_vulkan_2_overlay_8h.html',1,'(Global Namespace)']]]
+  ['pythagorean_2ec_374',['Pythagorean.c',['../_pythagorean_8c.html',1,'']]],
+  ['pythagorean_2eh_375',['Pythagorean.h',['../_pythagorean_8h.html',1,'']]]
 ];

@@ -53,27 +53,108 @@ extern "C" {
 
 
 /**
+ * @brief Throws an error with @p info if @p check is equal to zero.
+ * 
+ * @param[in] check The statement to check if true.
+ * @param[in] error The default error to crash with (overridden if errno is set).
+ * @param[in] info The info string to crash with if false.
+ * @param[in] infoLen The length of @p info.
+ * 
+ * @return #NSUCCESS or an error is returned.
+ */
+NIMBLE_EXTERN
+nint_t
+nErrorAssert(const nint_t check,
+        const nint_t error,
+        const char *info,
+        const size_t infoLen);
+
+/**
+ * @brief Throws an error with @p info and returns if @p check is equal to zero.
+ * 
+ * Throws an error with @p info and returns from calling function with
+ * @p ret if @p check is equal to zero.
+ * 
+ * @param[in] check The statement to check if true.
+ * @param[in] error The default error to crash with (overridden if errno is set).
+ * @param[in] info The info string to crash with if false.
+ * @param[in] infoLen The length of @p info.
+ * @param[in] ret The return value to return if false.
+ */
+#define nErrorAssertRetV(check, error, info, infoLen, ret) ({\
+    nErrorAssert(check, error, info, infoLen);\
+    return ret;\
+})
+
+/**
+ * @brief Throws an error with @p info and returns only if @p check is equal to zero.
+ * 
+ * Throws an error with @p info and returns from calling function with
+ * @p ret only if @p check is equal to zero.
+ * 
+ * @param[in] check The statement to check if true.
+ * @param[in] error The default error to crash with (overridden if errno is set).
+ * @param[in] info The info string to crash with if false.
+ * @param[in] infoLen The length of @p info.
+ * @param[in] ret The return value to return if false.
+ */
+#define nErrorAssertRetVi(check, error, info, infoLen, ret) ({\
+    if (nErrorAssert(check, error, info, infoLen)) return ret;\
+})
+
+/**
+ * @brief Throws an error with @p info and returns if @p check is equal to zero.
+ * 
+ * Throws an error with @p info and returns from calling function with the
+ * result if @p check is equal to zero.
+ * 
+ * @param[in] check The statement to check if true.
+ * @param[in] error The default error to crash with (overridden if errno is set).
+ * @param[in] info The info string to crash with if false.
+ * @param[in] infoLen The length of @p info.
+ */
+#define nErrorAssertRetE(check, error, info, infoLen) ({\
+    return nErrorAssert(check, error, info, infoLen);\
+})
+
+/**
+ * @brief Throws an error with @p info and returns only if @p check is equal to zero.
+ * 
+ * Throws an error with @p info and returns from calling function with the
+ * result only if @p check is equal to zero.
+ * 
+ * @param[in] check The statement to check if true.
+ * @param[in] error The default error to crash with (overridden if errno is set).
+ * @param[in] info The info string to crash with if false.
+ * @param[in] infoLen The length of @p info.
+ */
+#define nErrorAssertRetEi(check, error, info, infoLen) ({\
+    nint_t err = nErrorAssert(check, error, info, infoLen);\
+    if (err) return err;\
+})
+
+/**
+ * @brief Throws an error with @p info and returns if @p check is equal to zero.
+ * 
+ * Throws an error with @p info and returns from calling function if @p check is
+ * equal to zero.
+ * 
+ * @param[in] check The statement to check if true.
+ * @param[in] error The default error to crash with (overridden if errno is set).
+ * @param[in] info The info string to crash with if false.
+ * @param[in] infoLen The length of @p info.
+ */
+#define nErrorAssertRet(check, error, info, infoLen) ({\
+    nErrorAssert(check, error, info, infoLen);\
+    return;\
+})
+
+/**
  * @brief Sends an error to the error callback.
+ * 
  * Sends an error to the error callback defined by
  * nErrorHandlerSetErrorCallback(), and determines whether or not crashing is
  * necessary.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     char exampleFilePath[] = "example.txt";
- *     size_t errorDescLen;
- *     char *errorDescStr = nErrorToString(&errorDescLen,
- *      NERROR_FILE_NOT_FOUND, exampleFilePath,
- *      NCONST_STR_LEN(exampleFilePath));
- *     nErrorThrow(NERROR_FILE_NOT_FOUND, errorDescStr, errorDescLen);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
  *
  * @param[in] error The error to throw.
  * @param[in] errorDescStr Relevant information, such as a file location, that
@@ -100,27 +181,6 @@ nErrorThrow(const nint_t error,
 
 /**
  * @brief Describes an error and returns a string.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     size_t errorLen;
- *     char exampleFilePath[] = "example.txt";
- *     char *errorStr = nErrorToString(&errorLen, NERROR_FILE_NOT_FOUND,
- *      exampleFilePath, sizeof(exampleFilePath))
- *     if (errorStr == NULL)
- *     {
- *         fprintf(stderr, "Failed to get error string.\n");
- *         exit(EXIT_FAILURE);
- *     }
- *     printf("NERROR_FILE_NOT_FOUND as string: %s\n", errorStr);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
  *
  * @param[out] errorLen The length of the string returned. This can be @c #NULL.
  * @param[in] error The error to get described.
@@ -152,27 +212,6 @@ __attribute__((warn_unused_result));
 /**
  * @brief Describes a Windows error and returns a string.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     size_t errorLen;
- *     char exampleFilePath[] = "example.txt";
- *     char *errorStr = nErrorToString(&errorLen, GetLastError(),
- *      exampleFilePath, NCONST_STR_LEN(exampleFilePath))
- *     if (errorStr == NULL)
- *     {
- *         fprintf(stderr, "Failed to get error string.\n");
- *         exit(EXIT_FAILURE);
- *     }
- *     printf("NERROR_FILE_NOT_FOUND as string: %s\n", errorStr);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
  * @param[out] errorLen The length of the string returned. This can be @c #NULL.
  * @param[in] error The error to get described.
  * @param[in] info Relevant information, such as a file location, that could help
@@ -194,48 +233,8 @@ __attribute__((warn_unused_result));
 
 /**
  * @brief Sets the callback function to handle errors.
- *
+ * 
  * Sets the callback function @p callback that gets called when an error occurs.
- *
- * @par Example:
- * @code
- * #include <stdio.h>
- * #include <time.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * void errorHandler(const nint_t error, const char * errorDesc,
- *  const size_t errorDescLen, const time_t errorTime, const char * stack,
- *  const size_t stackLen)
- * {
- *     struct tm *timeInfo = localtime(&errorTime);
- *     const char format[] = "%02d/%02d/%02d %02d:%02d:%02d";
- *     const char example[] = "01/01/1970 00:00:00";
- *     char *timeStr = nAlloc(sizeof(example));
- *     if (timeStr == NULL)
- *     {
- *         fprintf(stderr, "Failed to allocate to timeStr.\n");
- *         return;
- *     }
- *     snprintf(timeStr, sizeof(example), format, timeInfo->tm_mon + 1,
- *      timeInfo->tm_mday, timeInfo->tm_year + 1900, timeInfo->tm_hour,
- *      timeInfo->tm_min, timeInfo->tm_sec);
- *
- *     fprintf(stderr, "\nAn error occurred at %s:\nError description: "\
- *      "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
- *     nFree(timeStr);
- * }
- *
- * int main(int argc, char **argv)
- * {
- *     if (nErrorHandlerSetErrorCallback(errorHandler) != NSUCCESS)
- *     {
- *         fprintf(stderr, "Could not set error callback for Nimble.\n");
- *         return EXIT_FAILURE;
- *     }
- *     printf("Successfully set error callback for Nimble.\n");
- *     return EXIT_SUCCESS;
- * }
- * @endcode
  *
  * @param[in] callback The function that gets called when an error occurs. This
  * can be #NULL to use the default callback.
@@ -257,27 +256,9 @@ nErrorSetCallback(void (*callback)(
 
 /**
  * @brief Returns the current stack trace as a string.
+ * 
  * Returns the current stack trace as a string, and sets the @p stackLen of the
  * string and @p levels of the stack.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     size_t stackLen, stackLevels;
- *     char *stack = nErrorGetStacktrace(&stackLen, &stackLevels);
- *     if (stack == NULL)
- *     {
- *         fprintf(stderr, "Failed to get stack trace.\n");
- *         exit(EXIT_FAILURE);
- *     }
- *     printf("Last %d levels of stack trace: %s\n", stackLevels, stack);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
  *
  * @param[out] stackLen The length of the string returned. This can be @c #NULL.
  * @param[in,out] stackLevels The number of levels found on the stack. If the

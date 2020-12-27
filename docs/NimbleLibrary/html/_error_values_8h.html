@@ -115,20 +115,21 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, 
 <a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a284ee208a3789fddafee326b2e45b38c">NERROR_INV_ERROR</a>, 
+<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a56dda72abdd0274509a0948956783ff9">NERROR_BUFFER_OVERFLOW</a>, 
 <a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6aa900e3d797f12cc867a38e39a246b9af">NERROR_SIGNAL_START</a>, 
-<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a140fb183264c59ff1ef4b269e5b2d0c6">NERROR_SIGABRT</a>, 
 <br />
-&#160;&#160;<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5dfa0ae73adcb81076828bb1f18953e3">NERROR_SIGFPE</a>, 
+&#160;&#160;<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a140fb183264c59ff1ef4b269e5b2d0c6">NERROR_SIGABRT</a>, 
+<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a5dfa0ae73adcb81076828bb1f18953e3">NERROR_SIGFPE</a>, 
 <a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a40e4ab69ed9a6ad34a4218f6d9e10d57">NERROR_SIGILL</a>, 
 <a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a8db03f639d76a28032dd7aa957d458da">NERROR_SIGINT</a>, 
-<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a34a5e728cbe553c20e88471cfffc6173">NERROR_SIGSEGV</a>, 
 <br />
-&#160;&#160;<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae60212303d486928264f2ced626a6f80">NERROR_SIGTERM</a>, 
+&#160;&#160;<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a34a5e728cbe553c20e88471cfffc6173">NERROR_SIGSEGV</a>, 
+<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae60212303d486928264f2ced626a6f80">NERROR_SIGTERM</a>, 
 <a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a902e53944184ca04d40ccb071645ea25">NERROR_SIGNAL_END</a>, 
 <a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a7573686b21e6300b422f179c25f29d0f">NERROR_ERRNO_START</a>, 
-<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a0008468da250aea11ffab813a05b1350">NERROR_ERRNO_END</a>, 
 <br />
-&#160;&#160;<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66">NERROR_MAX</a>
+&#160;&#160;<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a0008468da250aea11ffab813a05b1350">NERROR_ERRNO_END</a>, 
+<a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66">NERROR_MAX</a>
 <br />
  }</td></tr>
 <tr class="memdesc:a8ae9685526508fa1809caaa2fe930ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The possible error values used by ErrorHandler.h error handler.  <a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6">More...</a><br /></td></tr>
@@ -204,7 +205,7 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line"> (((err &gt;= <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6aaeab255ad67230ef2c173137fcf2d2e6">NERROR_MIN</a>) &amp;&amp; (err &lt;= <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66">NERROR_MAX</a>)) ?\</div>
 <div class="line"> <a class="code" href="_error_values_8h.html#a9a1d76f3fd866c677f58f1e7b3d5bbd7">nErrorDescriptions</a>[err] : <a class="code" href="_error_values_8h.html#a9a1d76f3fd866c677f58f1e7b3d5bbd7">nErrorDescriptions</a>[<a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a>])</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00842">842</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00843">843</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +227,7 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line"> (((err &gt;= <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6aaeab255ad67230ef2c173137fcf2d2e6">NERROR_MIN</a>) &amp;&amp; (err &lt;= <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66">NERROR_MAX</a>)) ?\</div>
 <div class="line"> <a class="code" href="_error_values_8h.html#aa1f40dd1159106456cfc64541001192d">nErrorDescLengths</a>[err] : <a class="code" href="_error_values_8h.html#aa1f40dd1159106456cfc64541001192d">nErrorDescLengths</a>[<a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a>])</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00851">851</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00852">852</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
 
 </div>
 </div>
@@ -248,7 +249,7 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line"> (((err &gt;= <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6aaeab255ad67230ef2c173137fcf2d2e6">NERROR_MIN</a>) &amp;&amp; (err &lt;= <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66">NERROR_MAX</a>)) ?\</div>
 <div class="line"> <a class="code" href="_error_values_8h.html#a9a65e84c0c170e2c6e2c92b47015da2e">nErrorStrings</a>[err] : <a class="code" href="_error_values_8h.html#a9a65e84c0c170e2c6e2c92b47015da2e">nErrorStrings</a>[<a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a>])</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00809">809</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00810">810</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
 
 </div>
 </div>
@@ -270,7 +271,7 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line"> (((err &gt;= <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6aaeab255ad67230ef2c173137fcf2d2e6">NERROR_MIN</a>) &amp;&amp; (err &lt;= <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66">NERROR_MAX</a>)) ?\</div>
 <div class="line"> <a class="code" href="_error_values_8h.html#a6068c7a27d71ab1e9966532bb6c66d26">nErrorStrLengths</a>[err] : <a class="code" href="_error_values_8h.html#a6068c7a27d71ab1e9966532bb6c66d26">nErrorStrLengths</a>[<a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a>])</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00818">818</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00819">819</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
 
 </div>
 </div>
@@ -338,6 +339,8 @@ Variables</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a8ae9685526508fa1809caaa2fe930ce6a284ee208a3789fddafee326b2e45b38c"></a>NERROR_INV_ERROR&#160;</td><td class="fielddoc"><p>An error passed to a function was not valid. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="a8ae9685526508fa1809caaa2fe930ce6a56dda72abdd0274509a0948956783ff9"></a>NERROR_BUFFER_OVERFLOW&#160;</td><td class="fielddoc"><p>Not enough space in buffer. </p>
+</td></tr>
 <tr><td class="fieldname"><a id="a8ae9685526508fa1809caaa2fe930ce6aa900e3d797f12cc867a38e39a246b9af"></a>NERROR_SIGNAL_START&#160;</td><td class="fielddoc"><p>The start of the signal section. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a8ae9685526508fa1809caaa2fe930ce6a140fb183264c59ff1ef4b269e5b2d0c6"></a>NERROR_SIGABRT&#160;</td><td class="fielddoc"><p>Caught abort signal. </p>
@@ -383,7 +386,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_error_values_8c_source.html#l03297">3297</a> of file <a class="el" href="_error_values_8c_source.html">ErrorValues.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_error_values_8c_source.html#l03303">3303</a> of file <a class="el" href="_error_values_8c_source.html">ErrorValues.c</a>.</p>
 
 </div>
 </div>
@@ -403,7 +406,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_error_values_8c_source.html#l03388">3388</a> of file <a class="el" href="_error_values_8c_source.html">ErrorValues.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_error_values_8c_source.html#l03394">3394</a> of file <a class="el" href="_error_values_8c_source.html">ErrorValues.c</a>.</p>
 
 </div>
 </div>
@@ -422,7 +425,7 @@ Variables</h2></td></tr>
 
 <p>The length of descriptions of the error codes defined by <a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6" title="The possible error values used by ErrorHandler.h error handler.">nErrors</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00831">831</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00832">832</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
 
 </div>
 </div>
@@ -440,7 +443,7 @@ Variables</h2></td></tr>
 
 <p>The descriptions of the error codes defined by <a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6" title="The possible error values used by ErrorHandler.h error handler.">nErrors</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00825">825</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00826">826</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
 
 </div>
 </div>
@@ -458,7 +461,7 @@ Variables</h2></td></tr>
 
 <p>The strings used to represent error codes defined by <a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6" title="The possible error values used by ErrorHandler.h error handler.">nErrors</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00792">792</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00793">793</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
 
 </div>
 </div>
@@ -476,18 +479,18 @@ Variables</h2></td></tr>
 
 <p>The lengths of the strings used to represent error codes defined by <a class="el" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6" title="The possible error values used by ErrorHandler.h error handler.">nErrors</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00798">798</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_error_values_8h_source.html#l00799">799</a> of file <a class="el" href="_error_values_8h_source.html">ErrorValues.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6ae1f891f8002da1d9526581ab92d3da9d">NERROR_UNKNOWN</a></div><div class="ttdeci">@ NERROR_UNKNOWN</div><div class="ttdoc">An nknown error occurred.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00064">ErrorValues.h:64</a></div></div>
-<div class="ttc" id="a_error_values_8h_html_a6068c7a27d71ab1e9966532bb6c66d26"><div class="ttname"><a href="_error_values_8h.html#a6068c7a27d71ab1e9966532bb6c66d26">nErrorStrLengths</a></div><div class="ttdeci">NIMBLE_EXTERN const size_t nErrorStrLengths[]</div><div class="ttdoc">The lengths of the strings used to represent error codes defined by nErrors.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00798">ErrorValues.h:798</a></div></div>
-<div class="ttc" id="a_error_values_8h_html_a9a1d76f3fd866c677f58f1e7b3d5bbd7"><div class="ttname"><a href="_error_values_8h.html#a9a1d76f3fd866c677f58f1e7b3d5bbd7">nErrorDescriptions</a></div><div class="ttdeci">NIMBLE_EXTERN const char *const nErrorDescriptions[]</div><div class="ttdoc">The descriptions of the error codes defined by nErrors.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00825">ErrorValues.h:825</a></div></div>
-<div class="ttc" id="a_error_values_8h_html_a9a65e84c0c170e2c6e2c92b47015da2e"><div class="ttname"><a href="_error_values_8h.html#a9a65e84c0c170e2c6e2c92b47015da2e">nErrorStrings</a></div><div class="ttdeci">NIMBLE_EXTERN const char *const nErrorStrings[]</div><div class="ttdoc">The strings used to represent error codes defined by nErrors.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00792">ErrorValues.h:792</a></div></div>
+<div class="ttc" id="a_error_values_8h_html_a6068c7a27d71ab1e9966532bb6c66d26"><div class="ttname"><a href="_error_values_8h.html#a6068c7a27d71ab1e9966532bb6c66d26">nErrorStrLengths</a></div><div class="ttdeci">NIMBLE_EXTERN const size_t nErrorStrLengths[]</div><div class="ttdoc">The lengths of the strings used to represent error codes defined by nErrors.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00799">ErrorValues.h:799</a></div></div>
+<div class="ttc" id="a_error_values_8h_html_a9a1d76f3fd866c677f58f1e7b3d5bbd7"><div class="ttname"><a href="_error_values_8h.html#a9a1d76f3fd866c677f58f1e7b3d5bbd7">nErrorDescriptions</a></div><div class="ttdeci">NIMBLE_EXTERN const char *const nErrorDescriptions[]</div><div class="ttdoc">The descriptions of the error codes defined by nErrors.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00826">ErrorValues.h:826</a></div></div>
+<div class="ttc" id="a_error_values_8h_html_a9a65e84c0c170e2c6e2c92b47015da2e"><div class="ttname"><a href="_error_values_8h.html#a9a65e84c0c170e2c6e2c92b47015da2e">nErrorStrings</a></div><div class="ttdeci">NIMBLE_EXTERN const char *const nErrorStrings[]</div><div class="ttdoc">The strings used to represent error codes defined by nErrors.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00793">ErrorValues.h:793</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6aaeab255ad67230ef2c173137fcf2d2e6"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6aaeab255ad67230ef2c173137fcf2d2e6">NERROR_MIN</a></div><div class="ttdeci">@ NERROR_MIN</div><div class="ttdoc">The mininum error number.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00062">ErrorValues.h:62</a></div></div>
-<div class="ttc" id="a_error_values_8h_html_aa1f40dd1159106456cfc64541001192d"><div class="ttname"><a href="_error_values_8h.html#aa1f40dd1159106456cfc64541001192d">nErrorDescLengths</a></div><div class="ttdeci">NIMBLE_EXTERN const size_t nErrorDescLengths[]</div><div class="ttdoc">The length of descriptions of the error codes defined by nErrors.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00831">ErrorValues.h:831</a></div></div>
-<div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66">NERROR_MAX</a></div><div class="ttdeci">@ NERROR_MAX</div><div class="ttdoc">The maximum error number.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00785">ErrorValues.h:784</a></div></div>
+<div class="ttc" id="a_error_values_8h_html_aa1f40dd1159106456cfc64541001192d"><div class="ttname"><a href="_error_values_8h.html#aa1f40dd1159106456cfc64541001192d">nErrorDescLengths</a></div><div class="ttdeci">NIMBLE_EXTERN const size_t nErrorDescLengths[]</div><div class="ttdoc">The length of descriptions of the error codes defined by nErrors.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00832">ErrorValues.h:832</a></div></div>
+<div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6afd266cf820cc495e3597f2e89ccbba66">NERROR_MAX</a></div><div class="ttdeci">@ NERROR_MAX</div><div class="ttdoc">The maximum error number.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00786">ErrorValues.h:785</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

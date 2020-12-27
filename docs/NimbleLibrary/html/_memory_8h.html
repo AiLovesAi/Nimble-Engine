@@ -138,25 +138,7 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 <p>Frees a pointer. </p>
 <p>Frees a pointer and returns <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> to allow the invoker to optionally nullify the pointer. Should the freed pointer location be needed again, no assignment is necessary.</p>
-<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">char</span> original[] = <span class="stringliteral">&quot;Hello world.&quot;</span>;</div>
-<div class="line">    <span class="keywordtype">char</span> *<span class="keyword">new</span> = <a class="code" href="_memory_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a>(<span class="keyword">sizeof</span>(original) + 1);</div>
-<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original) - 1] = <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original)] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line">    puts(<span class="keyword">new</span>);</div>
-<div class="line">    <a class="code" href="_memory_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a>(<span class="keyword">new</span>);</div>
-<div class="line">    <span class="keywordflow">if</span> (<span class="keyword">new</span>)</div>
-<div class="line">    {</div>
-<div class="line">        puts(<span class="stringliteral">&quot;We will get here only if we use nFree(new) with no assignment!&quot;</span>);</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line">}</div>
-</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>The pointer to free. </td></tr>
   </table>
@@ -164,7 +146,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> is always returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_memory_8h_source.html#l00159">159</a> of file <a class="el" href="_memory_8h_source.html">Memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_memory_8h_source.html#l00089">89</a> of file <a class="el" href="_memory_8h_source.html">Memory.h</a>.</p>
 
 </div>
 </div>
@@ -205,25 +187,7 @@ Functions</h2></td></tr>
 
 <p>Allocates a pointer. </p>
 <p>Allocates a pointer and checks if it is successful.</p>
-<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">char</span> original[] = <span class="stringliteral">&quot;Hello world.&quot;</span>;</div>
-<div class="line">    <span class="keywordtype">char</span> *<span class="keyword">new</span> = <a class="code" href="_memory_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a>(<span class="keyword">sizeof</span>(original) + 1);</div>
-<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original) - 1] = <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original)] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line">    puts(<span class="keyword">new</span>);</div>
-<div class="line">    <a class="code" href="_memory_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a>(<span class="keyword">new</span>);</div>
-<div class="line">    <span class="keywordflow">if</span> (<span class="keyword">new</span>)</div>
-<div class="line">    {</div>
-<div class="line">        puts(<span class="stringliteral">&quot;We will get here only if we use nFree(new) with no assignment!&quot;</span>);</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line">}</div>
-</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>The size of the memory block in bytes. </td></tr>
   </table>
@@ -263,29 +227,7 @@ Functions</h2></td></tr>
 
 <p>Reallocates a pointer. </p>
 <p>Rellocates a pointer and checks if it is successful.</p>
-<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">char</span> original[] = <span class="stringliteral">&quot;Hello world.&quot;</span>;</div>
-<div class="line">    <span class="keywordtype">char</span> *<span class="keyword">new</span>;</div>
-<div class="line">    <span class="keyword">new</span> = <a class="code" href="_memory_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a>(<span class="keyword">sizeof</span>(original) + 1);</div>
-<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original) - 1] = <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original)] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line">    puts(<span class="keyword">new</span>);</div>
-<div class="line">    <span class="keyword">new</span> = <a class="code" href="_memory_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a>(<span class="keyword">sizeof</span>(original) - 1);</div>
-<div class="line">    <span class="keyword">new</span>[<span class="keyword">sizeof</span>(original) - 2] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line">    puts(<span class="keyword">new</span>);</div>
-<div class="line">    <a class="code" href="_memory_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a>(<span class="keyword">new</span>);</div>
-<div class="line">    <span class="keywordflow">if</span> (<span class="keyword">new</span>)</div>
-<div class="line">    {</div>
-<div class="line">        puts(<span class="stringliteral">&quot;We will get here only if we use nFree(new) with no assignment!&quot;</span>);</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line">}</div>
-</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">ptr</td><td>The pointer to reallocate. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>The size of the new memory block in bytes. </td></tr>
@@ -332,19 +274,7 @@ Functions</h2></td></tr>
 
 <p>Copies <code>len</code> characters from <code>src</code> to <code>dst</code>. </p>
 <p>Copies <code>len</code> characters from <code>src</code> to <code>dst</code>. The string is always null terminated. If there is already a null terminator, no more characters are copied.</p>
-<p>Example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordtype">char</span> original[] = <span class="stringliteral">&quot;Hello world.&quot;</span>;</div>
-<div class="line">    <span class="keywordtype">char</span> *<span class="keyword">new</span> = <a class="code" href="_memory_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a>(<span class="keyword">sizeof</span>(original));</div>
-<div class="line">    <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(original, <span class="keyword">new</span>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(original));</div>
-<div class="line">    printf(<span class="stringliteral">&quot;New string: %s\n&quot;</span>, <span class="keyword">new</span>);</div>
-<div class="line">    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line">}</div>
-</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>The pointer to the destination. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td>The pointer to free. </td></tr>
@@ -359,13 +289,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_memory_8c_html_a60dd01813a26af8aaf44098364af7ff4"><div class="ttname"><a href="_memory_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a></div><div class="ttdeci">void * nRealloc(void *ptr, const size_t size)</div><div class="ttdoc">Reallocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00060">Memory.c:60</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00200">Nimble.h:200</a></div></div>
-<div class="ttc" id="a_memory_8h_html_a8a26e97861a00f16172cc85dc5b9b041"><div class="ttname"><a href="_memory_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a></div><div class="ttdeci">#define nFree(ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00159">Memory.h:159</a></div></div>
-<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
-<div class="ttc" id="a_nimble_8h_html_a527cddcc22f04dbed8fe9768a975ab50"><div class="ttname"><a href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a></div><div class="ttdeci">#define NCONST_STR_LEN(str)</div><div class="ttdoc">Gets the length of a const char * as strlen() would, but at compile time.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00205">Nimble.h:205</a></div></div>
-<div class="ttc" id="a_memory_8c_html_aafc14ef2a060e7b49b4ae4a1bdbdc989"><div class="ttname"><a href="_memory_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a></div><div class="ttdeci">void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00046">Memory.c:46</a></div></div>
-<div class="ttc" id="a_memory_8c_html_ae9f51384bd8f3b87a541572a1cc9ab45"><div class="ttname"><a href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a></div><div class="ttdeci">size_t nStringCopy(char *const restrict dst, const char *const restrict src, const size_t len)</div><div class="ttdoc">Copies len characters from src to dst.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00074">Memory.c:74</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

@@ -85,37 +85,9 @@ nint_t NIMBLE_ARGC;
 
 /**
  * @brief Initialized the game engine.
+ * 
  * Initializes the game engine by setting up the error/crash handlers, logger, and
  * thread manager.
- *
- * @par Example:
- * @code
- * #include <inttypes.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * void errorCallback(const nint_t error, const time_t errorTime,
- *  char *errorDesc, nint_t errorDescLen, char *stack)
- * {
- *     ...
- * }
- * 
- * void crashCallback(const nint_t error, const time_t errorTime,
- *  char *errorDesc, nint_t errorDescLen, char *stack)
- * {
- *     ...
- * }
- * 
- * int main(int argc, char **argv)
- * {
- *     if (nEngineInit(argv, argc, &errorCallback, &crashCallback) != NSUCCESS)
- *     {
- *         fprintf(stderr, "Failed to initialize Nimble.");
- *         exit(EXIT_FAILURE);
- *     }
- *     printf("Successfully initialized game engine.");
- *     exit(EXIT_SUCCESS);
- * }
- * @endcode
  *
  * @param[in] args The arguments past to main (usually argv).
  * @param[in] argc The argument count of @p args.

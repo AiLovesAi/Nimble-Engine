@@ -192,8 +192,8 @@ char *nFileSetCWD(void)
     size_t len = strlen(buffer);
 #define einfoStr "The current working directory length is greater than "\
  "PATH_MAX in nFileSetCWD()."
-        nAssert(len < PATH_MAX,
-        NERROR_MAX_FILENAME, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(len < PATH_MAX,
+    NERROR_MAX_FILENAME, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
     if ((buffer[len - 1] != NFILE_DIR_SEP))
     {

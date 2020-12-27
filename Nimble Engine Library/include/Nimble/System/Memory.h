@@ -52,28 +52,6 @@ extern "C" {
  * @brief Allocates a pointer.
  * Allocates a pointer and checks if it is successful.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     char original[] = "Hello world.";
- *     char *new = nAlloc(sizeof(original) + 1);
- *     new[sizeof(original) - 1] = '\n';
- *     new[sizeof(original)] = '\0';
- *     puts(new);
- *     nFree(new);
- *     if (new)
- *     {
- *         puts("We will get here only if we use nFree(new) with no assignment!");
- *     }
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
  * @param[in] size The size of the memory block in bytes.
  * @return The allocated pointer.
  */
@@ -87,32 +65,6 @@ __attribute__((warn_unused_result))
 /**
  * @brief Reallocates a pointer.
  * Rellocates a pointer and checks if it is successful.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     char original[] = "Hello world.";
- *     char *new;
- *     new = nRealloc(sizeof(original) + 1);
- *     new[sizeof(original) - 1] = '\n';
- *     new[sizeof(original)] = '\0';
- *     puts(new);
- *     new = nRealloc(sizeof(original) - 1);
- *     new[sizeof(original) - 2] = '\0';
- *     puts(new);
- *     nFree(new);
- *     if (new)
- *     {
- *         puts("We will get here only if we use nFree(new) with no assignment!");
- *     }
- *     return EXIT_SUCCESS;
- * }
- * @endcode
  *
  * @param[in,out] ptr The pointer to reallocate.
  * @param[in] size The size of the new memory block in bytes.
@@ -131,28 +83,6 @@ __attribute__((warn_unused_result))
  * the pointer. Should the freed pointer location be needed again, no assignment
  * is necessary.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     char original[] = "Hello world.";
- *     char *new = nAlloc(sizeof(original) + 1);
- *     new[sizeof(original) - 1] = '\n';
- *     new[sizeof(original)] = '\0';
- *     puts(new);
- *     nFree(new);
- *     if (new)
- *     {
- *         puts("We will get here only if we use nFree(new) with no assignment!");
- *     }
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
  * @param[in] ptr The pointer to free.
  * @return #NULL is always returned.
  */
@@ -166,22 +96,6 @@ __attribute__((warn_unused_result))
  * Copies @p len characters from @p src to @p dst. The string is always null
  * terminated. If there is already a null terminator, no more characters are
  * copied.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     char original[] = "Hello world.";
- *     char *new = nAlloc(sizeof(original));
- *     nStringCopy(original, new, NCONST_STR_LEN(original));
- *     printf("New string: %s\n", new);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
  *
  * @param[out] dst The pointer to the destination.
  * @param[in] src The pointer to free.

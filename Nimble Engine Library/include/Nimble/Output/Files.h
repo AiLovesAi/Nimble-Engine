@@ -87,36 +87,6 @@ size_t NCWD_LEN;
 /**
  * @brief Checks if a file exists.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     nint_t exists = nFileExists(argv[0]);
- *     if (exists == NSUCCESS)
- *     {
- *          printf("%s exists!\n", argv[0]);
- *     }
- *     else
- *     {
- *         switch (exists)
- *         {
- *             case NERROR_NO_FILE:
- *                 printf("%s does not exist!\n", argv[0]);
- *                 break;
- *             default:
- *                 fputs("Failed to check if file exists using "\
- *                  "nFileExists().\n", stderr);
- *                 break;
- *         }
- *     }
- *
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
  * @param[in] path The name of the file to check.
  * @return #NSUCCESS is returned if the file exists; otherwise an error code is
  * returned.
@@ -127,27 +97,6 @@ nFileExists(const char *path);
 
 /**
  * @brief Checks if the file is an absolute path.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     
- *     if (nFilePathIsAbsolute(NEXEC, 0) != NSUCCESS)
- *     {
- *         fputs("Executable path is absolute.", stderr);
- *     }
- *     else
- *     {
- *         fputs("Executable path is not absolute.", stderr);
- *     }
- *     printf("Got executable path of: %s", NEXEC);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
  *
  * @param[in] path The file path to check if absolute.
  * @param[in] len The length of the path to check. This can be 0 to use
@@ -164,19 +113,6 @@ nFilePathIsAbsolute(const char *path,
  * Gets the current working directory path and sets #NCWD and
  * #NCWD_LEN.
  *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     nFileSetCWD();
- *     printf("Got current working directory of: %s", NCWD);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
- *
  * @return #NCWD is returned if successful; otherwise the
  * engine crashes.
  * @note This function is not thread safe, as it is called during
@@ -190,19 +126,6 @@ nFileSetCWD(void);
  * @brief Gets the current executable file path.
  * Gets the current executable file path and sets #NEXEC and
  * #NEXEC_LEN.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     nFileSetExecutablePath();
- *     printf("Got executable path of: %s", NEXEC);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
  *
  * @return #NEXEC is returned if successful; otherwise the
  * engine crashes.

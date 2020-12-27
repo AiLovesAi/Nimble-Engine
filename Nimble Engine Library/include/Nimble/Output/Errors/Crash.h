@@ -53,20 +53,6 @@ extern "C" {
 /**
  * @brief Crashes with @p info if @p check if equal to zero.
  * 
- * Example:
- * @code
- * 
- * @endcode
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     const char errorStr[] = "Executable file is not an absolute path.";
- *     nAssert(nFilePathIsAbsolute(argv[0], 0) == NSUCCESS,
- *      NERROR_INTERNAL_FAILURE, errorStr, NCONST_STR_LEN(errorStr));
- *     return EXIT_SUCCESS;
- * }
  * @param[in] check The statement to check if true.
  * @param[in] error The default error to crash with (overridden if errno is set).
  * @param[in] info The info string to crash with if false.
@@ -81,25 +67,8 @@ nAssert(const nint_t check,
 
 /**
  * @brief Sets the crash callback function.
+ * 
  * Sets the callback function that gets called when the game crashes.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- * 
- * void crashCallback(const nint_t error, const time_t errorTime,
- *  char *errorDesc, size_t errorDescLen, char *stack, size_t stackLen)
- * {
- *     print("We crashed!\nError: %s\nStack: %s\n", errorDesc, stack);
- * }
- * 
- * int main(int argc, char **argv)
- * {
- *     nCrashSetCallback(&crashCallback);
- * }
- * 
- * @endcode
  *
  * @param[in] callback The function that gets called when a crash occurs. This
  * can be #NULL to use the default callback.
@@ -122,30 +91,9 @@ nCrashSetCallback(void (*callback) (const nint_t error,
 
 /**
  * @brief Crashes the program safely.
+ * 
  * Crashes the program safely by attempting to safely close threads, logging the
  * error that caused the crash to the file defined by @p crashFilePath.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <stdlib.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     const time_t errorTime = time(NULL);
- *     const nint_t error = NERROR_NULL;
- *     char *errorDesc;
- *     size_t errorDescLen;
- *     if (nErrorToString(errorDesc, &errorDescLen, error, NULL, 0) == NULL)
- *     {
- *         fprintf(stderr, "Failed to get error description.\n");
- *         return(EXIT_FAILURE);
- *     }
- *
- *     nCrashSafe(error, errorDesc, errorDescLen, errorTime);
- * }
- * @endcode
  *
  * @param[in] error The error that caused the crash.
  * @param[in] errorDesc The description of @p error.
@@ -183,16 +131,6 @@ nCrashSignal(const int signum
 
 /**
  * @brief Crashes the program without notifying the callback.
- *
- * Example:
- * @code
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     nCrashAbort(NERROR_NULL);
- * }
- * @endcode
  *
  * @param[in] error The error that caused the crash.
  *

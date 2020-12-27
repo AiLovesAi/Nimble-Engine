@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['license_5fmd_25',['LICENSE_md',['../_nimble_license_8c.html#ab450cf8653ff805274fb24db2d389512',1,'LICENSE_md():&#160;NimbleLicense.c'],['../_nimble_license_8h.html#acfeb49c8484dde5f594ec26572e2885b',1,'LICENSE_md():&#160;NimbleLicense.c']]],
-  ['lighting_2ec_26',['Lighting.c',['../_lighting_8c.html',1,'']]],
-  ['lighting_2eh_27',['Lighting.h',['../_lighting_8h.html',1,'']]],
-  ['logging_2ec_28',['Logging.c',['../_logging_8c.html',1,'']]],
-  ['logging_2eh_29',['Logging.h',['../_logging_8h.html',1,'']]]
+  ['machinelearning_2ec_29',['MachineLearning.c',['../_machine_learning_8c.html',1,'']]],
+  ['machinelearning_2eh_30',['MachineLearning.h',['../_machine_learning_8h.html',1,'']]],
+  ['matrices_2ec_31',['Matrices.c',['../_matrices_8c.html',1,'']]],
+  ['matrices_2eh_32',['Matrices.h',['../_matrices_8h.html',1,'']]],
+  ['memory_2ec_33',['Memory.c',['../_memory_8c.html',1,'']]],
+  ['memory_2eh_34',['Memory.h',['../_memory_8h.html',1,'']]]
 ];

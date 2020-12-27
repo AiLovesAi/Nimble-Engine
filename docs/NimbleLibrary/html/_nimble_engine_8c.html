@@ -215,32 +215,6 @@ Variables</h2></td></tr>
 
 <p>Initialized the game engine. </p>
 <p>Initializes the game engine by setting up the error/crash handlers, logger, and thread manager.</p>
-<dl class="section user"><dt>Example:</dt><dd><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_nimble_engine_8h.html">Nimble/NimbleEngine.h</a>&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code" href="_errors_8c.html#a2fe8dfa6f1bf51f882604d24bd8e1fe5">errorCallback</a>(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, <span class="keyword">const</span> time_t errorTime,</div>
-<div class="line"> <span class="keywordtype">char</span> *errorDesc, <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, <span class="keywordtype">char</span> *stack)</div>
-<div class="line">{</div>
-<div class="line">    ...</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> <a class="code" href="_crash_8c.html#a4677da643bade0be47a0146a5e84e948">crashCallback</a>(<span class="keyword">const</span> <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, <span class="keyword">const</span> time_t errorTime,</div>
-<div class="line"> <span class="keywordtype">char</span> *errorDesc, <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> errorDescLen, <span class="keywordtype">char</span> *stack)</div>
-<div class="line">{</div>
-<div class="line">    ...</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line">{</div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="_nimble_engine_8c.html#aceb37ea89c79eb778fbc442dbb7cb520">nEngineInit</a>(argv, argc, &amp;<a class="code" href="_errors_8c.html#a2fe8dfa6f1bf51f882604d24bd8e1fe5">errorCallback</a>, &amp;<a class="code" href="_crash_8c.html#a4677da643bade0be47a0146a5e84e948">crashCallback</a>) != <a class="code" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
-<div class="line">    {</div>
-<div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to initialize Nimble.&quot;</span>);</div>
-<div class="line">        exit(EXIT_FAILURE);</div>
-<div class="line">    }</div>
-<div class="line">    printf(<span class="stringliteral">&quot;Successfully initialized game engine.&quot;</span>);</div>
-<div class="line">    exit(EXIT_SUCCESS);</div>
-<div class="line">}</div>
-</div><!-- fragment --></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>The arguments past to main (usually argv). </td></tr>
@@ -306,12 +280,6 @@ Variables</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_error_values_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00052">ErrorValues.h:52</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a2fe8dfa6f1bf51f882604d24bd8e1fe5"><div class="ttname"><a href="_errors_8c.html#a2fe8dfa6f1bf51f882604d24bd8e1fe5">errorCallback</a></div><div class="ttdeci">void(*volatile errorCallback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)</div><div class="ttdoc">The error callback function that gets defined by nErrorSetCallback().</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00077">Errors.c:77</a></div></div>
-<div class="ttc" id="a_nimble_engine_8c_html_aceb37ea89c79eb778fbc442dbb7cb520"><div class="ttname"><a href="_nimble_engine_8c.html#aceb37ea89c79eb778fbc442dbb7cb520">nEngineInit</a></div><div class="ttdeci">nint_t nEngineInit(char **args, const nint_t argc, void(*errorCallback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen), void(*crashCallback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen))</div><div class="ttdoc">Initialized the game engine.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00081">NimbleEngine.c:81</a></div></div>
-<div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
-<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00218">Nimble.h:218</a></div></div>
-<div class="ttc" id="a_crash_8c_html_a4677da643bade0be47a0146a5e84e948"><div class="ttname"><a href="_crash_8c.html#a4677da643bade0be47a0146a5e84e948">crashCallback</a></div><div class="ttdeci">void(*volatile crashCallback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00073">Crash.c:73</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

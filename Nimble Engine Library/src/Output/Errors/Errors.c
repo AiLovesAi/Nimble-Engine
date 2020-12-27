@@ -101,6 +101,45 @@ void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
     nFree(timeStr);
 }
 
+nint_t nErrorAssert(const nint_t check, const nint_t error, const char *info,
+ const size_t infoLen)
+{
+    if (!check)
+    {
+        nint_t err = 0;
+#if NIMBLE_OS == NIMBLE_WINDOWS
+        nErrorLastWindows(err);
+        if (err)
+        {
+            err = error;
+            size_t errorDescLen;
+            char *errorDescStr = nErrorToStringWindows(&errorDescLen, err,
+             info, infoLen);
+            nErrorThrow(err, errorDescStr, errorDescLen);
+            nFree(errorDescStr);
+            return err;
+        }
+#endif
+        if (errno)
+        {
+            nErrorLastErrno(err);
+            err = nErrorFromErrno(err);
+        }
+        else
+        {
+            err = error;
+        }
+
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, err,
+         info, infoLen);
+        nErrorThrow(err, errorDescStr, errorDescLen);
+        nFree(errorDescStr);
+        return err;
+    }
+    return NSUCCESS;
+}
+
 void nErrorThrow(const nint_t error, char *errorDescStr, size_t errorDescLen)
 {
     const time_t errorTime = time(NULL);

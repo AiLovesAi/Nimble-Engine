@@ -66,6 +66,7 @@ enum nErrors {
     NERROR_INTERNAL_FAILURE, /**< An internal error occurred. */
     NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
     NERROR_INV_ERROR, /**< An error passed to a function was not valid. */
+    NERROR_BUFFER_OVERFLOW, /**< Not enough space in buffer. */
     
     NERROR_SIGNAL_START, /**< The start of the signal section. */
     NERROR_SIGABRT, /**< Caught abort signal. */

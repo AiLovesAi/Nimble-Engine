@@ -51,6 +51,7 @@ const char * const nErrorStrings[] = {
     "NERROR_INTERNAL_FAILURE",
     "NERROR_NULL",
     "NERROR_INV_ERROR",
+    "NERROR_BUFFER_OVERFLOW",
     
     "NERROR_SIGNAL_START",
     "NERROR_SIG_ABRT",
@@ -764,6 +765,7 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN("NERROR_INTERNAL_FAILURE"),
     NCONST_STR_LEN("NERROR_NULL"),
     NCONST_STR_LEN("NERROR_INV_ERROR"),
+    NCONST_STR_LEN("NERROR_BUFFER_OVERFLOW"),
     
     NCONST_STR_LEN("NERROR_SIGNAL_START"),
     NCONST_STR_LEN("NERROR_SIG_ABRT"),
@@ -1481,6 +1483,8 @@ const size_t nErrorStrLengths[] = {
  "pointer was expected."
 #define nErrDescInvErrorStr          "An error passed to a function was "\
  "not valid."
+#define nErrDescBufferOverflowStr    "Not enough space in buffer. An attempt "\
+ "to write to a buffer was stopped because it would leak memory."
 
 #define nErrDescSignalStartStr       "The start of the signal error section; "\
  "likely caused by programmer error or a memory corruption issue."
@@ -1878,6 +1882,7 @@ const char * const nErrorDescriptions[] = {
     nErrDescInternalFailureStr,
     nErrDescNullStr,
     nErrDescInvErrorStr,
+    nErrDescBufferOverflowStr,
     
     nErrDescSignalStartStr,
     nErrDescSigAbrtStr,
@@ -2590,6 +2595,7 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescInternalFailureStr),
     NCONST_STR_LEN(nErrDescNullStr),
     NCONST_STR_LEN(nErrDescInvErrorStr),
+    NCONST_STR_LEN(nErrDescBufferOverflowStr),
     
     NCONST_STR_LEN(nErrDescSignalStartStr),
     NCONST_STR_LEN(nErrDescSigAbrtStr),

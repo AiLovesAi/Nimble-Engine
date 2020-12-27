@@ -49,33 +49,28 @@ extern "C" {
 #include "../NimbleEngine.h"
 
 /**
+ * @brief The CPU info of the system.
+ * 
+ * @note To set this value, call nSysGetCPUInfo().
+ */
+NIMBLE_EXTERN
+char NCPU_INFO[129];
+
+/**
+ * @brief The length of #NCPU_INFO.
+ */
+NIMBLE_EXTERN
+size_t NCPU_INFO_LEN;
+
+/**
  * @brief Gets the CPU info of the system.
- *
- * Example:
- * @code
- * #include <stdio.h>
- * #include <Nimble/NimbleEngine.h>
- *
- * int main(int argc, char **argv)
- * {
- *     size_t len;
- *     char *cpuInfo = nSysGetCPUInfo(&len);
- *     if (cpuInfo == NULL)
- *     {
- *         fprintf(stderr, "Failed to get error string.\n");
- *         exit(EXIT_FAILURE);
- *     }
- *     printf("CPU installed: %s\n", cpuInfo);
- *     return EXIT_SUCCESS;
- * }
- * @endcode
+ * Gets the CPU info of the system and sets #NCPU_INFO and #NCPU_INFO_LEN.
  *
  * @param[out] len The length of the string returned. This can be @c #NULL.
  * @return A pointer to the string of the CPU info is returned if successful;
  * otherwise @c #NULL is returned.
  */
 NIMBLE_EXTERN
-NIMBLE_FREEME
 char *
 nSysGetCPUInfo(size_t *len)
 __attribute__((warn_unused_result))
