@@ -24,3 +24,9 @@ Nimble is an open source, cross-platform, light game engine written in C. It is 
 
 * Nimble Engine Installer:
     The installer for Nimble Engine Application.
+    
+# Installation:
+
+To install the engine itself (prebuilt binaries), download the latest installer from releases and follow the steps in the installer.
+
+To build the source code for your machine, run "py ./scripts/Builder.py [Product Path]" in the master directory, or run each product through CMake.

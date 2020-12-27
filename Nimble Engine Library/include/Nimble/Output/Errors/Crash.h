@@ -51,6 +51,35 @@ extern "C" {
 #include <time.h>
 
 /**
+ * @brief Crashes with @p info if @p check if equal to zero.
+ * 
+ * Example:
+ * @code
+ * 
+ * @endcode
+ * #include <stdio.h>
+ * #include <Nimble/NimbleEngine.h>
+ *
+ * int main(int argc, char **argv)
+ * {
+ *     const char errorStr[] = "Executable file is not an absolute path.";
+ *     nAssert(nFilePathIsAbsolute(argv[0], 0) == NSUCCESS,
+ *      NERROR_INTERNAL_FAILURE, errorStr, NCONST_STR_LEN(errorStr));
+ *     return EXIT_SUCCESS;
+ * }
+ * @param[in] check The statement to check if true.
+ * @param[in] error The default error to crash with (overridden if errno is set).
+ * @param[in] info The info string to crash with if false.
+ * @param[in] infoLen The length of @p info.
+ */
+NIMBLE_EXTERN
+void
+nAssert(const nint_t check,
+        const nint_t error,
+        const char *info,
+        const size_t infoLen);
+
+/**
  * @brief Sets the crash callback function.
  * Sets the callback function that gets called when the game crashes.
  *
@@ -72,9 +101,9 @@ extern "C" {
  * 
  * @endcode
  *
- * @param[in] callback The function that gets called when a crash occurs.
- * @return @c #NSUCCESS is returned if successful; otherwise @c #NERROR is
- * returned.
+ * @param[in] callback The function that gets called when a crash occurs. This
+ * can be #NULL to use the default callback.
+ * @return @c #NSUCCESS is returned if successful.
  *
  * @note The callback function can only be called once. If an error occurs, the
  * program will abort with nCrashAbort(). Check nCrashDefault() for

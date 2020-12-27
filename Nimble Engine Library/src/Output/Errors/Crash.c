@@ -80,25 +80,60 @@ void nCrashCallbackDefault(const nint_t error, const time_t errorTime,
  const size_t stackLen)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
+    struct tm *timeInfo = localtime(&errorTime);
+    const char format[] = "%02d/%02d/%04d %02d:%02d:%02d";
+    const char example[] = "01/01/1970 00:00:00";
+    char *timeStr = nAlloc(sizeof(example));
+    if (timeStr == NULL)
+    {
+        fprintf(stderr, "Failed to allocate to timeStr.\n");
+        return;
+    }
+    snprintf(timeStr, sizeof(example), format, timeInfo->tm_mon + 1,
+     timeInfo->tm_mday, timeInfo->tm_year + 1900, timeInfo->tm_hour,
+     timeInfo->tm_min, timeInfo->tm_sec);
+
+    fprintf(stderr, "\nAn crash occurred at %s:\nError description: "\
+    "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
+    nFree(timeStr);
+}
+
+void nAssert(const nint_t check, const nint_t error, const char *info,
+ const size_t infoLen)
+{
+    if (!check)
+    {
+        nint_t err;
+        if (errno)
+        {
+            nErrorLastErrno(err);
+            err = nErrorFromErrno(err);
+        }
+        else
+        {
+            err = error;
+        }
+
+        size_t errorDescLen;
+        char *errorDescStr = nErrorToString(&errorDescLen, err,
+            info, infoLen);
+        nCrashSafe(err, time(NULL), errorDescStr, errorDescLen);
+        /* NO RETURN */
+    }
 }
 
 nint_t nCrashSetCallback(void (*callback)(const nint_t error,
  const time_t errorTime, const char *errorDesc, const size_t errorDescLen,
  const char *stack, const size_t stackLen))
 {
-    if (!callback)
+    if (callback)
     {
-        const char einfoCallbackStr[] = "Callback parameter null in "\
-        "nCrashSetCallback().";
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
-         einfoCallbackStr, NCONST_STR_LEN(einfoCallbackStr));
-        nErrorThrow(NERROR_NULL, errorDescStr, errorDescLen);
-        nFree(errorDescStr);
-        return NERROR_NULL;
+        crashCallback = callback;
     }
-    
-    crashCallback = callback;
+    else
+    {
+        crashCallback = nCrashCallbackDefault;
+    }
     return NSUCCESS;
 }
 
@@ -147,12 +182,16 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
     }
     
     size_t stackLen;
+#if 0
     char *stackStr = nErrorGetStacktrace(&stackLen, NULL);
+#endif
     /* Call the user-defined crash callback function. */
-    crashCallback(error, errorTime, errorDescStr, errorDescLen, stackStr,
+    crashCallback(error, errorTime, errorDescStr, errorDescLen, "stack",
      stackLen);
     
+#if 0
     nFree(stackStr);
+#endif
     nFree(errorDescStr);
 
     exit(error);

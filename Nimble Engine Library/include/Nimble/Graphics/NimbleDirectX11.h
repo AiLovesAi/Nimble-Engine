@@ -49,14 +49,14 @@ extern "C" {
 #ifndef NIMBLE_GRAPHICS_H
 #define NIMBLE_GRAPHICS_H /**< Header definition */
 
-#include "Nimble.h"
+#include "../Nimble.h"
 
-#include "Graphics/DirectX11/Hardware.h"
-#include "Graphics/DirectX11/Overlay.h"
-#include "Graphics/DirectX11/Render.h"
-#include "Graphics/DirectX11/Shaders.h"
-#include "Graphics/DirectX11/Window.h"
-#include "Graphics/DirectX11/WindowEvents.h"
+#include "DirectX11/Hardware.h"
+#include "DirectX11/Overlay.h"
+#include "DirectX11/Render.h"
+#include "DirectX11/Shaders.h"
+#include "DirectX11/Window.h"
+#include "DirectX11/WindowEvents.h"
 
 #endif // NIMBLE_GRAPHICS_H
 

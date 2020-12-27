@@ -174,9 +174,9 @@ nint_t nFilePathIsAbsolute(const char *path, nint_t len)
     }
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
-    return (NEXEC[1] == ':') ? NSUCCESS : NERROR;
+    return (path[1] == ':') ? NSUCCESS : NERROR;
 #else
-    return (NEXEC[0] == '/') ? NSUCCESS : NERROR;
+    return (path[0] == '/') ? NSUCCESS : NERROR;
 #endif
 }
 
@@ -184,44 +184,19 @@ char *nFileSetCWD(void)
 {
     char buffer[PATH_MAX + 1];
     buffer[PATH_MAX] = '\0';
-    if (!getcwd(buffer, NCONST_STR_LEN(buffer)))
-    {
-        const char einfoNoCWDStr[] = "getcwd() failed in "\
- "nFileSetCWD().";
-        nint_t err;
-        if (errno)
-        {
-            nErrorLastErrno(err);
-            err = nErrorFromErrno(err);
-        }
-        else
-        {
-            err = NERROR_INTERNAL_FAILURE;
-        }
-
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, err, einfoNoCWDStr,
-         NCONST_STR_LEN(einfoNoCWDStr));
-        nCrashSafe(err, time(NULL), errorDescStr, errorDescLen);
-        /* NO RETURN */
-    }
+#define einfoStr "getcwd() failed in nFileSetCWD()."
+    nAssert(getcwd(buffer, NCONST_STR_LEN(buffer)) != NULL,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
 
     size_t len = strlen(buffer);
+#define einfoStr "The current working directory length is greater than "\
+ "PATH_MAX in nFileSetCWD()."
+        nAssert(len < PATH_MAX,
+        NERROR_MAX_FILENAME, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
     if ((buffer[len - 1] != NFILE_DIR_SEP))
     {
-        if (len == PATH_MAX)
-        {
-            const char einfoCWDTooLongStr[] = "The current working "\
- "directory length is greater than PATH_MAX in nFileSetCWD().";
-            size_t errorDescLen;
-            char *errorDescStr = nErrorToString(&errorDescLen,
-             NERROR_MAX_FILENAME, einfoCWDTooLongStr,
-             NCONST_STR_LEN(einfoCWDTooLongStr));
-            nCrashSafe(NERROR_MAX_FILENAME, time(NULL), errorDescStr,
-             errorDescLen);
-            /* NO RETURN */
-        }
-
         buffer[len] = NFILE_DIR_SEP;
         len++;
         buffer[len] = '\0';
@@ -234,60 +209,33 @@ char *nFileSetCWD(void)
 
 char *nFileSetExecutablePath(void)
 {
-    if (!NIMBLE_ARGS || !NIMBLE_ARGS[0])
-    {
-        const char einfoNoArgsStr[] = "NIMBLE_ARGS was not set, causing "\
- "nFileSetExecutablePath() to fail.";
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
-         einfoNoArgsStr, NCONST_STR_LEN(einfoNoArgsStr));
-        nCrashSafe(NERROR_NULL, time(NULL), errorDescStr, errorDescLen);
-        /* NO RETURN */
-    }
-
-    if (!NCWD[0])
-    {
-        nFileSetCWD();
-    }
+#define einfoStr "NIMBLE_ARGS was not set, causing nFileSetExecutablePath() "\
+ "to fail."
+    nAssert(NIMBLE_ARGS != NULL, NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(NIMBLE_ARGS[0] != NULL, NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
 
     size_t len = strlen(NIMBLE_ARGS[0]);
-    if ((NCWD_LEN + len) > PATH_MAX)
+    if (nFilePathIsAbsolute(NIMBLE_ARGS[0], len) == NSUCCESS)
     {
-        const char einfoExecTooLongStr[] = "The executable file path length is "\
- "greater than PATH_MAX in nFileSetExecutablePath().";
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_MAX_FILENAME,
-         einfoExecTooLongStr, NCONST_STR_LEN(einfoExecTooLongStr));
-        nCrashSafe(NERROR_MAX_FILENAME, time(NULL), errorDescStr, errorDescLen);
-        /* NO RETURN */
+        nStringCopy(NEXEC, NIMBLE_ARGS[0], len);
     }
-
-    nStringCopy(NEXEC, NCWD, NCWD_LEN);
-    nStringCopy(NEXEC + NCWD_LEN, NIMBLE_ARGS[0], len);
+    else
+    {
+        if (!NCWD[0])
+        {
+            nFileSetCWD();
+        }
+        nStringCopy(NEXEC, NCWD, NCWD_LEN);
+        nStringCopy(NEXEC + NCWD_LEN, NIMBLE_ARGS[0], len);
+    }
 
     char buffer[PATH_MAX + 1];
     buffer[PATH_MAX] = '\0';
-    if (!realpath(buffer, NEXEC))
-    {
-        const char einfoNoRealpathStr[] = "realpath() failed in "\
- "nFileSetExecutablePath().";
-        nint_t err;
-        if (errno)
-        {
-            nErrorLastErrno(err);
-            err = nErrorFromErrno(err);
-        }
-        else
-        {
-            err = NERROR_INTERNAL_FAILURE;
-        }
-
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, err,
-         einfoNoRealpathStr, NCONST_STR_LEN(einfoNoRealpathStr));
-        nCrashSafe(err, time(NULL), errorDescStr, errorDescLen);
-        /* NO RETURN */
-    }
+#define einfoStr "realpath() failed in nFileSetExecutablePath()."
+    nAssert(realpath(buffer, NEXEC) != NULL,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
 
     len = strlen(buffer);
     if (strcmp(NEXEC, buffer))
@@ -296,18 +244,12 @@ char *nFileSetExecutablePath(void)
     }
     NEXEC_LEN = len;
 
-    if (nFileExists(NEXEC) != NSUCCESS)
-    {
-        const char einfoNoExecutableStr[] = "nFileSetExecutablePath() failed "\
- "to verify that the set executable path exists.";
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen,
-         NERROR_INTERNAL_FAILURE, einfoNoExecutableStr,
-         NCONST_STR_LEN(einfoNoExecutableStr));
-        nCrashSafe(NERROR_INTERNAL_FAILURE, time(NULL), errorDescStr,
-         errorDescLen);
-        /* NO RETURN */
-    }
+#define einfoStr "nFileSetExecutablePath() failed to verify that the set "\
+ "executable path exists."
+    nint_t err = nFileExists(NEXEC);
+    nAssert(err == NSUCCESS,
+     err, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
 
     return NEXEC;
 }

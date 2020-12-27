@@ -49,14 +49,14 @@ extern "C" {
 #ifndef NIMBLE_GRAPHICS_H
 #define NIMBLE_GRAPHICS_H /**< Header definition */
 
-#include "Nimble.h"
+#include "../Nimble.h"
 
-#include "Graphics/Vulkan/Hardware.h"
-#include "Graphics/Vulkan/Overlay.h"
-#include "Graphics/Vulkan/Render.h"
-#include "Graphics/Vulkan/Shaders.h"
-#include "Graphics/Vulkan/Window.h"
-#include "Graphics/Vulkan/WindowEvents.h"
+#include "Vulkan/Hardware.h"
+#include "Vulkan/Overlay.h"
+#include "Vulkan/Render.h"
+#include "Vulkan/Shaders.h"
+#include "Vulkan/Window.h"
+#include "Vulkan/WindowEvents.h"
 
 #endif // NIMBLE_GRAPHICS_H
 

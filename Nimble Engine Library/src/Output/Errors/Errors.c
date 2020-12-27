@@ -83,25 +83,32 @@ void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
  const size_t stackLen)
 {
     /** @todo Make default callback. */
+    struct tm *timeInfo = localtime(&errorTime);
+    const char format[] = "%02d/%02d/%02d %02d:%02d:%02d";
+    const char example[] = "01/01/1970 00:00:00";
+    char *timeStr = nAlloc(sizeof(example));
+    if (timeStr == NULL)
+    {
+        fprintf(stderr, "Failed to allocate to timeStr.\n");
+        return;
+    }
+    snprintf(timeStr, sizeof(example), format, timeInfo->tm_mon + 1,
+     timeInfo->tm_mday, timeInfo->tm_year + 1900, timeInfo->tm_hour,
+     timeInfo->tm_min, timeInfo->tm_sec);
+
+    fprintf(stderr, "\nAn error occurred at %s:\nError description: "\
+    "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
+    nFree(timeStr);
 }
 
 void nErrorThrow(const nint_t error, char *errorDescStr, size_t errorDescLen)
 {
     const time_t errorTime = time(NULL);
     
-    if (!errorCallback)
-    {
-        const time_t crashErrorTime = time(NULL);
-        const char einfoCallbackStr[] = "Callback argument NULL in "\
- "nErrorThrow().";
-        size_t crashErrorDescLen;
-        
-        char *crashErrorDesc = nErrorToString(&crashErrorDescLen, NERROR_NULL,
-         einfoCallbackStr, NCONST_STR_LEN(einfoCallbackStr));
-        nCrashSafe(NERROR_NULL, crashErrorTime, crashErrorDesc,
-         crashErrorDescLen);
-        /* NO RETURN */
-    }
+#define einfoStr "Callback argument NULL in nErrorThrow()."
+    nAssert(errorCallback != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
     
     _Bool funcAllocates = 0;
     if (!errorDescStr)
@@ -111,12 +118,16 @@ void nErrorThrow(const nint_t error, char *errorDescStr, size_t errorDescLen)
     }
     
     size_t stackLen, stackLevels;
+#if 0
     char *stackStr = nErrorGetStacktrace(&stackLen, &stackLevels);
+#endif
     
     /* Call the user-defined error callback function. */
-    errorCallback(error, errorTime, errorDescStr, errorDescLen, stackStr, stackLen);
+    errorCallback(error, errorTime, errorDescStr, errorDescLen, "stack", stackLen);
 
+#if 0
     nFree(stackStr);
+#endif
     if (funcAllocates)
     {
         nFree(errorDescStr);
@@ -137,7 +148,7 @@ char *nErrorToString(size_t *errorLen, const nint_t error, const char *info,
     const char *errorDescStr = nErrorDesc(error);
     const size_t errorDescStrLen = nErrorDescLen(error);
 
-    const char formatStr[] = "Info: %s\nError: %s: %s\n";
+    const char formatStr[] = "\nInfo: %s\nError: %s: %s\n";
     const size_t formatStrLen = NCONST_STR_FORMAT_LEN(formatStr, 3, 0, 0, 0);
     size_t errLen;
     char *dst;
@@ -211,19 +222,15 @@ nint_t nErrorSetCallback(void (*callback)(const nint_t error,
  const time_t errorTime, const char *errorDesc, const size_t errorDescLen,
  const char *stack, const size_t stackLen))
 {
-    if (!callback)
+    if (callback)
     {
-        const char einfoCallbackStr[] = "Callback argument NULL in "\
- "nErrorSetCallback().";
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
-         einfoCallbackStr, NCONST_STR_LEN(einfoCallbackStr));
-        nErrorThrow(NERROR_NULL, errorDescStr, errorDescLen);
-        nFree(errorDescStr);
-        return NERROR_NULL;
+        errorCallback = callback;
     }
-    
-    errorCallback = callback;
+    else
+    {
+        errorCallback = nErrorHandlerDefault;
+    }
+
     return NSUCCESS;
 }
 

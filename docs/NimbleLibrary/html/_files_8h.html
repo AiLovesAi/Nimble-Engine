@@ -276,7 +276,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_files_8h.html#a729f179ab2b16ed68ae92568cd7d620b" title="The executable file path.">NEXEC</a> is returned if successful; otherwise the engine crashes. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise <a class="el" href="_error_values_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a> is returned. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00164">164</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
@@ -346,7 +346,7 @@ Variables</h2></td></tr>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd><a class="el" href="_files_8h.html#a729f179ab2b16ed68ae92568cd7d620b" title="The executable file path.">NEXEC</a> is returned if successful; otherwise the engine crashes.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function is not thread safe, as it is called during initialization. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00235">235</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00210">210</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -428,7 +428,7 @@ Variables</h2></td></tr>
 <div class="ttc" id="a_files_8c_html_a0277b92e6e58b346305bfcecccb86458"><div class="ttname"><a href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a></div><div class="ttdeci">char NEXEC[PATH_MAX+1]</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00131">Files.c:131</a></div></div>
 <div class="ttc" id="a_files_8c_html_afd0197e622e739a3bda6f99d9a32cb36"><div class="ttname"><a href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a></div><div class="ttdeci">char NCWD[PATH_MAX+1]</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00133">Files.c:133</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00052">ErrorValues.h:52</a></div></div>
-<div class="ttc" id="a_files_8c_html_a302eb926061d46fe202582622921d56a"><div class="ttname"><a href="_files_8c.html#a302eb926061d46fe202582622921d56a">nFileSetExecutablePath</a></div><div class="ttdeci">char * nFileSetExecutablePath(void)</div><div class="ttdoc">Gets the current executable file path.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00235">Files.c:235</a></div></div>
+<div class="ttc" id="a_files_8c_html_a302eb926061d46fe202582622921d56a"><div class="ttname"><a href="_files_8c.html#a302eb926061d46fe202582622921d56a">nFileSetExecutablePath</a></div><div class="ttdeci">char * nFileSetExecutablePath(void)</div><div class="ttdoc">Gets the current executable file path.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00210">Files.c:210</a></div></div>
 <div class="ttc" id="a_files_8c_html_ad93df0305d03e7f23fd2be9f41172cba"><div class="ttname"><a href="_files_8c.html#ad93df0305d03e7f23fd2be9f41172cba">nFileExists</a></div><div class="ttdeci">nint_t nFileExists(const char *path)</div><div class="ttdoc">Checks if a file exists.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00137">Files.c:137</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
 <div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00218">Nimble.h:218</a></div></div>

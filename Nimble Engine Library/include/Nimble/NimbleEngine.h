@@ -129,7 +129,7 @@ nint_t NIMBLE_ARGC;
  */
 NIMBLE_EXTERN
 nint_t
-nEngineInit(const char **args,
+nEngineInit(char **args,
             const nint_t argc,
             void (*errorCallback)(
                                   const nint_t error,

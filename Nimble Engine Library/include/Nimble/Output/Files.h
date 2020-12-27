@@ -150,15 +150,14 @@ nFileExists(const char *path);
  * @endcode
  *
  * @param[in] path The file path to check if absolute.
- * @param[in] len The length of the path to check. This can be 0
- * to use strlen().
- * @return #NEXEC is returned if successful; otherwise the
- * engine crashes.
+ * @param[in] len The length of the path to check. This can be 0 to use
+ * strlen().
+ * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned.
  */
 NIMBLE_EXTERN
 nint_t
 nFilePathIsAbsolute(const char *path,
-                   nint_t len);
+                    nint_t len);
 
 /**
  * @brief Gets the current working directory path.

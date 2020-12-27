@@ -17,8 +17,10 @@
 
 int main(int argc, char **argv)
 {
-    printf("Hello world.\n");
+    printf("Initializing engine...\n");
     nEngineInit(argv, argc, NULL, NULL);
+    printf("Initialized engine.\n");
+
     return EXIT_SUCCESS;
 }
 

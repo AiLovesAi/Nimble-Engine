@@ -92,6 +92,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a7b5328d7a5ac882f826df2f52206fd79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8h.html#a7b5328d7a5ac882f826df2f52206fd79">nAssert</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> check, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, const size_t infoLen)</td></tr>
+<tr class="memdesc:a7b5328d7a5ac882f826df2f52206fd79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes with <code>info</code> if <code>check</code> if equal to zero.  <a href="_crash_8h.html#a7b5328d7a5ac882f826df2f52206fd79">More...</a><br /></td></tr>
+<tr class="separator:a7b5328d7a5ac882f826df2f52206fd79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c7dd119981f46ec7cb51e0830ba26e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8h.html#a1c7dd119981f46ec7cb51e0830ba26e5">nCrashSetCallback</a> (void(*callback)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen))</td></tr>
 <tr class="memdesc:a1c7dd119981f46ec7cb51e0830ba26e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the crash callback function.  <a href="_crash_8h.html#a1c7dd119981f46ec7cb51e0830ba26e5">More...</a><br /></td></tr>
 <tr class="separator:a1c7dd119981f46ec7cb51e0830ba26e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,6 +139,60 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a7b5328d7a5ac882f826df2f52206fd79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b5328d7a5ac882f826df2f52206fd79">&#9670;&nbsp;</a></span>nAssert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void nAssert </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramname"><em>check</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramname"><em>error</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>info</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>infoLen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crashes with <code>info</code> if <code>check</code> if equal to zero. </p>
+<p>Example: </p><div class="fragment"></div><!-- fragment --><p> #include &lt;stdio.h&gt; #include &lt;<a class="el" href="_nimble_engine_8h.html" title="This class includes all the necessary game engine header files.">Nimble/NimbleEngine.h</a>&gt;</p>
+<p>int main(int argc, char **argv) { const char errorStr[] = "Executable file is not an absolute path."; nAssert(nFilePathIsAbsolute(argv[0], 0) == NSUCCESS, NERROR_INTERNAL_FAILURE, errorStr, <a class="el" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50" title="Gets the length of a const char * as strlen() would, but at compile time.">NCONST_STR_LEN(errorStr)</a>); return EXIT_SUCCESS; } </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">check</td><td>The statement to check if true. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The default error to crash with (overridden if errno is set). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>The info string to crash with if false. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">infoLen</td><td>The length of <code>info</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00101">101</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
+
+</div>
+</div>
 <a id="a249dd5cb265d1a93a36fa77faa89f1ec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a249dd5cb265d1a93a36fa77faa89f1ec">&#9670;&nbsp;</a></span>nCrashAbort()</h2>
 
@@ -167,7 +224,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00172">172</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00211">211</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
 </div>
 </div>
@@ -240,7 +297,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. If an error occurs, the program will abort with <a class="el" href="_crash_8h.html#a249dd5cb265d1a93a36fa77faa89f1ec" title="Crashes the program without notifying the callback.">nCrashAbort()</a>. Also note that this function automatically sets all the arguments if possible, so resetting them is not needed and may cause more errors, though checking them is acceptable. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00105">105</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00140">140</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
 </div>
 </div>
@@ -277,14 +334,14 @@ Functions</h2></td></tr>
 <div class="line">}</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">callback</td><td>The function that gets called when a crash occurs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">callback</td><td>The function that gets called when a crash occurs. This can be <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> to use the default callback. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful; otherwise <code><a class="el" href="_error_values_8h.html#abc17e6456e8237f1fec82260310055b1" title="Returned when a function encounters an error.">NERROR</a></code> is returned.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The callback function can only be called once. If an error occurs, the program will abort with <a class="el" href="_crash_8h.html#a249dd5cb265d1a93a36fa77faa89f1ec" title="Crashes the program without notifying the callback.">nCrashAbort()</a>. Check nCrashDefault() for parameter information. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00085">85</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00125">125</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
 </div>
 </div>
@@ -313,20 +370,20 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used by the game engine and is not expected to be used by developers, but is optional. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00162">162</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00201">201</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00200">Nimble.h:200</a></div></div>
-<div class="ttc" id="a_crash_8c_html_a499458e899f416fd65911318a940bb45"><div class="ttname"><a href="_crash_8c.html#a499458e899f416fd65911318a940bb45">nCrashAbort</a></div><div class="ttdeci">_Noreturn void nCrashAbort(const nint_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00172">Crash.c:172</a></div></div>
+<div class="ttc" id="a_crash_8c_html_a499458e899f416fd65911318a940bb45"><div class="ttname"><a href="_crash_8c.html#a499458e899f416fd65911318a940bb45">nCrashAbort</a></div><div class="ttdeci">_Noreturn void nCrashAbort(const nint_t error)</div><div class="ttdoc">Crashes the program without notifying the callback.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00211">Crash.c:211</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00067">ErrorValues.h:67</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a055477c0aa8af2a58f8da7c4621c7b3a"><div class="ttname"><a href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(size_t *errorLen, const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00126">Errors.c:126</a></div></div>
-<div class="ttc" id="a_crash_8c_html_a27dd0441443b6798dc03a804bcfd3075"><div class="ttname"><a href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a></div><div class="ttdeci">_Noreturn void nCrashSafe(const nint_t error, time_t errorTime, const char *errorDesc, size_t errorDescLen)</div><div class="ttdoc">Crashes the program safely.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00105">Crash.c:105</a></div></div>
+<div class="ttc" id="a_errors_8c_html_a055477c0aa8af2a58f8da7c4621c7b3a"><div class="ttname"><a href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(size_t *errorLen, const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00137">Errors.c:137</a></div></div>
+<div class="ttc" id="a_crash_8c_html_a27dd0441443b6798dc03a804bcfd3075"><div class="ttname"><a href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a></div><div class="ttdeci">_Noreturn void nCrashSafe(const nint_t error, time_t errorTime, const char *errorDesc, size_t errorDescLen)</div><div class="ttdoc">Crashes the program safely.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00140">Crash.c:140</a></div></div>
 <div class="ttc" id="a_nimble_engine_8h_html"><div class="ttname"><a href="_nimble_engine_8h.html">NimbleEngine.h</a></div><div class="ttdoc">This class includes all the necessary game engine header files.</div></div>
 <div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00218">Nimble.h:218</a></div></div>
 <div class="ttc" id="a_crash_8c_html_a4677da643bade0be47a0146a5e84e948"><div class="ttname"><a href="_crash_8c.html#a4677da643bade0be47a0146a5e84e948">crashCallback</a></div><div class="ttdeci">void(*volatile crashCallback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00073">Crash.c:73</a></div></div>
-<div class="ttc" id="a_crash_8c_html_a2539e911cedea5e9a58c4fa6d314f2b9"><div class="ttname"><a href="_crash_8c.html#a2539e911cedea5e9a58c4fa6d314f2b9">nCrashSetCallback</a></div><div class="ttdeci">nint_t nCrashSetCallback(void(*callback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen))</div><div class="ttdoc">Sets the crash callback function.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00085">Crash.c:85</a></div></div>
+<div class="ttc" id="a_crash_8c_html_a2539e911cedea5e9a58c4fa6d314f2b9"><div class="ttname"><a href="_crash_8c.html#a2539e911cedea5e9a58c4fa6d314f2b9">nCrashSetCallback</a></div><div class="ttdeci">nint_t nCrashSetCallback(void(*callback)(const nint_t error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen))</div><div class="ttdoc">Sets the crash callback function.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00125">Crash.c:125</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

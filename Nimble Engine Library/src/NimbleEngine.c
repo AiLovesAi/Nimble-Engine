@@ -78,7 +78,7 @@ static void nEngineExitSignal(int signum)
     exit(signum);
 }
 
-nint_t nEngineInit(const char **args, const nint_t argc,
+nint_t nEngineInit(char **args, const nint_t argc,
  void (*errorCallback) (const nint_t error, const time_t errorTime,
  const char *errorDesc, const size_t errorDescLen, const char *stack,
  const size_t stackLen),
@@ -102,74 +102,56 @@ nint_t nEngineInit(const char **args, const nint_t argc,
         return NERROR;
     }
 
-    nint_t err = 0;
-
-    /* Add nEngineExit() to the exit() functions. */
-    if (atexit(nEngineCleanup) != NSUCCESS)
-    {
-        nErrorLastErrno(err);
-        err = nErrorFromErrno(err);
-        const time_t errorTime = time(NULL);
-        char einfoAtExitStr[] = "atexit() failed in nEngineInit(), and the "\
- "exit functions could not be set.";
-
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, err, einfoAtExitStr,
-         NCONST_STR_LEN(einfoAtExitStr));
-        nCrashSafe(err, errorTime, errorDescStr, errorDescLen);
-        /* NO RETURN */
-    }
+    /* Add nEngineCleanup() to the exit functions. */
+#define einfoStr "atexit() failed in nEngineInit(), and the exit functions "\
+ "could not be set."
+    nAssert(!atexit(&nEngineCleanup),
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
 
     /* Set signal callbacks. */
-    signal(SIGTERM, nEngineExitSignal);
-    signal(SIGABRT, nCrashSignal);
-    signal(SIGFPE, nCrashSignal);
-    signal(SIGILL, nCrashSignal);
-    signal(SIGINT, nCrashSignal);
-    signal(SIGSEGV, nCrashSignal);
+#define einfoStr "signal() failed in nEngineInit(), and the signal handlers "\
+ "could not be set."
+    nAssert(signal(SIGTERM, nEngineExitSignal) != SIG_ERR,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(signal(SIGABRT, nCrashSignal) != SIG_ERR,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(signal(SIGFPE, nCrashSignal) != SIG_ERR,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(signal(SIGILL, nCrashSignal) != SIG_ERR,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(signal(SIGINT, nCrashSignal) != SIG_ERR,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(signal(SIGSEGV, nCrashSignal) != SIG_ERR,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
 
     /* Set Nimble callbacks. */
-    if (errorCallback)
-    {
-        nErrorSetCallback(errorCallback);
-    }
-    if (crashCallback)
-    {
-        nCrashSetCallback(crashCallback);
-    }
+    nErrorSetCallback(errorCallback);
+    nCrashSetCallback(crashCallback);
 
+#define einfoStr "No arguments passed to nEngineInit(). This is necessary "\
+ "even if no arguments are sent, as the first argument is always the "\
+ "executable file, which is needed for stacktraces."
     /* Copy args to NIMBLE_ARGS */
-    if (!args || !argc)
-    {
-        goto noArgsLbl;
-    }
+    nAssert(args && argc , NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 
     NIMBLE_ARGS_LOCAL = nRealloc(NIMBLE_ARGS_LOCAL, sizeof(char *) * argc);
     NIMBLE_ARGS = nRealloc(NIMBLE_ARGS, sizeof(char *) * argc);
-
     nint_t count = 0;
     for (size_t len = 0; args[count] && count < argc; count++)
     {
         len = strlen(args[count]);
-        NIMBLE_ARGS_LOCAL[count] = nRealloc(NIMBLE_ARGS_LOCAL, len + 1);
+        NIMBLE_ARGS_LOCAL[count] = nRealloc(NIMBLE_ARGS_LOCAL[count], len + 1);
         nStringCopy(NIMBLE_ARGS_LOCAL[count], args[count], len);
-        NIMBLE_ARGS[count] = nRealloc(NIMBLE_ARGS, len + 1);
+        NIMBLE_ARGS[count] = nRealloc(NIMBLE_ARGS[count], len + 1);
         nStringCopy(NIMBLE_ARGS[count], args[count], len);
     }
 
-    if (!count)
-    {
-noArgsLbl:;
-        const char einfoNoArgsStr[] = "No arguments passed to nEngineInit(). "\
- "This is necessary even if no arguments are sent, as the first argument is "\
- "always the executable file, which is needed for stacktraces.";
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
-         einfoNoArgsStr, NCONST_STR_LEN(einfoNoArgsStr));
-        nCrashSafe(NERROR_NULL, time(NULL), errorDescStr, errorDescLen);
-        /* NO RETURN */
-    }
+    nAssert(count, NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
 
+    NIMBLE_ARGC_LOCAL = count;
     NIMBLE_ARGC = count;
 
 

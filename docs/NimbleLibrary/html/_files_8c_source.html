@@ -217,9 +217,9 @@ $(function() {
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    }</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="preprocessor">#if NIMBLE_OS == NIMBLE_WINDOWS</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>[1] == <span class="charliteral">&#39;:&#39;</span>) ? <a class="code" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a> : <a class="code" href="_error_values_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a>;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordflow">return</span> (path[1] == <span class="charliteral">&#39;:&#39;</span>) ? <a class="code" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a> : <a class="code" href="_error_values_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a>;</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>[0] == <span class="charliteral">&#39;/&#39;</span>) ? <a class="code" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a> : <a class="code" href="_error_values_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a>;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keywordflow">return</span> (path[0] == <span class="charliteral">&#39;/&#39;</span>) ? <a class="code" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a> : <a class="code" href="_error_values_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a>;</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;}</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
@@ -227,139 +227,82 @@ $(function() {
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;{</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keywordtype">char</span> buffer[PATH_MAX + 1];</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    buffer[PATH_MAX] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordflow">if</span> (!getcwd(buffer, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(buffer)))</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    {</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoNoCWDStr[] = <span class="stringliteral">&quot;getcwd() failed in &quot;</span>\</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; <span class="stringliteral">&quot;nFileSetCWD().&quot;</span>;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> err;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordflow">if</span> (errno)</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        {</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <a class="code" href="_errors_8h.html#a1e6c4c7f40480d707b2030da2dc96eab">nErrorLastErrno</a>(err);</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            err = <a class="code" href="_error_values_8c.html#a9fd9fbbf06b57d0b43aa6a18eabafac3">nErrorFromErrno</a>(err);</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        }</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        {</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            err = <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keywordtype">size_t</span> errorDescLen;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordtype">char</span> *errorDescStr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorDescLen, err, einfoNoCWDStr,</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;         <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoNoCWDStr));</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <a class="code" href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a>(err, time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), errorDescStr, errorDescLen);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="comment">/* NO RETURN */</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    }</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordtype">size_t</span> len = strlen(buffer);</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keywordflow">if</span> ((buffer[len - 1] != <a class="code" href="_files_8h.html#aec5584ed6ea5df103712c2eaf303d2d0">NFILE_DIR_SEP</a>))</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    {</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        <span class="keywordflow">if</span> (len == PATH_MAX)</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        {</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">char</span> einfoCWDTooLongStr[] = <span class="stringliteral">&quot;The current working &quot;</span>\</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; <span class="stringliteral">&quot;directory length is greater than PATH_MAX in nFileSetCWD().&quot;</span>;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <span class="keywordtype">size_t</span> errorDescLen;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keywordtype">char</span> *errorDescStr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorDescLen,</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;             NERROR_MAX_FILENAME, einfoCWDTooLongStr,</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;             <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoCWDTooLongStr));</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            <a class="code" href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a>(NERROR_MAX_FILENAME, time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), errorDescStr,</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;             errorDescLen);</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="comment">/* NO RETURN */</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        }</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        buffer[len] = <a class="code" href="_files_8h.html#aec5584ed6ea5df103712c2eaf303d2d0">NFILE_DIR_SEP</a>;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        len++;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        buffer[len] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<a class="code" href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a>, buffer, len);</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <a class="code" href="_files_8c.html#a6a0daadac1ebb13d11efed8888bd7ac0">NCWD_LEN</a> = len;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a>;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;}</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
-<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="_files_8h.html#a9e5a96cfb7a94ef1ee5cd545649fc727">  235</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="_files_8c.html#a302eb926061d46fe202582622921d56a">nFileSetExecutablePath</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;{</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a> || !<a class="code" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a>[0])</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoNoArgsStr[] = <span class="stringliteral">&quot;NIMBLE_ARGS was not set, causing &quot;</span>\</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160; <span class="stringliteral">&quot;nFileSetExecutablePath() to fail.&quot;</span>;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="keywordtype">size_t</span> errorDescLen;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordtype">char</span> *errorDescStr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorDescLen, <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>,</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;         einfoNoArgsStr, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoNoArgsStr));</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <a class="code" href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a>(<a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), errorDescStr, errorDescLen);</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="comment">/* NO RETURN */</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    }</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a>[0])</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    {</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <a class="code" href="_files_8c.html#a9e609d4a183611155f3d7d4b836f6e47">nFileSetCWD</a>();</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordtype">size_t</span> len = strlen(<a class="code" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a>[0]);</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keywordflow">if</span> ((<a class="code" href="_files_8c.html#a6a0daadac1ebb13d11efed8888bd7ac0">NCWD_LEN</a> + len) &gt; PATH_MAX)</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    {</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoExecTooLongStr[] = <span class="stringliteral">&quot;The executable file path length is &quot;</span>\</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; <span class="stringliteral">&quot;greater than PATH_MAX in nFileSetExecutablePath().&quot;</span>;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <span class="keywordtype">size_t</span> errorDescLen;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        <span class="keywordtype">char</span> *errorDescStr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorDescLen, NERROR_MAX_FILENAME,</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;         einfoExecTooLongStr, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoExecTooLongStr));</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <a class="code" href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a>(NERROR_MAX_FILENAME, time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), errorDescStr, errorDescLen);</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <span class="comment">/* NO RETURN */</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    }</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>, <a class="code" href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a>, <a class="code" href="_files_8c.html#a6a0daadac1ebb13d11efed8888bd7ac0">NCWD_LEN</a>);</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a> + <a class="code" href="_files_8c.html#a6a0daadac1ebb13d11efed8888bd7ac0">NCWD_LEN</a>, <a class="code" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a>[0], len);</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keywordtype">char</span> buffer[PATH_MAX + 1];</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    buffer[PATH_MAX] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordflow">if</span> (!realpath(buffer, <a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>))</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    {</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoNoRealpathStr[] = <span class="stringliteral">&quot;realpath() failed in &quot;</span>\</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; <span class="stringliteral">&quot;nFileSetExecutablePath().&quot;</span>;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> err;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="keywordflow">if</span> (errno)</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        {</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            <a class="code" href="_errors_8h.html#a1e6c4c7f40480d707b2030da2dc96eab">nErrorLastErrno</a>(err);</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            err = <a class="code" href="_error_values_8c.html#a9fd9fbbf06b57d0b43aa6a18eabafac3">nErrorFromErrno</a>(err);</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        }</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        {</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            err = <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        }</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        <span class="keywordtype">size_t</span> errorDescLen;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        <span class="keywordtype">char</span> *errorDescStr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorDescLen, err,</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;         einfoNoRealpathStr, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoNoRealpathStr));</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <a class="code" href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a>(err, time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), errorDescStr, errorDescLen);</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <span class="comment">/* NO RETURN */</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    }</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    len = strlen(buffer);</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <span class="keywordflow">if</span> (strcmp(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>, buffer))</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    {</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>, buffer, len);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    }</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <a class="code" href="_files_8c.html#a75c2551b9745e408731f551c3f6b8296">NEXEC_LEN</a> = len;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="_files_8c.html#ad93df0305d03e7f23fd2be9f41172cba">nFileExists</a>(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>) != <a class="code" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    {</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoNoExecutableStr[] = <span class="stringliteral">&quot;nFileSetExecutablePath() failed &quot;</span>\</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; <span class="stringliteral">&quot;to verify that the set executable path exists.&quot;</span>;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <span class="keywordtype">size_t</span> errorDescLen;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="keywordtype">char</span> *errorDescStr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorDescLen,</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;         <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>, einfoNoExecutableStr,</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;         <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoNoExecutableStr));</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <a class="code" href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a>(<a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>, time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), errorDescStr,</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;         errorDescLen);</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="comment">/* NO RETURN */</span></div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    }</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;}</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="comment">// Files.c</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="preprocessor">#define einfoStr &quot;getcwd() failed in nFileSetCWD().&quot;</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <a class="code" href="_crash_8c.html#a760db5ed5e88cf72e9e1fd8b34134f5c">nAssert</a>(getcwd(buffer, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(buffer)) != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;     <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>, <a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>));</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keywordtype">size_t</span> len = strlen(buffer);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="preprocessor">#define einfoStr &quot;The current working directory length is greater than &quot;\</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="preprocessor"> &quot;PATH_MAX in nFileSetCWD().&quot;</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <a class="code" href="_crash_8c.html#a760db5ed5e88cf72e9e1fd8b34134f5c">nAssert</a>(len &lt; PATH_MAX,</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        NERROR_MAX_FILENAME, <a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>));</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordflow">if</span> ((buffer[len - 1] != <a class="code" href="_files_8h.html#aec5584ed6ea5df103712c2eaf303d2d0">NFILE_DIR_SEP</a>))</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    {</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        buffer[len] = <a class="code" href="_files_8h.html#aec5584ed6ea5df103712c2eaf303d2d0">NFILE_DIR_SEP</a>;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        len++;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        buffer[len] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    }</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<a class="code" href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a>, buffer, len);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <a class="code" href="_files_8c.html#a6a0daadac1ebb13d11efed8888bd7ac0">NCWD_LEN</a> = len;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a>;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;}</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="_files_8h.html#a9e5a96cfb7a94ef1ee5cd545649fc727">  210</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="_files_8c.html#a302eb926061d46fe202582622921d56a">nFileSetExecutablePath</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;{</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor">#define einfoStr &quot;NIMBLE_ARGS was not set, causing nFileSetExecutablePath() &quot;\</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="preprocessor"> &quot;to fail.&quot;</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <a class="code" href="_crash_8c.html#a760db5ed5e88cf72e9e1fd8b34134f5c">nAssert</a>(<a class="code" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a> != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, <a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>));</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <a class="code" href="_crash_8c.html#a760db5ed5e88cf72e9e1fd8b34134f5c">nAssert</a>(<a class="code" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a>[0] != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, <a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>));</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">size_t</span> len = strlen(<a class="code" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a>[0]);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="_files_8c.html#af10fb9b04bf93384063950eda1e45fa3">nFilePathIsAbsolute</a>(<a class="code" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a>[0], len) == <a class="code" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>)</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    {</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>, <a class="code" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a>[0], len);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    }</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a>[0])</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            <a class="code" href="_files_8c.html#a9e609d4a183611155f3d7d4b836f6e47">nFileSetCWD</a>();</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>, <a class="code" href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">NCWD</a>, <a class="code" href="_files_8c.html#a6a0daadac1ebb13d11efed8888bd7ac0">NCWD_LEN</a>);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a> + <a class="code" href="_files_8c.html#a6a0daadac1ebb13d11efed8888bd7ac0">NCWD_LEN</a>, <a class="code" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a>[0], len);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    }</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordtype">char</span> buffer[PATH_MAX + 1];</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    buffer[PATH_MAX] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">#define einfoStr &quot;realpath() failed in nFileSetExecutablePath().&quot;</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <a class="code" href="_crash_8c.html#a760db5ed5e88cf72e9e1fd8b34134f5c">nAssert</a>(realpath(buffer, <a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>) != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;     <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a>, <a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>));</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    len = strlen(buffer);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span> (strcmp(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>, buffer))</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>, buffer, len);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <a class="code" href="_files_8c.html#a75c2551b9745e408731f551c3f6b8296">NEXEC_LEN</a> = len;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="preprocessor">#define einfoStr &quot;nFileSetExecutablePath() failed to verify that the set &quot;\</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="preprocessor"> &quot;executable path exists.&quot;</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> err = <a class="code" href="_files_8c.html#ad93df0305d03e7f23fd2be9f41172cba">nFileExists</a>(<a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <a class="code" href="_crash_8c.html#a760db5ed5e88cf72e9e1fd8b34134f5c">nAssert</a>(err == <a class="code" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>,</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;     err, <a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>));</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; </div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_files_8c.html#a0277b92e6e58b346305bfcecccb86458">NEXEC</a>;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;}</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">// Files.c</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6af7e1ebd96c4cd62a386d9152649ab4ef">NERROR_INTERNAL_FAILURE</a></div><div class="ttdeci">@ NERROR_INTERNAL_FAILURE</div><div class="ttdoc">An internal error occurred.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00066">ErrorValues.h:66</a></div></div>
 <div class="ttc" id="a_files_8c_html_a75c2551b9745e408731f551c3f6b8296"><div class="ttname"><a href="_files_8c.html#a75c2551b9745e408731f551c3f6b8296">NEXEC_LEN</a></div><div class="ttdeci">size_t NEXEC_LEN</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00132">Files.c:132</a></div></div>
 <div class="ttc" id="a_files_8h_html_aec5584ed6ea5df103712c2eaf303d2d0"><div class="ttname"><a href="_files_8h.html#aec5584ed6ea5df103712c2eaf303d2d0">NFILE_DIR_SEP</a></div><div class="ttdeci">#define NFILE_DIR_SEP</div><div class="ttdef"><b>Definition:</b> <a href="_files_8h_source.html#l00060">Files.h:60</a></div></div>
+<div class="ttc" id="a_files_8c_html_acdffbabfd17b49ee49aefd6e38f1f0ba"><div class="ttname"><a href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a></div><div class="ttdeci">#define einfoStr</div></div>
 <div class="ttc" id="a_error_values_8h_html_abc17e6456e8237f1fec82260310055b1"><div class="ttname"><a href="_error_values_8h.html#abc17e6456e8237f1fec82260310055b1">NERROR</a></div><div class="ttdeci">#define NERROR</div><div class="ttdoc">Returned when a function encounters an error.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00053">ErrorValues.h:53</a></div></div>
 <div class="ttc" id="a_nimble_engine_8c_html_ab141c39db6440d74d05a07b1884bcabb"><div class="ttname"><a href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NIMBLE_ARGS</a></div><div class="ttdeci">char ** NIMBLE_ARGS</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_engine_8c_source.html#l00056">NimbleEngine.c:56</a></div></div>
 <div class="ttc" id="a_files_8c_html_a8c2ed50c80202593736cea23d04a1c9b"><div class="ttname"><a href="_files_8c.html#a8c2ed50c80202593736cea23d04a1c9b">NFILE_ABSOLUTE_PREFIX</a></div><div class="ttdeci">#define NFILE_ABSOLUTE_PREFIX</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00162">Files.c:162</a></div></div>
@@ -370,9 +313,8 @@ $(function() {
 <div class="ttc" id="a_files_8c_html_a6a0daadac1ebb13d11efed8888bd7ac0"><div class="ttname"><a href="_files_8c.html#a6a0daadac1ebb13d11efed8888bd7ac0">NCWD_LEN</a></div><div class="ttdeci">size_t NCWD_LEN</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00134">Files.c:134</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a34eedfdb3dfef7fc00ea46dcb487bb17"><div class="ttname"><a href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a></div><div class="ttdeci">#define NSUCCESS</div><div class="ttdoc">Returned when a function succeeds.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00052">ErrorValues.h:52</a></div></div>
 <div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00067">ErrorValues.h:67</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a055477c0aa8af2a58f8da7c4621c7b3a"><div class="ttname"><a href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(size_t *errorLen, const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00126">Errors.c:126</a></div></div>
-<div class="ttc" id="a_files_8c_html_a302eb926061d46fe202582622921d56a"><div class="ttname"><a href="_files_8c.html#a302eb926061d46fe202582622921d56a">nFileSetExecutablePath</a></div><div class="ttdeci">char * nFileSetExecutablePath(void)</div><div class="ttdoc">Gets the current executable file path.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00235">Files.c:235</a></div></div>
-<div class="ttc" id="a_crash_8c_html_a27dd0441443b6798dc03a804bcfd3075"><div class="ttname"><a href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a></div><div class="ttdeci">_Noreturn void nCrashSafe(const nint_t error, time_t errorTime, const char *errorDesc, size_t errorDescLen)</div><div class="ttdoc">Crashes the program safely.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00105">Crash.c:105</a></div></div>
+<div class="ttc" id="a_crash_8c_html_a760db5ed5e88cf72e9e1fd8b34134f5c"><div class="ttname"><a href="_crash_8c.html#a760db5ed5e88cf72e9e1fd8b34134f5c">nAssert</a></div><div class="ttdeci">void nAssert(const nint_t check, const nint_t error, const char *info, const size_t infoLen)</div><div class="ttdoc">Crashes with info if check if equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00101">Crash.c:101</a></div></div>
+<div class="ttc" id="a_files_8c_html_a302eb926061d46fe202582622921d56a"><div class="ttname"><a href="_files_8c.html#a302eb926061d46fe202582622921d56a">nFileSetExecutablePath</a></div><div class="ttdeci">char * nFileSetExecutablePath(void)</div><div class="ttdoc">Gets the current executable file path.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00210">Files.c:210</a></div></div>
 <div class="ttc" id="a_files_8c_html_ad93df0305d03e7f23fd2be9f41172cba"><div class="ttname"><a href="_files_8c.html#ad93df0305d03e7f23fd2be9f41172cba">nFileExists</a></div><div class="ttdeci">nint_t nFileExists(const char *path)</div><div class="ttdoc">Checks if a file exists.</div><div class="ttdef"><b>Definition:</b> <a href="_files_8c_source.html#l00137">Files.c:137</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00218">Nimble.h:218</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a527cddcc22f04dbed8fe9768a975ab50"><div class="ttname"><a href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a></div><div class="ttdeci">#define NCONST_STR_LEN(str)</div><div class="ttdoc">Gets the length of a const char * as strlen() would, but at compile time.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00205">Nimble.h:205</a></div></div>
