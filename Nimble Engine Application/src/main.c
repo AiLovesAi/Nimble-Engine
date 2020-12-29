@@ -15,28 +15,80 @@
 #include <Nimble/NimbleEngine.h>
 #include <Nimble/Graphics/NimbleOpenGL.h>
 
+
+void crashCallback(const nint_t error, const time_t errorTime,
+ const char *errorDesc, const size_t errorDescLen, const char *stack,
+ const size_t stackLen)
+{
+    struct tm *timeInfo = localtime(&errorTime);
+    const char format[] = "%02d/%02d/%04d %02d:%02d:%02d";
+    const char example[] = "01/01/1970 00:00:00";
+    char *timeStr = nAlloc(sizeof(example));
+    if (timeStr == NULL)
+    {
+        fprintf(stderr, "Failed to allocate to timeStr.\n");
+        return;
+    }
+    snprintf(timeStr, sizeof(example), format, timeInfo->tm_mon + 1,
+     timeInfo->tm_mday, timeInfo->tm_year + 1900, timeInfo->tm_hour,
+     timeInfo->tm_min, timeInfo->tm_sec);
+
+    fprintf(stderr, "\nCrash occurred at %s:\nError description: "\
+    "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
+    nFree(timeStr);
+}
+
+void errorCallback(const nint_t error, const time_t errorTime,
+ const char * errorDesc, const size_t errorDescLen, const char * stack,
+ const size_t stackLen)
+{
+    struct tm *timeInfo = localtime(&errorTime);
+    const char format[] = "%02d/%02d/%02d %02d:%02d:%02d";
+    const char example[] = "01/01/1970 00:00:00";
+    char *timeStr = nAlloc(sizeof(example));
+    if (timeStr == NULL)
+    {
+        fprintf(stderr, "Failed to allocate to timeStr.\n");
+        return;
+    }
+    snprintf(timeStr, sizeof(example), format, timeInfo->tm_mon + 1,
+     timeInfo->tm_mday, timeInfo->tm_year + 1900, timeInfo->tm_hour,
+     timeInfo->tm_min, timeInfo->tm_sec);
+
+    fprintf(stderr, "\nAn error occurred at %s:\nError description: "\
+    "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
+    nFree(timeStr);
+}
+
+
+
+
 nThreadRoutine_t start(void *data)
 {
-    puts("Hello!\n");
-    printf("Thread data: %d\n", *((int *) data));
+    int *d = (int *) data;
+    printf("%d\n", d[0]);
     nFree(data);
-    nThreadReturn();
+    nThreadExit(*d);
 }
 
 int main(int argc, char **argv)
 {
     printf("Initializing engine...\n");
-    nEngineInit(argv, argc, NULL, NULL);
+    nEngineInit(argv, argc, errorCallback, crashCallback);
     printf("Initialized engine.\n");
 
-    printf("CPU info: %s\n", nSysGetCPUInfo(NULL));
+    nSysGetCPUInfo(NULL);
+    printf("CPU info: %s\nCurrent working directory: %s\nExecutable path: %s\n", NCPU_INFO, NCWD, NEXEC);
 
-    int *data = nAlloc(sizeof(int));
-    *data = 10;
     nThread_t thread;
-    nThreadCreate(&thread, &start, (void *) data);
-    nThreadDetach(thread);
-    //nThreadJoin(thread, NULL);
+    int *data = malloc(sizeof(int) * 2);
+    data[0] = 69;
+    data[1] = 420;
+    nThreadCreate(&thread, start, (void *) data);
+    //nThreadDetach(thread);
+    int d = 0;
+    nThreadJoin(thread, &d);
+    printf("Return value: %d\n", d);
 
     return EXIT_SUCCESS;
 }

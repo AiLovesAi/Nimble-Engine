@@ -95,7 +95,7 @@ nint_t NIMBLE_ARGC;
  * error occurs. This can be #NULL to use the default callback.
  * @param[in] crashCallback The crash callback function that is called when the
  * engine crashes. This can be #NULL to use the default callback.
- * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned and
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned and
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  */

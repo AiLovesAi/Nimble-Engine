@@ -62,40 +62,24 @@ nMutex_t crashMutex = NULL;
  * @param[in] stack The stack as a string.
  * @param[in] stackLen The length of the stack string.
  */
-void nCrashCallbackDefault(const nint_t error,
-                           const time_t errorTime,
-                           const char *errorDesc,
-                           const size_t errorDescLen,
-                           const char *stack,
-                           const size_t stackLen
-                           );
+static void nCrashCallbackDefault(const nint_t error,
+                                  const time_t errorTime,
+                                  const char *errorDesc,
+                                  const size_t errorDescLen,
+                                  const char *stack,
+                                  const size_t stackLen
+                                  );
 
 void (*volatile crashCallback) (const nint_t error, const time_t errorTime,
  const char *errorDesc, const size_t errorDescLen, const char *stack,
  const size_t stackLen) = &nCrashCallbackDefault;
 
 
-void nCrashCallbackDefault(const nint_t error, const time_t errorTime,
+static void nCrashCallbackDefault(const nint_t error, const time_t errorTime,
  const char *errorDesc, const size_t errorDescLen, const char *stack,
  const size_t stackLen)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
-    struct tm *timeInfo = localtime(&errorTime);
-    const char format[] = "%02d/%02d/%04d %02d:%02d:%02d";
-    const char example[] = "01/01/1970 00:00:00";
-    char *timeStr = nAlloc(sizeof(example));
-    if (timeStr == NULL)
-    {
-        fprintf(stderr, "Failed to allocate to timeStr.\n");
-        return;
-    }
-    snprintf(timeStr, sizeof(example), format, timeInfo->tm_mon + 1,
-     timeInfo->tm_mday, timeInfo->tm_year + 1900, timeInfo->tm_hour,
-     timeInfo->tm_min, timeInfo->tm_sec);
-
-    fprintf(stderr, "\nAn crash occurred at %s:\nError description: "\
-    "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
-    nFree(timeStr);
 }
 
 void nAssert(const nint_t check, const nint_t error, const char *info,
@@ -152,10 +136,13 @@ nint_t nCrashSetCallback(void (*callback)(const nint_t error,
 _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
  const char *errorDesc, size_t errorDescLen)
 {
-    nThreadMutexCreate(crashMutex);
-    nThreadMutexLock(crashMutex);
+    if (!crashMutex)
+    {
+        nThreadMutexCreate(&crashMutex);
+    }
 
-    if (crashtest || (crashCallback == NULL))
+    if ((nThreadMutexLock(&crashMutex) != NSUCCESS) ||
+     crashtest || (crashCallback == NULL))
     {
         nCrashAbort(error);
         /* NO RETURN */
@@ -172,7 +159,7 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
         errorDescLen = strlen(errorDesc);
     }
 
-    char *errorDescStr;
+    char *errorDescStr = NULL;
 
     if (errorDesc)
     {
@@ -193,7 +180,7 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
         }
     }
     
-    size_t stackLen;
+    size_t stackLen = 0;
 #if 0
     char *stackStr = nErrorGetStacktrace(&stackLen, NULL);
 #endif
@@ -206,6 +193,7 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
 #endif
     nFree(errorDescStr);
 
+    nThreadMutexDestroy(&crashMutex);
     exit(error);
     /* NO RETURN */
 }

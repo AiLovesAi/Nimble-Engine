@@ -1489,7 +1489,7 @@ const size_t nErrorStrLengths[] = {
 #define nErrDescSignalStartStr       "The start of the signal error section; "\
  "likely caused by programmer error or a memory corruption issue."
 #define nErrDescSigAbrtStr           "Abort. Abnormal termination, such "\
- "as is initiated by the function."
+ "as is initiated by a function calling abort()."
 #define nErrDescSigFpeStr            "Floating point exception. "\
  "Erroneous arithmetic operation, such as zero divide or an operation "\
  "resulting in overflow (not necessarily with a floating-point operation)."

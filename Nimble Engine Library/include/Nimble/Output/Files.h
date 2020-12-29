@@ -101,7 +101,7 @@ nFileExists(const char *path);
  * @param[in] path The file path to check if absolute.
  * @param[in] len The length of the path to check. This can be 0 to use
  * strlen().
- * @return #NSUCCESS is returned if successful; otherwise #NERROR is returned.
+ * @return #NSUCCESS is returned if successful; otherwise -1 or an error is returned.
  */
 NIMBLE_EXTERN
 nint_t

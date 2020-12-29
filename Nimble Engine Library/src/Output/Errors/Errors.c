@@ -63,13 +63,13 @@ const char noInfoStr[] = "No info.";
  * @param[in] stackLen The length of the @p stack argument. A length of zero (0)
  * uses strlen() to determine length.
  */
-void nErrorHandlerDefault(const nint_t error,
-                          const time_t errorTime,
-                          const char * errorDesc,
-                          const size_t errorDescLen,
-                          const char * stack,
-                          const size_t stackLen
-                          );
+static void nErrorHandlerDefault(const nint_t error,
+                                 const time_t errorTime,
+                                 const char * errorDesc,
+                                 const size_t errorDescLen,
+                                 const char * stack,
+                                 const size_t stackLen
+                                 );
 
 /**
  * @brief The error callback function that gets defined by nErrorSetCallback().
@@ -78,27 +78,11 @@ void (*volatile errorCallback) (const nint_t error, const time_t errorTime,
  const char * errorDesc, const size_t errorDescLen, const char * stack,
  const size_t stackLen) = &nErrorHandlerDefault;
 
-void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
+static void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
  const char * errorDesc, const size_t errorDescLen, const char * stack,
  const size_t stackLen)
 {
     /** @todo Make default callback. */
-    struct tm *timeInfo = localtime(&errorTime);
-    const char format[] = "%02d/%02d/%02d %02d:%02d:%02d";
-    const char example[] = "01/01/1970 00:00:00";
-    char *timeStr = nAlloc(sizeof(example));
-    if (timeStr == NULL)
-    {
-        fprintf(stderr, "Failed to allocate to timeStr.\n");
-        return;
-    }
-    snprintf(timeStr, sizeof(example), format, timeInfo->tm_mon + 1,
-     timeInfo->tm_mday, timeInfo->tm_year + 1900, timeInfo->tm_hour,
-     timeInfo->tm_min, timeInfo->tm_sec);
-
-    fprintf(stderr, "\nAn error occurred at %s:\nError description: "\
-    "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
-    nFree(timeStr);
 }
 
 nint_t nErrorAssert(const nint_t check, const nint_t error, const char *info,
@@ -112,11 +96,14 @@ nint_t nErrorAssert(const nint_t check, const nint_t error, const char *info,
         if (err)
         {
             err = error;
-            size_t errorDescLen;
-            char *errorDescStr = nErrorToStringWindows(&errorDescLen, err,
-             info, infoLen);
-            nErrorThrow(err, errorDescStr, errorDescLen);
-            nFree(errorDescStr);
+            if (info)
+            {
+                size_t errorDescLen;
+                char *errorDescStr = nErrorToStringWindows(&errorDescLen, err,
+                info, infoLen);
+                nErrorThrow(err, errorDescStr, errorDescLen);
+                nFree(errorDescStr);
+            }
             return err;
         }
 #endif
@@ -130,11 +117,14 @@ nint_t nErrorAssert(const nint_t check, const nint_t error, const char *info,
             err = error;
         }
 
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, err,
-         info, infoLen);
-        nErrorThrow(err, errorDescStr, errorDescLen);
-        nFree(errorDescStr);
+        if (info)
+        {
+            size_t errorDescLen;
+            char *errorDescStr = nErrorToString(&errorDescLen, err,
+            info, infoLen);
+            nErrorThrow(err, errorDescStr, errorDescLen);
+            nFree(errorDescStr);
+        }
         return err;
     }
     return NSUCCESS;
@@ -156,9 +146,9 @@ void nErrorThrow(const nint_t error, char *errorDescStr, size_t errorDescLen)
         errorDescStr = nErrorToString(&errorDescLen, error, NULL, 0);
     }
     
-    size_t stackLen, stackLevels;
+    size_t stackLen = 0;
 #if 0
-    char *stackStr = nErrorGetStacktrace(&stackLen, &stackLevels);
+    char *stackStr = nErrorGetStacktrace(&stackLen, NULL);
 #endif
     
     /* Call the user-defined error callback function. */

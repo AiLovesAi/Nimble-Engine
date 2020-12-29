@@ -50,7 +50,6 @@ extern "C" {
 
 
 #define NSUCCESS (nint_t) 0 /**< Returned when a function succeeds. */
-#define NERROR (nint_t) -1 /**< Returned when a function encounters an error. */
 
 /**
  * @brief The possible error values used by ErrorHandler.h error handler.

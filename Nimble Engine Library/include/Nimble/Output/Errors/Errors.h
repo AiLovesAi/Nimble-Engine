@@ -57,7 +57,8 @@ extern "C" {
  * 
  * @param[in] check The statement to check if true.
  * @param[in] error The default error to crash with (overridden if errno is set).
- * @param[in] info The info string to crash with if false.
+ * @param[in] info The info string to crash with if false. This can be #NULL to
+ * not throw an error.
  * @param[in] infoLen The length of @p info.
  * 
  * @return #NSUCCESS or an error is returned.
@@ -65,9 +66,9 @@ extern "C" {
 NIMBLE_EXTERN
 nint_t
 nErrorAssert(const nint_t check,
-        const nint_t error,
-        const char *info,
-        const size_t infoLen);
+             const nint_t error,
+             const char *info,
+             const size_t infoLen);
 
 /**
  * @brief Throws an error with @p info and returns if @p check is equal to zero.
@@ -77,11 +78,12 @@ nErrorAssert(const nint_t check,
  * 
  * @param[in] check The statement to check if true.
  * @param[in] error The default error to crash with (overridden if errno is set).
- * @param[in] info The info string to crash with if false.
+ * @param[in] info The info string to crash with if false. This can be #NULL to
+ * not throw an error.
  * @param[in] infoLen The length of @p info.
  * @param[in] ret The return value to return if false.
  */
-#define nErrorAssertRetV(check, error, info, infoLen, ret) ({\
+#define nErrorAssertRet(check, error, info, infoLen, ret) ({\
     nErrorAssert(check, error, info, infoLen);\
     return ret;\
 })
@@ -94,11 +96,12 @@ nErrorAssert(const nint_t check,
  * 
  * @param[in] check The statement to check if true.
  * @param[in] error The default error to crash with (overridden if errno is set).
- * @param[in] info The info string to crash with if false.
+ * @param[in] info The info string to crash with if false. This can be #NULL to
+ * not throw an error.
  * @param[in] infoLen The length of @p info.
  * @param[in] ret The return value to return if false.
  */
-#define nErrorAssertRetVi(check, error, info, infoLen, ret) ({\
+#define nErrorAssertReti(check, error, info, infoLen, ret) ({\
     if (nErrorAssert(check, error, info, infoLen)) return ret;\
 })
 
@@ -110,7 +113,8 @@ nErrorAssert(const nint_t check,
  * 
  * @param[in] check The statement to check if true.
  * @param[in] error The default error to crash with (overridden if errno is set).
- * @param[in] info The info string to crash with if false.
+ * @param[in] info The info string to crash with if false. This can be #NULL to
+ * not throw an error.
  * @param[in] infoLen The length of @p info.
  */
 #define nErrorAssertRetE(check, error, info, infoLen) ({\
@@ -125,28 +129,13 @@ nErrorAssert(const nint_t check,
  * 
  * @param[in] check The statement to check if true.
  * @param[in] error The default error to crash with (overridden if errno is set).
- * @param[in] info The info string to crash with if false.
+ * @param[in] info The info string to crash with if false. This can be #NULL to
+ * not throw an error.
  * @param[in] infoLen The length of @p info.
  */
 #define nErrorAssertRetEi(check, error, info, infoLen) ({\
     nint_t err = nErrorAssert(check, error, info, infoLen);\
     if (err) return err;\
-})
-
-/**
- * @brief Throws an error with @p info and returns if @p check is equal to zero.
- * 
- * Throws an error with @p info and returns from calling function if @p check is
- * equal to zero.
- * 
- * @param[in] check The statement to check if true.
- * @param[in] error The default error to crash with (overridden if errno is set).
- * @param[in] info The info string to crash with if false.
- * @param[in] infoLen The length of @p info.
- */
-#define nErrorAssertRet(check, error, info, infoLen) ({\
-    nErrorAssert(check, error, info, infoLen);\
-    return;\
 })
 
 /**

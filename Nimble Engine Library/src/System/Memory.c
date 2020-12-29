@@ -48,53 +48,38 @@ void *nAlloc(const size_t size)
     void *ptr = malloc(size);
 
     /* Check if successfully allocated. */
-    if (!ptr)
-    {
-        nCrashSafe(NERROR_NO_MEMORY, time(NULL), NULL, 0);
-        /* NO RETURN */
-    }
+#define einfoStr "Ran out of memory in nAlloc()."
+    nAssert(ptr != NULL,
+     NERROR_NO_MEMORY, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
 
     return ptr;
 }
 
 void *nRealloc(void *ptr, const size_t size)
 {
-    ptr = realloc(ptr, size);
+    void *p = realloc(ptr, size);
 
     /* Check if successfully allocated. */
-    if (!ptr)
-    {
-        nCrashSafe(NERROR_NO_MEMORY, time(NULL), NULL, 0);
-         /* NO RETURN */
-    }
+#define einfoStr "Ran out of memory in nRealloc()."
+    nAssert(p != NULL,
+     NERROR_NO_MEMORY, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
 
-    return ptr;
+    return p;
 }
 
 size_t nStringCopy(char *const restrict dst, const char *const restrict src,
  const size_t len)
 {
-    if (!src)
-    {
-        const char einfoNullStr[] = "Source string NULL in nStringCopy().";
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
-         einfoNullStr, NCONST_STR_LEN(einfoNullStr));
-        nErrorThrow(NERROR_NULL, errorDescStr, errorDescLen);
-        nFree(errorDescStr);
-        return 0;
-    }
-
-    if (!dst)
-    {
-        const char einfoNullStr[] = "Destination string NULL in nStringCopy().";
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, NERROR_NULL,
-         einfoNullStr, NCONST_STR_LEN(einfoNullStr));
-        nErrorThrow(NERROR_NULL, errorDescStr, errorDescLen);
-        nFree(errorDescStr);
-        return 0;
-    }
+#define einfoStr "Source string NULL in nStringCopy()."
+    nErrorAssertReti(src != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr), 0);
+#undef einfoStr
+#define einfoStr "Destination string NULL in nStringCopy()."
+    nErrorAssertReti(src != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr), 0);
+#undef einfoStr
 
     char *d = dst;
     const char *s = src;

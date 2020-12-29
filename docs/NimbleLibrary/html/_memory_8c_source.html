@@ -91,83 +91,67 @@ $(function() {
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> *ptr = malloc(size);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">/* Check if successfully allocated. */</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">if</span> (!ptr)</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a>(NERROR_NO_MEMORY, time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, 0);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment">/* NO RETURN */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> ptr;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="_memory_8h.html#a0d7b4f1fac570e95ae99285480b54d0a">   60</a></span>&#160;<span class="keywordtype">void</span> *<a class="code" href="_memory_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a>(<span class="keywordtype">void</span> *ptr, <span class="keyword">const</span> <span class="keywordtype">size_t</span> size)</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    ptr = realloc(ptr, size);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">/* Check if successfully allocated. */</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">if</span> (!ptr)</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a>(NERROR_NO_MEMORY, time(<a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>), <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, 0);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;         <span class="comment">/* NO RETURN */</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> ptr;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="_memory_8h.html#ae5f14d46e765e303cf9117a54e100831">   74</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<span class="keywordtype">char</span> *<span class="keyword">const</span> restrict dst, <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> restrict src,</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; <span class="keyword">const</span> <span class="keywordtype">size_t</span> len)</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">if</span> (!src)</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoNullStr[] = <span class="stringliteral">&quot;Source string NULL in nStringCopy().&quot;</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordtype">size_t</span> errorDescLen;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">char</span> *errorDescStr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorDescLen, <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>,</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;         einfoNullStr, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoNullStr));</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="_errors_8c.html#a5954de4b14a286279cd3587ba87416a2">nErrorThrow</a>(<a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, errorDescStr, errorDescLen);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="_memory_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a>(errorDescStr);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#define einfoStr &quot;Ran out of memory in nAlloc().&quot;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="_crash_8c.html#a760db5ed5e88cf72e9e1fd8b34134f5c">nAssert</a>(ptr != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;     NERROR_NO_MEMORY, <a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">return</span> ptr;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="_memory_8h.html#a0d7b4f1fac570e95ae99285480b54d0a">   59</a></span>&#160;<span class="keywordtype">void</span> *<a class="code" href="_memory_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a>(<span class="keywordtype">void</span> *ptr, <span class="keyword">const</span> <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> *p = realloc(ptr, size);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">/* Check if successfully allocated. */</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#define einfoStr &quot;Ran out of memory in nRealloc().&quot;</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="_crash_8c.html#a760db5ed5e88cf72e9e1fd8b34134f5c">nAssert</a>(p != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;     NERROR_NO_MEMORY, <a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>));</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> p;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="_memory_8h.html#ae5f14d46e765e303cf9117a54e100831">   72</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a>(<span class="keywordtype">char</span> *<span class="keyword">const</span> restrict dst, <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> restrict src,</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; <span class="keyword">const</span> <span class="keywordtype">size_t</span> len)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#define einfoStr &quot;Source string NULL in nStringCopy().&quot;</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="_errors_8h.html#a1702ad23b89204f37fbb61d9dd8e5467">nErrorAssertReti</a>(src != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;     <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, <a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>), 0);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#define einfoStr &quot;Destination string NULL in nStringCopy().&quot;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="_errors_8h.html#a1702ad23b89204f37fbb61d9dd8e5467">nErrorAssertReti</a>(src != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;     <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, <a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>), 0);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">char</span> *d = dst;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *s = src;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">size_t</span> l = len;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">if</span> (!dst)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> einfoNullStr[] = <span class="stringliteral">&quot;Destination string NULL in nStringCopy().&quot;</span>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordtype">size_t</span> errorDescLen;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordtype">char</span> *errorDescStr = <a class="code" href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a>(&amp;errorDescLen, <a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>,</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;         einfoNullStr, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(einfoNullStr));</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="_errors_8c.html#a5954de4b14a286279cd3587ba87416a2">nErrorThrow</a>(<a class="code" href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a>, errorDescStr, errorDescLen);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="_memory_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a>(errorDescStr);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">char</span> *d = dst;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *s = src;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">size_t</span> l = len;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">/* For each character that is not equal to the null terminator,</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">     * src char = dst char. */</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">while</span> (l-- &amp;&amp; (*s != <span class="charliteral">&#39;\0&#39;</span>))</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        *d++ = *s++;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment">/* Ensure the string is null-terminated. */</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    dst[len] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> len - l;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">// Memory.c</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">/* For each character that is not equal to the null terminator,</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">     * src char = dst char. */</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">while</span> (l-- &amp;&amp; (*s != <span class="charliteral">&#39;\0&#39;</span>))</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        *d++ = *s++;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">/* Ensure the string is null-terminated. */</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    dst[len] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">return</span> len - l;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">// Memory.c</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="a_errors_8c_html_a5954de4b14a286279cd3587ba87416a2"><div class="ttname"><a href="_errors_8c.html#a5954de4b14a286279cd3587ba87416a2">nErrorThrow</a></div><div class="ttdeci">void nErrorThrow(const nint_t error, char *errorDescStr, size_t errorDescLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00143">Errors.c:143</a></div></div>
-<div class="ttc" id="a_memory_8c_html_a60dd01813a26af8aaf44098364af7ff4"><div class="ttname"><a href="_memory_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a></div><div class="ttdeci">void * nRealloc(void *ptr, const size_t size)</div><div class="ttdoc">Reallocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00060">Memory.c:60</a></div></div>
+<div class="ttc" id="a_memory_8c_html_a60dd01813a26af8aaf44098364af7ff4"><div class="ttname"><a href="_memory_8c.html#a60dd01813a26af8aaf44098364af7ff4">nRealloc</a></div><div class="ttdeci">void * nRealloc(void *ptr, const size_t size)</div><div class="ttdoc">Reallocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00059">Memory.c:59</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00200">Nimble.h:200</a></div></div>
-<div class="ttc" id="a_memory_8h_html_a8a26e97861a00f16172cc85dc5b9b041"><div class="ttname"><a href="_memory_8h.html#a8a26e97861a00f16172cc85dc5b9b041">nFree</a></div><div class="ttdeci">#define nFree(ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00089">Memory.h:89</a></div></div>
-<div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00067">ErrorValues.h:67</a></div></div>
-<div class="ttc" id="a_errors_8c_html_a055477c0aa8af2a58f8da7c4621c7b3a"><div class="ttname"><a href="_errors_8c.html#a055477c0aa8af2a58f8da7c4621c7b3a">nErrorToString</a></div><div class="ttdeci">char * nErrorToString(size_t *errorLen, const nint_t error, const char *info, size_t infoLen)</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00176">Errors.c:176</a></div></div>
-<div class="ttc" id="a_crash_8c_html_a27dd0441443b6798dc03a804bcfd3075"><div class="ttname"><a href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">nCrashSafe</a></div><div class="ttdeci">_Noreturn void nCrashSafe(const nint_t error, time_t errorTime, const char *errorDesc, size_t errorDescLen)</div><div class="ttdoc">Crashes the program safely.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00152">Crash.c:152</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a1702ad23b89204f37fbb61d9dd8e5467"><div class="ttname"><a href="_errors_8h.html#a1702ad23b89204f37fbb61d9dd8e5467">nErrorAssertReti</a></div><div class="ttdeci">#define nErrorAssertReti(check, error, info, infoLen, ret)</div><div class="ttdoc">Throws an error with info and returns only if check is equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00104">Errors.h:104</a></div></div>
+<div class="ttc" id="a_error_values_8h_html_a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365"><div class="ttname"><a href="_error_values_8h.html#a8ae9685526508fa1809caaa2fe930ce6a6a92cc3afb90069e30169788a3160365">NERROR_NULL</a></div><div class="ttdeci">@ NERROR_NULL</div><div class="ttdoc">A pointer was null when a nonnull pointer was expected.</div><div class="ttdef"><b>Definition:</b> <a href="_error_values_8h_source.html#l00066">ErrorValues.h:66</a></div></div>
+<div class="ttc" id="a_memory_8c_html_acdffbabfd17b49ee49aefd6e38f1f0ba"><div class="ttname"><a href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a></div><div class="ttdeci">#define einfoStr</div></div>
+<div class="ttc" id="a_crash_8c_html_a760db5ed5e88cf72e9e1fd8b34134f5c"><div class="ttname"><a href="_crash_8c.html#a760db5ed5e88cf72e9e1fd8b34134f5c">nAssert</a></div><div class="ttdeci">void nAssert(const nint_t check, const nint_t error, const char *info, const size_t infoLen)</div><div class="ttdoc">Crashes with info if check if equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00085">Crash.c:85</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a527cddcc22f04dbed8fe9768a975ab50"><div class="ttname"><a href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a></div><div class="ttdeci">#define NCONST_STR_LEN(str)</div><div class="ttdoc">Gets the length of a const char * as strlen() would, but at compile time.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00205">Nimble.h:205</a></div></div>
 <div class="ttc" id="a_memory_8c_html_aafc14ef2a060e7b49b4ae4a1bdbdc989"><div class="ttname"><a href="_memory_8c.html#aafc14ef2a060e7b49b4ae4a1bdbdc989">nAlloc</a></div><div class="ttdeci">void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00046">Memory.c:46</a></div></div>
-<div class="ttc" id="a_memory_8c_html_ae9f51384bd8f3b87a541572a1cc9ab45"><div class="ttname"><a href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a></div><div class="ttdeci">size_t nStringCopy(char *const restrict dst, const char *const restrict src, const size_t len)</div><div class="ttdoc">Copies len characters from src to dst.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00074">Memory.c:74</a></div></div>
+<div class="ttc" id="a_memory_8c_html_ae9f51384bd8f3b87a541572a1cc9ab45"><div class="ttname"><a href="_memory_8c.html#ae9f51384bd8f3b87a541572a1cc9ab45">nStringCopy</a></div><div class="ttdeci">size_t nStringCopy(char *const restrict dst, const char *const restrict src, const size_t len)</div><div class="ttdoc">Copies len characters from src to dst.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00072">Memory.c:72</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

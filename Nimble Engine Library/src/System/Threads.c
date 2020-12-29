@@ -81,14 +81,13 @@ nint_t nThreadCreate(nThread_t *thread, nThreadRoutine_t (*start)(void *),
 
 nint_t nThreadJoin(nThread_t thread, nint_t *ret)
 {
-    nint_t r = 0;
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "WaitForSingleObject() failed in nThreadJoin()."
     nErrorAssertRetEi(WaitForSingleObject(thread, INFINITE) != WAIT_FAILED,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 #  define einfoStr "GetExitCodeThread() failed in nThreadJoin()."
-    nErrorAssertRetEi(GetExitCodeThread(thread, (DWORD *) &r),
+    nErrorAssertRetEi(GetExitCodeThread(thread, ret ? (DWORD *) ret : NULL),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 #  define einfoStr "CloseHandle() failed in nThreadJoin()."
@@ -98,18 +97,17 @@ nint_t nThreadJoin(nThread_t thread, nint_t *ret)
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
 #  define einfoStr "pthread_join() failed in nThreadJoin()."
-    nErrorAssertRetEi(!pthread_join(thread, &((void *) &r)),
+    nErrorAssertRetEi(!pthread_join(thread, ret ? &((void *) ret) : NULL),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_C11
 #  define einfoStr "thrd_join() failed in nThreadJoin()."
-    nErrorAssertRetEi(thrd_join(thread, &r) == thrd_success,
+    nErrorAssertRetEi(thrd_join(thread, ret ? ret : NULL) == thrd_success,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
 #endif
-    if (ret) *ret = r;
     return NSUCCESS;
 }
 

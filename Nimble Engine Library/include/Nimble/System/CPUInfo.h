@@ -72,9 +72,7 @@ size_t NCPU_INFO_LEN;
  */
 NIMBLE_EXTERN
 char *
-nSysGetCPUInfo(size_t *len)
-__attribute__((warn_unused_result))
-;
+nSysGetCPUInfo(size_t *len);
 
 #endif // NIMBLE_ENGINE_CPUINFO_H
 

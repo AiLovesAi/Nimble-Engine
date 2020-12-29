@@ -136,24 +136,12 @@ size_t NCWD_LEN = 0;
 
 nint_t nFileExists(const char *path)
 {
-    if (access(path, F_OK))
-    {
-        nint_t err;
-        if (errno)
-        {
-            nErrorLastErrno(err);
-            err = nErrorFromErrno(err);
-        }
-        else
-        {
-            err = NERROR_INTERNAL_FAILURE;
-        }
-        return err;
-    }
-    else
-    {
-        return NSUCCESS;
-    }
+#define einfoStr "Path parameter was NULL in nFileExists()."
+    nErrorAssertRetEi(path != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+    nErrorAssertRetE(!access(path, F_OK),
+     NERROR_INTERNAL_FAILURE, NULL, 0);
 }
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
@@ -163,6 +151,11 @@ nint_t nFileExists(const char *path)
 #endif
 nint_t nFilePathIsAbsolute(const char *path, nint_t len)
 {
+#define einfoStr "Path parameter was NULL in nFilePathIsAbsolute()."
+    nErrorAssertRetEi(path != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+
     if (!len)
     {
         len = strlen(path);
@@ -170,13 +163,13 @@ nint_t nFilePathIsAbsolute(const char *path, nint_t len)
 
     if (len < (NFILE_ABSOLUTE_PREFIX + 1))
     {
-        return NERROR;
+        return -1;
     }
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
-    return (path[1] == ':') ? NSUCCESS : NERROR;
+    return (path[1] == ':') ? NSUCCESS : -1;
 #else
-    return (path[0] == '/') ? NSUCCESS : NERROR;
+    return (path[0] == '/') ? NSUCCESS : -1;
 #endif
 }
 
