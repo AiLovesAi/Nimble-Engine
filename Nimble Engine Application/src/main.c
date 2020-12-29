@@ -60,35 +60,11 @@ void errorCallback(const nint_t error, const time_t errorTime,
     nFree(timeStr);
 }
 
-
-
-
-nThreadRoutine_t start(void *data)
-{
-    int *d = (int *) data;
-    printf("%d\n", d[0]);
-    nFree(data);
-    nThreadExit(*d);
-}
-
 int main(int argc, char **argv)
 {
     printf("Initializing engine...\n");
     nEngineInit(argv, argc, errorCallback, crashCallback);
     printf("Initialized engine.\n");
-
-    nSysGetCPUInfo(NULL);
-    printf("CPU info: %s\nCurrent working directory: %s\nExecutable path: %s\n", NCPU_INFO, NCWD, NEXEC);
-
-    nThread_t thread;
-    int *data = malloc(sizeof(int) * 2);
-    data[0] = 69;
-    data[1] = 420;
-    nThreadCreate(&thread, start, (void *) data);
-    //nThreadDetach(thread);
-    int d = 0;
-    nThreadJoin(thread, &d);
-    printf("Return value: %d\n", d);
 
     return EXIT_SUCCESS;
 }
