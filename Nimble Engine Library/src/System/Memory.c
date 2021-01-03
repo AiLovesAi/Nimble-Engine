@@ -58,15 +58,16 @@ void *nAlloc(const size_t size)
 
 void *nRealloc(void *ptr, const size_t size)
 {
-    void *p = realloc(ptr, size);
+    if (!ptr) return nAlloc(size);
+    ptr = realloc(ptr, size);
 
     /* Check if successfully allocated. */
 #define einfoStr "Ran out of memory in nRealloc()."
-    nAssert(p != NULL,
+    nAssert(ptr != NULL,
      NERROR_NO_MEMORY, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
 
-    return p;
+    return ptr;
 }
 
 size_t nStringCopy(char *const restrict dst, const char *const restrict src,

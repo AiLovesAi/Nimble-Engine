@@ -102,7 +102,7 @@ $(function() {
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">typedef</span> DWORD <a class="code" href="_threads_8h.html#aee057c0ab7c930839eb27b5db050ff54">nThreadRoutine_t</a>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">typedef</span> HANDLE <a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#elif NIMBLE_OS == NIMBLE_UNIX</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#elif defined(NIMBLE_STD_POSIX)</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#  define NIMBLE_THREADS NIMBLE_THREADS_PTHREAD</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#include &lt;pthread.h&gt;</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
@@ -123,88 +123,96 @@ $(function() {
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<a class="code" href="_threads_8h.html#a10df129a6f513a506eb783eede927a89">nThreadCreate</a>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> *thread,</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;              <a class="code" href="_threads_8h.html#aee057c0ab7c930839eb27b5db050ff54">nThreadRoutine_t</a> (*start)(<span class="keywordtype">void</span> *),</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;              <span class="keywordtype">void</span> *data</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;              );</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#  define nThreadExit(ret) ExitThread((DWORD) ret)</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#  define nThreadExit(ret) pthread_exit((void *) &amp;ret)</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_C11</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="_threads_8h.html#a8330f424a624dae6327e7b1ce3b2bc6d">  119</a></span>&#160;<span class="preprocessor">#  define nThreadExit(ret) thrd_exit(ret)</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#  define nThreadSelf GetCurrentThread</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#  define nThreadSelf pthread_self</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_C11</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="_threads_8h.html#ac402c67bcb1af0ce8efb5ca25cd10db7">  134</a></span>&#160;<span class="preprocessor">#  define nThreadSelf thrd_current</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#  define nThreadEqual(thread1, thread2) CompareObjectHandles(thread1, thread2)</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#  define nThreadEqual(thread1, thread2) pthread_self(thread1, thread2)</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_C11</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="_threads_8h.html#a930dc9221ed47f504b45afada206219e">  149</a></span>&#160;<span class="preprocessor">#  define nThreadEqual(thread1, thread2) thrd_current(thread1, thread2)</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<a class="code" href="_threads_8h.html#ad4bbfce6074e3fbb7e1ddf1f58a4dbc2">nThreadJoin</a>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread,</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *ret</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            );</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<a class="code" href="_threads_8h.html#ab871f28f79049414f2d3d25fd67d9750">nThreadDetach</a>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;              );</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<a class="code" href="_threads_8h.html#afb3e9302ece2807f9560a9a789c72c04">nThreadMutexCreate</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> *mutex</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                   );</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<a class="code" href="_threads_8h.html#a390ac14755a2e0eed0456695ff082a28">nThreadMutexLock</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> *mutex</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                 );</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<a class="code" href="_threads_8h.html#a0b6061583ce03acf3974c13101267870">nThreadMutexUnlock</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> *mutex</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                   );</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<a class="code" href="_threads_8h.html#a50976a89e0c2f4dc659a1e3893075aeb">nThreadMutexDestroy</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> *mutex</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                    );</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_THREADS_H</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160; </div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;}</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">// Errors.h</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<a class="code" href="_threads_8h.html#a2645210f49a5306276a6d02351fdf956">nThreadCreate</a>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> *thread,</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;              <a class="code" href="_threads_8h.html#aee057c0ab7c930839eb27b5db050ff54">nThreadRoutine_t</a> (*start)(<span class="keywordtype">void</span> *),</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;              <span class="keywordtype">void</span> *data</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;              );</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#  define nThreadExit(ret) ExitThread((DWORD) ret)</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#  define nThreadExit(ret) pthread_exit((void *) &amp;ret)</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_C11</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="_threads_8h.html#a8330f424a624dae6327e7b1ce3b2bc6d">  120</a></span>&#160;<span class="preprocessor">#  define nThreadExit(ret) thrd_exit(ret)</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#  define nThreadSelf GetCurrentThread</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#  define nThreadSelf pthread_self</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_C11</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="_threads_8h.html#ac402c67bcb1af0ce8efb5ca25cd10db7">  135</a></span>&#160;<span class="preprocessor">#  define nThreadSelf thrd_current</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#  define nThreadEqual(thread1, thread2) CompareObjectHandles(thread1, thread2)</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#  define nThreadEqual(thread1, thread2) pthread_self(thread1, thread2)</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#elif NIMBLE_THREADS == NIMBLE_THREADS_C11</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="_threads_8h.html#a930dc9221ed47f504b45afada206219e">  150</a></span>&#160;<span class="preprocessor">#  define nThreadEqual(thread1, thread2) thrd_current(thread1, thread2)</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<a class="code" href="_threads_8h.html#a102f7d9e907753db368500494620c570">nThreadJoin</a>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread,</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> *ret</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            );</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<a class="code" href="_threads_8h.html#a82ac8e8a4647a5a27e778482d416ff56">nThreadDetach</a>(<a class="code" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a> thread</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;              );</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<a class="code" href="_threads_8h.html#ab0d5aef151db6a3372330662562573de">nThreadMutexCreate</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> *mutex</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                   );</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<a class="code" href="_threads_8h.html#ae2aae0f05e30899597dbe85495832752">nThreadMutexLock</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> *mutex</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                 );</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<a class="code" href="_threads_8h.html#a30196fcad0154f7f1809cbfe34b7e963">nThreadMutexUnlock</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> *mutex</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                   );</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<a class="code" href="_threads_8h.html#a598b12d6099a9e503c91d8afb45db14a">nThreadMutexDestroy</a>(<a class="code" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> *mutex</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                    );</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_THREADS_H</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;}</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment">// Errors.h</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="a_nimble_8h_html_a99b09cd8c8c999889cf8113c3d281368"><div class="ttname"><a href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div><div class="ttdeci">#define NIMBLE_EXTERN</div><div class="ttdoc">Extern alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00193">Nimble.h:193</a></div></div>
-<div class="ttc" id="a_threads_8h_html_a10df129a6f513a506eb783eede927a89"><div class="ttname"><a href="_threads_8h.html#a10df129a6f513a506eb783eede927a89">nThreadCreate</a></div><div class="ttdeci">NIMBLE_EXTERN nint_t nThreadCreate(nThread_t *thread, nThreadRoutine_t(*start)(void *), void *data)</div><div class="ttdoc">Creates a thread.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00054">Threads.c:54</a></div></div>
-<div class="ttc" id="a_threads_8h_html_a390ac14755a2e0eed0456695ff082a28"><div class="ttname"><a href="_threads_8h.html#a390ac14755a2e0eed0456695ff082a28">nThreadMutexLock</a></div><div class="ttdeci">NIMBLE_EXTERN nint_t nThreadMutexLock(nMutex_t *mutex)</div><div class="ttdoc">Locks a mutex, or waits or the already locked mutex to unlock.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00166">Threads.c:166</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a99b09cd8c8c999889cf8113c3d281368"><div class="ttname"><a href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div><div class="ttdeci">#define NIMBLE_EXTERN</div><div class="ttdoc">Extern alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00187">Nimble.h:187</a></div></div>
+<div class="ttc" id="a_threads_8h_html_a102f7d9e907753db368500494620c570"><div class="ttname"><a href="_threads_8h.html#a102f7d9e907753db368500494620c570">nThreadJoin</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN nint_t nThreadJoin(nThread_t thread, nint_t *ret)</div><div class="ttdoc">Joins (or waits for) a thread until its completion.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00082">Threads.c:82</a></div></div>
+<div class="ttc" id="a_threads_8h_html_a82ac8e8a4647a5a27e778482d416ff56"><div class="ttname"><a href="_threads_8h.html#a82ac8e8a4647a5a27e778482d416ff56">nThreadDetach</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN nint_t nThreadDetach(nThread_t thread)</div><div class="ttdoc">Detaches a thread.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00119">Threads.c:119</a></div></div>
+<div class="ttc" id="a_threads_8h_html_ae2aae0f05e30899597dbe85495832752"><div class="ttname"><a href="_threads_8h.html#ae2aae0f05e30899597dbe85495832752">nThreadMutexLock</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN nint_t nThreadMutexLock(nMutex_t *mutex)</div><div class="ttdoc">Locks a mutex, or waits or the already locked mutex to unlock.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00166">Threads.c:166</a></div></div>
 <div class="ttc" id="a_threads_8h_html_adf8e53aef7ecfc328eec93f6e35b7746"><div class="ttname"><a href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a></div><div class="ttdeci">mtx_t * nMutex_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00077">Threads.h:77</a></div></div>
-<div class="ttc" id="a_threads_8h_html_ab871f28f79049414f2d3d25fd67d9750"><div class="ttname"><a href="_threads_8h.html#ab871f28f79049414f2d3d25fd67d9750">nThreadDetach</a></div><div class="ttdeci">NIMBLE_EXTERN nint_t nThreadDetach(nThread_t thread)</div><div class="ttdoc">Detaches a thread.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00119">Threads.c:119</a></div></div>
-<div class="ttc" id="a_threads_8h_html_afb3e9302ece2807f9560a9a789c72c04"><div class="ttname"><a href="_threads_8h.html#afb3e9302ece2807f9560a9a789c72c04">nThreadMutexCreate</a></div><div class="ttdeci">NIMBLE_EXTERN nint_t nThreadMutexCreate(nMutex_t *mutex)</div><div class="ttdoc">Initializes a NULL mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00142">Threads.c:142</a></div></div>
-<div class="ttc" id="a_threads_8h_html_a0b6061583ce03acf3974c13101267870"><div class="ttname"><a href="_threads_8h.html#a0b6061583ce03acf3974c13101267870">nThreadMutexUnlock</a></div><div class="ttdeci">NIMBLE_EXTERN nint_t nThreadMutexUnlock(nMutex_t *mutex)</div><div class="ttdoc">Unlocks a mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00189">Threads.c:189</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00218">Nimble.h:218</a></div></div>
+<div class="ttc" id="a_threads_8h_html_ab0d5aef151db6a3372330662562573de"><div class="ttname"><a href="_threads_8h.html#ab0d5aef151db6a3372330662562573de">nThreadMutexCreate</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN nint_t nThreadMutexCreate(nMutex_t *mutex)</div><div class="ttdoc">Initializes a NULL mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00142">Threads.c:142</a></div></div>
+<div class="ttc" id="a_threads_8h_html_a2645210f49a5306276a6d02351fdf956"><div class="ttname"><a href="_threads_8h.html#a2645210f49a5306276a6d02351fdf956">nThreadCreate</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN nint_t nThreadCreate(nThread_t *thread, nThreadRoutine_t(*start)(void *), void *data)</div><div class="ttdoc">Creates a thread.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00054">Threads.c:54</a></div></div>
+<div class="ttc" id="a_threads_8h_html_a30196fcad0154f7f1809cbfe34b7e963"><div class="ttname"><a href="_threads_8h.html#a30196fcad0154f7f1809cbfe34b7e963">nThreadMutexUnlock</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN nint_t nThreadMutexUnlock(nMutex_t *mutex)</div><div class="ttdoc">Unlocks a mutex.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00189">Threads.c:189</a></div></div>
+<div class="ttc" id="a_threads_8h_html_a598b12d6099a9e503c91d8afb45db14a"><div class="ttname"><a href="_threads_8h.html#a598b12d6099a9e503c91d8afb45db14a">nThreadMutexDestroy</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN nint_t nThreadMutexDestroy(nMutex_t *mutex)</div><div class="ttdoc">Destroys a mutex to prevent memory leaks.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00212">Threads.c:212</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a217e8380e1998f7b39a24176186eeaa4"><div class="ttname"><a href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div><div class="ttdeci">#define NIMBLE_EXPORT</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00185">Nimble.h:185</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00212">Nimble.h:212</a></div></div>
 <div class="ttc" id="a_threads_8h_html_aee057c0ab7c930839eb27b5db050ff54"><div class="ttname"><a href="_threads_8h.html#aee057c0ab7c930839eb27b5db050ff54">nThreadRoutine_t</a></div><div class="ttdeci">thrd_start_t nThreadRoutine_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00076">Threads.h:76</a></div></div>
 <div class="ttc" id="a_threads_8h_html_a24cc6d228c1c5e77e8bf4ba454e75f87"><div class="ttname"><a href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">nThread_t</a></div><div class="ttdeci">thrd_t * nThread_t</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8h_source.html#l00075">Threads.h:75</a></div></div>
-<div class="ttc" id="a_threads_8h_html_ad4bbfce6074e3fbb7e1ddf1f58a4dbc2"><div class="ttname"><a href="_threads_8h.html#ad4bbfce6074e3fbb7e1ddf1f58a4dbc2">nThreadJoin</a></div><div class="ttdeci">NIMBLE_EXTERN nint_t nThreadJoin(nThread_t thread, nint_t *ret)</div><div class="ttdoc">Joins (or waits for) a thread until its completion.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00082">Threads.c:82</a></div></div>
-<div class="ttc" id="a_threads_8h_html_a50976a89e0c2f4dc659a1e3893075aeb"><div class="ttname"><a href="_threads_8h.html#a50976a89e0c2f4dc659a1e3893075aeb">nThreadMutexDestroy</a></div><div class="ttdeci">NIMBLE_EXTERN nint_t nThreadMutexDestroy(nMutex_t *mutex)</div><div class="ttdoc">Destroys a mutex to prevent memory leaks.</div><div class="ttdef"><b>Definition:</b> <a href="_threads_8c_source.html#l00212">Threads.c:212</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

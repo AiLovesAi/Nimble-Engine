@@ -63,6 +63,7 @@ extern "C" {
  * 
  * @return #NSUCCESS or an error is returned.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nErrorAssert(const nint_t check,
@@ -153,6 +154,7 @@ nErrorAssert(const nint_t check,
  *
  * @note The program will crash if this is unsuccessful.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 void
 nErrorThrow(const nint_t error,
@@ -179,6 +181,7 @@ nErrorThrow(const nint_t error,
  * uses strlen() to determine length.
  * @return A pointer to the string describing @p error is returned.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 NIMBLE_FREEME
 char *
@@ -210,6 +213,7 @@ __attribute__((warn_unused_result));
  * @return A pointer to the string describing @p error is returned if successful;
  * otherwise @c #NULL is returned.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 char *
 nErrorToStringWindows(size_t *errorLen,
@@ -231,6 +235,7 @@ __attribute__((warn_unused_result));
  *
  * @note Check nErrorHandlerDefault() for parameter information.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nErrorSetCallback(void (*callback)(
@@ -259,6 +264,7 @@ nErrorSetCallback(void (*callback)(
  * @note Each time a function is called, it is added to the stack. When a
  * function returns, it is removed from the stack.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 NIMBLE_FREEME
 char *

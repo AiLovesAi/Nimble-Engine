@@ -68,18 +68,21 @@ extern "C" {
 /**
  * @brief The variable that is set after a successful initialization.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 volatile _Bool NIMBLE_INITIALIZED;
 
 /**
  * @brief The arguments passed to the program.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 char **NIMBLE_ARGS;
 
 /**
  * @brief The count of arguments in #NIMBLE_ARGS.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t NIMBLE_ARGC;
 
@@ -99,6 +102,7 @@ nint_t NIMBLE_ARGC;
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nEngineInit(char **args,

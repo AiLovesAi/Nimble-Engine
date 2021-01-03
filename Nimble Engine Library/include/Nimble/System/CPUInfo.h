@@ -53,12 +53,14 @@ extern "C" {
  * 
  * @note To set this value, call nSysGetCPUInfo().
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 char NCPU_INFO[129];
 
 /**
  * @brief The length of #NCPU_INFO.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 size_t NCPU_INFO_LEN;
 
@@ -70,6 +72,7 @@ size_t NCPU_INFO_LEN;
  * @return A pointer to the string of the CPU info is returned if successful;
  * otherwise @c #NULL is returned.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 char *
 nSysGetCPUInfo(size_t *len);

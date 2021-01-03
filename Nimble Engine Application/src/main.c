@@ -24,7 +24,7 @@ void crashCallback(const nint_t error, const time_t errorTime,
     const char format[] = "%02d/%02d/%04d %02d:%02d:%02d";
     const char example[] = "01/01/1970 00:00:00";
     char *timeStr = nAlloc(sizeof(example));
-    if (timeStr == NULL)
+    if (!timeStr)
     {
         fprintf(stderr, "Failed to allocate to timeStr.\n");
         return;
@@ -46,7 +46,7 @@ void errorCallback(const nint_t error, const time_t errorTime,
     const char format[] = "%02d/%02d/%02d %02d:%02d:%02d";
     const char example[] = "01/01/1970 00:00:00";
     char *timeStr = nAlloc(sizeof(example));
-    if (timeStr == NULL)
+    if (!timeStr)
     {
         fprintf(stderr, "Failed to allocate to timeStr.\n");
         return;
@@ -59,6 +59,7 @@ void errorCallback(const nint_t error, const time_t errorTime,
     "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
     nFree(timeStr);
 }
+
 
 int main(int argc, char **argv)
 {

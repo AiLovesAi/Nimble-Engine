@@ -60,7 +60,7 @@ typedef HANDLE nThread_t;
 typedef DWORD nThreadRoutine_t;
 typedef HANDLE nMutex_t;
 
-#elif NIMBLE_OS == NIMBLE_UNIX
+#elif defined(NIMBLE_STD_POSIX)
 #  define NIMBLE_THREADS NIMBLE_THREADS_PTHREAD
 #include <pthread.h>
 
@@ -99,6 +99,7 @@ typedef mtx_t *nMutex_t;
  * @note If a thread is not later joined to check its result, call nThreadDetach().
  * To be fully portable, threads must return an integer value.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nThreadCreate(nThread_t *thread,
@@ -158,6 +159,7 @@ nThreadCreate(nThread_t *thread,
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nThreadJoin(nThread_t thread,
@@ -175,6 +177,7 @@ nThreadJoin(nThread_t thread,
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nThreadDetach(nThread_t thread
@@ -188,6 +191,7 @@ nThreadDetach(nThread_t thread
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nThreadMutexCreate(nMutex_t *mutex
@@ -202,6 +206,7 @@ nThreadMutexCreate(nMutex_t *mutex
  * nErrorHandlerSetErrorCallback().
  * @note The mutex must be initialized by nThreadMutexCreate() prior to use.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nThreadMutexLock(nMutex_t *mutex
@@ -216,6 +221,7 @@ nThreadMutexLock(nMutex_t *mutex
  * nErrorHandlerSetErrorCallback().
  * @note The mutex must be initialized by nThreadMutexCreate() prior to use.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nThreadMutexUnlock(nMutex_t *mutex
@@ -229,6 +235,7 @@ nThreadMutexUnlock(nMutex_t *mutex
  * a corresponding error is sent to the error callback set by
  * nErrorHandlerSetErrorCallback().
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nThreadMutexDestroy(nMutex_t *mutex

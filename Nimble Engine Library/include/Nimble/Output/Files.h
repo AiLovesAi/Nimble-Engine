@@ -63,24 +63,28 @@ extern "C" {
 /**
  * @brief The executable file path.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 char NEXEC[PATH_MAX + 1];
 
 /**
  * @brief The length of the executable file path.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 size_t NEXEC_LEN;
 
 /**
  * @brief The current working directory.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 char NCWD[PATH_MAX + 1];
 
 /**
  * @brief The length of the current working directory.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 size_t NCWD_LEN;
 
@@ -91,6 +95,7 @@ size_t NCWD_LEN;
  * @return #NSUCCESS is returned if the file exists; otherwise an error code is
  * returned.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nFileExists(const char *path);
@@ -103,6 +108,7 @@ nFileExists(const char *path);
  * strlen().
  * @return #NSUCCESS is returned if successful; otherwise -1 or an error is returned.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nFilePathIsAbsolute(const char *path,
@@ -118,6 +124,7 @@ nFilePathIsAbsolute(const char *path,
  * @note This function is not thread safe, as it is called during
  * initialization.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 char *
 nFileSetCWD(void);
@@ -133,6 +140,7 @@ nFileSetCWD(void);
  * @note This function is not thread safe, as it is called during
  * initialization.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 char *
 nFileSetExecutablePath(void);

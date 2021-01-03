@@ -106,17 +106,10 @@ extern "C" {
 #define NIMBLE_SOLARIS 6
 #define NIMBLE_ANDROID 7
 
-#if defined(_POSIX_SOURCE)
-#  define NIMBLE_STD_POSIX
-#endif
-#if defined(__unix__) || defined(__unix)
-#  define NIMBLE_STD_UNIX
-#endif
-
 #ifdef _WIN32
 #  define NIMBLE_OS NIMBLE_WINDOWS
-#elif (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh)
-#  define NIMBLE_OS NIMBLE_MACOSX
+#elif defined(__APPLE__) && (defined(__MACH__) || defined(macintosh))
+#  define NIMBLE_OS NIMBLE_MACOS
 #elif defined(__ANDROID__)
 #  define NIMBLE_OS NIMBLE_ANDROID
 #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
@@ -129,6 +122,13 @@ extern "C" {
 #  define NIMBLE_OS NIMBLE_UNIX
 #else
 #  error OS not supported.
+#endif
+
+#if defined(_POSIX_SOURCE) || (NIMBLE_OS == NIMBLE_MACOS)
+#  define NIMBLE_STD_POSIX
+#endif
+#if defined(__unix__) || defined(__unix) || (NIMBLE_OS == NIMBLE_MACOS)
+#  define NIMBLE_STD_UNIX
 #endif
 
 
@@ -161,34 +161,28 @@ extern "C" {
 
 
 /* Attribute definitions */
-#if defined(_WIN32) || defined(__CYGWIN__)
-#  ifdef BUILDING_DLL
-#    ifdef __GNUC__
+#ifdef NIMBLE_SHARED
+#  if defined(_WIN32) || defined(__CYGWIN__)
+#     ifdef __GNUC__
 #      define NIMBLE_EXPORT __attribute__((dllexport)) /**< Export alias. */
 #      define NIMBLE_INLINE static inline __attribute__((always_inline)) /**< Inline alias. */
 #    else
 #      define NIMBLE_EXPORT __declspec(dllexport) /**< Export alias. */
 #      define NIMBLE_INLINE __forceinline /**< Inline alias. */
 #    endif
-#  else
-#    ifdef __GNUC__
-#      define NIMBLE_EXPORT __attribute__((dllimport)) /**< Export alias. */
-#      define NIMBLE_INLINE static inline __attribute__((always_inline)) /**< Inline alias. */
-#    else
-#      define NIMBLE_EXPORT __declspec(dllimport) /**< Export alias. */
-#      define NIMBLE_INLINE __forceinline /**< Inline alias. */
-#    endif
-#  endif
 #  define NIMBLE_LOCAL /**< Local alias. */
-#else
-#  if __GNUC__ >= 4
-#    define NIMBLE_EXPORT __attribute__((visibility("default"))) /**< Export alias. */
-#    define NIMBLE_LOCAL __attribute__((visibility("hidden"))) /**< Local alias. */
 #  else
-#    define NIMBLE_EXPORT /**< Export alias. */
-#    define NIMBLE_LOCAL /**< Local alias. */
+#    if __GNUC__ >= 4
+#      define NIMBLE_EXPORT __attribute__((visibility("default"))) /**< Export alias. */
+#      define NIMBLE_LOCAL __attribute__((visibility("hidden"))) /**< Local alias. */
+#    else
+#      define NIMBLE_EXPORT /**< Export alias. */
+#      define NIMBLE_LOCAL /**< Local alias. */
+#    endif
+#    define NIMBLE_INLINE static inline __attribute__((always_inline)) /**< Inline alias. */
 #  endif
-#  define NIMBLE_INLINE static inline __attribute__((always_inline)) /**< Inline alias. */
+#else
+#  define NIMBLE_EXPORT
 #endif
 #define NIMBLE_EXTERN extern /**< Extern alias. */
 

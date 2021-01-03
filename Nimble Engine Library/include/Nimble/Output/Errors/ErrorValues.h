@@ -57,6 +57,7 @@ extern "C" {
  * @note For more detailed info on an error, see the error descriptions in
  * Errors.c (#nErrorDescriptions).
  */
+NIMBLE_EXPORT
 enum nErrors {
     NERROR_MIN = 0, /**< The mininum error number. */
     
@@ -429,7 +430,6 @@ enum nErrors {
     NERROR_DEVICE_NOT_STREAM, /**< Device not a stream. */
     NERROR_PROTOCOL, /**< Protocol error. */
     NERROR_TIMER, /**< Timer expired. */
-    NERROR_INV_SOCK_OPR, /**< Operation not supported. */
     NERROR_NO_POLICY, /**< No such policy registered. */
     NERROR_NOT_RECOVERABLE, /**< State not recoverable. */
     NERROR_OWNER_DIED, /**< Owner died. */
@@ -788,12 +788,14 @@ enum nErrors {
 /**
  * @brief The strings used to represent error codes defined by #nErrors.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 const char * const nErrorStrings[];
 
 /**
  * @brief The lengths of the strings used to represent error codes defined by #nErrors.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 const size_t nErrorStrLengths[];
 
@@ -821,12 +823,14 @@ const size_t nErrorStrLengths[];
 /**
  * @brief The descriptions of the error codes defined by #nErrors.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 const char * const nErrorDescriptions[];
 
 /**
  * @brief The length of descriptions of the error codes defined by #nErrors.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 const size_t nErrorDescLengths[];
 
@@ -858,6 +862,7 @@ const size_t nErrorDescLengths[];
  * @return The NERROR version of @p error, or #NERROR_UNKNOWN if out of range.
  * @todo Fix this for windows, it uses completely weird values as usual, so it'll have to be a switch/case...
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nErrorFromSignal(const nint_t signum);
@@ -868,6 +873,7 @@ nErrorFromSignal(const nint_t signum);
  * @param[in] err The errno value.
  * @return An NERROR version of @p err, or #NERROR_UNKNOWN if out of range.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nErrorFromErrno(const nint_t err);

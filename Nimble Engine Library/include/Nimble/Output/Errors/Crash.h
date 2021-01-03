@@ -58,6 +58,7 @@ extern "C" {
  * @param[in] info The info string to crash with if false.
  * @param[in] infoLen The length of @p info.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 void
 nAssert(const nint_t check,
@@ -78,6 +79,7 @@ nAssert(const nint_t check,
  * program will abort with nCrashAbort(). Check nCrashDefault() for
  * parameter information.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 nint_t
 nCrashSetCallback(void (*callback) (const nint_t error,
@@ -106,6 +108,7 @@ nCrashSetCallback(void (*callback) (const nint_t error,
  * automatically sets all the arguments if possible, so resetting them is not
  * needed and may cause more errors, though checking them is acceptable.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
 void
@@ -123,6 +126,7 @@ nCrashSafe(const nint_t error,
  * @note This function is used by the game engine and is not expected to be used
  * by developers, but is optional.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
 void
@@ -136,6 +140,7 @@ nCrashSignal(const int signum
  *
  * @note This function does not return, and exits the program.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
 void

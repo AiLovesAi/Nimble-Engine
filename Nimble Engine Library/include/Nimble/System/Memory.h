@@ -55,6 +55,7 @@ extern "C" {
  * @param[in] size The size of the memory block in bytes.
  * @return The allocated pointer.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 NIMBLE_FREEME
 void *
@@ -70,6 +71,7 @@ __attribute__((warn_unused_result))
  * @param[in] size The size of the new memory block in bytes.
  * @return The reallocated @p ptr.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 NIMBLE_FREEME
 void *
@@ -103,6 +105,7 @@ __attribute__((warn_unused_result))
  * null terminator.
  * @return The number of successfully copied bytes is returned.
  */
+NIMBLE_EXPORT
 NIMBLE_EXTERN
 NIMBLE_FREEME
 size_t

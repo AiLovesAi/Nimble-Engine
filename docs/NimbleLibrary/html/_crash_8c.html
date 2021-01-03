@@ -100,7 +100,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a27dd0441443b6798dc03a804bcfd3075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program safely.  <a href="_crash_8c.html#a27dd0441443b6798dc03a804bcfd3075">More...</a><br /></td></tr>
 <tr class="separator:a27dd0441443b6798dc03a804bcfd3075"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cd782bc4b8d7db7b91c4a916141f29e"><td class="memItemLeft" align="right" valign="top">_Noreturn void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#a7cd782bc4b8d7db7b91c4a916141f29e">nCrashSignal</a> (const int signum)</td></tr>
-<tr class="memdesc:a7cd782bc4b8d7db7b91c4a916141f29e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="_crash_8h.html#a6bd62301d097ecd24cbf5a0c5af19ba2" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal.  <a href="_crash_8c.html#a7cd782bc4b8d7db7b91c4a916141f29e">More...</a><br /></td></tr>
+<tr class="memdesc:a7cd782bc4b8d7db7b91c4a916141f29e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="_crash_8h.html#a1be559a4d1cc5cf4b709f151fbc27ead" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal.  <a href="_crash_8c.html#a7cd782bc4b8d7db7b91c4a916141f29e">More...</a><br /></td></tr>
 <tr class="separator:a7cd782bc4b8d7db7b91c4a916141f29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a499458e899f416fd65911318a940bb45"><td class="memItemLeft" align="right" valign="top">_Noreturn void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#a499458e899f416fd65911318a940bb45">nCrashAbort</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error)</td></tr>
 <tr class="memdesc:a499458e899f416fd65911318a940bb45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program without notifying the callback.  <a href="_crash_8c.html#a499458e899f416fd65911318a940bb45">More...</a><br /></td></tr>
@@ -256,7 +256,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. If an error occurs, the program will abort with <a class="el" href="_crash_8h.html#a249dd5cb265d1a93a36fa77faa89f1ec" title="Crashes the program without notifying the callback.">nCrashAbort()</a>. Also note that this function automatically sets all the arguments if possible, so resetting them is not needed and may cause more errors, though checking them is acceptable. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. If an error occurs, the program will abort with <a class="el" href="_crash_8h.html#ab1d4e20f2e18f5811ae318f547530a81" title="Crashes the program without notifying the callback.">nCrashAbort()</a>. Also note that this function automatically sets all the arguments if possible, so resetting them is not needed and may cause more errors, though checking them is acceptable. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00136">136</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
@@ -287,7 +287,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>The callback function can only be called once. If an error occurs, the program will abort with <a class="el" href="_crash_8h.html#a249dd5cb265d1a93a36fa77faa89f1ec" title="Crashes the program without notifying the callback.">nCrashAbort()</a>. Check nCrashDefault() for parameter information. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The callback function can only be called once. If an error occurs, the program will abort with <a class="el" href="_crash_8h.html#ab1d4e20f2e18f5811ae318f547530a81" title="Crashes the program without notifying the callback.">nCrashAbort()</a>. Check nCrashDefault() for parameter information. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00121">121</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
@@ -309,7 +309,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calls <a class="el" href="_crash_8h.html#a6bd62301d097ecd24cbf5a0c5af19ba2" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal. </p>
+<p>Calls <a class="el" href="_crash_8h.html#a1be559a4d1cc5cf4b709f151fbc27ead" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">signum</td><td>The signal caught.</td></tr>

@@ -3337,7 +3337,18 @@ nint_t nErrorFromErrno(const nint_t err)
     }
     return NERROR_UNKNOWN;
 
-#elif (NIMBLE_OS == NIMBLE_MACOS) || (NIMBLE_OS == BSD)
+#elif NIMBLE_OS == NIMBLE_MACOS
+    if ((err > 0) && (err < 102))
+    {
+        return NERROR_ERRNO_START + err;
+    }
+    else if ((err > 102) && err <= 106)
+    {
+        return NERROR_ERRNO_START + err - 1;
+    }
+    return NERROR_UNKNOWN;
+
+#elif NIMBLE_OS == BSD
     if ((err > 0) && (err < (NERROR_ERRNO_END - NERROR_ERRNO_START - 1)))
     {
         return NERROR_ERRNO_START + err;
