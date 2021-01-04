@@ -52,34 +52,38 @@ char NCWD[PATH_MAX + 1] = {0};
 size_t NCWD_LEN = 0;
 
 
-int nFileOpen(const char *restrict path, int flags, int *restrict fd)
+int nFileOpen(const char *restrict file, int flags, int *restrict fd)
 {
-#define einfo "Descriptor argument was NULL in nFileOpen()."
+#define einfoStr "File argument was NULL in nFileOpen()."
+    nErrorAssertRetEi(file != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+#define einfoStr "Descriptor argument was NULL in nFileOpen()."
     nErrorAssertRetEi(fd != NULL,
-     NERROR_NULL, einfo, NCONST_STR_LEN(einfo));
-#undef einfo
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
     if ((flags & NFILE_F_WRITE) && !(flags & NFILE_F_READ))
     {
         flags ^= NFILE_F_WRITE | O_WRONLY;
     }
-    int descriptor = open(path, flags);
+    int descriptor = open(file, flags);
     *fd = descriptor;
-#define einfo "open() failed in nFileOpen()."
+#define einfoStr "open() failed in nFileOpen()."
     nErrorAssertRetE(descriptor != -1,
-     NERROR_NULL, einfo, NCONST_STR_LEN(einfo));
-#undef einfo
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
 }
 
 int nFileClose(int *fd)
 {
-#define einfo "Descriptor argument was NULL in nFileClose()."
+#define einfoStr "Descriptor argument was NULL in nFileClose()."
     nErrorAssertRetEi(fd != NULL,
-     NERROR_NULL, einfo, NCONST_STR_LEN(einfo));
-#undef einfo
-#define einfo "close() failed in nFileClose()."
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+#define einfoStr "close() failed in nFileClose()."
     nErrorAssertRetEi(!close(*fd),
-     NERROR_NULL, einfo, NCONST_STR_LEN(einfo));
-#undef einfo
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
     *fd = -1;
     return NSUCCESS;
 }
@@ -114,14 +118,25 @@ ssize_t nFileWrite(const int fd, void *src, const size_t size)
     return wr;
 }
 
-
-int nFileExists(const char *path)
+int nFileDelete(const char *file)
 {
-#define einfoStr "Path argument was NULL in nFileExists()."
-    nErrorAssertRetEi(path != NULL,
+#define einfoStr "File argument was NULL in nFileDelete()."
+    nErrorAssertRetEi(file != NULL,
      NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
-    nErrorAssertRetE(!access(path, F_OK),
+#define einfoStr "unlink() failed in nFileDelete()."
+    nErrorAssertRetE(!unlink(file),
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+}
+
+int nFileExists(const char *file)
+{
+#define einfoStr "File argument was NULL in nFileExists()."
+    nErrorAssertRetEi(file != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+    nErrorAssertRetE(!access(file, F_OK),
      NERROR_INTERNAL_FAILURE, NULL, 0);
 }
 

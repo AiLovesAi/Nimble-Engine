@@ -55,8 +55,9 @@ void errorCallback(const int error, const time_t errorTime,
      timeInfo->tm_mday, timeInfo->tm_year + 1900, timeInfo->tm_hour,
      timeInfo->tm_min, timeInfo->tm_sec);
 
-    fprintf(stderr, "\nAn error occurred at %s:\nError description: "\
-    "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
+    const char *errorName = nErrorStr(error);
+    fprintf(stderr, "\nAn error occurred at %s:\nError description of %s: "\
+    "%s\nStack trace: %s\n\n", timeStr, errorName, errorDesc, stack);
     nFree(timeStr);
 }
 
@@ -66,6 +67,12 @@ int main(int argc, char **argv)
     printf("Initializing engine...\n");
     nEngineInit(argv, argc, errorCallback, crashCallback);
     printf("Initialized engine.\n");
+
+    int file = 0;
+    nFileOpen("src.txt", NFILE_F_WRITE | NFILE_F_CLEAR | NFILE_F_CREATE, &file);
+    nFileWrite(file, NEXEC, NEXEC_LEN);
+    nFileClose(&file);
+    nFileCopy("src.txt", "dst.txt");
 
     return EXIT_SUCCESS;
 }

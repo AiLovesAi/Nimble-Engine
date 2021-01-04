@@ -229,7 +229,7 @@ size_t NCWD_LEN;
 /**
  * @brief Opens file @p path with @p flags.
  *
- * @param[in] path The name of the file to open.
+ * @param[in] file The file path of the file to open.
  * @param[in] flags The flags for the file opening. See #nFileFlags.
  * @param[out] fd The file descriptor to be set.
  * @return #NSUCCESS is returned if the file exists; otherwise an error code is
@@ -237,7 +237,7 @@ size_t NCWD_LEN;
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int nFileOpen(const char *restrict path,
+int nFileOpen(const char *restrict file,
               int flags,
               int *restrict fd
               );
@@ -266,9 +266,9 @@ int nFileClose(int *fd);
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 ssize_t nFileRead(const int fd,
-                 void *dst,
-                 const size_t size
-                 );
+                  void *dst,
+                  const size_t size
+                  );
 
 /**
  * @brief Writes up to @p size bytes to @p fd.
@@ -282,21 +282,31 @@ ssize_t nFileRead(const int fd,
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 ssize_t nFileWrite(const int fd,
-                 void *src,
-                 const size_t size
-                 );
+                   void *src,
+                   const size_t size
+                   );
+
+/**
+ * @brief Deletes file @p file.
+ * 
+ * @param[in] file The file path of the file to delete.
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned.
+ */
+NIMBLE_EXPORT
+NIMBLE_EXTERN
+int nFileDelete(const char *file);
 
 /**
  * @brief Checks if a file exists.
  *
- * @param[in] path The name of the file to check.
+ * @param[in] file The file path of the file to check.
  * @return #NSUCCESS is returned if the file exists; otherwise an error code is
  * returned.
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 int
-nFileExists(const char *path);
+nFileExists(const char *file);
 
 /**
  * @brief Checks if the file is an absolute path.
@@ -347,8 +357,8 @@ nFileSetExecutablePath(void);
 /**
  * @brief Copies @p src to @p dst.
  *
- * @param[in] dst The destination file to copy to.
- * @param[in] src The source file to copy from.
+ * @param[in] dst The file path of the destination file to copy to.
+ * @param[in] src The file path of the source file to copy from.
  * @return #NSUCCESS is returned if successful; otherwise an error is returned.
  */
 NIMBLE_EXPORT
