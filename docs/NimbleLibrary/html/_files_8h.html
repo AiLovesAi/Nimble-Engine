@@ -95,6 +95,9 @@ Macros</h2></td></tr>
 <tr class="separator:a6e0e609858839da1ee70ff5a849c52b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec5584ed6ea5df103712c2eaf303d2d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8h.html#aec5584ed6ea5df103712c2eaf303d2d0">NFILE_DIR_SEP</a>&#160;&#160;&#160;'/'</td></tr>
 <tr class="separator:aec5584ed6ea5df103712c2eaf303d2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a659a4ed4f3811931eb1cdba6dbf5e752"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8h.html#a659a4ed4f3811931eb1cdba6dbf5e752">nFileMove</a>&#160;&#160;&#160;<a class="el" href="_files_8h.html#a9bddf4e177debee50c5ab6322fd00844">nFileRename</a></td></tr>
+<tr class="memdesc:a659a4ed4f3811931eb1cdba6dbf5e752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves <code>oldPath</code> to <code>newPath</code>.  <a href="_files_8h.html#a659a4ed4f3811931eb1cdba6dbf5e752">More...</a><br /></td></tr>
+<tr class="separator:a659a4ed4f3811931eb1cdba6dbf5e752"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -131,6 +134,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a13dc456c93b09a68583d5917c1687e7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8h.html#a13dc456c93b09a68583d5917c1687e7e">nFileDelete</a> (const char *file)</td></tr>
 <tr class="memdesc:a13dc456c93b09a68583d5917c1687e7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes file <code>file</code>.  <a href="_files_8h.html#a13dc456c93b09a68583d5917c1687e7e">More...</a><br /></td></tr>
 <tr class="separator:a13dc456c93b09a68583d5917c1687e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bddf4e177debee50c5ab6322fd00844"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8h.html#a9bddf4e177debee50c5ab6322fd00844">nFileRename</a> (const char *restrict oldPath, const char *restrict newPath)</td></tr>
+<tr class="memdesc:a9bddf4e177debee50c5ab6322fd00844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renames <code>oldPath</code> to <code>newPath</code>.  <a href="_files_8h.html#a9bddf4e177debee50c5ab6322fd00844">More...</a><br /></td></tr>
+<tr class="separator:a9bddf4e177debee50c5ab6322fd00844"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe8803d596fba7f9a3efdd4731da59cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8h.html#afe8803d596fba7f9a3efdd4731da59cb">nFileExists</a> (const char *file)</td></tr>
 <tr class="memdesc:afe8803d596fba7f9a3efdd4731da59cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a file exists.  <a href="_files_8h.html#afe8803d596fba7f9a3efdd4731da59cb">More...</a><br /></td></tr>
 <tr class="separator:afe8803d596fba7f9a3efdd4731da59cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,6 +193,32 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00076">76</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
+
+</div>
+</div>
+<a id="a659a4ed4f3811931eb1cdba6dbf5e752"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a659a4ed4f3811931eb1cdba6dbf5e752">&#9670;&nbsp;</a></span>nFileMove</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define nFileMove&#160;&#160;&#160;<a class="el" href="_files_8h.html#a9bddf4e177debee50c5ab6322fd00844">nFileRename</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Moves <code>oldPath</code> to <code>newPath</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">oldPath</td><td>The current file path of the file to move. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">newPath</td><td>The new file path to move <code>oldPath</code> to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_files_8h_source.html#l00329">329</a> of file <a class="el" href="_files_8h_source.html">Files.h</a>.</p>
 
 </div>
 </div>
@@ -311,7 +343,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00248">248</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00277">277</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -369,7 +401,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if the file exists; otherwise an error code is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00133">133</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00162">162</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -456,7 +488,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise -1 or an error is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00148">148</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00177">177</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -507,6 +539,46 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a9bddf4e177debee50c5ab6322fd00844"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bddf4e177debee50c5ab6322fd00844">&#9670;&nbsp;</a></span>nFileRename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int nFileRename </td>
+          <td>(</td>
+          <td class="paramtype">const char *restrict&#160;</td>
+          <td class="paramname"><em>oldPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *restrict&#160;</td>
+          <td class="paramname"><em>newPath</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renames <code>oldPath</code> to <code>newPath</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">oldPath</td><td>The current file path of the file to rename. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">newPath</td><td>The new file path to rename <code>oldPath</code> to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00133">133</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+
+</div>
+</div>
 <a id="abef4dc52ceffdb476ac7df1516e3b510"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abef4dc52ceffdb476ac7df1516e3b510">&#9670;&nbsp;</a></span>nFileSetCWD()</h2>
 
@@ -528,7 +600,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_files_8h.html#a74d42b015ac1a8aa7649b31fb2e6e6bd" title="The current working directory.">NCWD</a> is returned if successful; otherwise the engine crashes. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function is not thread safe, as it is called during initialization. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00172">172</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00201">201</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -553,7 +625,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_files_8h.html#ae043e126f33c4f26a2d718110cbffd1f" title="The executable file path.">NEXEC</a> is returned if successful; otherwise the engine crashes.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function is not thread safe, as it is called during initialization. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00199">199</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00228">228</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>

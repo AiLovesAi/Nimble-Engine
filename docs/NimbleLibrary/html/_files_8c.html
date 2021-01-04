@@ -109,6 +109,14 @@ Macros</h2></td></tr>
 <tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>&#160;&#160;&#160;&quot;unlink() failed in <a class="el" href="_files_8h.html#a13dc456c93b09a68583d5917c1687e7e">nFileDelete</a>().&quot;</td></tr>
 <tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>&#160;&#160;&#160;&quot;OldPath argument was <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> in <a class="el" href="_files_8h.html#a13dc456c93b09a68583d5917c1687e7e">nFileDelete</a>().&quot;</td></tr>
+<tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>&#160;&#160;&#160;&quot;NewPath argument was <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> in <a class="el" href="_files_8h.html#a13dc456c93b09a68583d5917c1687e7e">nFileDelete</a>().&quot;</td></tr>
+<tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a></td></tr>
+<tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>&#160;&#160;&#160;&quot;rename() failed in <a class="el" href="_files_8h.html#a9bddf4e177debee50c5ab6322fd00844">nFileRename</a>().&quot;</td></tr>
+<tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>&#160;&#160;&#160;&quot;File argument was <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> in <a class="el" href="_files_8h.html#afe8803d596fba7f9a3efdd4731da59cb">nFileExists</a>().&quot;</td></tr>
 <tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c2ed50c80202593736cea23d04a1c9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8c.html#a8c2ed50c80202593736cea23d04a1c9b">NFILE_ABSOLUTE_PREFIX</a>&#160;&#160;&#160;1</td></tr>
@@ -151,6 +159,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a7b03622cb8266e3d12a267ae492c8b7e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8c.html#a7b03622cb8266e3d12a267ae492c8b7e">nFileDelete</a> (const char *file)</td></tr>
 <tr class="memdesc:a7b03622cb8266e3d12a267ae492c8b7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes file <code>file</code>.  <a href="_files_8c.html#a7b03622cb8266e3d12a267ae492c8b7e">More...</a><br /></td></tr>
 <tr class="separator:a7b03622cb8266e3d12a267ae492c8b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3086d30aefc5c61212898965e05e67e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8c.html#ae3086d30aefc5c61212898965e05e67e">nFileRename</a> (const char *restrict oldPath, const char *restrict newPath)</td></tr>
+<tr class="memdesc:ae3086d30aefc5c61212898965e05e67e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renames <code>oldPath</code> to <code>newPath</code>.  <a href="_files_8c.html#ae3086d30aefc5c61212898965e05e67e">More...</a><br /></td></tr>
+<tr class="separator:ae3086d30aefc5c61212898965e05e67e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad21c3c7a9b1fe1b9a135b73ab426845a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_files_8c.html#ad21c3c7a9b1fe1b9a135b73ab426845a">nFileExists</a> (const char *file)</td></tr>
 <tr class="memdesc:ad21c3c7a9b1fe1b9a135b73ab426845a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a file exists.  <a href="_files_8c.html#ad21c3c7a9b1fe1b9a135b73ab426845a">More...</a><br /></td></tr>
 <tr class="separator:ad21c3c7a9b1fe1b9a135b73ab426845a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,7 +191,7 @@ Variables</h2></td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[1/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[1/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -194,7 +205,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[2/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[2/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -208,7 +219,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[3/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[3/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,7 +233,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[4/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[4/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,7 +247,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[5/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[5/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -250,7 +261,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[6/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[6/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,7 +275,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[7/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[7/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -278,7 +289,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[8/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[8/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -292,7 +303,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[9/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[9/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -306,7 +317,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[10/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[10/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -320,7 +331,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[11/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[11/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -334,7 +345,65 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[12/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[12/26]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define einfoStr&#160;&#160;&#160;&quot;OldPath argument was <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> in <a class="el" href="_files_8h.html#a13dc456c93b09a68583d5917c1687e7e">nFileDelete</a>().&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[13/26]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define einfoStr&#160;&#160;&#160;&quot;NewPath argument was <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> in <a class="el" href="_files_8h.html#a13dc456c93b09a68583d5917c1687e7e">nFileDelete</a>().&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[14/26]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define einfoStr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;OldPath argument was equal to newPath argument in &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;nFileDelete().&quot;</span></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[15/26]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define einfoStr&#160;&#160;&#160;&quot;rename() failed in <a class="el" href="_files_8h.html#a9bddf4e177debee50c5ab6322fd00844">nFileRename</a>().&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[16/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +417,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[13/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[17/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -362,7 +431,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[14/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[18/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -376,7 +445,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[15/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[19/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -392,7 +461,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[16/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[20/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -408,7 +477,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[17/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[21/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -422,7 +491,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[18/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[22/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -438,7 +507,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[19/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[23/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -452,7 +521,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[20/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[24/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -466,7 +535,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[21/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[25/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -480,7 +549,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[22/22]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[26/26]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -507,7 +576,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00146">146</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00175">175</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -577,7 +646,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00248">248</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00277">277</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -635,7 +704,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if the file exists; otherwise an error code is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00133">133</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00162">162</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -722,7 +791,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise -1 or an error is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00148">148</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00177">177</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -773,6 +842,46 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ae3086d30aefc5c61212898965e05e67e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3086d30aefc5c61212898965e05e67e">&#9670;&nbsp;</a></span>nFileRename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nFileRename </td>
+          <td>(</td>
+          <td class="paramtype">const char *restrict&#160;</td>
+          <td class="paramname"><em>oldPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *restrict&#160;</td>
+          <td class="paramname"><em>newPath</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renames <code>oldPath</code> to <code>newPath</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">oldPath</td><td>The current file path of the file to rename. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">newPath</td><td>The new file path to rename <code>oldPath</code> to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00133">133</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+
+</div>
+</div>
 <a id="a9e609d4a183611155f3d7d4b836f6e47"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e609d4a183611155f3d7d4b836f6e47">&#9670;&nbsp;</a></span>nFileSetCWD()</h2>
 
@@ -794,7 +903,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_files_8h.html#a74d42b015ac1a8aa7649b31fb2e6e6bd" title="The current working directory.">NCWD</a> is returned if successful; otherwise the engine crashes. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function is not thread safe, as it is called during initialization. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00172">172</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00201">201</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>
@@ -819,7 +928,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_files_8h.html#ae043e126f33c4f26a2d718110cbffd1f" title="The executable file path.">NEXEC</a> is returned if successful; otherwise the engine crashes.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function is not thread safe, as it is called during initialization. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00199">199</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_files_8c_source.html#l00228">228</a> of file <a class="el" href="_files_8c_source.html">Files.c</a>.</p>
 
 </div>
 </div>

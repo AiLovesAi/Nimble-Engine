@@ -308,6 +308,27 @@ NIMBLE_EXTERN
 int nFileDelete(const char *file);
 
 /**
+ * @brief Renames @p oldPath to @p newPath.
+ * 
+ * @param[in] oldPath The current file path of the file to rename.
+ * @param[in] newPath The new file path to rename @p oldPath to.
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned.
+ */
+NIMBLE_EXPORT
+NIMBLE_EXTERN
+int nFileRename(const char *restrict oldPath,
+                const char *restrict newPath);
+
+/**
+ * @brief Moves @p oldPath to @p newPath.
+ * 
+ * @param[in] oldPath The current file path of the file to move.
+ * @param[in] newPath The new file path to move @p oldPath to.
+ * @return #NSUCCESS is returned if successful; otherwise an error is returned.
+ */
+#define nFileMove nFileRename
+
+/**
  * @brief Checks if a file exists.
  *
  * @param[in] file The file path of the file to check.

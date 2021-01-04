@@ -130,6 +130,35 @@ int nFileDelete(const char *file)
 #undef einfoStr
 }
 
+int nFileRename(const char *restrict oldPath, const char *restrict newPath)
+{
+#define einfoStr "OldPath argument was NULL in nFileDelete()."
+    nErrorAssertRetEi(oldPath != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+#define einfoStr "NewPath argument was NULL in nFileDelete()."
+    nErrorAssertRetEi(newPath != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+#define einfoStr "OldPath argument was equal to newPath argument in "\
+ "nFileDelete()."
+    nErrorAssertRetEi(newPath != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+
+    int err = rename(oldPath, newPath);
+    if (!err) return NSUCCESS;
+    
+#define einfoStr "rename() failed in nFileRename()."
+    nErrorAssertRetEi(errno == EXDEV,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+
+    nFileCopy(oldPath, newPath);
+    nFileDelete(oldPath);
+    return NSUCCESS;
+}
+
 int nFileExists(const char *file)
 {
 #define einfoStr "File argument was NULL in nFileExists()."
