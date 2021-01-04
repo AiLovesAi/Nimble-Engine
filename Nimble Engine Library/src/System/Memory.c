@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-12-12.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -16,7 +16,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -70,16 +70,20 @@ void *nRealloc(void *ptr, const size_t size)
     return ptr;
 }
 
-size_t nStringCopy(char *const restrict dst, const char *const restrict src,
+ssize_t nStringCopy(char *const restrict dst, const char *const restrict src,
  const size_t len)
 {
-#define einfoStr "Source string NULL in nStringCopy()."
+#define einfoStr "Src argument NULL in nStringCopy()."
     nErrorAssertReti(src != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr), 0);
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr), -1);
 #undef einfoStr
-#define einfoStr "Destination string NULL in nStringCopy()."
+#define einfoStr "Dst argument NULL in nStringCopy()."
     nErrorAssertReti(src != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr), 0);
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+#undef einfoStr
+#define einfoStr "Dst argument equals src argument in nStringCopy()."
+    nErrorAssertReti(dst != src,
+     NERROR_INV_ARG, einfoStr, NCONST_STR_LEN(einfoStr), -1);
 #undef einfoStr
 
     char *d = dst;
@@ -88,7 +92,7 @@ size_t nStringCopy(char *const restrict dst, const char *const restrict src,
 
     /* For each character that is not equal to the null terminator,
      * src char = dst char. */
-    while (l-- && (*s != '\0'))
+    while ((*s != '\0') && l--)
     {
         *d++ = *s++;
     }

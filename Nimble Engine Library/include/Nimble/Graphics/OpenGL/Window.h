@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-08-10.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -15,7 +15,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -104,7 +104,7 @@ typedef enum nWindowMonitor {
  *         fprintf(stderr, "Failed to load window dimensions.\n");
  *         exit(EXIT_FAILURE);
  *     }
- *     nint_t window = nWindowCreate("Hello World", iconData, dimensions,
+ *     int window = nWindowCreate("Hello World", iconData, dimensions,
  *                       NWINDOW_FULLSCREEN | NWINDOW_CURSOR_HIDDEN);
  *     if (window == NERROR)
  *     {
@@ -127,11 +127,11 @@ typedef enum nWindowMonitor {
  * error callback set by nErrorSetCallback().
  */
 NIMBLE_EXPORT
-nint_t
+int
 nWindowCreate(const char * title,
               const uint8_t * iconData,
               const uint32_t * dimensions,
-              const nint_t flags
+              const int flags
               );
 
 /**

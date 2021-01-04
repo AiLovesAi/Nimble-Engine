@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-08-14.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -14,7 +14,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,6 +52,10 @@ extern "C" {
 #include <time.h>
 
 
+#ifndef NERRORS_MAX_STACK
+#  define NERRORS_MAX_STACK 512 /**< The maximum stack levels to take from nErrorGetStacktrace(). */
+#endif
+
 /**
  * @brief Throws an error with @p info if @p check is equal to zero.
  * 
@@ -65,9 +69,9 @@ extern "C" {
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
-nErrorAssert(const nint_t check,
-             const nint_t error,
+int
+nErrorAssert(const int check,
+             const int error,
              const char *info,
              const size_t infoLen);
 
@@ -135,8 +139,8 @@ nErrorAssert(const nint_t check,
  * @param[in] infoLen The length of @p info.
  */
 #define nErrorAssertRetEi(check, error, info, infoLen) ({\
-    nint_t err = nErrorAssert(check, error, info, infoLen);\
-    if (err) return err;\
+    int n_err = nErrorAssert(check, error, info, infoLen);\
+    if (n_err) return n_err;\
 })
 
 /**
@@ -157,7 +161,7 @@ nErrorAssert(const nint_t check,
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 void
-nErrorThrow(const nint_t error,
+nErrorThrow(const int error,
             char *errorDescStr,
             size_t errorDescLen
             );
@@ -185,9 +189,9 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 NIMBLE_FREEME
 char *
-nErrorToString(size_t *errorLen,
-               const nint_t error,
-               const char *info,
+nErrorToString(size_t *restrict errorLen,
+               const int error,
+               const char *restrict info,
                size_t infoLen
                )
 __attribute__((warn_unused_result));
@@ -216,9 +220,9 @@ __attribute__((warn_unused_result));
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 char *
-nErrorToStringWindows(size_t *errorLen,
-                      const nint_t error,
-                      const char *info,
+nErrorToStringWindows(size_t *restrict errorLen,
+                      const int error,
+                      const char *restrict info,
                       size_t infoLen
                       )
 __attribute__((warn_unused_result));
@@ -237,13 +241,13 @@ __attribute__((warn_unused_result));
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
+int
 nErrorSetCallback(void (*callback)(
-                                   const nint_t error,
+                                   const int error,
                                    const time_t errorTime,
-                                   const char *errorDesc,
+                                   const char *restrict errorDesc,
                                    const size_t errorDescLen,
-                                   const char *stack,
+                                   const char *restrict stack,
                                    const size_t stackLen
                                    )
                   );
@@ -268,8 +272,8 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 NIMBLE_FREEME
 char *
-nErrorGetStacktrace(size_t *stackLen,
-                    size_t *stackLevels
+nErrorGetStacktrace(size_t *restrict stackLen,
+                    size_t *restrict stackLevels
                     )
 __attribute__((warn_unused_result));
 

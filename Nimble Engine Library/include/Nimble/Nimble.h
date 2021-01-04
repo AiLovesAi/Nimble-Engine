@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-08-14.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -14,7 +14,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -202,21 +202,6 @@ NCONST_STR_LEN(str) - (2 * spec1) - (3 * spec2) - (4 * spec3) - (5 * spec4) /**<
 
 #define NSTR(str) #str /**< Stringifies the argument. */
 #define NSTR_VAL(str) NSTR(str) /**< Stringifies the argument's defined value (for macros only). */
-
-/* Nimble integer types */
-typedef int_fast8_t   nbyte_t;
-typedef uint_fast8_t  nubyte_t;
-typedef int_fast16_t  nshort_t;
-typedef uint_fast16_t nushort_t;
-typedef int_fast32_t  nint_t;
-typedef uint_fast32_t nuint_t;
-#ifdef NIMBLE_64BIT
-typedef int_fast64_t  nlong_t;
-typedef uint_fast64_t nulong_t;
-#else
-typedef intmax_t      nlong_t;
-typedef uintmax_t     nulong_t;
-#endif
 
 #endif // NIMBLE_H
 

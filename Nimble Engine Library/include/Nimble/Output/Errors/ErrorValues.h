@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-12-05.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -14,7 +14,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,7 @@ extern "C" {
 #include "../../NimbleEngine.h"
 
 
-#define NSUCCESS (nint_t) 0 /**< Returned when a function succeeds. */
+#define NSUCCESS (int) 0 /**< Returned when a function succeeds. */
 
 /**
  * @brief The possible error values used by ErrorHandler.h error handler.
@@ -864,8 +864,8 @@ const size_t nErrorDescLengths[];
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
-nErrorFromSignal(const nint_t signum);
+int
+nErrorFromSignal(const int signum);
 
 /*
  * @brief Gets the error code of the errno value @p err.
@@ -875,8 +875,8 @@ nErrorFromSignal(const nint_t signum);
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
-nErrorFromErrno(const nint_t err);
+int
+nErrorFromErrno(const int err);
 
 #endif // NIMBLE_ENGINE_ERRORVALUES_H
 

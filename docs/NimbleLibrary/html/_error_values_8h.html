@@ -90,7 +90,7 @@ Macros</h2></td></tr>
 <tr class="memitem:a269c4e232f0633011919a78fd75774bb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_error_values_8h.html#a269c4e232f0633011919a78fd75774bb">NIMBLE_ENGINE_ERRORVALUES_H</a></td></tr>
 <tr class="memdesc:a269c4e232f0633011919a78fd75774bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Header definition.  <a href="_error_values_8h.html#a269c4e232f0633011919a78fd75774bb">More...</a><br /></td></tr>
 <tr class="separator:a269c4e232f0633011919a78fd75774bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34eedfdb3dfef7fc00ea46dcb487bb17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>&#160;&#160;&#160;(<a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>) 0</td></tr>
+<tr class="memitem:a34eedfdb3dfef7fc00ea46dcb487bb17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">NSUCCESS</a>&#160;&#160;&#160;(int) 0</td></tr>
 <tr class="memdesc:a34eedfdb3dfef7fc00ea46dcb487bb17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returned when a function succeeds.  <a href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">More...</a><br /></td></tr>
 <tr class="separator:a34eedfdb3dfef7fc00ea46dcb487bb17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c75a733273f53a047f2e47ed9f93c62"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_error_values_8h.html#a5c75a733273f53a047f2e47ed9f93c62">nErrorStr</a>(err)</td></tr>
@@ -134,10 +134,10 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5dc5235be9f0dadefd73f4f4dd16a24a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_error_values_8h.html#a5dc5235be9f0dadefd73f4f4dd16a24a">nErrorFromSignal</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> signum)</td></tr>
-<tr class="separator:a5dc5235be9f0dadefd73f4f4dd16a24a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff3bad3bddd1790602391c5149f6ad48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_error_values_8h.html#aff3bad3bddd1790602391c5149f6ad48">nErrorFromErrno</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> err)</td></tr>
-<tr class="separator:aff3bad3bddd1790602391c5149f6ad48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accfbd694caa6717577ba8b787fdc3b7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_error_values_8h.html#accfbd694caa6717577ba8b787fdc3b7c">nErrorFromSignal</a> (const int signum)</td></tr>
+<tr class="separator:accfbd694caa6717577ba8b787fdc3b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a573bc675f8bf5aec7611720562ece02c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_error_values_8h.html#a573bc675f8bf5aec7611720562ece02c">nErrorFromErrno</a> (const int err)</td></tr>
+<tr class="separator:a573bc675f8bf5aec7611720562ece02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -157,7 +157,7 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines error values for error handling functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Avery Aaron </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.a'+'3ol'+'og'+'y@g'+'ma'+'il.'+'co'+'m'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>a3olo<span style="display: none;">.nosp@m.</span>gy@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a></p>
+<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020-2021 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.a'+'3ol'+'og'+'y@g'+'ma'+'il.'+'co'+'m'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>a3olo<span style="display: none;">.nosp@m.</span>gy@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a></p>
 <p class="interdd">Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
 <p class="interdd">The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 <p class="enddd">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </p>
@@ -279,7 +279,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define NSUCCESS&#160;&#160;&#160;(<a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>) 0</td>
+          <td class="memname">#define NSUCCESS&#160;&#160;&#160;(int) 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -349,16 +349,16 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aff3bad3bddd1790602391c5149f6ad48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff3bad3bddd1790602391c5149f6ad48">&#9670;&nbsp;</a></span>nErrorFromErrno()</h2>
+<a id="a573bc675f8bf5aec7611720562ece02c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a573bc675f8bf5aec7611720562ece02c">&#9670;&nbsp;</a></span>nErrorFromErrno()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorFromErrno </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int nErrorFromErrno </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>err</em></td><td>)</td>
           <td></td>
         </tr>
@@ -369,16 +369,16 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a5dc5235be9f0dadefd73f4f4dd16a24a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5dc5235be9f0dadefd73f4f4dd16a24a">&#9670;&nbsp;</a></span>nErrorFromSignal()</h2>
+<a id="accfbd694caa6717577ba8b787fdc3b7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accfbd694caa6717577ba8b787fdc3b7c">&#9670;&nbsp;</a></span>nErrorFromSignal()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorFromSignal </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int nErrorFromSignal </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>signum</em></td><td>)</td>
           <td></td>
         </tr>

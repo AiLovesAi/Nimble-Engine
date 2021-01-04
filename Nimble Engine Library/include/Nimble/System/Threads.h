@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-10-31 spooky.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -14,7 +14,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -101,7 +101,7 @@ typedef mtx_t *nMutex_t;
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
+int
 nThreadCreate(nThread_t *thread,
               nThreadRoutine_t (*start)(void *),
               void *data
@@ -161,9 +161,9 @@ nThreadCreate(nThread_t *thread,
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
+int
 nThreadJoin(nThread_t thread,
-            nint_t *ret
+            int *ret
             );
 
 /**
@@ -179,7 +179,7 @@ nThreadJoin(nThread_t thread,
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
+int
 nThreadDetach(nThread_t thread
               );
 
@@ -193,7 +193,7 @@ nThreadDetach(nThread_t thread
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
+int
 nThreadMutexCreate(nMutex_t *mutex
                    );
 
@@ -208,7 +208,7 @@ nThreadMutexCreate(nMutex_t *mutex
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
+int
 nThreadMutexLock(nMutex_t *mutex
                  );
 
@@ -223,7 +223,7 @@ nThreadMutexLock(nMutex_t *mutex
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
+int
 nThreadMutexUnlock(nMutex_t *mutex
                    );
 
@@ -237,7 +237,7 @@ nThreadMutexUnlock(nMutex_t *mutex
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
+int
 nThreadMutexDestroy(nMutex_t *mutex
                     );
 

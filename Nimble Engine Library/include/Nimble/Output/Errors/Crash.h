@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-08-18.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -14,7 +14,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -61,8 +61,8 @@ extern "C" {
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 void
-nAssert(const nint_t check,
-        const nint_t error,
+nAssert(const int check,
+        const int error,
         const char *info,
         const size_t infoLen);
 
@@ -81,12 +81,12 @@ nAssert(const nint_t check,
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
-nCrashSetCallback(void (*callback) (const nint_t error,
+int
+nCrashSetCallback(void (*callback) (const int error,
                                     const time_t errorTime,
-                                    const char *errorDesc,
+                                    const char *restrict errorDesc,
                                     const size_t errorDescLen,
-                                    const char *stack,
+                                    const char *restrict stack,
                                     const size_t stackLen
                                     )
                  );
@@ -112,7 +112,7 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
 void
-nCrashSafe(const nint_t error,
+nCrashSafe(const int error,
            time_t errorTime,
            const char *errorDesc,
            size_t errorDescLen
@@ -144,7 +144,7 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
 void
-nCrashAbort(const nint_t error
+nCrashAbort(const int error
             );
 
 #endif // NIMBLE_ENGINE_CRASH_H

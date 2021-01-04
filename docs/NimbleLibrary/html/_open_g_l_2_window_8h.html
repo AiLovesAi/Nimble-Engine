@@ -119,9 +119,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a78b9a44cf66475d31cef6225d2015abe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_2_window_8h.html#a78b9a44cf66475d31cef6225d2015abe">nWindowCreate</a> (const char *title, const uint8_t *iconData, const uint32_t *dimensions, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> flags)</td></tr>
-<tr class="memdesc:a78b9a44cf66475d31cef6225d2015abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a window.  <a href="_open_g_l_2_window_8h.html#a78b9a44cf66475d31cef6225d2015abe">More...</a><br /></td></tr>
-<tr class="separator:a78b9a44cf66475d31cef6225d2015abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0687597fa51a949f2f45449cbb241311"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_2_window_8h.html#a0687597fa51a949f2f45449cbb241311">nWindowCreate</a> (const char *title, const uint8_t *iconData, const uint32_t *dimensions, const int flags)</td></tr>
+<tr class="memdesc:a0687597fa51a949f2f45449cbb241311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a window.  <a href="_open_g_l_2_window_8h.html#a0687597fa51a949f2f45449cbb241311">More...</a><br /></td></tr>
+<tr class="separator:a0687597fa51a949f2f45449cbb241311"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1597abb946204b9711779f9bbc66b5ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_open_g_l_2_window_8h.html#a1597abb946204b9711779f9bbc66b5ed">nWindowLoadIcon</a> (uint8_t *dst, const char *iconPath)</td></tr>
 <tr class="memdesc:a1597abb946204b9711779f9bbc66b5ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a window icon file.  <a href="_open_g_l_2_window_8h.html#a1597abb946204b9711779f9bbc66b5ed">More...</a><br /></td></tr>
 <tr class="separator:a1597abb946204b9711779f9bbc66b5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,7 +129,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class creates and controls application windows. </p>
 <dl class="section author"><dt>Author</dt><dd>Avery Aaron </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.a'+'3ol'+'og'+'y@g'+'ma'+'il.'+'co'+'m'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>a3olo<span style="display: none;">.nosp@m.</span>gy@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a></p>
+<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020-2021 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.a'+'3ol'+'og'+'y@g'+'ma'+'il.'+'co'+'m'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>a3olo<span style="display: none;">.nosp@m.</span>gy@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a></p>
 <p class="interdd">Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
 <p class="interdd">The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 <p class="enddd">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </p>
@@ -246,14 +246,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a78b9a44cf66475d31cef6225d2015abe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78b9a44cf66475d31cef6225d2015abe">&#9670;&nbsp;</a></span>nWindowCreate()</h2>
+<a id="a0687597fa51a949f2f45449cbb241311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0687597fa51a949f2f45449cbb241311">&#9670;&nbsp;</a></span>nWindowCreate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nWindowCreate </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> int nWindowCreate </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>title</em>, </td>
@@ -273,7 +273,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>flags</em>&#160;</td>
         </tr>
         <tr>
@@ -306,7 +306,7 @@ Functions</h2></td></tr>
 <div class="line">        fprintf(stderr, <span class="stringliteral">&quot;Failed to load window dimensions.\n&quot;</span>);</div>
 <div class="line">        exit(EXIT_FAILURE);</div>
 <div class="line">    }</div>
-<div class="line">    <a class="code" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> window = <a class="code" href="_open_g_l_2_window_8h.html#a78b9a44cf66475d31cef6225d2015abe">nWindowCreate</a>(<span class="stringliteral">&quot;Hello World&quot;</span>, iconData, dimensions,</div>
+<div class="line">    <span class="keywordtype">int</span> window = <a class="code" href="_open_g_l_2_window_8h.html#a0687597fa51a949f2f45449cbb241311">nWindowCreate</a>(<span class="stringliteral">&quot;Hello World&quot;</span>, iconData, dimensions,</div>
 <div class="line">                      <a class="code" href="_open_g_l_2_window_8h.html#ac0c6cf62312e3543f0c0493676e8e864ac11a402a341faadbbb7bc9ee52f3f3b4">NWINDOW_FULLSCREEN</a> | <a class="code" href="_open_g_l_2_window_8h.html#ac0c6cf62312e3543f0c0493676e8e864a5b029e10f0fe3d96115e28252253385e">NWINDOW_CURSOR_HIDDEN</a>);</div>
 <div class="line">    <span class="keywordflow">if</span> (window == NERROR)</div>
 <div class="line">    {</div>
@@ -326,7 +326,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The window ID generated by the new window is returned if successful; otherwise <code>an</code> error is returned and a corresponding error is sent to the error callback set by <a class="el" href="_errors_8c.html#a67e277d46978d41820d183ec95839c9b" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The window ID generated by the new window is returned if successful; otherwise <code>an</code> error is returned and a corresponding error is sent to the error callback set by <a class="el" href="_errors_8c.html#a08ef1fbe6926d66f7aaa549e44aa7952" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>. </dd></dl>
 
 </div>
 </div>
@@ -372,18 +372,17 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> is returned and a corresponding error is sent to the error callback set by <a class="el" href="_errors_8c.html#a67e277d46978d41820d183ec95839c9b" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>dst</code> is returned if successful; otherwise <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> is returned and a corresponding error is sent to the error callback set by <a class="el" href="_errors_8c.html#a08ef1fbe6926d66f7aaa549e44aa7952" title="Sets the callback function to handle errors.">nErrorSetCallback()</a>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function is the same as nFileLoadImage(), but ensures RGBA format is used. The supported file types are the same. </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="a_open_g_l_2_window_8h_html_ac0c6cf62312e3543f0c0493676e8e864a5b029e10f0fe3d96115e28252253385e"><div class="ttname"><a href="_open_g_l_2_window_8h.html#ac0c6cf62312e3543f0c0493676e8e864a5b029e10f0fe3d96115e28252253385e">NWINDOW_CURSOR_HIDDEN</a></div><div class="ttdeci">@ NWINDOW_CURSOR_HIDDEN</div><div class="ttdoc">Sets the cursor to be hidden.</div><div class="ttdef"><b>Definition:</b> <a href="_open_g_l_2_window_8h_source.html#l00065">Window.h:64</a></div></div>
-<div class="ttc" id="a_open_g_l_2_window_8h_html_a78b9a44cf66475d31cef6225d2015abe"><div class="ttname"><a href="_open_g_l_2_window_8h.html#a78b9a44cf66475d31cef6225d2015abe">nWindowCreate</a></div><div class="ttdeci">NIMBLE_EXPORT nint_t nWindowCreate(const char *title, const uint8_t *iconData, const uint32_t *dimensions, const nint_t flags)</div><div class="ttdoc">Creates a window.</div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00194">Nimble.h:194</a></div></div>
 <div class="ttc" id="a_open_g_l_2_window_8h_html_a117394808edf37c326ca2ee536dd0e26a03c35a2bf03ae0221347bc9d93cab329"><div class="ttname"><a href="_open_g_l_2_window_8h.html#a117394808edf37c326ca2ee536dd0e26a03c35a2bf03ae0221347bc9d93cab329">NWINDOW_MONITOR_DEFAULT</a></div><div class="ttdeci">@ NWINDOW_MONITOR_DEFAULT</div><div class="ttdoc">The default monitor.</div><div class="ttdef"><b>Definition:</b> <a href="_open_g_l_2_window_8h_source.html#l00074">Window.h:74</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a437464835742c38c8b375c048b8f8993"><div class="ttname"><a href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a></div><div class="ttdeci">int_fast32_t nint_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00212">Nimble.h:212</a></div></div>
 <div class="ttc" id="a_open_g_l_2_window_8h_html_ac0c6cf62312e3543f0c0493676e8e864ac11a402a341faadbbb7bc9ee52f3f3b4"><div class="ttname"><a href="_open_g_l_2_window_8h.html#ac0c6cf62312e3543f0c0493676e8e864ac11a402a341faadbbb7bc9ee52f3f3b4">NWINDOW_FULLSCREEN</a></div><div class="ttdeci">@ NWINDOW_FULLSCREEN</div><div class="ttdoc">Sets the window to fullscreen.</div><div class="ttdef"><b>Definition:</b> <a href="_open_g_l_2_window_8h_source.html#l00062">Window.h:62</a></div></div>
+<div class="ttc" id="a_open_g_l_2_window_8h_html_a0687597fa51a949f2f45449cbb241311"><div class="ttname"><a href="_open_g_l_2_window_8h.html#a0687597fa51a949f2f45449cbb241311">nWindowCreate</a></div><div class="ttdeci">NIMBLE_EXPORT int nWindowCreate(const char *title, const uint8_t *iconData, const uint32_t *dimensions, const int flags)</div><div class="ttdoc">Creates a window.</div></div>
 <div class="ttc" id="a_open_g_l_2_window_8h_html_a1597abb946204b9711779f9bbc66b5ed"><div class="ttname"><a href="_open_g_l_2_window_8h.html#a1597abb946204b9711779f9bbc66b5ed">nWindowLoadIcon</a></div><div class="ttdeci">NIMBLE_EXPORT uint8_t * nWindowLoadIcon(uint8_t *dst, const char *iconPath)</div><div class="ttdoc">Loads a window icon file.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

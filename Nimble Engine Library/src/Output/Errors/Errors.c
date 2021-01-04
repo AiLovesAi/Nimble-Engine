@@ -1,10 +1,10 @@
-#include "../../include/Nimble/NimbleLicense.h"
+#include "../../../include/Nimble/NimbleLicense.h"
 /*
  * Errors.c
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-08-17.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -16,7 +16,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -48,6 +48,7 @@
 #include <time.h>
 
 #include "../../../include/Nimble/Output/Errors/Crash.h"
+#include "../../../include/Nimble/System/Library.h"
 
 
 const char noInfoStr[] = "No info.";
@@ -63,34 +64,34 @@ const char noInfoStr[] = "No info.";
  * @param[in] stackLen The length of the @p stack argument. A length of zero (0)
  * uses strlen() to determine length.
  */
-static void nErrorHandlerDefault(const nint_t error,
+static void nErrorHandlerDefault(const int error,
                                  const time_t errorTime,
-                                 const char * errorDesc,
+                                 const char *restrict errorDesc,
                                  const size_t errorDescLen,
-                                 const char * stack,
+                                 const char *restrict stack,
                                  const size_t stackLen
                                  );
 
 /**
  * @brief The error callback function that gets defined by nErrorSetCallback().
  */
-void (*volatile errorCallback) (const nint_t error, const time_t errorTime,
- const char * errorDesc, const size_t errorDescLen, const char * stack,
- const size_t stackLen) = &nErrorHandlerDefault;
+void (*volatile errorCallback) (const int error, const time_t errorTime,
+ const char *restrict errorDesc, const size_t errorDescLen,
+ const char *restrict stack, const size_t stackLen) = &nErrorHandlerDefault;
 
-static void nErrorHandlerDefault(const nint_t error, const time_t errorTime,
- const char * errorDesc, const size_t errorDescLen, const char * stack,
- const size_t stackLen)
+static void nErrorHandlerDefault(const int error, const time_t errorTime,
+ const char *restrict errorDesc, const size_t errorDescLen,
+ const char *restrict stack, const size_t stackLen)
 {
     /** @todo Make default callback. */
 }
 
-nint_t nErrorAssert(const nint_t check, const nint_t error, const char *info,
+int nErrorAssert(const int check, const int error, const char *info,
  const size_t infoLen)
 {
     if (!check)
     {
-        nint_t err = 0;
+        int err = 0;
 #if NIMBLE_OS == NIMBLE_WINDOWS
         nErrorLastWindows(err);
         if (err)
@@ -130,7 +131,7 @@ nint_t nErrorAssert(const nint_t check, const nint_t error, const char *info,
     return NSUCCESS;
 }
 
-void nErrorThrow(const nint_t error, char *errorDescStr, size_t errorDescLen)
+void nErrorThrow(const int error, char *errorDescStr, size_t errorDescLen)
 {
     const time_t errorTime = time(NULL);
     
@@ -163,8 +164,8 @@ void nErrorThrow(const nint_t error, char *errorDescStr, size_t errorDescLen)
     }
 }
 
-char *nErrorToString(size_t *errorLen, const nint_t error, const char *info,
- size_t infoLen)
+char *nErrorToString(size_t *restrict errorLen, const int error,
+ const char *restrict info, size_t infoLen)
 {
     if (info && (infoLen <= 0))
     {
@@ -205,8 +206,8 @@ char *nErrorToString(size_t *errorLen, const nint_t error, const char *info,
 }
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
-char *nErrorToStringWindows(size_t *errorLen, const nint_t error,
- const char *info, size_t infoLen)
+char *nErrorToStringWindows(size_t *restrict errorLen, const int error,
+ const char *restrict info, size_t infoLen)
 {
     if (info && (infoLen <= 0))
     {
@@ -247,9 +248,9 @@ retLbl:;
 }
 #endif
 
-nint_t nErrorSetCallback(void (*callback)(const nint_t error,
- const time_t errorTime, const char *errorDesc, const size_t errorDescLen,
- const char *stack, const size_t stackLen))
+int nErrorSetCallback(void (*callback)(const int error,
+ const time_t errorTime, const char *restrict errorDesc,
+ const size_t errorDescLen, const char *restrict stack, const size_t stackLen))
 {
     if (callback)
     {
@@ -263,11 +264,11 @@ nint_t nErrorSetCallback(void (*callback)(const nint_t error,
     return NSUCCESS;
 }
 
-char *nErrorGetStacktrace(size_t *stackLen, size_t *stackLevels)
+char *nErrorGetStacktrace(size_t *restrict stackLen, size_t *restrict stackLevels)
 {
     /* Set max levels */
     size_t maxLevels = 128;
-    if (stackLevels && (*stackLevels > 0) && (*stackLevels <= 1024))
+    if (stackLevels && (*stackLevels > 0) && (*stackLevels <= NERRORS_MAX_STACK))
     {
         maxLevels = *stackLevels;
     }

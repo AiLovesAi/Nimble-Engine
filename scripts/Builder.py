@@ -4,7 +4,7 @@
  Nimble Engine
 
  Created by Avery Aaron on 2020-08-11.
- Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
 
  This program builds the CMakeLists.txt for the directory specified.
 

@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-12-07.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -16,7 +16,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,97 +46,78 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if NIMBLE_OS == NIMBLE_WINDOWS
-#include <stdlib.h>
-#include <io.h>
-#include <process.h> /* for getpid() and the exec..() family */
-#include <direct.h> /* for _getcwd() and _chdir() */
-
-#define srandom srand
-#define random rand
-
-/* Values for the second argument to access.
-   These may be OR'd together.  */
-#ifndef R_OK
-#  define R_OK 4 /* Test for read permission.  */
-#endif
-#ifndef W_OK
-#  define W_OK 2 /* Test for write permission.  */
-#endif
-#ifndef X_OK
-#  define X_OK 1 /* execute permission - unsupported in windows*/
-#endif
-#ifndef F_OK
-#  define F_OK 0 /* Test for existence.  */
-#endif
-
-#ifndef access
-#  define access _access
-#endif
-#ifndef dup2
-#  define dup2 _dup2
-#endif
-#ifndef execve
-#  define execve _execve
-#endif
-#ifndef ftruncate
-#  define ftruncate _chsize
-#endif
-#ifndef unlink
-#  define unlink _unlink
-#endif
-#ifndef fileno
-#  define fileno _fileno
-#endif
-#ifndef getcwd
-#  define getcwd _getcwd
-#endif
-#ifndef chdir
-#  define chdir _chdir
-#endif
-#ifndef isatty
-#  define isatty _isatty
-#endif
-#ifndef lseek
-#  define lseek _lseek
-#endif
-#ifndef realpath
-#  define realpath(path, rltvPath) _fullpath(path, rltvPath, PATH_MAX)
-#endif
-/* read, write, and close are NOT being #defined here, because while there are file handle specific versions for Windows, they probably don't work for sockets. You need to look at your app and consider whether to call e.g. closesocket(). */
-
-#ifndef ssize_t
-#  ifdef _WIN64
-#    define ssize_t __int64
-#  else
-#    define ssize_t long
-#  endif
-#endif
-
-#ifndef STDIN_FILENO
-#  define STDIN_FILENO  0
-#endif
-#ifndef STDOUT_FILENO
-#  define STDOUT_FILENO 1
-#endif
-#ifndef STDERR_FILENO
-#  define STDERR_FILENO 2
-#endif
-
-#include <Windows.h>
-#elif defined(NIMBLE_STD_UNIX)
-#include <unistd.h>
-#endif
-
 char NEXEC[PATH_MAX + 1] = {0};
 size_t NEXEC_LEN = 0;
 char NCWD[PATH_MAX + 1] = {0};
 size_t NCWD_LEN = 0;
 
 
-nint_t nFileExists(const char *path)
+int nFileOpen(const char *restrict path, int flags, int *restrict fd)
 {
-#define einfoStr "Path parameter was NULL in nFileExists()."
+#define einfo "Descriptor argument was NULL in nFileOpen()."
+    nErrorAssertRetEi(fd != NULL,
+     NERROR_NULL, einfo, NCONST_STR_LEN(einfo));
+#undef einfo
+    if ((flags & NFILE_F_WRITE) && !(flags & NFILE_F_READ))
+    {
+        flags ^= NFILE_F_WRITE | O_WRONLY;
+    }
+    int descriptor = open(path, flags);
+    *fd = descriptor;
+#define einfo "open() failed in nFileOpen()."
+    nErrorAssertRetE(descriptor != -1,
+     NERROR_NULL, einfo, NCONST_STR_LEN(einfo));
+#undef einfo
+}
+
+int nFileClose(int *fd)
+{
+#define einfo "Descriptor argument was NULL in nFileClose()."
+    nErrorAssertRetEi(fd != NULL,
+     NERROR_NULL, einfo, NCONST_STR_LEN(einfo));
+#undef einfo
+#define einfo "close() failed in nFileClose()."
+    nErrorAssertRetEi(!close(*fd),
+     NERROR_NULL, einfo, NCONST_STR_LEN(einfo));
+#undef einfo
+    *fd = -1;
+    return NSUCCESS;
+}
+
+ssize_t nFileRead(const int fd, void *dst, const size_t size)
+{
+#define einfoStr "dst argument was NULL in nFileRead()."
+    nErrorAssertReti(dst != NULL,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+#undef einfoStr
+
+    int rd = read(fd, dst, size);
+#define einfoStr "read() failed in nFileRead()."
+    nErrorAssertReti(rd >= 0,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+#undef einfoStr
+    return rd;
+}
+
+ssize_t nFileWrite(const int fd, void *src, const size_t size)
+{
+#define einfoStr "src argument was NULL in nFileWrite()."
+    nErrorAssertReti(src != NULL,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+#undef einfoStr
+
+    int wr = write(fd, src, size);
+#define einfoStr "write() failed in nFileWrite()."
+    nErrorAssertReti(wr >= 0,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+#undef einfoStr
+    return wr;
+}
+
+
+int nFileExists(const char *path)
+{
+#define einfoStr "Path argument was NULL in nFileExists()."
     nErrorAssertRetEi(path != NULL,
      NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
@@ -149,9 +130,9 @@ nint_t nFileExists(const char *path)
 #else
 #  define NFILE_ABSOLUTE_PREFIX 1
 #endif
-nint_t nFilePathIsAbsolute(const char *path, nint_t len)
+int nFilePathIsAbsolute(const char *path, size_t len)
 {
-#define einfoStr "Path parameter was NULL in nFilePathIsAbsolute()."
+#define einfoStr "Path argument was NULL in nFilePathIsAbsolute()."
     nErrorAssertRetEi(path != NULL,
      NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
@@ -204,8 +185,10 @@ char *nFileSetExecutablePath(void)
 {
 #define einfoStr "NIMBLE_ARGS was not set, causing nFileSetExecutablePath() "\
  "to fail."
-    nAssert(NIMBLE_ARGS != NULL, NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
-    nAssert(NIMBLE_ARGS[0] != NULL, NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(NIMBLE_ARGS != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(NIMBLE_ARGS[0] != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
 
     size_t len = strlen(NIMBLE_ARGS[0]);
@@ -239,12 +222,71 @@ char *nFileSetExecutablePath(void)
 
 #define einfoStr "nFileSetExecutablePath() failed to verify that the set "\
  "executable path exists."
-    nint_t err = nFileExists(NEXEC);
+    int err = nFileExists(NEXEC);
     nAssert(err == NSUCCESS,
      err, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
 
     return NEXEC;
+}
+
+int nFileCopy(const char *restrict dst, const char *restrict src)
+{
+#define einfoStr "Dst argument was NULL in nFileCopy()."
+    nErrorAssertRetEi(dst != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+#define einfoStr "Src argument was NULL in nFileCopy()."
+    nErrorAssertRetEi(src != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+#define einfoStr "Dst argument was equal to src argument in nFileCopy()."
+    nErrorAssertRetEi(dst != src,
+     NERROR_INV_ARG, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+
+    int srcFile, dstFile, err;
+    err = nFileOpen(src, NFILE_F_READ | NFILE_F_RAW, &srcFile);
+    nErrorAssertRetEi(err != NSUCCESS, err, NULL, 0);
+    err = nFileOpen(dst, NFILE_F_WRITE | NFILE_F_RAW | NFILE_F_CREATE | NFILE_F_CLEAR, &dstFile);
+    nErrorAssertRetEi(err != NSUCCESS, err, NULL, 0);
+    
+    char buffer[NFILE_BUFFER_SIZE];
+    ssize_t rd = 0, wr = 0;
+    do
+    {
+        rd = nFileRead(srcFile, buffer, sizeof(buffer));
+        if (rd < 0)
+        {
+            goto closeLbl;
+        }
+
+        if (rd)
+        {
+            wr = nFileWrite(dstFile, buffer, rd);
+            if(wr < 0)
+            {
+                goto closeLbl;
+            }
+            if (wr != rd)
+            {
+#define einfoStr "nFileWrite() wrote less bytes than read by nFileRead() in "\
+ "nFileCopy()."
+                nErrorAssert(0,
+                 NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));  
+#undef einfoStr
+                goto closeLbl;
+            }
+        }
+    }
+    while (rd);
+
+closeLbl:;
+    err = nFileClose(&srcFile);
+    nErrorAssert(err != NSUCCESS, err, NULL, 0);
+    err = nFileClose(&dstFile);
+    nErrorAssert(err != NSUCCESS, err, NULL, 0);
+    return err;
 }
 
 // Files.c

@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-08-10.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -16,7 +16,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@
 volatile _Bool NIMBLE_INITIALIZED = 0;
 
 char **NIMBLE_ARGS = NULL;
-nint_t NIMBLE_ARGC = 0;
+int NIMBLE_ARGC = 0;
 
 
 static void nEngineCleanup(void)
@@ -71,12 +71,12 @@ static void nEngineExitSignal(int signum)
     exit(signum);
 }
 
-nint_t nEngineInit(char **args, const nint_t argc,
- void (*errorCallback) (const nint_t error, const time_t errorTime,
+int nEngineInit(char **args, const int argc,
+ void (*errorCallback) (const int error, const time_t errorTime,
  const char *errorDesc, const size_t errorDescLen, const char *stack,
  const size_t stackLen),
 
- void (*crashCallback)(const nint_t error, const time_t errorTime,
+ void (*crashCallback)(const int error, const time_t errorTime,
  const char *errorDesc, const size_t errorDescLen, const char *stack,
  const size_t stackLen)
 
@@ -122,7 +122,7 @@ nint_t nEngineInit(char **args, const nint_t argc,
     nAssert(args && argc, NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 
     NIMBLE_ARGS = nAlloc(sizeof(char *) * argc);
-    nint_t count = 0;
+    int count = 0;
     for (size_t len = 0; args[count] && count < argc; count++)
     {
         len = strlen(args[count]);

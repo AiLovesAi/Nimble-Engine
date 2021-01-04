@@ -1,10 +1,10 @@
-#include "../../include/Nimble/NimbleLicense.h"
+#include "../../../include/Nimble/NimbleLicense.h"
 /*
  * ErrorValues.c
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-12-05.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -16,7 +16,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -1750,13 +1750,13 @@ const size_t nErrorStrLengths[] = {
  "be sure that this particular function will always fail with ENOSYS unless you "\
  "install a new version of the C library or the operating system."
 #define nErrDescNotSupportedStr      "Not supported. A function returns "\
- "this error when certain parameter values are valid, but the functionality "\
- "they request is not available. This can mean that the function does not "\
+ "this error when certain arguments are valid, but the functionality they "\
+ "request is not available. This can mean that the function does not "\
  "implement a particular command or option value or flag bit at all. For "\
  "functions that operate on some object given in a parameter, such as a file "\
  "descriptor or a port, it might instead mean that only that specific object "\
- "(file descriptor, port, etc.) is unable to support the other parameters "\
- "given; different file descriptors might support different ranges of parameter "\
+ "(file descriptor, port, etc.) is unable to support the other arguments "\
+ "given; different file descriptors might support different ranges of argument "\
  "values. If the entire function is not available at all in the implementation, "\
  "it returns NERROR_FUNC_NOT_SUPPORTED instead."
 #define nErrDescInvMultibyteStr      "Invalid or incomplete multibyte "\
@@ -1857,7 +1857,7 @@ const size_t nErrorStrLengths[] = {
  "system call or operation is not permitted for capability mode processes."
 #define nErrDescIntegrityStr         "Integrity check failed. An integrity "\
  "check such as a check-hash or a cross-correlation failed. The integrity "\
- "error falls between NERROR_INV_ARG that identifies errors in parameters to "\
+ "error falls between NERROR_INV_ARG that identifies errors in arguments to "\
  "a system call and NERROR_IO that identifies errors with the underlying "\
  "storage media. It is typically raised by intermediate kernel layers such as "\
  "a filesystem or an in-kernel GEOM subsystem when they detect "\
@@ -3300,7 +3300,7 @@ const size_t nErrorDescLengths[] = {
 };
 
 
-nint_t nErrorFromErrno(const nint_t err)
+int nErrorFromErrno(const int err)
 {
 #if NIMBLE_OS == NIMBLE_WINDOWS
     if ((err > 0) && (err < 15))
@@ -3402,7 +3402,7 @@ nint_t nErrorFromErrno(const nint_t err)
 #endif
 }
 
-nint_t nErrorFromSignal(const nint_t signum)
+int nErrorFromSignal(const int signum)
 {
     switch (signum)
     {

@@ -3,7 +3,7 @@
 *  Nimble Engine
 *
 *  Created by Avery Aaron on 2020-08-09.
-*  Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+*  Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
 *
 */
 
@@ -16,7 +16,7 @@
 #include <Nimble/Graphics/NimbleOpenGL.h>
 
 
-void crashCallback(const nint_t error, const time_t errorTime,
+void crashCallback(const int error, const time_t errorTime,
  const char *errorDesc, const size_t errorDescLen, const char *stack,
  const size_t stackLen)
 {
@@ -38,7 +38,7 @@ void crashCallback(const nint_t error, const time_t errorTime,
     nFree(timeStr);
 }
 
-void errorCallback(const nint_t error, const time_t errorTime,
+void errorCallback(const int error, const time_t errorTime,
  const char * errorDesc, const size_t errorDescLen, const char * stack,
  const size_t stackLen)
 {

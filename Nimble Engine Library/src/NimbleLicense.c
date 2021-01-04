@@ -2,8 +2,8 @@
  * NimbleLicense.c
  * Nimble Engine
  *
- * Created automatically by LicenseGenerator.py on 2020-11-25.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Created automatically by LicenseGenerator.py on 2021-01-03.
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -13,7 +13,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +45,7 @@
 const char LICENSE_md[] = "\nNimble Engine License:"\
 "MIT License\n"\
 "\n"\
-"Copyright (c) 2020 Avery Aaron <business.a3ology@gmail.com>\n"\
+"Copyright (c) 2020-2021 Avery Aaron <business.a3ology@gmail.com>\n"\
 "\n"\
 "Permission is hereby granted, free of charge, to any person obtaining a copy\n"\
 "of this software and associated documentation files (the \"Software\"), to deal\n"\

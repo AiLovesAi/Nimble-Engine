@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-08-10.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -14,7 +14,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -84,7 +84,7 @@ char **NIMBLE_ARGS;
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t NIMBLE_ARGC;
+int NIMBLE_ARGC;
 
 /**
  * @brief Initialized the game engine.
@@ -104,18 +104,17 @@ nint_t NIMBLE_ARGC;
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-nint_t
+int
 nEngineInit(char **args,
-            const nint_t argc,
-            void (*errorCallback)(
-                                  const nint_t error,
+            const int argc,
+            void (*errorCallback)(const int error,
                                   const time_t errorTime,
                                   const char *errorDesc,
                                   const size_t errorDescLen,
                                   const char *stack,
                                   const size_t stackLen
                                   ),
-            void (*crashCallback) (const nint_t error,
+            void (*crashCallback) (const int error,
                                    const time_t errorTime,
                                    const char *errorDesc,
                                    const size_t errorDescLen,

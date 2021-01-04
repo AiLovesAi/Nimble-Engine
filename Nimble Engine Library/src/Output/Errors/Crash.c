@@ -1,10 +1,10 @@
-#include "../../include/Nimble/NimbleLicense.h"
+#include "../../../include/Nimble/NimbleLicense.h"
 /*
  * Crash.c
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-08-19.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -16,7 +16,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -62,32 +62,32 @@ nMutex_t crashMutex = NULL;
  * @param[in] stack The stack as a string.
  * @param[in] stackLen The length of the stack string.
  */
-static void nCrashCallbackDefault(const nint_t error,
+static void nCrashCallbackDefault(const int error,
                                   const time_t errorTime,
-                                  const char *errorDesc,
+                                  const char *restrict errorDesc,
                                   const size_t errorDescLen,
-                                  const char *stack,
+                                  const char *restrict stack,
                                   const size_t stackLen
                                   );
 
-void (*volatile crashCallback) (const nint_t error, const time_t errorTime,
- const char *errorDesc, const size_t errorDescLen, const char *stack,
- const size_t stackLen) = &nCrashCallbackDefault;
+void (*volatile crashCallback) (const int error, const time_t errorTime,
+ const char *restrict errorDesc, const size_t errorDescLen, 
+ const char *restrict stack, const size_t stackLen) = &nCrashCallbackDefault;
 
 
-static void nCrashCallbackDefault(const nint_t error, const time_t errorTime,
- const char *errorDesc, const size_t errorDescLen, const char *stack,
- const size_t stackLen)
+static void nCrashCallbackDefault(const int error, const time_t errorTime,
+ const char *restrict errorDesc, const size_t errorDescLen,
+ const char *restrict stack, const size_t stackLen)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
 }
 
-void nAssert(const nint_t check, const nint_t error, const char *info,
+void nAssert(const int check, const int error, const char *info,
  const size_t infoLen)
 {
     if (!check)
     {
-        nint_t err = 0;
+        int err = 0;
 #if NIMBLE_OS == NIMBLE_WINDOWS
         nErrorLastWindows(err);
         if (err)
@@ -118,9 +118,9 @@ void nAssert(const nint_t check, const nint_t error, const char *info,
     }
 }
 
-nint_t nCrashSetCallback(void (*callback)(const nint_t error,
- const time_t errorTime, const char *errorDesc, const size_t errorDescLen,
- const char *stack, const size_t stackLen))
+int nCrashSetCallback(void (*callback)(const int error,
+ const time_t errorTime, const char *restrict errorDesc, const size_t errorDescLen,
+ const char *restrict stack, const size_t stackLen))
 {
     if (callback)
     {
@@ -133,7 +133,7 @@ nint_t nCrashSetCallback(void (*callback)(const nint_t error,
     return NSUCCESS;
 }
 
-_Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
+_Noreturn void nCrashSafe(const int error, time_t errorTime,
  const char *errorDesc, size_t errorDescLen)
 {
     if (!crashMutex)
@@ -200,7 +200,7 @@ _Noreturn void nCrashSafe(const nint_t error, time_t errorTime,
 
 _Noreturn void nCrashSignal(const int signum)
 {
-    const nint_t error = nErrorFromSignal(signum);
+    const int error = nErrorFromSignal(signum);
     const time_t errorTime = time(NULL);
     
     signal(signum, SIG_DFL);
@@ -208,7 +208,7 @@ _Noreturn void nCrashSignal(const int signum)
     /* NO RETURN */
 }
 
-_Noreturn void nCrashAbort(const nint_t error)
+_Noreturn void nCrashAbort(const int error)
 {
     fprintf(stderr, "The program failed to crash safely and is aborting. "\
      "Error: %s - %s", nErrorStr(error), nErrorDesc(error));

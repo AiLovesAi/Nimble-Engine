@@ -108,26 +108,26 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a270bdaf239bd24a901721fb1a951f8bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#a270bdaf239bd24a901721fb1a951f8bf">nErrorAssert</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> check, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, const size_t infoLen)</td></tr>
-<tr class="memdesc:a270bdaf239bd24a901721fb1a951f8bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws an error with <code>info</code> if <code>check</code> is equal to zero.  <a href="_errors_8h.html#a270bdaf239bd24a901721fb1a951f8bf">More...</a><br /></td></tr>
-<tr class="separator:a270bdaf239bd24a901721fb1a951f8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12498dbeeb9df9e8123fde59eb7f2c5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#a12498dbeeb9df9e8123fde59eb7f2c5c">nErrorThrow</a> (const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, char *errorDescStr, size_t errorDescLen)</td></tr>
-<tr class="memdesc:a12498dbeeb9df9e8123fde59eb7f2c5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an error to the error callback.  <a href="_errors_8h.html#a12498dbeeb9df9e8123fde59eb7f2c5c">More...</a><br /></td></tr>
-<tr class="separator:a12498dbeeb9df9e8123fde59eb7f2c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21bec1b3888039d6d5f52f7afabfeb1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#a21bec1b3888039d6d5f52f7afabfeb1e">nErrorToString</a> (size_t *errorLen, const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const char *info, size_t infoLen) __attribute__((warn_unused_result))</td></tr>
-<tr class="memdesc:a21bec1b3888039d6d5f52f7afabfeb1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string.  <a href="_errors_8h.html#a21bec1b3888039d6d5f52f7afabfeb1e">More...</a><br /></td></tr>
-<tr class="separator:a21bec1b3888039d6d5f52f7afabfeb1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a871b2c5f514f7f899be851a8f07e4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#a2a871b2c5f514f7f899be851a8f07e4e">nErrorSetCallback</a> (void(*callback)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen))</td></tr>
-<tr class="memdesc:a2a871b2c5f514f7f899be851a8f07e4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function to handle errors.  <a href="_errors_8h.html#a2a871b2c5f514f7f899be851a8f07e4e">More...</a><br /></td></tr>
-<tr class="separator:a2a871b2c5f514f7f899be851a8f07e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11188bba03205e0201acf4f09cd1f55d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#a11188bba03205e0201acf4f09cd1f55d">nErrorGetStacktrace</a> (size_t *stackLen, size_t *stackLevels) __attribute__((warn_unused_result))</td></tr>
-<tr class="memdesc:a11188bba03205e0201acf4f09cd1f55d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current stack trace as a string.  <a href="_errors_8h.html#a11188bba03205e0201acf4f09cd1f55d">More...</a><br /></td></tr>
-<tr class="separator:a11188bba03205e0201acf4f09cd1f55d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4986b569ad01404ee5454c0d4d4d586"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#af4986b569ad01404ee5454c0d4d4d586">nErrorAssert</a> (const int check, const int error, const char *info, const size_t infoLen)</td></tr>
+<tr class="memdesc:af4986b569ad01404ee5454c0d4d4d586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws an error with <code>info</code> if <code>check</code> is equal to zero.  <a href="_errors_8h.html#af4986b569ad01404ee5454c0d4d4d586">More...</a><br /></td></tr>
+<tr class="separator:af4986b569ad01404ee5454c0d4d4d586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ba394b722d2e30ddb933318097bf637"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#a6ba394b722d2e30ddb933318097bf637">nErrorThrow</a> (const int error, char *errorDescStr, size_t errorDescLen)</td></tr>
+<tr class="memdesc:a6ba394b722d2e30ddb933318097bf637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an error to the error callback.  <a href="_errors_8h.html#a6ba394b722d2e30ddb933318097bf637">More...</a><br /></td></tr>
+<tr class="separator:a6ba394b722d2e30ddb933318097bf637"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa6e76f8862fd78fc17a5e24d3fce947"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#afa6e76f8862fd78fc17a5e24d3fce947">nErrorToString</a> (size_t *restrict errorLen, const int error, const char *restrict info, size_t infoLen) __attribute__((warn_unused_result))</td></tr>
+<tr class="memdesc:afa6e76f8862fd78fc17a5e24d3fce947"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string.  <a href="_errors_8h.html#afa6e76f8862fd78fc17a5e24d3fce947">More...</a><br /></td></tr>
+<tr class="separator:afa6e76f8862fd78fc17a5e24d3fce947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed72af568f39f354037daa32492bb65c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#aed72af568f39f354037daa32492bb65c">nErrorSetCallback</a> (void(*callback)(const int error, const time_t errorTime, const char *restrict errorDesc, const size_t errorDescLen, const char *restrict stack, const size_t stackLen))</td></tr>
+<tr class="memdesc:aed72af568f39f354037daa32492bb65c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function to handle errors.  <a href="_errors_8h.html#aed72af568f39f354037daa32492bb65c">More...</a><br /></td></tr>
+<tr class="separator:aed72af568f39f354037daa32492bb65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f88bca158b5730b1b0ecbe467eec78f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#a9f88bca158b5730b1b0ecbe467eec78f">nErrorGetStacktrace</a> (size_t *restrict stackLen, size_t *restrict stackLevels) __attribute__((warn_unused_result))</td></tr>
+<tr class="memdesc:a9f88bca158b5730b1b0ecbe467eec78f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current stack trace as a string.  <a href="_errors_8h.html#a9f88bca158b5730b1b0ecbe467eec78f">More...</a><br /></td></tr>
+<tr class="separator:a9f88bca158b5730b1b0ecbe467eec78f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines error handling functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Avery Aaron </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.a'+'3ol'+'og'+'y@g'+'ma'+'il.'+'co'+'m'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>a3olo<span style="display: none;">.nosp@m.</span>gy@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a></p>
+<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020-2021 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.a'+'3ol'+'og'+'y@g'+'ma'+'il.'+'co'+'m'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>a3olo<span style="display: none;">.nosp@m.</span>gy@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a></p>
 <p class="interdd">Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
 <p class="interdd">The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 <p class="enddd">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </p>
@@ -197,7 +197,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00087">87</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00091">91</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
 
 </div>
 </div>
@@ -239,7 +239,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    ({\</div>
-<div class="line">    return <a class="code" href="_errors_8h.html#a270bdaf239bd24a901721fb1a951f8bf">nErrorAssert</a>(check, error, info, infoLen);\</div>
+<div class="line">    return <a class="code" href="_errors_8h.html#af4986b569ad01404ee5454c0d4d4d586">nErrorAssert</a>(check, error, info, infoLen);\</div>
 <div class="line">})</div>
 </div><!-- fragment -->
 <p>Throws an error with <code>info</code> and returns if <code>check</code> is equal to zero. </p>
@@ -254,7 +254,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00121">121</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00125">125</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
 
 </div>
 </div>
@@ -296,8 +296,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    ({\</div>
-<div class="line">    nint_t err = <a class="code" href="_errors_8h.html#a270bdaf239bd24a901721fb1a951f8bf">nErrorAssert</a>(check, error, info, infoLen);\</div>
-<div class="line">    if (err) <span class="keywordflow">return</span> err;\</div>
+<div class="line">    int n_err = <a class="code" href="_errors_8h.html#af4986b569ad01404ee5454c0d4d4d586">nErrorAssert</a>(check, error, info, infoLen);\</div>
+<div class="line">    if (n_err) <span class="keywordflow">return</span> n_err;\</div>
 <div class="line">})</div>
 </div><!-- fragment -->
 <p>Throws an error with <code>info</code> and returns only if <code>check</code> is equal to zero. </p>
@@ -312,7 +312,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00137">137</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00141">141</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
 
 </div>
 </div>
@@ -360,7 +360,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    ({\</div>
-<div class="line">    if (<a class="code" href="_errors_8h.html#a270bdaf239bd24a901721fb1a951f8bf">nErrorAssert</a>(check, error, info, infoLen)) <span class="keywordflow">return</span> ret;\</div>
+<div class="line">    if (<a class="code" href="_errors_8h.html#af4986b569ad01404ee5454c0d4d4d586">nErrorAssert</a>(check, error, info, infoLen)) <span class="keywordflow">return</span> ret;\</div>
 <div class="line">})</div>
 </div><!-- fragment -->
 <p>Throws an error with <code>info</code> and returns only if <code>check</code> is equal to zero. </p>
@@ -376,7 +376,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00105">105</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00109">109</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
 
 </div>
 </div>
@@ -402,7 +402,7 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 <p>Sets the last errno error to <code>err</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00168">168</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00172">172</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
 
 </div>
 </div>
@@ -425,22 +425,22 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a270bdaf239bd24a901721fb1a951f8bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a270bdaf239bd24a901721fb1a951f8bf">&#9670;&nbsp;</a></span>nErrorAssert()</h2>
+<a id="af4986b569ad01404ee5454c0d4d4d586"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4986b569ad01404ee5454c0d4d4d586">&#9670;&nbsp;</a></span>nErrorAssert()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorAssert </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int nErrorAssert </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>check</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>error</em>, </td>
         </tr>
         <tr>
@@ -475,12 +475,12 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> or an error is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00088">88</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00089">89</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a11188bba03205e0201acf4f09cd1f55d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11188bba03205e0201acf4f09cd1f55d">&#9670;&nbsp;</a></span>nErrorGetStacktrace()</h2>
+<a id="a9f88bca158b5730b1b0ecbe467eec78f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f88bca158b5730b1b0ecbe467eec78f">&#9670;&nbsp;</a></span>nErrorGetStacktrace()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -488,13 +488,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a> char* nErrorGetStacktrace </td>
           <td>(</td>
-          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramtype">size_t *restrict&#160;</td>
           <td class="paramname"><em>stackLen</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramtype">size_t *restrict&#160;</td>
           <td class="paramname"><em>stackLevels</em>&#160;</td>
         </tr>
         <tr>
@@ -518,20 +518,20 @@ Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Find function name from eip function poiter </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00266">266</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00267">267</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a2a871b2c5f514f7f899be851a8f07e4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a871b2c5f514f7f899be851a8f07e4e">&#9670;&nbsp;</a></span>nErrorSetCallback()</h2>
+<a id="aed72af568f39f354037daa32492bb65c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed72af568f39f354037daa32492bb65c">&#9670;&nbsp;</a></span>nErrorSetCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> nErrorSetCallback </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int nErrorSetCallback </td>
           <td>(</td>
-          <td class="paramtype">void(*)(const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a> error, const time_t errorTime, const char *errorDesc, const size_t errorDescLen, const char *stack, const size_t stackLen)&#160;</td>
+          <td class="paramtype">void(*)(const int error, const time_t errorTime, const char *restrict errorDesc, const size_t errorDescLen, const char *restrict stack, const size_t stackLen)&#160;</td>
           <td class="paramname"><em>callback</em></td><td>)</td>
           <td></td>
         </tr>
@@ -549,12 +549,12 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Check nErrorHandlerDefault() for parameter information. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00250">250</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00251">251</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a12498dbeeb9df9e8123fde59eb7f2c5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12498dbeeb9df9e8123fde59eb7f2c5c">&#9670;&nbsp;</a></span>nErrorThrow()</h2>
+<a id="a6ba394b722d2e30ddb933318097bf637"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ba394b722d2e30ddb933318097bf637">&#9670;&nbsp;</a></span>nErrorThrow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -562,7 +562,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void nErrorThrow </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>error</em>, </td>
         </tr>
         <tr>
@@ -597,12 +597,12 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The program will crash if this is unsuccessful. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00133">133</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00134">134</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a21bec1b3888039d6d5f52f7afabfeb1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21bec1b3888039d6d5f52f7afabfeb1e">&#9670;&nbsp;</a></span>nErrorToString()</h2>
+<a id="afa6e76f8862fd78fc17a5e24d3fce947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa6e76f8862fd78fc17a5e24d3fce947">&#9670;&nbsp;</a></span>nErrorToString()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -610,19 +610,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a> char* nErrorToString </td>
           <td>(</td>
-          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramtype">size_t *restrict&#160;</td>
           <td class="paramname"><em>errorLen</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="_nimble_8h.html#a437464835742c38c8b375c048b8f8993">nint_t</a>&#160;</td>
+          <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>error</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *&#160;</td>
+          <td class="paramtype">const char *restrict&#160;</td>
           <td class="paramname"><em>info</em>, </td>
         </tr>
         <tr>
@@ -651,12 +651,12 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the string describing <code>error</code> is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00166">166</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00167">167</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="a_errors_8h_html_a270bdaf239bd24a901721fb1a951f8bf"><div class="ttname"><a href="_errors_8h.html#a270bdaf239bd24a901721fb1a951f8bf">nErrorAssert</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN nint_t nErrorAssert(const nint_t check, const nint_t error, const char *info, const size_t infoLen)</div><div class="ttdoc">Throws an error with info if check is equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00088">Errors.c:88</a></div></div>
+<div class="ttc" id="a_errors_8h_html_af4986b569ad01404ee5454c0d4d4d586"><div class="ttname"><a href="_errors_8h.html#af4986b569ad01404ee5454c0d4d4d586">nErrorAssert</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN int nErrorAssert(const int check, const int error, const char *info, const size_t infoLen)</div><div class="ttdoc">Throws an error with info if check is equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00089">Errors.c:89</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

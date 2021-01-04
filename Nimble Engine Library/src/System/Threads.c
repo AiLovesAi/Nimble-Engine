@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-11-03.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -16,7 +16,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -51,7 +51,7 @@
 #include <threads.h>
 #endif
 
-nint_t nThreadCreate(nThread_t *thread, nThreadRoutine_t (*start)(void *),
+int nThreadCreate(nThread_t *thread, nThreadRoutine_t (*start)(void *),
  void *data)
 {
     nThread_t thrd;
@@ -79,7 +79,7 @@ nint_t nThreadCreate(nThread_t *thread, nThreadRoutine_t (*start)(void *),
     return NSUCCESS;
 }
 
-nint_t nThreadJoin(nThread_t thread, nint_t *ret)
+int nThreadJoin(nThread_t thread, int *ret)
 {
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
     DWORD r = 0;
@@ -116,7 +116,7 @@ int r;
     return NSUCCESS;
 }
 
-nint_t nThreadDetach(nThread_t thread)
+int nThreadDetach(nThread_t thread)
 {
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "CloseHandle() failed in nThreadDetach()."
@@ -139,7 +139,7 @@ nint_t nThreadDetach(nThread_t thread)
 #endif
 }
 
-nint_t nThreadMutexCreate(nMutex_t *mutex)
+int nThreadMutexCreate(nMutex_t *mutex)
 {
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "CreateMutex() failed in nThreadMutexCreate()."
@@ -163,7 +163,7 @@ nint_t nThreadMutexCreate(nMutex_t *mutex)
 #endif
 }
 
-nint_t nThreadMutexLock(nMutex_t *mutex)
+int nThreadMutexLock(nMutex_t *mutex)
 {
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "WaitForSingleObject() failed in nThreadJoin()."
@@ -186,7 +186,7 @@ nint_t nThreadMutexLock(nMutex_t *mutex)
 #endif
 }
 
-nint_t nThreadMutexUnlock(nMutex_t *mutex)
+int nThreadMutexUnlock(nMutex_t *mutex)
 {
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "ReleaseMutex() failed in nThreadMutexUnlock()."
@@ -209,7 +209,7 @@ nint_t nThreadMutexUnlock(nMutex_t *mutex)
 #endif
 }
 
-nint_t nThreadMutexDestroy(nMutex_t *mutex)
+int nThreadMutexDestroy(nMutex_t *mutex)
 {
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "CloseHandle() failed in nThreadMutexDestroy()."

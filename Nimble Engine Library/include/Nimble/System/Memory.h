@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-12-07.
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  */
 
@@ -14,7 +14,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -103,12 +103,13 @@ __attribute__((warn_unused_result))
  * @param[in] src The pointer to free.
  * @param[in] len The number of characters to copy. This must not include the
  * null terminator.
- * @return The number of successfully copied bytes is returned.
+ * @return The number of successfully copied bytes is returned, or -1 if an error
+ * occurs.
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 NIMBLE_FREEME
-size_t
+ssize_t
 nStringCopy(char *const restrict dst,
             const char *const restrict src,
             const size_t len
