@@ -68,12 +68,6 @@ int main(int argc, char **argv)
     nEngineInit(argv, argc, errorCallback, crashCallback);
     printf("Initialized engine.\n");
 
-    int file = 0;
-    nFileOpen("src.txt", NFILE_F_WRITE | NFILE_F_CLEAR | NFILE_F_CREATE, &file);
-    nFileWrite(file, NEXEC, NEXEC_LEN);
-    nFileClose(&file);
-    nFileCopy("src.txt", "dst.txt");
-
     return EXIT_SUCCESS;
 }
 

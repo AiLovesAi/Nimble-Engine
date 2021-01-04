@@ -50,6 +50,7 @@ extern "C" {
 
 #include <fcntl.h>
 #include <limits.h>
+#include <sys/stat.h>
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #include <direct.h>
 #include <io.h>
@@ -117,6 +118,16 @@ extern "C" {
 #  endif
 #  ifndef O_TEXT
 #    define O_TEXT _O_TEXT
+#  endif
+
+#  ifndef S_IREAD
+#    define S_IREAD _S_IREAD
+#  endif
+#  ifndef S_IWRITE
+#    define S_IWRITE _S_IWRITE
+#  endif
+#  ifndef S_IEXEC
+#    define S_IEXEC _S_IEXEC
 #  endif
 
 /* Functions */
@@ -357,14 +368,14 @@ nFileSetExecutablePath(void);
 /**
  * @brief Copies @p src to @p dst.
  *
- * @param[in] dst The file path of the destination file to copy to.
  * @param[in] src The file path of the source file to copy from.
+ * @param[in] dst The file path of the destination file to copy to.
  * @return #NSUCCESS is returned if successful; otherwise an error is returned.
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int nFileCopy(const char *restrict dst,
-              const char *restrict src
+int nFileCopy(const char *restrict src,
+              const char *restrict dst
               );
 
 #endif // NIMBLE_ENGINE_FILES_H

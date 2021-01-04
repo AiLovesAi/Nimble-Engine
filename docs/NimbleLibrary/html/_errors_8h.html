@@ -111,9 +111,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af4986b569ad01404ee5454c0d4d4d586"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#af4986b569ad01404ee5454c0d4d4d586">nErrorAssert</a> (const int check, const int error, const char *info, const size_t infoLen)</td></tr>
 <tr class="memdesc:af4986b569ad01404ee5454c0d4d4d586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws an error with <code>info</code> if <code>check</code> is equal to zero.  <a href="_errors_8h.html#af4986b569ad01404ee5454c0d4d4d586">More...</a><br /></td></tr>
 <tr class="separator:af4986b569ad01404ee5454c0d4d4d586"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ba394b722d2e30ddb933318097bf637"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#a6ba394b722d2e30ddb933318097bf637">nErrorThrow</a> (const int error, char *errorDescStr, size_t errorDescLen)</td></tr>
-<tr class="memdesc:a6ba394b722d2e30ddb933318097bf637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an error to the error callback.  <a href="_errors_8h.html#a6ba394b722d2e30ddb933318097bf637">More...</a><br /></td></tr>
-<tr class="separator:a6ba394b722d2e30ddb933318097bf637"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b31ded3d383d72b727ce419ed86bf7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#a3b31ded3d383d72b727ce419ed86bf7d">nErrorThrow</a> (const int error, const char *errorDescStr, size_t errorDescLen, const int createDesc)</td></tr>
+<tr class="memdesc:a3b31ded3d383d72b727ce419ed86bf7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an error to the error callback.  <a href="_errors_8h.html#a3b31ded3d383d72b727ce419ed86bf7d">More...</a><br /></td></tr>
+<tr class="separator:a3b31ded3d383d72b727ce419ed86bf7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa6e76f8862fd78fc17a5e24d3fce947"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8h.html#afa6e76f8862fd78fc17a5e24d3fce947">nErrorToString</a> (size_t *restrict errorLen, const int error, const char *restrict info, size_t infoLen) __attribute__((warn_unused_result))</td></tr>
 <tr class="memdesc:afa6e76f8862fd78fc17a5e24d3fce947"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an error and returns a string.  <a href="_errors_8h.html#afa6e76f8862fd78fc17a5e24d3fce947">More...</a><br /></td></tr>
 <tr class="separator:afa6e76f8862fd78fc17a5e24d3fce947"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -402,7 +402,7 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 <p>Sets the last errno error to <code>err</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00172">172</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8h_source.html#l00176">176</a> of file <a class="el" href="_errors_8h_source.html">Errors.h</a>.</p>
 
 </div>
 </div>
@@ -518,7 +518,7 @@ Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Find function name from eip function poiter </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00267">267</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00304">304</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -549,12 +549,12 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Check nErrorHandlerDefault() for parameter information. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00251">251</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00288">288</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="a6ba394b722d2e30ddb933318097bf637"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ba394b722d2e30ddb933318097bf637">&#9670;&nbsp;</a></span>nErrorThrow()</h2>
+<a id="a3b31ded3d383d72b727ce419ed86bf7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b31ded3d383d72b727ce419ed86bf7d">&#9670;&nbsp;</a></span>nErrorThrow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -568,14 +568,20 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>errorDescStr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>errorDescLen</em>&#160;</td>
+          <td class="paramname"><em>errorDescLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>createDesc</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -591,13 +597,14 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The error to throw. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">errorDescStr</td><td>Relevant information, such as a file location, that could help diagnose the error. This can be <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code>. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">errorDescStrLen</td><td>The length of the <code>info</code> argument. A length of zero (0) uses strlen() to determine length.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">errorDescStrLen</td><td>The length of the <code>info</code> argument. A length of zero (0) uses strlen() to determine length. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">createDesc</td><td>If set, <code>errorDescStr</code> will be treated as info, and <a class="el" href="_errors_8h.html#afa6e76f8862fd78fc17a5e24d3fce947" title="Describes an error and returns a string.">nErrorToString()</a> will be called. On Windows, a positive value will call <a class="el" href="_errors_8h.html#afa6e76f8862fd78fc17a5e24d3fce947" title="Describes an error and returns a string.">nErrorToString()</a> and a negative value will call nErrorToStringWindows().</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The program will crash if this is unsuccessful. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00134">134</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00138">138</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -651,7 +658,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the string describing <code>error</code> is returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00167">167</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00186">186</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>

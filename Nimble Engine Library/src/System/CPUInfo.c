@@ -421,11 +421,8 @@ char *nSysGetCPUInfo(size_t *len)
             snprintf(userRequestStr, sizeof(userRequestStr), formatStr,
              info.val, info.val);
 
-            size_t errorDescLen;
-            char *errorDescStr = nErrorToString(&errorDescLen, NERROR_WARN,
-             userRequestStr, NCONST_STR_LEN(userRequestStr));
-            nErrorThrow(NERROR_WARN, errorDescStr, errorDescLen);
-            nFree(errorDescStr);
+            nErrorThrow(NERROR_WARN, userRequestStr,
+             NCONST_STR_LEN(userRequestStr), 1);
 
             const char unknownCPUStr[] = "Unknown";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."

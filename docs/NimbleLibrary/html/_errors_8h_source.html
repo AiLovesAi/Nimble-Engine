@@ -124,87 +124,88 @@ $(function() {
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">    if (n_err) return n_err;\</span></div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">})</span></div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<a class="code" href="_errors_8h.html#a6ba394b722d2e30ddb933318097bf637">nErrorThrow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> error,</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordtype">char</span> *errorDescStr,</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <span class="keywordtype">size_t</span> errorDescLen</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            );</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="_errors_8h.html#a1e6c4c7f40480d707b2030da2dc96eab">  172</a></span>&#160;<span class="preprocessor">#  define nErrorLastErrno(err) ({\</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">    err = errno;\</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor">    errno = 0;\</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">})</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<a class="code" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="keywordtype">char</span> *</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<a class="code" href="_errors_8h.html#afa6e76f8862fd78fc17a5e24d3fce947">nErrorToString</a>(<span class="keywordtype">size_t</span> *restrict errorLen,</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;               <span class="keyword">const</span> <span class="keywordtype">int</span> error,</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;               <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict info,</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;               <span class="keywordtype">size_t</span> infoLen</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;               )</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;__attribute__((warn_unused_result));</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#if NIMBLE_OS == NIMBLE_WINDOWS</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#  define nErrorLastWindows(err) ({\</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">    err = GetLastError();\</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor">    SetLastError(ERROR_SUCCESS);\</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">})</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="keywordtype">char</span> *</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;nErrorToStringWindows(<span class="keywordtype">size_t</span> *restrict errorLen,</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                      <span class="keyword">const</span> <span class="keywordtype">int</span> error,</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                      <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict info,</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                      <span class="keywordtype">size_t</span> infoLen</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                      )</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;__attribute__((warn_unused_result));</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<a class="code" href="_errors_8h.html#aed72af568f39f354037daa32492bb65c">nErrorSetCallback</a>(<span class="keywordtype">void</span> (*callback)(</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">int</span> error,</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                                   <span class="keyword">const</span> time_t errorTime,</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict errorDesc,</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">size_t</span> errorDescLen,</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict stack,</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">size_t</span> stackLen</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                                   )</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                  );</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<a class="code" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="keywordtype">char</span> *</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<a class="code" href="_errors_8h.html#a9f88bca158b5730b1b0ecbe467eec78f">nErrorGetStacktrace</a>(<span class="keywordtype">size_t</span> *restrict stackLen,</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                    <span class="keywordtype">size_t</span> *restrict stackLevels</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                    )</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;__attribute__((warn_unused_result));</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_ERRORS_H</span></div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;}</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<a class="code" href="_errors_8h.html#a3b31ded3d383d72b727ce419ed86bf7d">nErrorThrow</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> error,</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">char</span> *errorDescStr,</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <span class="keywordtype">size_t</span> errorDescLen,</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">int</span> createDesc</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            );</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="_errors_8h.html#a1e6c4c7f40480d707b2030da2dc96eab">  176</a></span>&#160;<span class="preprocessor">#  define nErrorLastErrno(err) ({\</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">    err = errno;\</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor">    errno = 0;\</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">})</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<a class="code" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="keywordtype">char</span> *</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<a class="code" href="_errors_8h.html#afa6e76f8862fd78fc17a5e24d3fce947">nErrorToString</a>(<span class="keywordtype">size_t</span> *restrict errorLen,</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;               <span class="keyword">const</span> <span class="keywordtype">int</span> error,</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;               <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict info,</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;               <span class="keywordtype">size_t</span> infoLen</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;               )</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;__attribute__((warn_unused_result));</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#if NIMBLE_OS == NIMBLE_WINDOWS</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="preprocessor">#  define nErrorLastWindows(err) ({\</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">    err = GetLastError();\</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="preprocessor">    SetLastError(ERROR_SUCCESS);\</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">})</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="keywordtype">char</span> *</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;nErrorToStringWindows(<span class="keywordtype">size_t</span> *restrict errorLen,</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                      <span class="keyword">const</span> <span class="keywordtype">int</span> error,</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                      <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict info,</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                      <span class="keywordtype">size_t</span> infoLen</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                      )</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;__attribute__((warn_unused_result));</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="keywordtype">int</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<a class="code" href="_errors_8h.html#aed72af568f39f354037daa32492bb65c">nErrorSetCallback</a>(<span class="keywordtype">void</span> (*callback)(</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">int</span> error,</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                                   <span class="keyword">const</span> time_t errorTime,</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict errorDesc,</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">size_t</span> errorDescLen,</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict stack,</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                                   <span class="keyword">const</span> <span class="keywordtype">size_t</span> stackLen</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                                   )</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                  );</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<a class="code" href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="keywordtype">char</span> *</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<a class="code" href="_errors_8h.html#a9f88bca158b5730b1b0ecbe467eec78f">nErrorGetStacktrace</a>(<span class="keywordtype">size_t</span> *restrict stackLen,</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                    <span class="keywordtype">size_t</span> *restrict stackLevels</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                    )</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;__attribute__((warn_unused_result));</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_ERRORS_H</span></div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160; </div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">// Errors.h</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;}</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="comment">// Errors.h</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="a_nimble_8h_html_a99b09cd8c8c999889cf8113c3d281368"><div class="ttname"><a href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div><div class="ttdeci">#define NIMBLE_EXTERN</div><div class="ttdoc">Extern alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00187">Nimble.h:187</a></div></div>
-<div class="ttc" id="a_errors_8h_html_aed72af568f39f354037daa32492bb65c"><div class="ttname"><a href="_errors_8h.html#aed72af568f39f354037daa32492bb65c">nErrorSetCallback</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN int nErrorSetCallback(void(*callback)(const int error, const time_t errorTime, const char *restrict errorDesc, const size_t errorDescLen, const char *restrict stack, const size_t stackLen))</div><div class="ttdoc">Sets the callback function to handle errors.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00251">Errors.c:251</a></div></div>
+<div class="ttc" id="a_errors_8h_html_aed72af568f39f354037daa32492bb65c"><div class="ttname"><a href="_errors_8h.html#aed72af568f39f354037daa32492bb65c">nErrorSetCallback</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN int nErrorSetCallback(void(*callback)(const int error, const time_t errorTime, const char *restrict errorDesc, const size_t errorDescLen, const char *restrict stack, const size_t stackLen))</div><div class="ttdoc">Sets the callback function to handle errors.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00288">Errors.c:288</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a78dc12a9b2532f00e9b116cad9191615"><div class="ttname"><a href="_nimble_8h.html#a78dc12a9b2532f00e9b116cad9191615">NIMBLE_FREEME</a></div><div class="ttdeci">#define NIMBLE_FREEME</div><div class="ttdoc">Denotes that a function may allocate memory that should later be freed.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00189">Nimble.h:189</a></div></div>
 <div class="ttc" id="a_errors_8h_html_af4986b569ad01404ee5454c0d4d4d586"><div class="ttname"><a href="_errors_8h.html#af4986b569ad01404ee5454c0d4d4d586">nErrorAssert</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN int nErrorAssert(const int check, const int error, const char *info, const size_t infoLen)</div><div class="ttdoc">Throws an error with info if check is equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00089">Errors.c:89</a></div></div>
 <div class="ttc" id="a_error_values_8h_html"><div class="ttname"><a href="_error_values_8h.html">ErrorValues.h</a></div><div class="ttdoc">This class defines error values for error handling functions.</div></div>
+<div class="ttc" id="a_errors_8h_html_a3b31ded3d383d72b727ce419ed86bf7d"><div class="ttname"><a href="_errors_8h.html#a3b31ded3d383d72b727ce419ed86bf7d">nErrorThrow</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN void nErrorThrow(const int error, const char *errorDescStr, size_t errorDescLen, const int createDesc)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00138">Errors.c:138</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a217e8380e1998f7b39a24176186eeaa4"><div class="ttname"><a href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div><div class="ttdeci">#define NIMBLE_EXPORT</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00185">Nimble.h:185</a></div></div>
-<div class="ttc" id="a_errors_8h_html_a6ba394b722d2e30ddb933318097bf637"><div class="ttname"><a href="_errors_8h.html#a6ba394b722d2e30ddb933318097bf637">nErrorThrow</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN void nErrorThrow(const int error, char *errorDescStr, size_t errorDescLen)</div><div class="ttdoc">Sends an error to the error callback.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00134">Errors.c:134</a></div></div>
-<div class="ttc" id="a_errors_8h_html_a9f88bca158b5730b1b0ecbe467eec78f"><div class="ttname"><a href="_errors_8h.html#a9f88bca158b5730b1b0ecbe467eec78f">nErrorGetStacktrace</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN NIMBLE_FREEME char * nErrorGetStacktrace(size_t *restrict stackLen, size_t *restrict stackLevels) __attribute__((warn_unused_result))</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00267">Errors.c:267</a></div></div>
-<div class="ttc" id="a_errors_8h_html_afa6e76f8862fd78fc17a5e24d3fce947"><div class="ttname"><a href="_errors_8h.html#afa6e76f8862fd78fc17a5e24d3fce947">nErrorToString</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN NIMBLE_FREEME char * nErrorToString(size_t *restrict errorLen, const int error, const char *restrict info, size_t infoLen) __attribute__((warn_unused_result))</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00167">Errors.c:167</a></div></div>
+<div class="ttc" id="a_errors_8h_html_a9f88bca158b5730b1b0ecbe467eec78f"><div class="ttname"><a href="_errors_8h.html#a9f88bca158b5730b1b0ecbe467eec78f">nErrorGetStacktrace</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN NIMBLE_FREEME char * nErrorGetStacktrace(size_t *restrict stackLen, size_t *restrict stackLevels) __attribute__((warn_unused_result))</div><div class="ttdoc">Returns the current stack trace as a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00304">Errors.c:304</a></div></div>
+<div class="ttc" id="a_errors_8h_html_afa6e76f8862fd78fc17a5e24d3fce947"><div class="ttname"><a href="_errors_8h.html#afa6e76f8862fd78fc17a5e24d3fce947">nErrorToString</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN NIMBLE_FREEME char * nErrorToString(size_t *restrict errorLen, const int error, const char *restrict info, size_t infoLen) __attribute__((warn_unused_result))</div><div class="ttdoc">Describes an error and returns a string.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8c_source.html#l00186">Errors.c:186</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

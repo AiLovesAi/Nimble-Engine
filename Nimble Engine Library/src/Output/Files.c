@@ -66,7 +66,7 @@ int nFileOpen(const char *restrict file, int flags, int *restrict fd)
     {
         flags ^= NFILE_F_WRITE | O_WRONLY;
     }
-    int descriptor = open(file, flags);
+    int descriptor = open(file, flags, S_IREAD | S_IWRITE | S_IEXEC);
     *fd = descriptor;
 #define einfoStr "open() failed in nFileOpen()."
     nErrorAssertRetE(descriptor != -1,
@@ -245,18 +245,18 @@ char *nFileSetExecutablePath(void)
     return NEXEC;
 }
 
-int nFileCopy(const char *restrict dst, const char *restrict src)
+int nFileCopy(const char *restrict src, const char *restrict dst)
 {
-#define einfoStr "Dst argument was NULL in nFileCopy()."
-    nErrorAssertRetEi(dst != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
-#undef einfoStr
 #define einfoStr "Src argument was NULL in nFileCopy()."
     nErrorAssertRetEi(src != NULL,
      NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
-#define einfoStr "Dst argument was equal to src argument in nFileCopy()."
-    nErrorAssertRetEi(dst != src,
+#define einfoStr "Dst argument was NULL in nFileCopy()."
+    nErrorAssertRetEi(dst != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+#define einfoStr "Src argument was equal to dst argument in nFileCopy()."
+    nErrorAssertRetEi(src != dst,
      NERROR_INV_ARG, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
 
@@ -287,8 +287,8 @@ int nFileCopy(const char *restrict dst, const char *restrict src)
             {
 #define einfoStr "nFileWrite() wrote less bytes than read by nFileRead() in "\
  "nFileCopy()."
-                nErrorAssert(0,
-                 NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));  
+                nErrorThrow(NERROR_INTERNAL_FAILURE,
+                 einfoStr, NCONST_STR_LEN(einfoStr), 1);
 #undef einfoStr
                 goto closeLbl;
             }

@@ -155,6 +155,9 @@ nErrorAssert(const int check,
  * could help diagnose the error. This can be @c #NULL.
  * @param[in] errorDescStrLen The length of the @p info argument. A length of
  * zero (0) uses strlen() to determine length.
+ * @param[in] createDesc If set, @p errorDescStr will be treated as info, and
+ * nErrorToString() will be called. On Windows, a positive value will call
+ * nErrorToString() and a negative value will call nErrorToStringWindows().
  *
  * @note The program will crash if this is unsuccessful.
  */
@@ -162,8 +165,9 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 void
 nErrorThrow(const int error,
-            char *errorDescStr,
-            size_t errorDescLen
+            const char *errorDescStr,
+            size_t errorDescLen,
+            const int createDesc
             );
 
 /**

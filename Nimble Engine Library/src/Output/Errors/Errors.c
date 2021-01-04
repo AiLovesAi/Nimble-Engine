@@ -92,59 +92,78 @@ int nErrorAssert(const int check, const int error, const char *info,
     if (!check)
     {
         int err = 0;
-#if NIMBLE_OS == NIMBLE_WINDOWS
-        nErrorLastWindows(err);
-        if (err)
-        {
-            err = error;
-            if (info)
-            {
-                size_t errorDescLen;
-                char *errorDescStr = nErrorToStringWindows(&errorDescLen, err,
-                info, infoLen);
-                nErrorThrow(err, errorDescStr, errorDescLen);
-                nFree(errorDescStr);
-            }
-            return err;
-        }
-#endif
         if (errno)
         {
             nErrorLastErrno(err);
             err = nErrorFromErrno(err);
         }
+#if NIMBLE_OS == NIMBLE_WINDOWS
+        if (err)
+        {
+            SetLastError(ERROR_SUCCESS);
+        }
+        else
+        {
+            nErrorLastWindows(err);
+            if (err)
+            {
+                err = error;
+                if (info)
+                {
+                    nErrorThrow(err, info, infoLen, -1);
+                }
+                return err;
+            }
+            else
+            {
+                err = error;
+            }
+        }
+#else
         else
         {
             err = error;
         }
+#endif
 
         if (info)
         {
-            size_t errorDescLen;
-            char *errorDescStr = nErrorToString(&errorDescLen, err,
-            info, infoLen);
-            nErrorThrow(err, errorDescStr, errorDescLen);
-            nFree(errorDescStr);
+            nErrorThrow(err, info, infoLen, 1);
         }
         return err;
     }
     return NSUCCESS;
 }
 
-void nErrorThrow(const int error, char *errorDescStr, size_t errorDescLen)
+void nErrorThrow(const int error, const char *errorDescStr, size_t errorDescLen,
+ const int createDesc)
 {
-    const time_t errorTime = time(NULL);
-    
 #define einfoStr "Callback argument NULL in nErrorThrow()."
     nAssert(errorCallback != NULL,
      NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
     
-    _Bool funcAllocates = 0;
-    if (!errorDescStr)
+    const time_t errorTime = time(NULL);
+    
+    char *descStr = NULL;
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    if (createDesc > 0)
     {
-        funcAllocates = 1;
-        errorDescStr = nErrorToString(&errorDescLen, error, NULL, 0);
+        descStr = nErrorToString(&errorDescLen, error, errorDescStr, errorDescLen);
+    }
+    else if (createDesc < 0)
+    {
+        descStr = nErrorToStringWindows(&errorDescLen, error, errorDescStr, errorDescLen);
+    }
+#else
+    if (createDesc)
+    {
+        descStr = nErrorToString(&errorDescLen, error, errorDescStr, errorDescLen);
+    }
+#endif
+    else if (!descStr)
+    {
+        descStr = nErrorToString(&errorDescLen, error, NULL, 0);
     }
     
     size_t stackLen = 0;
@@ -153,14 +172,14 @@ void nErrorThrow(const int error, char *errorDescStr, size_t errorDescLen)
 #endif
     
     /* Call the user-defined error callback function. */
-    errorCallback(error, errorTime, errorDescStr, errorDescLen, "stack", stackLen);
+    errorCallback(error, errorTime, descStr ? descStr : errorDescStr, errorDescLen, "stack", stackLen);
 
 #if 0
     nFree(stackStr);
 #endif
-    if (funcAllocates)
+    if (descStr)
     {
-        nFree(errorDescStr);
+        nFree(descStr);
     }
 }
 
@@ -232,8 +251,26 @@ char *nErrorToStringWindows(size_t *restrict errorLen, const int error,
     }
 
     /* Copy error to heap. */
-    dst = nAlloc(len + 1);
-    nStringCopy(dst, buffer, len);
+    if (info)
+    {
+        char windowsInfoStr[] = "\nWindows generated info: ";
+        const size_t errLen = infoLen + NCONST_STR_LEN(windowsInfoStr) +
+         len;
+        
+        char *newInfoStr = nAlloc(errLen + 1);
+        nStringCopy(newInfoStr, info, infoLen);
+        nStringCopy(newInfoStr + infoLen, windowsInfoStr,
+         NCONST_STR_LEN(windowsInfoStr));
+        nStringCopy(newInfoStr + infoLen + NCONST_STR_LEN(windowsInfoStr),
+         buffer, len);
+        
+        dst = nErrorToString(errorLen, error, newInfoStr, errLen);
+    }
+    else
+    {
+        dst = nErrorToString(errorLen, error, buffer, len);
+    }
+    
     if (errorLen)
     {
         *errorLen = len;
