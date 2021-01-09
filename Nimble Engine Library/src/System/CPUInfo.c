@@ -156,15 +156,15 @@ char *nSysGetCPUInfo(size_t *len)
 
 #  define einfoStr "nSysGetCPUInfo() failed to run the 'cpuid' instruction to "\
  "get the CPU info (x86)."
-        nErrorAssertReti(brand[0],
-         NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+        if (nErrorAssert(brand[0],
+         NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
 
         /* Copy value to "NCPU_INFO". */
         size_t l = strlen((char *) brand);
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-        nErrorAssertReti(l <= NCONST_STR_LEN(NCPU_INFO),
-         NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+        if (nErrorAssert(l <= NCONST_STR_LEN(NCPU_INFO),
+         NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
 
         NCPU_INFO_LEN = l;
@@ -195,8 +195,8 @@ char *nSysGetCPUInfo(size_t *len)
 #    define einfoStr "nSysGetCPUInfo() failed to run the "\
 "'mrs' instruction to get the CPU info using the 'MIDR_EL1' register (ARM)."
 #  endif
-        nErrorAssertReti(info.val,
-         NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+        if (nErrorAssert(info.val,
+         NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
 
         /* CPU is not ARM, but somehow ARM is defined. */
@@ -221,9 +221,9 @@ char *nSysGetCPUInfo(size_t *len)
             case SWIFT:
                 const char partStr[] = "SWIFT";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -231,9 +231,9 @@ char *nSysGetCPUInfo(size_t *len)
             case CYCLONE:
                 const char partStr[] = "CYCLONE";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -241,9 +241,9 @@ char *nSysGetCPUInfo(size_t *len)
             case TYPHOON:
                 const char partStr[] = "TYPHOON";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -251,9 +251,9 @@ char *nSysGetCPUInfo(size_t *len)
             case TYPHOON_CAPRI:
                 const char partStr[] = "TYPHOON-CAPRI";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -261,9 +261,9 @@ char *nSysGetCPUInfo(size_t *len)
             case TWISTER:
                 const char partStr[] = "TWISTER";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -271,9 +271,9 @@ char *nSysGetCPUInfo(size_t *len)
             case TWISTER_ELBA_MALTA:
                 const char partStr[] = "TWISTER-ELBA-MALTA";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -281,9 +281,9 @@ char *nSysGetCPUInfo(size_t *len)
             case HURRICANE:
                 const char partStr[] = "HURRICANE";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -291,9 +291,9 @@ char *nSysGetCPUInfo(size_t *len)
             case HURRICANE_MYST:
                 const char partStr[] = "HURRICANE-MYST";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -301,9 +301,9 @@ char *nSysGetCPUInfo(size_t *len)
             case HURRICANE:
                 const char partStr[] = "HURRICANE";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -311,9 +311,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARM_920T:
                 const char partStr[] = "920T";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -321,9 +321,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARM_926EJS:
                 const char partStr[] = "926EJS";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -331,9 +331,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARM_1136JFS:
                 const char partStr[] = "1136JFS";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -341,9 +341,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARM_1176JZFS:
                 const char partStr[] = "1176JZFS";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -351,9 +351,9 @@ char *nSysGetCPUInfo(size_t *len)
             case CORTEX_A5:
                 const char partStr[] = "CORTEX-A5";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -361,9 +361,9 @@ char *nSysGetCPUInfo(size_t *len)
             case CORTEX_A7:
                 const char partStr[] = "CORTEX_A7";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -371,9 +371,9 @@ char *nSysGetCPUInfo(size_t *len)
             case CORTEX_A8:
                 const char partStr[] = "CORTEX_A8";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -381,9 +381,9 @@ char *nSysGetCPUInfo(size_t *len)
             case CORTEX_A9:
                 const char partStr[] = "CORTEX_A9";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -391,9 +391,9 @@ char *nSysGetCPUInfo(size_t *len)
             case CORTEX_A53:
                 const char partStr[] = "CORTEX-A53";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -401,9 +401,9 @@ char *nSysGetCPUInfo(size_t *len)
             case CORTEX_A55:
                 const char partStr[] = "CORTEX-A55";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, partStr, NCONST_STR_LEN(partStr));
                 l += NCONST_STR_LEN(partStr);
@@ -426,9 +426,9 @@ char *nSysGetCPUInfo(size_t *len)
 
             const char unknownCPUStr[] = "Unknown";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-            nErrorAssertReti(
+            if (nErrorAssert(
              l + NCONST_STR_LEN(unknownCPUStr) <= NCONST_STR_LEN(NCPU_INFO),
-             NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+             NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
             NCPU_INFO = nRealloc(NCPU_INFO, l + sizeof(unknownCPUStr));
             nStringCopy(NCPU_INFO + l, unknownCPUStr,
@@ -457,9 +457,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv4:
                 const char archStr[] = "ARMv4";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -467,9 +467,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv4T:
                 const char archStr[] = "ARMv4T";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -477,9 +477,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv5:
                 const char archStr[] = "ARMv5";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -487,9 +487,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv5T:
                 const char archStr[] = "ARMv5T";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -497,9 +497,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv5TE:
                 const char archStr[] = "ARMv5TE";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -507,9 +507,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv5TEJ:
                 const char archStr[] = "ARMv5TEJ";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -517,9 +517,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv6:
                 const char archStr[] = "ARMv6";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -527,9 +527,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv7:
                 const char archStr[] = "ARMv7";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -537,9 +537,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv7f:
                 const char archStr[] = "ARMv7f";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -547,9 +547,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv7s:
                 const char archStr[] = "ARMv7s";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -557,9 +557,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv7k:
                 const char archStr[] = "ARMv7k";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -567,9 +567,9 @@ char *nSysGetCPUInfo(size_t *len)
             case ARMv8:
                 const char archStr[] = "ARMv8";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, archStr, NCONST_STR_LEN(archStr));
                 l += NCONST_STR_LEN(archStr);
@@ -578,9 +578,9 @@ char *nSysGetCPUInfo(size_t *len)
             default:
                 const char unknownArchStr[] = "Unknown architecture";
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
-                nErrorAssertReti(
+                if (nErrorAssert(
                  l + NCONST_STR_LEN(unknownArchStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr), NULL);
+                 NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr
                 nStringCopy(NCPU_INFO + l, unknownArchStr,
                 NCONST_STR_LEN(unknownArchStr));

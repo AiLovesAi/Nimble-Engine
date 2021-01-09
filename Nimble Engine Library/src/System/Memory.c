@@ -43,52 +43,33 @@
 
 #include <stdlib.h>
 
-void *nAlloc(const size_t size)
-{
-    void *ptr = malloc(size);
-
-    /* Check if successfully allocated. */
-#define einfoStr "Ran out of memory in nAlloc()."
-    nAssert(ptr != NULL,
-     NERROR_NO_MEMORY, einfoStr, NCONST_STR_LEN(einfoStr));
-#undef einfoStr
-
-    return ptr;
-}
-
-void *nRealloc(void *ptr, const size_t size)
-{
-    if (!ptr) return nAlloc(size);
-    ptr = realloc(ptr, size);
-
-    /* Check if successfully allocated. */
-#define einfoStr "Ran out of memory in nRealloc()."
-    nAssert(ptr != NULL,
-     NERROR_NO_MEMORY, einfoStr, NCONST_STR_LEN(einfoStr));
-#undef einfoStr
-
-    return ptr;
-}
-
 ssize_t nStringCopy(char *const restrict dst, const char *const restrict src,
  const size_t len)
 {
 #define einfoStr "Src argument NULL in nStringCopy()."
-    nErrorAssertReti(src != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+    if (nErrorAssert(src != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return -1;
 #undef einfoStr
 #define einfoStr "Dst argument NULL in nStringCopy()."
-    nErrorAssertReti(src != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+    if (nErrorAssert(src != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return -1;
 #undef einfoStr
 #define einfoStr "Dst argument equals src argument in nStringCopy()."
-    nErrorAssertReti(dst != src,
-     NERROR_INV_ARG, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+    if (nErrorAssert(dst != src,
+     NERROR_INV_ARG, einfoStr, NCONST_STR_LEN(einfoStr))) return -1;
 #undef einfoStr
 
     char *d = dst;
     const char *s = src;
-    size_t l = len;
+    size_t l;
+    if (len > 0)
+    {
+        l = len;
+    }
+    else
+    {
+        l = strlen(src);
+    }
 
     /* For each character that is not equal to the null terminator,
      * src char = dst char. */
@@ -101,6 +82,22 @@ ssize_t nStringCopy(char *const restrict dst, const char *const restrict src,
     dst[len] = '\0';
 
     return len - l;
+}
+
+char *nStringDuplicate(const char *const src, size_t len)
+{
+    if (len <= 0)
+    {
+#define einfoStr
+        if (nErrorAssert(src != NULL,
+         NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_NULL;
+#undef einfoStr
+        len = strlen(src);
+    }
+
+    char *dst = nAlloc(len + 1);
+    nStringCopy(dst, src, len);
+    return dst;
 }
 
 // Memory.c

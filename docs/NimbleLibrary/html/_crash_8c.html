@@ -69,6 +69,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -83,24 +84,25 @@ $(function() {
 <code>#include &lt;signal.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;time.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_errors_8h_source.html">../../../include/Nimble/Output/Errors/Errors.h</a>&quot;</code><br />
 </div>
 <p><a href="_crash_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>&#160;&#160;&#160;&quot;Caught a signal using <a class="el" href="_crash_8h.html#ade54e83a89eb14d8e4240c305b9c41cc">nCrashSignal</a>().&quot;</td></tr>
+<tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a58cf090de98132e85c2b485864031b7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#a58cf090de98132e85c2b485864031b7e">nAssert</a> (const int check, const int error, const char *info, const size_t infoLen)</td></tr>
-<tr class="memdesc:a58cf090de98132e85c2b485864031b7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes with <code>info</code> if <code>check</code> if equal to zero.  <a href="_crash_8c.html#a58cf090de98132e85c2b485864031b7e">More...</a><br /></td></tr>
-<tr class="separator:a58cf090de98132e85c2b485864031b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae06ec61157cf158035493efef31d0d1d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#ae06ec61157cf158035493efef31d0d1d">nCrashSetCallback</a> (void(*callback)(const int error, const time_t errorTime, const char *restrict errorDesc, const size_t errorDescLen, const char *restrict stack, const size_t stackLen))</td></tr>
-<tr class="memdesc:ae06ec61157cf158035493efef31d0d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the crash callback function.  <a href="_crash_8c.html#ae06ec61157cf158035493efef31d0d1d">More...</a><br /></td></tr>
-<tr class="separator:ae06ec61157cf158035493efef31d0d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99e72bb97d2dfd49e6146888276a6396"><td class="memItemLeft" align="right" valign="top">_Noreturn void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#a99e72bb97d2dfd49e6146888276a6396">nCrashSafe</a> (const int error, time_t errorTime, const char *errorDesc, size_t errorDescLen)</td></tr>
-<tr class="memdesc:a99e72bb97d2dfd49e6146888276a6396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program safely.  <a href="_crash_8c.html#a99e72bb97d2dfd49e6146888276a6396">More...</a><br /></td></tr>
-<tr class="separator:a99e72bb97d2dfd49e6146888276a6396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2a6b23954e96ffb9ac5681d5c74474"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#aac2a6b23954e96ffb9ac5681d5c74474">nCrashSetCallback</a> (void(*callback)(const <a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> errorInfo))</td></tr>
+<tr class="memdesc:aac2a6b23954e96ffb9ac5681d5c74474"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the crash callback function.  <a href="_crash_8c.html#aac2a6b23954e96ffb9ac5681d5c74474">More...</a><br /></td></tr>
+<tr class="separator:aac2a6b23954e96ffb9ac5681d5c74474"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9387482e0ba4e22289581f7157eada3e"><td class="memItemLeft" align="right" valign="top">_Noreturn void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#a9387482e0ba4e22289581f7157eada3e">nCrashSafe</a> (const int error, <a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> errorInfo)</td></tr>
+<tr class="memdesc:a9387482e0ba4e22289581f7157eada3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program safely.  <a href="_crash_8c.html#a9387482e0ba4e22289581f7157eada3e">More...</a><br /></td></tr>
+<tr class="separator:a9387482e0ba4e22289581f7157eada3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cd782bc4b8d7db7b91c4a916141f29e"><td class="memItemLeft" align="right" valign="top">_Noreturn void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#a7cd782bc4b8d7db7b91c4a916141f29e">nCrashSignal</a> (const int signum)</td></tr>
-<tr class="memdesc:a7cd782bc4b8d7db7b91c4a916141f29e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="_crash_8h.html#a43107be8bcefabed8a2ded83ff1c9a41" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal.  <a href="_crash_8c.html#a7cd782bc4b8d7db7b91c4a916141f29e">More...</a><br /></td></tr>
+<tr class="memdesc:a7cd782bc4b8d7db7b91c4a916141f29e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="_crash_8h.html#a5078b8601c71c4bccbb74d5cb505fd65" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal.  <a href="_crash_8c.html#a7cd782bc4b8d7db7b91c4a916141f29e">More...</a><br /></td></tr>
 <tr class="separator:a7cd782bc4b8d7db7b91c4a916141f29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a650d0bde31646b398cb84e9b338df316"><td class="memItemLeft" align="right" valign="top">_Noreturn void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#a650d0bde31646b398cb84e9b338df316">nCrashAbort</a> (const int error)</td></tr>
 <tr class="memdesc:a650d0bde31646b398cb84e9b338df316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crashes the program without notifying the callback.  <a href="_crash_8c.html#a650d0bde31646b398cb84e9b338df316">More...</a><br /></td></tr>
@@ -108,10 +110,8 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a19ae6f4137e01731cbcbcd14a5a575f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3">crashMutex</a> = <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
-<tr class="separator:a19ae6f4137e01731cbcbcd14a5a575f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a733baccd0dc02c38cc825258a16699c2"><td class="memItemLeft" align="right" valign="top">void(*volatile&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#a733baccd0dc02c38cc825258a16699c2">crashCallback</a> )(const int error, const time_t errorTime, const char *restrict errorDesc, const size_t errorDescLen, const char *restrict stack, const size_t stackLen) = &amp;nCrashCallbackDefault</td></tr>
-<tr class="separator:a733baccd0dc02c38cc825258a16699c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0adc30624bc67583979fa9bd90578ce3"><td class="memItemLeft" align="right" valign="top">void(*volatile&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_crash_8c.html#a0adc30624bc67583979fa9bd90578ce3">crashCallback</a> )(const <a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> errorInfo) = &amp;nCrashCallbackDefault</td></tr>
+<tr class="separator:a0adc30624bc67583979fa9bd90578ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines crash handling functions. </p>
@@ -124,60 +124,22 @@ Variables</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2020-08-19 </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a58cf090de98132e85c2b485864031b7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58cf090de98132e85c2b485864031b7e">&#9670;&nbsp;</a></span>nAssert()</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void nAssert </td>
-          <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>check</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>error</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>info</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const size_t&#160;</td>
-          <td class="paramname"><em>infoLen</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">#define einfoStr&#160;&#160;&#160;&quot;Caught a signal using <a class="el" href="_crash_8h.html#ade54e83a89eb14d8e4240c305b9c41cc">nCrashSignal</a>().&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Crashes with <code>info</code> if <code>check</code> if equal to zero. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">check</td><td>The statement to check if true. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">error</td><td>The default error to crash with (overridden if errno is set). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>The info string to crash with if false. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">infoLen</td><td>The length of <code>info</code>. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00085">85</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
-
 </div>
 </div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="a650d0bde31646b398cb84e9b338df316"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a650d0bde31646b398cb84e9b338df316">&#9670;&nbsp;</a></span>nCrashAbort()</h2>
 
@@ -203,12 +165,12 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00211">211</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00154">154</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
 </div>
 </div>
-<a id="a99e72bb97d2dfd49e6146888276a6396"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99e72bb97d2dfd49e6146888276a6396">&#9670;&nbsp;</a></span>nCrashSafe()</h2>
+<a id="a9387482e0ba4e22289581f7157eada3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9387482e0ba4e22289581f7157eada3e">&#9670;&nbsp;</a></span>nCrashSafe()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,20 +184,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">time_t&#160;</td>
-          <td class="paramname"><em>errorTime</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>errorDesc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>errorDescLen</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a>&#160;</td>
+          <td class="paramname"><em>errorInfo</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -258,20 +208,20 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function does not return, and exits the program. If an error occurs, the program will abort with <a class="el" href="_crash_8h.html#af56a32d862837c5a09100df2822ffa4c" title="Crashes the program without notifying the callback.">nCrashAbort()</a>. Also note that this function automatically sets all the arguments if possible, so resetting them is not needed and may cause more errors, though checking them is acceptable. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00136">136</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00085">85</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
 </div>
 </div>
-<a id="ae06ec61157cf158035493efef31d0d1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae06ec61157cf158035493efef31d0d1d">&#9670;&nbsp;</a></span>nCrashSetCallback()</h2>
+<a id="aac2a6b23954e96ffb9ac5681d5c74474"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac2a6b23954e96ffb9ac5681d5c74474">&#9670;&nbsp;</a></span>nCrashSetCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int nCrashSetCallback </td>
+          <td class="memname">void nCrashSetCallback </td>
           <td>(</td>
-          <td class="paramtype">void(*)(const int error, const time_t errorTime, const char *restrict errorDesc, const size_t errorDescLen, const char *restrict stack, const size_t stackLen)&#160;</td>
+          <td class="paramtype">void(*)(const <a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> errorInfo)&#160;</td>
           <td class="paramname"><em>callback</em></td><td>)</td>
           <td></td>
         </tr>
@@ -289,7 +239,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><code><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a></code> is returned if successful.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The callback function can only be called once. If an error occurs, the program will abort with <a class="el" href="_crash_8h.html#af56a32d862837c5a09100df2822ffa4c" title="Crashes the program without notifying the callback.">nCrashAbort()</a>. Check nCrashDefault() for parameter information. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00121">121</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00073">73</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
 </div>
 </div>
@@ -309,7 +259,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calls <a class="el" href="_crash_8h.html#a43107be8bcefabed8a2ded83ff1c9a41" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal. </p>
+<p>Calls <a class="el" href="_crash_8h.html#a5078b8601c71c4bccbb74d5cb505fd65" title="Crashes the program safely.">nCrashSafe()</a> to handle a caught signal. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">signum</td><td>The signal caught.</td></tr>
@@ -318,40 +268,24 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is used by the game engine and is not expected to be used by developers, but is optional. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00201">201</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00139">139</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a733baccd0dc02c38cc825258a16699c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a733baccd0dc02c38cc825258a16699c2">&#9670;&nbsp;</a></span>crashCallback</h2>
+<a id="a0adc30624bc67583979fa9bd90578ce3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0adc30624bc67583979fa9bd90578ce3">&#9670;&nbsp;</a></span>crashCallback</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(*volatile crashCallback) (const int error, const time_t errorTime, const char *restrict errorDesc, const size_t errorDescLen, const char *restrict stack, const size_t stackLen) = &amp;nCrashCallbackDefault</td>
+          <td class="memname">void(*volatile crashCallback) (const <a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> errorInfo) = &amp;nCrashCallbackDefault</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00073">73</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
-
-</div>
-</div>
-<a id="a19ae6f4137e01731cbcbcd14a5a575f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19ae6f4137e01731cbcbcd14a5a575f3">&#9670;&nbsp;</a></span>crashMutex</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_threads_8h.html#adf8e53aef7ecfc328eec93f6e35b7746">nMutex_t</a> crashMutex = <a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00053">53</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_crash_8c_source.html#l00065">65</a> of file <a class="el" href="_crash_8c_source.html">Crash.c</a>.</p>
 
 </div>
 </div>

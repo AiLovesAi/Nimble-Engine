@@ -6,6 +6,5 @@ var searchData=
   ['cpuinfo_2eh_7',['CPUInfo.h',['../_c_p_u_info_8h.html',1,'']]],
   ['crash_2ec_8',['Crash.c',['../_crash_8c.html',1,'']]],
   ['crash_2eh_9',['Crash.h',['../_crash_8h.html',1,'']]],
-  ['crashcallback_10',['crashCallback',['../_crash_8c.html#a733baccd0dc02c38cc825258a16699c2',1,'Crash.c']]],
-  ['crashmutex_11',['crashMutex',['../_crash_8c.html#a19ae6f4137e01731cbcbcd14a5a575f3',1,'Crash.c']]]
+  ['crashcallback_10',['crashCallback',['../_crash_8c.html#a0adc30624bc67583979fa9bd90578ce3',1,'Crash.c']]]
 ];

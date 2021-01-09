@@ -107,20 +107,8 @@ NIMBLE_EXTERN
 int
 nEngineInit(char **args,
             const int argc,
-            void (*errorCallback)(const int error,
-                                  const time_t errorTime,
-                                  const char *errorDesc,
-                                  const size_t errorDescLen,
-                                  const char *stack,
-                                  const size_t stackLen
-                                  ),
-            void (*crashCallback) (const int error,
-                                   const time_t errorTime,
-                                   const char *errorDesc,
-                                   const size_t errorDescLen,
-                                   const char *stack,
-                                   const size_t stackLen
-                                   )
+            void (*errorCallback) (const nErrorInfo_t errorInfo),
+            void (*crashCallback) (const nErrorInfo_t errorInfo)
             );
 
 #endif // NIMBLE_ENGINE_H

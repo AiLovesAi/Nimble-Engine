@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['errorcallback_508',['errorCallback',['../_errors_8c.html#a067dcdef2e9e5c150a1564a5f0b5df30',1,'Errors.c']]]
+  ['desclen_542',['descLen',['../structn_error_info.html#afffc7eb5f0d11253a2ff2f2f830853bb',1,'nErrorInfo']]],
+  ['descstr_543',['descStr',['../structn_error_info.html#a483909c8da78da876120e2f0ca774fc8',1,'nErrorInfo']]]
 ];

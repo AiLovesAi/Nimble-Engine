@@ -50,21 +50,9 @@ extern "C" {
 
 #include <time.h>
 
-/**
- * @brief Crashes with @p info if @p check if equal to zero.
- * 
- * @param[in] check The statement to check if true.
- * @param[in] error The default error to crash with (overridden if errno is set).
- * @param[in] info The info string to crash with if false.
- * @param[in] infoLen The length of @p info.
- */
-NIMBLE_EXPORT
-NIMBLE_EXTERN
-void
-nAssert(const int check,
-        const int error,
-        const char *info,
-        const size_t infoLen);
+#include "Errors.h"
+#include "../../System/Time.h"
+
 
 /**
  * @brief Sets the crash callback function.
@@ -81,15 +69,8 @@ nAssert(const int check,
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nCrashSetCallback(void (*callback) (const int error,
-                                    const time_t errorTime,
-                                    const char *restrict errorDesc,
-                                    const size_t errorDescLen,
-                                    const char *restrict stack,
-                                    const size_t stackLen
-                                    )
-                 );
+void
+nCrashSetCallback(void (*callback)(const nErrorInfo_t errorInfo));
 
 /**
  * @brief Crashes the program safely.
@@ -113,10 +94,34 @@ NIMBLE_EXTERN
 _Noreturn
 void
 nCrashSafe(const int error,
-           time_t errorTime,
-           const char *errorDesc,
-           size_t errorDescLen
+           nErrorInfo_t errorInfo
            );
+
+/**
+ * @brief Crashes with @p info if @p check if equal to zero.
+ * 
+ * @param[in] check The statement to check if true.
+ * @param[in] error The default error to crash with (overridden if errno is set).
+ * @param[in] info The info string to crash with if false.
+ * @param[in] infoLen The length of @p info.
+ */
+NIMBLE_INLINE
+void nAssert(const int check,
+            const int error,
+            const char *info,
+            const size_t infoLen)
+{
+    if (!check)
+    {
+        const nTime_t errorTime = nTime();
+        int err = nErrorLastErrno();
+        if (!err) err = error;
+
+        nErrorInfo_t errorInfo;
+        nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen);
+        nCrashSafe(err, errorInfo);
+    }
+}
 
 /**
  * @brief Calls nCrashSafe() to handle a caught signal.
@@ -130,9 +135,8 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
 void
-nCrashSignal(const int signum
-             );
-
+nCrashSignal(const int signum);
+ 
 /**
  * @brief Crashes the program without notifying the callback.
  *
@@ -144,8 +148,7 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
 void
-nCrashAbort(const int error
-            );
+nCrashAbort(const int error);
 
 #endif // NIMBLE_ENGINE_CRASH_H
 

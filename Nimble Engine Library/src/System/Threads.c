@@ -44,7 +44,7 @@
 #include <stdlib.h>
 
 #ifdef NTHREAD_WINAPI
-#include <windows.h>
+#include <Windows.h>
 #elif defined(NTHREAD_PTHREAD)
 #include <pthread.h>
 #else
@@ -55,23 +55,27 @@ int nThreadCreate(nThread_t *thread, nThreadRoutine_t (*start)(void *),
  void *data)
 {
     nThread_t thrd;
+    int err;
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "CreateThread() failed in nThreadCreate()."
     thrd = CreateThread(NULL, 0, start, data, 0, NULL);
-    nErrorAssertRetEi(thrd != NULL,
+    err = nErrorAssert(thrd != NULL,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
 #  define einfoStr "pthread_create() failed in nThreadCreate()."
-    nErrorAssertRetEi(!pthread_create(thrd, NULL, start, data),
+    err = nErrorAssert(!pthread_create(thrd, NULL, start, data),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_C11
 #  define einfoStr "thrd_create() failed in nThreadCreate()."
-    nErrorAssertRetEi(thrd_create(thrd, start, data) == thrd_success,
+    err = nErrorAssert(thrd_create(thrd, start, data) == thrd_success,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #undef einfoStr
 
 #endif
@@ -81,34 +85,40 @@ int nThreadCreate(nThread_t *thread, nThreadRoutine_t (*start)(void *),
 
 int nThreadJoin(nThread_t thread, int *ret)
 {
+    int err;
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
     DWORD r = 0;
 #  define einfoStr "WaitForSingleObject() failed in nThreadJoin()."
-    nErrorAssertRetEi(WaitForSingleObject(thread, INFINITE) != WAIT_FAILED,
+    err = nErrorAssert(WaitForSingleObject(thread, INFINITE) != WAIT_FAILED,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #  undef einfoStr
 #  define einfoStr "GetExitCodeThread() failed in nThreadJoin()."
-    nErrorAssertRetEi(GetExitCodeThread(thread, &r),
+    err = nErrorAssert(GetExitCodeThread(thread, &r),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #  undef einfoStr
 #  define einfoStr "CloseHandle() failed in nThreadJoin()."
-    nErrorAssertRetEi(CloseHandle(thread),
+    err = nErrorAssert(CloseHandle(thread),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
     int r;
     int *pr = &r;
 #  define einfoStr "pthread_join() failed in nThreadJoin()."
-    nErrorAssertRetEi(!pthread_join(thread, (void **) &pr),
+    err = nErrorAssert(!pthread_join(thread, (void **) &pr),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_C11
 int r;
 #  define einfoStr "thrd_join() failed in nThreadJoin()."
-    nErrorAssertRetEi(thrd_join(thread, &r) == thrd_success,
+    err = nErrorAssert(thrd_join(thread, &r) == thrd_success,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #  undef einfoStr
 
 #endif
@@ -120,19 +130,19 @@ int nThreadDetach(nThread_t thread)
 {
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "CloseHandle() failed in nThreadDetach()."
-    nErrorAssertRetE(CloseHandle(thread),
+    return nErrorAssert(CloseHandle(thread),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
 #  define einfoStr "pthread_detach() failed in nThreadDetach()."
-    nErrorAssertRetE(!pthread_detach(thread),
+    return nErrorAssert(!pthread_detach(thread),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_C11
 #  define einfoStr "thrd_detach() failed in nThreadDetach()."
-    nErrorAssertRetE(thrd_detach(thread) == thrd_success,
+    return nErrorAssert(thrd_detach(thread) == thrd_success,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
@@ -144,19 +154,19 @@ int nThreadMutexCreate(nMutex_t *mutex)
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "CreateMutex() failed in nThreadMutexCreate()."
     *mutex = CreateMutex(NULL, 0, NULL);
-    nErrorAssertRetE(*mutex != NULL,
+    return nErrorAssert(*mutex != NULL,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
 #  define einfoStr "pthread_mutex_init() failed in nThreadMutexCreate()."
-    nErrorAssertRetE(!pthread_mutex_init(mutex, NULL),
+    return nErrorAssert(!pthread_mutex_init(mutex, NULL),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_C11
 #  define einfoStr "mtx_init() failed in nThreadMutexCreate()."
-    nErrorAssertRetE(mtx_init(mutex, mtx_plain) == thrd_success,
+    return nErrorAssert(mtx_init(mutex, mtx_plain) == thrd_success,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
@@ -167,19 +177,19 @@ int nThreadMutexLock(nMutex_t *mutex)
 {
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "WaitForSingleObject() failed in nThreadJoin()."
-    nErrorAssertRetE(WaitForSingleObject(*mutex, INFINITE) != WAIT_FAILED,
+    return nErrorAssert(WaitForSingleObject(*mutex, INFINITE) != WAIT_FAILED,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
 #  define einfoStr "pthread_mutex_lock() failed in nThreadMutexLock()."
-    nErrorAssertRetE(!pthread_mutex_lock(mutex),
+    return nErrorAssert(!pthread_mutex_lock(mutex),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_C11
 #  define einfoStr "mtx_lock() failed in nThreadMutexLock()."
-    nErrorAssertRetE(mtx_lock(mutex) == thrd_success,
+    return nErrorAssert(mtx_lock(mutex) == thrd_success,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
@@ -190,19 +200,19 @@ int nThreadMutexUnlock(nMutex_t *mutex)
 {
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "ReleaseMutex() failed in nThreadMutexUnlock()."
-    nErrorAssertRetE(ReleaseMutex(*mutex),
+    return nErrorAssert(ReleaseMutex(*mutex),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
 #  define einfoStr "pthread_mutex_unlock() failed in nThreadMutexUnlock()."
-    nErrorAssertRetE(!pthread_mutex_unlock(mutex),
+    return nErrorAssert(!pthread_mutex_unlock(mutex),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_C11
 #  define einfoStr "mtx_unlock() failed in nThreadMutexUnlock()."
-    nErrorAssertRetE(mtx_unlock(mutex) == thrd_success,
+    return nErrorAssert(mtx_unlock(mutex) == thrd_success,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
@@ -213,20 +223,20 @@ int nThreadMutexDestroy(nMutex_t *mutex)
 {
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "CloseHandle() failed in nThreadMutexDestroy()."
-    nErrorAssertRetE(CloseHandle(*mutex),
+    return nErrorAssert(CloseHandle(*mutex),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
     return NSUCCESS;
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_PTHREAD
 #  define einfoStr "pthread_mutex_destroy() failed in nThreadMutexDestroy()."
-    nErrorAssertRetE(!pthread_mutex_destroy(mutex),
+    return nErrorAssert(!pthread_mutex_destroy(mutex),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 
 #elif NIMBLE_THREADS == NIMBLE_THREADS_C11
 #  define einfoStr "mtx_destroy() failed in nThreadMutexDestroy()."
-    nErrorAssertRetE(mtx_destroy(mutex) == thrd_success,
+    return nErrorAssert(mtx_destroy(mutex) == thrd_success,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #  undef einfoStr
 

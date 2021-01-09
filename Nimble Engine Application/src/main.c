@@ -35,7 +35,7 @@ void crashCallback(const int error, const time_t errorTime,
 
     fprintf(stderr, "\nCrash occurred at %s:\nError description: "\
     "%s\nStack trace: %s\n\n", timeStr, errorDesc, stack);
-    nFree(timeStr);
+    nFree((void **) &timeStr);
 }
 
 void errorCallback(const int error, const time_t errorTime,
@@ -58,7 +58,7 @@ void errorCallback(const int error, const time_t errorTime,
     const char *errorName = nErrorStr(error);
     fprintf(stderr, "\nAn error occurred at %s:\nError description of %s: "\
     "%s\nStack trace: %s\n\n", timeStr, errorName, errorDesc, stack);
-    nFree(timeStr);
+    nFree((void **) &timeStr);
 }
 
 

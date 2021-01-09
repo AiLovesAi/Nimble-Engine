@@ -44,7 +44,6 @@
  * used in game development, and defines the functions used in initialization.
  */
 
-#include <errno.h>
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
@@ -61,9 +60,9 @@ static void nEngineCleanup(void)
     /* Free NIMBLE_ARGS */
     for (int i = 0; i < NIMBLE_ARGC; i++)
     {
-        nFree(NIMBLE_ARGS[i]);
+        nFree((void **) &NIMBLE_ARGS[i]);
     }
-    nFree(NIMBLE_ARGS);
+    nFree((void **) &NIMBLE_ARGS);
 }
 
 static void nEngineExitSignal(int signum)
@@ -72,19 +71,12 @@ static void nEngineExitSignal(int signum)
 }
 
 int nEngineInit(char **args, const int argc,
- void (*errorCallback) (const int error, const time_t errorTime,
- const char *errorDesc, const size_t errorDescLen, const char *stack,
- const size_t stackLen),
-
- void (*crashCallback)(const int error, const time_t errorTime,
- const char *errorDesc, const size_t errorDescLen, const char *stack,
- const size_t stackLen)
-
- )
+ void (*errorCallback) (const nErrorInfo_t errorInfo),
+ void (*crashCallback) (const nErrorInfo_t errorInfo))
 {
 #define einfoStr "nEngineInit() was called, but Nimble is already initialized."
-    nErrorAssertReti(!NIMBLE_INITIALIZED,
-     NERROR_WARN, einfoStr, NCONST_STR_LEN(einfoStr), NERROR_WARN);
+    if (nErrorAssert(!NIMBLE_INITIALIZED,
+     NERROR_WARN, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_WARN;
 #undef einfoStr
 
     /* Add nEngineCleanup() to the exit functions. */
@@ -126,8 +118,7 @@ int nEngineInit(char **args, const int argc,
     for (size_t len = 0; args[count] && count < argc; count++)
     {
         len = strlen(args[count]);
-        NIMBLE_ARGS[count] = nAlloc(len + 1);
-        nStringCopy(NIMBLE_ARGS[count], args[count], len);
+        NIMBLE_ARGS[count] = nStringDuplicate(args[count], len);
     }
 
     nAssert(count, NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));

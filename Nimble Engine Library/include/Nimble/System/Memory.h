@@ -56,12 +56,10 @@ extern "C" {
  * @return The allocated pointer.
  */
 NIMBLE_EXPORT
+NIMBLE_USE_RESULT
 NIMBLE_EXTERN
-NIMBLE_FREEME
 void *
-nAlloc(const size_t size)
-__attribute__((warn_unused_result))
-;
+nAlloc(const size_t size);
 
 /**
  * @brief Reallocates a pointer.
@@ -72,12 +70,10 @@ __attribute__((warn_unused_result))
  * @return The reallocated @p ptr.
  */
 NIMBLE_EXPORT
+NIMBLE_USE_RESULT
 NIMBLE_EXTERN
-NIMBLE_FREEME
 void *
-nRealloc(void*ptr, const size_t size)
-__attribute__((warn_unused_result))
-;
+nRealloc(void*ptr, const size_t size);
 
 /**
  * @brief Frees a pointer.
@@ -88,10 +84,15 @@ __attribute__((warn_unused_result))
  * @param[in] ptr The pointer to free.
  * @return #NULL is always returned.
  */
-#define nFree(ptr) ({\
-	free(ptr);\
-	ptr = NULL;\
-})
+NIMBLE_INLINE
+void nFree(void **ptr)
+{
+    if (ptr)
+    {
+	    free(*ptr);
+	    *ptr = NULL;
+    }
+}
 
 /**
  * @brief Copies @p len characters from @p src to @p dst.
@@ -108,12 +109,23 @@ __attribute__((warn_unused_result))
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-NIMBLE_FREEME
 ssize_t
 nStringCopy(char *const restrict dst,
             const char *const restrict src,
             const size_t len
             );
+
+/**
+ * @brief Returns a newly allocated string identical to @p src.
+ * 
+ * @param[in] src The string to copy and return.
+ * @return Returns a newly allocated string duplicated from @p src.
+ */
+NIMBLE_EXPORT
+NIMBLE_USE_RESULT
+NIMBLE_EXTERN
+char *nStringDuplicate(const char *const src,
+                       size_t len);
 
 #endif // NIMBLE_ENGINE_MEMORY_H
 

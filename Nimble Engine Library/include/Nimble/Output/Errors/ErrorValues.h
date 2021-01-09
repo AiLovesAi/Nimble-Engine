@@ -49,7 +49,7 @@ extern "C" {
 #include "../../NimbleEngine.h"
 
 
-#define NSUCCESS (int) 0 /**< Returned when a function succeeds. */
+#define NSUCCESS 0 /**< Returned when a function succeeds. */
 
 /**
  * @brief The possible error values used by ErrorHandler.h error handler.

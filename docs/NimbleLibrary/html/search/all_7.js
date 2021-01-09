@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['machinelearning_2ec_31',['MachineLearning.c',['../_machine_learning_8c.html',1,'']]],
-  ['machinelearning_2eh_32',['MachineLearning.h',['../_machine_learning_8h.html',1,'']]],
-  ['matrices_2ec_33',['Matrices.c',['../_matrices_8c.html',1,'']]],
-  ['matrices_2eh_34',['Matrices.h',['../_matrices_8h.html',1,'']]],
-  ['memory_2ec_35',['Memory.c',['../_memory_8c.html',1,'']]],
-  ['memory_2eh_36',['Memory.h',['../_memory_8h.html',1,'']]]
+  ['infolen_28',['infoLen',['../structn_error_info.html#a0974534cf1a7350597a0b99d99f0a410',1,'nErrorInfo']]],
+  ['infostr_29',['infoStr',['../structn_error_info.html#add6f0cb073c7d4e1f0a2e187dbd851ba',1,'nErrorInfo']]]
 ];

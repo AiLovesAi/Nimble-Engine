@@ -162,31 +162,23 @@ extern "C" {
 
 /* Attribute definitions */
 #ifdef NIMBLE_SHARED
-#  if defined(_WIN32) || defined(__CYGWIN__)
-#     ifdef __GNUC__
-#      define NIMBLE_EXPORT __attribute__((dllexport)) /**< Export alias. */
-#      define NIMBLE_INLINE static inline __attribute__((always_inline)) /**< Inline alias. */
-#    else
-#      define NIMBLE_EXPORT __declspec(dllexport) /**< Export alias. */
-#      define NIMBLE_INLINE __forceinline /**< Inline alias. */
-#    endif
-#  define NIMBLE_LOCAL /**< Local alias. */
+#  if NIMBLE_OS == NIMBLE_WINDOWS
+#    define NIMBLE_EXPORT __attribute__((dllexport)) /**< Export alias. */
+#    define NIMBLE_LOCAL /**< Local alias. */
+
 #  else
-#    if __GNUC__ >= 4
-#      define NIMBLE_EXPORT __attribute__((visibility("default"))) /**< Export alias. */
-#      define NIMBLE_LOCAL __attribute__((visibility("hidden"))) /**< Local alias. */
-#    else
-#      define NIMBLE_EXPORT /**< Export alias. */
-#      define NIMBLE_LOCAL /**< Local alias. */
-#    endif
-#    define NIMBLE_INLINE static inline __attribute__((always_inline)) /**< Inline alias. */
+#    define NIMBLE_EXPORT __attribute__((visibility("default"))) /**< Export alias. */
+#    define NIMBLE_LOCAL __attribute__((visibility("hidden"))) /**< Local alias. */
 #  endif
+
 #else
 #  define NIMBLE_EXPORT
+#  define NIMBLE_LOCAL
 #endif
 #define NIMBLE_EXTERN extern /**< Extern alias. */
+#define NIMBLE_INLINE static inline __attribute__((always_inline)) /**< Inline alias. */
 
-#define NIMBLE_FREEME /**< Denotes that a function may allocate memory that should later be freed. */
+#define NIMBLE_USE_RESULT __attribute__((warn_unused_result)) /**< Denotes that a function may allocate memory that should later be freed. */
 
 
 /* Macro definitions */

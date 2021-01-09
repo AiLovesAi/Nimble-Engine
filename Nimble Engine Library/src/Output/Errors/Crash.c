@@ -44,13 +44,11 @@
 #include <signal.h>
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
 
 #include "../../../include/Nimble/Output/Errors/Errors.h"
 
 
-static _Bool crashtest = 0;
-nMutex_t crashMutex = NULL;
+static volatile _Bool crashtest = 0;
 
 /**
  * @brief The default crash callback.
@@ -62,65 +60,17 @@ nMutex_t crashMutex = NULL;
  * @param[in] stack The stack as a string.
  * @param[in] stackLen The length of the stack string.
  */
-static void nCrashCallbackDefault(const int error,
-                                  const time_t errorTime,
-                                  const char *restrict errorDesc,
-                                  const size_t errorDescLen,
-                                  const char *restrict stack,
-                                  const size_t stackLen
-                                  );
+static void nCrashCallbackDefault(const nErrorInfo_t errorInfo);
 
-void (*volatile crashCallback) (const int error, const time_t errorTime,
- const char *restrict errorDesc, const size_t errorDescLen, 
- const char *restrict stack, const size_t stackLen) = &nCrashCallbackDefault;
+void (*volatile crashCallback)(const nErrorInfo_t errorInfo) = &nCrashCallbackDefault;
 
 
-static void nCrashCallbackDefault(const int error, const time_t errorTime,
- const char *restrict errorDesc, const size_t errorDescLen,
- const char *restrict stack, const size_t stackLen)
+static void nCrashCallbackDefault(const nErrorInfo_t errorInfo)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
 }
 
-void nAssert(const int check, const int error, const char *info,
- const size_t infoLen)
-{
-    if (!check)
-    {
-        int err = 0;
-#if NIMBLE_OS == NIMBLE_WINDOWS
-        nErrorLastWindows(err);
-        if (err)
-        {
-            err = error;
-            size_t errorDescLen;
-            char *errorDescStr = nErrorToStringWindows(&errorDescLen, err,
-             info, infoLen);
-            nCrashSafe(err, time(NULL), errorDescStr, errorDescLen);
-            /* NO RETURN */
-        }
-#endif
-        if (errno)
-        {
-            nErrorLastErrno(err);
-            err = nErrorFromErrno(err);
-        }
-        else
-        {
-            err = error;
-        }
-
-        size_t errorDescLen;
-        char *errorDescStr = nErrorToString(&errorDescLen, err,
-         info, infoLen);
-        nCrashSafe(err, time(NULL), errorDescStr, errorDescLen);
-        /* NO RETURN */
-    }
-}
-
-int nCrashSetCallback(void (*callback)(const int error,
- const time_t errorTime, const char *restrict errorDesc, const size_t errorDescLen,
- const char *restrict stack, const size_t stackLen))
+void nCrashSetCallback(void (*callback) (const nErrorInfo_t errorInfo))
 {
     if (callback)
     {
@@ -130,81 +80,74 @@ int nCrashSetCallback(void (*callback)(const int error,
     {
         crashCallback = nCrashCallbackDefault;
     }
-    return NSUCCESS;
 }
 
-_Noreturn void nCrashSafe(const int error, time_t errorTime,
- const char *errorDesc, size_t errorDescLen)
+_Noreturn void nCrashSafe(const int error, nErrorInfo_t errorInfo)
 {
-    if (!crashMutex)
-    {
-        nThreadMutexCreate(&crashMutex);
-    }
-
-    if ((nThreadMutexLock(&crashMutex) != NSUCCESS) ||
-     crashtest || (crashCallback == NULL))
+    if (crashtest || !crashCallback)
     {
         nCrashAbort(error);
         /* NO RETURN */
     }
     crashtest = 1;
-    
-    if (!errorTime)
+
+    if (!errorInfo.time.secs)
     {
-        errorTime = time(NULL);
+        errorInfo.time = nTime();
     }
 
-    if ((errorDescLen <= 0) && errorDesc)
+    errorInfo.error = error;
+
+    if (!errorInfo.errorStr)
     {
-        errorDescLen = strlen(errorDesc);
+        errorInfo.errorStr = nErrorStr(error);
+        errorInfo.errorLen = nErrorStrLen(error);
+    }
+    else if (errorInfo.errorLen <= 0)
+    {
+        errorInfo.errorLen = nErrorStrLen(error);
     }
 
-    char *errorDescStr = NULL;
-
-    if (errorDesc)
+    if (!errorInfo.descStr)
     {
-        errorDescStr = nAlloc(errorDescLen);
-        nStringCopy(errorDescStr, errorDesc, errorDescLen);
+        errorInfo.descStr = nErrorDesc(error);
+        errorInfo.descLen = nErrorDescLen(error);
     }
-    else
+    else if (errorInfo.descLen <= 0)
     {
-        errorDescStr = nErrorToString(&errorDescLen, error, NULL, 0);
-        if (!errorDescStr)
-        {
-            const char defaultErrorStr[] = "NERROR_ERROR_NOT_FOUND: An error "\
- "passed to a function was not valid: nErrorToString() failed while "\
- "crashing with nCrashSafe().";
-            errorDescLen = NCONST_STR_LEN(defaultErrorStr);
-            errorDescStr = nRealloc(errorDescStr, errorDescLen + 1);
-            nStringCopy(errorDescStr, defaultErrorStr, errorDescLen);
-        }
+        errorInfo.descLen = nErrorDescLen(error);
     }
     
-    size_t stackLen = 0;
-#if 0
-    char *stackStr = nErrorGetStacktrace(&stackLen, NULL);
-#endif
+    if (!errorInfo.stackStr)
+    {
+        errorInfo.stackStr = nErrorStacktrace(&errorInfo.stackLen, &errorInfo.stackLevels);
+    }
+    else if (errorInfo.stackLen <= 0)
+    {
+        errorInfo.stackLen = strlen(errorInfo.stackStr);
+    }
+
     /* Call the user-defined crash callback function. */
-    crashCallback(error, errorTime, errorDescStr, errorDescLen, "stack",
-     stackLen);
+    crashCallback(errorInfo);
     
-#if 0
-    nFree(stackStr);
-#endif
-    nFree(errorDescStr);
+    nErrorInfoFree(&errorInfo);
 
-    nThreadMutexDestroy(&crashMutex);
     exit(error);
     /* NO RETURN */
 }
 
 _Noreturn void nCrashSignal(const int signum)
 {
+    const nTime_t errorTime = nTime();
     const int error = nErrorFromSignal(signum);
-    const time_t errorTime = time(NULL);
     
     signal(signum, SIG_DFL);
-    nCrashSafe(error, errorTime, NULL, 0);
+
+    nErrorInfo_t errorInfo;
+#define einfoStr "Caught a signal using nCrashSignal()."
+    nErrorInfoSet(&errorInfo, error, errorTime, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+    nCrashSafe(error, errorInfo);
     /* NO RETURN */
 }
 

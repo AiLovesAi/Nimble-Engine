@@ -55,12 +55,12 @@ size_t NCWD_LEN = 0;
 int nFileOpen(const char *restrict file, int flags, int *restrict fd)
 {
 #define einfoStr "File argument was NULL in nFileOpen()."
-    nErrorAssertRetEi(file != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (nErrorAssert(file != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_NULL;
 #undef einfoStr
 #define einfoStr "Descriptor argument was NULL in nFileOpen()."
-    nErrorAssertRetEi(fd != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (nErrorAssert(fd != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_NULL;
 #undef einfoStr
     if ((flags & NFILE_F_WRITE) && !(flags & NFILE_F_READ))
     {
@@ -69,7 +69,7 @@ int nFileOpen(const char *restrict file, int flags, int *restrict fd)
     int descriptor = open(file, flags, S_IREAD | S_IWRITE | S_IEXEC);
     *fd = descriptor;
 #define einfoStr "open() failed in nFileOpen()."
-    nErrorAssertRetE(descriptor != -1,
+    return nErrorAssert(descriptor >= 0,
      NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
 }
@@ -77,12 +77,12 @@ int nFileOpen(const char *restrict file, int flags, int *restrict fd)
 int nFileClose(int *fd)
 {
 #define einfoStr "Descriptor argument was NULL in nFileClose()."
-    nErrorAssertRetEi(fd != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (nErrorAssert(fd != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_NULL;
 #undef einfoStr
 #define einfoStr "close() failed in nFileClose()."
-    nErrorAssertRetEi(!close(*fd),
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (nErrorAssert(!close(*fd),
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_INTERNAL_FAILURE;
 #undef einfoStr
     *fd = -1;
     return NSUCCESS;
@@ -91,14 +91,14 @@ int nFileClose(int *fd)
 ssize_t nFileRead(const int fd, void *dst, const size_t size)
 {
 #define einfoStr "dst argument was NULL in nFileRead()."
-    nErrorAssertReti(dst != NULL,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+    if (nErrorAssert(dst != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return -1;
 #undef einfoStr
 
     int rd = read(fd, dst, size);
 #define einfoStr "read() failed in nFileRead()."
-    nErrorAssertReti(rd >= 0,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+    if (nErrorAssert(rd >= 0,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr))) return -1;
 #undef einfoStr
     return rd;
 }
@@ -106,14 +106,14 @@ ssize_t nFileRead(const int fd, void *dst, const size_t size)
 ssize_t nFileWrite(const int fd, void *src, const size_t size)
 {
 #define einfoStr "src argument was NULL in nFileWrite()."
-    nErrorAssertReti(src != NULL,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+    if (nErrorAssert(src != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return -1;
 #undef einfoStr
 
     int wr = write(fd, src, size);
 #define einfoStr "write() failed in nFileWrite()."
-    nErrorAssertReti(wr >= 0,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr), -1);
+    if (nErrorAssert(wr >= 0,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr))) return -1;
 #undef einfoStr
     return wr;
 }
@@ -121,11 +121,11 @@ ssize_t nFileWrite(const int fd, void *src, const size_t size)
 int nFileDelete(const char *file)
 {
 #define einfoStr "File argument was NULL in nFileDelete()."
-    nErrorAssertRetEi(file != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (nErrorAssert(file != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_NULL;
 #undef einfoStr
 #define einfoStr "unlink() failed in nFileDelete()."
-    nErrorAssertRetE(!unlink(file),
+    return nErrorAssert(!unlink(file),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
 }
@@ -133,39 +133,41 @@ int nFileDelete(const char *file)
 int nFileRename(const char *restrict oldPath, const char *restrict newPath)
 {
 #define einfoStr "OldPath argument was NULL in nFileDelete()."
-    nErrorAssertRetEi(oldPath != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (nErrorAssert(oldPath != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_NULL;
 #undef einfoStr
 #define einfoStr "NewPath argument was NULL in nFileDelete()."
-    nErrorAssertRetEi(newPath != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (nErrorAssert(newPath != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_NULL;
 #undef einfoStr
-#define einfoStr "OldPath argument was equal to newPath argument in "\
+#define einfoStr "OldPath argument equals newPath argument in "\
  "nFileDelete()."
-    nErrorAssertRetEi(newPath != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (nErrorAssert(newPath != NULL,
+     NERROR_INV_ARG, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_INV_ARG;
 #undef einfoStr
 
     int err = rename(oldPath, newPath);
     if (!err) return NSUCCESS;
     
 #define einfoStr "rename() failed in nFileRename()."
-    nErrorAssertRetEi(errno == EXDEV,
+    err = nErrorAssert(errno == EXDEV,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #undef einfoStr
 
-    nFileCopy(oldPath, newPath);
-    nFileDelete(oldPath);
-    return NSUCCESS;
+    err = nFileCopy(oldPath, newPath);
+    if (err) return err;
+    err = nFileDelete(oldPath);
+    return err;
 }
 
 int nFileExists(const char *file)
 {
 #define einfoStr "File argument was NULL in nFileExists()."
-    nErrorAssertRetEi(file != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (nErrorAssert(file != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_NULL;
 #undef einfoStr
-    nErrorAssertRetE(!access(file, F_OK),
+    return nErrorAssert(!access(file, F_OK),
      NERROR_INTERNAL_FAILURE, NULL, 0);
 }
 
@@ -177,11 +179,11 @@ int nFileExists(const char *file)
 int nFilePathIsAbsolute(const char *path, size_t len)
 {
 #define einfoStr "Path argument was NULL in nFilePathIsAbsolute()."
-    nErrorAssertRetEi(path != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (nErrorAssert(path != NULL,
+     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_NULL;
 #undef einfoStr
 
-    if (!len)
+    if (len <= 0)
     {
         len = strlen(path);
     }
@@ -267,8 +269,7 @@ char *nFileSetExecutablePath(void)
 #define einfoStr "nFileSetExecutablePath() failed to verify that the set "\
  "executable path exists."
     int err = nFileExists(NEXEC);
-    nAssert(err == NSUCCESS,
-     err, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #undef einfoStr
 
     return NEXEC;
@@ -276,24 +277,28 @@ char *nFileSetExecutablePath(void)
 
 int nFileCopy(const char *restrict src, const char *restrict dst)
 {
+    int err;
 #define einfoStr "Src argument was NULL in nFileCopy()."
-    nErrorAssertRetEi(src != NULL,
+    err = nErrorAssert(src != NULL,
      NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #undef einfoStr
 #define einfoStr "Dst argument was NULL in nFileCopy()."
-    nErrorAssertRetEi(dst != NULL,
+    err = nErrorAssert(dst != NULL,
      NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #undef einfoStr
-#define einfoStr "Src argument was equal to dst argument in nFileCopy()."
-    nErrorAssertRetEi(src != dst,
+#define einfoStr "Src argument equals dst argument in nFileCopy()."
+    err = nErrorAssert(src != dst,
      NERROR_INV_ARG, einfoStr, NCONST_STR_LEN(einfoStr));
+    if (err) return err;
 #undef einfoStr
 
-    int srcFile, dstFile, err;
+    int srcFile, dstFile;
     err = nFileOpen(src, NFILE_F_READ | NFILE_F_RAW, &srcFile);
-    nErrorAssertRetEi(err != NSUCCESS, err, NULL, 0);
+    if (err) return err;
     err = nFileOpen(dst, NFILE_F_WRITE | NFILE_F_RAW | NFILE_F_CREATE | NFILE_F_CLEAR, &dstFile);
-    nErrorAssertRetEi(err != NSUCCESS, err, NULL, 0);
+    if (err) return err;
     
     char buffer[NFILE_BUFFER_SIZE];
     ssize_t rd = 0, wr = 0;
@@ -327,9 +332,9 @@ int nFileCopy(const char *restrict src, const char *restrict dst)
 
 closeLbl:;
     err = nFileClose(&srcFile);
-    nErrorAssert(err != NSUCCESS, err, NULL, 0);
+    if (err) return err;
     err = nFileClose(&dstFile);
-    nErrorAssert(err != NSUCCESS, err, NULL, 0);
+    if (err) return err;
     return err;
 }
 

@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['license_5fmd_509',['LICENSE_md',['../_nimble_license_8c.html#ab450cf8653ff805274fb24db2d389512',1,'LICENSE_md():&#160;NimbleLicense.c'],['../_nimble_license_8h.html#acfeb49c8484dde5f594ec26572e2885b',1,'LICENSE_md():&#160;NimbleLicense.c']]]
+  ['error_544',['error',['../structn_error_info.html#a11614f44ef4d939bdd984953346a7572',1,'nErrorInfo']]],
+  ['errorcallback_545',['errorCallback',['../_errors_8c.html#a4264138d9ce4541a3d69a439f37e07ab',1,'Errors.c']]],
+  ['errorlen_546',['errorLen',['../structn_error_info.html#a516b449b0b5df757e30e9c93549e85a9',1,'nErrorInfo']]],
+  ['errorstr_547',['errorStr',['../structn_error_info.html#aedd7e48c70927e651fd5977daf247795',1,'nErrorInfo']]]
 ];

@@ -45,10 +45,11 @@
 #include <signal.h>
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
 
 #include "../../../include/Nimble/Output/Errors/Crash.h"
+#include "../../../include/Nimble/Output/Files.h"
 #include "../../../include/Nimble/System/Library.h"
+#include "../../../include/Nimble/System/Time.h"
 
 
 const char noInfoStr[] = "No info.";
@@ -64,230 +65,164 @@ const char noInfoStr[] = "No info.";
  * @param[in] stackLen The length of the @p stack argument. A length of zero (0)
  * uses strlen() to determine length.
  */
-static void nErrorHandlerDefault(const int error,
-                                 const time_t errorTime,
-                                 const char *restrict errorDesc,
-                                 const size_t errorDescLen,
-                                 const char *restrict stack,
-                                 const size_t stackLen
-                                 );
+static void nErrorHandlerDefault(const nErrorInfo_t errorInfo);
 
 /**
  * @brief The error callback function that gets defined by nErrorSetCallback().
  */
-void (*volatile errorCallback) (const int error, const time_t errorTime,
- const char *restrict errorDesc, const size_t errorDescLen,
- const char *restrict stack, const size_t stackLen) = &nErrorHandlerDefault;
+void (*volatile errorCallback)(const nErrorInfo_t errorInfo) = &nErrorHandlerDefault;
 
-static void nErrorHandlerDefault(const int error, const time_t errorTime,
- const char *restrict errorDesc, const size_t errorDescLen,
- const char *restrict stack, const size_t stackLen)
+static void nErrorHandlerDefault(const nErrorInfo_t errorInfo)
 {
     /** @todo Make default callback. */
 }
 
-int nErrorAssert(const int check, const int error, const char *info,
- const size_t infoLen)
-{
-    if (!check)
-    {
-        int err = 0;
-        if (errno)
-        {
-            nErrorLastErrno(err);
-            err = nErrorFromErrno(err);
-        }
-#if NIMBLE_OS == NIMBLE_WINDOWS
-        if (err)
-        {
-            SetLastError(ERROR_SUCCESS);
-        }
-        else
-        {
-            nErrorLastWindows(err);
-            if (err)
-            {
-                err = error;
-                if (info)
-                {
-                    nErrorThrow(err, info, infoLen, -1);
-                }
-                return err;
-            }
-            else
-            {
-                err = error;
-            }
-        }
-#else
-        else
-        {
-            err = error;
-        }
-#endif
-
-        if (info)
-        {
-            nErrorThrow(err, info, infoLen, 1);
-        }
-        return err;
-    }
-    return NSUCCESS;
-}
-
-void nErrorThrow(const int error, const char *errorDescStr, size_t errorDescLen,
- const int createDesc)
+void nErrorThrow(const int error, const char *info, size_t infoLen, const int setError)
 {
 #define einfoStr "Callback argument NULL in nErrorThrow()."
     nAssert(errorCallback != NULL,
      NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
-    
-    const time_t errorTime = time(NULL);
-    
-    char *descStr = NULL;
-#if NIMBLE_OS == NIMBLE_WINDOWS
-    if (createDesc > 0)
+
+    char *sysDescStr;
+    size_t sysDescLen;
+    int err = error;
+    if (setError || !error)
     {
-        descStr = nErrorToString(&errorDescLen, error, errorDescStr, errorDescLen);
-    }
-    else if (createDesc < 0)
-    {
-        descStr = nErrorToStringWindows(&errorDescLen, error, errorDescStr, errorDescLen);
-    }
-#else
-    if (createDesc)
-    {
-        descStr = nErrorToString(&errorDescLen, error, errorDescStr, errorDescLen);
-    }
-#endif
-    else if (!descStr)
-    {
-        descStr = nErrorToString(&errorDescLen, error, NULL, 0);
+        if (!(err = nErrorLast(&sysDescLen, &sysDescStr)))
+        {
+            err = error;
+        }
     }
     
-    size_t stackLen = 0;
-#if 0
-    char *stackStr = nErrorGetStacktrace(&stackLen, NULL);
-#endif
+    const nTime_t errorTime = nTime();
+    
+    nErrorInfo_t errorInfo;
+    nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen);
     
     /* Call the user-defined error callback function. */
-    errorCallback(error, errorTime, descStr ? descStr : errorDescStr, errorDescLen, "stack", stackLen);
-
-#if 0
-    nFree(stackStr);
-#endif
-    if (descStr)
-    {
-        nFree(descStr);
-    }
+    errorCallback(errorInfo);
+    nErrorInfoFree(&errorInfo);
 }
 
-char *nErrorToString(size_t *restrict errorLen, const int error,
- const char *restrict info, size_t infoLen)
+int nErrorLast(size_t *sysDescLen, char **sysDescStr)
 {
-    if (info && (infoLen <= 0))
+    int error = NSUCCESS;
+    size_t len = 0;
+    if (sysDescStr)
     {
-        infoLen = strlen(info);
-    }
-    
-    /* Get error information. */
-    const char *errorStr = nErrorStr(error);
-    const size_t errorStrLen = nErrorStrLen(error);
-    const char *errorDescStr = nErrorDesc(error);
-    const size_t errorDescStrLen = nErrorDescLen(error);
+        nFree((void **) sysDescStr);
 
-    const char formatStr[] = "\nInfo: %s\nError: %s: %s\n";
-    const size_t formatStrLen = NCONST_STR_FORMAT_LEN(formatStr, 3, 0, 0, 0);
-    size_t errLen;
-    char *dst;
-    
-    if (!info)
-    {
-        errLen = formatStrLen + errorStrLen + errorDescStrLen +
-         NCONST_STR_LEN(noInfoStr);
-        dst = nAlloc(errLen + 1);
-        snprintf(dst, errLen + 1, formatStr, noInfoStr, errorStr, errorDescStr);
+        if ((error = nErrorLastErrno()))
+        {
+            char *errorDescStr = strerror(error);
+            error = nErrorFromErrno(error);
+            
+            len = strlen(errorDescStr);
+            *sysDescStr = nStringDuplicate(errorDescStr, len);
+        }
+        
+#if NIMBLE_OS == NIMBLE_WINDOWS
+        else if ((error = nErrorLastWindows()))
+        {
+            len = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
+            FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+            NULL,
+            error,
+            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+            (LPTSTR) sysDescStr,
+            0,
+            NULL);
+            error = NERROR_INTERNAL_FAILURE;
+
+            if (len <= 0)
+            {
+                len = 0;
+                nFree((void **) sysDescStr);
+            }
+        }
+#endif
     }
     else
     {
-        errLen = formatStrLen + errorStrLen + errorDescStrLen + infoLen;
-        dst = nAlloc(errLen + 1);
-        snprintf(dst, errLen + 1, formatStr, info, errorStr, errorDescStr);
-    }
-    
-    if (errorLen)
-    {
-        *errorLen = errLen;
-    }
-    
-    return dst;
-}
-
+        if ((error = nErrorLastErrno()))
+        {
+            error = nErrorFromErrno(error);
+        }
 #if NIMBLE_OS == NIMBLE_WINDOWS
-char *nErrorToStringWindows(size_t *restrict errorLen, const int error,
- const char *restrict info, size_t infoLen)
-{
-    if (info && (infoLen <= 0))
-    {
-        infoLen = strlen(info);
-    }
-
-    /* Get error information. */
-    char *buffer, *dst;
-    const size_t len = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
-     FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-     NULL,
-     error,
-     MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-     (LPTSTR) &buffer,
-     0,
-     NULL);
-
-    if (!len)
-    {
-        dst = nErrorToString(errorLen, NERROR_UNKNOWN, info, infoLen);
-        goto retLbl;
+        else if ((error = nErrorLastWindows()))
+        {
+            error = NERROR_INTERNAL_FAILURE;
+        }
+#endif
     }
 
     /* Copy error to heap. */
+    if (sysDescLen)
+    {
+        *sysDescLen = len;
+    }
+    return error;
+}
+
+void nErrorInfoSet(nErrorInfo_t *restrict errorInfo, const int error,
+ const nTime_t errorTime, const char *restrict info, size_t infoLen)
+{
+    if (!errorInfo) return;
+    errorInfo->time = errorTime.secs ? errorTime : nTime();
+    errorInfo->error = error;
+
+    const size_t errorLen = nErrorStrLen(error);
+    errorInfo->errorStr = nErrorStr(error);
+    errorInfo->errorLen = errorLen;
+
+    const size_t descLen = nErrorDescLen(error);
+    errorInfo->descStr = nErrorDesc(error);
+    errorInfo->descLen = descLen;
+
     if (info)
     {
-        char windowsInfoStr[] = "\nWindows generated info: ";
-        const size_t errLen = infoLen + NCONST_STR_LEN(windowsInfoStr) +
-         len;
-        
-        char *newInfoStr = nAlloc(errLen + 1);
-        nStringCopy(newInfoStr, info, infoLen);
-        nStringCopy(newInfoStr + infoLen, windowsInfoStr,
-         NCONST_STR_LEN(windowsInfoStr));
-        nStringCopy(newInfoStr + infoLen + NCONST_STR_LEN(windowsInfoStr),
-         buffer, len);
-        
-        dst = nErrorToString(errorLen, error, newInfoStr, errLen);
+        if (!infoLen)
+        {
+            infoLen = strlen(info);
+        }
+        errorInfo->infoStr = nStringDuplicate(info, infoLen + 1);
     }
     else
     {
-        dst = nErrorToString(errorLen, error, buffer, len);
+        errorInfo->infoStr = nStringDuplicate(noInfoStr,
+         NCONST_STR_LEN(noInfoStr));
     }
     
-    if (errorLen)
-    {
-        *errorLen = len;
-    }
-
-retLbl:;
-    if (buffer)
-    {
-        LocalFree(buffer);
-    }
-    return dst;
+    size_t stackLen;
+    int stackLevels = 0;
+    errorInfo->stackStr = nErrorStacktrace(&stackLen, &stackLevels);
+    errorInfo->stackLen = stackLen;
+    errorInfo->stackLevels = stackLevels;
 }
-#endif
 
-int nErrorSetCallback(void (*callback)(const int error,
- const time_t errorTime, const char *restrict errorDesc,
- const size_t errorDescLen, const char *restrict stack, const size_t stackLen))
+void nErrorInfoFree(nErrorInfo_t *errorInfo)
+{
+    errorInfo->error = 0;
+
+    errorInfo->errorStr = NULL;
+    errorInfo->errorLen = 0;
+
+    errorInfo->descStr = NULL;
+    errorInfo->descLen = 0;
+
+    nFree((void **) &errorInfo->sysDescStr);
+    errorInfo->sysDescLen = 0;
+
+    nFree((void **) &errorInfo->infoStr);
+    errorInfo->infoLen = 0;
+    
+    nFree((void **) &errorInfo->stackStr);
+    errorInfo->stackLen = 0;
+    errorInfo->stackLevels = 0;
+}
+
+void nErrorSetCallback(void (*callback) (const nErrorInfo_t errorInfo))
 {
     if (callback)
     {
@@ -297,11 +232,9 @@ int nErrorSetCallback(void (*callback)(const int error,
     {
         errorCallback = nErrorHandlerDefault;
     }
-
-    return NSUCCESS;
 }
 
-char *nErrorGetStacktrace(size_t *restrict stackLen, size_t *restrict stackLevels)
+char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels)
 {
     /* Set max levels */
     size_t maxLevels = 128;

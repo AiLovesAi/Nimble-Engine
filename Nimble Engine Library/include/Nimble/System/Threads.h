@@ -54,7 +54,7 @@ extern "C" {
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #  define NIMBLE_THREADS NIMBLE_THREADS_WINAPI
-#include <windows.h>
+#include <Windows.h>
 
 typedef HANDLE nThread_t;
 typedef DWORD nThreadRoutine_t;
