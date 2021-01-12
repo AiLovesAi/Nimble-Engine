@@ -49,6 +49,8 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "../include/Nimble/Output/Errors/Errors.h"
+
 volatile _Bool NIMBLE_INITIALIZED = 0;
 
 char **NIMBLE_ARGS = NULL;

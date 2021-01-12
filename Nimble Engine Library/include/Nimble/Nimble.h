@@ -133,30 +133,28 @@ extern "C" {
 
 
 /* Processor definitions */
-#define NIMBLE_INTEL 1
-#define NIMBLE_AMD   2
-#define NIMBLE_ARM   3
+#define NIMBLE_ARCH_INTEL 1
+#define NIMBLE_ARCH_AMD   2
+#define NIMBLE_ARCH_ARM   3
+
+#define NIMBLE_INST_x86 1
+#define NIMBLE_INST_ARM 2
 
 #if defined(__i386__) || defined(__ia64__)
-#  define NIMBLE_ARCH NIMBLE_INTEL
+#  define NIMBLE_ARCH NIMBLE_ARCH_INTEL
+#  define NIMBLE_INST NIMBLE_INST_x86
 #elif defined(__amd64__)
-#  define NIMBLE_ARCH NIMBLE_AMD
+#  define NIMBLE_ARCH NIMBLE_ARCH_AMD
+#  define NIMBLE_INST NIMBLE_INST_x86
 #elif defined(__arm__) || defined(__aarch64__) || defined(__thumb__)
-#  define NIMBLE_ARCH NIMBLE_ARM
+#  define NIMBLE_ARCH NIMBLE_ARCH_ARM
+#  define NIMBLE_INST NIMBLE_INST_ARM
 #else
 #  error CPU architecture not supported.
 #endif
 
-
-/* Bit-width definitions */
-#if UINTPTR_MAX == 0xffffffff
-#  define NIMBLE_32BIT
-#elif UINTPTR_MAX == 0xffffffffffffffff
-#  define NIMBLE_64BIT
-#elif UINTPTR_MAX == 0xffffffffffffffffffffffffffffffff
-#  define NIMBLE_128BIT
-#else
-#  error Only 32-bit, 64-bit, and 128-bit hardware is supported.
+#if UINTPTR_MAX < 0xffffffffffffffff
+#  error Only 64-bit hardware is supported.
 #endif
 
 

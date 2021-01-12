@@ -55,6 +55,7 @@ extern "C" {
 
 #include "Output/Errors/Crash.h"
 #include "Output/Errors/Errors.h"
+#include "Output/Errors/ErrorValues.h"
 #include "Output/Files.h"
 #include "Output/Logging.h"
 

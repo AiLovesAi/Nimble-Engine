@@ -48,7 +48,7 @@
 char NCPU_INFO[129] = {0};
 size_t NCPU_INFO_LEN = 0;
 
-#if (NIMBLE_ARCH == NIMBLE_INTEL) || (NIMBLE_ARCH == NIMBLE_AMD)
+#if NIMBLE_INST == NIMBLE_INST_x86
 #define nGetInfoReg(eax, ret1, ret2, ret3, ret4) ({\
     asm volatile(\
         "movl %4,%%eax\n" /* Set the eax register that cpuid checks. */\
@@ -65,7 +65,7 @@ size_t NCPU_INFO_LEN = 0;
 })
 #endif
 
-#if NIMBLE_ARCH == NIMBLE_ARM
+#if NIMBLE_INST == NIMBLE_INST_ARM
 /* Architecture definitions */
 #  define ARMv4        0x1
 #  define ARMv4T       0x2
@@ -103,17 +103,7 @@ size_t NCPU_INFO_LEN = 0;
 
 
 /* Info register functions */
-#  ifdef NIMBLE_32BIT
-#    define nGetInfoReg(val) ({\
-    asm(\
-        "mrc %%p15, $0, %0, %%c0, %%c0, $0\n" /* Store the MIDR register in "info.val". */
-        : "=r" (val)
-        : /* No input. */
-        : "%p15", "%c0"
-    );\
-})
-#  else
-#    define nGetInfoReg(val) ({\
+#  define nGetInfoReg(val) ({\
     asm(\
         "mrs %%MIDR_EL1, %0\n" /* Store the MIDR_EL1 register in "info.val". */\
         : "=r" (val)\
@@ -121,7 +111,6 @@ size_t NCPU_INFO_LEN = 0;
         : /* No clobber.*/\
     );\
 })
-#  endif
 
 #  define nSetRevNum(str, val, len) ({\
     if (val > 0x9)
@@ -143,7 +132,7 @@ char *nSysGetCPUInfo(size_t *len)
 {
     if (!NCPU_INFO[0])
     {
-#if (NIMBLE_ARCH == NIMBLE_INTEL) || (NIMBLE_ARCH == NIMBLE_AMD)
+#if NIMBLE_INST == NIMBLE_INST_x86
         uint32_t brand[12] = {0};
 
         /* Note: 0x80000002-0x80000004 are used to get the highest level CPU brand
@@ -171,7 +160,7 @@ char *nSysGetCPUInfo(size_t *len)
         if (len) *len = l;
         l++;
         memcpy(NCPU_INFO, brand, l);
-#elif NIMBLE_ARCH == NIMBLE_ARM
+#elif NIMBLE_INST == NIMBLE_INST_ARM
         /* Use a union to share the data between a uint32_t and a structure defining
         * what the accessed bits are for. */
         scruct cpuidBits {
@@ -188,13 +177,8 @@ char *nSysGetCPUInfo(size_t *len)
 
         nGetInfoReg(info.val);
 
-#  ifdef NIMBLE_32BIT
-#    define einfoStr "nSysGetCPUInfo() failed to run the "\
-"'mrc' instruction to get the CPU info using the 'MIDR' register (ARM)."
-#  else
-#    define einfoStr "nSysGetCPUInfo() failed to run the "\
+#  define einfoStr "nSysGetCPUInfo() failed to run the "\
 "'mrs' instruction to get the CPU info using the 'MIDR_EL1' register (ARM)."
-#  endif
         if (nErrorAssert(info.val,
          NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #  undef einfoStr

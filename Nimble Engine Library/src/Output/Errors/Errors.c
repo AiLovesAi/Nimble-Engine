@@ -77,7 +77,7 @@ static void nErrorHandlerDefault(const nErrorInfo_t errorInfo)
     /** @todo Make default callback. */
 }
 
-void nErrorThrow(const int error, const char *info, size_t infoLen, const int setError)
+int nErrorThrow(const int error, const char *info, size_t infoLen, const int setError)
 {
 #define einfoStr "Callback argument NULL in nErrorThrow()."
     nAssert(errorCallback != NULL,
@@ -103,6 +103,7 @@ void nErrorThrow(const int error, const char *info, size_t infoLen, const int se
     /* Call the user-defined error callback function. */
     errorCallback(errorInfo);
     nErrorInfoFree(&errorInfo);
+    return err;
 }
 
 int nErrorLast(size_t *sysDescLen, char **sysDescStr)
@@ -243,28 +244,16 @@ char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels)
         maxLevels = *stackLevels;
     }
 
-#ifdef NIMBLE_32BIT
-    struct frame {
-        struct frame *bp;
-        uint32_t ip;
-    };
-    struct frame *stack = {0};
-#else
     struct frame {
         struct frame *bp;
         uint64_t ip;
     };
     struct frame *stack = {0};
-#endif
 
     /* Get stack frame pointer. */
-#if (NIMBLE_ARCH == NIMBLE_INTEL) | (NIMBLE_ARCH == NIMBLE_AMD)
-#  ifdef NIMBLE_32BIT
-    asm("movl %%ebp, %0\n" : "=r" (stack) ::);
-#  else
+#if NIMBLE_INST == NIMBLE_INST_x86
     asm("movq %%rbp, %0\n" : "=r" (stack) ::);
-#  endif
-#elif NIMBLE_ARCH == NIMBLE_ARM
+#elif NIMBLE_INST == NIMBLE_INST_ARM
 #  ifdef __thumb__
     asm("mov %%r7, %0\n" : "=r" (stack) ::);
 #  else
@@ -273,11 +262,7 @@ char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels)
 #endif
 
     /* Prepare stackStr with buffer. */
-#ifdef NIMBLE_32BIT
-    const char formatStr[] = "<%08x> %s\n";
-#else
     const char formatStr[] = "<%016I64x> %s\n";
-#endif
     const size_t maxLineLen = (NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 1, 0)
      + NFUNCTION_NAME_MAX + 8);
     const size_t bufferSize = (maxLevels * maxLineLen) + 1;

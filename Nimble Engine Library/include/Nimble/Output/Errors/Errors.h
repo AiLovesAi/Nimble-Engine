@@ -47,12 +47,13 @@ extern "C" {
 #define NIMBLE_ENGINE_ERRORS_H /**< Header definition */
 
 #include "../../NimbleEngine.h"
-#include "ErrorValues.h"
-#include "../System/Time.h"
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #include <Windows.h>
 #endif
+
+#include "ErrorValues.h"
+#include "../../System/Time.h"
 
 
 #ifndef NERRORS_MAX_STACK
@@ -94,12 +95,13 @@ typedef struct nErrorInfo {
  * zero (0) uses strlen() to determine length.
  * @param[in] setError If set, the function will try to find an error through
  * nErrorLast(), and use @p error as a default.
+ * @return Returns the final error.
  *
  * @note The program will crash if this is unsuccessful.
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-void
+int
 nErrorThrow(const int error,
             const char *info,
             size_t infoLen,
@@ -151,6 +153,7 @@ int nErrorLastWindows(void)
  * @param[out] sysDescStr A pointer to the string to set to the system's error
  * description. This can be #NULL.
  * @return The NERROR version of the found error is returned.
+ * 
  * @note @p sysDescStr is allocated, and should be freed using nFree().
  */
 NIMBLE_EXPORT
@@ -167,7 +170,8 @@ int nErrorLast(size_t *sysDescLen,
  * not throw an error.
  * @param[in] infoLen The length of @p info.
  * 
- * @return #NSUCCESS or an error is returned.
+ * @return #NSUCCESS is returned if @p check passes; otherwise, the error generated
+ * by nErrorThrow() is returned.
  */
 NIMBLE_INLINE
 int nErrorAssert(const int check,
@@ -175,11 +179,7 @@ int nErrorAssert(const int check,
                  const char *info,
                  const size_t infoLen)
 {
-    if (!check)
-    {
-        if (info) nErrorThrow(error, info, infoLen, 1);
-        return error;
-    }
+    if (!check && info) return nErrorThrow(error, info, infoLen, 1);
     return NSUCCESS;
 }
 

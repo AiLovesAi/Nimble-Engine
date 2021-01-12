@@ -96,49 +96,88 @@ $(function() {
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#include &lt;Windows.h&gt;</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structn_time_spec.html">   57</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structn_time_spec.html">nTimeSpec</a> {</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="structn_time_spec.html#ae6052f13d348b45604b0f5b6f7e98e9c">   58</a></span>&#160;    time_t <a class="code" href="structn_time_spec.html#ae6052f13d348b45604b0f5b6f7e98e9c">secs</a>; </div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structn_time_spec.html#a95ae53229c3a7bf41d5e1ee256815d54">   59</a></span>&#160;    <span class="keywordtype">long</span> <a class="code" href="structn_time_spec.html#a95ae53229c3a7bf41d5e1ee256815d54">nanos</a>; </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="_time_8h.html#a9a472ad1ccbf442f44222fafd21ea54d">   60</a></span>&#160;} <a class="code" href="_time_8h.html#a9a472ad1ccbf442f44222fafd21ea54d">nTime_t</a>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#ifndef CLOCK_REALTIME_COARSE</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#define CLOCK_REALTIME_COARSE 1</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#  ifdef NIMBLE_32BIT</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#  else</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<a class="code" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">void</span> clock_gettime(<span class="keywordtype">int</span> val, <span class="keyword">struct</span> <a class="code" href="structn_time_spec.html">nTimeSpec</a> *spec)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    __int64 wintime;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    GetSystemTimeAsFileTime((FILETIME*) &amp;wintime);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    wintime -= 116444736000000000; <span class="comment">//1jan1601 to 1jan1970</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    spec-&gt;<a class="code" href="structn_time_spec.html#ae6052f13d348b45604b0f5b6f7e98e9c">secs</a>  = wintime / 10000000; <span class="comment">//seconds</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    spec-&gt;<a class="code" href="structn_time_spec.html#a95ae53229c3a7bf41d5e1ee256815d54">nanos</a> = (wintime % 10000000) * 100; <span class="comment">//nano-seconds</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#  endif</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<a class="code" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a></div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="_time_8h.html#a20ec29a154ba798e1c9e345974b3fe74">   84</a></span>&#160;<a class="code" href="structn_time_spec.html">nTime_t</a> <a class="code" href="_time_8h.html#a20ec29a154ba798e1c9e345974b3fe74">nTime</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="structn_time_spec.html">nTime_t</a> time;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    clock_gettime(CLOCK_REALTIME_COARSE, &amp;time); <span class="comment">// @todo Make assembly version</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">return</span> time;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_TIME_H</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">// Time.h</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="_time_8h.html#a434740b82f15e676eebc8022234b1936">   57</a></span>&#160;<span class="preprocessor">#define NTIME_NS_IN_US   1000L </span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="_time_8h.html#a5cb8ebcae2a4fac94a06eba202f517a1">   59</a></span>&#160;<span class="preprocessor">#define NTIME_US_IN_MS   1000L </span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="_time_8h.html#a514783d84cce9c977fe216dcca88db30">   60</a></span>&#160;<span class="preprocessor">#define NTIME_NS_IN_MS   NTIME_US_IN_MS * NTIME_NS_IN_US </span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="_time_8h.html#ad5701a58a886d89929183adb44a1f8ba">   62</a></span>&#160;<span class="preprocessor">#define NTIME_MS_IN_SEC  1000L </span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="_time_8h.html#af570d5b8c2dbaa0be300860e90835b37">   63</a></span>&#160;<span class="preprocessor">#define NTIME_US_IN_SEC  NTIME_MS_IN_SEC * NTIME_US_IN_MS </span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="_time_8h.html#ac2c0faf23601df1accba017e48cc6b07">   64</a></span>&#160;<span class="preprocessor">#define NTIME_NS_IN_SEC  NTIME_MS_IN_SEC * NTIME_NS_IN_MS </span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="_time_8h.html#af2db4263878abdb4dc234fe2d4d6132a">   66</a></span>&#160;<span class="preprocessor">#define NTIME_SEC_IN_MIN 60L </span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="_time_8h.html#adc5065fcbb79bc4b5147f12162ca6090">   67</a></span>&#160;<span class="preprocessor">#define NTIME_MS_IN_MIN  NTIME_SEC_IN_MIN * NTIME_MS_IN_SEC </span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="_time_8h.html#aeb89f47da86b401f046800a39037be76">   68</a></span>&#160;<span class="preprocessor">#define NTIME_US_IN_MIN  NTIME_SEC_IN_MIN * NTIME_US_IN_SEC </span></div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="_time_8h.html#ab95b78466a800a19afbebda9a32e3d26">   69</a></span>&#160;<span class="preprocessor">#define NTIME_NS_IN_MIN  NTIME_SEC_IN_MIN * NTIME_NS_IN_SEC </span></div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="_time_8h.html#a2a1e733b3fae4fda433794b235fa6521">   71</a></span>&#160;<span class="preprocessor">#define NTIME_MIN_IN_HR  60L </span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="_time_8h.html#ac9c350b04d3e6b772f1490bae5575f83">   72</a></span>&#160;<span class="preprocessor">#define NTIME_SEC_IN_HR  NTIME_MIN_IN_HR * NTIME_SEC_IN_MIN </span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="_time_8h.html#af1df5b067c29bdaade0804387bdb4fdf">   73</a></span>&#160;<span class="preprocessor">#define NTIME_MS_IN_HR   NTIME_MIN_IN_HR * NTIME_MS_IN_MIN </span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="_time_8h.html#a5c2481daaa686300f4d19824fb042b44">   74</a></span>&#160;<span class="preprocessor">#define NTIME_US_IN_HR   NTIME_MIN_IN_HR * NTIME_US_IN_MIN </span></div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="_time_8h.html#a714b34c7dc08fbcbe677fc11d12f31b5">   75</a></span>&#160;<span class="preprocessor">#define NTIME_NS_IN_HR   NTIME_MIN_IN_HR * NTIME_NS_IN_MIN </span></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="_time_8h.html#ab0566b6924189f5627049c47f9d4bde4">   77</a></span>&#160;<span class="preprocessor">#define NTIME_HR_IN_DAY  24L </span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="_time_8h.html#a1e60f80aafa58dba1d0c31076552c954">   78</a></span>&#160;<span class="preprocessor">#define NTIME_MIN_IN_DAY NTIME_HR_IN_DAY * NTIME_MIN_IN_HR </span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="_time_8h.html#ade04d8fda451f2af40563358ea4115b1">   79</a></span>&#160;<span class="preprocessor">#define NTIME_SEC_IN_DAY NTIME_HR_IN_DAY * NTIME_SEC_IN_HR </span></div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="_time_8h.html#a3c31b6682be74dd4903a273bb74d585b">   80</a></span>&#160;<span class="preprocessor">#define NTIME_MS_IN_DAY  NTIME_HR_IN_DAY * NTIME_MS_IN_HR </span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="_time_8h.html#aa0c109ba31a38a70d6047c48ed09647f">   81</a></span>&#160;<span class="preprocessor">#define NTIME_US_IN_DAY  NTIME_HR_IN_DAY * NTIME_US_IN_HR </span></div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="_time_8h.html#a467df27113e846e2d677b3ee2cbe40a5">   82</a></span>&#160;<span class="preprocessor">#define NTIME_NS_IN_DAY  NTIME_HR_IN_DAY * NTIME_NS_IN_HR </span></div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="_time_8h.html#a929f7756e8cbd8382eed3a9b26f40b92">   84</a></span>&#160;<span class="preprocessor">#define NTIME_DAY_IN_YR  365L </span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="_time_8h.html#af18d738c67abdda5d9fded70340b8532">   85</a></span>&#160;<span class="preprocessor">#define NTIME_HR_IN_YR   NTIME_DAY_IN_YR * NTIME_HR_IN_DAY </span></div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="_time_8h.html#a30f7a5d803b882b2d881d2cb0c55ec19">   86</a></span>&#160;<span class="preprocessor">#define NTIME_MIN_IN_YR  NTIME_DAY_IN_YR * NTIME_MIN_IN_DAY </span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="_time_8h.html#a63f35cffd6a0d569adfcc22e4cd67860">   87</a></span>&#160;<span class="preprocessor">#define NTIME_SEC_IN_YR  NTIME_DAY_IN_YR * NTIME_SEC_IN_DAY </span></div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="_time_8h.html#ad832842a41163a61bf6dae46cd78a0c9">   88</a></span>&#160;<span class="preprocessor">#define NTIME_MS_IN_YR   NTIME_DAY_IN_YR * NTIME_MS_IN_DAY </span></div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="_time_8h.html#a020ef05c6baa44d8dc83b110168da079">   89</a></span>&#160;<span class="preprocessor">#define NTIME_US_IN_YR  NTIME_DAY_IN_YR * NTIME_US_IN_DAY </span></div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="_time_8h.html#ad8ae72bfaeb47e8f55850b044a585cd8">   90</a></span>&#160;<span class="preprocessor">#define NTIME_NS_IN_YR  NTIME_DAY_IN_YR * NTIME_NS_IN_DAY </span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="_time_8h.html#a05525144569f2c48c71f796a67a865b2">   92</a></span>&#160;<span class="preprocessor">#define NTIME_DAY_IN_LYR 366L </span></div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="_time_8h.html#a0c4b7d0035d8580a23a1fd890d628c8d">   93</a></span>&#160;<span class="preprocessor">#define NTIME_HR_IN_LYR   NTIME_DAY_IN_LYR * NTIME_HR_IN_DAY </span></div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="_time_8h.html#a841f2984545b7e8c961a8b918e411034">   94</a></span>&#160;<span class="preprocessor">#define NTIME_MIN_IN_LYR  NTIME_DAY_IN_LYR * NTIME_MIN_IN_DAY </span></div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="_time_8h.html#a7d07024d10a389628a6f8b9a488915b3">   95</a></span>&#160;<span class="preprocessor">#define NTIME_SEC_IN_LYR  NTIME_DAY_IN_LYR * NTIME_SEC_IN_DAY </span></div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="_time_8h.html#aef5950a07d350b1f311fc94f19a69dc0">   96</a></span>&#160;<span class="preprocessor">#define NTIME_MS_IN_LYR   NTIME_DAY_IN_LYR * NTIME_MS_IN_DAY </span></div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="_time_8h.html#aecbc689a6a8da59561c00e6595b1cb8e">   97</a></span>&#160;<span class="preprocessor">#define NTIME_US_IN_LYR  NTIME_DAY_IN_LYR * NTIME_US_IN_DAY </span></div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="_time_8h.html#a9c936f3269dc1ad7bf6de81ee5881902">   98</a></span>&#160;<span class="preprocessor">#define NTIME_NS_IN_LYR  NTIME_DAY_IN_LYR * NTIME_NS_IN_DAY </span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="_time_8h.html#a9a81b86ff12b6ebd585b60999b94a9fc">  100</a></span>&#160;<span class="preprocessor">#define NTIME_DAY_IN_JYR 365.25f </span></div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="_time_8h.html#a4ac3faff4818fb2720407d384b669edd">  101</a></span>&#160;<span class="preprocessor">#define NTIME_HR_IN_JYR  8766L </span></div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="_time_8h.html#ad9acb4a273eb96ac0c0ddedf095c97e7">  102</a></span>&#160;<span class="preprocessor">#define NTIME_MIN_IN_JYR NTIME_HR_IN_JYR * NTIME_MIN_IN_HR </span></div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="_time_8h.html#a1eb0e6a153fc03c3655665a1509a1972">  103</a></span>&#160;<span class="preprocessor">#define NTIME_SEC_IN_JYR NTIME_HR_IN_JYR * NTIME_SEC_IN_HR </span></div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="_time_8h.html#a24066cc7c56fd72b2c35713ed2c70bc2">  104</a></span>&#160;<span class="preprocessor">#define NTIME_MS_IN_JYR  NTIME_HR_IN_JYR * NTIME_MS_IN_HR </span></div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="_time_8h.html#a3ff8795c027ac3e799f1a3894464e1f9">  105</a></span>&#160;<span class="preprocessor">#define NTIME_US_IN_JYR  NTIME_HR_IN_JYR * NTIME_US_IN_HR </span></div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="_time_8h.html#a875d99ebba0201e24ac6ea1b22988355">  106</a></span>&#160;<span class="preprocessor">#define NTIME_NS_IN_JYR  NTIME_HR_IN_JYR * NTIME_NS_IN_HR </span></div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="structn_time_spec.html">  108</a></span>&#160;<span class="preprocessor">typedef struct nTimeSpec {</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="structn_time_spec.html#ae6052f13d348b45604b0f5b6f7e98e9c">  109</a></span>&#160;    time_t <a class="code" href="structn_time_spec.html#ae6052f13d348b45604b0f5b6f7e98e9c">secs</a>; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="structn_time_spec.html#a95ae53229c3a7bf41d5e1ee256815d54">  110</a></span>&#160;    <span class="keywordtype">long</span> <a class="code" href="structn_time_spec.html#a95ae53229c3a7bf41d5e1ee256815d54">nanos</a>; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="_time_8h.html#a9a472ad1ccbf442f44222fafd21ea54d">  111</a></span>&#160;} <a class="code" href="_time_8h.html#a9a472ad1ccbf442f44222fafd21ea54d">nTime_t</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<a class="code" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a></div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="_time_8h.html#a20ec29a154ba798e1c9e345974b3fe74">  119</a></span>&#160;<a class="code" href="structn_time_spec.html">nTime_t</a> <a class="code" href="_time_8h.html#a20ec29a154ba798e1c9e345974b3fe74">nTime</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;{</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="structn_time_spec.html">nTime_t</a> time;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#if NIMBLE_OS == NIMBLE_WINDOWS</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    int64_t rawTime;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    GetSystemTimeAsFileTime((FILETIME*) &amp;rawTime);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="comment">/* Convert from 1601 to 1970 epoch. */</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="comment">/* Note: This is the result of the following, but with exact leap year time accounted for:</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">     * (1970 * (NTIME_NS_IN_JYR / 100)) - (1601 * (NTIME_NS_IN_JYR / 100))</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">     * = The amount of time between 1 Jan, 1601 and 1 Jan, 1970 in 100ns intervals.</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    rawTime -= 116444736000000000LL;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    time.<a class="code" href="structn_time_spec.html#ae6052f13d348b45604b0f5b6f7e98e9c">secs</a> = rawTime / 10000000L;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    time.<a class="code" href="structn_time_spec.html#a95ae53229c3a7bf41d5e1ee256815d54">nanos</a> = (rawTime % 10000000L) * 100L;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    clock_gettime(CLOCK_REALTIME_COARSE, &amp;time);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordflow">return</span> time;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_TIME_H</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;}</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">// Time.h</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="a_nimble_8h_html_aa82aaf62c4b04a2f8899150966feebb2"><div class="ttname"><a href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a></div><div class="ttdeci">#define NIMBLE_INLINE</div><div class="ttdoc">Inline alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00179">Nimble.h:179</a></div></div>
-<div class="ttc" id="astructn_time_spec_html_ae6052f13d348b45604b0f5b6f7e98e9c"><div class="ttname"><a href="structn_time_spec.html#ae6052f13d348b45604b0f5b6f7e98e9c">nTimeSpec::secs</a></div><div class="ttdeci">time_t secs</div><div class="ttdoc">Time in seconds after epoch.</div><div class="ttdef"><b>Definition:</b> <a href="_time_8h_source.html#l00058">Time.h:58</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_aa82aaf62c4b04a2f8899150966feebb2"><div class="ttname"><a href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a></div><div class="ttdeci">#define NIMBLE_INLINE</div><div class="ttdoc">Inline alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00177">Nimble.h:177</a></div></div>
+<div class="ttc" id="astructn_time_spec_html_ae6052f13d348b45604b0f5b6f7e98e9c"><div class="ttname"><a href="structn_time_spec.html#ae6052f13d348b45604b0f5b6f7e98e9c">nTimeSpec::secs</a></div><div class="ttdeci">time_t secs</div><div class="ttdoc">Time in seconds after the Unix epoch (1 Jan, 1970).</div><div class="ttdef"><b>Definition:</b> <a href="_time_8h_source.html#l00109">Time.h:109</a></div></div>
 <div class="ttc" id="a_time_8h_html_a9a472ad1ccbf442f44222fafd21ea54d"><div class="ttname"><a href="_time_8h.html#a9a472ad1ccbf442f44222fafd21ea54d">nTime_t</a></div><div class="ttdeci">struct nTimeSpec nTime_t</div></div>
-<div class="ttc" id="a_time_8h_html_a20ec29a154ba798e1c9e345974b3fe74"><div class="ttname"><a href="_time_8h.html#a20ec29a154ba798e1c9e345974b3fe74">nTime</a></div><div class="ttdeci">NIMBLE_INLINE nTime_t nTime(void)</div><div class="ttdoc">Gets the system time.</div><div class="ttdef"><b>Definition:</b> <a href="_time_8h_source.html#l00084">Time.h:84</a></div></div>
-<div class="ttc" id="astructn_time_spec_html_a95ae53229c3a7bf41d5e1ee256815d54"><div class="ttname"><a href="structn_time_spec.html#a95ae53229c3a7bf41d5e1ee256815d54">nTimeSpec::nanos</a></div><div class="ttdeci">long nanos</div><div class="ttdoc">Nanoseconds after seconds.</div><div class="ttdef"><b>Definition:</b> <a href="_time_8h_source.html#l00059">Time.h:59</a></div></div>
-<div class="ttc" id="astructn_time_spec_html"><div class="ttname"><a href="structn_time_spec.html">nTimeSpec</a></div><div class="ttdef"><b>Definition:</b> <a href="_time_8h_source.html#l00057">Time.h:57</a></div></div>
+<div class="ttc" id="a_time_8h_html_a20ec29a154ba798e1c9e345974b3fe74"><div class="ttname"><a href="_time_8h.html#a20ec29a154ba798e1c9e345974b3fe74">nTime</a></div><div class="ttdeci">NIMBLE_INLINE nTime_t nTime(void)</div><div class="ttdoc">Gets the system time.</div><div class="ttdef"><b>Definition:</b> <a href="_time_8h_source.html#l00119">Time.h:119</a></div></div>
+<div class="ttc" id="astructn_time_spec_html_a95ae53229c3a7bf41d5e1ee256815d54"><div class="ttname"><a href="structn_time_spec.html#a95ae53229c3a7bf41d5e1ee256815d54">nTimeSpec::nanos</a></div><div class="ttdeci">long nanos</div><div class="ttdoc">Nanoseconds after seconds.</div><div class="ttdef"><b>Definition:</b> <a href="_time_8h_source.html#l00110">Time.h:110</a></div></div>
+<div class="ttc" id="astructn_time_spec_html"><div class="ttname"><a href="structn_time_spec.html">nTimeSpec</a></div><div class="ttdef"><b>Definition:</b> <a href="_time_8h_source.html#l00108">Time.h:108</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

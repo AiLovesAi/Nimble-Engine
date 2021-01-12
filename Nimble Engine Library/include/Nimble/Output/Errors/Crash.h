@@ -98,7 +98,7 @@ nCrashSafe(const int error,
            );
 
 /**
- * @brief Crashes with @p info if @p check if equal to zero.
+ * @brief Crashes with @p info if @p check is equal to zero.
  * 
  * @param[in] check The statement to check if true.
  * @param[in] error The default error to crash with (overridden if errno is set).
