@@ -120,11 +120,20 @@ file(GLOB engine
      "include/Nimble/System/*.h"
      )
 
+
 add_library(NimbleOGL SHARED ${ogl})
 add_library(NimbleVulkan SHARED ${vulkan})
 add_library(NimbleDX11 SHARED ${dx11})
 add_library(NimbleDX12 SHARED ${dx12})
 add_library(NimbleEngine SHARED ${engine})
+
+if(WIN32)
+  target_link_libraries(NimbleOGL dbghelp)
+  target_link_libraries(NimbleVulkan dbghelp)
+  target_link_libraries(NimbleDX11 dbghelp)
+  target_link_libraries(NimbleDX12 dbghelp)
+  target_link_libraries(NimbleEngine dbghelp)
+endif()
 
 set(GCC_COMPILE_FLAGS "-DNIMBLE_SHARED -Ofast")
 target_compile_options(NimbleOGL PUBLIC ${GCC_COMPILE_FLAGS})
@@ -166,6 +175,14 @@ add_library(NimbleVulkan_static STATIC ${vulkan})
 add_library(NimbleDX11_static STATIC ${dx11})
 add_library(NimbleDX12_static STATIC ${dx12})
 add_library(NimbleEngine_static STATIC ${engine})
+
+if(WIN32)
+  target_link_libraries(NimbleOGL_static dbghelp)
+  target_link_libraries(NimbleVulkan_static dbghelp)
+  target_link_libraries(NimbleDX11_static dbghelp)
+  target_link_libraries(NimbleDX12_static dbghelp)
+  target_link_libraries(NimbleEngine_static dbghelp)
+endif()
 
 target_compile_options(NimbleOGL_static PUBLIC ${GCC_COMPILE_FLAGS_STATIC})
 target_compile_options(NimbleVulkan_static PUBLIC ${GCC_COMPILE_FLAGS_STATIC})

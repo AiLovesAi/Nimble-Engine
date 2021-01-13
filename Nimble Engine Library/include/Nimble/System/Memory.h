@@ -46,7 +46,12 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_MEMORY_H
 #define NIMBLE_ENGINE_MEMORY_H /**< Header definition */
 
-#include "../NimbleEngine.h"
+#include "../Nimble.h"
+
+#include <stdlib.h>
+
+#include "../Output/Errors/Errors.h"
+#include "../Output/Errors/Crash.h"
 
 /**
  * @brief Allocates a pointer.
@@ -55,11 +60,20 @@ extern "C" {
  * @param[in] size The size of the memory block in bytes.
  * @return The allocated pointer.
  */
-NIMBLE_EXPORT
 NIMBLE_USE_RESULT
-NIMBLE_EXTERN
-void *
-nAlloc(const size_t size);
+NIMBLE_INLINE
+void *nAlloc(const size_t size)
+{
+    void *ptr = malloc(size);
+
+    /* Check if successfully allocated. */
+#define einfoStr "Ran out of memory in nAlloc()."
+    nAssert(ptr != NULL,
+     NERROR_NO_MEMORY, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+
+    return ptr;
+}
 
 /**
  * @brief Reallocates a pointer.
@@ -69,11 +83,21 @@ nAlloc(const size_t size);
  * @param[in] size The size of the new memory block in bytes.
  * @return The reallocated @p ptr.
  */
-NIMBLE_EXPORT
 NIMBLE_USE_RESULT
-NIMBLE_EXTERN
-void *
-nRealloc(void*ptr, const size_t size);
+NIMBLE_INLINE
+void *nRealloc(void *ptr, const size_t size)
+{
+    if (!ptr) return nAlloc(size);
+    ptr = realloc(ptr, size);
+
+    /* Check if successfully allocated. */
+#define einfoStr "Ran out of memory in nRealloc()."
+    nAssert(ptr != NULL,
+     NERROR_NO_MEMORY, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+
+    return ptr;
+}
 
 /**
  * @brief Frees a pointer.
@@ -109,17 +133,16 @@ void nFree(void **ptr)
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-ssize_t
-nStringCopy(char *const restrict dst,
+ssize_t nStringCopy(char *const restrict dst,
             const char *const restrict src,
-            const size_t len
-            );
+            const size_t len);
 
 /**
  * @brief Returns a newly allocated string identical to @p src.
  * 
  * @param[in] src The string to copy and return.
- * @return Returns a newly allocated string duplicated from @p src.
+ * @return Returns a newly allocated string duplicated from @p src,
+ * or an error if unsuccessful.
  */
 NIMBLE_EXPORT
 NIMBLE_USE_RESULT

@@ -68,6 +68,7 @@ void (*volatile crashCallback)(const nErrorInfo_t errorInfo) = &nCrashCallbackDe
 static void nCrashCallbackDefault(const nErrorInfo_t errorInfo)
 {
     /** @todo Make default callback (threads, engine, logs, etc.). */
+    perror(errorInfo.infoStr);
 }
 
 void nCrashSetCallback(void (*callback) (const nErrorInfo_t errorInfo))

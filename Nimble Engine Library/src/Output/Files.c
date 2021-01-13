@@ -46,6 +46,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../../include/Nimble/NimbleEngine.h"
+#include "../../include/Nimble/System/Memory.h"
+#include "../../include/Nimble/Output/Errors/Errors.h"
+#include "../../include/Nimble/Output/Errors/Crash.h"
+
 char NEXEC[PATH_MAX + 1] = {0};
 size_t NEXEC_LEN = 0;
 char NCWD[PATH_MAX + 1] = {0};
@@ -238,6 +243,11 @@ char *nFileSetExecutablePath(void)
 #undef einfoStr
 
     size_t len = strlen(NIMBLE_ARGS[0]);
+#define einfoStr "NIMBLE_ARGS was not set, causing nFileSetExecutablePath() "\
+ "to fail."
+    nAssert(len <= PATH_MAX,
+     NERROR_BUFFER_OVERFLOW, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
     if (nFilePathIsAbsolute(NIMBLE_ARGS[0], len) == NSUCCESS)
     {
         nStringCopy(NEXEC, NIMBLE_ARGS[0], len);
@@ -269,7 +279,7 @@ char *nFileSetExecutablePath(void)
 #define einfoStr "nFileSetExecutablePath() failed to verify that the set "\
  "executable path exists."
     int err = nFileExists(NEXEC);
-    if (err) return err;
+    nAssert(!err, NERROR_NO_FILE, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
 
     return NEXEC;

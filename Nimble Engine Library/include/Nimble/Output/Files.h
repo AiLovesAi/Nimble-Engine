@@ -46,7 +46,7 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_FILES_H
 #define NIMBLE_ENGINE_FILES_H /**< Header definition */
 
-#include "../NimbleEngine.h"
+#include "../Nimble.h"
 
 #include <fcntl.h>
 #include <limits.h>
@@ -172,15 +172,6 @@ extern "C" {
 #    define write _write
 #  endif
 
-/* Types */
-#  ifndef ssize_t
-#    ifdef _WIN64
-#      define ssize_t __int64
-#    else
-#      define ssize_t long
-#    endif
-#  endif
-
 /* Standard file descriptors */
 #  ifndef STDIN_FILENO
 #    define STDIN_FILENO  0
@@ -250,8 +241,7 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 int nFileOpen(const char *restrict file,
               int flags,
-              int *restrict fd
-              );
+              int *restrict fd);
 
 
 /**
@@ -278,8 +268,7 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 ssize_t nFileRead(const int fd,
                   void *dst,
-                  const size_t size
-                  );
+                  const size_t size);
 
 /**
  * @brief Writes up to @p size bytes to @p fd.
@@ -294,8 +283,7 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 ssize_t nFileWrite(const int fd,
                    void *src,
-                   const size_t size
-                   );
+                   const size_t size);
 
 /**
  * @brief Deletes file @p file.
@@ -337,8 +325,7 @@ int nFileRename(const char *restrict oldPath,
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nFileExists(const char *file);
+int nFileExists(const char *file);
 
 /**
  * @brief Checks if the file is an absolute path.
@@ -350,10 +337,8 @@ nFileExists(const char *file);
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nFilePathIsAbsolute(const char *path,
-                    size_t len
-                    );
+int nFilePathIsAbsolute(const char *path,
+                    size_t len);
 
 /**
  * @brief Gets the current working directory path.
@@ -396,8 +381,7 @@ nFileSetExecutablePath(void);
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 int nFileCopy(const char *restrict src,
-              const char *restrict dst
-              );
+              const char *restrict dst);
 
 #endif // NIMBLE_ENGINE_FILES_H
 

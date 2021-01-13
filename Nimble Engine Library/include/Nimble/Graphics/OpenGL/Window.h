@@ -127,12 +127,10 @@ typedef enum nWindowMonitor {
  * error callback set by nErrorSetCallback().
  */
 NIMBLE_EXPORT
-int
-nWindowCreate(const char * title,
+int nWindowCreate(const char * title,
               const uint8_t * iconData,
               const uint32_t * dimensions,
-              const int flags
-              );
+              const int flags);
 
 /**
  * @brief Loads a window icon file.
@@ -164,8 +162,7 @@ nWindowCreate(const char * title,
 NIMBLE_EXPORT
 uint8_t *
 nWindowLoadIcon(uint8_t * dst,
-                const char * iconPath
-                );
+                const char * iconPath);
 
 #endif // NIMBLE_GRAPHICS_WINDOW_H
 

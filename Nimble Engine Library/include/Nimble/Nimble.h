@@ -193,6 +193,11 @@ NCONST_STR_LEN(str) - (2 * spec1) - (3 * spec2) - (4 * spec3) - (5 * spec4) /**<
 #define NSTR(str) #str /**< Stringifies the argument. */
 #define NSTR_VAL(str) NSTR(str) /**< Stringifies the argument's defined value (for macros only). */
 
+/* Types */
+#  ifndef ssize_t
+#    define ssize_t int64_t
+#  endif
+
 #endif // NIMBLE_H
 
 #ifdef __cplusplus

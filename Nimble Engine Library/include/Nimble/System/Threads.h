@@ -46,7 +46,7 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_THREADS_H
 #define NIMBLE_ENGINE_THREADS_H /**< Header definition */
 
-#include "../NimbleEngine.h"
+#include "../Nimble.h"
 
 #define NIMBLE_THREADS_WINAPI  1
 #define NIMBLE_THREADS_PTHREAD 2
@@ -101,11 +101,9 @@ typedef mtx_t *nMutex_t;
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nThreadCreate(nThread_t *thread,
+int nThreadCreate(nThread_t *thread,
               nThreadRoutine_t (*start)(void *),
-              void *data
-              );
+              void *data);
 
 /**
  * @brief Exits from the current thread with @p ret return value.
@@ -161,10 +159,8 @@ nThreadCreate(nThread_t *thread,
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nThreadJoin(nThread_t thread,
-            int *ret
-            );
+int nThreadJoin(nThread_t thread,
+            int *ret);
 
 /**
  * @brief Detaches a thread.
@@ -179,9 +175,7 @@ nThreadJoin(nThread_t thread,
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nThreadDetach(nThread_t thread
-              );
+int nThreadDetach(nThread_t thread);
 
 /**
  * @brief Initializes a #NULL mutex.
@@ -193,9 +187,7 @@ nThreadDetach(nThread_t thread
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nThreadMutexCreate(nMutex_t *mutex
-                   );
+int nThreadMutexCreate(nMutex_t *mutex);
 
 /**
  * @brief Locks a mutex, or waits or the already locked mutex to unlock.
@@ -208,9 +200,7 @@ nThreadMutexCreate(nMutex_t *mutex
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nThreadMutexLock(nMutex_t *mutex
-                 );
+int nThreadMutexLock(nMutex_t *mutex);
 
 /**
  * @brief Unlocks a mutex.
@@ -223,9 +213,7 @@ nThreadMutexLock(nMutex_t *mutex
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nThreadMutexUnlock(nMutex_t *mutex
-                   );
+int nThreadMutexUnlock(nMutex_t *mutex);
 
 /**
  * @brief Destroys a mutex to prevent memory leaks.
@@ -237,9 +225,7 @@ nThreadMutexUnlock(nMutex_t *mutex
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nThreadMutexDestroy(nMutex_t *mutex
-                    );
+int nThreadMutexDestroy(nMutex_t *mutex);
 
 /** @todo Thread and mutex functions */
 

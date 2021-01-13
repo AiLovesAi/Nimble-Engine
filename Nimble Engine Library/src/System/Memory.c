@@ -43,6 +43,8 @@
 
 #include <stdlib.h>
 
+#include "../../include/Nimble/Output/Errors/Errors.h"
+
 ssize_t nStringCopy(char *const restrict dst, const char *const restrict src,
  const size_t len)
 {
@@ -88,9 +90,9 @@ char *nStringDuplicate(const char *const src, size_t len)
 {
     if (len <= 0)
     {
-#define einfoStr
+#define einfoStr "Length argument <= 0 in nStringDuplicate()."
         if (nErrorAssert(src != NULL,
-         NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_NULL;
+         NERROR_INV_ARG, einfoStr, NCONST_STR_LEN(einfoStr))) return NULL;
 #undef einfoStr
         len = strlen(src);
     }

@@ -82,6 +82,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="_threads_8h_source.html">../../include/Nimble/System/Threads.h</a>&quot;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;threads.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="_errors_8h_source.html">../../include/Nimble/Output/Errors/Errors.h</a>&quot;</code><br />
 </div>
 <p><a href="_threads_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -298,7 +299,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback().</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>If a thread is not later joined to check its result, call <a class="el" href="_threads_8h.html#a30fb9dfca9892f4e5392486d697290cf" title="Detaches a thread.">nThreadDetach()</a>. To be fully portable, threads must return an integer value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00054">54</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00056">56</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
 
 </div>
 </div>
@@ -328,7 +329,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00129">129</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00131">131</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
 
 </div>
 </div>
@@ -368,7 +369,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00086">86</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00088">88</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
 
 </div>
 </div>
@@ -397,7 +398,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00152">152</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00154">154</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
 
 </div>
 </div>
@@ -426,7 +427,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00222">222</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00224">224</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
 
 </div>
 </div>
@@ -456,7 +457,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The mutex must be initialized by <a class="el" href="_threads_8h.html#af5a01ef903d61f56577160f295f434d7" title="Initializes a NULL mutex.">nThreadMutexCreate()</a> prior to use. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00176">176</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00178">178</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
 
 </div>
 </div>
@@ -486,7 +487,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The mutex must be initialized by <a class="el" href="_threads_8h.html#af5a01ef903d61f56577160f295f434d7" title="Initializes a NULL mutex.">nThreadMutexCreate()</a> prior to use. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00199">199</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_threads_8c_source.html#l00201">201</a> of file <a class="el" href="_threads_8c_source.html">Threads.c</a>.</p>
 
 </div>
 </div>

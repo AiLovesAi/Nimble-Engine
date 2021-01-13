@@ -79,7 +79,10 @@ $(function() {
 <p>This class defines memory functions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_nimble_license_8h_source.html">../NimbleLicense.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_nimble_engine_8h_source.html">../NimbleEngine.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_nimble_8h_source.html">../Nimble.h</a>&quot;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="_errors_8h_source.html">../Output/Errors/Errors.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_crash_8h_source.html">../Output/Errors/Crash.h</a>&quot;</code><br />
 </div>
 <p><a href="_memory_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -88,19 +91,23 @@ Macros</h2></td></tr>
 <tr class="memitem:adbd8a69e0784c2a4b5e47f6c61dae0f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#adbd8a69e0784c2a4b5e47f6c61dae0f6">NIMBLE_ENGINE_MEMORY_H</a></td></tr>
 <tr class="memdesc:adbd8a69e0784c2a4b5e47f6c61dae0f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Header definition.  <a href="_memory_8h.html#adbd8a69e0784c2a4b5e47f6c61dae0f6">More...</a><br /></td></tr>
 <tr class="separator:adbd8a69e0784c2a4b5e47f6c61dae0f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>&#160;&#160;&#160;&quot;Ran out of memory in <a class="el" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a>().&quot;</td></tr>
+<tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>&#160;&#160;&#160;&quot;Ran out of memory in <a class="el" href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">nRealloc</a>().&quot;</td></tr>
+<tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab66c62b1082237d18901830aad253f9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#ab66c62b1082237d18901830aad253f9b">nAlloc</a> (const size_t size)</td></tr>
-<tr class="memdesc:ab66c62b1082237d18901830aad253f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a pointer.  <a href="_memory_8h.html#ab66c62b1082237d18901830aad253f9b">More...</a><br /></td></tr>
-<tr class="separator:ab66c62b1082237d18901830aad253f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3bcf170fe568a03fd8044dee3ba7822"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#ab3bcf170fe568a03fd8044dee3ba7822">nRealloc</a> (void *ptr, const size_t size)</td></tr>
-<tr class="memdesc:ab3bcf170fe568a03fd8044dee3ba7822"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reallocates a pointer.  <a href="_memory_8h.html#ab3bcf170fe568a03fd8044dee3ba7822">More...</a><br /></td></tr>
-<tr class="separator:ab3bcf170fe568a03fd8044dee3ba7822"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d915b753a871eb40e4a47909f7c7ded"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">nFree</a> (void **ptr)</td></tr>
+<tr class="memitem:a7b025f143875e036ea41189c785d6734"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a> <a class="el" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a> void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a> (const size_t size)</td></tr>
+<tr class="memdesc:a7b025f143875e036ea41189c785d6734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a pointer.  <a href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">More...</a><br /></td></tr>
+<tr class="separator:a7b025f143875e036ea41189c785d6734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77cb79e5d6db3555f04f9767f9f2b314"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a> <a class="el" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a> void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">nRealloc</a> (void *ptr, const size_t size)</td></tr>
+<tr class="memdesc:a77cb79e5d6db3555f04f9767f9f2b314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reallocates a pointer.  <a href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">More...</a><br /></td></tr>
+<tr class="separator:a77cb79e5d6db3555f04f9767f9f2b314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d915b753a871eb40e4a47909f7c7ded"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">nFree</a> (void **ptr)</td></tr>
 <tr class="memdesc:a1d915b753a871eb40e4a47909f7c7ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a pointer.  <a href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">More...</a><br /></td></tr>
 <tr class="separator:a1d915b753a871eb40e4a47909f7c7ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95aa91c09a9711650f16c1b0474b11f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#a95aa91c09a9711650f16c1b0474b11f9">nStringCopy</a> (char *const restrict dst, const char *const restrict src, const size_t len)</td></tr>
+<tr class="memitem:a95aa91c09a9711650f16c1b0474b11f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a8af93bbb66534e14d651bbb0638ee796">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#a95aa91c09a9711650f16c1b0474b11f9">nStringCopy</a> (char *const restrict dst, const char *const restrict src, const size_t len)</td></tr>
 <tr class="memdesc:a95aa91c09a9711650f16c1b0474b11f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies <code>len</code> characters from <code>src</code> to <code>dst</code>.  <a href="_memory_8h.html#a95aa91c09a9711650f16c1b0474b11f9">More...</a><br /></td></tr>
 <tr class="separator:a95aa91c09a9711650f16c1b0474b11f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cd66383bd78f18d374200987ed4fec4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_memory_8h.html#a4cd66383bd78f18d374200987ed4fec4">nStringDuplicate</a> (const char *const src, size_t len)</td></tr>
@@ -119,6 +126,34 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="_memory_8h_source.html">Memory.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define einfoStr&#160;&#160;&#160;&quot;Ran out of memory in <a class="el" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a>().&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define einfoStr&#160;&#160;&#160;&quot;Ran out of memory in <a class="el" href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">nRealloc</a>().&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="adbd8a69e0784c2a4b5e47f6c61dae0f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adbd8a69e0784c2a4b5e47f6c61dae0f6">&#9670;&nbsp;</a></span>NIMBLE_ENGINE_MEMORY_H</h2>
 
@@ -138,14 +173,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ab66c62b1082237d18901830aad253f9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab66c62b1082237d18901830aad253f9b">&#9670;&nbsp;</a></span>nAlloc()</h2>
+<a id="a7b025f143875e036ea41189c785d6734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b025f143875e036ea41189c785d6734">&#9670;&nbsp;</a></span>nAlloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void* nAlloc </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a> <a class="el" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a> void* nAlloc </td>
           <td>(</td>
           <td class="paramtype">const size_t&#160;</td>
           <td class="paramname"><em>size</em></td><td>)</td>
@@ -164,6 +199,8 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The allocated pointer. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_memory_8h_source.html#l00065">65</a> of file <a class="el" href="_memory_8h_source.html">Memory.h</a>.</p>
+
 </div>
 </div>
 <a id="a1d915b753a871eb40e4a47909f7c7ded"></a>
@@ -173,7 +210,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#aa82aaf62c4b04a2f8899150966feebb2">NIMBLE_INLINE</a> void nFree </td>
+          <td class="memname"><a class="el" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a> void nFree </td>
           <td>(</td>
           <td class="paramtype">void **&#160;</td>
           <td class="paramname"><em>ptr</em></td><td>)</td>
@@ -192,18 +229,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a> is always returned. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_memory_8h_source.html#l00088">88</a> of file <a class="el" href="_memory_8h_source.html">Memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_memory_8h_source.html#l00112">112</a> of file <a class="el" href="_memory_8h_source.html">Memory.h</a>.</p>
 
 </div>
 </div>
-<a id="ab3bcf170fe568a03fd8044dee3ba7822"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3bcf170fe568a03fd8044dee3ba7822">&#9670;&nbsp;</a></span>nRealloc()</h2>
+<a id="a77cb79e5d6db3555f04f9767f9f2b314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77cb79e5d6db3555f04f9767f9f2b314">&#9670;&nbsp;</a></span>nRealloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> void* nRealloc </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a> <a class="el" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a> void* nRealloc </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>ptr</em>, </td>
@@ -233,6 +270,8 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The reallocated <code>ptr</code>. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_memory_8h_source.html#l00088">88</a> of file <a class="el" href="_memory_8h_source.html">Memory.h</a>.</p>
+
 </div>
 </div>
 <a id="a95aa91c09a9711650f16c1b0474b11f9"></a>
@@ -242,7 +281,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> ssize_t nStringCopy </td>
+          <td class="memname"><a class="el" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a> <a class="el" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a> <a class="el" href="_nimble_8h.html#a8af93bbb66534e14d651bbb0638ee796">ssize_t</a> nStringCopy </td>
           <td>(</td>
           <td class="paramtype">char *const restrict&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
@@ -279,7 +318,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of successfully copied bytes is returned, or -1 if an error occurs. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_memory_8c_source.html#l00046">46</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_memory_8c_source.html#l00048">48</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
 
 </div>
 </div>
@@ -316,9 +355,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a newly allocated string duplicated from <code>src</code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a newly allocated string duplicated from <code>src</code>, or an error if unsuccessful. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_memory_8c_source.html#l00087">87</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_memory_8c_source.html#l00089">89</a> of file <a class="el" href="_memory_8c_source.html">Memory.c</a>.</p>
 
 </div>
 </div>

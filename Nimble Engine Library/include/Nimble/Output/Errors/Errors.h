@@ -46,7 +46,7 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_ERRORS_H
 #define NIMBLE_ENGINE_ERRORS_H /**< Header definition */
 
-#include "../../NimbleEngine.h"
+#include "../../Nimble.h"
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #include <Windows.h>
@@ -82,6 +82,13 @@ typedef struct nErrorInfo {
 } nErrorInfo_t;
 
 /**
+ * @brief When true, errors for this thread will be ignored.
+ * When true, errors for this thread will be ignored, and error handling
+ * functions will not be invoked.
+ */
+extern __thread _Bool nErrorsIgnored;
+
+/**
  * @brief Sends an error to the error callback.
  * 
  * Sends an error to the error callback defined by
@@ -101,12 +108,10 @@ typedef struct nErrorInfo {
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nErrorThrow(const int error,
+int nErrorThrow(const int error,
             const char *info,
             size_t infoLen,
-            const int setError
-            );
+            const int setError);
 
 /**
  * @brief Clears the current errors.
@@ -115,7 +120,9 @@ NIMBLE_INLINE
 void nErrorClear(void)
 {
     errno = 0;
+#if NIMBLE_OS == NIMBLE_WINDOWS
     SetLastError(ERROR_SUCCESS);
+#endif
 }
 
 /**
@@ -154,7 +161,8 @@ int nErrorLastWindows(void)
  * description. This can be #NULL.
  * @return The NERROR version of the found error is returned.
  * 
- * @note @p sysDescStr is allocated, and should be freed using nFree().
+ * @note @p sysDescStr should be freed before invoking, and is allocated, so it
+ * should be freed using nFree().
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
@@ -179,7 +187,7 @@ int nErrorAssert(const int check,
                  const char *info,
                  const size_t infoLen)
 {
-    if (!check && info) return nErrorThrow(error, info, infoLen, 1);
+    if (!check && info && !nErrorsIgnored) return nErrorThrow(error, info, infoLen, 1);
     return NSUCCESS;
 }
 
@@ -196,10 +204,10 @@ int nErrorAssert(const int check,
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 void nErrorInfoSet(nErrorInfo_t *restrict errorInfo,
-                   const int error,
-                   const nTime_t errorTime,
-                   const char *restrict info,
-                   size_t infoLen);
+              const int error,
+              const nTime_t errorTime,
+              const char *restrict info,
+              size_t infoLen);
 
 /**
  * @brief Frees a #nErrorInfo_t structure.
@@ -220,8 +228,7 @@ void nErrorInfoFree(nErrorInfo_t *errorInfo);
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-void
-nErrorSetCallback(void (*callback)(const nErrorInfo_t errorInfo));
+void nErrorSetCallback(void (*callback)(const nErrorInfo_t errorInfo));
 
 /**
  * @brief Returns the current stack trace as a string.
@@ -244,8 +251,7 @@ NIMBLE_USE_RESULT
 NIMBLE_EXTERN
 char *
 nErrorStacktrace(size_t *restrict stackLen,
-                 int *restrict stackLevels
-                 );
+                 int *restrict stackLevels);
 
 #endif // NIMBLE_ENGINE_ERRORS_H
 

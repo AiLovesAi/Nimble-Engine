@@ -51,6 +51,8 @@
 #include <threads.h>
 #endif
 
+#include "../../include/Nimble/Output/Errors/Errors.h"
+
 int nThreadCreate(nThread_t *thread, nThreadRoutine_t (*start)(void *),
  void *data)
 {

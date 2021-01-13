@@ -46,13 +46,23 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <inttypes.h>
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
+#include <dbghelp.h>
+#include <Windows.h>
+#else
+#include <execinfo.h>
+#include <unistd.h>
+#endif
+
 #include "../../../include/Nimble/Output/Errors/Crash.h"
 #include "../../../include/Nimble/Output/Files.h"
-#include "../../../include/Nimble/System/Library.h"
+#include "../../../include/Nimble/System/Memory.h"
 #include "../../../include/Nimble/System/Time.h"
 
-
-const char noInfoStr[] = "No info.";
+__thread _Bool nErrorsIgnored = 0;
+static __thread _Bool stacktraceAttempted = 0;
 
 /**
  * @brief The default error handler callback.
@@ -75,15 +85,19 @@ void (*volatile errorCallback)(const nErrorInfo_t errorInfo) = &nErrorHandlerDef
 static void nErrorHandlerDefault(const nErrorInfo_t errorInfo)
 {
     /** @todo Make default callback. */
+    printf("%s: %s === %s === %s\n%s", errorInfo.errorStr, errorInfo.descStr, errorInfo.sysDescStr,
+     errorInfo.infoStr, errorInfo.stackStr);
 }
 
 int nErrorThrow(const int error, const char *info, size_t infoLen, const int setError)
 {
+    if (nErrorsIgnored) return NSUCCESS;
 #define einfoStr "Callback argument NULL in nErrorThrow()."
     nAssert(errorCallback != NULL,
      NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
 #undef einfoStr
 
+    const nTime_t errorTime = nTime();
     char *sysDescStr;
     size_t sysDescLen;
     int err = error;
@@ -94,8 +108,6 @@ int nErrorThrow(const int error, const char *info, size_t infoLen, const int set
             err = error;
         }
     }
-    
-    const nTime_t errorTime = nTime();
     
     nErrorInfo_t errorInfo;
     nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen);
@@ -112,8 +124,6 @@ int nErrorLast(size_t *sysDescLen, char **sysDescStr)
     size_t len = 0;
     if (sysDescStr)
     {
-        nFree((void **) sysDescStr);
-
         if ((error = nErrorLastErrno()))
         {
             char *errorDescStr = strerror(error);
@@ -127,19 +137,22 @@ int nErrorLast(size_t *sysDescLen, char **sysDescStr)
         else if ((error = nErrorLastWindows()))
         {
             len = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
-            FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-            NULL,
-            error,
-            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-            (LPTSTR) sysDescStr,
-            0,
-            NULL);
+             FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+             NULL,
+             error,
+             MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+             (LPTSTR) sysDescStr,
+             0,
+             NULL);
             error = NERROR_INTERNAL_FAILURE;
 
             if (len <= 0)
             {
                 len = 0;
-                nFree((void **) sysDescStr);
+# define noDescStr "No system error description."
+                *sysDescStr = nRealloc(*sysDescStr, NCONST_STR_LEN(noDescStr) + 1);
+                nStringCopy(*sysDescStr, noDescStr, NCONST_STR_LEN(noDescStr));
+#  undef noDescStr
             }
         }
 #endif
@@ -183,23 +196,33 @@ void nErrorInfoSet(nErrorInfo_t *restrict errorInfo, const int error,
 
     if (info)
     {
-        if (!infoLen)
+        if (infoLen <= 0)
         {
             infoLen = strlen(info);
         }
-        errorInfo->infoStr = nStringDuplicate(info, infoLen + 1);
+        errorInfo->infoStr = nStringDuplicate(info, infoLen);
     }
     else
     {
+#define noInfoStr "No info."
         errorInfo->infoStr = nStringDuplicate(noInfoStr,
          NCONST_STR_LEN(noInfoStr));
+#undef noInfoStr
     }
     
-    size_t stackLen;
-    int stackLevels = 0;
-    errorInfo->stackStr = nErrorStacktrace(&stackLen, &stackLevels);
-    errorInfo->stackLen = stackLen;
-    errorInfo->stackLevels = stackLevels;
+    if (stacktraceAttempted)
+    {
+#define noStackStr "No stacktrace."
+        errorInfo->stackStr = nStringDuplicate(noStackStr, NCONST_STR_LEN(noStackStr));
+        errorInfo->stackLen = NCONST_STR_LEN(noStackStr);
+#undef noStackStr
+        errorInfo->stackLevels = 0;
+    }
+    else
+    {
+        errorInfo->stackStr = nErrorStacktrace(&errorInfo->stackLen,
+         &errorInfo->stackLevels);
+    }
 }
 
 void nErrorInfoFree(nErrorInfo_t *errorInfo)
@@ -237,6 +260,10 @@ void nErrorSetCallback(void (*callback) (const nErrorInfo_t errorInfo))
 
 char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels)
 {
+#define einfoStr "Already attempted a stack trace in current thread."
+    nAssert(!stacktraceAttempted, NERROR_LOOP, einfoStr, NCONST_STR_LEN(einfoStr));
+#undef einfoStr
+    stacktraceAttempted = 1;
     /* Set max levels */
     size_t maxLevels = 128;
     if (stackLevels && (*stackLevels > 0) && (*stackLevels <= NERRORS_MAX_STACK))
@@ -244,44 +271,72 @@ char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels)
         maxLevels = *stackLevels;
     }
 
-    struct frame {
-        struct frame *bp;
-        uint64_t ip;
-    };
-    struct frame *stack = {0};
-
-    /* Get stack frame pointer. */
-#if NIMBLE_INST == NIMBLE_INST_x86
-    asm("movq %%rbp, %0\n" : "=r" (stack) ::);
-#elif NIMBLE_INST == NIMBLE_INST_ARM
-#  ifdef __thumb__
-    asm("mov %%r7, %0\n" : "=r" (stack) ::);
-#  else
-    asm("mov %%r11, %0\n" : "=r" (stack) ::);
-#  endif
-#endif
-
     /* Prepare stackStr with buffer. */
-    const char formatStr[] = "<%016I64x> %s\n";
+    const char formatStr[] = "<%p> %s\n";
     const size_t maxLineLen = (NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 1, 0)
      + NFUNCTION_NAME_MAX + 8);
     const size_t bufferSize = (maxLevels * maxLineLen) + 1;
     char *stackStr = nAlloc(bufferSize);
 
-    /* Ensure executable variable is set. */
-    if (!NEXEC_LEN)
-    {
-       nFileSetExecutablePath();
-    }
+    size_t len = 0;
+    int levels = 0;
+    void *stack[NERRORS_MAX_STACK];
 
-    /* Trace stack. */
-    size_t level, len = 0;
-    for (level = 0; stack && (level < maxLevels); level++)
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    SYMBOL_INFO *symbol;
+    HANDLE process = GetCurrentProcess();
+#  define einfoStr "GetCurrentProcess() failed in nErrorStacktrace()."
+    if (nErrorAssert(process != NULL,
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr)))
     {
-        len += snprintf(stackStr + len, maxLineLen, formatStr, stack->ip,
-         (char *) &stack->ip); /** @todo Find function name from eip function poiter */
-        stack = stack->bp;
+        nFree((void **) &stackStr);
+        return NULL;
     }
+#  undef einfoStr
+#  define einfoStr "SymInitialize() failed in nErrorStacktrace()."
+    if (nErrorAssert(SymInitialize(process, NULL, TRUE),
+     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr)))
+    {
+        nFree((void **) &stackStr);
+        return NULL;
+    }
+#  undef einfoStr
+
+    levels = CaptureStackBackTrace(0, 100, stack, NULL);
+
+    symbol = nAlloc(sizeof(SYMBOL_INFO) + NFUNCTION_NAME_MAX + 1);
+    symbol->MaxNameLen = NFUNCTION_NAME_MAX;
+    symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
+
+    printf("%d\n", levels);
+    for (int i = 0; i < levels; i++)
+    {
+#  define einfoStr "SymFromAddr() failed in nErrorStacktrace()."
+        if (nErrorAssert(SymFromAddr(process, (DWORD64) stack[i], 0, symbol),
+         NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr)))
+        {
+            nFree((void **) &symbol);
+            nFree((void **) &stackStr);
+            return NULL;
+        }
+#  undef einfoStr
+        printf("%p : %016" PRIX64 " : %s\n", stack[i], symbol->Address, symbol->Name);
+        len += snprintf(stackStr + len, maxLineLen, formatStr, stack[i], symbol->Name);
+    }
+    nFree((void **) &symbol);
+
+#else
+    levels = backtrace(stack, maxLevels);
+    char **symbols = backtrace_symbols(stack, levels);
+    for (int i = 0; i < levels; i++)
+    {
+        len += snprintf(stackStr + len, maxLineLen, formatStr, stack[i], symbols[i]);
+        nFree((void **) &symbols[i]);
+    }
+    nFree((void **) &symbols);
+
+#endif
+
 
     /* Reallocate stackStr to its correct length. */
     stackStr = nRealloc(stackStr, len + 1);
@@ -291,8 +346,10 @@ char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels)
     }
     if (stackLevels)
     {
-        *stackLevels = level;
+        *stackLevels = levels;
     }
+
+    stacktraceAttempted = 0;
     return stackStr;
 }
 

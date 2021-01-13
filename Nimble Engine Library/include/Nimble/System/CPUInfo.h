@@ -46,7 +46,7 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_CPUINFO_H
 #define NIMBLE_ENGINE_CPUINFO_H /**< Header definition */
 
-#include "../NimbleEngine.h"
+#include "../Nimble.h"
 
 /**
  * @brief The CPU info of the system.

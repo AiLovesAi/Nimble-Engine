@@ -46,7 +46,7 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_ERRORVALUES_H
 #define NIMBLE_ENGINE_ERRORVALUES_H /**< Header definition */
 
-#include "../../NimbleEngine.h"
+#include "../../Nimble.h"
 
 
 #define NSUCCESS 0 /**< Returned when a function succeeds. */
@@ -67,6 +67,8 @@ enum nErrors {
     NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
     NERROR_INV_ERROR, /**< An error passed to a function was not valid. */
     NERROR_BUFFER_OVERFLOW, /**< Not enough space in buffer. */
+    NERROR_INV_RETRY, /**< Cannot retry. */
+    NERROR_LOOP, /**< Looped to the start of a function before completion. */
     
     NERROR_SIGNAL_START, /**< The start of the signal section. */
     NERROR_SIGABRT, /**< Caught abort signal. */
@@ -864,8 +866,7 @@ const size_t nErrorDescLengths[];
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nErrorFromSignal(const int signum);
+int nErrorFromSignal(const int signum);
 
 /*
  * @brief Gets the error code of the errno value @p err.
@@ -875,8 +876,7 @@ nErrorFromSignal(const int signum);
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nErrorFromErrno(const int err);
+int nErrorFromErrno(const int err);
 
 #endif // NIMBLE_ENGINE_ERRORVALUES_H
 

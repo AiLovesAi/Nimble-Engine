@@ -51,20 +51,8 @@ extern "C" {
 
 #include "Nimble.h"
 
-#include "Network/Network.h"
-
-#include "Output/Errors/Crash.h"
 #include "Output/Errors/Errors.h"
-#include "Output/Errors/ErrorValues.h"
-#include "Output/Files.h"
-#include "Output/Logging.h"
-
-#include "System/CPUInfo.h"
-#include "System/Memory.h"
-#include "System/Threads.h"
-
-
-#include <time.h>
+#include "Output/Errors/Crash.h"
 
 /**
  * @brief The variable that is set after a successful initialization.
@@ -105,12 +93,10 @@ int NIMBLE_ARGC;
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int
-nEngineInit(char **args,
+int nEngineInit(char **args,
             const int argc,
             void (*errorCallback) (const nErrorInfo_t errorInfo),
-            void (*crashCallback) (const nErrorInfo_t errorInfo)
-            );
+            void (*crashCallback) (const nErrorInfo_t errorInfo));
 
 #endif // NIMBLE_ENGINE_H
 

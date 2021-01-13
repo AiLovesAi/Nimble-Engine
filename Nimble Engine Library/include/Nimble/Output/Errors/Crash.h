@@ -46,9 +46,7 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_CRASH_H
 #define NIMBLE_ENGINE_CRASH_H /**< Header definition */
 
-#include "../../NimbleEngine.h"
-
-#include <time.h>
+#include "../../Nimble.h"
 
 #include "Errors.h"
 #include "../../System/Time.h"
@@ -69,8 +67,7 @@ extern "C" {
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-void
-nCrashSetCallback(void (*callback)(const nErrorInfo_t errorInfo));
+void nCrashSetCallback(void (*callback)(const nErrorInfo_t errorInfo));
 
 /**
  * @brief Crashes the program safely.
@@ -92,10 +89,8 @@ nCrashSetCallback(void (*callback)(const nErrorInfo_t errorInfo));
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
-void
-nCrashSafe(const int error,
-           nErrorInfo_t errorInfo
-           );
+void nCrashSafe(const int error,
+           nErrorInfo_t errorInfo);
 
 /**
  * @brief Crashes with @p info if @p check is equal to zero.
@@ -134,8 +129,7 @@ void nAssert(const int check,
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
-void
-nCrashSignal(const int signum);
+void nCrashSignal(const int signum);
  
 /**
  * @brief Crashes the program without notifying the callback.
@@ -147,8 +141,7 @@ nCrashSignal(const int signum);
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
-void
-nCrashAbort(const int error);
+void nCrashAbort(const int error);
 
 #endif // NIMBLE_ENGINE_CRASH_H
 

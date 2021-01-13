@@ -52,6 +52,8 @@ const char * const nErrorStrings[] = {
     "NERROR_NULL",
     "NERROR_INV_ERROR",
     "NERROR_BUFFER_OVERFLOW",
+    "NERROR_INV_RETRY",
+    "NERROR_LOOP",
     
     "NERROR_SIGNAL_START",
     "NERROR_SIG_ABRT",
@@ -766,6 +768,8 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN("NERROR_NULL"),
     NCONST_STR_LEN("NERROR_INV_ERROR"),
     NCONST_STR_LEN("NERROR_BUFFER_OVERFLOW"),
+    NCONST_STR_LEN("NERROR_INV_RETRY"),
+    NCONST_STR_LEN("NERROR_LOOP"),
     
     NCONST_STR_LEN("NERROR_SIGNAL_START"),
     NCONST_STR_LEN("NERROR_SIG_ABRT"),
@@ -1485,6 +1489,10 @@ const size_t nErrorStrLengths[] = {
  "not valid."
 #define nErrDescBufferOverflowStr    "Not enough space in buffer. An attempt "\
  "to write to a buffer was stopped because it would leak memory."
+#define nErrDescInvRetryStr          "Cannot retry. Attempted to retry an "\
+ "operation that can only be tried once."
+#define nErrDescLoopStr              "Looped to the start of a function "\
+ "before completion. Continuing would likely cause an infinite loop."
 
 #define nErrDescSignalStartStr       "The start of the signal error section; "\
  "likely caused by programmer error or a memory corruption issue."
@@ -1883,6 +1891,8 @@ const char * const nErrorDescriptions[] = {
     nErrDescNullStr,
     nErrDescInvErrorStr,
     nErrDescBufferOverflowStr,
+    nErrDescInvRetryStr,
+    nErrDescLoopStr,
     
     nErrDescSignalStartStr,
     nErrDescSigAbrtStr,
@@ -2596,6 +2606,8 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescNullStr),
     NCONST_STR_LEN(nErrDescInvErrorStr),
     NCONST_STR_LEN(nErrDescBufferOverflowStr),
+    NCONST_STR_LEN(nErrDescInvRetryStr),
+    NCONST_STR_LEN(nErrDescLoopStr),
     
     NCONST_STR_LEN(nErrDescSignalStartStr),
     NCONST_STR_LEN(nErrDescSigAbrtStr),

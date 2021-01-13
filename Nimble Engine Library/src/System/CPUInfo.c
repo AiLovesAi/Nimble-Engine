@@ -45,25 +45,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../../include/Nimble/Output/Errors/Errors.h"
+
 char NCPU_INFO[129] = {0};
 size_t NCPU_INFO_LEN = 0;
-
-#if NIMBLE_INST == NIMBLE_INST_x86
-#define nGetInfoReg(eax, ret1, ret2, ret3, ret4) ({\
-    asm volatile(\
-        "movl %4,%%eax\n" /* Set the eax register that cpuid checks. */\
-        "cpuid\n"         /* Run the cpuid instruction. */\
-        "movl %%eax,%0\n" /* Store the new eax-edx values in "brand". */\
-        "movl %%ebx,%1\n"\
-        "movl %%ecx,%2\n"\
-        "movl %%edx,%3\n"\
-        : "=g" (ret1), "=g" (ret2),\
-          "=g" (ret3), "=g" (ret4)\
-        : "r" (eax)\
-        : "%eax", "%ebx", "%ecx", "%edx"\
-    );\
-})
-#endif
 
 #if NIMBLE_INST == NIMBLE_INST_ARM
 /* Architecture definitions */
@@ -102,16 +87,6 @@ size_t NCPU_INFO_LEN = 0;
 #  define CORTEX_A55         0xD05
 
 
-/* Info register functions */
-#  define nGetInfoReg(val) ({\
-    asm(\
-        "mrs %%MIDR_EL1, %0\n" /* Store the MIDR_EL1 register in "info.val". */\
-        : "=r" (val)\
-        : /* No input. */\
-        : /* No clobber.*/\
-    );\
-})
-
 #  define nSetRevNum(str, val, len) ({\
     if (val > 0x9)
     {
@@ -128,8 +103,40 @@ size_t NCPU_INFO_LEN = 0;
 })
 #endif
 
+NIMBLE_INLINE
+#if NIMBLE_INST == NIMBLE_INST_x86
+void nGetInfoReg(const int operation, unsigned int *val1, unsigned int *val2,
+ unsigned int *val3, unsigned int *val4)
+#elif NIMBLE_INST == NIMBLE_INST_ARM
+void nGetInfoReg(uint64_t *val1)
+#endif
+{
+#if NIMBLE_INST == NIMBLE_INST_x86
+    asm volatile(
+        "movl %4,%%eax\n" /* Set operation in eax. */
+        "cpuid\n"         /* Run the cpuid instruction. */
+        "movl %%eax,%0\n" /* Copy string from eax-edx to value. */
+        "movl %%ebx,%1\n"
+        "movl %%ecx,%2\n"
+        "movl %%edx,%3\n"
+        : "=g" (*val2),  "=g" (*val1),
+          "=g" (*val3), "=g" (*val4)
+        : "r" (operation)
+        : "%eax", "%ebx", "%ecx", "%edx"
+    );
+#else
+    asm(
+        "mrs %%MIDR_EL1, %0\n" /* Store the MIDR_EL1 register in val1. */
+        : "=r" (*val1)
+        : /* No input. */
+        : /* No clobber.*/
+    );
+#endif
+}
+
 char *nSysGetCPUInfo(size_t *len)
 {
+    /** @todo Get more CPU info (logical/physical processors) and use function similar to lscpu. */
     if (!NCPU_INFO[0])
     {
 #if NIMBLE_INST == NIMBLE_INST_x86
@@ -137,10 +144,10 @@ char *nSysGetCPUInfo(size_t *len)
 
         /* Note: 0x80000002-0x80000004 are used to get the highest level CPU brand
         * string for Intel and AMD processors.*/
-        uint32_t eax = 0x80000002;
-        for (uint32_t i = 0; i < 12; eax++, i += 4)
+        uint32_t operation = 0x80000002;
+        for (uint32_t i = 0; i < 12; operation++, i += 4)
         {
-            nGetInfoReg(eax, brand[i], brand[i + 1], brand[i + 2], brand[i + 3]);
+            nGetInfoReg(operation, &brand[i], &brand[i + 1], &brand[i + 2], &brand[i + 3]);
         }
 
 #  define einfoStr "nSysGetCPUInfo() failed to run the 'cpuid' instruction to "\

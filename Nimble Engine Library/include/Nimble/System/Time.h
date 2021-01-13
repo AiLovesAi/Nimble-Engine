@@ -46,7 +46,7 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_TIME_H
 #define NIMBLE_ENGINE_TIME_H /**< Header definition */
 
-#include "../NimbleEngine.h"
+#include "../Nimble.h"
 
 #include <time.h>
 
