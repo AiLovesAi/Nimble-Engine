@@ -101,6 +101,8 @@ Macros</h2></td></tr>
 <tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c1a6893dca67816b0ba2fcfeeb451d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a6c1a6893dca67816b0ba2fcfeeb451d1">noInfoStr</a>&#160;&#160;&#160;&quot;No info.&quot;</td></tr>
 <tr class="separator:a6c1a6893dca67816b0ba2fcfeeb451d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae80006c39b1b739eedbc5fb45b92dc3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ae80006c39b1b739eedbc5fb45b92dc3d">noSysDescStr</a>&#160;&#160;&#160;&quot;No system error description.&quot;</td></tr>
+<tr class="separator:ae80006c39b1b739eedbc5fb45b92dc3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7e9078c46dbf46fbf841273781e3fa3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#af7e9078c46dbf46fbf841273781e3fa3">noStackStr</a>&#160;&#160;&#160;&quot;No stacktrace.&quot;</td></tr>
 <tr class="separator:af7e9078c46dbf46fbf841273781e3fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>&#160;&#160;&#160;&quot;Already attempted a stack trace in current thread.&quot;</td></tr>
@@ -114,9 +116,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a459d2dac94757f8b45b3f95702446938"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a459d2dac94757f8b45b3f95702446938">nErrorLast</a> (size_t *sysDescLen, char **sysDescStr)</td></tr>
 <tr class="memdesc:a459d2dac94757f8b45b3f95702446938"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the last error and sets <code>dst</code> to the system's error description.  <a href="_errors_8c.html#a459d2dac94757f8b45b3f95702446938">More...</a><br /></td></tr>
 <tr class="separator:a459d2dac94757f8b45b3f95702446938"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0a7358755018773ef2b880da7e982b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#ab0a7358755018773ef2b880da7e982b9">nErrorInfoSet</a> (<a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> *restrict errorInfo, const int error, const <a class="el" href="_time_8h.html#a9a472ad1ccbf442f44222fafd21ea54d">nTime_t</a> errorTime, const char *restrict info, size_t infoLen)</td></tr>
-<tr class="memdesc:ab0a7358755018773ef2b880da7e982b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> of <code>error</code> and <code>info</code>.  <a href="_errors_8c.html#ab0a7358755018773ef2b880da7e982b9">More...</a><br /></td></tr>
-<tr class="separator:ab0a7358755018773ef2b880da7e982b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00cd77ecd1d268f89c5258eabc3d829d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a00cd77ecd1d268f89c5258eabc3d829d">nErrorInfoSet</a> (<a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> *restrict errorInfo, const int error, const <a class="el" href="_time_8h.html#a9a472ad1ccbf442f44222fafd21ea54d">nTime_t</a> errorTime, const char *restrict info, size_t infoLen, const char *sysDescStr, size_t sysDescLen)</td></tr>
+<tr class="memdesc:a00cd77ecd1d268f89c5258eabc3d829d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> of <code>error</code> and <code>info</code>.  <a href="_errors_8c.html#a00cd77ecd1d268f89c5258eabc3d829d">More...</a><br /></td></tr>
+<tr class="separator:a00cd77ecd1d268f89c5258eabc3d829d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bf52b7b158fc617394b38ab7c20fd86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_errors_8c.html#a8bf52b7b158fc617394b38ab7c20fd86">nErrorInfoFree</a> (<a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> *errorInfo)</td></tr>
 <tr class="memdesc:a8bf52b7b158fc617394b38ab7c20fd86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a <a class="el" href="_errors_8h.html#ab262077b46f452e6cda1bf890380bd3f">nErrorInfo_t</a> structure.  <a href="_errors_8c.html#a8bf52b7b158fc617394b38ab7c20fd86">More...</a><br /></td></tr>
 <tr class="separator:a8bf52b7b158fc617394b38ab7c20fd86"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,6 +206,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ae80006c39b1b739eedbc5fb45b92dc3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae80006c39b1b739eedbc5fb45b92dc3d">&#9670;&nbsp;</a></span>noSysDescStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define noSysDescStr&#160;&#160;&#160;&quot;No system error description.&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a8bf52b7b158fc617394b38ab7c20fd86"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8bf52b7b158fc617394b38ab7c20fd86">&#9670;&nbsp;</a></span>nErrorInfoFree()</h2>
@@ -229,12 +245,12 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00228">228</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00249">249</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
-<a id="ab0a7358755018773ef2b880da7e982b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0a7358755018773ef2b880da7e982b9">&#9670;&nbsp;</a></span>nErrorInfoSet()</h2>
+<a id="a00cd77ecd1d268f89c5258eabc3d829d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00cd77ecd1d268f89c5258eabc3d829d">&#9670;&nbsp;</a></span>nErrorInfoSet()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -267,7 +283,19 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>infoLen</em>&#160;</td>
+          <td class="paramname"><em>infoLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>sysDescStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>sysDescLen</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -285,6 +313,8 @@ Variables</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">errorTime</td><td>The time the error occurred. This can be 0 to use <a class="el" href="_time_8h.html#a20ec29a154ba798e1c9e345974b3fe74" title="Gets the system time.">nTime()</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">info</td><td>The info of what caused the error. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">infoLen</td><td>The length of <code>info</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sysDescStr</td><td>The system description of the error. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sysDescLen</td><td>The length of <code>sysDescStr</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -359,7 +389,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00249">249</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00270">270</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>
@@ -401,7 +431,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the string of the stack is returned if successful; otherwise <code><a class="el" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4" title="Null pointer.">NULL</a></code> is returned.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Each time a function is called, it is added to the stack. When a function returns, it is removed from the stack. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00261">261</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_errors_8c_source.html#l00282">282</a> of file <a class="el" href="_errors_8c_source.html">Errors.c</a>.</p>
 
 </div>
 </div>

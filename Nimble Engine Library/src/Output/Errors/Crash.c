@@ -146,7 +146,8 @@ _Noreturn void nCrashSignal(const int signum)
 
     nErrorInfo_t errorInfo;
 #define einfoStr "Caught a signal using nCrashSignal()."
-    nErrorInfoSet(&errorInfo, error, errorTime, einfoStr, NCONST_STR_LEN(einfoStr));
+    nErrorInfoSet(&errorInfo, error, errorTime, einfoStr, NCONST_STR_LEN(einfoStr),
+     NULL, 0);
 #undef einfoStr
     nCrashSafe(error, errorInfo);
     /* NO RETURN */

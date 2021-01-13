@@ -98,8 +98,8 @@ int nErrorThrow(const int error, const char *info, size_t infoLen, const int set
 #undef einfoStr
 
     const nTime_t errorTime = nTime();
-    char *sysDescStr;
-    size_t sysDescLen;
+    char *sysDescStr = NULL;
+    size_t sysDescLen = 0;
     int err = error;
     if (setError || !error)
     {
@@ -110,7 +110,7 @@ int nErrorThrow(const int error, const char *info, size_t infoLen, const int set
     }
     
     nErrorInfo_t errorInfo;
-    nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen);
+    nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen, sysDescStr, sysDescLen);
     
     /* Call the user-defined error callback function. */
     errorCallback(errorInfo);
@@ -180,7 +180,8 @@ int nErrorLast(size_t *sysDescLen, char **sysDescStr)
 }
 
 void nErrorInfoSet(nErrorInfo_t *restrict errorInfo, const int error,
- const nTime_t errorTime, const char *restrict info, size_t infoLen)
+ const nTime_t errorTime, const char *restrict info, size_t infoLen,
+ const char *sysDescStr, size_t sysDescLen)
 {
     if (!errorInfo) return;
     errorInfo->time = errorTime.secs ? errorTime : nTime();
@@ -201,13 +202,33 @@ void nErrorInfoSet(nErrorInfo_t *restrict errorInfo, const int error,
             infoLen = strlen(info);
         }
         errorInfo->infoStr = nStringDuplicate(info, infoLen);
+        errorInfo->infoLen = infoLen;
     }
     else
     {
 #define noInfoStr "No info."
         errorInfo->infoStr = nStringDuplicate(noInfoStr,
          NCONST_STR_LEN(noInfoStr));
+        errorInfo->infoLen = NCONST_STR_LEN(noInfoStr);
 #undef noInfoStr
+    }
+
+    if (sysDescStr)
+    {
+        if (sysDescLen <= 0)
+        {
+            sysDescLen = strlen(sysDescStr);
+        }
+        errorInfo->sysDescStr = nStringDuplicate(sysDescStr, sysDescLen);
+        errorInfo->sysDescLen = sysDescLen;
+    }
+    else
+    {
+#define noSysDescStr "No system error description."
+        errorInfo->infoStr = nStringDuplicate(noSysDescStr,
+         NCONST_STR_LEN(noSysDescStr));
+        errorInfo->sysDescLen = NCONST_STR_LEN(noSysDescStr);
+#undef noSysDescStr
     }
     
     if (stacktraceAttempted)

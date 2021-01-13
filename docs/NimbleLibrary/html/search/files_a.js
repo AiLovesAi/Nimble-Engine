@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['pythagorean_2ec_523',['Pythagorean.c',['../_pythagorean_8c.html',1,'']]],
-  ['pythagorean_2eh_524',['Pythagorean.h',['../_pythagorean_8h.html',1,'']]]
+  ['pythagorean_2ec_524',['Pythagorean.c',['../_pythagorean_8c.html',1,'']]],
+  ['pythagorean_2eh_525',['Pythagorean.h',['../_pythagorean_8h.html',1,'']]]
 ];

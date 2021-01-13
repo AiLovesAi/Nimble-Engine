@@ -113,7 +113,7 @@ void nAssert(const int check,
         if (!err) err = error;
 
         nErrorInfo_t errorInfo;
-        nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen);
+        nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen, NULL, 0);
         nCrashSafe(err, errorInfo);
     }
 }

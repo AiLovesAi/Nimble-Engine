@@ -200,6 +200,8 @@ int nErrorAssert(const int check,
  * to use nTime().
  * @param[in] info The info of what caused the error.
  * @param[in] infoLen The length of @p info.
+ * @param[in] sysDescStr The system description of the error.
+ * @param[in] sysDescLen The length of @p sysDescStr.
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
@@ -207,7 +209,9 @@ void nErrorInfoSet(nErrorInfo_t *restrict errorInfo,
               const int error,
               const nTime_t errorTime,
               const char *restrict info,
-              size_t infoLen);
+              size_t infoLen,
+              const char *sysDescStr,
+              size_t sysDescLen);
 
 /**
  * @brief Frees a #nErrorInfo_t structure.
