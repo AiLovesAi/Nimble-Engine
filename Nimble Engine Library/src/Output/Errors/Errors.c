@@ -60,9 +60,11 @@
 #include "../../../include/Nimble/Output/Files.h"
 #include "../../../include/Nimble/System/Memory.h"
 #include "../../../include/Nimble/System/Time.h"
+#include "../../../include/Nimble/System/Threads.h"
 
 __thread _Bool nErrorsIgnored = 0;
 static __thread _Bool stacktraceAttempted = 0;
+nMutex_t nStacktraceMutex = NULL;
 
 /**
  * @brief The default error handler callback.
@@ -93,8 +95,12 @@ int nErrorThrow(const int error, const char *info, size_t infoLen, const int set
 {
     if (nErrorsIgnored) return NSUCCESS;
 #define einfoStr "Callback argument NULL in nErrorThrow()."
-    nAssert(errorCallback != NULL,
-     NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(
+     errorCallback != NULL,
+     NERROR_NULL,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
 #undef einfoStr
 
     const nTime_t errorTime = nTime();
@@ -279,96 +285,172 @@ void nErrorSetCallback(void (*callback) (const nErrorInfo_t errorInfo))
     }
 }
 
-char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels)
+struct frameInfo {
+    char *func;  /* Function name */
+    int funcLen; /* Length of func */
+    char *file;  /* File name */
+    int fileLen; /* Length of file */
+
+    int line;    /* Line number */
+    int offset;  /* Offset from beginning of line */
+};
+struct frame {
+    struct frame *bp; /* Stack pointer */
+    void *ip; /* Function pointer */
+};
+NIMBLE_USE_RESULT
+NIMBLE_INLINE
+struct frameInfo *nErrorStackSymbols(int *levels, int maxLevels)
 {
-#define einfoStr "Already attempted a stack trace in current thread."
-    nAssert(!stacktraceAttempted, NERROR_LOOP, einfoStr, NCONST_STR_LEN(einfoStr));
-#undef einfoStr
-    stacktraceAttempted = 1;
-    /* Set max levels */
-    size_t maxLevels = 128;
-    if (stackLevels && (*stackLevels > 0) && (*stackLevels <= NERRORS_MAX_STACK))
+    if (nStacktraceMutex) nThreadMutexLock(&nStacktraceMutex);
+
+    /* Get stack */
+    struct frame *framePtr;
+#if NIMBLE_INST == NIMBLE_INST_x86
+    asm("movq %%rbp, %0\n" : "=r" (framePtr) ::);
+#elif NIMBLE_INST == NIMBLE_INST_ARM
+#  ifdef __thumb__
+    asm("mov %%r7, %0\n" : "=r" (framePtr) ::);
+#  else
+    asm("mov %%r11, %0\n" : "=r" (framePtr) ::);
+#  endif
+#endif
+    void *stack[NERRORS_STACK_MAX + 1];
+    for (*levels = 0; framePtr && framePtr->ip && (*levels < maxLevels); (*levels)++)
     {
-        maxLevels = *stackLevels;
+        stack[*levels] = framePtr->ip;
+        framePtr = framePtr->bp;
     }
+    stack[*levels] = NULL;
 
-    /* Prepare stackStr with buffer. */
-    const char formatStr[] = "<%p> %s\n";
-    const size_t maxLineLen = (NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 1, 0)
-     + NFUNCTION_NAME_MAX + 8);
-    const size_t bufferSize = (maxLevels * maxLineLen) + 1;
-    char *stackStr = nAlloc(bufferSize);
-
-    size_t len = 0;
-    int levels = 0;
-    void *stack[NERRORS_MAX_STACK];
+    struct frameInfo *frames = nAlloc(sizeof(struct frameInfo) * (*levels));
+    memset(frames, 0, sizeof(struct frameInfo) * (*levels));
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
-    SYMBOL_INFO *symbol;
+    /* Prepare Sym functions. */
     HANDLE process = GetCurrentProcess();
 #  define einfoStr "GetCurrentProcess() failed in nErrorStacktrace()."
-    if (nErrorAssert(process != NULL,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr)))
-    {
-        nFree((void **) &stackStr);
-        return NULL;
-    }
+    nAssert(
+     process != NULL,
+     NERROR_INTERNAL_FAILURE,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
 #  undef einfoStr
 #  define einfoStr "SymInitialize() failed in nErrorStacktrace()."
-    if (nErrorAssert(SymInitialize(process, NULL, TRUE),
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr)))
-    {
-        nFree((void **) &stackStr);
-        return NULL;
-    }
+    nAssert(
+     SymInitialize(process, NULL, TRUE),
+     NERROR_INTERNAL_FAILURE,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
 #  undef einfoStr
 
-    levels = CaptureStackBackTrace(0, 100, stack, NULL);
-
-    symbol = nAlloc(sizeof(SYMBOL_INFO) + NFUNCTION_NAME_MAX + 1);
+    SYMBOL_INFO *symbol = nAlloc(sizeof(SYMBOL_INFO) + NFUNCTION_NAME_MAX + 1);
+    memset(symbol, 0, sizeof(SYMBOL_INFO) + NFUNCTION_NAME_MAX + 1);
     symbol->MaxNameLen = NFUNCTION_NAME_MAX;
     symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
 
-    printf("%d\n", levels);
-    for (int i = 0; i < levels; i++)
+    IMAGEHLP_LINE image;
+    memset(&image, 0, sizeof(IMAGEHLP_LINE));
+    image.SizeOfStruct = sizeof(IMAGEHLP_LINE);
+    
+    DWORD offset = 0;
+    for (int i = 0; i < *levels; i++)
     {
+        printf("%d\n", i);
 #  define einfoStr "SymFromAddr() failed in nErrorStacktrace()."
-        if (nErrorAssert(SymFromAddr(process, (DWORD64) stack[i], 0, symbol),
-         NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr)))
-        {
-            nFree((void **) &symbol);
-            nFree((void **) &stackStr);
-            return NULL;
-        }
+        nAssert(
+         SymFromAddr(
+            process,
+            (DWORD64) stack[i],
+            NULL,
+            symbol
+         ),
+         NERROR_INTERNAL_FAILURE,
+         einfoStr,
+         NCONST_STR_LEN(einfoStr)
+        );
 #  undef einfoStr
-        printf("%p : %016" PRIX64 " : %s\n", stack[i], symbol->Address, symbol->Name);
-        len += snprintf(stackStr + len, maxLineLen, formatStr, stack[i], symbol->Name);
+        frames[i].funcLen = symbol->NameLen;
+        frames[i].func = nStringDuplicate(symbol->Name, symbol->NameLen);
+        if (SymGetLineFromAddr64(
+         process,
+         (DWORD64) stack[i],
+         &offset,
+         &image
+        ))
+        {
+            frames[i].line = image.LineNumber;
+            frames[i].offset = (int) offset;
+        }
+        else
+        {
+            nErrorClear();
+            HMODULE module = NULL;
+
+            if (
+             GetModuleHandleEx(
+                GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                (char *) stack[i],
+                &module
+             ) && module)
+            {
+                frames[i].file = nAlloc(NFUNCTION_NAME_MAX + 1);
+                frames[i].fileLen = GetModuleFileNameA(module, frames[i].file, NFUNCTION_NAME_MAX);
+                frames[i].file = nRealloc(frames[i].file, frames[i].fileLen);
+                printf("%s\n", frames[i].file);
+            }
+            else nErrorClear();
+        }
     }
     nFree((void **) &symbol);
 
 #else
-    levels = backtrace(stack, maxLevels);
-    char **symbols = backtrace_symbols(stack, levels);
-    for (int i = 0; i < levels; i++)
+    char **symbols = backtrace_symbols(stack, *levels);
+    size_t bufferLen = 0;
+    for (int i = 0; i < *levels; i++)
     {
-        len += snprintf(stackStr + len, maxLineLen, formatStr, stack[i], symbols[i]);
-        nFree((void **) &symbols[i]);
+        frames[i].func = symbols[i];
+        frames[i].funcLen = strlen(symbols[i]);
+        /// @todo File & line number.
     }
     nFree((void **) &symbols);
 
 #endif
 
+    if (nStacktraceMutex) nThreadMutexUnlock(&nStacktraceMutex);
+    return frames;
+}
 
-    /* Reallocate stackStr to its correct length. */
-    stackStr = nRealloc(stackStr, len + 1);
-    if (stackLen)
+char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels)
+{
+    if (stacktraceAttempted) nCrashAbort(NERROR_LOOP);
+    stacktraceAttempted = 1;
+
+    /* Set max levels */
+    size_t maxLevels = NERRORS_STACK_DEFAULT;
+    if (stackLevels && (*stackLevels > 0) && (*stackLevels <= NERRORS_STACK_MAX))
     {
-        *stackLen = len;
+        maxLevels = *stackLevels;
     }
-    if (stackLevels)
+
+    size_t len = 0;
+    int levels = 0;
+    char *stackStr = NULL;
+
+    struct frameInfo *frames = nErrorStackSymbols(&levels, maxLevels);
+    for (int i = 0; i < levels; i++)
     {
-        *stackLevels = levels;
+        /// @todo Set string
+        if (frames[i].file) nFree((void **) &frames[i].file);
+        if (frames[i].func) nFree((void **) &frames[i].func);
     }
+    nFree((void **) &frames);
+
+    /* Cleanup */
+    if (stackLevels) *stackLevels = levels;
+    if (stackLen) *stackLen = len;
 
     stacktraceAttempted = 0;
     return stackStr;

@@ -53,6 +53,7 @@
 #include "../include/Nimble/Output/Errors/Errors.h"
 #include "../include/Nimble/Output/Errors/Crash.h"
 #include "../include/Nimble/Output/Files.h"
+#include "../include/Nimble/System/Threads.h"
 
 volatile _Bool NIMBLE_INITIALIZED = 0;
 
@@ -68,6 +69,9 @@ static void nEngineCleanup(void)
         nFree((void **) &NIMBLE_ARGS[i]);
     }
     nFree((void **) &NIMBLE_ARGS);
+
+    /* Destroy mutexes */
+    nThreadMutexDestroy(&nStacktraceMutex);
 }
 
 static void nEngineExitSignal(int signum)
@@ -80,15 +84,23 @@ int nEngineInit(char **args, const int argc,
  void (*crashCallback) (const nErrorInfo_t errorInfo))
 {
 #define einfoStr "nEngineInit() was called, but Nimble is already initialized."
-    if (nErrorAssert(!NIMBLE_INITIALIZED,
-     NERROR_WARN, einfoStr, NCONST_STR_LEN(einfoStr))) return NERROR_WARN;
+    if (nErrorAssert(
+     !NIMBLE_INITIALIZED,
+     NERROR_WARN,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    )) return NERROR_WARN;
 #undef einfoStr
 
     /* Add nEngineCleanup() to the exit functions. */
 #define einfoStr "atexit() failed in nEngineInit(), and the exit functions "\
  "could not be set."
-    nAssert(!atexit(&nEngineCleanup),
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(
+     !atexit(&nEngineCleanup),
+     NERROR_INTERNAL_FAILURE,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
 #undef einfoStr
 
     /* Set signal callbacks. */
@@ -115,9 +127,14 @@ int nEngineInit(char **args, const int argc,
 #define einfoStr "No arguments passed to nEngineInit(). This is necessary "\
  "even if no arguments are sent, as the first argument is always the "\
  "executable file, which is needed for stacktraces."
-    /* Copy args to NIMBLE_ARGS */
-    nAssert(args && argc, NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(
+     args && argc,
+     NERROR_NULL,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
 
+    /* Copy args to NIMBLE_ARGS */
     NIMBLE_ARGS = nAlloc(sizeof(char *) * argc);
     int count = 0;
     for (size_t len = 0; args[count] && count < argc; count++)
@@ -126,12 +143,28 @@ int nEngineInit(char **args, const int argc,
         NIMBLE_ARGS[count] = nStringDuplicate(args[count], len);
     }
 
-    nAssert(count, NERROR_NULL, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(
+     count,
+     NERROR_NULL,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
     NIMBLE_ARGC = count;
 #undef einfoStr
 
     /* Set executable file name. */
     nFileSetExecutablePath();
+
+    // Setup mutexes
+#define einfoStr "Could not create mutex with nThreadMutexCreate() in "\
+ "nEngineInit()"
+    nAssert(
+     !nThreadMutexCreate(&nStacktraceMutex),
+     NERROR_INTERNAL_FAILURE,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
+#undef einfoStr
     
     NIMBLE_INITIALIZED = 1;
 

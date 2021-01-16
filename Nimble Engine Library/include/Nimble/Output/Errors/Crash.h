@@ -100,23 +100,12 @@ void nCrashSafe(const int error,
  * @param[in] info The info string to crash with if false.
  * @param[in] infoLen The length of @p info.
  */
-NIMBLE_INLINE
+NIMBLE_EXPORT
+NIMBLE_EXTERN
 void nAssert(const int check,
-            const int error,
-            const char *info,
-            const size_t infoLen)
-{
-    if (!check)
-    {
-        const nTime_t errorTime = nTime();
-        int err = nErrorLastErrno();
-        if (!err) err = error;
-
-        nErrorInfo_t errorInfo;
-        nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen, NULL, 0);
-        nCrashSafe(err, errorInfo);
-    }
-}
+             const int error,
+             const char *info,
+             const size_t infoLen);
 
 /**
  * @brief Calls nCrashSafe() to handle a caught signal.

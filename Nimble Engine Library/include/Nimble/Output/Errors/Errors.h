@@ -54,11 +54,13 @@ extern "C" {
 
 #include "ErrorValues.h"
 #include "../../System/Time.h"
+#include "../../System/Threads.h"
 
 
-#ifndef NERRORS_MAX_STACK
-#  define NERRORS_MAX_STACK 512 /**< The maximum stack levels to take from nErrorStacktrace(). */
+#ifndef NERRORS_STACK_MAX
+#  define NERRORS_STACK_MAX 512 /**< The maximum stack levels to take from nErrorStacktrace(). */
 #endif
+#define NERRORS_STACK_DEFAULT 32 /**< The default number of stack levels to take from nErrorStacktrace(). */
 
 typedef struct nErrorInfo {
     int error; /**< The error value of the error. */
@@ -87,6 +89,7 @@ typedef struct nErrorInfo {
  * functions will not be invoked.
  */
 extern __thread _Bool nErrorsIgnored;
+extern nMutex_t nStacktraceMutex;
 
 /**
  * @brief Sends an error to the error callback.
@@ -187,7 +190,8 @@ int nErrorAssert(const int check,
                  const char *info,
                  const size_t infoLen)
 {
-    if (!check && info && !nErrorsIgnored) return nErrorThrow(error, info, infoLen, 1);
+    if (!check && info && !nErrorsIgnored)
+     return nErrorThrow(error, info, infoLen, 1);
     return NSUCCESS;
 }
 

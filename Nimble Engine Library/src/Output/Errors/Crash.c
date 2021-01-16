@@ -137,6 +137,24 @@ _Noreturn void nCrashSafe(const int error, nErrorInfo_t errorInfo)
     /* NO RETURN */
 }
 
+void nAssert(const int check, const int error, const char *info,
+ const size_t infoLen)
+{
+    if (!check)
+    {
+        const nTime_t errorTime = nTime();
+        char *sysDescStr;
+        size_t sysDescLen;
+        int err = nErrorLast(&sysDescLen, &sysDescStr);
+        if (!err) err = error;
+
+        nErrorInfo_t errorInfo;
+        nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen, sysDescStr,
+         sysDescLen);
+        nCrashSafe(err, errorInfo);
+    }
+}
+
 _Noreturn void nCrashSignal(const int signum)
 {
     const nTime_t errorTime = nTime();
@@ -152,6 +170,13 @@ _Noreturn void nCrashSignal(const int signum)
     nCrashSafe(error, errorInfo);
     /* NO RETURN */
 }
+
+#if 0
+_Noreturn void nCrashSignalSEGV(const int signum, struct sigcontext ctx)
+{
+    /// @todo
+}
+#endif
 
 _Noreturn void nCrashAbort(const int error)
 {

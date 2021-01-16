@@ -68,8 +68,12 @@ void *nAlloc(const size_t size)
 
     /* Check if successfully allocated. */
 #define einfoStr "Ran out of memory in nAlloc()."
-    nAssert(ptr != NULL,
-     NERROR_NO_MEMORY, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(
+     ptr != NULL,
+     NERROR_NO_MEMORY,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
 #undef einfoStr
 
     return ptr;
@@ -92,8 +96,12 @@ void *nRealloc(void *ptr, const size_t size)
 
     /* Check if successfully allocated. */
 #define einfoStr "Ran out of memory in nRealloc()."
-    nAssert(ptr != NULL,
-     NERROR_NO_MEMORY, einfoStr, NCONST_STR_LEN(einfoStr));
+    nAssert(
+     ptr != NULL,
+     NERROR_NO_MEMORY,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
 #undef einfoStr
 
     return ptr;
