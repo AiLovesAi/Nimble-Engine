@@ -3,7 +3,7 @@
 *  Nimble Engine
 *
 *  Created by Avery Aaron on 2020-08-09.
-*  Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
+*  Copyright (C) 2020-2021 Avery Aaron <business.AiLovesAi@gmail.com>
 *
 */
 

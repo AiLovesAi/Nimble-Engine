@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-08-14.
- * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.AiLovesAi@gmail.com>
  *
  */
 
@@ -14,7 +14,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.AiLovesAi@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -93,8 +93,8 @@ extern "C" {
 #endif
 
 /* URL definitions */
-#define NIMBLE_REPO_URL  "https://github.com/a3ology/Nimble-Game-Engine" /**< The url for the Nimble Engine repository. */
-#define NIMBLE_ISSUE_URL "https://github.com/a3ology/Nimble-Game-Engine/issues/new/choose" /**< The url for the Nimble Engine repository new issue. */
+#define NIMBLE_REPO_URL  "https://github.com/AiLovesAi/Nimble-Game-Engine" /**< The url for the Nimble Engine repository. */
+#define NIMBLE_ISSUE_URL "https://github.com/AiLovesAi/Nimble-Game-Engine/issues/new/choose" /**< The url for the Nimble Engine repository new issue. */
 
 
 /* OS/Standard definitions */

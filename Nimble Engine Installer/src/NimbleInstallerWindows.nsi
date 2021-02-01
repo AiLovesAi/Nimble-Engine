@@ -3,7 +3,7 @@
 # Nimble Engine
 #
 # Created by Avery Aaron on 2020-08-09.
-# Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
+# Copyright (C) 2020-2021 Avery Aaron <business.AiLovesAi@gmail.com>
 #
 
 !include LogicLib.nsh
@@ -95,7 +95,7 @@ Click Finish to close the setup tool."
 !define MUI_FINISHPAGE_RUN "$INSTDIR\${exe}"
 !define MUI_FINISHPAGE_RUN_TEXT "Run program on exit"
 !define MUI_FINISHPAGE_LINK "Open Wiki"
-!define MUI_FINISHPAGE_LINK_LOCATION "https://a3ology.github.io/Nimble-Game-Engine/"
+!define MUI_FINISHPAGE_LINK_LOCATION "https://AiLovesAi.github.io/Nimble-Game-Engine/"
 !define MUI_FINISHPAGE_LINK_COLOR "2222aa"
 !insertmacro MUI_PAGE_FINISH
 

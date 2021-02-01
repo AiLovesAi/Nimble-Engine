@@ -4,7 +4,7 @@
  * Nimble Engine
  *
  * Created by Avery Aaron on 2020-08-17.
- * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.AiLovesAi@gmail.com>
  *
  */
 
@@ -16,7 +16,7 @@
  * @copyright
  * @parblock
  * The MIT License (MIT)
- * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
+ * Copyright (C) 2020-2021 Avery Aaron <business.AiLovesAi@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal

@@ -4,7 +4,7 @@
  Nimble Engine
 
  Created by Avery Aaron on 2020-08-08.
- Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>
+ Copyright (C) 2020-2021 Avery Aaron <business.AiLovesAi@gmail.com>
 
  This program makes the NimbleLicense.c file from LICENSE.md that gets
  included in every header file, and therefor all compiled executables in plain text.
@@ -30,7 +30,7 @@ def main():
  * Nimble Engine\n\
  *\n\
  * Created automatically by LicenseGenerator.py on " + date + ".\n\
- * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>\n\
+ * Copyright (C) 2020-2021 Avery Aaron <business.AiLovesAi@gmail.com>\n\
  *\n\
  */\n\n\
 /**\n\
@@ -39,7 +39,7 @@ def main():
  * @copyright\n\
  * @parblock\n\
  * The MIT License (MIT)\n\
- * Copyright (C) 2020-2021 Avery Aaron <business.a3ology@gmail.com>\n\
+ * Copyright (C) 2020-2021 Avery Aaron <business.AiLovesAi@gmail.com>\n\
  *\n\
  * Permission is hereby granted, free of charge, to any person obtaining a copy\n\
  * of this software and associated documentation files (the \"Software\"), to deal\n\
