@@ -83,6 +83,13 @@ extern "C" {
 #include <inttypes.h>
 #include <stdlib.h>
 
+/** -D Macros:
+ * NIMBLE_SHARED: Shared library.
+ * NIMBLE_DEBUG: Debug mode.
+ * NIMBLE_NO_ALLOC_CHECK: Do not check to see if an allocation is successful (nAlloc is replaced with malloc).
+ * NIMBLE_NO_ARG_CHECK: Do not check arguments that should be passed with a certain value.
+ */
+
 /* Compatability checks */
 #if !defined(__GNUC__) || (__GNUC__ < 4)
 #  error GCC 4.0+ required.
@@ -191,7 +198,7 @@ extern "C" {
 NCONST_STR_LEN(str) - (2 * spec1) - (3 * spec2) - (4 * spec3) - (5 * spec4) /**< Gets the length of a formatted string without the format characters. */
 
 #define NSTR(str) #str /**< Stringifies the argument. */
-#define NSTR_VAL(str) NSTR(str) /**< Stringifies the argument's defined value (for macros only). */
+#define NSTR_STR(str) NSTR(str) /**< Stringifies the argument's defined value (for macros only). */
 
 /* Types */
 #  ifndef ssize_t

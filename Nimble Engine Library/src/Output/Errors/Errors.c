@@ -50,6 +50,7 @@
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #include <dbghelp.h>
+#include <imagehlp.h>
 #include <Windows.h>
 #else
 #include <execinfo.h>
@@ -62,7 +63,6 @@
 #include "../../../include/Nimble/System/Time.h"
 #include "../../../include/Nimble/System/Threads.h"
 
-__thread _Bool nErrorsIgnored = 0;
 static __thread _Bool stacktraceAttempted = 0;
 nMutex_t nStacktraceMutex = NULL;
 
@@ -93,15 +93,16 @@ static void nErrorHandlerDefault(const nErrorInfo_t errorInfo)
 
 int nErrorThrow(const int error, const char *info, size_t infoLen, const int setError)
 {
-    if (nErrorsIgnored) return NSUCCESS;
-#define einfoStr "Callback argument NULL in nErrorThrow()."
+#ifndef NIMBLE_NO_ARG_CHECK
+#  define einfoStr "Callback argument NULL in nErrorThrow()."
     nAssert(
      errorCallback != NULL,
      NERROR_NULL,
      einfoStr,
      NCONST_STR_LEN(einfoStr)
     );
-#undef einfoStr
+#  undef einfoStr
+#endif
 
     const nTime_t errorTime = nTime();
     char *sysDescStr = NULL;
@@ -189,7 +190,9 @@ void nErrorInfoSet(nErrorInfo_t *restrict errorInfo, const int error,
  const nTime_t errorTime, const char *restrict info, size_t infoLen,
  const char *sysDescStr, size_t sysDescLen)
 {
+#ifndef NIMBLE_NO_ARG_CHECK
     if (!errorInfo) return;
+#endif
     errorInfo->time = errorTime.secs ? errorTime : nTime();
     errorInfo->error = error;
 
@@ -254,6 +257,9 @@ void nErrorInfoSet(nErrorInfo_t *restrict errorInfo, const int error,
 
 void nErrorInfoFree(nErrorInfo_t *errorInfo)
 {
+#ifndef NIMBLE_NO_ARG_CHECK
+    if (!errorInfo) return;
+#endif
     errorInfo->error = 0;
 
     errorInfo->errorStr = NULL;
@@ -316,7 +322,8 @@ struct frameInfo *nErrorStackSymbols(int *levels, int maxLevels)
 #  endif
 #endif
     void *stack[NERRORS_STACK_MAX + 1];
-    for (*levels = 0; framePtr && framePtr->ip && (*levels < maxLevels); (*levels)++)
+    //for (*levels = 0; (framePtr && framePtr->ip) && (*levels < maxLevels); (*levels)++)
+    for (*levels = 0; framePtr->ip && (*levels < maxLevels); (*levels)++)
     {
         stack[*levels] = framePtr->ip;
         framePtr = framePtr->bp;
@@ -405,6 +412,7 @@ struct frameInfo *nErrorStackSymbols(int *levels, int maxLevels)
         }
     }
     nFree((void **) &symbol);
+    SymCleanup(process);
 
 #else
     char **symbols = backtrace_symbols(stack, *levels);

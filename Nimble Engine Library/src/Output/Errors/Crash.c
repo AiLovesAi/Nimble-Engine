@@ -155,6 +155,13 @@ void nAssert(const int check, const int error, const char *info,
     }
 }
 
+#ifdef NIMBLE_STD_POSIX
+/** @todo Use sigaction for POSIX */
+_Noreturn void nCrashSignal(const int signum, struct sigcontext ctx)
+{
+    /// @todo
+}
+#else
 _Noreturn void nCrashSignal(const int signum)
 {
     const nTime_t errorTime = nTime();
@@ -169,12 +176,6 @@ _Noreturn void nCrashSignal(const int signum)
 #undef einfoStr
     nCrashSafe(error, errorInfo);
     /* NO RETURN */
-}
-
-#if 0
-_Noreturn void nCrashSignalSEGV(const int signum, struct sigcontext ctx)
-{
-    /// @todo
 }
 #endif
 

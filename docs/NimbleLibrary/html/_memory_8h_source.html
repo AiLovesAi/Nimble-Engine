@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Engine Library: C:/Users/Avery/Documents/GitHub/Nimble-Engine/Nimble Engine Library/include/Nimble/System/Memory.h Source File</title>
+<title>Nimble Engine Library: E:/GitHub/Nimble-Engine/Nimble Engine Library/include/Nimble/System/Memory.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -95,81 +95,99 @@ $(function() {
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#include &quot;../Output/Errors/Errors.h&quot;</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#include &quot;../Output/Errors/Crash.h&quot;</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<a class="code" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">   65</a></span>&#160;<span class="keywordtype">void</span> *<a class="code" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> size)</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> *ptr = malloc(size);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">/* Check if successfully allocated. */</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#define einfoStr &quot;Ran out of memory in nAlloc().&quot;</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="_crash_8h.html#ae08ea5e3b809e4b7b5c68d1c0760738a">nAssert</a>(ptr != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;     NERROR_NO_MEMORY, <a class="code" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>));</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> ptr;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<a class="code" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<a class="code" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a></div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">   88</a></span>&#160;<span class="keywordtype">void</span> *<a class="code" href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">nRealloc</a>(<span class="keywordtype">void</span> *ptr, <span class="keyword">const</span> <span class="keywordtype">size_t</span> size)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">if</span> (!ptr) <span class="keywordflow">return</span> <a class="code" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a>(size);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    ptr = realloc(ptr, size);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">/* Check if successfully allocated. */</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#define einfoStr &quot;Ran out of memory in nRealloc().&quot;</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="_crash_8h.html#ae08ea5e3b809e4b7b5c68d1c0760738a">nAssert</a>(ptr != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;     NERROR_NO_MEMORY, <a class="code" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>, <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>));</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#undef einfoStr</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">return</span> ptr;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<a class="code" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a></div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">  112</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">nFree</a>(<span class="keywordtype">void</span> **ptr)</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">if</span> (ptr)</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    {</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        free(*ptr);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        *ptr = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<a class="code" href="_nimble_8h.html#a8af93bbb66534e14d651bbb0638ee796">ssize_t</a> <a class="code" href="_memory_8h.html#a95aa91c09a9711650f16c1b0474b11f9">nStringCopy</a>(<span class="keywordtype">char</span> *<span class="keyword">const</span> restrict dst,</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> restrict src,</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">size_t</span> len);</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<a class="code" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keywordtype">char</span> *<a class="code" href="_memory_8h.html#a4cd66383bd78f18d374200987ed4fec4">nStringDuplicate</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> src,</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                       <span class="keywordtype">size_t</span> len);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_MEMORY_H</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;}</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">// Memory.h</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#ifdef NIMBLE_NO_ALLOC_CHECK</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#  define nAlloc malloc</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<a class="code" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">   68</a></span>&#160;<span class="keywordtype">void</span> *<a class="code" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> *ptr = malloc(size);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">/* Check if successfully allocated. */</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#  define einfoStr &quot;Ran out of memory in nAlloc().&quot;</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="_crash_8c.html#a58cf090de98132e85c2b485864031b7e">nAssert</a>(</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;     ptr != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;     NERROR_NO_MEMORY,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;     <a class="code" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;     <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    );</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#  undef einfoStr</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">return</span> ptr;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#ifdef NIMBLE_NO_ALLOC_CHECK</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#  define nRealloc realloc</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<a class="code" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<a class="code" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a></div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">   99</a></span>&#160;<span class="keywordtype">void</span> *<a class="code" href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">nRealloc</a>(<span class="keywordtype">void</span> *ptr, <span class="keyword">const</span> <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;{</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">if</span> (!ptr) <span class="keywordflow">return</span> <a class="code" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a>(size); </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    ptr = realloc(ptr, size);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">/* Check if successfully allocated. */</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#  define einfoStr &quot;Ran out of memory in nRealloc().&quot;</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="_crash_8c.html#a58cf090de98132e85c2b485864031b7e">nAssert</a>(</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;     ptr != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;     NERROR_NO_MEMORY,</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;     <a class="code" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>,</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;     <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    );</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#  undef einfoStr</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">return</span> ptr;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<a class="code" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a></div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">  128</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">nFree</a>(<span class="keywordtype">void</span> **ptr)</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#ifndef NIMBLE_NO_ARG_CHECK</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">if</span> (ptr)</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        free(*ptr);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        *ptr = <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<a class="code" href="_nimble_8h.html#a8af93bbb66534e14d651bbb0638ee796">ssize_t</a> <a class="code" href="_memory_8h.html#a95aa91c09a9711650f16c1b0474b11f9">nStringCopy</a>(<span class="keywordtype">char</span> *<span class="keyword">const</span> restrict dst,</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> restrict src,</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<a class="code" href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<a class="code" href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<a class="code" href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="keywordtype">char</span> *<a class="code" href="_memory_8h.html#a4cd66383bd78f18d374200987ed4fec4">nStringDuplicate</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> src,</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                       <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor">#endif // NIMBLE_ENGINE_MEMORY_H</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;}</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">// Memory.h</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="a_memory_8h_html_a1d915b753a871eb40e4a47909f7c7ded"><div class="ttname"><a href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">nFree</a></div><div class="ttdeci">NIMBLE_INLINE void nFree(void **ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00112">Memory.h:112</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a99b09cd8c8c999889cf8113c3d281368"><div class="ttname"><a href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div><div class="ttdeci">#define NIMBLE_EXTERN</div><div class="ttdoc">Extern alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00176">Nimble.h:176</a></div></div>
-<div class="ttc" id="a_c_p_u_info_8c_html_a5f782ed7ba9719127cbf55939ba0f1f7"><div class="ttname"><a href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a></div><div class="ttdeci">NIMBLE_INLINE</div><div class="ttdef"><b>Definition:</b> <a href="_c_p_u_info_8c_source.html#l00106">CPUInfo.c:113</a></div></div>
-<div class="ttc" id="a_crash_8h_html_ae08ea5e3b809e4b7b5c68d1c0760738a"><div class="ttname"><a href="_crash_8h.html#ae08ea5e3b809e4b7b5c68d1c0760738a">nAssert</a></div><div class="ttdeci">NIMBLE_INLINE void nAssert(const int check, const int error, const char *info, const size_t infoLen)</div><div class="ttdoc">Crashes with info if check is equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8h_source.html#l00104">Crash.h:104</a></div></div>
-<div class="ttc" id="a_memory_8h_html_a7b025f143875e036ea41189c785d6734"><div class="ttname"><a href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a></div><div class="ttdeci">NIMBLE_USE_RESULT NIMBLE_INLINE void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00065">Memory.h:65</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00184">Nimble.h:184</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a217e8380e1998f7b39a24176186eeaa4"><div class="ttname"><a href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div><div class="ttdeci">#define NIMBLE_EXPORT</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00173">Nimble.h:173</a></div></div>
+<div class="ttc" id="a_memory_8h_html_a1d915b753a871eb40e4a47909f7c7ded"><div class="ttname"><a href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">nFree</a></div><div class="ttdeci">NIMBLE_INLINE void nFree(void **ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00128">Memory.h:128</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a99b09cd8c8c999889cf8113c3d281368"><div class="ttname"><a href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div><div class="ttdeci">#define NIMBLE_EXTERN</div><div class="ttdoc">Extern alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00183">Nimble.h:183</a></div></div>
+<div class="ttc" id="a_crash_8c_html_a58cf090de98132e85c2b485864031b7e"><div class="ttname"><a href="_crash_8c.html#a58cf090de98132e85c2b485864031b7e">nAssert</a></div><div class="ttdeci">void nAssert(const int check, const int error, const char *info, const size_t infoLen)</div><div class="ttdoc">Crashes with info if check is equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00140">Crash.c:140</a></div></div>
+<div class="ttc" id="a_c_p_u_info_8c_html_a5f782ed7ba9719127cbf55939ba0f1f7"><div class="ttname"><a href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a></div><div class="ttdeci">NIMBLE_INLINE</div><div class="ttdef"><b>Definition:</b> <a href="_c_p_u_info_8c_source.html#l00103">CPUInfo.c:110</a></div></div>
+<div class="ttc" id="a_memory_8h_html_a7b025f143875e036ea41189c785d6734"><div class="ttname"><a href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a></div><div class="ttdeci">NIMBLE_USE_RESULT NIMBLE_INLINE void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00068">Memory.h:68</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00191">Nimble.h:191</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a217e8380e1998f7b39a24176186eeaa4"><div class="ttname"><a href="_nimble_8h.html#a217e8380e1998f7b39a24176186eeaa4">NIMBLE_EXPORT</a></div><div class="ttdeci">#define NIMBLE_EXPORT</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00180">Nimble.h:180</a></div></div>
 <div class="ttc" id="a_memory_8h_html_acdffbabfd17b49ee49aefd6e38f1f0ba"><div class="ttname"><a href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a></div><div class="ttdeci">#define einfoStr</div></div>
 <div class="ttc" id="a_memory_8h_html_a95aa91c09a9711650f16c1b0474b11f9"><div class="ttname"><a href="_memory_8h.html#a95aa91c09a9711650f16c1b0474b11f9">nStringCopy</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_EXTERN ssize_t nStringCopy(char *const restrict dst, const char *const restrict src, const size_t len)</div><div class="ttdoc">Copies len characters from src to dst.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00048">Memory.c:48</a></div></div>
-<div class="ttc" id="a_memory_8h_html_a4cd66383bd78f18d374200987ed4fec4"><div class="ttname"><a href="_memory_8h.html#a4cd66383bd78f18d374200987ed4fec4">nStringDuplicate</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_USE_RESULT NIMBLE_EXTERN char * nStringDuplicate(const char *const src, size_t len)</div><div class="ttdoc">Returns a newly allocated string identical to src.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00089">Memory.c:89</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a8af93bbb66534e14d651bbb0638ee796"><div class="ttname"><a href="_nimble_8h.html#a8af93bbb66534e14d651bbb0638ee796">ssize_t</a></div><div class="ttdeci">#define ssize_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00199">Nimble.h:199</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_a527cddcc22f04dbed8fe9768a975ab50"><div class="ttname"><a href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a></div><div class="ttdeci">#define NCONST_STR_LEN(str)</div><div class="ttdoc">Gets the length of a const char * as strlen() would, but at compile time.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00189">Nimble.h:189</a></div></div>
-<div class="ttc" id="a_nimble_8h_html_ad5e23b22bda50c196151ea25ea3b1bfc"><div class="ttname"><a href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a></div><div class="ttdeci">#define NIMBLE_USE_RESULT</div><div class="ttdoc">Denotes that a function may allocate memory that should later be freed.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00179">Nimble.h:179</a></div></div>
-<div class="ttc" id="a_memory_8h_html_a77cb79e5d6db3555f04f9767f9f2b314"><div class="ttname"><a href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">nRealloc</a></div><div class="ttdeci">NIMBLE_USE_RESULT NIMBLE_INLINE void * nRealloc(void *ptr, const size_t size)</div><div class="ttdoc">Reallocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00088">Memory.h:88</a></div></div>
+<div class="ttc" id="a_memory_8h_html_a4cd66383bd78f18d374200987ed4fec4"><div class="ttname"><a href="_memory_8h.html#a4cd66383bd78f18d374200987ed4fec4">nStringDuplicate</a></div><div class="ttdeci">NIMBLE_EXPORT NIMBLE_USE_RESULT NIMBLE_EXTERN char * nStringDuplicate(const char *const src, size_t len)</div><div class="ttdoc">Returns a newly allocated string identical to src.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00103">Memory.c:103</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a8af93bbb66534e14d651bbb0638ee796"><div class="ttname"><a href="_nimble_8h.html#a8af93bbb66534e14d651bbb0638ee796">ssize_t</a></div><div class="ttdeci">#define ssize_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00206">Nimble.h:206</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_a527cddcc22f04dbed8fe9768a975ab50"><div class="ttname"><a href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a></div><div class="ttdeci">#define NCONST_STR_LEN(str)</div><div class="ttdoc">Gets the length of a const char * as strlen() would, but at compile time.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00196">Nimble.h:196</a></div></div>
+<div class="ttc" id="a_nimble_8h_html_ad5e23b22bda50c196151ea25ea3b1bfc"><div class="ttname"><a href="_nimble_8h.html#ad5e23b22bda50c196151ea25ea3b1bfc">NIMBLE_USE_RESULT</a></div><div class="ttdeci">#define NIMBLE_USE_RESULT</div><div class="ttdoc">Denotes that a function may allocate memory that should later be freed.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00186">Nimble.h:186</a></div></div>
+<div class="ttc" id="a_memory_8h_html_a77cb79e5d6db3555f04f9767f9f2b314"><div class="ttname"><a href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">nRealloc</a></div><div class="ttdeci">NIMBLE_USE_RESULT NIMBLE_INLINE void * nRealloc(void *ptr, const size_t size)</div><div class="ttdoc">Reallocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00099">Memory.h:99</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19

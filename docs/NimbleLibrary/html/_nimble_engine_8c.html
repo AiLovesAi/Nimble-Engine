@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Nimble Engine Library: C:/Users/Avery/Documents/GitHub/Nimble-Engine/Nimble Engine Library/src/NimbleEngine.c File Reference</title>
+<title>Nimble Engine Library: E:/GitHub/Nimble-Engine/Nimble Engine Library/src/NimbleEngine.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,12 +89,15 @@ $(function() {
 <code>#include &quot;<a class="el" href="_errors_8h_source.html">../include/Nimble/Output/Errors/Errors.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_crash_8h_source.html">../include/Nimble/Output/Errors/Crash.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_files_8h_source.html">../include/Nimble/Output/Files.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_threads_8h_source.html">../include/Nimble/System/Threads.h</a>&quot;</code><br />
 </div>
 <p><a href="_nimble_engine_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_engine_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>&#160;&#160;&#160;&quot;nEngineInit() was called, but Nimble is already initialized.&quot;</td></tr>
+<tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_engine_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a></td></tr>
 <tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_nimble_engine_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a></td></tr>
 <tr class="separator:acdffbabfd17b49ee49aefd6e38f1f0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,7 +124,7 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class includes all the necessary game engine header files. </p>
 <dl class="section author"><dt>Author</dt><dd>Avery Aaron </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020-2021 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.a'+'3ol'+'og'+'y@g'+'ma'+'il.'+'co'+'m'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>a3olo<span style="display: none;">.nosp@m.</span>gy@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a></p>
+<dl class="section copyright"><dt>Copyright</dt><dd><p class="startdd">The MIT License (MIT) Copyright (C) 2020-2021 Avery Aaron <a href="#" onclick="location.href='mai'+'lto:'+'bus'+'in'+'ess'+'.A'+'iLo'+'ve'+'sAi'+'@g'+'mai'+'l.'+'com'; return false;">busin<span style="display: none;">.nosp@m.</span>ess.<span style="display: none;">.nosp@m.</span>AiLov<span style="display: none;">.nosp@m.</span>esAi<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a></p>
 <p class="interdd">Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
 <p class="interdd">The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 <p class="enddd">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </p>
@@ -132,7 +135,7 @@ Variables</h2></td></tr>
 <p class="definition">Definition in file <a class="el" href="_nimble_engine_8c_source.html">NimbleEngine.c</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -146,7 +149,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[2/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,7 +165,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,7 +181,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,6 +194,22 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;No arguments passed to nEngineInit(). This is necessary &quot;</span>\</div>
 <div class="line"> <span class="stringliteral">&quot;even if no arguments are sent, as the first argument is always the &quot;</span>\</div>
 <div class="line"> <span class="stringliteral">&quot;executable file, which is needed for stacktraces.&quot;</span></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="acdffbabfd17b49ee49aefd6e38f1f0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdffbabfd17b49ee49aefd6e38f1f0ba">&#9670;&nbsp;</a></span>einfoStr <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define einfoStr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"> <span class="stringliteral">&quot;Could not create mutex with nThreadMutexCreate() in &quot;</span>\</div>
+<div class="line"> <span class="stringliteral">&quot;nEngineInit()&quot;</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -246,7 +265,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17" title="Returned when a function succeeds.">NSUCCESS</a> is returned if successful; otherwise an error is returned and a corresponding error is sent to the error callback set by nErrorHandlerSetErrorCallback(). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_nimble_engine_8c_source.html#l00078">78</a> of file <a class="el" href="_nimble_engine_8c_source.html">NimbleEngine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_engine_8c_source.html#l00090">90</a> of file <a class="el" href="_nimble_engine_8c_source.html">NimbleEngine.c</a>.</p>
 
 </div>
 </div>
@@ -263,7 +282,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_nimble_engine_8c_source.html#l00060">60</a> of file <a class="el" href="_nimble_engine_8c_source.html">NimbleEngine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_engine_8c_source.html#l00061">61</a> of file <a class="el" href="_nimble_engine_8c_source.html">NimbleEngine.c</a>.</p>
 
 </div>
 </div>
@@ -279,7 +298,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_nimble_engine_8c_source.html#l00059">59</a> of file <a class="el" href="_nimble_engine_8c_source.html">NimbleEngine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_engine_8c_source.html#l00060">60</a> of file <a class="el" href="_nimble_engine_8c_source.html">NimbleEngine.c</a>.</p>
 
 </div>
 </div>
@@ -295,7 +314,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_nimble_engine_8c_source.html#l00057">57</a> of file <a class="el" href="_nimble_engine_8c_source.html">NimbleEngine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_nimble_engine_8c_source.html#l00058">58</a> of file <a class="el" href="_nimble_engine_8c_source.html">NimbleEngine.c</a>.</p>
 
 </div>
 </div>

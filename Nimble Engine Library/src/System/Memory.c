@@ -48,30 +48,32 @@
 ssize_t nStringCopy(char *const restrict dst, const char *const restrict src,
  const size_t len)
 {
-#define einfoStr "Src argument NULL in nStringCopy()."
+#ifndef NIMBLE_NO_ARG_CHECK
+#  define einfoStr "Src argument is NULL in nStringCopy()."
     if (nErrorAssert(
      src != NULL,
      NERROR_NULL,
      einfoStr,
      NCONST_STR_LEN(einfoStr)
     )) return -1;
-#undef einfoStr
-#define einfoStr "Dst argument NULL in nStringCopy()."
+#  undef einfoStr
+#  define einfoStr "Dst argument is NULL in nStringCopy()."
     if (nErrorAssert(
      src != NULL,
      NERROR_NULL,
      einfoStr,
      NCONST_STR_LEN(einfoStr)
     )) return -1;
-#undef einfoStr
-#define einfoStr "Dst argument equals src argument in nStringCopy()."
+#  undef einfoStr
+#  define einfoStr "Dst argument equals src argument in nStringCopy()."
     if (nErrorAssert(
      dst != src,
      NERROR_INV_ARG,
      einfoStr,
      NCONST_STR_LEN(einfoStr)
     )) return -1;
-#undef einfoStr
+#  undef einfoStr
+#endif
 
     char *d = dst;
     const char *s = src;
@@ -102,14 +104,16 @@ char *nStringDuplicate(const char *const src, size_t len)
 {
     if (len <= 0)
     {
-#define einfoStr "Length argument <= 0 in nStringDuplicate()."
+#ifndef NIMBLE_NO_ARG_CHECK
+#  define einfoStr "Src argument is NULL in nStringDuplicate()."
         if (nErrorAssert(
          src != NULL,
          NERROR_INV_ARG,
          einfoStr,
          NCONST_STR_LEN(einfoStr)
         )) return NULL;
-#undef einfoStr
+#  undef einfoStr
+#endif
         len = strlen(src);
     }
 

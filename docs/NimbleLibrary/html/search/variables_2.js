@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['error_591',['error',['../structn_error_info.html#a11614f44ef4d939bdd984953346a7572',1,'nErrorInfo']]],
-  ['errorcallback_592',['errorCallback',['../_errors_8c.html#a4264138d9ce4541a3d69a439f37e07ab',1,'Errors.c']]],
-  ['errorlen_593',['errorLen',['../structn_error_info.html#a516b449b0b5df757e30e9c93549e85a9',1,'nErrorInfo']]],
-  ['errorstr_594',['errorStr',['../structn_error_info.html#aedd7e48c70927e651fd5977daf247795',1,'nErrorInfo']]]
+  ['desclen_606',['descLen',['../structn_error_info.html#afffc7eb5f0d11253a2ff2f2f830853bb',1,'nErrorInfo']]],
+  ['descstr_607',['descStr',['../structn_error_info.html#a483909c8da78da876120e2f0ca774fc8',1,'nErrorInfo']]]
 ];

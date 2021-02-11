@@ -74,10 +74,18 @@ static void nEngineCleanup(void)
     nThreadMutexDestroy(&nStacktraceMutex);
 }
 
-static void nEngineExitSignal(int signum)
+#ifdef NIMBLE_STD_POSIX
+/** @todo Use sigaction for POSIX */
+_Noreturn static void nEngineExitSignal(const int signum, struct sigcontext ctx)
 {
     exit(signum);
 }
+#else
+_Noreturn static void nEngineExitSignal(int signum)
+{
+    exit(signum);
+}
+#endif
 
 int nEngineInit(char **args, const int argc,
  void (*errorCallback) (const nErrorInfo_t errorInfo),
@@ -104,7 +112,10 @@ int nEngineInit(char **args, const int argc,
 #undef einfoStr
 
     /* Set signal callbacks. */
-#define einfoStr "signal() failed in nEngineInit(), and the signal handlers "\
+#ifdef NIMBLE_STD_POSIX
+    /** @todo Use sigaction for POSIX */
+#else
+#  define einfoStr "signal() failed in nEngineInit(), and the signal handlers "\
  "could not be set."
     nAssert(signal(SIGTERM, nEngineExitSignal) != SIG_ERR,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
@@ -118,7 +129,8 @@ int nEngineInit(char **args, const int argc,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
     nAssert(signal(SIGSEGV, nCrashSignal) != SIG_ERR,
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
-#undef einfoStr
+#  undef einfoStr
+#endif
 
     /* Set Nimble callbacks. */
     nErrorSetCallback(errorCallback);

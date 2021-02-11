@@ -190,7 +190,11 @@ int nErrorAssert(const int check,
                  const char *info,
                  const size_t infoLen)
 {
-    if (!check && info && !nErrorsIgnored)
+    if (!check
+#ifndef NIMBLE_NO_ARG_CHECK
+     && info
+#endif
+    )
      return nErrorThrow(error, info, infoLen, 1);
     return NSUCCESS;
 }

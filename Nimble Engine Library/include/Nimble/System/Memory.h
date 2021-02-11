@@ -60,6 +60,9 @@ extern "C" {
  * @param[in] size The size of the memory block in bytes.
  * @return The allocated pointer.
  */
+#ifdef NIMBLE_NO_ALLOC_CHECK
+#  define nAlloc malloc
+#else
 NIMBLE_USE_RESULT
 NIMBLE_INLINE
 void *nAlloc(const size_t size)
@@ -67,17 +70,18 @@ void *nAlloc(const size_t size)
     void *ptr = malloc(size);
 
     /* Check if successfully allocated. */
-#define einfoStr "Ran out of memory in nAlloc()."
+#  define einfoStr "Ran out of memory in nAlloc()."
     nAssert(
      ptr != NULL,
      NERROR_NO_MEMORY,
      einfoStr,
      NCONST_STR_LEN(einfoStr)
     );
-#undef einfoStr
+#  undef einfoStr
 
     return ptr;
 }
+#endif
 
 /**
  * @brief Reallocates a pointer.
@@ -87,25 +91,29 @@ void *nAlloc(const size_t size)
  * @param[in] size The size of the new memory block in bytes.
  * @return The reallocated @p ptr.
  */
+#ifdef NIMBLE_NO_ALLOC_CHECK
+#  define nRealloc realloc
+#else
 NIMBLE_USE_RESULT
 NIMBLE_INLINE
 void *nRealloc(void *ptr, const size_t size)
 {
-    if (!ptr) return nAlloc(size);
+    if (!ptr) return nAlloc(size); /// @todo Find why just using realloc with a null pointer doesn't work as it should by C standard
     ptr = realloc(ptr, size);
 
     /* Check if successfully allocated. */
-#define einfoStr "Ran out of memory in nRealloc()."
+#  define einfoStr "Ran out of memory in nRealloc()."
     nAssert(
      ptr != NULL,
      NERROR_NO_MEMORY,
      einfoStr,
      NCONST_STR_LEN(einfoStr)
     );
-#undef einfoStr
+#  undef einfoStr
 
     return ptr;
 }
+#endif
 
 /**
  * @brief Frees a pointer.
@@ -119,7 +127,9 @@ void *nRealloc(void *ptr, const size_t size)
 NIMBLE_INLINE
 void nFree(void **ptr)
 {
+#ifndef NIMBLE_NO_ARG_CHECK
     if (ptr)
+#endif
     {
 	    free(*ptr);
 	    *ptr = NULL;

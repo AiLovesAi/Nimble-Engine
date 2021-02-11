@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['secs_614',['secs',['../structn_time_spec.html#ae6052f13d348b45604b0f5b6f7e98e9c',1,'nTimeSpec']]],
-  ['stacklen_615',['stackLen',['../structn_error_info.html#aa25bbb24d3920980913b608273598eb9',1,'nErrorInfo']]],
-  ['stacklevels_616',['stackLevels',['../structn_error_info.html#a969bf0fab1d5e989ac66c6a5bdb35f53',1,'nErrorInfo']]],
-  ['stackstr_617',['stackStr',['../structn_error_info.html#a4cf9b7844ff0513a4b1c9e19c0beb0b4',1,'nErrorInfo']]],
-  ['sysdesclen_618',['sysDescLen',['../structn_error_info.html#aade13d5af89a361b54a1ce675f5e66be',1,'nErrorInfo']]],
-  ['sysdescstr_619',['sysDescStr',['../structn_error_info.html#a40d1adcef09caa9de17a02b6211beff1',1,'nErrorInfo']]]
+  ['license_5fmd_619',['LICENSE_md',['../_nimble_license_8c.html#ab450cf8653ff805274fb24db2d389512',1,'LICENSE_md():&#160;NimbleLicense.c'],['../_nimble_license_8h.html#acfeb49c8484dde5f594ec26572e2885b',1,'LICENSE_md():&#160;NimbleLicense.c']]],
+  ['line_620',['line',['../structframe_info.html#a41ebd28ef1d7c6ade45642cb6acc1039',1,'frameInfo']]]
 ];

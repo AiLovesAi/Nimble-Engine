@@ -99,6 +99,16 @@ int nThreadCreate(nThread_t *thread, nThreadRoutine_t (*start)(void *),
 
 int nThreadJoin(nThread_t thread, int *ret)
 {
+#ifndef NIMBLE_NO_ARG_CHECK
+#  define einfoStr "Thread argument is NULL in nThreadJoin()."
+    nErrorAssert(
+     thread != NULL,
+     NERROR_NULL,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
+#  undef einfoStr
+#endif
     int err;
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
     DWORD r = 0;
@@ -162,6 +172,16 @@ int r;
 
 int nThreadDetach(nThread_t thread)
 {
+#ifndef NIMBLE_NO_ARG_CHECK
+#  define einfoStr "Thread argument is NULL in nThreadDetach()."
+    nErrorAssert(
+     thread != NULL,
+     NERROR_NULL,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
+#  undef einfoStr
+#endif
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "CloseHandle() failed in nThreadDetach()."
     return nErrorAssert(
@@ -197,6 +217,16 @@ int nThreadDetach(nThread_t thread)
 
 int nThreadMutexCreate(nMutex_t *mutex)
 {
+#ifndef NIMBLE_NO_ARG_CHECK
+#  define einfoStr "Mutex argument is NULL in nThreadMutexCreate()."
+    nErrorAssert(
+     mutex != NULL,
+     NERROR_NULL,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
+#  undef einfoStr
+#endif
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "CreateMutex() failed in nThreadMutexCreate()."
     *mutex = CreateMutex(NULL, 0, NULL);
@@ -233,6 +263,16 @@ int nThreadMutexCreate(nMutex_t *mutex)
 
 int nThreadMutexLock(nMutex_t *mutex)
 {
+#ifndef NIMBLE_NO_ARG_CHECK
+#  define einfoStr "Mutex argument is NULL in nThreadMutexLock()."
+    nErrorAssert(
+     mutex != NULL,
+     NERROR_NULL,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
+#  undef einfoStr
+#endif
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "WaitForSingleObject() failed in nThreadJoin()."
     return nErrorAssert(
@@ -268,6 +308,16 @@ int nThreadMutexLock(nMutex_t *mutex)
 
 int nThreadMutexUnlock(nMutex_t *mutex)
 {
+#ifndef NIMBLE_NO_ARG_CHECK
+#  define einfoStr "Mutex argument is NULL in nThreadMutexUnlock()."
+    nErrorAssert(
+     mutex != NULL,
+     NERROR_NULL,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
+#  undef einfoStr
+#endif
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "ReleaseMutex() failed in nThreadMutexUnlock()."
     return nErrorAssert(
@@ -303,6 +353,16 @@ int nThreadMutexUnlock(nMutex_t *mutex)
 
 int nThreadMutexDestroy(nMutex_t *mutex)
 {
+#ifndef NIMBLE_NO_ARG_CHECK
+#  define einfoStr "Mutex argument is NULL in nThreadMutexDestroy()."
+    nErrorAssert(
+     mutex != NULL,
+     NERROR_NULL,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
+#  undef einfoStr
+#endif
 #if NIMBLE_THREADS == NIMBLE_THREADS_WINAPI
 #  define einfoStr "CloseHandle() failed in nThreadMutexDestroy()."
     return nErrorAssert(
