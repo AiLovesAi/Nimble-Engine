@@ -50,6 +50,7 @@ extern "C" {
 
 #include <fcntl.h>
 #include <limits.h>
+#include <stdio.h>
 #include <sys/stat.h>
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #include <direct.h>
@@ -164,6 +165,9 @@ extern "C" {
 #  ifndef realpath
 #    define realpath(path, rltvPath) _fullpath(path, rltvPath, PATH_MAX)
 #  endif
+#  ifndef popen
+#    define popen _popen
+#endif
 /** @note Sockets are not files in Windows. Use network functions. */
 #  ifndef read
 #    define read _read
@@ -239,7 +243,7 @@ size_t NCWD_LEN;
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int nFileOpen(const char *restrict file,
+int nFileOpen(const char *const restrict file,
               int flags,
               int *restrict fd);
 
@@ -293,7 +297,7 @@ ssize_t nFileWrite(const int fd,
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int nFileDelete(const char *file);
+int nFileDelete(const char *const file);
 
 /**
  * @brief Renames @p oldPath to @p newPath.
@@ -304,8 +308,8 @@ int nFileDelete(const char *file);
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int nFileRename(const char *restrict oldPath,
-                const char *restrict newPath);
+int nFileRename(const char *const restrict oldPath,
+                const char *const restrict newPath);
 
 /**
  * @brief Moves @p oldPath to @p newPath.
@@ -325,7 +329,7 @@ int nFileRename(const char *restrict oldPath,
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int nFileExists(const char *file);
+int nFileExists(const char *const file);
 
 /**
  * @brief Checks if the file is an absolute path.
@@ -337,8 +341,8 @@ int nFileExists(const char *file);
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int nFilePathIsAbsolute(const char *path,
-                    size_t len);
+int nFilePathIsAbsolute(const char *const path,
+                        size_t len);
 
 /**
  * @brief Gets the current working directory path.
@@ -380,8 +384,8 @@ nFileSetExecutablePath(void);
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-int nFileCopy(const char *restrict src,
-              const char *restrict dst);
+int nFileCopy(const char *const restrict src,
+              const char *const restrict dst);
 
 #endif // NIMBLE_ENGINE_FILES_H
 

@@ -57,7 +57,7 @@ char NCWD[PATH_MAX + 1] = {0};
 size_t NCWD_LEN = 0;
 
 
-int nFileOpen(const char *restrict file, int flags, int *restrict fd)
+int nFileOpen(const char *const restrict file, int flags, int *restrict fd)
 {
 #ifndef NIMBLE_NO_ARG_CHECK
 #  define einfoStr "File argument was NULL in nFileOpen()."
@@ -167,7 +167,7 @@ ssize_t nFileWrite(const int fd, void *src, const size_t size)
     return wr;
 }
 
-int nFileDelete(const char *file)
+int nFileDelete(const char *const file)
 {
 #ifndef NIMBLE_NO_ARG_CHECK
 #  define einfoStr "File argument was NULL in nFileDelete()."
@@ -190,7 +190,7 @@ int nFileDelete(const char *file)
 #undef einfoStr
 }
 
-int nFileRename(const char *restrict oldPath, const char *restrict newPath)
+int nFileRename(const char *const restrict oldPath, const char *restrict newPath)
 {
 #ifndef NIMBLE_NO_ARG_CHECK
 #  define einfoStr "OldPath argument was NULL in nFileDelete()."
@@ -405,7 +405,7 @@ char *nFileSetExecutablePath(void)
     return NEXEC;
 }
 
-int nFileCopy(const char *restrict src, const char *restrict dst)
+int nFileCopy(const char *const restrict src, const char *const restrict dst)
 {
     int err;
 #ifndef NIMBLE_NO_ARG_CHECK

@@ -88,8 +88,8 @@ _Noreturn static void nEngineExitSignal(int signum)
 #endif
 
 int nEngineInit(char **args, const int argc,
- void (*errorCallback) (const nErrorInfo_t errorInfo),
- void (*crashCallback) (const nErrorInfo_t errorInfo))
+ void (*const errorCallback) (const nErrorInfo_t errorInfo),
+ void (*const crashCallback) (const nErrorInfo_t errorInfo))
 {
 #define einfoStr "nEngineInit() was called, but Nimble is already initialized."
     if (nErrorAssert(

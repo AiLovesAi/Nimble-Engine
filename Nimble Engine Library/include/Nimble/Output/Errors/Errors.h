@@ -112,9 +112,9 @@ extern nMutex_t nStacktraceMutex;
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 int nErrorThrow(const int error,
-            const char *info,
-            size_t infoLen,
-            const int setError);
+                const char *const info,
+                size_t infoLen,
+                const int setError);
 
 /**
  * @brief Clears the current errors.
@@ -187,7 +187,7 @@ int nErrorLast(size_t *sysDescLen,
 NIMBLE_INLINE
 int nErrorAssert(const int check,
                  const int error,
-                 const char *info,
+                 const char *const info,
                  const size_t infoLen)
 {
     if (!check
@@ -218,7 +218,7 @@ void nErrorInfoSet(nErrorInfo_t *restrict errorInfo,
               const nTime_t errorTime,
               const char *restrict info,
               size_t infoLen,
-              const char *sysDescStr,
+              const char *const sysDescStr,
               size_t sysDescLen);
 
 /**
@@ -240,7 +240,7 @@ void nErrorInfoFree(nErrorInfo_t *errorInfo);
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-void nErrorSetCallback(void (*callback)(const nErrorInfo_t errorInfo));
+void nErrorSetCallback(void (*const callback)(const nErrorInfo_t errorInfo));
 
 /**
  * @brief Returns the current stack trace as a string.

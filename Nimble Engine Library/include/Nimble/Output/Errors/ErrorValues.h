@@ -792,7 +792,7 @@ enum nErrors {
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-const char * const nErrorStrings[];
+const char *const nErrorStrings[];
 
 /**
  * @brief The lengths of the strings used to represent error codes defined by #nErrors.
@@ -810,8 +810,12 @@ const size_t nErrorStrLengths[];
  * means that one should not allocate or free the pointer. If editing is needed,
  * copy the result to dynamically allocated memory.
  */
-#define nErrorStr(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
+#ifdef NIMBLE_NO_ARG_CHECK
+#  define nErrorStr(err) nErrorStrings[err]
+#else
+#  define nErrorStr(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
  nErrorStrings[err] : nErrorStrings[NERROR_UNKNOWN])
+#endif
 
 /*
  * @brief Gets the length of the error code @p err from #nErrorStrings.
@@ -819,15 +823,19 @@ const size_t nErrorStrLengths[];
  * @param[in] err The error code to determine the length of.
  * @return @p err's string translation length.
  */
-#define nErrorStrLen(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
+#ifdef NIMBLE_NO_ARG_CHECK
+#  define nErrorStrLen(err) nErrorStrLengths[err]
+#else
+#  define nErrorStrLen(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
  nErrorStrLengths[err] : nErrorStrLengths[NERROR_UNKNOWN])
+#endif
 
 /**
  * @brief The descriptions of the error codes defined by #nErrors.
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-const char * const nErrorDescriptions[];
+const char *const nErrorDescriptions[];
 
 /**
  * @brief The length of descriptions of the error codes defined by #nErrors.
@@ -845,8 +853,12 @@ const size_t nErrorDescLengths[];
  * means that one should not allocate or free the pointer. If editing is needed,
  * copy the result to dynamically allocated memory.
  */
-#define nErrorDesc(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
+#ifdef NIMBLE_NO_ARG_CHECK
+#  define nErrorDesc(err) nErrorDescriptions[err]
+#else
+#  define nErrorDesc(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
  nErrorDescriptions[err] : nErrorDescriptions[NERROR_UNKNOWN])
+#endif
 
 /*
  * @brief Gets the length of the error description @p err from #nErrorDescriptions.
@@ -854,8 +866,12 @@ const size_t nErrorDescLengths[];
  * @param[in] err The error description to determine the length of.
  * @return @p err's string translation length.
  */
-#define nErrorDescLen(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
+#ifdef NIMBLE_NO_ARG_CHECK
+#  define nErrorDescLen(err) nErrorDescLengths[err]
+#else
+#  define nErrorDescLen(err) (((err >= NERROR_MIN) && (err <= NERROR_MAX)) ?\
  nErrorDescLengths[err] : nErrorDescLengths[NERROR_UNKNOWN])
+#endif
 
 /*
  * @brief Gets the error code of the signal value @p error.

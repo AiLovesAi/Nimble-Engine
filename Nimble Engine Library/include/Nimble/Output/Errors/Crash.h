@@ -67,7 +67,7 @@ extern "C" {
  */
 NIMBLE_EXPORT
 NIMBLE_EXTERN
-void nCrashSetCallback(void (*callback)(const nErrorInfo_t errorInfo));
+void nCrashSetCallback(void (*const callback)(const nErrorInfo_t errorInfo));
 
 /**
  * @brief Crashes the program safely.
@@ -90,7 +90,7 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 _Noreturn
 void nCrashSafe(const int error,
-           nErrorInfo_t errorInfo);
+                nErrorInfo_t errorInfo);
 
 /**
  * @brief Crashes with @p info if @p check is equal to zero.
@@ -104,7 +104,7 @@ NIMBLE_EXPORT
 NIMBLE_EXTERN
 void nAssert(const int check,
              const int error,
-             const char *info,
+             const char *const info,
              const size_t infoLen);
 
 /**

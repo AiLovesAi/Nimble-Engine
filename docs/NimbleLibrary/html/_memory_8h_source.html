@@ -106,7 +106,7 @@ $(function() {
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">/* Check if successfully allocated. */</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#  define einfoStr &quot;Ran out of memory in nAlloc().&quot;</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="_crash_8c.html#a58cf090de98132e85c2b485864031b7e">nAssert</a>(</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="_crash_8c.html#a6c426f6906015bdc3a3f76f030110744">nAssert</a>(</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;     ptr != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;     NERROR_NO_MEMORY,</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;     <a class="code" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>,</div>
@@ -130,7 +130,7 @@ $(function() {
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">/* Check if successfully allocated. */</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#  define einfoStr &quot;Ran out of memory in nRealloc().&quot;</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="_crash_8c.html#a58cf090de98132e85c2b485864031b7e">nAssert</a>(</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="_crash_8c.html#a6c426f6906015bdc3a3f76f030110744">nAssert</a>(</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;     ptr != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;     NERROR_NO_MEMORY,</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;     <a class="code" href="_memory_8h.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>,</div>
@@ -176,7 +176,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="a_memory_8h_html_a1d915b753a871eb40e4a47909f7c7ded"><div class="ttname"><a href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">nFree</a></div><div class="ttdeci">NIMBLE_INLINE void nFree(void **ptr)</div><div class="ttdoc">Frees a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00128">Memory.h:128</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a99b09cd8c8c999889cf8113c3d281368"><div class="ttname"><a href="_nimble_8h.html#a99b09cd8c8c999889cf8113c3d281368">NIMBLE_EXTERN</a></div><div class="ttdeci">#define NIMBLE_EXTERN</div><div class="ttdoc">Extern alias.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00183">Nimble.h:183</a></div></div>
-<div class="ttc" id="a_crash_8c_html_a58cf090de98132e85c2b485864031b7e"><div class="ttname"><a href="_crash_8c.html#a58cf090de98132e85c2b485864031b7e">nAssert</a></div><div class="ttdeci">void nAssert(const int check, const int error, const char *info, const size_t infoLen)</div><div class="ttdoc">Crashes with info if check is equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00140">Crash.c:140</a></div></div>
+<div class="ttc" id="a_crash_8c_html_a6c426f6906015bdc3a3f76f030110744"><div class="ttname"><a href="_crash_8c.html#a6c426f6906015bdc3a3f76f030110744">nAssert</a></div><div class="ttdeci">void nAssert(const int check, const int error, const char *const info, const size_t infoLen)</div><div class="ttdoc">Crashes with info if check is equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_crash_8c_source.html#l00140">Crash.c:140</a></div></div>
 <div class="ttc" id="a_c_p_u_info_8c_html_a5f782ed7ba9719127cbf55939ba0f1f7"><div class="ttname"><a href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">NIMBLE_INLINE</a></div><div class="ttdeci">NIMBLE_INLINE</div><div class="ttdef"><b>Definition:</b> <a href="_c_p_u_info_8c_source.html#l00103">CPUInfo.c:110</a></div></div>
 <div class="ttc" id="a_memory_8h_html_a7b025f143875e036ea41189c785d6734"><div class="ttname"><a href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a></div><div class="ttdeci">NIMBLE_USE_RESULT NIMBLE_INLINE void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00068">Memory.h:68</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00191">Nimble.h:191</a></div></div>

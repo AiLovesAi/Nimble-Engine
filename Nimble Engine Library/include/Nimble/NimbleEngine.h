@@ -94,9 +94,9 @@ int NIMBLE_ARGC;
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 int nEngineInit(char **args,
-            const int argc,
-            void (*errorCallback) (const nErrorInfo_t errorInfo),
-            void (*crashCallback) (const nErrorInfo_t errorInfo));
+                const int argc,
+                void (*const errorCallback) (const nErrorInfo_t errorInfo),
+                void (*const crashCallback) (const nErrorInfo_t errorInfo));
 
 #endif // NIMBLE_ENGINE_H
 

@@ -91,7 +91,7 @@ static void nErrorHandlerDefault(const nErrorInfo_t errorInfo)
      errorInfo.infoStr, errorInfo.stackStr);
 }
 
-int nErrorThrow(const int error, const char *info, size_t infoLen, const int setError)
+int nErrorThrow(const int error, const char *const info, size_t infoLen, const int setError)
 {
 #ifndef NIMBLE_NO_ARG_CHECK
 #  define einfoStr "Callback argument NULL in nErrorThrow()."
@@ -188,7 +188,7 @@ int nErrorLast(size_t *sysDescLen, char **sysDescStr)
 
 void nErrorInfoSet(nErrorInfo_t *restrict errorInfo, const int error,
  const nTime_t errorTime, const char *restrict info, size_t infoLen,
- const char *sysDescStr, size_t sysDescLen)
+ const char *const sysDescStr, size_t sysDescLen)
 {
 #ifndef NIMBLE_NO_ARG_CHECK
     if (!errorInfo) return;
@@ -279,7 +279,7 @@ void nErrorInfoFree(nErrorInfo_t *errorInfo)
     errorInfo->stackLevels = 0;
 }
 
-void nErrorSetCallback(void (*callback) (const nErrorInfo_t errorInfo))
+void nErrorSetCallback(void (*const callback) (const nErrorInfo_t errorInfo))
 {
     if (callback)
     {

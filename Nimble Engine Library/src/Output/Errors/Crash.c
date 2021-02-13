@@ -71,7 +71,7 @@ static void nCrashCallbackDefault(const nErrorInfo_t errorInfo)
     perror(errorInfo.infoStr);
 }
 
-void nCrashSetCallback(void (*callback) (const nErrorInfo_t errorInfo))
+void nCrashSetCallback(void (*const callback) (const nErrorInfo_t errorInfo))
 {
     if (callback)
     {
@@ -137,7 +137,7 @@ _Noreturn void nCrashSafe(const int error, nErrorInfo_t errorInfo)
     /* NO RETURN */
 }
 
-void nAssert(const int check, const int error, const char *info,
+void nAssert(const int check, const int error, const char *const info,
  const size_t infoLen)
 {
     if (!check)
