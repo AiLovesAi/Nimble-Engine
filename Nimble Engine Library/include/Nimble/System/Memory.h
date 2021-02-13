@@ -50,8 +50,8 @@ extern "C" {
 
 #include <stdlib.h>
 
-#include "../Output/Errors/Errors.h"
-#include "../Output/Errors/Crash.h"
+#include "../Errors/Errors.h"
+#include "../Errors/Crash.h"
 
 /**
  * @brief Allocates a pointer.

@@ -1,4 +1,4 @@
-#include "../../../include/Nimble/NimbleLicense.h"
+#include "../../include/Nimble/NimbleLicense.h"
 /*
  * Crash.c
  * Nimble Engine
@@ -8,7 +8,7 @@
  *
  */
 
-#include "../../../include/Nimble/Output/Errors/Crash.h"
+#include "../../include/Nimble/Errors/Crash.h"
 
 /**
  * @file Crash.c
@@ -45,7 +45,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../../include/Nimble/Output/Errors/Errors.h"
+#include "../../../include/Nimble/Errors/Errors.h"
 
 
 static volatile _Bool crashtest = 0;

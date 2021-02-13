@@ -1,4 +1,4 @@
-#include "../../NimbleLicense.h"
+#include "../NimbleLicense.h"
 /*
  * ErrorValues.h
  * Nimble Engine
@@ -46,7 +46,7 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_ERRORVALUES_H
 #define NIMBLE_ENGINE_ERRORVALUES_H /**< Header definition */
 
-#include "../../Nimble.h"
+#include "../Nimble.h"
 
 
 #define NSUCCESS 0 /**< Returned when a function succeeds. */

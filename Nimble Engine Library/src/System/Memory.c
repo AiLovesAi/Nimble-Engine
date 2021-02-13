@@ -43,7 +43,7 @@
 
 #include <stdlib.h>
 
-#include "../../include/Nimble/Output/Errors/Errors.h"
+#include "../../include/Nimble/Errors/Errors.h"
 
 ssize_t nStringCopy(char *const restrict dst, const char *const restrict src,
  const size_t len)

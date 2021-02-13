@@ -1,4 +1,4 @@
-#include "../../NimbleLicense.h"
+#include "../NimbleLicense.h"
 /*
  * Errors.h
  * Nimble Engine
@@ -46,15 +46,15 @@ extern "C" {
 #ifndef NIMBLE_ENGINE_ERRORS_H
 #define NIMBLE_ENGINE_ERRORS_H /**< Header definition */
 
-#include "../../Nimble.h"
+#include "../Nimble.h"
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #include <Windows.h>
 #endif
 
 #include "ErrorValues.h"
-#include "../../System/Time.h"
-#include "../../System/Threads.h"
+#include "../System/Time.h"
+#include "../System/Threads.h"
 
 
 #ifndef NERRORS_STACK_MAX

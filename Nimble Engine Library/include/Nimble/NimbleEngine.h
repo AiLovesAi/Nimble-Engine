@@ -51,8 +51,8 @@ extern "C" {
 
 #include "Nimble.h"
 
-#include "Output/Errors/Errors.h"
-#include "Output/Errors/Crash.h"
+#include "Errors/Errors.h"
+#include "Errors/Crash.h"
 
 /**
  * @brief The variable that is set after a successful initialization.

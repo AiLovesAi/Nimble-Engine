@@ -48,8 +48,8 @@
 
 #include "../../include/Nimble/NimbleEngine.h"
 #include "../../include/Nimble/System/Memory.h"
-#include "../../include/Nimble/Output/Errors/Errors.h"
-#include "../../include/Nimble/Output/Errors/Crash.h"
+#include "../../include/Nimble/Errors/Errors.h"
+#include "../../include/Nimble/Errors/Crash.h"
 
 char NEXEC[PATH_MAX + 1] = {0};
 size_t NEXEC_LEN = 0;

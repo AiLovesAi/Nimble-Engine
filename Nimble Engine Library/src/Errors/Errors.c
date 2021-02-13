@@ -1,4 +1,4 @@
-#include "../../../include/Nimble/NimbleLicense.h"
+#include "../../include/Nimble/NimbleLicense.h"
 /*
  * Errors.c
  * Nimble Engine
@@ -8,7 +8,7 @@
  *
  */
 
-#include "../../../include/Nimble/Output/Errors/Errors.h"
+#include "../../include/Nimble/Errors/Errors.h"
 
 /**
  * @file Errors.c
@@ -57,7 +57,7 @@
 #include <unistd.h>
 #endif
 
-#include "../../../include/Nimble/Output/Errors/Crash.h"
+#include "../../../include/Nimble/Errors/Crash.h"
 #include "../../../include/Nimble/Output/Files.h"
 #include "../../../include/Nimble/System/Memory.h"
 #include "../../../include/Nimble/System/Time.h"

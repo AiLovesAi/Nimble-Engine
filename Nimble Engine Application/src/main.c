@@ -14,7 +14,7 @@
 #include <time.h>
 
 #include <Nimble/NimbleEngine.h>
-#include <Nimble/Output/Errors/Errors.h>
+#include <Nimble/Errors/Errors.h>
 #include <Nimble/System/Memory.h>
 
 #include <Nimble/Graphics/NimbleOpenGL.h>

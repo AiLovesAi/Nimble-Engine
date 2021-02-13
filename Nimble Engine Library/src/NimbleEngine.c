@@ -50,8 +50,8 @@
 #include <stdio.h>
 
 #include "../include/Nimble/System/Memory.h"
-#include "../include/Nimble/Output/Errors/Errors.h"
-#include "../include/Nimble/Output/Errors/Crash.h"
+#include "../include/Nimble/Errors/Errors.h"
+#include "../include/Nimble/Errors/Crash.h"
 #include "../include/Nimble/Output/Files.h"
 #include "../include/Nimble/System/Threads.h"
 

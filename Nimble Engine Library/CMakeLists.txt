@@ -51,7 +51,7 @@ include_directories("include/Nimble/"
                     "include/Nimble/Math/"
                     "include/Nimble/Network/"
                     "include/Nimble/Output/"
-                    "include/Nimble/Output/Errors/"
+                    "include/Nimble/Errors/"
                     "include/Nimble/System/"
                     )
 
@@ -114,8 +114,8 @@ file(GLOB engine
      "include/Nimble/Network/*.h"
      "src/Output/*.c"
      "include/Nimble/Output/*.h"
-     "src/Output/Errors/*.c"
-     "include/Nimble/Output/Errors/*.h"
+     "src/Errors/*.c"
+     "include/Nimble/Errors/*.h"
      "src/System/*.c"
      "include/Nimble/System/*.h"
      )

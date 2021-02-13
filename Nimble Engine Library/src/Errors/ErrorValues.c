@@ -1,4 +1,4 @@
-#include "../../../include/Nimble/NimbleLicense.h"
+#include "../../include/Nimble/NimbleLicense.h"
 /*
  * ErrorValues.c
  * Nimble Engine
@@ -8,7 +8,7 @@
  *
  */
 
-#include "../../../include/Nimble/Output/Errors/ErrorValues.h"
+#include "../../include/Nimble/Errors/ErrorValues.h"
 
 /**
  * @file ErrorValues.c

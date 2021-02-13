@@ -45,7 +45,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../../include/Nimble/Output/Errors/Errors.h"
+#include "../../include/Nimble/Errors/Errors.h"
 
 char NCPU_INFO[129] = {0};
 size_t NCPU_INFO_LEN = 0;
