@@ -49,7 +49,7 @@ extern "C" {
 #include "../Nimble.h"
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
-#include <Windows.h>
+#include <windows.h>
 #endif
 
 #include "ErrorValues.h"

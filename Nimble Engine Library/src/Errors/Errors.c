@@ -51,7 +51,7 @@
 #if NIMBLE_OS == NIMBLE_WINDOWS
 #include <dbghelp.h>
 #include <imagehlp.h>
-#include <Windows.h>
+#include <windows.h>
 #else
 #include <execinfo.h>
 #include <unistd.h>

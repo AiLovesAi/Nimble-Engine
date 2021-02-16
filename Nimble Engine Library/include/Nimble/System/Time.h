@@ -51,7 +51,7 @@ extern "C" {
 #include <time.h>
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
-#include <Windows.h>
+#include <windows.h>
 #endif
 
 #define NTIME_NS_IN_US   1000L /**< Nanoseconds in a microsecond. */

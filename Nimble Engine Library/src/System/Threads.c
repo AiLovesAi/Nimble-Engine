@@ -44,7 +44,7 @@
 #include <stdlib.h>
 
 #ifdef NTHREAD_WINAPI
-#include <Windows.h>
+#include <windows.h>
 #elif defined(NTHREAD_PTHREAD)
 #include <pthread.h>
 #else

@@ -41,11 +41,19 @@
  * @brief This class defines crash handling functions.
  */
 
-#include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
+#if NIMBLE_OS == NIMBLE_WINDOWS
+#include <windows.h>
+#else
+#include <signal.h>
+#endif
+
+#include "../../../include/Nimble/System/Memory.h"
 #include "../../../include/Nimble/Errors/Errors.h"
+#include "../../../include/Nimble/Output/Files.h"
 
 
 static volatile _Bool crashtest = 0;
@@ -155,35 +163,54 @@ void nAssert(const int check, const int error, const char *const info,
     }
 }
 
-#ifdef NIMBLE_STD_POSIX
-/** @todo Use sigaction for POSIX */
-_Noreturn void nCrashSignal(const int signum, struct sigcontext ctx)
-{
-    /// @todo
-}
-#else
-_Noreturn void nCrashSignal(const int signum)
-{
-    const nTime_t errorTime = nTime();
-    const int error = nErrorFromSignal(signum);
-    
-    signal(signum, SIG_DFL);
-
-    nErrorInfo_t errorInfo;
-#define einfoStr "Caught a signal using nCrashSignal()."
-    nErrorInfoSet(&errorInfo, error, errorTime, einfoStr, NCONST_STR_LEN(einfoStr),
-     NULL, 0);
-#undef einfoStr
-    nCrashSafe(error, errorInfo);
-    /* NO RETURN */
-}
-#endif
-
 _Noreturn void nCrashAbort(const int error)
 {
-    fprintf(stderr, "The program failed to crash safely and is aborting. "\
-     "Error: %s - %s", nErrorStr(error), nErrorDesc(error));
+    /* Print error using async-signal-safe functions */
+#define einfoStr "The program failed to crash safely and is aborting. "\
+ "Error: "
+#define spaceStr " - "
+    char *abortStr = malloc(NCONST_STR_LEN(einfoStr) +
+                            nErrorStrLen(error) +
+                            NCONST_STR_LEN(spaceStr) +
+                            nErrorDescLen(error) +
+                            1);
+    if (abortStr)
+    {
+        nStringCopy(abortStr, einfoStr, NCONST_STR_LEN(einfoStr));
+        int len = NCONST_STR_LEN(einfoStr);
+#undef einfoStr
+        nStringCopy(abortStr + len, nErrorStr(error), nErrorStrLen(error));
+        len += nErrorStrLen(error);
+        nStringCopy(abortStr + len, spaceStr, NCONST_STR_LEN(spaceStr));
+        len += NCONST_STR_LEN(spaceStr);
+#undef spaceStr
+        nStringCopy(abortStr + len, nErrorDesc(error), nErrorDescLen(error));
+        len += nErrorDescLen(error);
+
+        write(STDERR_FILENO, abortStr, len);
+    }
+
+    /* Reset to default abort signal handler */
+#ifdef NIMBLE_STD_POSIX
+    struct sigaction sa = {};
+    sa.sa_handler = SIG_DFL;
+    if (!sigemptyset(&sa.sa_mask))
+    {
+#  if NIMBLE_OS == NIMBLE_MACOS
+        sa.sa_flags = SA_SIGINFO;
+#  else
+        sa.sa_flags = SA_SIGINFO | SA_ONSTACK;
+#  endif
+
+        sigaction(SIGABRT, &sa, NULL);
+    }
+#elif NIMBLE_OS == NIMBLE_WINDOWS
+    SetUnhandledExceptionFilter(NULL);
+#else
     signal(SIGABRT, SIG_DFL);
+#endif
+
+    /* ABORT! */
     abort();
     /* NO RETURN */
 }

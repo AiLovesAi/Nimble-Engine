@@ -56,7 +56,7 @@ extern "C" {
 #include <direct.h>
 #include <io.h>
 #include <process.h>
-#include <Windows.h>
+#include <windows.h>
 
 #elif defined(NIMBLE_STD_UNIX)
 #include <unistd.h>

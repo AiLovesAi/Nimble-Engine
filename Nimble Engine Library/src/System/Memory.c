@@ -75,8 +75,6 @@ ssize_t nStringCopy(char *const restrict dst, const char *const restrict src,
 #  undef einfoStr
 #endif
 
-    char *d = dst;
-    const char *s = src;
     size_t l;
     if (len > 0)
     {
@@ -89,10 +87,11 @@ ssize_t nStringCopy(char *const restrict dst, const char *const restrict src,
 
     /* For each character that is not equal to the null terminator,
      * src char = dst char. */
-    while ((*s != '\0') && l--)
-    {
-        *d++ = *s++;
-    }
+    register char *d = dst;
+    register const char *s = src;
+    do {
+        if ((*d++ = *s++) == '\0') return len - l;
+    } while (l--);
     
     /* Ensure the string is null-terminated. */
     dst[len] = '\0';

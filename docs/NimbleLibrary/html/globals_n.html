@@ -101,8 +101,7 @@ $(function() {
 , <a class="el" href="_crash_8h.html#a3c27feb81f7329856f828c80d481b477">Crash.h</a>
 </li>
 <li>nCrashSignal()
-: <a class="el" href="_crash_8c.html#a7cd782bc4b8d7db7b91c4a916141f29e">Crash.c</a>
-, <a class="el" href="_crash_8h.html#ade54e83a89eb14d8e4240c305b9c41cc">Crash.h</a>
+: <a class="el" href="_crash_8h.html#ade54e83a89eb14d8e4240c305b9c41cc">Crash.h</a>
 </li>
 <li>NCWD
 : <a class="el" href="_files_8c.html#afd0197e622e739a3bda6f99d9a32cb36">Files.c</a>
@@ -112,9 +111,15 @@ $(function() {
 : <a class="el" href="_files_8c.html#a6a0daadac1ebb13d11efed8888bd7ac0">Files.c</a>
 , <a class="el" href="_files_8h.html#a7f55ac0591bbdd7a3b4aefd4be2c09d2">Files.h</a>
 </li>
+<li>nEngineCopyArgs()
+: <a class="el" href="_nimble_engine_8c.html#ac28346e5bec9ebc9ab37ddd0b2022f60">NimbleEngine.c</a>
+</li>
 <li>nEngineInit()
 : <a class="el" href="_nimble_engine_8c.html#a461ac8597a8d69738f67ddd4e39de2fb">NimbleEngine.c</a>
 , <a class="el" href="_nimble_engine_8h.html#a65aee9b9f63636ea9b94f3885b9d8a0e">NimbleEngine.h</a>
+</li>
+<li>nEngineSetSignalHandler()
+: <a class="el" href="_nimble_engine_8c.html#afa0f29d7022aaf892bababf5b7711824">NimbleEngine.c</a>
 </li>
 <li>nErrDescAddrInUseStr
 : <a class="el" href="_error_values_8c.html#a9fe4a6c0ba03c04c8f94d7df22472da3">ErrorValues.c</a>
@@ -737,8 +742,8 @@ $(function() {
 , <a class="el" href="_errors_8h.html#a4cb74e921b6de2cf25ac258751be667b">Errors.h</a>
 </li>
 <li>nErrorInfoSet()
-: <a class="el" href="_errors_8h.html#a56608dea3734b9b05d425f28ae207874">Errors.h</a>
-, <a class="el" href="_errors_8c.html#a2516f6ec38158017c03495cb0bcc50ac">Errors.c</a>
+: <a class="el" href="_errors_8c.html#a2516f6ec38158017c03495cb0bcc50ac">Errors.c</a>
+, <a class="el" href="_errors_8h.html#a56608dea3734b9b05d425f28ae207874">Errors.h</a>
 </li>
 <li>nErrorLast()
 : <a class="el" href="_errors_8c.html#a459d2dac94757f8b45b3f95702446938">Errors.c</a>
@@ -767,15 +772,15 @@ $(function() {
 : <a class="el" href="_errors_8c.html#ae637e6a1518e88c39e3147742ccefd80">Errors.c</a>
 </li>
 <li>nErrorStacktrace()
-: <a class="el" href="_errors_8h.html#adeb0f08d0d578ddae7b0de1d0dbc8c91">Errors.h</a>
-, <a class="el" href="_errors_8c.html#a94d58e5f055e3535c35442bfff1f64f2">Errors.c</a>
+: <a class="el" href="_errors_8c.html#a94d58e5f055e3535c35442bfff1f64f2">Errors.c</a>
+, <a class="el" href="_errors_8h.html#adeb0f08d0d578ddae7b0de1d0dbc8c91">Errors.h</a>
 </li>
 <li>nErrorStr
 : <a class="el" href="_error_values_8h.html#a5c75a733273f53a047f2e47ed9f93c62">ErrorValues.h</a>
 </li>
 <li>nErrorStrings
-: <a class="el" href="_error_values_8c.html#af28c6cab03896f3819c65b8091d1f5cc">ErrorValues.c</a>
-, <a class="el" href="_error_values_8h.html#ae5e3ebad2e3785e4d2b438987a9bb56f">ErrorValues.h</a>
+: <a class="el" href="_error_values_8h.html#ae5e3ebad2e3785e4d2b438987a9bb56f">ErrorValues.h</a>
+, <a class="el" href="_error_values_8c.html#af28c6cab03896f3819c65b8091d1f5cc">ErrorValues.c</a>
 </li>
 <li>nErrorStrLen
 : <a class="el" href="_error_values_8h.html#a1b922d3df2d02d0011c1b4944d6c24bb">ErrorValues.h</a>
@@ -845,8 +850,8 @@ $(function() {
 , <a class="el" href="_files_8h.html#a4c2032e9cc5b1e87608b31e1b3c32011">Files.h</a>
 </li>
 <li>nFileExists()
-: <a class="el" href="_files_8c.html#ad21c3c7a9b1fe1b9a135b73ab426845a">Files.c</a>
-, <a class="el" href="_files_8h.html#ac7777b821b2407ef6c68bc7aa84e3386">Files.h</a>
+: <a class="el" href="_files_8h.html#ac7777b821b2407ef6c68bc7aa84e3386">Files.h</a>
+, <a class="el" href="_files_8c.html#ad21c3c7a9b1fe1b9a135b73ab426845a">Files.c</a>
 </li>
 <li>nFileFlags
 : <a class="el" href="_files_8h.html#a794eab1e9ec697f2e0518579aee6cc92">Files.h</a>
@@ -855,16 +860,16 @@ $(function() {
 : <a class="el" href="_files_8h.html#a659a4ed4f3811931eb1cdba6dbf5e752">Files.h</a>
 </li>
 <li>nFileOpen()
-: <a class="el" href="_files_8c.html#a552bbac67770029b3d733f585534d363">Files.c</a>
-, <a class="el" href="_files_8h.html#a7f57f28519fb54e8e46de44f4f353cf8">Files.h</a>
+: <a class="el" href="_files_8h.html#a7f57f28519fb54e8e46de44f4f353cf8">Files.h</a>
+, <a class="el" href="_files_8c.html#a552bbac67770029b3d733f585534d363">Files.c</a>
 </li>
 <li>nFilePathIsAbsolute()
 : <a class="el" href="_files_8c.html#add36d223e598d28f8af6936655ee9357">Files.c</a>
 , <a class="el" href="_files_8h.html#ae0403550fff9034f0d9455791103634d">Files.h</a>
 </li>
 <li>nFileRead()
-: <a class="el" href="_files_8c.html#a3e06345fbcec272978e0c87ab0519033">Files.c</a>
-, <a class="el" href="_files_8h.html#a724b6241222bb9b3be78f2daab7e4e95">Files.h</a>
+: <a class="el" href="_files_8h.html#a724b6241222bb9b3be78f2daab7e4e95">Files.h</a>
+, <a class="el" href="_files_8c.html#a3e06345fbcec272978e0c87ab0519033">Files.c</a>
 </li>
 <li>nFileRename()
 : <a class="el" href="_files_8c.html#add9c5ecf2d95699d00a893ddba6b6d3e">Files.c</a>
@@ -879,8 +884,8 @@ $(function() {
 , <a class="el" href="_files_8h.html#a7595ddf9841f1277a8a7ab0a81d9f0c4">Files.h</a>
 </li>
 <li>nFileWrite()
-: <a class="el" href="_files_8c.html#aa9817e967dfdfdc7a434f89c28ac8ca2">Files.c</a>
-, <a class="el" href="_files_8h.html#ac9d99205321f4b8ac4cf6be6fc3ad1ae">Files.h</a>
+: <a class="el" href="_files_8h.html#ac9d99205321f4b8ac4cf6be6fc3ad1ae">Files.h</a>
+, <a class="el" href="_files_8c.html#aa9817e967dfdfdc7a434f89c28ac8ca2">Files.c</a>
 </li>
 <li>nFree()
 : <a class="el" href="_memory_8h.html#a1d915b753a871eb40e4a47909f7c7ded">Memory.h</a>
@@ -901,8 +906,8 @@ $(function() {
 : <a class="el" href="_nimble_8h.html#aaf4888085ae0fa4854a69f78f0c8b3f6">Nimble.h</a>
 </li>
 <li>NIMBLE_ARGC
-: <a class="el" href="_nimble_engine_8h.html#a1ee8bb714de4ef07ff18e6e3b56187bf">NimbleEngine.h</a>
-, <a class="el" href="_nimble_engine_8c.html#aff46c613c721023abda42d33e9569f23">NimbleEngine.c</a>
+: <a class="el" href="_nimble_engine_8c.html#aff46c613c721023abda42d33e9569f23">NimbleEngine.c</a>
+, <a class="el" href="_nimble_engine_8h.html#a1ee8bb714de4ef07ff18e6e3b56187bf">NimbleEngine.h</a>
 </li>
 <li>NIMBLE_ARGS
 : <a class="el" href="_nimble_engine_8c.html#ab141c39db6440d74d05a07b1884bcabb">NimbleEngine.c</a>
@@ -951,29 +956,29 @@ $(function() {
 , <a class="el" href="_nimble_direct_x11_8h.html#ade121945333573ff8ad548f814364b39">NimbleDirectX11.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_HARDWARE_H
-: <a class="el" href="_vulkan_2_hardware_8h.html#ab36f29049a26debd9e63fafc5f5ded3b">Hardware.h</a>
+: <a class="el" href="_open_g_l_2_hardware_8h.html#ab36f29049a26debd9e63fafc5f5ded3b">Hardware.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_OVERLAY_H
-: <a class="el" href="_vulkan_2_overlay_8h.html#ab2f64241f7949edf137af0f572ec7b4e">Overlay.h</a>
+: <a class="el" href="_open_g_l_2_overlay_8h.html#ab2f64241f7949edf137af0f572ec7b4e">Overlay.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_RENDER_H
-: <a class="el" href="_direct_x11_2_render_8h.html#a2ae624f78253db664eacd8a4ed1b81ad">Render.h</a>
+: <a class="el" href="_open_g_l_2_render_8h.html#a2ae624f78253db664eacd8a4ed1b81ad">Render.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_SHADERS_H
-: <a class="el" href="_open_g_l_2_shaders_8h.html#aadabb52581929283ea157e415a27b62a">Shaders.h</a>
+: <a class="el" href="_vulkan_2_shaders_8h.html#aadabb52581929283ea157e415a27b62a">Shaders.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_WINDOW_EVENTS_H
-: <a class="el" href="_direct_x11_2_window_events_8h.html#ad6f757dfb348c5742a1becfcb930360a">WindowEvents.h</a>
+: <a class="el" href="_direct_x12_2_window_events_8h.html#ad6f757dfb348c5742a1becfcb930360a">WindowEvents.h</a>
 </li>
 <li>NIMBLE_GRAPHICS_WINDOW_H
-: <a class="el" href="_open_g_l_2_window_8h.html#abf97e5b3a4efabb7fefb14a5cffca2e8">Window.h</a>
+: <a class="el" href="_direct_x12_2_window_8h.html#abf97e5b3a4efabb7fefb14a5cffca2e8">Window.h</a>
 </li>
 <li>NIMBLE_H
 : <a class="el" href="_nimble_8h.html#ae0420863abe1bb0153394a252a8e5e0a">Nimble.h</a>
 </li>
 <li>NIMBLE_INITIALIZED
-: <a class="el" href="_nimble_engine_8h.html#ab3d97b15cff3874bc2edbf1352d99f23">NimbleEngine.h</a>
-, <a class="el" href="_nimble_engine_8c.html#a8de2bc2680e8b4c5e77d4baed586a941">NimbleEngine.c</a>
+: <a class="el" href="_nimble_engine_8c.html#a8de2bc2680e8b4c5e77d4baed586a941">NimbleEngine.c</a>
+, <a class="el" href="_nimble_engine_8h.html#ab3d97b15cff3874bc2edbf1352d99f23">NimbleEngine.h</a>
 </li>
 <li>NIMBLE_INLINE
 : <a class="el" href="_c_p_u_info_8c.html#a5f782ed7ba9719127cbf55939ba0f1f7">CPUInfo.c</a>
@@ -1043,8 +1048,8 @@ $(function() {
 : <a class="el" href="_memory_8h.html#a77cb79e5d6db3555f04f9767f9f2b314">Memory.h</a>
 </li>
 <li>nStacktraceMutex
-: <a class="el" href="_errors_8c.html#af7bb57678589d2905c9640fdfb97c093">Errors.c</a>
-, <a class="el" href="_errors_8h.html#af7bb57678589d2905c9640fdfb97c093">Errors.h</a>
+: <a class="el" href="_errors_8h.html#af7bb57678589d2905c9640fdfb97c093">Errors.h</a>
+, <a class="el" href="_errors_8c.html#af7bb57678589d2905c9640fdfb97c093">Errors.c</a>
 </li>
 <li>NSTR
 : <a class="el" href="_nimble_8h.html#aa67c7289eb763a7216fbb0e718f3813d">Nimble.h</a>
@@ -1053,8 +1058,8 @@ $(function() {
 : <a class="el" href="_nimble_8h.html#aa004ac951d2a02b7418b7b1be087c098">Nimble.h</a>
 </li>
 <li>nStringCopy()
-: <a class="el" href="_memory_8c.html#a1b983a0a51d899d6b83c0f55f69a4a94">Memory.c</a>
-, <a class="el" href="_memory_8h.html#a95aa91c09a9711650f16c1b0474b11f9">Memory.h</a>
+: <a class="el" href="_memory_8h.html#a95aa91c09a9711650f16c1b0474b11f9">Memory.h</a>
+, <a class="el" href="_memory_8c.html#a1b983a0a51d899d6b83c0f55f69a4a94">Memory.c</a>
 </li>
 <li>nStringDuplicate()
 : <a class="el" href="_memory_8h.html#a4cd66383bd78f18d374200987ed4fec4">Memory.h</a>
@@ -1064,19 +1069,19 @@ $(function() {
 : <a class="el" href="_error_values_8h.html#a34eedfdb3dfef7fc00ea46dcb487bb17">ErrorValues.h</a>
 </li>
 <li>nSysGetCPUInfo()
-: <a class="el" href="_c_p_u_info_8c.html#ae7b0c441a0b670b18bee55a5fc332dfb">CPUInfo.c</a>
-, <a class="el" href="_c_p_u_info_8h.html#a3182f814a95e82d5e6cf5d9adc29c3bc">CPUInfo.h</a>
+: <a class="el" href="_c_p_u_info_8h.html#a3182f814a95e82d5e6cf5d9adc29c3bc">CPUInfo.h</a>
+, <a class="el" href="_c_p_u_info_8c.html#ae7b0c441a0b670b18bee55a5fc332dfb">CPUInfo.c</a>
 </li>
 <li>nThread_t
 : <a class="el" href="_threads_8h.html#a24cc6d228c1c5e77e8bf4ba454e75f87">Threads.h</a>
 </li>
 <li>nThreadCreate()
-: <a class="el" href="_threads_8h.html#ac30c1c41384920e9ec7a2102d907793f">Threads.h</a>
-, <a class="el" href="_threads_8c.html#af0307fd4976c5c3604c961ff93c525c7">Threads.c</a>
+: <a class="el" href="_threads_8c.html#af0307fd4976c5c3604c961ff93c525c7">Threads.c</a>
+, <a class="el" href="_threads_8h.html#ac30c1c41384920e9ec7a2102d907793f">Threads.h</a>
 </li>
 <li>nThreadDetach()
-: <a class="el" href="_threads_8h.html#a30fb9dfca9892f4e5392486d697290cf">Threads.h</a>
-, <a class="el" href="_threads_8c.html#af172b0c1710c36110d06bdd6e687beb8">Threads.c</a>
+: <a class="el" href="_threads_8c.html#af172b0c1710c36110d06bdd6e687beb8">Threads.c</a>
+, <a class="el" href="_threads_8h.html#a30fb9dfca9892f4e5392486d697290cf">Threads.h</a>
 </li>
 <li>nThreadEqual
 : <a class="el" href="_threads_8h.html#a930dc9221ed47f504b45afada206219e">Threads.h</a>
@@ -1085,24 +1090,24 @@ $(function() {
 : <a class="el" href="_threads_8h.html#a8330f424a624dae6327e7b1ce3b2bc6d">Threads.h</a>
 </li>
 <li>nThreadJoin()
-: <a class="el" href="_threads_8h.html#a45cbf33e84db84b1aa8e4066cb79ecc6">Threads.h</a>
-, <a class="el" href="_threads_8c.html#ab43c1c7b575e0be87f368306d922eb89">Threads.c</a>
+: <a class="el" href="_threads_8c.html#ab43c1c7b575e0be87f368306d922eb89">Threads.c</a>
+, <a class="el" href="_threads_8h.html#a45cbf33e84db84b1aa8e4066cb79ecc6">Threads.h</a>
 </li>
 <li>nThreadMutexCreate()
 : <a class="el" href="_threads_8h.html#af5a01ef903d61f56577160f295f434d7">Threads.h</a>
 , <a class="el" href="_threads_8c.html#a09f7a18d48a540bdb32061b4a182136b">Threads.c</a>
 </li>
 <li>nThreadMutexDestroy()
-: <a class="el" href="_threads_8h.html#aa75a5d187af7f37fd6fd16512c63893b">Threads.h</a>
-, <a class="el" href="_threads_8c.html#aabc9c8b08ea322824101adf636f0b70e">Threads.c</a>
+: <a class="el" href="_threads_8c.html#aabc9c8b08ea322824101adf636f0b70e">Threads.c</a>
+, <a class="el" href="_threads_8h.html#aa75a5d187af7f37fd6fd16512c63893b">Threads.h</a>
 </li>
 <li>nThreadMutexLock()
 : <a class="el" href="_threads_8h.html#a5313f398737ad3a9f0b166471036d2cd">Threads.h</a>
 , <a class="el" href="_threads_8c.html#a454ccadaa043eec896f1ac185ee6d927">Threads.c</a>
 </li>
 <li>nThreadMutexUnlock()
-: <a class="el" href="_threads_8c.html#a8cab82db9c26062c783c2126692deba7">Threads.c</a>
-, <a class="el" href="_threads_8h.html#a26e420afce4eca8bb829d2dbbf6444cc">Threads.h</a>
+: <a class="el" href="_threads_8h.html#a26e420afce4eca8bb829d2dbbf6444cc">Threads.h</a>
+, <a class="el" href="_threads_8c.html#a8cab82db9c26062c783c2126692deba7">Threads.c</a>
 </li>
 <li>nThreadRoutine_t
 : <a class="el" href="_threads_8h.html#aee057c0ab7c930839eb27b5db050ff54">Threads.h</a>

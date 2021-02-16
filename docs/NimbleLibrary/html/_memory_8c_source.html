@@ -118,54 +118,53 @@ $(function() {
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#  undef einfoStr</span></div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">char</span> *d = dst;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *s = src;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">size_t</span> l;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">if</span> (len &gt; 0)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        l = len;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        l = strlen(src);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">/* For each character that is not equal to the null terminator,</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">     * src char = dst char. */</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">while</span> ((*s != <span class="charliteral">&#39;\0&#39;</span>) &amp;&amp; l--)</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        *d++ = *s++;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">/* Ensure the string is null-terminated. */</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    dst[len] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> len - l;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="_memory_8h.html#a4cd66383bd78f18d374200987ed4fec4">  103</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="_memory_8c.html#a16c4e6041ba55a8f5914672dada56de8">nStringDuplicate</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> src, <span class="keywordtype">size_t</span> len)</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">if</span> (len &lt;= 0)</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#ifndef NIMBLE_NO_ARG_CHECK</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#  define einfoStr &quot;Src argument is NULL in nStringDuplicate().&quot;</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="_errors_8h.html#adbaf59cbf6ee2f2cfad269d9d9ee0a09">nErrorAssert</a>(</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;         src != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;         NERROR_INV_ARG,</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;         <a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>,</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;         <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>)</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        )) <span class="keywordflow">return</span> <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#  undef einfoStr</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        len = strlen(src);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">char</span> *dst = <a class="code" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a>(len + 1);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="_memory_8c.html#a1b983a0a51d899d6b83c0f55f69a4a94">nStringCopy</a>(dst, src, len);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">return</span> dst;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">// Memory.c</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">size_t</span> l;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">if</span> (len &gt; 0)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        l = len;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        l = strlen(src);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">/* For each character that is not equal to the null terminator,</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">     * src char = dst char. */</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">char</span> *d = dst;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">register</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *s = src;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span> ((*d++ = *s++) == <span class="charliteral">&#39;\0&#39;</span>) <span class="keywordflow">return</span> len - l;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    } <span class="keywordflow">while</span> (l--);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">/* Ensure the string is null-terminated. */</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    dst[len] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">return</span> len - l;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="_memory_8h.html#a4cd66383bd78f18d374200987ed4fec4">  102</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="_memory_8c.html#a16c4e6041ba55a8f5914672dada56de8">nStringDuplicate</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> src, <span class="keywordtype">size_t</span> len)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">if</span> (len &lt;= 0)</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#ifndef NIMBLE_NO_ARG_CHECK</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#  define einfoStr &quot;Src argument is NULL in nStringDuplicate().&quot;</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="_errors_8h.html#adbaf59cbf6ee2f2cfad269d9d9ee0a09">nErrorAssert</a>(</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;         src != <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;         NERROR_INV_ARG,</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;         <a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>,</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;         <a class="code" href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a>(<a class="code" href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a>)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        )) <span class="keywordflow">return</span> <a class="code" href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#  undef einfoStr</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        len = strlen(src);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">char</span> *dst = <a class="code" href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a>(len + 1);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="_memory_8c.html#a1b983a0a51d899d6b83c0f55f69a4a94">nStringCopy</a>(dst, src, len);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">return</span> dst;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">// Memory.c</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="a_memory_8h_html_a7b025f143875e036ea41189c785d6734"><div class="ttname"><a href="_memory_8h.html#a7b025f143875e036ea41189c785d6734">nAlloc</a></div><div class="ttdeci">NIMBLE_USE_RESULT NIMBLE_INLINE void * nAlloc(const size_t size)</div><div class="ttdoc">Allocates a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8h_source.html#l00068">Memory.h:68</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_nimble_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Null pointer.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00191">Nimble.h:191</a></div></div>
@@ -174,7 +173,7 @@ $(function() {
 <div class="ttc" id="a_memory_8c_html_acdffbabfd17b49ee49aefd6e38f1f0ba"><div class="ttname"><a href="_memory_8c.html#acdffbabfd17b49ee49aefd6e38f1f0ba">einfoStr</a></div><div class="ttdeci">#define einfoStr</div></div>
 <div class="ttc" id="a_errors_8h_html_adbaf59cbf6ee2f2cfad269d9d9ee0a09"><div class="ttname"><a href="_errors_8h.html#adbaf59cbf6ee2f2cfad269d9d9ee0a09">nErrorAssert</a></div><div class="ttdeci">NIMBLE_INLINE int nErrorAssert(const int check, const int error, const char *const info, const size_t infoLen)</div><div class="ttdoc">Throws an error with info if check is equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="_errors_8h_source.html#l00188">Errors.h:188</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a8af93bbb66534e14d651bbb0638ee796"><div class="ttname"><a href="_nimble_8h.html#a8af93bbb66534e14d651bbb0638ee796">ssize_t</a></div><div class="ttdeci">#define ssize_t</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00206">Nimble.h:206</a></div></div>
-<div class="ttc" id="a_memory_8c_html_a16c4e6041ba55a8f5914672dada56de8"><div class="ttname"><a href="_memory_8c.html#a16c4e6041ba55a8f5914672dada56de8">nStringDuplicate</a></div><div class="ttdeci">char * nStringDuplicate(const char *const src, size_t len)</div><div class="ttdoc">Returns a newly allocated string identical to src.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00103">Memory.c:103</a></div></div>
+<div class="ttc" id="a_memory_8c_html_a16c4e6041ba55a8f5914672dada56de8"><div class="ttname"><a href="_memory_8c.html#a16c4e6041ba55a8f5914672dada56de8">nStringDuplicate</a></div><div class="ttdeci">char * nStringDuplicate(const char *const src, size_t len)</div><div class="ttdoc">Returns a newly allocated string identical to src.</div><div class="ttdef"><b>Definition:</b> <a href="_memory_8c_source.html#l00102">Memory.c:102</a></div></div>
 <div class="ttc" id="a_nimble_8h_html_a527cddcc22f04dbed8fe9768a975ab50"><div class="ttname"><a href="_nimble_8h.html#a527cddcc22f04dbed8fe9768a975ab50">NCONST_STR_LEN</a></div><div class="ttdeci">#define NCONST_STR_LEN(str)</div><div class="ttdoc">Gets the length of a const char * as strlen() would, but at compile time.</div><div class="ttdef"><b>Definition:</b> <a href="_nimble_8h_source.html#l00196">Nimble.h:196</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
