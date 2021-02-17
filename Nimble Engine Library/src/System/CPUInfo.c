@@ -162,7 +162,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define einfoStr "CPU info was longer than max size in nSysGetCPUInfo()."
         if (nErrorAssert(
          l <= NCONST_STR_LEN(NCPU_INFO),
-         NERROR_BUFFER_OVERFLOW,
+         NERROR_BOUNDS_OVERFLOW,
          einfoStr,
          NCONST_STR_LEN(einfoStr)
         )) return NULL;
@@ -224,7 +224,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "SWIFT"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -236,7 +236,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "CYCLONE"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -248,7 +248,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "TYPHOON"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -260,7 +260,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "TYPHOON-CAPRI"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -272,7 +272,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "TWISTER"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -284,7 +284,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "TWISTER-ELBA-MALTA"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -296,7 +296,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "HURRICANE"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -308,7 +308,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "HURRICANE-MYST"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -320,7 +320,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "HURRICANE"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -332,7 +332,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "920T"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -344,7 +344,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "926EJS"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -356,7 +356,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "1136JFS"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -368,7 +368,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "1176JZFS"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -380,7 +380,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "CORTEX-A5"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -392,7 +392,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "CORTEX_A7"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -404,7 +404,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "CORTEX_A8"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -416,7 +416,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "CORTEX_A9"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -428,7 +428,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "CORTEX-A53"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -440,7 +440,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define partStr "CORTEX-A55"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(partStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -467,7 +467,7 @@ char *nSysGetCPUInfo(size_t *len)
 
             if (nErrorAssert(
              l + NCONST_STR_LEN(unknownCPUStr) <= NCONST_STR_LEN(NCPU_INFO),
-             NERROR_BUFFER_OVERFLOW,
+             NERROR_BOUNDS_OVERFLOW,
              einfoStr,
              NCONST_STR_LEN(einfoStr)
             )) return NULL;
@@ -501,7 +501,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv4"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -513,7 +513,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv4T"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -525,7 +525,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv5"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -537,7 +537,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv5T"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -549,7 +549,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv5TE"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -561,7 +561,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv5TEJ"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -573,7 +573,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv6"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -585,7 +585,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv7"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -597,7 +597,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv7f"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -609,7 +609,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv7s"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -621,7 +621,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv7k"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -633,7 +633,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define archStr "ARMv8"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(archStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;
@@ -646,7 +646,7 @@ char *nSysGetCPUInfo(size_t *len)
 #  define unknownArchStr "Unknown architecture"
                 if (nErrorAssert(
                  l + NCONST_STR_LEN(unknownArchStr) <= NCONST_STR_LEN(NCPU_INFO),
-                 NERROR_BUFFER_OVERFLOW,
+                 NERROR_BOUNDS_OVERFLOW,
                  einfoStr,
                  NCONST_STR_LEN(einfoStr)
                 )) return NULL;

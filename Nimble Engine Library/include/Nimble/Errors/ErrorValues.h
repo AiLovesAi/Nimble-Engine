@@ -65,11 +65,18 @@ enum nErrors {
     NERROR_WARN, /**< A warning was triggered that requires attention by the user. */
     NERROR_INTERNAL_FAILURE, /**< An internal error occurred. */
     NERROR_NULL, /**< A pointer was null when a nonnull pointer was expected. */
+    NERROR_STACK_OVERFLOW, /**< A stack overflow occurred. */
     NERROR_INV_ERROR, /**< An error passed to a function was not valid. */
-    NERROR_BUFFER_OVERFLOW, /**< Not enough space in buffer. */
+    NERROR_BOUNDS_OVERFLOW, /**< Operation would overflow bounds of array or buffer. */
     NERROR_INV_RETRY, /**< Cannot retry. */
     NERROR_LOOP, /**< Looped to the start of a function before completion. */
     
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    NERROR_INV_TYPE_ALIGNMENT, /**< Invalid type alignment. */
+    NERROR_INV_PAGE, /**< Requested page is not present. */
+    NERROR_NONCONTINUABLE, /**< Tried to continue execution after a noncontinuable exception occurred. */
+#endif
+
     NERROR_SIGNAL_START, /**< The start of the signal section. */
     NERROR_SIGABRT, /**< Caught abort signal. */
     NERROR_SIGFPE, /**< Caught floating point exception signal. */

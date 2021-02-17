@@ -80,21 +80,387 @@ static void nEngineCleanup(void)
     nThreadMutexDestroy(&nStacktraceMutex);
 }
 
-#ifdef NIMBLE_STD_POSIX
-_Noreturn static void nEngineHandleSignal(const int signum, siginfo_t *info, void *context)
+#if NIMBLE_OS == NIMBLE_WINDOWS
+static LONG nEngineHandleException(EXCEPTION_POINTERS *exceptionInfo)
+{
+    const nTime_t errorTime = nTime();
+
+    /** @todo Set info and crash; also use ExceptionRecord->ExceptionAddress and ExceptionInformation (with segv). */
+    int error = NSUCCESS;
+    char *infoStr = NULL;
+    int infoLen;
+    switch (exceptionInfo->ExceptionRecord->ExceptionCode)
+    {
+        /* Unique exceptions */
+        case EXCEPTION_ACCESS_VIOLATION:
+            error = NERROR_SIGSEGV;
+#  define formatStr "Caught access violation exception at 0x%p. The thread tried to read from or "\
+ "write to a virtual address for which it does not have the appropriate access.\n"
+            /* Documentation states:
+             * The first element of the array contains a read-write flag that indicates the type of operation
+             * that caused the access violation.
+             * If this value is 0, the thread attempted to read the inaccessible data.
+             * If this value is 1, the thread attempted to write to an inaccessible address.
+             * If this value is 8, the thread causes a user-mode data execution prevention (DEP) violation.
+             * 
+             * The second array element specifies the virtual address of the inaccessible data.
+             */
+            switch (exceptionInfo->ExceptionRecord->ExceptionInformation[0])
+            {
+                case 0:
+#  define readStr "Tried to read from unaccessible address 0x%p."
+                    infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0)
+                     + NCONST_STR_FORMAT_LEN(readStr, 1, 0, 0, 0) + (2 * (sizeof(uintptr_t) * 2));
+                    infoStr = nAlloc(infoLen + 1);
+                    infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) +
+                     NCONST_STR_FORMAT_LEN(readStr, 1, 0, 0, 0) + (2 * (sizeof(uintptr_t) * 2));
+                    infoStr = nAlloc(infoLen + 1);
+                    snprintf(
+                     infoStr,
+                     NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2),
+                     formatStr,
+                     exceptionInfo->ExceptionRecord->ExceptionAddress
+                    );
+                    snprintf(
+                     infoStr + NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2),
+                     NCONST_STR_FORMAT_LEN(readStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2),
+                     readStr,
+                     exceptionInfo->ExceptionRecord->ExceptionInformation[1]
+                    );
+                    infoStr[infoLen] = '\0';
+#  undef readStr
+                    break;
+                case 1:
+#  define writeStr "Tried to write to unaccessible address 0x%p."
+                    infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0)
+                     + NCONST_STR_FORMAT_LEN(writeStr, 1, 0, 0, 0) + (2 * (sizeof(uintptr_t) * 2));
+                    infoStr = nAlloc(infoLen + 1);
+                    infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) +
+                     NCONST_STR_FORMAT_LEN(writeStr, 1, 0, 0, 0) + (2 * (sizeof(uintptr_t) * 2));
+                    infoStr = nAlloc(infoLen + 1);
+                    snprintf(
+                     infoStr,
+                     NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2),
+                     formatStr,
+                     exceptionInfo->ExceptionRecord->ExceptionAddress
+                    );
+                    snprintf(
+                     infoStr + NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2),
+                     NCONST_STR_FORMAT_LEN(writeStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2),
+                     writeStr,
+                     exceptionInfo->ExceptionRecord->ExceptionInformation[1]
+                    );
+                    infoStr[infoLen] = '\0';
+#  undef writeStr
+                    break;
+                default:
+#  define userModeStr "Thread caused a user-mode data executation prevention (DEP) violation to "\
+ "address 0x%p."
+                    infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) +
+                     NCONST_STR_FORMAT_LEN(userModeStr, 1, 0, 0, 0) + (2 * (sizeof(uintptr_t) * 2));
+                    infoStr = nAlloc(infoLen + 1);
+                    snprintf(
+                     infoStr,
+                     NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2),
+                     formatStr,
+                     exceptionInfo->ExceptionRecord->ExceptionAddress
+                    );
+                    snprintf(
+                     infoStr + NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2),
+                     NCONST_STR_FORMAT_LEN(userModeStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2),
+                     userModeStr,
+                     exceptionInfo->ExceptionRecord->ExceptionInformation[1]
+                    );
+                    infoStr[infoLen] = '\0';
+#  undef userModeStr
+                    break;
+            }
+#  undef addressStr
+#  undef formatStr
+            break;
+
+        case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:
+            error = NERROR_BOUNDS_OVERFLOW;
+#  define formatStr "Caught access array out of bounds exception at 0x%p. The thread tried to access "\
+ "an array element that is out of bounds and the underlying hardware supports bounds checking."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+
+        case EXCEPTION_DATATYPE_MISALIGNMENT:
+            error = NERROR_INV_TYPE_ALIGNMENT;
+#  define formatStr "Caught datatype misalignment exception at 0x%p. The thread tried to read or write "\
+ "data that is misaligned on hardware that does not provide alignment. For example, 16-bit "\
+ "values must be aligned on 2-byte boundaries; 32-bit values on 4-byte boundaries, and so on."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+
+        case EXCEPTION_IN_PAGE_ERROR:
+            error = NERROR_INV_PAGE;
+#  define formatStr "Caught page error exception. The thread tried to access a page that was "\
+ "not present, and the system was unable to load the page. For example, this exception might "\
+ "occur if a network connection is lost while running a program over the network."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+
+        case EXCEPTION_INT_OVERFLOW:
+            error = NERROR_OVERFLOW;
+#  define formatStr "Caught integer overflow exception. The result of an integer operation "\
+ "caused a carry out of the most significant bit of the result."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+
+        case EXCEPTION_NONCONTINUABLE_EXCEPTION:
+            error = NERROR_NONCONTINUABLE;
+#  define formatStr "Caught \"noncontinuable exception\" exception. The thread tried to "\
+ "continue execution after a noncontinuable exception occurred."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+
+        /* Illegal instruction exceptions */
+        case EXCEPTION_ILLEGAL_INSTRUCTION:
+            error = NERROR_SIGILL;
+#  define formatStr "Caught illegal instruction exception. The thread tried to execute an "\
+ "invalid instruction."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+        case EXCEPTION_PRIV_INSTRUCTION:
+            error = NERROR_SIGILL;
+#  define formatStr "Caught priv instruction exception. The thread tried to execute an "\
+ "instruction whose operation is not allowed in the current machine mode."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+            
+        /* Floating point exceptions */
+        case EXCEPTION_INT_DIVIDE_BY_ZERO:
+            error = NERROR_SIGFPE;
+#  define formatStr "Caught integer divide by zero exception. The thread tried to divide an "\
+ "integer value by an integer divisor of zero."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+        case EXCEPTION_FLT_DENORMAL_OPERAND:
+            error = NERROR_SIGFPE;
+#  define formatStr "Caught float denormal operand exception. One of the operands in a "\
+ "floating-point operation is denormal. A denormal value is one that is too small to "\
+ "represent as a standard floating-point value."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+        case EXCEPTION_FLT_DIVIDE_BY_ZERO:
+            error = NERROR_SIGFPE;
+#  define formatStr "Caught float divide by zero exception. The thread tried to divide a "\
+ "floating-point value by a floating-point divisor of zero."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+        case EXCEPTION_FLT_INEXACT_RESULT:
+            error = NERROR_SIGFPE;
+#  define formatStr "Caught float inexact result exception. The result of a floating-point "\
+ "operation cannot be represented exactly as a decimal fraction."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+        case EXCEPTION_FLT_INVALID_OPERATION:
+            error = NERROR_SIGFPE;
+#  define formatStr "Caught float invalid operation exception. This exception represents "\
+ "any floating-point exception not included in this list."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+        case EXCEPTION_FLT_OVERFLOW:
+            error = NERROR_SIGFPE;
+#  define formatStr "Caught float overflow exception. The exponent of a floating-point "\
+ "operation is greater than the magnitude allowed by the corresponding type."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+        case EXCEPTION_FLT_UNDERFLOW:
+#  define formatStr "Caught float underflow exception. The exponent of a floating-point "\
+ "operation is less than the magnitude allowed by the corresponding type."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            error = NERROR_SIGFPE;
+            break;
+
+        /* Stack overflow exceptions */
+        case EXCEPTION_STACK_OVERFLOW:
+            error = NERROR_STACK_OVERFLOW;
+#  define formatStr "Caught stack overflow exception. The thread used up its stack."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+        case EXCEPTION_FLT_STACK_CHECK:
+            error = NERROR_STACK_OVERFLOW;
+#  define formatStr "Caught float stack check exception. The stack overflowed or "\
+ "underflowed as the result of a floating-point operation."
+            infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
+            infoStr = nAlloc(infoLen + 1);
+            snprintf(
+             infoStr,
+             infoLen,
+             formatStr,
+             exceptionInfo->ExceptionRecord->ExceptionAddress
+            );
+            infoStr[infoLen] = '\0';
+#  undef formatStr
+            break;
+
+        /* Non-erroneous exceptions */
+        case EXCEPTION_BREAKPOINT:
+        case EXCEPTION_SINGLE_STEP:
+        case EXCEPTION_INVALID_DISPOSITION: /* Documentation states: "Programmers using a high-level language such as C should never encounter this exception." */
+        default:
+            return EXCEPTION_EXECUTE_HANDLER;
+    }
+
+    nErrorInfo_t errorInfo;
+    nErrorInfoSet(&errorInfo, error, errorTime, infoStr, infoLen, NULL, 0, exceptionInfo->ContextRecord);
+    errorInfo.stackStr = nErrorStacktrace(&errorInfo.stackLen, &errorInfo.stackLevels, exceptionInfo->ContextRecord);
+    nCrashSafe(error, errorInfo);
+}
+#else
+_Noreturn static void nEngineHandleException(const int signum, siginfo_t *info, void *context)
 {
     char *infoStr = NULL;
-    size_t infoLen = 0;
+    size_t infoLen;
     switch (signum)
     {
         case SIGTERM:
             exit(SIGTERM);
             /* NO RETURN */
         case SIGSEGV:
-#  define formatStr "Caught a segmentation fault signal at address %p."
+#  define formatStr "Caught a segmentation fault signal at address 0x%p."
             infoLen = NCONST_STR_FORMAT_LEN(formatStr, 1, 0, 0, 0) + (sizeof(uintptr_t) * 2);
             infoStr = nAlloc(infoLen + 1);
             snprintf(infoStr, infoLen, formatStr, info->si_addr);
+            infoStr[infoLen] = '\0';
 #  undef formatStr
         default:
             const nTime_t errorTime = nTime();
@@ -123,43 +489,6 @@ _Noreturn static void nEngineHandleSignal(const int signum, siginfo_t *info, voi
             }
             nErrorInfoSet(&errorInfo, error, errorTime, infoStr, infoLen),
              NULL, 0);
-            nCrashSafe(error, errorInfo);
-            /* NO RETURN */
-    }
-}
-#elif NIMBLE_OS == NIMBLE_WINDOWS
-static LONG nEngineHandleSignal(EXCEPTION_POINTERS *exceptionInfo)
-{
-    switch (exceptionInfo->ExceptionRecord->ExceptionCode)
-    {
-        case EXCEPTION_ACCESS_VIOLATION:
-            /** @todo */
-            break;
-        default:
-            break;
-    }
-
-    return EXCEPTION_EXECUTE_HANDLER;
-}
-#else
-_Noreturn static void nEngineHandleSignal(int signum)
-{
-    switch (signum)
-    {
-        case SIGTERM:
-            exit(SIGTERM);
-            /* NO RETURN */
-        default:
-            const nTime_t errorTime = nTime();
-            const int error = nErrorFromSignal(signum);
-
-            signal(signum, SIG_DFL);
-
-            nErrorInfo_t errorInfo;
-#  define einfoStr "Caught a signal using nCrashSignal()."
-            nErrorInfoSet(&errorInfo, error, errorTime, einfoStr, NCONST_STR_LEN(einfoStr),
-            NULL, 0);
-#  undef einfoStr
             nCrashSafe(error, errorInfo);
             /* NO RETURN */
     }
@@ -204,9 +533,11 @@ void nEngineCopyArgs(char **args, const int argc)
 NIMBLE_INLINE
 void nEngineSetSignalHandler(void)
 {
-#ifdef NIMBLE_STD_POSIX
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    SetUnhandledExceptionFilter(nEngineHandleException);
+#else
     struct sigaction sa = {};
-    sa.sa_handler = nEngineHandleSignal;
+    sa.sa_handler = nEngineHandleException;
 #  define einfoStr "sigemptyset() failed in nEngineInit(), and the signal "\
  "handlers could not be set."
     nAssert(
@@ -251,24 +582,6 @@ void nEngineSetSignalHandler(void)
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
     nAssert(!sigaction(SIGSEGV, &sa, NULL),
      NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
-#elif NIMBLE_OS == NIMBLE_WINDOWS
-    SetUnhandledExceptionFilter(nEngineHandleSignal);
-#else
-#  define einfoStr "signal() failed in nEngineInit(), and the signal handlers "\
- "could not be set."
-    nAssert(signal(SIGTERM, nEngineHandleSignal) != SIG_ERR,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
-    nAssert(signal(SIGABRT, nEngineHandleSignal) != SIG_ERR,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
-    nAssert(signal(SIGFPE, nEngineHandleSignal) != SIG_ERR,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
-    nAssert(signal(SIGILL, nEngineHandleSignal) != SIG_ERR,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
-    nAssert(signal(SIGINT, nEngineHandleSignal) != SIG_ERR,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
-    nAssert(signal(SIGSEGV, nEngineHandleSignal) != SIG_ERR,
-     NERROR_INTERNAL_FAILURE, einfoStr, NCONST_STR_LEN(einfoStr));
-#  undef einfoStr
 #endif
 }
 

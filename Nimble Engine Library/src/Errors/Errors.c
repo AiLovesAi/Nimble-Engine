@@ -49,7 +49,6 @@
 #include <inttypes.h>
 
 #if NIMBLE_OS == NIMBLE_WINDOWS
-#include <dbghelp.h>
 #include <imagehlp.h>
 #include <windows.h>
 #else
@@ -117,7 +116,13 @@ int nErrorThrow(const int error, const char *const info, size_t infoLen, const i
     }
     
     nErrorInfo_t errorInfo;
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    CONTEXT context = {0};
+    nErrorSetContext(&context);
+    nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen, sysDescStr, sysDescLen, &context);
+#else
     nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen, sysDescStr, sysDescLen);
+#endif
     
     /* Call the user-defined error callback function. */
     errorCallback(errorInfo);
@@ -186,9 +191,29 @@ int nErrorLast(size_t *sysDescLen, char **sysDescStr)
     return error;
 }
 
+#if NIMBLE_OS == NIMBLE_WINDOWS
+void nErrorSetContext(CONTEXT *context)
+{
+#  define einfoStr "GetThreadContext() failed in nErrorSetContext()."
+    nAssert(
+     GetThreadContext(GetCurrentThread(), context),
+     NERROR_INTERNAL_FAILURE,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
+#  undef einfoStr
+}
+#endif
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
+void nErrorInfoSet(nErrorInfo_t *restrict errorInfo, const int error,
+ const nTime_t errorTime, const char *restrict info, size_t infoLen,
+ const char *const sysDescStr, size_t sysDescLen, CONTEXT *context)
+#else
 void nErrorInfoSet(nErrorInfo_t *restrict errorInfo, const int error,
  const nTime_t errorTime, const char *restrict info, size_t infoLen,
  const char *const sysDescStr, size_t sysDescLen)
+#endif
 {
 #ifndef NIMBLE_NO_ARG_CHECK
     if (!errorInfo) return;
@@ -250,8 +275,13 @@ void nErrorInfoSet(nErrorInfo_t *restrict errorInfo, const int error,
     }
     else
     {
+#if NIMBLE_OS == NIMBLE_WINDOWS
+        errorInfo->stackStr = nErrorStacktrace(&errorInfo->stackLen,
+         &errorInfo->stackLevels, context);
+#else
         errorInfo->stackStr = nErrorStacktrace(&errorInfo->stackLen,
          &errorInfo->stackLevels);
+#endif
     }
 }
 
@@ -291,6 +321,7 @@ void nErrorSetCallback(void (*const callback) (const nErrorInfo_t errorInfo))
     }
 }
 
+#if 0
 struct frameInfo {
     char *func;  /* Function name */
     int funcLen; /* Length of func */
@@ -430,23 +461,81 @@ struct frameInfo *nErrorStackSymbols(int *levels, int maxLevels)
     if (nStacktraceMutex) nThreadMutexUnlock(&nStacktraceMutex);
     return frames;
 }
+#endif
 
+/** @todo Recheck if recursion can occur. */
+#if NIMBLE_OS == NIMBLE_WINDOWS
+char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels, CONTEXT *context)
+#else
 char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels)
+#endif
 {
     if (stacktraceAttempted) nCrashAbort(NERROR_LOOP);
     stacktraceAttempted = 1;
 
     /* Set max levels */
-    size_t maxLevels = NERRORS_STACK_DEFAULT;
+    int maxLevels = NERRORS_STACK_DEFAULT;
     if (stackLevels && (*stackLevels > 0) && (*stackLevels <= NERRORS_STACK_MAX))
     {
         maxLevels = *stackLevels;
     }
 
     size_t len = 0;
-    int levels = 0;
     char *stackStr = NULL;
 
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    HANDLE process = GetCurrentProcess();
+#  define einfoStr "SymInitialize() failed in nErrorStacktrace()."
+    nAssert(
+     SymInitialize(process, 0, 1),
+     NERROR_INTERNAL_FAILURE,
+     einfoStr,
+     NCONST_STR_LEN(einfoStr)
+    );
+#  undef einfoStr
+
+    STACKFRAME frame = {0};
+    frame.AddrPC.Offset = context->Rip;
+    frame.AddrPC.Mode = AddrModeFlat;
+    frame.AddrStack.Offset = context->Rsp;
+    frame.AddrStack.Mode = AddrModeFlat;
+    frame.AddrFrame.Offset = context->Rbp;
+    frame.AddrFrame.Mode = AddrModeFlat;
+    int levels;
+
+    for (levels = 0; (levels < maxLevels) && (
+     StackWalk64(
+#  if NIMBLE_ARCH == NIMBLE_ARCH_INTEL
+      IMAGE_FILE_MACHINE_I386,
+#  elif NIMBLE_ARCH == NIMBLE_ARCH_AMD
+      IMAGE_FILE_MACHINE_AMD64,
+#  else
+      IMAGE_FILE_MACHINE_IA64,
+#  endif
+      process,
+      GetCurrentThread(),
+      &frame,
+      context,
+      0,
+      SymFunctionTableAccess64,
+      SymGetModuleBase64,
+      0
+    )); levels++)
+    {
+        /** @todo addr2line frame.AddrPC.Offset */
+    }
+#else
+    void **stack = nAlloc(sizeof(void **) * maxLevels);
+    int levels = backtrace(stack, maxLevels);
+    char **symbolStrs = backtrace_symbols(stack, levels);
+
+    for (int i = 0; i < levels; i++)
+    {
+        /** @todo addr2line stack[i] */
+    }
+#endif
+
+#if 0
     struct frameInfo *frames = nErrorStackSymbols(&levels, maxLevels);
     for (int i = 0; i < levels; i++)
     {
@@ -455,6 +544,7 @@ char *nErrorStacktrace(size_t *restrict stackLen, int *restrict stackLevels)
         if (frames[i].func) nFree((void **) &frames[i].func);
     }
     nFree((void **) &frames);
+#endif
 
     /* Cleanup */
     if (stackLevels) *stackLevels = levels;

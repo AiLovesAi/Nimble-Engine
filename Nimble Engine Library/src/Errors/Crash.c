@@ -129,7 +129,14 @@ _Noreturn void nCrashSafe(const int error, nErrorInfo_t errorInfo)
     
     if (!errorInfo.stackStr)
     {
+#if NIMBLE_OS == NIMBLE_WINDOWS
+        CONTEXT context = {0};
+        nErrorSetContext(&context);
+#  undef einfoStr
+        errorInfo.stackStr = nErrorStacktrace(&errorInfo.stackLen, &errorInfo.stackLevels, &context);
+#else
         errorInfo.stackStr = nErrorStacktrace(&errorInfo.stackLen, &errorInfo.stackLevels);
+#endif
     }
     else if (errorInfo.stackLen <= 0)
     {
@@ -157,8 +164,15 @@ void nAssert(const int check, const int error, const char *const info,
         if (!err) err = error;
 
         nErrorInfo_t errorInfo;
+#if NIMBLE_OS == NIMBLE_WINDOWS
+        CONTEXT context = {0};
+        nErrorSetContext(&context);
+        nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen, sysDescStr,
+         sysDescLen, &context);
+#else
         nErrorInfoSet(&errorInfo, err, errorTime, info, infoLen, sysDescStr,
          sysDescLen);
+#endif
         nCrashSafe(err, errorInfo);
     }
 }
@@ -191,7 +205,9 @@ _Noreturn void nCrashAbort(const int error)
     }
 
     /* Reset to default abort signal handler */
-#ifdef NIMBLE_STD_POSIX
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    SetUnhandledExceptionFilter(NULL);
+#else
     struct sigaction sa = {};
     sa.sa_handler = SIG_DFL;
     if (!sigemptyset(&sa.sa_mask))
@@ -204,10 +220,6 @@ _Noreturn void nCrashAbort(const int error)
 
         sigaction(SIGABRT, &sa, NULL);
     }
-#elif NIMBLE_OS == NIMBLE_WINDOWS
-    SetUnhandledExceptionFilter(NULL);
-#else
-    signal(SIGABRT, SIG_DFL);
 #endif
 
     /* ABORT! */

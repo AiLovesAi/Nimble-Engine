@@ -98,7 +98,7 @@ NIMBLE_USE_RESULT
 NIMBLE_INLINE
 void *nRealloc(void *ptr, const size_t size)
 {
-    if (!ptr) return nAlloc(size); /// @todo Find why just using realloc with a null pointer doesn't work as it should by C standard
+    //if (!ptr) return nAlloc(size); /// @todo Find why just using realloc with a null pointer doesn't work as it should by C standard
     ptr = realloc(ptr, size);
 
     /* Check if successfully allocated. */

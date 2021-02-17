@@ -154,6 +154,16 @@ int nErrorLastWindows(void)
     SetLastError(ERROR_SUCCESS);
     return error;
 }
+
+/**
+ * @brief Sets @p context to the invoking thread's context.
+ * 
+ * @param[out] context The context to set.
+ */
+NIMBLE_EXPORT
+NIMBLE_EXTERN
+void
+nErrorSetContext(CONTEXT *context);
 #endif
 
 /**
@@ -214,12 +224,16 @@ int nErrorAssert(const int check,
 NIMBLE_EXPORT
 NIMBLE_EXTERN
 void nErrorInfoSet(nErrorInfo_t *restrict errorInfo,
-              const int error,
-              const nTime_t errorTime,
-              const char *restrict info,
-              size_t infoLen,
-              const char *const sysDescStr,
-              size_t sysDescLen);
+                   const int error,
+                   const nTime_t errorTime,
+                   const char *restrict info,
+                   size_t infoLen,
+                   const char *const sysDescStr,
+                   size_t sysDescLen
+#if NIMBLE_OS == NIMBLE_WINDOWS
+                 , CONTEXT *context
+#endif
+                  );
 
 /**
  * @brief Frees a #nErrorInfo_t structure.
@@ -263,7 +277,11 @@ NIMBLE_USE_RESULT
 NIMBLE_EXTERN
 char *
 nErrorStacktrace(size_t *restrict stackLen,
-                 int *restrict stackLevels);
+                 int *restrict stackLevels
+#if NIMBLE_OS == NIMBLE_WINDOWS
+               , CONTEXT *context
+#endif
+                );
 
 #endif // NIMBLE_ENGINE_ERRORS_H
 

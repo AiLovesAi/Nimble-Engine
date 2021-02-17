@@ -354,7 +354,7 @@ char *nFileSetExecutablePath(void)
  "to fail."
     nAssert(
      len <= PATH_MAX,
-     NERROR_BUFFER_OVERFLOW,
+     NERROR_BOUNDS_OVERFLOW,
      einfoStr,
      NCONST_STR_LEN(einfoStr)
     );

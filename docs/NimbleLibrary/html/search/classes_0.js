@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['frame_491',['frame',['../structframe.html',1,'']]],
-  ['frameinfo_492',['frameInfo',['../structframe_info.html',1,'']]]
+  ['nerrorinfo_483',['nErrorInfo',['../structn_error_info.html',1,'']]],
+  ['ntimespec_484',['nTimeSpec',['../structn_time_spec.html',1,'']]]
 ];

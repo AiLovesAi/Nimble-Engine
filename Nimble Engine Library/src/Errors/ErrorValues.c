@@ -50,10 +50,17 @@ const char * const nErrorStrings[] = {
     "NERROR_WARN",
     "NERROR_INTERNAL_FAILURE",
     "NERROR_NULL",
+    "NERROR_STACK_OVERFLOW",
     "NERROR_INV_ERROR",
-    "NERROR_BUFFER_OVERFLOW",
+    "NERROR_BOUNDS_OVERFLOW",
     "NERROR_INV_RETRY",
     "NERROR_LOOP",
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    "NERROR_INV_TYPE_ALIGNMENT",
+    "NERROR_INV_PAGE",
+    "NERROR_NONCONTINUABLE",
+#endif
     
     "NERROR_SIGNAL_START",
     "NERROR_SIG_ABRT",
@@ -766,10 +773,17 @@ const size_t nErrorStrLengths[] = {
     NCONST_STR_LEN("NERROR_WARN"),
     NCONST_STR_LEN("NERROR_INTERNAL_FAILURE"),
     NCONST_STR_LEN("NERROR_NULL"),
+    NCONST_STR_LEN("NERROR_STACK_OVERFLOW"),
     NCONST_STR_LEN("NERROR_INV_ERROR"),
-    NCONST_STR_LEN("NERROR_BUFFER_OVERFLOW"),
+    NCONST_STR_LEN("NERROR_BOUNDS_OVERFLOW"),
     NCONST_STR_LEN("NERROR_INV_RETRY"),
     NCONST_STR_LEN("NERROR_LOOP"),
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    NCONST_STR_LEN("NERROR_INV_TYPE_ALIGNMENT"),
+    NCONST_STR_LEN("NERROR_INV_PAGE"),
+    NCONST_STR_LEN("NERROR_NONCONTINUABLE"),
+#endif
     
     NCONST_STR_LEN("NERROR_SIGNAL_START"),
     NCONST_STR_LEN("NERROR_SIG_ABRT"),
@@ -1485,14 +1499,30 @@ const size_t nErrorStrLengths[] = {
  "Nimble Engine."
 #define nErrDescNullStr              "A pointer was null when a nonnull "\
  "pointer was expected."
+#define nErrDescStackOverflowStr     "A stack overflow occurred. The thread "\
+ "used all of its available stack memory, which will corrupt other memory."
 #define nErrDescInvErrorStr          "An error passed to a function was "\
  "not valid."
-#define nErrDescBufferOverflowStr    "Not enough space in buffer. An attempt "\
- "to write to a buffer was stopped because it would leak memory."
+#define nErrDescBoundsOverflow       "Operation would overflow bounds of array "\
+ "or buffer. An attempt to read from or write to an array or buffer was stopped "\
+ "because it would cause a fault due to insufficient space in array or buffer."
 #define nErrDescInvRetryStr          "Cannot retry. Attempted to retry an "\
  "operation that can only be tried once."
 #define nErrDescLoopStr              "Looped to the start of a function "\
  "before completion. Continuing would likely cause an infinite loop."
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
+#define nErrDescInvTypeAlignmentStr  "Invalid type alignment. An attempt "\
+ "was made to read or write data that is misaligned on hardware that does not "\
+ "provide alignment. For example, 16-bit values must be aligned on 2-byte "\
+ "boundaries; 32-bit values on 4-byte boundaries, and so on."
+#define nErrDescInvPageStr           "Requested page is not present. An attempt "\
+ "was made to access a page that was not present, and the system was unable to "\
+ "load the page. For example, this exception might occur if a network "\
+ "connection is lost while running a program over the network."
+#define nErrDescNoncontinuableStr    "The thread tried to continue execution "\
+ "after a noncontinuable exception occurred."
+#endif
 
 #define nErrDescSignalStartStr       "The start of the signal error section; "\
  "likely caused by programmer error or a memory corruption issue."
@@ -1889,10 +1919,17 @@ const char * const nErrorDescriptions[] = {
     nErrDescWarnStr,
     nErrDescInternalFailureStr,
     nErrDescNullStr,
+    nErrDescStackOverflowStr,
     nErrDescInvErrorStr,
-    nErrDescBufferOverflowStr,
+    nErrDescBoundsOverflow,
     nErrDescInvRetryStr,
     nErrDescLoopStr,
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    nErrDescInvTypeAlignmentStr,
+    nErrDescInvPageStr,
+    nErrDescNoncontinuableStr,
+#endif
     
     nErrDescSignalStartStr,
     nErrDescSigAbrtStr,
@@ -2604,10 +2641,17 @@ const size_t nErrorDescLengths[] = {
     NCONST_STR_LEN(nErrDescWarnStr),
     NCONST_STR_LEN(nErrDescInternalFailureStr),
     NCONST_STR_LEN(nErrDescNullStr),
+    NCONST_STR_LEN(nErrDescStackOverflowStr),
     NCONST_STR_LEN(nErrDescInvErrorStr),
-    NCONST_STR_LEN(nErrDescBufferOverflowStr),
+    NCONST_STR_LEN(nErrDescBoundsOverflow),
     NCONST_STR_LEN(nErrDescInvRetryStr),
     NCONST_STR_LEN(nErrDescLoopStr),
+
+#if NIMBLE_OS == NIMBLE_WINDOWS
+    NCONST_STR_LEN(nErrDescInvTypeAlignmentStr),
+    NCONST_STR_LEN(nErrDescInvPageStr),
+    NCONST_STR_LEN(nErrDescNoncontinuableStr),
+#endif
     
     NCONST_STR_LEN(nErrDescSignalStartStr),
     NCONST_STR_LEN(nErrDescSigAbrtStr),
